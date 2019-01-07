@@ -60,8 +60,8 @@ because developer need the library possibly on Unity editor.
 * library
 * library_android
 * library_ios
-* LIBRARY_OSX
-* LIBRARY_WINDOWS
+* library_OSX
+* library_WINDOWS
 
 **Library Build Scripts:**
 
@@ -71,6 +71,8 @@ and copy them to *app_unity/Plugins*.
 * lib_build_android.bat
 * lib_build_android.sh
 * lib_build_ios.sh
+* lib_build_OSX.sh
+* lib_build_WINDOWS.bat
 
 **Resource Dispatch:**
 
