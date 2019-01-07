@@ -1,0 +1,21 @@
+# macOS Finder cache
+.DS_Store
+
+# Android Studio local files
+*_android/**/.externalNativeBuild/
+*_android/**/.gradle/
+*_android/**/.idea/
+*_android/**/.settings/
+*_android/**/build/
+*_android/**/local.properties
+*_android/**/.classpath
+*_android/**/.project
+*_android/**/*.iml
+
+# Xcode local files
+*_ios/**/xcuserdata/
+*_ios/**/build/
+
+# the project's local files
+build/
+*_ios/build/

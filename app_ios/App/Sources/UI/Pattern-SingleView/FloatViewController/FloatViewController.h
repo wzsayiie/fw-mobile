@@ -1,0 +1,4 @@
+//
+
+@interface FloatViewController : UIViewController
+@end
