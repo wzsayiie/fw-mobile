@@ -1,6 +1,6 @@
 ## Introduction
 
-This is a framework for mobile development.
+This is a framework and demonstration for mobile development.
 
 Currently developing by
 *Xcode*, *Android Studio* and *Unity* are supported.
@@ -9,7 +9,10 @@ Currently developing by
 
 If a direcotory is *necessary* for building Android and iOS app,
 then it named by *lowercase* and *underline*,
-otherwise named by uppercase and underline.
+for example *app_android*.
+
+Otherwise it's name includes uppercase,
+for example *EDITOR_CPP*, *library_OSX*.
 
 ## Directories Structure
 
