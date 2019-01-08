@@ -17,6 +17,7 @@
 		B4A1387021E30B98000218AF /* filesystem_osx.mm in Sources */ = {isa = PBXBuildFile; fileRef = B4A1386521E30B98000218AF /* filesystem_osx.mm */; };
 		B4A1387121E30B98000218AF /* filesystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A1386621E30B98000218AF /* filesystem.cpp */; };
 		B4A1387221E30B98000218AF /* utf8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A1386721E30B98000218AF /* utf8.cpp */; };
+		B4AC2B2221E44CE400185FBF /* base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4AC2B2121E44CE300185FBF /* base.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,6 +48,8 @@
 		B4A1386621E30B98000218AF /* filesystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filesystem.cpp; sourceTree = "<group>"; };
 		B4A1386721E30B98000218AF /* utf8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utf8.cpp; sourceTree = "<group>"; };
 		B4A1386821E30B98000218AF /* utf8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utf8.h; sourceTree = "<group>"; };
+		B4AC2B2021E44C7900185FBF /* base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base.h; sourceTree = "<group>"; };
+		B4AC2B2121E44CE300185FBF /* base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base.cpp; sourceTree = "<group>"; };
 		CE2BF73121BFF1D10013614A /* EDITOR_CPP */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EDITOR_CPP; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -93,6 +96,8 @@
 		B4A1385D21E30B98000218AF /* base */ = {
 			isa = PBXGroup;
 			children = (
+				B4AC2B2021E44C7900185FBF /* base.h */,
+				B4AC2B2121E44CE300185FBF /* base.cpp */,
 				B4A1386421E30B98000218AF /* entry.h */,
 				B4A1386221E30B98000218AF /* entry.cpp */,
 				B4A1385E21E30B98000218AF /* filesystem.h */,
@@ -181,6 +186,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4A1386A21E30B98000218AF /* demo.m in Sources */,
+				B4AC2B2221E44CE400185FBF /* base.cpp in Sources */,
 				B4A1386E21E30B98000218AF /* logging.cpp in Sources */,
 				B4A1386F21E30B98000218AF /* entry.cpp in Sources */,
 				B4A1386B21E30B98000218AF /* unify_source.cpp in Sources */,
