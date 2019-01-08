@@ -13,9 +13,13 @@
 *_android/**/*.iml
 
 # Xcode local files
+*_OSX/**/xcuserdata/
+*_OSX/**/build/
+
 *_ios/**/xcuserdata/
 *_ios/**/build/
+*_osx/**/xcuserdata/
+*_osx/**/build/
 
 # the project's local files
 build/
-*_ios/build/
