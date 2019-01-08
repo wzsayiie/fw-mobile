@@ -5,14 +5,11 @@ This is a framework and demonstration for mobile development.
 Currently developing by
 *Xcode*, *Android Studio* and *Unity* are supported.
 
-## Naming Style
+## Top Directory's Naming Style
 
 If a direcotory is *necessary* for building Android and iOS app,
 then it named by *lowercase* and *underline*,
-for example *app_android*.
-
-Otherwise it's name includes uppercase,
-for example *EDITOR_CPP*, *library_OSX*.
+otherwise it's name constituted by uppercase and underline.
 
 ## Directories Structure
 
@@ -60,8 +57,8 @@ because developer need the library possibly on Unity editor.
 * library
 * library_android
 * library_ios
-* library_OSX
-* library_WINDOWS
+* library_osx
+* library_windows
 
 **Library Build Scripts:**
 
@@ -71,8 +68,8 @@ and copy them to *app_unity/Plugins*.
 * lib_build_android.bat
 * lib_build_android.sh
 * lib_build_ios.sh
-* lib_build_OSX.sh
-* lib_build_WINDOWS.bat
+* lib_build_osx.sh
+* lib_build_windows.bat
 
 **Resource Dispatch:**
 
