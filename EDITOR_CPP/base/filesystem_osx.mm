@@ -2,7 +2,9 @@
 #import "filesystem.h"
 #import "unistd.h"
 
-const char path_separator = '/';
+const bool ON_OSX = true;
+const bool ON_WINDOWS = false;
+const char PATH_SEP = '/';
 
 string get_work_dir() {
     const size_t size = 1024;
@@ -14,7 +16,7 @@ bool change_dir(const string &path) {
     return chdir(path.c_str()) == 0;
 }
 
-bool exist_dir(const string &path, bool *is_dir) {
+bool exist_path(const string &path, bool *is_dir) {
     NSFileManager *manager = NSFileManager.defaultManager;
     NSString *target = @(path.c_str());
     return [manager fileExistsAtPath:target isDirectory:(BOOL *)is_dir];
