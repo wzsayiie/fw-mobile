@@ -80,4 +80,5 @@ Copy the recource files (e.g. configuration files, pictures) to *app_unity*.
 
 **External Libraries from Thirds:**
 
-* thirds/
+* thirds_android/
+* thirds_ios/
