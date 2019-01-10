@@ -23,7 +23,7 @@ These are `Android Studio`, `Xcode` and `Unity` project,
 
 **App Build Scripts:**
 
-For building Android and iOS app, and place them to *build/*.
+For building Android and iOS app, and placing them to *build/*.
 to run `*.sh` on macOS, run `*.bat` on Windows.
 
 * build/

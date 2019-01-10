@@ -7,7 +7,6 @@ android {
     }
     compileSdkVersion 28
     defaultConfig {
-        applicationId 'me.wzsayiie.app.android'
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
@@ -34,6 +33,22 @@ android {
     }
     lintOptions {
         disable 'GoogleAppIndexingWarning'
+    }
+
+    signingConfigs {
+        trunk {
+            storeFile file('keystores/master.jks')
+            storePassword 'master'
+            keyAlias 'master'
+            keyPassword 'master'
+        }
+    }
+    flavorDimensions 'default'
+    productFlavors {
+        master {
+            applicationId "domain.organization.appname.android.store"
+            signingConfig signingConfigs.trunk
+        }
     }
 }
 
