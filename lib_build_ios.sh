@@ -1,47 +1,57 @@
 #!/bin/bash
 
+set -e -u
+
 cd `dirname $0`
 
-g_proj_root="library_ios"
-g_proj_file="Library.xcodeproj"
-g_trgt_name="Library"
+### configuration begin
+projct_dir="library_ios"
+projct_fil="Library.xcodeproj"
+target_nam="Library"
+archs_list="x86_64 arm64 arm64e"
+ultima_dir="app_unity/Plugins/iOS"
+ultima_fil="libLibrary.a"
+### configutation end
 
-g_dst="app_unity/Plugins/iOS"
+# build library
+function clean_cache() {
+    rm -rf $projct_dir/build
+}
 
-#1 build library
-function build_library() {
-    local arch_name=$1
-    local sdk_type=$2
+function build_archive() {
+    local arch_item=$1
+    if [ "$arch_item" = "i386" -o "$arch_item" = "x86_64" ]; then
+        local sdk_type="iphonesimulator"
+    else
+        local sdk_type="iphoneos"
+    fi
 
     local cmd_line="xcodebuild"
-    cmd_line="$cmd_line -project $g_proj_root/$g_proj_file"
-    cmd_line="$cmd_line -target $g_trgt_name"
-    cmd_line="$cmd_line -arch $arch_name"
+    cmd_line="$cmd_line -project $projct_dir/$projct_fil"
+    cmd_line="$cmd_line -target $target_nam"
+    cmd_line="$cmd_line -arch $arch_item"
     cmd_line="$cmd_line -sdk $sdk_type"
     cmd_line="$cmd_line -configuration Release"
-    cmd_line="$cmd_line CONFIGURATION_BUILD_DIR=build/output"
+    cmd_line="$cmd_line CONFIGURATION_BUILD_DIR=build/outputs"
     $cmd_line
 
-    local old_name=$g_proj_root/build/output/lib$g_trgt_name.a
-    local new_name=$g_proj_root/build/output/lib$g_trgt_name.$arch_name.a
+    local old_name=$projct_dir/build/outputs/lib$target_nam.a
+    local new_name=$projct_dir/build/outputs/lib$target_nam.$arch_item.a
     mv $old_name $new_name
 }
 
-function merge_libraries() {
-    local thin_libs="$g_proj_root/build/output/lib$g_trgt_name.*.a"
-    local merge_one="$g_proj_root/build/output/lib$g_trgt_name.a"
-    lipo -create $thin_libs -output $merge_one
+function merge_archives() {
+    local thin_archs="$projct_dir/build/outputs/lib$target_nam.*.a"
+    local merged_lib="$projct_dir/build/outputs/$ultima_fil"
+    lipo -create $thin_archs -output $merged_lib
 }
 
-build_library x86_64 iphonesimulator
-build_library arm64  iphoneos
-build_library arm64e iphoneos
+clean_cache
+for arch_item in $archs_list; do
+    build_archive $arch_item
+done
+merge_archives
 
-merge_libraries
-
-#2 copy the library to destination
-mkdir -p $g_dst
-cp $g_proj_root/build/output/lib$g_trgt_name.a $g_dst
-
-#3 remove temporary file
-rm -rf $g_proj_root/build
+# copy the library
+mkdir -p                                 $ultima_dir
+mv $projct_dir/build/outputs/$ultima_fil $ultima_dir

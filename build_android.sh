@@ -1,23 +1,26 @@
 #!/bin/bash
 
+set -e -u
+
 cd `dirname $0`
 
-project_dir="app_android"
-flavor_name="master"
-ultima_path="build"
-ultima_file="app-master.apk"
+### configuration begin
+projct_dir="app_android"
+flavor_nam="master"
+ultima_dir="build"
+ultima_fil="app-master.apk"
+### configutation end
 
-origin_path="$project_dir/app/build/outputs/apk/$flavor_name/release"
-origin_file="app-$flavor_name-release.apk"
+origin_dir="$projct_dir/app/build/outputs/apk/$flavor_nam/release"
+origin_fil="app-$flavor_nam-release.apk"
 
 # build library
-pushd $project_dir
+pushd $projct_dir
 ./gradlew clean
 ./gradlew assembleRelease
 popd
 
 # copy apk
-mkdir -p                     $ultima_path
-rm -f                        $ultima_path/$ultima_file
-mv $origin_path/$origin_file $ultima_path
-mv $ultima_path/$origin_file $ultima_path/$ultima_file
+mv $origin_dir/$origin_fil $origin_dir/$ultima_fil
+mkdir -p                   $ultima_dir
+mv $origin_dir/$ultima_fil $ultima_dir

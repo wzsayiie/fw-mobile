@@ -1,20 +1,27 @@
 #!/bin/bash
 
+set -e -u
+
 cd `dirname $0`
 
-g_project_dir="app_android"
-g_module_name="library"
+### configuration begin
+projct_dir="app_android"
+module_dir="library_android"
+module_nam="library"
+ultima_dir="app_unity/Plugins/Android"
+ultima_fil="library.aar"
+### configutation end
 
-g_src="library_android/build/outputs/aar/library-release.aar"
-g_dst="app_unity/Plugins/Android/library.aar"
+origin_dir="$module_dir/build/outputs/aar"
+origin_fil="$module_nam-release.aar"
 
-#1 build library
-pushd $g_project_dir
-./gradlew :$g_module_name:clean
-./gradlew :$g_module_name:assembleRelease
+# build library
+pushd $projct_dir
+./gradlew :$module_nam:clean
+./gradlew :$module_nam:assembleRelease
 popd
 
-#2 copy the file to destination
-rm -f $g_dst
-mkdir -p  `dirname $g_dst`
-mv $g_src $g_dst
+# copy file
+mv $origin_dir/$origin_fil $origin_dir/$ultima_fil
+mkdir -p                   $ultima_dir
+mv $origin_dir/$ultima_fil $ultima_dir
