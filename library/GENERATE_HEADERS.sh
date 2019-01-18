@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This script will travel all headers in current diretory,
+# This script will traverse all headers in current diretory,
 # and create new homonymic headers reference former.
 # It will avoid developer adding vast header search paths tediously.
 
