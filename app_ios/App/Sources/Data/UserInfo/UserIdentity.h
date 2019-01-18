@@ -1,0 +1,4 @@
+//
+
+@interface UserIdentity : NSObject
+@end

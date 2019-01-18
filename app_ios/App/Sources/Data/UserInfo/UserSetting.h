@@ -1,0 +1,4 @@
+//
+
+@interface UserSetting : NSObject
+@end

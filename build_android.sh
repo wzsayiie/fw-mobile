@@ -7,7 +7,7 @@ cd `dirname $0`
 ### configuration begin
 projct_dir="app_android"
 flavor_nam="master"
-ultima_dir="build"
+ultima_dir="BUILD"
 ultima_fil="app-master.apk"
 ### configutation end
 

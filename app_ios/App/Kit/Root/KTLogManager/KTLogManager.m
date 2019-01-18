@@ -13,12 +13,12 @@
 
 + (void)printInfoWithFormat:(NSString *)format, ... {
     FORMAT_STRING(text, format);
-    [FDNLogger.infoHandler print:text];
+    [FDNLogger.info print:text];
 }
 
 + (void)printErrorWithFormat:(NSString *)format, ... {
     FORMAT_STRING(text, format);
-    [FDNLogger.errorHandler print:text];
+    [FDNLogger.error print:text];
 }
 
 @end

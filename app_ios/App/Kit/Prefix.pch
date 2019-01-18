@@ -1,10 +1,10 @@
 #import <UIKit/UIKit.h>
 
 //Extension
-#import "NSObjectKT.h"
-#import "UIDeviceKT.h"
-#import "UIViewKT.h"
-#import "UIViewControllerKT.h"
+#import "NSObject+KT.h"
+#import "UIDevice+KT.h"
+#import "UIView+KT.h"
+#import "UIViewController+KT.h"
 
 //Root
 #import "KTLogManager.h"

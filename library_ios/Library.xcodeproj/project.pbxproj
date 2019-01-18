@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B493775121E09B9E0048F598 /* FDNFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = B493774F21E09B9E0048F598 /* FDNFoundation.m */; };
-		B493775221E09B9E0048F598 /* FDNPrint.m in Sources */ = {isa = PBXBuildFile; fileRef = B493775021E09B9E0048F598 /* FDNPrint.m */; };
+		B4297D5C21EC6CAC0070FB48 /* foundation_ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = B4297D5921EC6CAC0070FB48 /* foundation_ios.mm */; };
+		B4297D5D21EC6CAC0070FB48 /* foundation_android.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4297D5A21EC6CAC0070FB48 /* foundation_android.cpp */; };
+		B4297D6221EC6CB90070FB48 /* structure.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4297D6021EC6CB90070FB48 /* structure.cpp */; };
+		B4297D6321EC6CB90070FB48 /* json.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4297D6121EC6CB90070FB48 /* json.cpp */; };
+		B4297D6C21EC6D1A0070FB48 /* FDNFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = B4297D6A21EC6D1A0070FB48 /* FDNFoundation.m */; };
+		B4297D6D21EC6D1A0070FB48 /* FDNPrint.m in Sources */ = {isa = PBXBuildFile; fileRef = B4297D6B21EC6D1A0070FB48 /* FDNPrint.m */; };
+		B4297D7121EC6D270070FB48 /* STCStructure.mm in Sources */ = {isa = PBXBuildFile; fileRef = B4297D6F21EC6D270070FB48 /* STCStructure.mm */; };
+		B478E9BE21ED8F99005AC185 /* BRGBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = B478E9BC21ED8F99005AC185 /* BRGBridge.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,9 +30,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B493774E21E09B9E0048F598 /* FDNFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDNFoundation.h; sourceTree = "<group>"; };
-		B493774F21E09B9E0048F598 /* FDNFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDNFoundation.m; sourceTree = "<group>"; };
-		B493775021E09B9E0048F598 /* FDNPrint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDNPrint.m; sourceTree = "<group>"; };
+		B4297D5921EC6CAC0070FB48 /* foundation_ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = foundation_ios.mm; sourceTree = "<group>"; };
+		B4297D5A21EC6CAC0070FB48 /* foundation_android.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = foundation_android.cpp; sourceTree = "<group>"; };
+		B4297D5B21EC6CAC0070FB48 /* foundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = foundation.h; sourceTree = "<group>"; };
+		B4297D5F21EC6CB90070FB48 /* structure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = structure.h; sourceTree = "<group>"; };
+		B4297D6021EC6CB90070FB48 /* structure.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = structure.cpp; sourceTree = "<group>"; };
+		B4297D6121EC6CB90070FB48 /* json.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json.cpp; sourceTree = "<group>"; };
+		B4297D6921EC6D1A0070FB48 /* FDNFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDNFoundation.h; sourceTree = "<group>"; };
+		B4297D6A21EC6D1A0070FB48 /* FDNFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDNFoundation.m; sourceTree = "<group>"; };
+		B4297D6B21EC6D1A0070FB48 /* FDNPrint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDNPrint.m; sourceTree = "<group>"; };
+		B4297D6F21EC6D270070FB48 /* STCStructure.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = STCStructure.mm; sourceTree = "<group>"; };
+		B4297D7021EC6D270070FB48 /* STCStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCStructure.h; sourceTree = "<group>"; };
+		B478E9BC21ED8F99005AC185 /* BRGBridge.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BRGBridge.mm; sourceTree = "<group>"; };
+		B478E9BD21ED8F99005AC185 /* BRGBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRGBridge.h; sourceTree = "<group>"; };
 		CE219ADF21DA51FD006A27B6 /* libLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -41,21 +57,75 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B493774D21E09B9E0048F598 /* FDNFoundation */ = {
+		B405CBE121EC6C4800EB551D /* CPP */ = {
 			isa = PBXGroup;
 			children = (
-				B493774E21E09B9E0048F598 /* FDNFoundation.h */,
-				B493774F21E09B9E0048F598 /* FDNFoundation.m */,
-				B493775021E09B9E0048F598 /* FDNPrint.m */,
+				B4297D5821EC6CAC0070FB48 /* foundation */,
+				B4297D5E21EC6CB90070FB48 /* structure */,
+			);
+			name = CPP;
+			sourceTree = "<group>";
+		};
+		B4297D5821EC6CAC0070FB48 /* foundation */ = {
+			isa = PBXGroup;
+			children = (
+				B4297D5B21EC6CAC0070FB48 /* foundation.h */,
+				B4297D5A21EC6CAC0070FB48 /* foundation_android.cpp */,
+				B4297D5921EC6CAC0070FB48 /* foundation_ios.mm */,
+			);
+			name = foundation;
+			path = ../library/foundation/cpp/foundation;
+			sourceTree = "<group>";
+		};
+		B4297D5E21EC6CB90070FB48 /* structure */ = {
+			isa = PBXGroup;
+			children = (
+				B4297D5F21EC6CB90070FB48 /* structure.h */,
+				B4297D6021EC6CB90070FB48 /* structure.cpp */,
+				B4297D6121EC6CB90070FB48 /* json.cpp */,
+			);
+			name = structure;
+			path = ../library/structure/cpp/structure;
+			sourceTree = "<group>";
+		};
+		B4297D6821EC6D1A0070FB48 /* FDNFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				B4297D6921EC6D1A0070FB48 /* FDNFoundation.h */,
+				B4297D6A21EC6D1A0070FB48 /* FDNFoundation.m */,
+				B4297D6B21EC6D1A0070FB48 /* FDNPrint.m */,
 			);
 			name = FDNFoundation;
-			path = ../library/objc/FDNFoundation;
+			path = ../library/foundation/objc/FDNFoundation;
+			sourceTree = "<group>";
+		};
+		B4297D6E21EC6D270070FB48 /* STCStructure */ = {
+			isa = PBXGroup;
+			children = (
+				B4297D7021EC6D270070FB48 /* STCStructure.h */,
+				B4297D6F21EC6D270070FB48 /* STCStructure.mm */,
+			);
+			name = STCStructure;
+			path = ../library/structure/objc/STCStructure;
+			sourceTree = "<group>";
+		};
+		B478E9BB21ED8F99005AC185 /* BRGBridge */ = {
+			isa = PBXGroup;
+			children = (
+				B478E9BD21ED8F99005AC185 /* BRGBridge.h */,
+				B478E9BC21ED8F99005AC185 /* BRGBridge.mm */,
+			);
+			name = BRGBridge;
+			path = ../library/bridge/objcpp/BRGBridge;
 			sourceTree = "<group>";
 		};
 		CE219AD621DA51FD006A27B6 = {
 			isa = PBXGroup;
 			children = (
-				B493774D21E09B9E0048F598 /* FDNFoundation */,
+				B478E9BB21ED8F99005AC185 /* BRGBridge */,
+				B4297D6821EC6D1A0070FB48 /* FDNFoundation */,
+				B4297D6E21EC6D270070FB48 /* STCStructure */,
+				B405CBE121EC6C4800EB551D /* CPP */,
 				CE219AE021DA51FD006A27B6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -124,8 +194,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B493775221E09B9E0048F598 /* FDNPrint.m in Sources */,
-				B493775121E09B9E0048F598 /* FDNFoundation.m in Sources */,
+				B4297D5C21EC6CAC0070FB48 /* foundation_ios.mm in Sources */,
+				B4297D7121EC6D270070FB48 /* STCStructure.mm in Sources */,
+				B4297D6321EC6CB90070FB48 /* json.cpp in Sources */,
+				B4297D5D21EC6CAC0070FB48 /* foundation_android.cpp in Sources */,
+				B478E9BE21ED8F99005AC185 /* BRGBridge.mm in Sources */,
+				B4297D6C21EC6D1A0070FB48 /* FDNFoundation.m in Sources */,
+				B4297D6D21EC6D1A0070FB48 /* FDNPrint.m in Sources */,
+				B4297D6221EC6CB90070FB48 /* structure.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +324,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = $SRCROOT/../library/GENERATED_HEADERS;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -259,6 +336,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = $SRCROOT/../library/GENERATED_HEADERS;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

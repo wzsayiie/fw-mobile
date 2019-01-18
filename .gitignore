@@ -22,4 +22,5 @@
 *_osx/**/build/
 
 # the project's local files
-build/
+BUILD/
+GENERATED_*

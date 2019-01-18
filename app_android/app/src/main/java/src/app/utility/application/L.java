@@ -6,12 +6,12 @@ public class L {
 
     public static void i(String format, Object... args) {
         String message = formalize(format, args);
-        Logger.infoLogger().print(message);
+        Logger.info().print(message);
     }
 
     public static void e(String format, Object... args) {
         String message = formalize(format, args);
-        Logger.errorLogger().print(message);
+        Logger.error().print(message);
     }
 
     public static String string(Object object) {

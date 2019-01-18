@@ -43,10 +43,10 @@ android {
             keyPassword 'master'
         }
     }
-    flavorDimensions 'default'
+    flavorDimensions ''
     productFlavors {
         master {
-            applicationId "domain.organization.appname.android.store"
+            applicationId "domain.organization.appname.store.area"
             signingConfig signingConfigs.trunk
         }
     }
