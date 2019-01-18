@@ -26,7 +26,7 @@ These are `Android Studio`, `Xcode` and `Unity` project,
 For building Android and iOS app, and placing them to *build/*.
 to run `*.sh` on macOS, run `*.bat` on Windows.
 
-* build/
+* BUILD/
 * build_android.sh
 * build_android.bat
 * build_ios.sh
