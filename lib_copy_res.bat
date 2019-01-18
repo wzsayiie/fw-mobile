@@ -1,3 +1,3 @@
 @echo off
 
-echo "copy resource on windows isn't implemented currently"
+echo "it's unimplemented on windows to copy resource"

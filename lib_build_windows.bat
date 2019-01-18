@@ -1,3 +1,3 @@
 @echo off
 
-echo "build on windows isn't implemented currently"
+echo "it's unimplement on windows to build windows library"
