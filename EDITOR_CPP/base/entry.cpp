@@ -2,8 +2,8 @@
 
 //app args ->
 
-static vector<string> *arg_list() {
-    vector<string> *object = NULL;
+vector<string> *arg_list() {
+    static vector<string> *object = NULL;
     if (object == NULL) {
         object = new vector<string>;
     }
@@ -31,7 +31,7 @@ struct entry_item {
     app_entry entry;
 };
 
-static vector<entry_item> *get_entry_list() {
+vector<entry_item> *get_entry_list() {
     static vector<entry_item> *object = NULL;
     if (object == NULL) {
         object = new vector<entry_item>;

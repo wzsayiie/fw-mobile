@@ -8,11 +8,10 @@ struct utf8_finfo {
     //only contains '\n' (not contain '\r' and '\r\n')
     vector<char> content;
     
-    bool only_ascii;
-    bool has_bom;
-    bool has_rn;
-    bool has_r;
-    bool has_n;
+    bool has_bom = false;
+    bool has_rn  = false;
+    bool has_r   = false;
+    bool has_n   = false;
 };
 
 enum class utf8_ferr {

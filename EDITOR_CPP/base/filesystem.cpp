@@ -8,7 +8,7 @@ bool is_path_sep(char ch) {
     }
 }
 
-static string read_path_item(const char **reader) {
+string read_path_item(const char **reader) {
     while (is_path_sep(**reader)) {
         ++(*reader);
     }
@@ -37,11 +37,17 @@ vector<string> split_path(const string &path) {
             break;
         }
         
-        if (it == "..") {
-            if (items.size() > 0) {
-                items.pop_back();
+        if (it == ".") {
+            if (items.empty()) {
+                items.push_back(".");
             }
-        } else if (it != ".") {
+        } else if (it == "..") {
+            if (items.size() > 0 && items.back() != "..") {
+                items.pop_back();
+            } else {
+                items.push_back("..");
+            }
+        } else {
             items.push_back(it);
         }
     }

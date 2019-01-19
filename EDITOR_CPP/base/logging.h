@@ -5,8 +5,18 @@
 
 struct log_once {
     
+    //is there start of one line.
+    //in functions 'put()', check this flag for doing right things,
+    //and resets it when returns.
+    bool _newline;
+    
     template<class T> log_once(const string &tag, T value) {
-        std::cout << "<" << tag << ">";
+        if (!tag.empty()) {
+            std::cout << "<" << tag << ">";
+            _newline = false;
+        } else {
+            _newline = true;
+        }
         this->put(value, 0);
     }
     
@@ -14,14 +24,6 @@ struct log_once {
         this->put(value, 0);
         return *this;
     }
-    
-    //is there start of one line.
-    //in functions 'put()', check this flag for doing right things,
-    //and resets it when returns.
-    //
-    //at the start, tag "<xxx>" will be printed,
-    //so the flag's initial value is false.
-    bool _newline = false;
     
     void space(int n) {
         if (_newline) {
@@ -139,3 +141,4 @@ struct logger {
 
 extern logger cinfo;
 extern logger cerr;
+extern logger cprint;

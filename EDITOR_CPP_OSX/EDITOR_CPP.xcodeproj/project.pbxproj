@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B4A1386921E30B98000218AF /* demo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A1385821E30B98000218AF /* demo.cpp */; };
-		B4A1386A21E30B98000218AF /* demo.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A1385921E30B98000218AF /* demo.m */; };
+		B4A1386A21E30B98000218AF /* demo.mm in Sources */ = {isa = PBXBuildFile; fileRef = B4A1385921E30B98000218AF /* demo.mm */; };
 		B4A1386B21E30B98000218AF /* unify_source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A1385B21E30B98000218AF /* unify_source.cpp */; };
 		B4A1386C21E30B98000218AF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A1385C21E30B98000218AF /* main.cpp */; };
 		B4A1386D21E30B98000218AF /* types.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A1385F21E30B98000218AF /* types.cpp */; };
@@ -34,7 +34,7 @@
 
 /* Begin PBXFileReference section */
 		B4A1385821E30B98000218AF /* demo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = demo.cpp; sourceTree = "<group>"; };
-		B4A1385921E30B98000218AF /* demo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = demo.m; sourceTree = "<group>"; };
+		B4A1385921E30B98000218AF /* demo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = demo.mm; sourceTree = "<group>"; };
 		B4A1385B21E30B98000218AF /* unify_source.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = unify_source.cpp; sourceTree = "<group>"; };
 		B4A1385C21E30B98000218AF /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B4A1385E21E30B98000218AF /* filesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filesystem.h; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				B4A1385821E30B98000218AF /* demo.cpp */,
-				B4A1385921E30B98000218AF /* demo.m */,
+				B4A1385921E30B98000218AF /* demo.mm */,
 			);
 			path = demo;
 			sourceTree = "<group>";
@@ -185,7 +185,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4A1386A21E30B98000218AF /* demo.m in Sources */,
+				B4A1386A21E30B98000218AF /* demo.mm in Sources */,
 				B4AC2B2221E44CE400185FBF /* base.cpp in Sources */,
 				B4A1386E21E30B98000218AF /* logging.cpp in Sources */,
 				B4A1386F21E30B98000218AF /* entry.cpp in Sources */,
@@ -317,7 +317,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../EDITOR_CPP";
+				HEADER_SEARCH_PATHS = $SRCROOT/../EDITOR_CPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -326,7 +326,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../EDITOR_CPP";
+				HEADER_SEARCH_PATHS = $SRCROOT/../EDITOR_CPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
