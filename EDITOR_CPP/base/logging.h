@@ -43,7 +43,7 @@ struct log_once {
     void put(const char *value, int indent) {
         if (indent == 0) {
             //if indent is 0, think of it as literal value
-            if (value != NULL) {
+            if (value != nullptr) {
                 if (!_newline && !ispunct(*value) && !isspace(*value)) {
                     this->space(0);
                 }
@@ -52,7 +52,7 @@ struct log_once {
             }
         } else {
             this->space(indent);
-            if (value != NULL) {
+            if (value != nullptr) {
                 std::cout << "\"" << value << "\"";
             } else {
                 std::cout << "0x0";

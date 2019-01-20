@@ -2,7 +2,7 @@
 
 //help ->
 
-void print_help() {
+static void print_help() {
     
     const char *text =
     "function:"
@@ -57,7 +57,7 @@ struct intent {
 
 //file type ->
 
-set<string> default_suffixes() {
+static set<string> default_suffixes() {
     set<string> suffixes;
     
     suffixes.insert(".h"   );
@@ -74,7 +74,7 @@ set<string> default_suffixes() {
     return suffixes;
 }
 
-bool available_path(const string &path, const set<string> &suffixes) {
+static bool available_path(const string &path, const set<string> &suffixes) {
     for (const string &it : suffixes) {
         if (has_suffix(path, it)) {
             return true;
@@ -85,7 +85,7 @@ bool available_path(const string &path, const set<string> &suffixes) {
 
 //analyze argument ->
 
-string analyze_intent(intent *out) {
+static string analyze_intent(intent *out) {
     
     vector<string> args = get_args();
     *out = intent();
@@ -180,24 +180,22 @@ string analyze_intent(intent *out) {
 
 //print ->
 
-void line(const char *flag, const string &name, int indent, bool is_dir) {
+static void line(const char *flag, const string &name, int indent, bool is_dir) {
     const size_t size = 80;
     char buffer[size];
     snprintf(buffer, size, "%s %*s%s%s", flag, indent * 2, "", name.c_str(), (is_dir ? "/" : ""));
     cprint/buffer;
 }
 
-void line_null    (const string &n, int i, bool d = false) { line("[        ]", n, i, d); }
-void line_lost    (const string &n, int i, bool d = false) { line("[  lost  ]", n, i, d); }
-void line_rejected(const string &n, int i, bool d = false) { line("[rejected]", n, i, d); }
-void line_fatal   (const string &n, int i, bool d = false) { line("[ fatal  ]", n, i, d); }
-void line_empty   (const string &n, int i, bool d = false) { line("[ empty  ]", n, i, d); }
-void line_not_utf8(const string &n, int i, bool d = false) { line("[not utf8]", n, i, d); }
-void line_read_err(const string &n, int i, bool d = false) { line("[read err]", n, i, d); }
-void line_writ_err(const string &n, int i, bool d = false) { line("[writ err]", n, i, d); }
-void line_edited  (const string &n, int i, bool d = false) { line("[ edited ]", n, i, d); }
+static void line_null    (const string &n, int i, bool d = false) { line("[        ]", n, i, d); }
+static void line_lost    (const string &n, int i, bool d = false) { line("[  lost  ]", n, i, d); }
+static void line_rejected(const string &n, int i, bool d = false) { line("[rejected]", n, i, d); }
+static void line_empty   (const string &n, int i, bool d = false) { line("[ empty  ]", n, i, d); }
+static void line_read_err(const string &n, int i, bool d = false) { line("[read err]", n, i, d); }
+static void line_writ_err(const string &n, int i, bool d = false) { line("[writ err]", n, i, d); }
+static void line_edited  (const string &n, int i, bool d = false) { line("[ edited ]", n, i, d); }
 
-void line_state(const string &name, int indent, utf8_finfo info) {
+static void line_state(const string &name, int indent, utf8_finfo info) {
     const size_t size = 80;
     char buffer[size];
     snprintf(buffer, size, "[%s %s %s %s] %*s%s",
@@ -213,7 +211,7 @@ void line_state(const string &name, int indent, utf8_finfo info) {
 
 //edit files ->
 
-void edit(const string &path, int indent, edit_options options, const set<string> &suffixes) {
+static void edit(const string &path, int indent, edit_options options, const set<string> &suffixes) {
     
     string name = base_name(path);
     bool is_dir = false;
@@ -249,17 +247,8 @@ void edit(const string &path, int indent, edit_options options, const set<string
         }
         
         utf8_finfo finfo;
-        utf8_ferr ferr = utf8_fread(path, &finfo);
-        if (ferr == utf8_ferr::param_invail) {
-            line_fatal(name, indent);
-            return;
-        }
-        if (ferr == utf8_ferr::open_failed) {
+        if (!utf8_fread(path, &finfo)) {
             line_read_err(name, indent);
-            return;
-        }
-        if (ferr == utf8_ferr::not_utf8) {
-            line_not_utf8(name, indent);
             return;
         }
         if (finfo.content.empty() && !finfo.has_bom) {
@@ -290,8 +279,7 @@ void edit(const string &path, int indent, edit_options options, const set<string
         }
         
         if (edited) {
-            ferr = utf8_fwrite(path, finfo);
-            if (ferr == utf8_ferr::no_err) {
+            if (utf8_fwrite(path, finfo)) {
                 line_edited(name, indent);
             } else {
                 line_writ_err(name, indent);
@@ -302,7 +290,7 @@ void edit(const string &path, int indent, edit_options options, const set<string
     }
 }
 
-void edit(const vector<string> &paths, edit_options options, const set<string> &suffixes) {
+static void edit(const vector<string> &paths, edit_options options, const set<string> &suffixes) {
     for (const auto &it : paths) {
         edit(it, 0, options, suffixes);
     }
@@ -310,7 +298,7 @@ void edit(const vector<string> &paths, edit_options options, const set<string> &
 
 //view files ->
 
-void view(const string &path, int indent, const set<string> &suffixes) {
+static void view(const string &path, int indent, const set<string> &suffixes) {
     
     string name = base_name(path);
     bool is_dir = false;
@@ -346,17 +334,8 @@ void view(const string &path, int indent, const set<string> &suffixes) {
         }
         
         utf8_finfo finfo;
-        utf8_ferr ferr = utf8_fread(path, &finfo);
-        if (ferr == utf8_ferr::param_invail) {
-            line_fatal(name, indent);
-            return;
-        }
-        if (ferr == utf8_ferr::open_failed) {
+        if (!utf8_fread(path, &finfo)) {
             line_read_err(name, indent);
-            return;
-        }
-        if (ferr == utf8_ferr::not_utf8) {
-            line_not_utf8(name, indent);
             return;
         }
         
@@ -368,7 +347,7 @@ void view(const string &path, int indent, const set<string> &suffixes) {
     }
 }
 
-void view(const vector<string> &paths, const set<string> &suffixes) {
+static void view(const vector<string> &paths, const set<string> &suffixes) {
     for (const auto &it : paths) {
         view(it, 0, suffixes);
     }
@@ -376,7 +355,7 @@ void view(const vector<string> &paths, const set<string> &suffixes) {
 
 //entry ->
 
-ENTR(unify_source, "unis")
+//ENTR(unify_source, "unis")
 void unify_source() {
     
     intent intent;

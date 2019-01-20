@@ -2,9 +2,9 @@
 
 //app args ->
 
-vector<string> *arg_list() {
-    static vector<string> *object = NULL;
-    if (object == NULL) {
+static vector<string> *arg_list() {
+    static vector<string> *object = nullptr;
+    if (object == nullptr) {
         object = new vector<string>;
     }
     return object;
@@ -31,9 +31,9 @@ struct entry_item {
     app_entry entry;
 };
 
-vector<entry_item> *get_entry_list() {
-    static vector<entry_item> *object = NULL;
-    if (object == NULL) {
+static vector<entry_item> *get_entry_list() {
+    static vector<entry_item> *object = nullptr;
+    if (object == nullptr) {
         object = new vector<entry_item>;
     }
     return object;
@@ -53,5 +53,5 @@ app_entry get_entry(const string &name) {
             return it.entry;
         }
     }
-    return NULL;
+    return nullptr;
 }

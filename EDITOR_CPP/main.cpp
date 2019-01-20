@@ -5,7 +5,7 @@
 void demo_objcpp();
 void demo_cpp();
 
-string root_dir() {
+static string root_dir() {
     
     string root = "fw-mobile";
     string self = __FILE__;
@@ -39,7 +39,7 @@ int main(int argc, const char *argv[]) {
     //run command
     auto entry_name = (argc >= 2 ? argv[1] : "");
     app_entry entry = get_entry(entry_name);
-    if (entry != NULL) {
+    if (entry != nullptr) {
         set_args(argc, argv, 2);
         entry();
     } else {

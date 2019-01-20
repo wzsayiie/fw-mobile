@@ -28,3 +28,6 @@ void append_path(string *out_path, const string &item);
 
 string base_name(const string &path);
 string dir_path(const string &path);
+
+bool fread(const string &path, vector<char> *content);
+bool fwrite(const string &path, const vector<char> &content);

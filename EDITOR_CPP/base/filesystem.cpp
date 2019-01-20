@@ -8,7 +8,7 @@ bool is_path_sep(char ch) {
     }
 }
 
-string read_path_item(const char **reader) {
+static string read_path_item(const char **reader) {
     while (is_path_sep(**reader)) {
         ++(*reader);
     }
@@ -66,7 +66,7 @@ vector<string> split_path(const string &path) {
 }
 
 void append_path(string *out_path, const string &item) {
-    if (out_path == NULL || item.empty()) {
+    if (out_path == nullptr || item.empty()) {
         return;
     }
     
@@ -103,4 +103,42 @@ string dir_path(const string &path) {
         
         return "";
     }
+}
+
+bool fread(const string &path, vector<char> *content) {
+    if (path.empty() || content == nullptr) {
+        return false;
+    }
+    
+    FILE *file = fopen(path.c_str(), "rb");
+    if (file == nullptr) {
+        return false;
+    }
+    
+    const size_t buf_size = 1024;
+    char buffer[buf_size];
+    while (true) {
+        size_t got_size = fread(buffer, 1, buf_size, file);
+        content->insert(content->end(), buffer, buffer + got_size);
+        if (got_size < buf_size) {
+            break;
+        }
+    }
+    
+    fclose(file);
+    return true;
+}
+
+bool fwrite(const string &path, const vector<char> &content) {
+    if (path.empty()) {
+        return false;
+    }
+    
+    FILE *file = fopen(path.c_str(), "wb");
+    if (file == nullptr) {
+        return false;
+    }
+    fwrite(content.data(), 1, content.size(), file);
+    fclose(file);
+    return true;
 }
