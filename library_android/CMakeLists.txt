@@ -1,16 +1,20 @@
 cmake_minimum_required(VERSION 3.4.1)
 
 ### configuration begin
-set(LIB_NAME native)
-set(INC_PATH ../library/GENERATED_HEADERS)
+set(lib_name library)
 
-set(SRC_AIMS ${SRC_AIMS} ../library/bridge/jni_cpp/*.cpp)
-set(SRC_AIMS ${SRC_AIMS} ../library/foundation/*.cpp)
-set(SRC_AIMS ${SRC_AIMS} ../library/structure/*.cpp)
+list(APPEND inc_path ../library/GENERATED_HEADERS)
+
+list(APPEND src_aims ../library/bridge/jni_cpp/*.cpp)
+list(APPEND src_aims ../library/foundation/*.cpp)
+list(APPEND src_aims ../library/structure/*.cpp)
+
+list(APPEND usr_libs log)
 ### configutation end
 
-file(GLOB_RECURSE SRC_FILES ${SRC_AIMS})
-include_directories(${INC_PATH})
+include_directories(${inc_path})
 
-add_library(${LIB_NAME} SHARED ${SRC_FILES})
-target_link_libraries(${LIB_NAME} log)
+file(GLOB_RECURSE src_files ${src_aims})
+add_library(${lib_name} SHARED ${src_files})
+
+target_link_libraries(${lib_name} ${usr_libs})
