@@ -1,9 +1,12 @@
-package src.app.utility.application;
+package src.app.utility.data;
 
 import android.os.Handler;
 import android.os.Looper;
 
-public class EventCenter {
+import src.app.utility.application.AppDelegate;
+import src.app.utility.application.L;
+
+public class Bus {
 
     public static void runOnMainThread(long delayMilliseconds, Runnable runnable) {
         if (delayMilliseconds < 0) {

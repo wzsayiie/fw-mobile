@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import src.app.R;
-import src.app.utility.application.EventCenter;
 import src.app.utility.application.L;
 import src.app.utility.data.ActivityDispatcher;
+import src.app.utility.data.Bus;
 
 public class LaunchActivity extends Activity {
 
@@ -18,7 +18,7 @@ public class LaunchActivity extends Activity {
 
         L.i("'%s' onCreate", L.string(this));
 
-        EventCenter.runOnMainThread(1000, () ->
+        Bus.runOnMainThread(1000, () ->
             ActivityDispatcher.get().startActivity("apps.example", null)
         );
     }

@@ -2,7 +2,7 @@
 
 @implementation KTBus
 
-- (void)post:(NSString *)name param:(NSObject *)param {
++ (void)post:(NSString *)name param:(NSObject *)param {
     if (name.length == 0) {
         E(@"try post a empty event name");
         return;
@@ -13,7 +13,7 @@
     [center postNotificationName:name object:param];
 }
 
-- (void)addObserver:(NSObject *)observer selector:(SEL)selector name:(NSString *)name {
++ (void)addObserver:(NSObject *)observer selector:(SEL)selector name:(NSString *)name {
     if (observer == nil) {
         E(@"try add a nil object as observer");
         return;
@@ -31,7 +31,7 @@
     [center addObserver:observer selector:selector name:name object:nil];
 }
 
-- (void)removeObserver:(NSObject *)observer {
++ (void)removeObserver:(NSObject *)observer {
     if (observer == nil) {
         E(@"try remove a nil observer");
         return;

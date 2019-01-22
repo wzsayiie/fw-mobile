@@ -6,22 +6,28 @@ public abstract class AppDelegate {
 
     private static Application sApp;
 
-    public static void initApp(Application app) {
-        if (app != null && sApp == null) {
-            L.i("init app context");
+    private static synchronized Application storedApp(Application app) {
+        if (app != null) {
             sApp = app;
-        } else if (app == null) {
+        }
+        return sApp;
+    }
+
+    public static void initApp(Application app) {
+        if (app != null) {
+            L.i("init app context");
+            storedApp(app);
+        } else {
             L.e("try set null app context");
-        } else /* sApp != null */ {
-            L.e("try set app context repeatedly");
         }
     }
 
     public static Application getApp() {
-        if (sApp == null) {
+        Application app = storedApp(null);
+        if (app == null) {
             L.e("app context didn't set");
         }
-        return sApp;
+        return app;
     }
 
     public static void initDelegate(AppDelegate delegate) {
