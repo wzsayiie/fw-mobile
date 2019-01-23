@@ -12,13 +12,13 @@
 @implementation KTLogManager
 
 + (void)printInfoWithFormat:(NSString *)format, ... {
-    FORMAT_STRING(text, format);
-    [FDNLogger.info print:text];
+    FORMAT_STRING(message, format);
+    [FDNLogger info:message];
 }
 
 + (void)printErrorWithFormat:(NSString *)format, ... {
-    FORMAT_STRING(text, format);
-    [FDNLogger.error print:text];
+    FORMAT_STRING(message, format);
+    [FDNLogger error:message];
 }
 
 @end

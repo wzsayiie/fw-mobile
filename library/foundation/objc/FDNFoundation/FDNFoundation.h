@@ -3,7 +3,6 @@
 #import <Foundation/Foundation.h>
 
 @interface FDNLogger : NSObject
-+ (instancetype)info;
-+ (instancetype)error;
-- (void)print:(NSString *)text;
++ (void)info:(NSString *)message;
++ (void)error:(NSString *)message;
 @end

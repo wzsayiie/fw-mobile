@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import src.app.R;
-import src.app.utility.application.L;
 import src.app.utility.components.DemoActivity;
+import src.app.utility.data.ActivityDispatcher;
 
 public class ExampleActivity extends DemoActivity {
 
@@ -22,8 +22,6 @@ public class ExampleActivity extends DemoActivity {
         setContentView(R.layout.activity_case);
         mListView = findViewById(R.id.list_view);
 
-        L.i("'%s' onCreate", L.string(this));
-
         addAction("Alpha", this::onActionAlpha);
         addAction("Beta" , this::onActionBeta );
     }
@@ -32,5 +30,10 @@ public class ExampleActivity extends DemoActivity {
     }
 
     protected void onActionBeta() {
+    }
+
+    @Override
+    public void onBackPressed() {
+        ActivityDispatcher.get().moveTaskToBackground();
     }
 }

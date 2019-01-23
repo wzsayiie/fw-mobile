@@ -2,6 +2,8 @@
 
 @interface KTLogManager : NSObject
 
+//NOTE: these static member designed for thread safe.
+
 + (void)printInfoWithFormat :(NSString *)format, ... NS_FORMAT_FUNCTION(1, 2);
 + (void)printErrorWithFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(1, 2);
 

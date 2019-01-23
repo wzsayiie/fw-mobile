@@ -4,6 +4,8 @@ import android.app.Application;
 
 public abstract class AppDelegate {
 
+    //NOTE: these static member designed for thread safe.
+
     private static Application sApp;
 
     private static synchronized Application storedApp(Application app) {
@@ -30,13 +32,9 @@ public abstract class AppDelegate {
         return app;
     }
 
-    public static void initDelegate(AppDelegate delegate) {
-        if (delegate != null) {
-            L.i("init app delegate %s", L.string(delegate));
-            delegate.onCreate();
-        } else {
-            L.e("try init null app delegate");
-        }
+    public void init() {
+        L.i("init app delegate %s", L.string(this));
+        onCreate();
     }
 
     protected abstract void onCreate();

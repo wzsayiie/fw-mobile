@@ -4,14 +4,16 @@ import src.library.foundation.Logger;
 
 public class L {
 
+    //NOTE: these static member designed for thread safe.
+
     public static void i(String format, Object... args) {
         String message = formalize(format, args);
-        Logger.info().print(message);
+        Logger.info(message);
     }
 
     public static void e(String format, Object... args) {
         String message = formalize(format, args);
-        Logger.error().print(message);
+        Logger.error(message);
     }
 
     public static String string(Object object) {

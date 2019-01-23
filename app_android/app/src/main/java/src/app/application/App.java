@@ -29,12 +29,12 @@ public class App extends Application {
         if (processName.equals(packageName)) {
 
             L.i("ui process launches, process name '%s'", processName);
-            AppDelegate.initDelegate(MainAppDelegate.get());
+            MainAppDelegate.get().init();
 
         } else {
 
             L.i("service process launches, process name '%s'", processName);
-            AppDelegate.initDelegate(ServiceAppDelegate.get());
+            ServiceAppDelegate.get().init();
         }
     }
 }

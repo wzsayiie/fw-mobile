@@ -1,33 +1,19 @@
 #import "FDNFoundation.h"
 
-@interface FDNLogger ()
-@property (nonatomic) NSString *tag;
-@end
-
 @implementation FDNLogger
 
-+ (instancetype)info {
-    static FDNLogger *object = nil;
-    if (object == nil) {
-        object = [[FDNLogger alloc] init];
-        object.tag = @"info";
-    }
-    return object;
++ (void)info:(NSString *)message {
+    [self printWithTag:@"info" message:message];
 }
 
-+ (instancetype)error {
-    static FDNLogger *object = nil;
-    if (object == nil) {
-        object = [[FDNLogger alloc] init];
-        object.tag = @"ERROR";
-    }
-    return object;
++ (void)error:(NSString *)message {
+    [self printWithTag:@"ERROR" message:message];
 }
 
-- (void)print:(NSString *)text {
-    if (text.length > 0) {
-        //NSLog(@"%@|%@", self.tag, text);
-        fprintf(stderr, "%s|%s\n", self.tag.UTF8String, text.UTF8String);
++ (void)printWithTag:(NSString *)tag message:(NSString *)message {
+    if (message.length > 0) {
+        //NSLog(@"%@|%@", tag, message);
+        fprintf(stderr, "%s|%s\n", tag.UTF8String, message.UTF8String);
     }
 }
 

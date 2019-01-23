@@ -4,13 +4,11 @@ package src.library.foundation;
 
 public abstract class Logger {
 
-    public static Logger info() {
-        return LoggerImpl.info();
+    public static void info(String message) {
+        LoggerImpl.info(message);
     }
 
-    public static Logger error() {
-        return LoggerImpl.error();
+    public static void error(String message) {
+        LoggerImpl.error(message);
     }
-
-    public abstract void print(String message);
 }

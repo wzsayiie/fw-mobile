@@ -4,40 +4,11 @@ import android.util.Log;
 
 class LoggerImpl extends Logger {
 
-    private static Logger sInfo;
-
-    public static Logger info() {
-        if (sInfo == null) {
-            sInfo = new LoggerImpl(Log.INFO);
-        }
-        return sInfo;
+    public static void info(String message) {
+        Log.i("zz", message);
     }
 
-    private static Logger sError;
-
-    public static Logger error() {
-        if (sError == null) {
-            sError = new LoggerImpl(Log.ERROR);
-        }
-        return sError;
-    }
-
-    private int mLevel;
-
-    private LoggerImpl(int level) {
-        mLevel = level;
-    }
-
-    @Override
-    public void print(String message) {
-        if (message == null) {
-            return;
-        }
-
-        if (mLevel == Log.INFO) {
-            Log.i("zzz", message);
-        } else if (mLevel == Log.ERROR) {
-            Log.e("zzz", message);
-        }
+    public static void error(String message) {
+        Log.e("zz", message);
     }
 }

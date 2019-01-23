@@ -46,7 +46,7 @@ android {
     flavorDimensions ''
     productFlavors {
         master {
-            applicationId "domain.organization.appname.store.area"
+            applicationId "domain.organization.appname.store.flavor"
             signingConfig signingConfigs.trunk
         }
     }

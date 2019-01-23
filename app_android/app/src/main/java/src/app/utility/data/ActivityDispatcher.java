@@ -10,15 +10,68 @@ import src.app.utility.application.AppDelegate;
 import src.app.utility.application.L;
 import src.app.utility.application.SingletonManager;
 
-public class ActivityDispatcher implements Application.ActivityLifecycleCallbacks {
+public class ActivityDispatcher {
 
     public static ActivityDispatcher get() {
         return SingletonManager.get().getInstanceOf(ActivityDispatcher.class);
     }
 
+    //activity lifecycle
+
     public ActivityDispatcher() {
-        AppDelegate.getApp().registerActivityLifecycleCallbacks(this);
+
+        AppDelegate.getApp().registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
+
+            public void onActivitySaveInstanceState(Activity a, Bundle b) { onActSaveInstanceState(a, b); }
+            public void onActivityCreated          (Activity a, Bundle b) { onActCreated(a, b);}
+
+            public void onActivityStarted  (Activity a) { onActStarted  (a); }
+            public void onActivityResumed  (Activity a) { onActResumed  (a); }
+            public void onActivityPaused   (Activity a) { onActPaused   (a); }
+            public void onActivityStopped  (Activity a) { onActStopped  (a); }
+            public void onActivityDestroyed(Activity a) { onActDestroyed(a); }
+        });
     }
+
+    private Activity mResumedActivity;
+
+    private void onActCreated(Activity activity, Bundle savedInstanceState) {
+        L.i("activity '%s' created", L.string(activity));
+    }
+
+    private void onActStarted(Activity activity) {
+        L.i("activity '%s' started", L.string(activity));
+    }
+
+    private void onActResumed(Activity activity) {
+        L.i("activity '%s' resumed", L.string(activity));
+
+        mResumedActivity = activity;
+        L.i("resumed activity is '%s'", L.string(mResumedActivity));
+    }
+
+    private void onActPaused(Activity activity) {
+        L.i("activity '%s' paused", L.string(activity));
+
+        if (mResumedActivity == activity) {
+            mResumedActivity = null;
+            L.i("resumed activity reset null");
+        }
+    }
+
+    private void onActStopped(Activity activity) {
+        L.i("activity '%s' stopped", L.string(activity));
+    }
+
+    private void onActSaveInstanceState(Activity activity, Bundle outState) {
+        L.i("activity '%s' saveState", L.string(activity));
+    }
+
+    private void onActDestroyed(Activity activity) {
+        L.i("activity '%s' Destroyed", L.string(activity));
+    }
+
+    //start activity
 
     public void startActivity(String action, Bundle extras) {
         if (action == null || action.length() == 0) {
@@ -43,48 +96,13 @@ public class ActivityDispatcher implements Application.ActivityLifecycleCallback
         }
     }
 
-    private Activity mResumedActivity;
+    //move to background
 
-    @Override
-    public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-        L.i("activity '%s' created", L.string(activity));
-    }
-
-    @Override
-    public void onActivityStarted(Activity activity) {
-        L.i("activity '%s' started", L.string(activity));
-    }
-
-    @Override
-    public void onActivityResumed(Activity activity) {
-        L.i("activity '%s' resumed", L.string(activity));
-
-        mResumedActivity = activity;
-        L.i("resumed activity is '%s'", L.string(mResumedActivity));
-    }
-
-    @Override
-    public void onActivityPaused(Activity activity) {
-        L.i("activity '%s' paused", L.string(activity));
-
-        if (mResumedActivity == activity) {
-            mResumedActivity = null;
-            L.i("resumed activity reset null");
+    public void moveTaskToBackground() {
+        if (mResumedActivity == null) {
+            L.e("there isn't resumed activity currently, app already in background");
+            return;
         }
-    }
-
-    @Override
-    public void onActivityStopped(Activity activity) {
-        L.i("activity '%s' stopped", L.string(activity));
-    }
-
-    @Override
-    public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-        L.i("activity '%s' saveState", L.string(activity));
-    }
-
-    @Override
-    public void onActivityDestroyed(Activity activity) {
-        L.i("activity '%s' Destroyed", L.string(activity));
+        mResumedActivity.moveTaskToBack(true);
     }
 }
