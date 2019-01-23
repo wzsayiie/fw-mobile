@@ -19,7 +19,7 @@ public class ExampleActivity extends DemoActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_case);
+        setContentView(R.layout.activity_example);
         mListView = findViewById(R.id.list_view);
 
         addAction("Alpha", this::onActionAlpha);

@@ -73,7 +73,18 @@ public class ActivityDispatcher {
 
     //start activity
 
+    private static final String ANIMATION_DEFAULT = "animation_default";
+    private static final String ANIMATION_FADE    = "animation_fade";
+
     public void startActivity(String action, Bundle extras) {
+        startActivityWithAnimation(ANIMATION_DEFAULT, action, extras);
+    }
+
+    public void startActivityWithFade(String action, Bundle extras) {
+        startActivityWithAnimation(ANIMATION_FADE, action, extras);
+    }
+
+    private void startActivityWithAnimation(String animation, String action, Bundle extras) {
         if (action == null || action.length() == 0) {
             L.e("try start a activity but specified action is empty");
             return;
@@ -91,6 +102,12 @@ public class ActivityDispatcher {
 
         try {
             mResumedActivity.startActivity(intent);
+            L.i("start activity with animation '%s'", animation);
+            if (animation.equals(ANIMATION_FADE)) {
+                int entry = android.R.anim.fade_in;
+                int exit = android.R.anim.fade_out;
+                mResumedActivity.overridePendingTransition(entry, exit);
+            }
         } catch (ActivityNotFoundException e) {
             L.e("activity not found: %s", e.toString());
         }
