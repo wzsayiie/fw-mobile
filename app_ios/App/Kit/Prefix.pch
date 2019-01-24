@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
 
 //Extension
+#import "NSBundle+KT.h"
 #import "NSObject+KT.h"
 #import "UIDevice+KT.h"
 #import "UIView+KT.h"

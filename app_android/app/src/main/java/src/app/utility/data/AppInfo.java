@@ -40,10 +40,22 @@ public class AppInfo {
 
     public static String getAppVersion() {
         try {
+
             PackageManager manager = AppDelegate.getApp().getPackageManager();
             String packageName = getPackageName();
             PackageInfo info = manager.getPackageInfo(packageName, 0);
-            return info.versionName;
+
+            String versionName = info.versionName;
+
+            long versionCode;
+            if (Build.VERSION.SDK_INT >= 28) {
+                versionCode = info.getLongVersionCode();
+            } else {
+                versionCode = info.versionCode;
+            }
+
+            return versionName + "-" + versionCode;
+
         } catch (PackageManager.NameNotFoundException e) {
             L.e("exception on get app version: %s", e.toString());
             return "";

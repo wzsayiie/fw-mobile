@@ -39,6 +39,7 @@
 		B4CFD97A21C75AB300FFF4CF /* IAPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4CFD97921C75AB300FFF4CF /* IAPViewController.xib */; };
 		B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DCD87B21F17DAE0090BFBB /* UserIdentity.m */; };
 		B4DCD87F21F17DAE0090BFBB /* UserSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DCD87C21F17DAE0090BFBB /* UserSetting.m */; };
+		B4F7176821F976AD0090F949 /* NSBundle+KT.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F7176721F976AD0090F949 /* NSBundle+KT.m */; };
 		B4FCC39821F0912700D152DF /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FCC39721F0912700D152DF /* libc++.tbd */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +121,8 @@
 		B4DCD87C21F17DAE0090BFBB /* UserSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSetting.m; sourceTree = "<group>"; };
 		B4DCD87D21F17DAE0090BFBB /* UserIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserIdentity.h; sourceTree = "<group>"; };
 		B4EC3C6621DF6D8800E287A4 /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../library_ios/Library.xcodeproj; sourceTree = "<group>"; };
+		B4F7176621F976AD0090F949 /* NSBundle+KT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+KT.h"; sourceTree = "<group>"; };
+		B4F7176721F976AD0090F949 /* NSBundle+KT.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+KT.m"; sourceTree = "<group>"; };
 		B4FCC39721F0912700D152DF /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -298,6 +301,8 @@
 		B45C1BD621A03824007CB374 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				B4F7176621F976AD0090F949 /* NSBundle+KT.h */,
+				B4F7176721F976AD0090F949 /* NSBundle+KT.m */,
 				B45C1BDA21A03824007CB374 /* NSObject+KT.h */,
 				B45C1BD721A03824007CB374 /* NSObject+KT.m */,
 				B42806D121C542DB00B886A7 /* UIDevice+KT.h */,
@@ -624,6 +629,7 @@
 				B45C1BFB21A03824007CB374 /* KTLogManager.m in Sources */,
 				B45C1BB821A02B19007CB374 /* AppDelegate.m in Sources */,
 				B45C1BF621A03824007CB374 /* NSObject+KT.m in Sources */,
+				B4F7176821F976AD0090F949 /* NSBundle+KT.m in Sources */,
 				B4DCD87F21F17DAE0090BFBB /* UserSetting.m in Sources */,
 				B45C1BF821A03824007CB374 /* KTSceneNavigator.m in Sources */,
 				B4CFD97321C7475000FFF4CF /* IAPViewController.m in Sources */,

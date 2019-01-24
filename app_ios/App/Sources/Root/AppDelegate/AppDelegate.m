@@ -9,10 +9,11 @@
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     I(@"app launching {");
-    I(@"  device name: %@", UIDevice.currentDevice.name);
-    I(@"  hardware type: %@", UIDevice.currentDevice.hardwareType);
-    I(@"  system version: %@", UIDevice.currentDevice.systemVersion);
-    I(@"  vendor ID: %@", UIDevice.currentDevice.identifierForVendor);
+    I(@"  hardware   : %@", UIDevice.currentDevice.hardwareType);
+    I(@"  os version : %@", UIDevice.currentDevice.systemVersion);
+    I(@"  bundle id  : %@", NSBundle.mainBundle.bundleIdentifier);
+    I(@"  app version: %@", NSBundle.mainBundle.appVersion);
+    I(@"  vendor id  : %@", UIDevice.currentDevice.identifierForVendor);
     I(@"}");
     
     [KTCrashListener sharedObject];

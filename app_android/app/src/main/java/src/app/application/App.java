@@ -27,10 +27,8 @@ public class App extends Application {
         L.i("  manufacturer : %s", Build.MANUFACTURER);
         L.i("  hardware type: %s", Build.MODEL);
         L.i("  supported abi: %s", AppInfo.getSupportedABIs());
-        L.i("  -");
         L.i("  os version   : %s", Build.VERSION.RELEASE);
         L.i("  api level    : %d", Build.VERSION.SDK_INT);
-        L.i("  -");
         L.i("  process name : %s", AppInfo.getPackageName());
         L.i("  app version  : %s", AppInfo.getAppVersion());
         L.i("  android id   : %s", AppInfo.getAndroidID());
