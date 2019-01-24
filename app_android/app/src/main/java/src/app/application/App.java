@@ -1,6 +1,7 @@
 package src.app.application;
 
 import android.app.Application;
+import android.os.Build;
 
 import src.app.utility.application.AppDelegate;
 import src.app.utility.application.CrashListener;
@@ -13,28 +14,29 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
-        //remember app context, logging and crash listening,
+        //save app context, test logging and crash listening.
         //they are so important, do them firstly.
         AppDelegate.initApp(this);
         L.i("test info log if available");
         L.e("test error log if available");
         if (CrashListener.get().lastLaunchCrashed()) {
             L.i("last launch crashed");
-            //send crash info and log to the server
         }
 
-        //startup different app delegate for different process type
-        String processName = AppInfo.get().getProcessName();
-        String packageName = AppInfo.get().getPackageName();
-        if (processName.equals(packageName)) {
+        L.i("app created {");
+        L.i("  manufacturer : %s", Build.MANUFACTURER);
+        L.i("  hardware type: %s", Build.MODEL);
+        L.i("  supported abi: %s", AppInfo.getSupportedABIs());
+        L.i("  -");
+        L.i("  os version   : %s", Build.VERSION.RELEASE);
+        L.i("  api level    : %d", Build.VERSION.SDK_INT);
+        L.i("  -");
+        L.i("  process name : %s", AppInfo.getPackageName());
+        L.i("  app version  : %s", AppInfo.getAppVersion());
+        L.i("  android id   : %s", AppInfo.getAndroidID());
+        L.i("}");
 
-            L.i("ui process launches, process name '%s'", processName);
-            MainAppDelegate.get().init();
-
-        } else {
-
-            L.i("service process launches, process name '%s'", processName);
-            ServiceAppDelegate.get().init();
-        }
+        L.i("ui process launches");
+        MainAppDelegate.get().init();
     }
 }
