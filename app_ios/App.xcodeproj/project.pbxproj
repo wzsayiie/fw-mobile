@@ -178,7 +178,7 @@
 		B45C1B5D21A02562007CB374 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				B45C1BD121A03824007CB374 /* Kit */,
+				B45C1BD121A03824007CB374 /* Kits */,
 				B45C1B7421A02B19007CB374 /* Properties */,
 				B45C1B7921A02B19007CB374 /* Sources */,
 				B45C1B7621A02B19007CB374 /* Resoures */,
@@ -269,7 +269,7 @@
 			path = ExampleViewController;
 			sourceTree = "<group>";
 		};
-		B45C1BD121A03824007CB374 /* Kit */ = {
+		B45C1BD121A03824007CB374 /* Kits */ = {
 			isa = PBXGroup;
 			children = (
 				B45C1BDB21A03824007CB374 /* Prefix.pch */,
@@ -278,7 +278,7 @@
 				B45C1BD221A03824007CB374 /* UI */,
 				B45C1BF121A03824007CB374 /* Data */,
 			);
-			path = Kit;
+			path = Kits;
 			sourceTree = "<group>";
 		};
 		B45C1BD221A03824007CB374 /* UI */ = {
@@ -777,7 +777,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C7Z95JWD4Y;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/App/Kit/Prefix.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/App/Kits/Prefix.pch";
 				HEADER_SEARCH_PATHS = $SRCROOT/../library/GENERATED_HEADERS;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Properties/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -797,7 +797,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C7Z95JWD4Y;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/App/Kit/Prefix.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/App/Kits/Prefix.pch";
 				HEADER_SEARCH_PATHS = $SRCROOT/../library/GENERATED_HEADERS;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Properties/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
