@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.4.1)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
-    set(built_jni_subpath build/intermediates/library_and_local_jars_jni/release/${ANDROID_ABI})
+    set(built_jni_subpath build/intermediates/intermediate-jars/release/jni/${ANDROID_ABI})
 else()
-    set(built_jni_subpath build/intermediates/library_and_local_jars_jni/debug/${ANDROID_ABI})
+    set(built_jni_subpath build/intermediates/intermediate-jars/debug/jni/${ANDROID_ABI})
 endif()
 
 function(get_absolute_paths paths)
