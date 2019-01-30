@@ -29,8 +29,8 @@ android {
     sourceSets {
         main {
             java.srcDirs += '../library/bridge/jni_java'
-            java.srcDirs += '../library/foundation/java'
-            java.srcDirs += '../library/structure/java'
+            java.srcDirs += '../library/foundation/jni_java'
+            java.srcDirs += '../library/structure/jni_java'
         }
     }
     externalNativeBuild {

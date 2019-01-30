@@ -5,7 +5,7 @@ set(lib_name library)
 
 list(APPEND inc_path ../library/GENERATED_HEADERS)
 
-list(APPEND src_aims ../library/bridge/jni_cpp/*.cpp)
+list(APPEND src_aims ../library/bridge/*.cpp)
 list(APPEND src_aims ../library/foundation/*.cpp)
 list(APPEND src_aims ../library/structure/*.cpp)
 

@@ -1,4 +1,4 @@
-#include "bridge.h"
+#include "src_library_bridge_Bridge.h"
 #include <android/log.h>
 
 //use original api to print,

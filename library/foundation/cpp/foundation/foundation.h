@@ -2,22 +2,12 @@
 
 #pragma once
 
-#include <memory>
 #include <string>
 
-#define NAMESPACE_FDN_BEGIN namespace FDN {
-#define NAMESPACE_FDN_END   }
+namespace FDN {
 
-NAMESPACE_FDN_BEGIN
-
-struct Logger {
-
-    static std::shared_ptr<Logger> info();
-    static std::shared_ptr<Logger> error();
-
-    virtual void print(const std::string &text) = 0;
-
-    virtual ~Logger() {}
-};
-
-NAMESPACE_FDN_END
+    struct Logger {
+        static void info (const std::string &message);
+        static void error(const std::string &message);
+    };
+}
