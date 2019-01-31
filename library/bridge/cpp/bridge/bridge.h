@@ -3,6 +3,10 @@
 #include "bridge_core.h"
 #include <string>
 
+# ifdef ANDROID
+#   include "bridge_android.h"
+# endif
+
 template<class T> struct BRGValue;
 
 template<> struct BRGValue<std::string> {

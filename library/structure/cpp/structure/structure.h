@@ -20,7 +20,7 @@ namespace STC {
     struct JSONValue {
     
         static std::shared_ptr<JSONValue> fromString(const std::string &string);
-        static std::shared_ptr<JSONValue> fromFile(const std::string path);
+        static std::shared_ptr<JSONValue> fromFile(const std::string &path);
         static std::shared_ptr<JSONValue> value();
     
         virtual std::string toString() = 0;

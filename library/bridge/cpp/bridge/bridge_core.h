@@ -10,11 +10,15 @@
 # endif
 
 typedef struct BRGType {
+
     union {
         int64_t handle;
         void *ptr;
     };
+
 } BRGType;
+
+BRG_EXPORT const BRGType BRGTypeNULL;
 
 BRG_EXPORT BRGType BRGCreateBool(bool value);
 BRG_EXPORT BRGType BRGCreateInteger(int64_t value);

@@ -6,7 +6,7 @@ namespace STC {
         return std::shared_ptr<JSONValue>();
     }
 
-    std::shared_ptr<JSONValue> JSONValue::fromFile(const std::string path) {
+    std::shared_ptr<JSONValue> JSONValue::fromFile(const std::string &path) {
         return std::shared_ptr<JSONValue>();
     }
 

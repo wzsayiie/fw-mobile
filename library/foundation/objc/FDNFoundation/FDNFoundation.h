@@ -2,7 +2,13 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol FDNLoggerAgent <NSObject>
+- (void)loggerAgentHandleInfoMessage:(NSString *)message;
+- (void)loggerAgentHandleErrorMessage:(NSString *)message;
+@end
+
 @interface FDNLogger : NSObject
 + (void)info:(NSString *)message;
 + (void)error:(NSString *)message;
++ (void)setAgent:(id<FDNLoggerAgent>)agent;
 @end

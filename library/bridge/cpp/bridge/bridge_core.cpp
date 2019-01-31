@@ -1,5 +1,7 @@
 #include "bridge_core.h"
 
+const BRGType BRGTypeNULL = {0LL};
+
 BRGType BRGCreateBool(bool value) { return BRGType(); }
 BRGType BRGCreateInteger(int64_t value) { return BRGType(); }
 BRGType BRGCreateFloat(double value) { return BRGType(); }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B417B8942202C783002A147E /* bridge_android.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B417B8932202C783002A147E /* bridge_android.cpp */; };
 		B45EAABB2201AE7300CCF475 /* BRGBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B45EAAB92201AE7300CCF475 /* BRGBridge.m */; };
 		B45EAAC02201AE8400CCF475 /* FDNFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = B45EAABE2201AE8400CCF475 /* FDNFoundation.m */; };
 		B45EAAC12201AE8400CCF475 /* FDNPrint.m in Sources */ = {isa = PBXBuildFile; fileRef = B45EAABF2201AE8400CCF475 /* FDNPrint.m */; };
@@ -31,6 +32,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B417B8922202C782002A147E /* bridge_android.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bridge_android.h; sourceTree = "<group>"; };
+		B417B8932202C783002A147E /* bridge_android.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bridge_android.cpp; sourceTree = "<group>"; };
 		B45EAAB92201AE7300CCF475 /* BRGBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRGBridge.m; sourceTree = "<group>"; };
 		B45EAABA2201AE7300CCF475 /* BRGBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRGBridge.h; sourceTree = "<group>"; };
 		B45EAABD2201AE8400CCF475 /* FDNFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDNFoundation.h; sourceTree = "<group>"; };
@@ -109,6 +112,8 @@
 				B45EAAC92201AEB800CCF475 /* bridge_core.cpp */,
 				B45EAAC72201AEB800CCF475 /* bridge.h */,
 				B45EAACA2201AEB800CCF475 /* bridge.cpp */,
+				B417B8922202C782002A147E /* bridge_android.h */,
+				B417B8932202C783002A147E /* bridge_android.cpp */,
 			);
 			name = bridge;
 			path = ../library/bridge/cpp/bridge;
@@ -210,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B417B8942202C783002A147E /* bridge_android.cpp in Sources */,
 				B45EAAC52201AE9C00CCF475 /* STCStructure.m in Sources */,
 				B45EAAC12201AE8400CCF475 /* FDNPrint.m in Sources */,
 				B45EAAD62201AEDE00CCF475 /* json.cpp in Sources */,
