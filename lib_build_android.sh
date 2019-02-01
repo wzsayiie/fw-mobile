@@ -16,7 +16,7 @@ origin_dir="$module_dir/build/outputs/aar"
 origin_fil="$module_nam-release.aar"
 
 # build library
-sh library/GENERATE_HEADERS.sh
+sh GENERATE_HEADERS.sh
 
 pushd $projct_dir
 ./gradlew :$module_nam:clean

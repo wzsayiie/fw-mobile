@@ -99,7 +99,7 @@ function copy_outputs() {
     mv $proj_dir/build/$schm_nam.xcarchive/dSYMs/$schm_nam.app.dSYM $outs_dir/$outs_fil.dSym
 }
 
-sh library/GENERATE_HEADERS.sh
+sh GENERATE_HEADERS.sh
 clean_cache
 build_archive
 resign_archive

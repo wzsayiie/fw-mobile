@@ -46,7 +46,7 @@ function merge_archives() {
     lipo -create $thin_archs -output $merged_lib
 }
 
-sh library/GENERATE_HEADERS.sh
+sh GENERATE_HEADERS.sh
 
 clean_cache
 for arch_item in $archs_list; do
