@@ -156,13 +156,13 @@
 			path = Root;
 			sourceTree = "<group>";
 		};
-		B42806CC21C531C500B886A7 /* KTBus */ = {
+		B42806CC21C531C500B886A7 /* Bus */ = {
 			isa = PBXGroup;
 			children = (
 				B42806CD21C531C500B886A7 /* KTBus.h */,
 				B42806CE21C531C500B886A7 /* KTBus.m */,
 			);
-			path = KTBus;
+			path = Bus;
 			sourceTree = "<group>";
 		};
 		B45C1B5221A02561007CB374 = {
@@ -293,18 +293,18 @@
 		B45C1BD221A03824007CB374 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				B45C1BD321A03824007CB374 /* KTDemoViewController */,
+				B45C1BD321A03824007CB374 /* DemoViewController */,
 			);
 			path = UI;
 			sourceTree = "<group>";
 		};
-		B45C1BD321A03824007CB374 /* KTDemoViewController */ = {
+		B45C1BD321A03824007CB374 /* DemoViewController */ = {
 			isa = PBXGroup;
 			children = (
 				B45C1BD521A03824007CB374 /* KTDemoViewController.h */,
 				B45C1BD421A03824007CB374 /* KTDemoViewController.m */,
 			);
-			path = KTDemoViewController;
+			path = DemoViewController;
 			sourceTree = "<group>";
 		};
 		B45C1BD621A03824007CB374 /* Extension */ = {
@@ -327,15 +327,15 @@
 		B45C1BDC21A03824007CB374 /* Root */ = {
 			isa = PBXGroup;
 			children = (
-				B45C1BDD21A03824007CB374 /* KTSceneNavigator */,
-				B45C1BE421A03824007CB374 /* KTLogManager */,
-				B45C1BE721A03824007CB374 /* KTCrashListener */,
-				B45C1BEA21A03824007CB374 /* KTSingletonManager */,
+				B45C1BDD21A03824007CB374 /* SceneNavigator */,
+				B45C1BE421A03824007CB374 /* LogManager */,
+				B45C1BE721A03824007CB374 /* CrashListener */,
+				B45C1BEA21A03824007CB374 /* SingletonManager */,
 			);
 			path = Root;
 			sourceTree = "<group>";
 		};
-		B45C1BDD21A03824007CB374 /* KTSceneNavigator */ = {
+		B45C1BDD21A03824007CB374 /* SceneNavigator */ = {
 			isa = PBXGroup;
 			children = (
 				B45C1BE121A03824007CB374 /* KTSceneNavigator.h */,
@@ -343,28 +343,28 @@
 				B45C1BE321A03824007CB374 /* UIViewController+KTScene.h */,
 				B45C1BE021A03824007CB374 /* UIViewController+KTScene.m */,
 			);
-			path = KTSceneNavigator;
+			path = SceneNavigator;
 			sourceTree = "<group>";
 		};
-		B45C1BE421A03824007CB374 /* KTLogManager */ = {
+		B45C1BE421A03824007CB374 /* LogManager */ = {
 			isa = PBXGroup;
 			children = (
 				B45C1BE521A03824007CB374 /* KTLogManager.h */,
 				B45C1BE621A03824007CB374 /* KTLogManager.m */,
 			);
-			path = KTLogManager;
+			path = LogManager;
 			sourceTree = "<group>";
 		};
-		B45C1BE721A03824007CB374 /* KTCrashListener */ = {
+		B45C1BE721A03824007CB374 /* CrashListener */ = {
 			isa = PBXGroup;
 			children = (
 				B45C1BE921A03824007CB374 /* KTCrashListener.h */,
 				B45C1BE821A03824007CB374 /* KTCrashListener.m */,
 			);
-			path = KTCrashListener;
+			path = CrashListener;
 			sourceTree = "<group>";
 		};
-		B45C1BEA21A03824007CB374 /* KTSingletonManager */ = {
+		B45C1BEA21A03824007CB374 /* SingletonManager */ = {
 			isa = PBXGroup;
 			children = (
 				B45C1BEE21A03824007CB374 /* KTSingletonManager.h */,
@@ -372,25 +372,25 @@
 				B45C1BEF21A03824007CB374 /* NSObject+KTSingleton.h */,
 				B45C1BEC21A03824007CB374 /* NSObject+KTSingleton.m */,
 			);
-			path = KTSingletonManager;
+			path = SingletonManager;
 			sourceTree = "<group>";
 		};
 		B45C1BF121A03824007CB374 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				B45C1BF221A03824007CB374 /* KTHotfixManager */,
-				B42806CC21C531C500B886A7 /* KTBus */,
+				B45C1BF221A03824007CB374 /* HotfixManager */,
+				B42806CC21C531C500B886A7 /* Bus */,
 			);
 			path = Data;
 			sourceTree = "<group>";
 		};
-		B45C1BF221A03824007CB374 /* KTHotfixManager */ = {
+		B45C1BF221A03824007CB374 /* HotfixManager */ = {
 			isa = PBXGroup;
 			children = (
 				B45C1BF421A03824007CB374 /* KTHotfixManager.h */,
 				B45C1BF321A03824007CB374 /* KTHotfixManager.m */,
 			);
-			path = KTHotfixManager;
+			path = HotfixManager;
 			sourceTree = "<group>";
 		};
 		B4BC9C9622041E5500CFD84C /* SubsystemCPP */ = {
