@@ -27,6 +27,9 @@
 		B45C1BFE21A03824007CB374 /* NSObject+KTSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1BEC21A03824007CB374 /* NSObject+KTSingleton.m */; };
 		B45C1BFF21A03824007CB374 /* KTSingletonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1BED21A03824007CB374 /* KTSingletonManager.m */; };
 		B45C1C0021A03824007CB374 /* KTHotfixManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1BF321A03824007CB374 /* KTHotfixManager.m */; };
+		B4BC9CAB2204331C00CFD84C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4BC9CA42204331C00CFD84C /* main.cpp */; };
+		B4BC9CAC2204331C00CFD84C /* cactivity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4BC9CA72204331C00CFD84C /* cactivity.cpp */; };
+		B4BC9CAD2204331C00CFD84C /* cqcpphostcontroller.mm in Sources */ = {isa = PBXBuildFile; fileRef = B4BC9CA92204331C00CFD84C /* cqcpphostcontroller.mm */; };
 		B4CFD96F21C7475000FFF4CF /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD95421C7475000FFF4CF /* TabBarViewController.m */; };
 		B4CFD97021C7475000FFF4CF /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD95721C7475000FFF4CF /* CollectionViewController.m */; };
 		B4CFD97121C7475000FFF4CF /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD95A21C7475000FFF4CF /* TableViewController.m */; };
@@ -97,6 +100,11 @@
 		B45C1BEF21A03824007CB374 /* NSObject+KTSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KTSingleton.h"; sourceTree = "<group>"; };
 		B45C1BF321A03824007CB374 /* KTHotfixManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTHotfixManager.m; sourceTree = "<group>"; };
 		B45C1BF421A03824007CB374 /* KTHotfixManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTHotfixManager.h; sourceTree = "<group>"; };
+		B4BC9CA42204331C00CFD84C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		B4BC9CA62204331C00CFD84C /* cactivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cactivity.h; sourceTree = "<group>"; };
+		B4BC9CA72204331C00CFD84C /* cactivity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cactivity.cpp; sourceTree = "<group>"; };
+		B4BC9CA92204331C00CFD84C /* cqcpphostcontroller.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = cqcpphostcontroller.mm; sourceTree = "<group>"; };
+		B4BC9CAA2204331C00CFD84C /* cqcpphostcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqcpphostcontroller.h; sourceTree = "<group>"; };
 		B4CFD95321C7475000FFF4CF /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		B4CFD95421C7475000FFF4CF /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		B4CFD95621C7475000FFF4CF /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
@@ -160,8 +168,9 @@
 		B45C1B5221A02561007CB374 = {
 			isa = PBXGroup;
 			children = (
-				B4EC3C6621DF6D8800E287A4 /* Library.xcodeproj */,
 				B45C1B5D21A02562007CB374 /* App */,
+				B4BC9C9622041E5500CFD84C /* SubsystemCPP */,
+				B4EC3C6621DF6D8800E287A4 /* Library.xcodeproj */,
 				B45C1B5C21A02562007CB374 /* Products */,
 				B4FCC39621F0912700D152DF /* Frameworks */,
 			);
@@ -382,6 +391,52 @@
 				B45C1BF321A03824007CB374 /* KTHotfixManager.m */,
 			);
 			path = KTHotfixManager;
+			sourceTree = "<group>";
+		};
+		B4BC9C9622041E5500CFD84C /* SubsystemCPP */ = {
+			isa = PBXGroup;
+			children = (
+				B4BC9CA82204331C00CFD84C /* ioshost */,
+				B4BC9CA22204331C00CFD84C /* subsystem */,
+			);
+			name = SubsystemCPP;
+			sourceTree = "<group>";
+		};
+		B4BC9CA22204331C00CFD84C /* subsystem */ = {
+			isa = PBXGroup;
+			children = (
+				B4BC9CA52204331C00CFD84C /* sdk */,
+				B4BC9CA32204331C00CFD84C /* user */,
+			);
+			name = subsystem;
+			path = ../subsystem_cpp/subsystem;
+			sourceTree = "<group>";
+		};
+		B4BC9CA32204331C00CFD84C /* user */ = {
+			isa = PBXGroup;
+			children = (
+				B4BC9CA42204331C00CFD84C /* main.cpp */,
+			);
+			path = user;
+			sourceTree = "<group>";
+		};
+		B4BC9CA52204331C00CFD84C /* sdk */ = {
+			isa = PBXGroup;
+			children = (
+				B4BC9CA62204331C00CFD84C /* cactivity.h */,
+				B4BC9CA72204331C00CFD84C /* cactivity.cpp */,
+			);
+			path = sdk;
+			sourceTree = "<group>";
+		};
+		B4BC9CA82204331C00CFD84C /* ioshost */ = {
+			isa = PBXGroup;
+			children = (
+				B4BC9CAA2204331C00CFD84C /* cqcpphostcontroller.h */,
+				B4BC9CA92204331C00CFD84C /* cqcpphostcontroller.mm */,
+			);
+			name = ioshost;
+			path = ../subsystem_cpp/ioshost;
 			sourceTree = "<group>";
 		};
 		B4CFD95121C7475000FFF4CF /* Pattern-ListView */ = {
@@ -619,7 +674,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4CFD97021C7475000FFF4CF /* CollectionViewController.m in Sources */,
+				B4BC9CAD2204331C00CFD84C /* cqcpphostcontroller.mm in Sources */,
 				B45C1BFE21A03824007CB374 /* NSObject+KTSingleton.m in Sources */,
+				B4BC9CAB2204331C00CFD84C /* main.cpp in Sources */,
 				B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */,
 				B4CFD97421C7475000FFF4CF /* ExampleViewController.m in Sources */,
 				B4CFD97121C7475000FFF4CF /* TableViewController.m in Sources */,
@@ -627,6 +684,7 @@
 				B45C1BF921A03824007CB374 /* UIViewController+KTScene.m in Sources */,
 				B416F18E21A3AFCF0045FDF6 /* UIViewController+KT.m in Sources */,
 				B45C1BFB21A03824007CB374 /* KTLogManager.m in Sources */,
+				B4BC9CAC2204331C00CFD84C /* cactivity.cpp in Sources */,
 				B45C1BB821A02B19007CB374 /* AppDelegate.m in Sources */,
 				B45C1BF621A03824007CB374 /* NSObject+KT.m in Sources */,
 				B4F7176821F976AD0090F949 /* NSBundle+KT.m in Sources */,

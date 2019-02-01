@@ -12,8 +12,8 @@
 /**/    __android_log_vprint(LEVEL , "zzz", FORMAT, args);\
 /**/    va_end(args)
 
-static void info (const char *format, ...) __printflike(1, 2) { LOG(ANDROID_LOG_INFO , format); }
-static void error(const char *format, ...) __printflike(1, 2) { LOG(ANDROID_LOG_ERROR, format); }
+__printflike(1, 2) static void info (const char *format, ...) { LOG(ANDROID_LOG_INFO , format); }
+__printflike(1, 2) static void error(const char *format, ...) { LOG(ANDROID_LOG_ERROR, format); }
 
 #undef LOG
 
