@@ -23,4 +23,4 @@
 
 # the project's local files
 BUILD/
-library/GENERATED_HEADERS/
+GENERATED_HEADERS/

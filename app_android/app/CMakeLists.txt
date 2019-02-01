@@ -16,7 +16,7 @@ endfunction()
 ### configuration begin
 set(lib_name native)
 
-list(APPEND inc_path ../../library/GENERATED_HEADERS)
+list(APPEND inc_path ../../GENERATED_HEADERS)
 list(APPEND src_aims ../../subsystem_cpp/*.cpp)
 list(APPEND usr_libs ../../library_android/${built_jni_subpath}/liblibrary.so)
 ### configutation end

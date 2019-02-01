@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.4.1)
 ### configuration begin
 set(lib_name library)
 
-list(APPEND inc_path ../library/GENERATED_HEADERS)
+list(APPEND inc_path ../GENERATED_HEADERS)
 
 list(APPEND src_aims ../library/bridge/*.cpp)
 list(APPEND src_aims ../library/extension/*.cpp)

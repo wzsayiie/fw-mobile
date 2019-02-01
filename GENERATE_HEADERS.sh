@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# This script will traverse headers and create new homonymic headers reference former.
+# It will avoid developer adding vast header search paths tediously.
+
+set -e -u
+
+cd `dirname $0`
+
+current_path=`pwd`
+generate_dir="GENERATED_HEADERS"
+
+function clean_geneated() {
+    rm -rf $generate_dir
+}
+
+function generate_headers() {
+    mkdir -p $generate_dir
+
+    local found_dir=$current_path/$1
+    for src_path in `find $found_dir -name "*.h"`; do
+
+        local hdr_name=`basename $src_path`
+        local dst_path=$generate_dir/$hdr_name
+
+        if [ ! -f $dst_path ]; then
+            echo "#include \"$src_path\"" > $dst_path
+        else
+            echo "error: homonymic header \"$hdr_name\""
+            clean_geneated
+            exit 1
+        fi
+
+    done
+}
+
+clean_geneated
+generate_headers library
+generate_headers subsystem_cpp
