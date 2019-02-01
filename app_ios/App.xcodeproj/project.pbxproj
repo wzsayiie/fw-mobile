@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B40B7B9E22044ACD00C0A22E /* capplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B9C22044ACD00C0A22E /* capplication.cpp */; };
+		B40B7BA1220464FC00C0A22E /* clanguage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7BA0220464FC00C0A22E /* clanguage.cpp */; };
 		B416F18921A2CD630045FDF6 /* Scenes.plist in Resources */ = {isa = PBXBuildFile; fileRef = B416F18821A2CD630045FDF6 /* Scenes.plist */; };
 		B416F18B21A2D4940045FDF6 /* QuickModels.plist in Resources */ = {isa = PBXBuildFile; fileRef = B416F18A21A2D4940045FDF6 /* QuickModels.plist */; };
 		B416F18E21A3AFCF0045FDF6 /* UIViewController+KT.m in Sources */ = {isa = PBXBuildFile; fileRef = B416F18C21A3AFCF0045FDF6 /* UIViewController+KT.m */; };
@@ -64,6 +66,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B40B7B9C22044ACD00C0A22E /* capplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = capplication.cpp; sourceTree = "<group>"; };
+		B40B7B9D22044ACD00C0A22E /* capplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = capplication.h; sourceTree = "<group>"; };
+		B40B7B9F220464FC00C0A22E /* clanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clanguage.h; sourceTree = "<group>"; };
+		B40B7BA0220464FC00C0A22E /* clanguage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clanguage.cpp; sourceTree = "<group>"; };
 		B416F18821A2CD630045FDF6 /* Scenes.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Scenes.plist; sourceTree = "<group>"; };
 		B416F18A21A2D4940045FDF6 /* QuickModels.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = QuickModels.plist; sourceTree = "<group>"; };
 		B416F18C21A3AFCF0045FDF6 /* UIViewController+KT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KT.m"; sourceTree = "<group>"; };
@@ -425,6 +431,10 @@
 			children = (
 				B4BC9CA62204331C00CFD84C /* cactivity.h */,
 				B4BC9CA72204331C00CFD84C /* cactivity.cpp */,
+				B40B7B9D22044ACD00C0A22E /* capplication.h */,
+				B40B7B9C22044ACD00C0A22E /* capplication.cpp */,
+				B40B7B9F220464FC00C0A22E /* clanguage.h */,
+				B40B7BA0220464FC00C0A22E /* clanguage.cpp */,
 			);
 			path = sdk;
 			sourceTree = "<group>";
@@ -678,6 +688,7 @@
 				B45C1BFE21A03824007CB374 /* NSObject+KTSingleton.m in Sources */,
 				B4BC9CAB2204331C00CFD84C /* main.cpp in Sources */,
 				B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */,
+				B40B7BA1220464FC00C0A22E /* clanguage.cpp in Sources */,
 				B4CFD97421C7475000FFF4CF /* ExampleViewController.m in Sources */,
 				B4CFD97121C7475000FFF4CF /* TableViewController.m in Sources */,
 				B45C1BF721A03824007CB374 /* UIView+KT.m in Sources */,
@@ -694,6 +705,7 @@
 				B4CFD97521C7475000FFF4CF /* FloatViewController.m in Sources */,
 				B4CFD97621C7475000FFF4CF /* WebViewController.m in Sources */,
 				B45C1C0021A03824007CB374 /* KTHotfixManager.m in Sources */,
+				B40B7B9E22044ACD00C0A22E /* capplication.cpp in Sources */,
 				B42806CF21C531C500B886A7 /* KTBus.m in Sources */,
 				B4CFD96F21C7475000FFF4CF /* TabBarViewController.m in Sources */,
 				B4CFD97221C7475000FFF4CF /* DocumentViewController.m in Sources */,
