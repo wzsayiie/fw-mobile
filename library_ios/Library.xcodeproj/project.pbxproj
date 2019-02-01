@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B417B8942202C783002A147E /* bridge_android.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B417B8932202C783002A147E /* bridge_android.cpp */; };
-		B45EAABB2201AE7300CCF475 /* BRGBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B45EAAB92201AE7300CCF475 /* BRGBridge.m */; };
-		B45EAAC02201AE8400CCF475 /* FDNFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = B45EAABE2201AE8400CCF475 /* FDNFoundation.m */; };
-		B45EAAC12201AE8400CCF475 /* FDNPrint.m in Sources */ = {isa = PBXBuildFile; fileRef = B45EAABF2201AE8400CCF475 /* FDNPrint.m */; };
-		B45EAAC52201AE9C00CCF475 /* STCStructure.m in Sources */ = {isa = PBXBuildFile; fileRef = B45EAAC32201AE9C00CCF475 /* STCStructure.m */; };
-		B45EAACB2201AEB800CCF475 /* bridge_core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B45EAAC92201AEB800CCF475 /* bridge_core.cpp */; };
-		B45EAACC2201AEB800CCF475 /* bridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B45EAACA2201AEB800CCF475 /* bridge.cpp */; };
-		B45EAAD02201AECE00CCF475 /* foundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B45EAACF2201AECE00CCF475 /* foundation.cpp */; };
-		B45EAAD52201AEDE00CCF475 /* structure.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B45EAAD32201AEDE00CCF475 /* structure.cpp */; };
-		B45EAAD62201AEDE00CCF475 /* json.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B45EAAD42201AEDE00CCF475 /* json.cpp */; };
+		B414F7212203E579000ED7B7 /* CQBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B414F7202203E579000ED7B7 /* CQBridge.m */; };
+		B414F7262203E588000ED7B7 /* CQPrint.m in Sources */ = {isa = PBXBuildFile; fileRef = B414F7232203E588000ED7B7 /* CQPrint.m */; };
+		B414F7272203E588000ED7B7 /* CQFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = B414F7252203E588000ED7B7 /* CQFoundation.m */; };
+		B414F72F2203E59A000ED7B7 /* cbridgecore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B414F72A2203E59A000ED7B7 /* cbridgecore.cpp */; };
+		B414F7302203E59A000ED7B7 /* candroidbridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B414F72C2203E59A000ED7B7 /* candroidbridge.cpp */; };
+		B414F7312203E59A000ED7B7 /* cbridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B414F72E2203E59A000ED7B7 /* cbridge.cpp */; };
+		B414F7352203E5D9000ED7B7 /* cfoundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B414F7332203E5D9000ED7B7 /* cfoundation.cpp */; };
+		B414F73F2203EBDD000ED7B7 /* CQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = B414F73D2203EBDD000ED7B7 /* CQExtension.m */; };
+		B414F7472203EC0A000ED7B7 /* cextension.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B414F7442203EC0A000ED7B7 /* cextension.cpp */; };
+		B414F7482203EC0A000ED7B7 /* cjson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B414F7452203EC0A000ED7B7 /* cjson.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,24 +32,24 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B417B8922202C782002A147E /* bridge_android.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bridge_android.h; sourceTree = "<group>"; };
-		B417B8932202C783002A147E /* bridge_android.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bridge_android.cpp; sourceTree = "<group>"; };
-		B45EAAB92201AE7300CCF475 /* BRGBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRGBridge.m; sourceTree = "<group>"; };
-		B45EAABA2201AE7300CCF475 /* BRGBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRGBridge.h; sourceTree = "<group>"; };
-		B45EAABD2201AE8400CCF475 /* FDNFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDNFoundation.h; sourceTree = "<group>"; };
-		B45EAABE2201AE8400CCF475 /* FDNFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDNFoundation.m; sourceTree = "<group>"; };
-		B45EAABF2201AE8400CCF475 /* FDNPrint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDNPrint.m; sourceTree = "<group>"; };
-		B45EAAC32201AE9C00CCF475 /* STCStructure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCStructure.m; sourceTree = "<group>"; };
-		B45EAAC42201AE9C00CCF475 /* STCStructure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCStructure.h; sourceTree = "<group>"; };
-		B45EAAC72201AEB800CCF475 /* bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bridge.h; sourceTree = "<group>"; };
-		B45EAAC82201AEB800CCF475 /* bridge_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bridge_core.h; sourceTree = "<group>"; };
-		B45EAAC92201AEB800CCF475 /* bridge_core.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bridge_core.cpp; sourceTree = "<group>"; };
-		B45EAACA2201AEB800CCF475 /* bridge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bridge.cpp; sourceTree = "<group>"; };
-		B45EAACE2201AECE00CCF475 /* foundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = foundation.h; sourceTree = "<group>"; };
-		B45EAACF2201AECE00CCF475 /* foundation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = foundation.cpp; sourceTree = "<group>"; };
-		B45EAAD22201AEDE00CCF475 /* structure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = structure.h; sourceTree = "<group>"; };
-		B45EAAD32201AEDE00CCF475 /* structure.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = structure.cpp; sourceTree = "<group>"; };
-		B45EAAD42201AEDE00CCF475 /* json.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json.cpp; sourceTree = "<group>"; };
+		B414F71F2203E579000ED7B7 /* CQBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQBridge.h; sourceTree = "<group>"; };
+		B414F7202203E579000ED7B7 /* CQBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQBridge.m; sourceTree = "<group>"; };
+		B414F7232203E588000ED7B7 /* CQPrint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQPrint.m; sourceTree = "<group>"; };
+		B414F7242203E588000ED7B7 /* CQFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQFoundation.h; sourceTree = "<group>"; };
+		B414F7252203E588000ED7B7 /* CQFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQFoundation.m; sourceTree = "<group>"; };
+		B414F7292203E59A000ED7B7 /* candroidbridge_p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = candroidbridge_p.h; sourceTree = "<group>"; };
+		B414F72A2203E59A000ED7B7 /* cbridgecore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cbridgecore.cpp; sourceTree = "<group>"; };
+		B414F72B2203E59A000ED7B7 /* cbridgecore_p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cbridgecore_p.h; sourceTree = "<group>"; };
+		B414F72C2203E59A000ED7B7 /* candroidbridge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = candroidbridge.cpp; sourceTree = "<group>"; };
+		B414F72D2203E59A000ED7B7 /* cbridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cbridge.h; sourceTree = "<group>"; };
+		B414F72E2203E59A000ED7B7 /* cbridge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cbridge.cpp; sourceTree = "<group>"; };
+		B414F7332203E5D9000ED7B7 /* cfoundation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cfoundation.cpp; sourceTree = "<group>"; };
+		B414F7342203E5D9000ED7B7 /* cfoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cfoundation.h; sourceTree = "<group>"; };
+		B414F73D2203EBDD000ED7B7 /* CQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQExtension.m; sourceTree = "<group>"; };
+		B414F73E2203EBDD000ED7B7 /* CQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQExtension.h; sourceTree = "<group>"; };
+		B414F7442203EC0A000ED7B7 /* cextension.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cextension.cpp; sourceTree = "<group>"; };
+		B414F7452203EC0A000ED7B7 /* cjson.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cjson.cpp; sourceTree = "<group>"; };
+		B414F7462203EC0A000ED7B7 /* cextension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cextension.h; sourceTree = "<group>"; };
 		CE219ADF21DA51FD006A27B6 /* libLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -67,85 +67,85 @@
 		B405CBE121EC6C4800EB551D /* CPP */ = {
 			isa = PBXGroup;
 			children = (
-				B45EAAC62201AEB800CCF475 /* bridge */,
-				B45EAACD2201AECE00CCF475 /* foundation */,
-				B45EAAD12201AEDE00CCF475 /* structure */,
+				B414F7282203E59A000ED7B7 /* bridge */,
+				B414F7432203EC0A000ED7B7 /* extension */,
+				B414F7322203E5D9000ED7B7 /* foundation */,
 			);
 			name = CPP;
 			sourceTree = "<group>";
 		};
-		B45EAAB82201AE7300CCF475 /* BRGBridge */ = {
+		B414F71E2203E579000ED7B7 /* Bridge */ = {
 			isa = PBXGroup;
 			children = (
-				B45EAABA2201AE7300CCF475 /* BRGBridge.h */,
-				B45EAAB92201AE7300CCF475 /* BRGBridge.m */,
+				B414F71F2203E579000ED7B7 /* CQBridge.h */,
+				B414F7202203E579000ED7B7 /* CQBridge.m */,
 			);
-			name = BRGBridge;
-			path = ../library/bridge/objc/BRGBridge;
+			name = Bridge;
+			path = ../library/bridge/objc/Bridge;
 			sourceTree = "<group>";
 		};
-		B45EAABC2201AE8400CCF475 /* FDNFoundation */ = {
+		B414F7222203E588000ED7B7 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				B45EAABD2201AE8400CCF475 /* FDNFoundation.h */,
-				B45EAABE2201AE8400CCF475 /* FDNFoundation.m */,
-				B45EAABF2201AE8400CCF475 /* FDNPrint.m */,
+				B414F7242203E588000ED7B7 /* CQFoundation.h */,
+				B414F7252203E588000ED7B7 /* CQFoundation.m */,
+				B414F7232203E588000ED7B7 /* CQPrint.m */,
 			);
-			name = FDNFoundation;
-			path = ../library/foundation/objc/FDNFoundation;
+			name = Foundation;
+			path = ../library/foundation/objc/Foundation;
 			sourceTree = "<group>";
 		};
-		B45EAAC22201AE9C00CCF475 /* STCStructure */ = {
+		B414F7282203E59A000ED7B7 /* bridge */ = {
 			isa = PBXGroup;
 			children = (
-				B45EAAC42201AE9C00CCF475 /* STCStructure.h */,
-				B45EAAC32201AE9C00CCF475 /* STCStructure.m */,
-			);
-			name = STCStructure;
-			path = ../library/structure/objc/STCStructure;
-			sourceTree = "<group>";
-		};
-		B45EAAC62201AEB800CCF475 /* bridge */ = {
-			isa = PBXGroup;
-			children = (
-				B45EAAC82201AEB800CCF475 /* bridge_core.h */,
-				B45EAAC92201AEB800CCF475 /* bridge_core.cpp */,
-				B45EAAC72201AEB800CCF475 /* bridge.h */,
-				B45EAACA2201AEB800CCF475 /* bridge.cpp */,
-				B417B8922202C782002A147E /* bridge_android.h */,
-				B417B8932202C783002A147E /* bridge_android.cpp */,
+				B414F72D2203E59A000ED7B7 /* cbridge.h */,
+				B414F72E2203E59A000ED7B7 /* cbridge.cpp */,
+				B414F7292203E59A000ED7B7 /* candroidbridge_p.h */,
+				B414F72C2203E59A000ED7B7 /* candroidbridge.cpp */,
+				B414F72B2203E59A000ED7B7 /* cbridgecore_p.h */,
+				B414F72A2203E59A000ED7B7 /* cbridgecore.cpp */,
 			);
 			name = bridge;
 			path = ../library/bridge/cpp/bridge;
 			sourceTree = "<group>";
 		};
-		B45EAACD2201AECE00CCF475 /* foundation */ = {
+		B414F7322203E5D9000ED7B7 /* foundation */ = {
 			isa = PBXGroup;
 			children = (
-				B45EAACE2201AECE00CCF475 /* foundation.h */,
-				B45EAACF2201AECE00CCF475 /* foundation.cpp */,
+				B414F7342203E5D9000ED7B7 /* cfoundation.h */,
+				B414F7332203E5D9000ED7B7 /* cfoundation.cpp */,
 			);
 			name = foundation;
 			path = ../library/foundation/cpp/foundation;
 			sourceTree = "<group>";
 		};
-		B45EAAD12201AEDE00CCF475 /* structure */ = {
+		B414F73C2203EBDD000ED7B7 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				B45EAAD22201AEDE00CCF475 /* structure.h */,
-				B45EAAD32201AEDE00CCF475 /* structure.cpp */,
-				B45EAAD42201AEDE00CCF475 /* json.cpp */,
+				B414F73E2203EBDD000ED7B7 /* CQExtension.h */,
+				B414F73D2203EBDD000ED7B7 /* CQExtension.m */,
 			);
-			name = structure;
-			path = ../library/structure/cpp/structure;
+			name = Extension;
+			path = ../library/extension/objc/Extension;
+			sourceTree = "<group>";
+		};
+		B414F7432203EC0A000ED7B7 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				B414F7462203EC0A000ED7B7 /* cextension.h */,
+				B414F7442203EC0A000ED7B7 /* cextension.cpp */,
+				B414F7452203EC0A000ED7B7 /* cjson.cpp */,
+			);
+			name = extension;
+			path = ../library/extension/cpp/extension;
 			sourceTree = "<group>";
 		};
 		CE219AD621DA51FD006A27B6 = {
 			isa = PBXGroup;
 			children = (
-				B45EAAB82201AE7300CCF475 /* BRGBridge */,
-				B45EAABC2201AE8400CCF475 /* FDNFoundation */,
-				B45EAAC22201AE9C00CCF475 /* STCStructure */,
+				B414F71E2203E579000ED7B7 /* Bridge */,
+				B414F73C2203EBDD000ED7B7 /* Extension */,
+				B414F7222203E588000ED7B7 /* Foundation */,
 				B405CBE121EC6C4800EB551D /* CPP */,
 				CE219AE021DA51FD006A27B6 /* Products */,
 			);
@@ -215,16 +215,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B417B8942202C783002A147E /* bridge_android.cpp in Sources */,
-				B45EAAC52201AE9C00CCF475 /* STCStructure.m in Sources */,
-				B45EAAC12201AE8400CCF475 /* FDNPrint.m in Sources */,
-				B45EAAD62201AEDE00CCF475 /* json.cpp in Sources */,
-				B45EAABB2201AE7300CCF475 /* BRGBridge.m in Sources */,
-				B45EAAC02201AE8400CCF475 /* FDNFoundation.m in Sources */,
-				B45EAAD02201AECE00CCF475 /* foundation.cpp in Sources */,
-				B45EAACC2201AEB800CCF475 /* bridge.cpp in Sources */,
-				B45EAACB2201AEB800CCF475 /* bridge_core.cpp in Sources */,
-				B45EAAD52201AEDE00CCF475 /* structure.cpp in Sources */,
+				B414F7212203E579000ED7B7 /* CQBridge.m in Sources */,
+				B414F73F2203EBDD000ED7B7 /* CQExtension.m in Sources */,
+				B414F7472203EC0A000ED7B7 /* cextension.cpp in Sources */,
+				B414F7482203EC0A000ED7B7 /* cjson.cpp in Sources */,
+				B414F7272203E588000ED7B7 /* CQFoundation.m in Sources */,
+				B414F7312203E59A000ED7B7 /* cbridge.cpp in Sources */,
+				B414F7302203E59A000ED7B7 /* candroidbridge.cpp in Sources */,
+				B414F72F2203E59A000ED7B7 /* cbridgecore.cpp in Sources */,
+				B414F7352203E5D9000ED7B7 /* cfoundation.cpp in Sources */,
+				B414F7262203E588000ED7B7 /* CQPrint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 #import "KTLogManager.h"
-#import "FDNFoundation.h"
+#import "CQFoundation.h"
 
 #define FORMAT_STRING(NAME, FORMAT)\
 /**/    NSString *NAME = nil; {\
@@ -13,12 +13,12 @@
 
 + (void)printInfoWithFormat:(NSString *)format, ... {
     FORMAT_STRING(message, format);
-    [FDNLogger info:message];
+    [CQLogger info:message];
 }
 
 + (void)printErrorWithFormat:(NSString *)format, ... {
     FORMAT_STRING(message, format);
-    [FDNLogger error:message];
+    [CQLogger error:message];
 }
 
 @end
