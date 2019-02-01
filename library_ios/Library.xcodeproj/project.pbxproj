@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B414F7212203E579000ED7B7 /* CQBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B414F7202203E579000ED7B7 /* CQBridge.m */; };
-		B414F7262203E588000ED7B7 /* CQPrint.m in Sources */ = {isa = PBXBuildFile; fileRef = B414F7232203E588000ED7B7 /* CQPrint.m */; };
-		B414F7272203E588000ED7B7 /* CQFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = B414F7252203E588000ED7B7 /* CQFoundation.m */; };
-		B414F72F2203E59A000ED7B7 /* cbridgecore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B414F72A2203E59A000ED7B7 /* cbridgecore.cpp */; };
-		B414F7302203E59A000ED7B7 /* candroidbridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B414F72C2203E59A000ED7B7 /* candroidbridge.cpp */; };
-		B414F7312203E59A000ED7B7 /* cbridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B414F72E2203E59A000ED7B7 /* cbridge.cpp */; };
-		B414F7352203E5D9000ED7B7 /* cfoundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B414F7332203E5D9000ED7B7 /* cfoundation.cpp */; };
-		B414F73F2203EBDD000ED7B7 /* CQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = B414F73D2203EBDD000ED7B7 /* CQExtension.m */; };
-		B414F7472203EC0A000ED7B7 /* cextension.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B414F7442203EC0A000ED7B7 /* cextension.cpp */; };
-		B414F7482203EC0A000ED7B7 /* cjson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B414F7452203EC0A000ED7B7 /* cjson.cpp */; };
+		B40B7B84220443F200C0A22E /* candroidbridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B7B220443F200C0A22E /* candroidbridge.cpp */; };
+		B40B7B85220443F200C0A22E /* cbridgecore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B7D220443F200C0A22E /* cbridgecore.cpp */; };
+		B40B7B86220443F200C0A22E /* cbridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B80220443F200C0A22E /* cbridge.cpp */; };
+		B40B7B87220443F200C0A22E /* CQBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B83220443F200C0A22E /* CQBridge.m */; };
+		B40B7B8F2204440000C0A22E /* cextension.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B892204440000C0A22E /* cextension.cpp */; };
+		B40B7B902204440000C0A22E /* cjson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B8A2204440000C0A22E /* cjson.cpp */; };
+		B40B7B912204440000C0A22E /* CQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B8D2204440000C0A22E /* CQExtension.m */; };
+		B40B7B992204440E00C0A22E /* cfoundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B932204440E00C0A22E /* cfoundation.cpp */; };
+		B40B7B9A2204440E00C0A22E /* CQPrint.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B962204440E00C0A22E /* CQPrint.m */; };
+		B40B7B9B2204440E00C0A22E /* CQFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B982204440E00C0A22E /* CQFoundation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,24 +32,24 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B414F71F2203E579000ED7B7 /* CQBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQBridge.h; sourceTree = "<group>"; };
-		B414F7202203E579000ED7B7 /* CQBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQBridge.m; sourceTree = "<group>"; };
-		B414F7232203E588000ED7B7 /* CQPrint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQPrint.m; sourceTree = "<group>"; };
-		B414F7242203E588000ED7B7 /* CQFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQFoundation.h; sourceTree = "<group>"; };
-		B414F7252203E588000ED7B7 /* CQFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQFoundation.m; sourceTree = "<group>"; };
-		B414F7292203E59A000ED7B7 /* candroidbridge_p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = candroidbridge_p.h; sourceTree = "<group>"; };
-		B414F72A2203E59A000ED7B7 /* cbridgecore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cbridgecore.cpp; sourceTree = "<group>"; };
-		B414F72B2203E59A000ED7B7 /* cbridgecore_p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cbridgecore_p.h; sourceTree = "<group>"; };
-		B414F72C2203E59A000ED7B7 /* candroidbridge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = candroidbridge.cpp; sourceTree = "<group>"; };
-		B414F72D2203E59A000ED7B7 /* cbridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cbridge.h; sourceTree = "<group>"; };
-		B414F72E2203E59A000ED7B7 /* cbridge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cbridge.cpp; sourceTree = "<group>"; };
-		B414F7332203E5D9000ED7B7 /* cfoundation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cfoundation.cpp; sourceTree = "<group>"; };
-		B414F7342203E5D9000ED7B7 /* cfoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cfoundation.h; sourceTree = "<group>"; };
-		B414F73D2203EBDD000ED7B7 /* CQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQExtension.m; sourceTree = "<group>"; };
-		B414F73E2203EBDD000ED7B7 /* CQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQExtension.h; sourceTree = "<group>"; };
-		B414F7442203EC0A000ED7B7 /* cextension.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cextension.cpp; sourceTree = "<group>"; };
-		B414F7452203EC0A000ED7B7 /* cjson.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cjson.cpp; sourceTree = "<group>"; };
-		B414F7462203EC0A000ED7B7 /* cextension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cextension.h; sourceTree = "<group>"; };
+		B40B7B7B220443F200C0A22E /* candroidbridge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = candroidbridge.cpp; sourceTree = "<group>"; };
+		B40B7B7C220443F200C0A22E /* candroidbridge_p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = candroidbridge_p.h; sourceTree = "<group>"; };
+		B40B7B7D220443F200C0A22E /* cbridgecore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cbridgecore.cpp; sourceTree = "<group>"; };
+		B40B7B7E220443F200C0A22E /* cbridgecore_p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cbridgecore_p.h; sourceTree = "<group>"; };
+		B40B7B7F220443F200C0A22E /* cbridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cbridge.h; sourceTree = "<group>"; };
+		B40B7B80220443F200C0A22E /* cbridge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cbridge.cpp; sourceTree = "<group>"; };
+		B40B7B82220443F200C0A22E /* CQBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQBridge.h; sourceTree = "<group>"; };
+		B40B7B83220443F200C0A22E /* CQBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQBridge.m; sourceTree = "<group>"; };
+		B40B7B892204440000C0A22E /* cextension.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cextension.cpp; sourceTree = "<group>"; };
+		B40B7B8A2204440000C0A22E /* cjson.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cjson.cpp; sourceTree = "<group>"; };
+		B40B7B8B2204440000C0A22E /* cextension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cextension.h; sourceTree = "<group>"; };
+		B40B7B8D2204440000C0A22E /* CQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQExtension.m; sourceTree = "<group>"; };
+		B40B7B8E2204440000C0A22E /* CQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQExtension.h; sourceTree = "<group>"; };
+		B40B7B932204440E00C0A22E /* cfoundation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cfoundation.cpp; sourceTree = "<group>"; };
+		B40B7B942204440E00C0A22E /* cfoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cfoundation.h; sourceTree = "<group>"; };
+		B40B7B962204440E00C0A22E /* CQPrint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQPrint.m; sourceTree = "<group>"; };
+		B40B7B972204440E00C0A22E /* CQFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQFoundation.h; sourceTree = "<group>"; };
+		B40B7B982204440E00C0A22E /* CQFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQFoundation.m; sourceTree = "<group>"; };
 		CE219ADF21DA51FD006A27B6 /* libLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -64,89 +64,81 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B405CBE121EC6C4800EB551D /* CPP */ = {
+		B40B7B7A220443F200C0A22E /* libbridge */ = {
 			isa = PBXGroup;
 			children = (
-				B414F7282203E59A000ED7B7 /* bridge */,
-				B414F7432203EC0A000ED7B7 /* extension */,
-				B414F7322203E5D9000ED7B7 /* foundation */,
+				B40B7B7E220443F200C0A22E /* cbridgecore_p.h */,
+				B40B7B7D220443F200C0A22E /* cbridgecore.cpp */,
+				B40B7B7F220443F200C0A22E /* cbridge.h */,
+				B40B7B80220443F200C0A22E /* cbridge.cpp */,
+				B40B7B7C220443F200C0A22E /* candroidbridge_p.h */,
+				B40B7B7B220443F200C0A22E /* candroidbridge.cpp */,
 			);
-			name = CPP;
+			name = libbridge;
+			path = ../library/bridge/libbridge;
 			sourceTree = "<group>";
 		};
-		B414F71E2203E579000ED7B7 /* Bridge */ = {
+		B40B7B81220443F200C0A22E /* Bridge */ = {
 			isa = PBXGroup;
 			children = (
-				B414F71F2203E579000ED7B7 /* CQBridge.h */,
-				B414F7202203E579000ED7B7 /* CQBridge.m */,
+				B40B7B82220443F200C0A22E /* CQBridge.h */,
+				B40B7B83220443F200C0A22E /* CQBridge.m */,
 			);
 			name = Bridge;
-			path = ../library/bridge/objc/Bridge;
+			path = ../library/bridge/Bridge;
 			sourceTree = "<group>";
 		};
-		B414F7222203E588000ED7B7 /* Foundation */ = {
+		B40B7B882204440000C0A22E /* libextension */ = {
 			isa = PBXGroup;
 			children = (
-				B414F7242203E588000ED7B7 /* CQFoundation.h */,
-				B414F7252203E588000ED7B7 /* CQFoundation.m */,
-				B414F7232203E588000ED7B7 /* CQPrint.m */,
+				B40B7B8B2204440000C0A22E /* cextension.h */,
+				B40B7B892204440000C0A22E /* cextension.cpp */,
+				B40B7B8A2204440000C0A22E /* cjson.cpp */,
 			);
-			name = Foundation;
-			path = ../library/foundation/objc/Foundation;
+			name = libextension;
+			path = ../library/extension/libextension;
 			sourceTree = "<group>";
 		};
-		B414F7282203E59A000ED7B7 /* bridge */ = {
+		B40B7B8C2204440000C0A22E /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				B414F72D2203E59A000ED7B7 /* cbridge.h */,
-				B414F72E2203E59A000ED7B7 /* cbridge.cpp */,
-				B414F7292203E59A000ED7B7 /* candroidbridge_p.h */,
-				B414F72C2203E59A000ED7B7 /* candroidbridge.cpp */,
-				B414F72B2203E59A000ED7B7 /* cbridgecore_p.h */,
-				B414F72A2203E59A000ED7B7 /* cbridgecore.cpp */,
-			);
-			name = bridge;
-			path = ../library/bridge/cpp/bridge;
-			sourceTree = "<group>";
-		};
-		B414F7322203E5D9000ED7B7 /* foundation */ = {
-			isa = PBXGroup;
-			children = (
-				B414F7342203E5D9000ED7B7 /* cfoundation.h */,
-				B414F7332203E5D9000ED7B7 /* cfoundation.cpp */,
-			);
-			name = foundation;
-			path = ../library/foundation/cpp/foundation;
-			sourceTree = "<group>";
-		};
-		B414F73C2203EBDD000ED7B7 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				B414F73E2203EBDD000ED7B7 /* CQExtension.h */,
-				B414F73D2203EBDD000ED7B7 /* CQExtension.m */,
+				B40B7B8E2204440000C0A22E /* CQExtension.h */,
+				B40B7B8D2204440000C0A22E /* CQExtension.m */,
 			);
 			name = Extension;
-			path = ../library/extension/objc/Extension;
+			path = ../library/extension/Extension;
 			sourceTree = "<group>";
 		};
-		B414F7432203EC0A000ED7B7 /* extension */ = {
+		B40B7B922204440E00C0A22E /* libfoundation */ = {
 			isa = PBXGroup;
 			children = (
-				B414F7462203EC0A000ED7B7 /* cextension.h */,
-				B414F7442203EC0A000ED7B7 /* cextension.cpp */,
-				B414F7452203EC0A000ED7B7 /* cjson.cpp */,
+				B40B7B942204440E00C0A22E /* cfoundation.h */,
+				B40B7B932204440E00C0A22E /* cfoundation.cpp */,
 			);
-			name = extension;
-			path = ../library/extension/cpp/extension;
+			name = libfoundation;
+			path = ../library/foundation/libfoundation;
+			sourceTree = "<group>";
+		};
+		B40B7B952204440E00C0A22E /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				B40B7B972204440E00C0A22E /* CQFoundation.h */,
+				B40B7B982204440E00C0A22E /* CQFoundation.m */,
+				B40B7B962204440E00C0A22E /* CQPrint.m */,
+			);
+			name = Foundation;
+			path = ../library/foundation/Foundation;
 			sourceTree = "<group>";
 		};
 		CE219AD621DA51FD006A27B6 = {
 			isa = PBXGroup;
 			children = (
-				B414F71E2203E579000ED7B7 /* Bridge */,
-				B414F73C2203EBDD000ED7B7 /* Extension */,
-				B414F7222203E588000ED7B7 /* Foundation */,
-				B405CBE121EC6C4800EB551D /* CPP */,
+				B40B7B81220443F200C0A22E /* Bridge */,
+				B40B7B7A220443F200C0A22E /* libbridge */,
+				B40B7B8C2204440000C0A22E /* Extension */,
+				B40B7B882204440000C0A22E /* libextension */,
+				B40B7B952204440E00C0A22E /* Foundation */,
+				B40B7B922204440E00C0A22E /* libfoundation */,
 				CE219AE021DA51FD006A27B6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -215,16 +207,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B414F7212203E579000ED7B7 /* CQBridge.m in Sources */,
-				B414F73F2203EBDD000ED7B7 /* CQExtension.m in Sources */,
-				B414F7472203EC0A000ED7B7 /* cextension.cpp in Sources */,
-				B414F7482203EC0A000ED7B7 /* cjson.cpp in Sources */,
-				B414F7272203E588000ED7B7 /* CQFoundation.m in Sources */,
-				B414F7312203E59A000ED7B7 /* cbridge.cpp in Sources */,
-				B414F7302203E59A000ED7B7 /* candroidbridge.cpp in Sources */,
-				B414F72F2203E59A000ED7B7 /* cbridgecore.cpp in Sources */,
-				B414F7352203E5D9000ED7B7 /* cfoundation.cpp in Sources */,
-				B414F7262203E588000ED7B7 /* CQPrint.m in Sources */,
+				B40B7B84220443F200C0A22E /* candroidbridge.cpp in Sources */,
+				B40B7B8F2204440000C0A22E /* cextension.cpp in Sources */,
+				B40B7B992204440E00C0A22E /* cfoundation.cpp in Sources */,
+				B40B7B85220443F200C0A22E /* cbridgecore.cpp in Sources */,
+				B40B7B902204440000C0A22E /* cjson.cpp in Sources */,
+				B40B7B9A2204440E00C0A22E /* CQPrint.m in Sources */,
+				B40B7B87220443F200C0A22E /* CQBridge.m in Sources */,
+				B40B7B86220443F200C0A22E /* cbridge.cpp in Sources */,
+				B40B7B9B2204440E00C0A22E /* CQFoundation.m in Sources */,
+				B40B7B912204440000C0A22E /* CQExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
