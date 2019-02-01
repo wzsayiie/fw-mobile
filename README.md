@@ -46,6 +46,13 @@ developer can use them to edit source files and project files.
 * EDITOR_CS_OSX/
 * EDITOR_CS_WINDOWS/
 
+These scripts traverse headers and create new homonymic headers
+which reference former.
+It will avoid developer adding vast header search paths tediously.
+
+* generate_headers.bat
+* generate_headers.sh
+
 **Portable Library:**
 
 The corss-platform source,
@@ -70,6 +77,14 @@ and copy them to *app_unity/Plugins*.
 * lib_build_ios.sh
 * lib_build_osx.sh
 * lib_build_windows.bat
+
+**Portable App:**
+
+Lightweight application framework.
+Developer can use them to build little, portable application.
+
+* subsystem_cpp
+* subsystem_lua
 
 **Resource Dispatch:**
 

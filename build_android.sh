@@ -15,7 +15,7 @@ origin_dir="$projct_dir/app/build/outputs/apk/$flavor_nam/release"
 origin_fil="app-$flavor_nam-release.apk"
 
 # build library
-sh GENERATE_HEADERS.sh
+sh generate_headers.sh
 
 pushd $projct_dir
 ./gradlew clean
