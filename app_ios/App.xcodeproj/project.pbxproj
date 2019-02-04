@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B40B7B9E22044ACD00C0A22E /* capplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B9C22044ACD00C0A22E /* capplication.cpp */; };
-		B40B7BA1220464FC00C0A22E /* clanguage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7BA0220464FC00C0A22E /* clanguage.cpp */; };
+		B40B7BA1220464FC00C0A22E /* cahead.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7BA0220464FC00C0A22E /* cahead.cpp */; };
 		B416F18921A2CD630045FDF6 /* Scenes.plist in Resources */ = {isa = PBXBuildFile; fileRef = B416F18821A2CD630045FDF6 /* Scenes.plist */; };
 		B416F18B21A2D4940045FDF6 /* QuickModels.plist in Resources */ = {isa = PBXBuildFile; fileRef = B416F18A21A2D4940045FDF6 /* QuickModels.plist */; };
 		B416F18E21A3AFCF0045FDF6 /* UIViewController+KT.m in Sources */ = {isa = PBXBuildFile; fileRef = B416F18C21A3AFCF0045FDF6 /* UIViewController+KT.m */; };
@@ -29,9 +28,7 @@
 		B45C1BFE21A03824007CB374 /* NSObject+KTSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1BEC21A03824007CB374 /* NSObject+KTSingleton.m */; };
 		B45C1BFF21A03824007CB374 /* KTSingletonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1BED21A03824007CB374 /* KTSingletonManager.m */; };
 		B45C1C0021A03824007CB374 /* KTHotfixManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1BF321A03824007CB374 /* KTHotfixManager.m */; };
-		B4BC9CAB2204331C00CFD84C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4BC9CA42204331C00CFD84C /* main.cpp */; };
-		B4BC9CAC2204331C00CFD84C /* cactivity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4BC9CA72204331C00CFD84C /* cactivity.cpp */; };
-		B4BC9CAD2204331C00CFD84C /* cqcpphostcontroller.mm in Sources */ = {isa = PBXBuildFile; fileRef = B4BC9CA92204331C00CFD84C /* cqcpphostcontroller.mm */; };
+		B4BC9CAD2204331C00CFD84C /* cqcppcarrier.mm in Sources */ = {isa = PBXBuildFile; fileRef = B4BC9CA92204331C00CFD84C /* cqcppcarrier.mm */; };
 		B4CFD96F21C7475000FFF4CF /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD95421C7475000FFF4CF /* TabBarViewController.m */; };
 		B4CFD97021C7475000FFF4CF /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD95721C7475000FFF4CF /* CollectionViewController.m */; };
 		B4CFD97121C7475000FFF4CF /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD95A21C7475000FFF4CF /* TableViewController.m */; };
@@ -46,6 +43,15 @@
 		B4DCD87F21F17DAE0090BFBB /* UserSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DCD87C21F17DAE0090BFBB /* UserSetting.m */; };
 		B4F7176821F976AD0090F949 /* NSBundle+KT.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F7176721F976AD0090F949 /* NSBundle+KT.m */; };
 		B4FCC39821F0912700D152DF /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FCC39721F0912700D152DF /* libc++.tbd */; };
+		CE224EA72206AED300B8FB53 /* cview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EA22206AED300B8FB53 /* cview.cpp */; };
+		CE224EA82206AED300B8FB53 /* cviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EA32206AED300B8FB53 /* cviewcontroller.cpp */; };
+		CE224EA92206AED300B8FB53 /* capplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EA42206AED300B8FB53 /* capplication.cpp */; };
+		CE224EAC2206B3C100B8FB53 /* cwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EAB2206B3C100B8FB53 /* cwindow.cpp */; };
+		CE224EB32206C15B00B8FB53 /* rootviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EB02206C15B00B8FB53 /* rootviewcontroller.cpp */; };
+		CE224EB62206C3FD00B8FB53 /* applicationdelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EB42206C3FD00B8FB53 /* applicationdelegate.cpp */; };
+		CE224EB92206C86600B8FB53 /* chost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EB72206C86500B8FB53 /* chost.cpp */; };
+		CE79B403220735F400581FBD /* clog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE79B402220735F400581FBD /* clog.cpp */; };
+		CE9F962A22081B4F003E79C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9F962922081B4F003E79C7 /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,10 +72,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B40B7B9C22044ACD00C0A22E /* capplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = capplication.cpp; sourceTree = "<group>"; };
-		B40B7B9D22044ACD00C0A22E /* capplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = capplication.h; sourceTree = "<group>"; };
-		B40B7B9F220464FC00C0A22E /* clanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clanguage.h; sourceTree = "<group>"; };
-		B40B7BA0220464FC00C0A22E /* clanguage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clanguage.cpp; sourceTree = "<group>"; };
+		B40B7B9F220464FC00C0A22E /* cahead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cahead.h; sourceTree = "<group>"; };
+		B40B7BA0220464FC00C0A22E /* cahead.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cahead.cpp; sourceTree = "<group>"; };
 		B416F18821A2CD630045FDF6 /* Scenes.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Scenes.plist; sourceTree = "<group>"; };
 		B416F18A21A2D4940045FDF6 /* QuickModels.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = QuickModels.plist; sourceTree = "<group>"; };
 		B416F18C21A3AFCF0045FDF6 /* UIViewController+KT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KT.m"; sourceTree = "<group>"; };
@@ -106,11 +110,7 @@
 		B45C1BEF21A03824007CB374 /* NSObject+KTSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KTSingleton.h"; sourceTree = "<group>"; };
 		B45C1BF321A03824007CB374 /* KTHotfixManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTHotfixManager.m; sourceTree = "<group>"; };
 		B45C1BF421A03824007CB374 /* KTHotfixManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTHotfixManager.h; sourceTree = "<group>"; };
-		B4BC9CA42204331C00CFD84C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		B4BC9CA62204331C00CFD84C /* cactivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cactivity.h; sourceTree = "<group>"; };
-		B4BC9CA72204331C00CFD84C /* cactivity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cactivity.cpp; sourceTree = "<group>"; };
-		B4BC9CA92204331C00CFD84C /* cqcpphostcontroller.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = cqcpphostcontroller.mm; sourceTree = "<group>"; };
-		B4BC9CAA2204331C00CFD84C /* cqcpphostcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqcpphostcontroller.h; sourceTree = "<group>"; };
+		B4BC9CA92204331C00CFD84C /* cqcppcarrier.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = cqcppcarrier.mm; sourceTree = "<group>"; };
 		B4CFD95321C7475000FFF4CF /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		B4CFD95421C7475000FFF4CF /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		B4CFD95621C7475000FFF4CF /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
@@ -138,6 +138,24 @@
 		B4F7176621F976AD0090F949 /* NSBundle+KT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+KT.h"; sourceTree = "<group>"; };
 		B4F7176721F976AD0090F949 /* NSBundle+KT.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+KT.m"; sourceTree = "<group>"; };
 		B4FCC39721F0912700D152DF /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		CE224EA12206AED300B8FB53 /* cview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cview.h; sourceTree = "<group>"; };
+		CE224EA22206AED300B8FB53 /* cview.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cview.cpp; sourceTree = "<group>"; };
+		CE224EA32206AED300B8FB53 /* cviewcontroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cviewcontroller.cpp; sourceTree = "<group>"; };
+		CE224EA42206AED300B8FB53 /* capplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = capplication.cpp; sourceTree = "<group>"; };
+		CE224EA52206AED300B8FB53 /* capplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = capplication.h; sourceTree = "<group>"; };
+		CE224EA62206AED300B8FB53 /* cviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cviewcontroller.h; sourceTree = "<group>"; };
+		CE224EAA2206B3C100B8FB53 /* cwindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cwindow.h; sourceTree = "<group>"; };
+		CE224EAB2206B3C100B8FB53 /* cwindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cwindow.cpp; sourceTree = "<group>"; };
+		CE224EAD2206BA1F00B8FB53 /* cuikit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cuikit.h; sourceTree = "<group>"; };
+		CE224EB02206C15B00B8FB53 /* rootviewcontroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rootviewcontroller.cpp; sourceTree = "<group>"; };
+		CE224EB12206C15B00B8FB53 /* rootviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rootviewcontroller.h; sourceTree = "<group>"; };
+		CE224EB42206C3FD00B8FB53 /* applicationdelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = applicationdelegate.cpp; sourceTree = "<group>"; };
+		CE224EB52206C3FD00B8FB53 /* applicationdelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = applicationdelegate.h; sourceTree = "<group>"; };
+		CE224EB72206C86500B8FB53 /* chost.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = chost.cpp; sourceTree = "<group>"; };
+		CE224EB82206C86600B8FB53 /* chost_p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chost_p.h; sourceTree = "<group>"; };
+		CE79B401220735F400581FBD /* clog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clog.h; sourceTree = "<group>"; };
+		CE79B402220735F400581FBD /* clog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clog.cpp; sourceTree = "<group>"; };
+		CE9F962922081B4F003E79C7 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +273,7 @@
 			children = (
 				B45C1B8D21A02B19007CB374 /* AppDelegate.h */,
 				B45C1B8E21A02B19007CB374 /* AppDelegate.m */,
+				CE9F962922081B4F003E79C7 /* main.m */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -421,7 +440,10 @@
 		B4BC9CA32204331C00CFD84C /* user */ = {
 			isa = PBXGroup;
 			children = (
-				B4BC9CA42204331C00CFD84C /* main.cpp */,
+				CE224EB52206C3FD00B8FB53 /* applicationdelegate.h */,
+				CE224EB42206C3FD00B8FB53 /* applicationdelegate.cpp */,
+				CE224EB12206C15B00B8FB53 /* rootviewcontroller.h */,
+				CE224EB02206C15B00B8FB53 /* rootviewcontroller.cpp */,
 			);
 			path = user;
 			sourceTree = "<group>";
@@ -429,12 +451,21 @@
 		B4BC9CA52204331C00CFD84C /* sdk */ = {
 			isa = PBXGroup;
 			children = (
-				B4BC9CA62204331C00CFD84C /* cactivity.h */,
-				B4BC9CA72204331C00CFD84C /* cactivity.cpp */,
-				B40B7B9D22044ACD00C0A22E /* capplication.h */,
-				B40B7B9C22044ACD00C0A22E /* capplication.cpp */,
-				B40B7B9F220464FC00C0A22E /* clanguage.h */,
-				B40B7BA0220464FC00C0A22E /* clanguage.cpp */,
+				B40B7B9F220464FC00C0A22E /* cahead.h */,
+				B40B7BA0220464FC00C0A22E /* cahead.cpp */,
+				CE224EA52206AED300B8FB53 /* capplication.h */,
+				CE224EA42206AED300B8FB53 /* capplication.cpp */,
+				CE224EB82206C86600B8FB53 /* chost_p.h */,
+				CE224EB72206C86500B8FB53 /* chost.cpp */,
+				CE79B401220735F400581FBD /* clog.h */,
+				CE79B402220735F400581FBD /* clog.cpp */,
+				CE224EAD2206BA1F00B8FB53 /* cuikit.h */,
+				CE224EA12206AED300B8FB53 /* cview.h */,
+				CE224EA22206AED300B8FB53 /* cview.cpp */,
+				CE224EA62206AED300B8FB53 /* cviewcontroller.h */,
+				CE224EA32206AED300B8FB53 /* cviewcontroller.cpp */,
+				CE224EAA2206B3C100B8FB53 /* cwindow.h */,
+				CE224EAB2206B3C100B8FB53 /* cwindow.cpp */,
 			);
 			path = sdk;
 			sourceTree = "<group>";
@@ -442,8 +473,7 @@
 		B4BC9CA82204331C00CFD84C /* ioshost */ = {
 			isa = PBXGroup;
 			children = (
-				B4BC9CAA2204331C00CFD84C /* cqcpphostcontroller.h */,
-				B4BC9CA92204331C00CFD84C /* cqcpphostcontroller.mm */,
+				B4BC9CA92204331C00CFD84C /* cqcppcarrier.mm */,
 			);
 			name = ioshost;
 			path = ../subsystem_cpp/ioshost;
@@ -683,34 +713,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE224EA72206AED300B8FB53 /* cview.cpp in Sources */,
 				B4CFD97021C7475000FFF4CF /* CollectionViewController.m in Sources */,
-				B4BC9CAD2204331C00CFD84C /* cqcpphostcontroller.mm in Sources */,
+				CE79B403220735F400581FBD /* clog.cpp in Sources */,
+				B4BC9CAD2204331C00CFD84C /* cqcppcarrier.mm in Sources */,
 				B45C1BFE21A03824007CB374 /* NSObject+KTSingleton.m in Sources */,
-				B4BC9CAB2204331C00CFD84C /* main.cpp in Sources */,
+				CE224EAC2206B3C100B8FB53 /* cwindow.cpp in Sources */,
 				B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */,
-				B40B7BA1220464FC00C0A22E /* clanguage.cpp in Sources */,
+				B40B7BA1220464FC00C0A22E /* cahead.cpp in Sources */,
 				B4CFD97421C7475000FFF4CF /* ExampleViewController.m in Sources */,
 				B4CFD97121C7475000FFF4CF /* TableViewController.m in Sources */,
 				B45C1BF721A03824007CB374 /* UIView+KT.m in Sources */,
 				B45C1BF921A03824007CB374 /* UIViewController+KTScene.m in Sources */,
 				B416F18E21A3AFCF0045FDF6 /* UIViewController+KT.m in Sources */,
 				B45C1BFB21A03824007CB374 /* KTLogManager.m in Sources */,
-				B4BC9CAC2204331C00CFD84C /* cactivity.cpp in Sources */,
 				B45C1BB821A02B19007CB374 /* AppDelegate.m in Sources */,
 				B45C1BF621A03824007CB374 /* NSObject+KT.m in Sources */,
 				B4F7176821F976AD0090F949 /* NSBundle+KT.m in Sources */,
 				B4DCD87F21F17DAE0090BFBB /* UserSetting.m in Sources */,
+				CE224EB62206C3FD00B8FB53 /* applicationdelegate.cpp in Sources */,
 				B45C1BF821A03824007CB374 /* KTSceneNavigator.m in Sources */,
+				CE9F962A22081B4F003E79C7 /* main.m in Sources */,
 				B4CFD97321C7475000FFF4CF /* IAPViewController.m in Sources */,
 				B4CFD97521C7475000FFF4CF /* FloatViewController.m in Sources */,
+				CE224EA82206AED300B8FB53 /* cviewcontroller.cpp in Sources */,
 				B4CFD97621C7475000FFF4CF /* WebViewController.m in Sources */,
 				B45C1C0021A03824007CB374 /* KTHotfixManager.m in Sources */,
-				B40B7B9E22044ACD00C0A22E /* capplication.cpp in Sources */,
 				B42806CF21C531C500B886A7 /* KTBus.m in Sources */,
+				CE224EA92206AED300B8FB53 /* capplication.cpp in Sources */,
 				B4CFD96F21C7475000FFF4CF /* TabBarViewController.m in Sources */,
 				B4CFD97221C7475000FFF4CF /* DocumentViewController.m in Sources */,
+				CE224EB32206C15B00B8FB53 /* rootviewcontroller.cpp in Sources */,
 				B45C1BF521A03824007CB374 /* KTDemoViewController.m in Sources */,
 				B45C1BFF21A03824007CB374 /* KTSingletonManager.m in Sources */,
+				CE224EB92206C86600B8FB53 /* chost.cpp in Sources */,
 				B4CFD97721C7475000FFF4CF /* AlertViewController.m in Sources */,
 				B42806D221C542DB00B886A7 /* UIDevice+KT.m in Sources */,
 				B45C1BFC21A03824007CB374 /* KTCrashListener.m in Sources */,
@@ -845,8 +881,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C7Z95JWD4Y;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/App/Kits/Prefix.pch";
 				HEADER_SEARCH_PATHS = $SRCROOT/../GENERATED_HEADERS;
@@ -855,6 +891,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.wzsayiie.app.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -866,8 +903,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C7Z95JWD4Y;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/App/Kits/Prefix.pch";
 				HEADER_SEARCH_PATHS = $SRCROOT/../GENERATED_HEADERS;
@@ -876,6 +913,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.wzsayiie.app.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

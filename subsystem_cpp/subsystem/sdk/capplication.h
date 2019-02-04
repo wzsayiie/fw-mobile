@@ -1,34 +1,24 @@
 #pragma once
 
-#include "clanguage.h"
+#include "cahead.h"
 
-c_interface(CActivityCallbacks, CInterface) {
-
-    virtual void onCreated  () {}
-    virtual void onStarted  () {}
-    virtual void onRestarted() {}
-    virtual void onResumed  () {}
-    virtual void onPaused   () {}
-    virtual void onStopped  () {}
+struct CApplicationDelegate : CObject {
+C_INTF(CApplicationDelegate)
+    
+    virtual void applicationDidFinishLaunching() {}
+    virtual void applicationDidBecomeActive() {}
+    virtual void applicationDidEnterBackground() {}
 };
 
-struct CApplication {
+struct CApplication : CObject {
+C_CLAS(CApplication , CObject, _self_CApplication)
     
-    static CApplication *get();
+    static CApplication::ref sharedApplication();
     
     CApplication();
-    ~CApplication();
     
-    void registerActivityCallbacks(CActivityCallbacks *callbacks);
-    
-    void onCreate ();
-    void onStart  ();
-    void onRestart();
-    void onResume ();
-    void onPause  ();
-    void onStop   ();
-    
-private:
-    
-    struct _CApplicationData *self;
+    virtual void setDelegate(CApplicationDelegate::ref delegate);
+    virtual CApplicationDelegate::ref delegate();
 };
+
+void CApplicationMain(CApplicationDelegate::ref delegate);

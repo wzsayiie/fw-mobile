@@ -1,44 +1,52 @@
 #include "capplication.h"
-#include <vector>
+#include "chost_p.h"
 
-using namespace std;
+struct _self_CApplication {
+    CApplicationDelegate::ref delegate;
+};
 
-CApplication *CApplication::get() {
-    static CApplication *object = nullptr;
+static void onAppCreate(shared_ptr<_self_CApplication> self) {
+    if (self->delegate != nullptr) {
+        self->delegate->applicationDidFinishLaunching();
+    }
+}
+
+static void onUIAppear(shared_ptr<_self_CApplication> self) {
+    if (self->delegate != nullptr) {
+        self->delegate->applicationDidBecomeActive();
+    }
+}
+
+static void onUIDisappear(shared_ptr<_self_CApplication> self) {
+    if (self->delegate != nullptr) {
+        self->delegate->applicationDidEnterBackground();
+    }
+}
+
+CApplication::ref CApplication::sharedApplication() {
+    static CApplication::ref object;
     if (object == nullptr) {
-        object = new CApplication;
+        object = CApplication::create();
     }
     return object;
 }
 
-struct _CApplicationData {
-    vector<CActivityCallbacks *> activityCallbacks;
-};
-
 CApplication::CApplication() {
-    self = new _CApplicationData;
+    C_INIT(self);
+    
+    CHostAddListener(CHostEventAppCreate  , bind(onAppCreate  , self));
+    CHostAddListener(CHostEventUIAppear   , bind(onUIAppear   , self));
+    CHostAddListener(CHostEventUIDisappear, bind(onUIDisappear, self));
 }
 
-CApplication::~CApplication() {
-    delete self;
+void CApplication::setDelegate(CApplicationDelegate::ref delegate) {
+    self->delegate = delegate;
 }
 
-void CApplication::registerActivityCallbacks(CActivityCallbacks *callbacks) {
-    if (callbacks != nullptr) {
-        self->activityCallbacks.push_back(callbacks);
-    }
+CApplicationDelegate::ref CApplication::delegate() {
+    return self->delegate;
 }
 
-#define IMPL(FUNC)\
-/**/    for (auto it : self->activityCallbacks) {\
-/**/        it->FUNC();\
-/**/    }
-
-void CApplication::onCreate () { IMPL(onCreated  ) }
-void CApplication::onStart  () { IMPL(onStarted  ) }
-void CApplication::onRestart() { IMPL(onRestarted) }
-void CApplication::onResume () { IMPL(onResumed  ) }
-void CApplication::onPause  () { IMPL(onPaused   ) }
-void CApplication::onStop   () { IMPL(onStarted  ) }
-
-#undef IMPL
+void CApplicationMain(CApplicationDelegate::ref delegate) {
+    CApplication::sharedApplication()->setDelegate(delegate);
+}

@@ -9,7 +9,7 @@ list(APPEND src_aims ../library/bridge/*.cpp)
 list(APPEND src_aims ../library/extension/*.cpp)
 list(APPEND src_aims ../library/foundation/*.cpp)
 
-list(APPEND usr_libs log)
+list(APPEND sys_libs log)
 ### configutation end
 
 include_directories(${inc_path})
@@ -17,4 +17,4 @@ include_directories(${inc_path})
 file(GLOB_RECURSE src_files ${src_aims})
 add_library(${lib_name} SHARED ${src_files})
 
-target_link_libraries(${lib_name} ${usr_libs})
+target_link_libraries(${lib_name} ${sys_libs})

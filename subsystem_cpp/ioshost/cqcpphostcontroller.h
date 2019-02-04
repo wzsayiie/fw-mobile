@@ -1,4 +1,0 @@
-//
-
-@interface CQCPPHostController : UIViewController
-@end

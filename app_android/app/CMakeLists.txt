@@ -14,10 +14,12 @@ function(get_absolute_paths paths)
 endfunction()
 
 ### configuration begin
-set(lib_name native)
+set(lib_name cargo)
 
 list(APPEND inc_path ../../GENERATED_HEADERS)
 list(APPEND src_aims ../../subsystem_cpp/*.cpp)
+
+list(APPEND sys_libs log)
 list(APPEND usr_libs ../../library_android/${built_jni_subpath}/liblibrary.so)
 ### configutation end
 
@@ -27,4 +29,4 @@ file(GLOB_RECURSE src_files ${src_aims})
 add_library(${lib_name} SHARED ${src_files})
 
 get_absolute_paths(usr_libs)
-target_link_libraries(${lib_name} ${usr_libs})
+target_link_libraries(${lib_name} ${sys_libs} ${usr_libs})

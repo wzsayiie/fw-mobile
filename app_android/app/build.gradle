@@ -28,7 +28,8 @@ android {
     }
     sourceSets {
         main {
-            java.srcDirs += '../../subsystem_cpp/androidhost/java'
+//            manifest.srcFile '../../subsystem_cpp/androidhost/AndroidManifest.xml'
+            java.srcDirs +=  '../../subsystem_cpp/androidhost/java'
         }
     }
     externalNativeBuild {
