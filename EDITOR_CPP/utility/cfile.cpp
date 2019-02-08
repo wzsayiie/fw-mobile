@@ -1,15 +1,15 @@
-#include "filesystem.h"
+#include "cfile.h"
 
-bool is_path_sep(char ch) {
-    if (ON_WINDOWS) {
+bool CIsPathSeperator(char ch) {
+    if (COnWindows) {
         return ch == '/' || ch == '\\';
     } else /* ON_MAC */ {
         return ch == '/';
     }
 }
 
-static string read_path_item(const char **reader) {
-    while (is_path_sep(**reader)) {
+static string ReadPathItem(const char **reader) {
+    while (CIsPathSeperator(**reader)) {
         ++(*reader);
     }
     if (**reader == '\0') {
@@ -17,14 +17,14 @@ static string read_path_item(const char **reader) {
     }
     
     string item;
-    while (!is_path_sep(**reader) && **reader != '\0') {
+    while (!CIsPathSeperator(**reader) && **reader != '\0') {
         item.append(1, **reader);
         ++(*reader);
     }
     return item;
 }
 
-vector<string> split_path(const string &path) {
+vector<string> CSplitPath(const string &path) {
     if (path.empty()) {
         return vector<string>();
     }
@@ -32,7 +32,7 @@ vector<string> split_path(const string &path) {
     vector<string> items;
     const char *reader = path.c_str();
     while (true) {
-        string it = read_path_item(&reader);
+        string it = ReadPathItem(&reader);
         if (it.empty()) {
             break;
         }
@@ -53,31 +53,31 @@ vector<string> split_path(const string &path) {
     }
     
     //if is root
-    if (ON_OSX && is_path_sep(path[0])) {
-        char sep[] = { PATH_SEP, '\0' };
+    if (COnOSX && CIsPathSeperator(path[0])) {
+        char seperator[] = { CPathSeperator, '\0' };
         if (items.size() > 0) {
-            items[0] = string(sep) + items[0];
+            items[0] = string(seperator) + items[0];
         } else {
-            items.push_back(sep);
+            items.push_back(seperator);
         }
     }
     
     return items;
 }
 
-void append_path(string *out_path, const string &item) {
-    if (out_path == nullptr || item.empty()) {
+void CAppendPath(string *path, const string &item) {
+    if (path == nullptr || item.empty()) {
         return;
     }
     
-    if (!out_path->empty() && !is_path_sep(out_path->back())) {
-        out_path->append(1, PATH_SEP);
+    if (!path->empty() && !CIsPathSeperator(path->back())) {
+        path->append(1, CPathSeperator);
     }
-    out_path->append(item);
+    path->append(item);
 }
 
-string base_name(const string &path) {
-    vector<string> items = split_path(path);
+string CBaseName(const string &path) {
+    vector<string> items = CSplitPath(path);
     if (items.size() > 0) {
         return items.back();
     } else {
@@ -85,19 +85,19 @@ string base_name(const string &path) {
     }
 }
 
-string dir_path(const string &path) {
-    vector<string> items = split_path(path);
+string CDirectoryPath(const string &path) {
+    vector<string> items = CSplitPath(path);
     
     if (items.size() > 1) {
         
-        string dir;
+        string directory;
         for (auto it = items.begin(); it < items.end() - 1; ++it) {
-            if (!dir.empty()) {
-                dir.append(1, PATH_SEP);
+            if (!directory.empty()) {
+                directory.append(1, CPathSeperator);
             }
-            dir.append(*it);
+            directory.append(*it);
         }
-        return dir;
+        return directory;
         
     } else {
         
@@ -105,40 +105,40 @@ string dir_path(const string &path) {
     }
 }
 
-bool fread(const string &path, vector<char> *content) {
+CFileError CReadFile(const string &path, vector<char> *content) {
     if (path.empty() || content == nullptr) {
-        return false;
+        return CFileError::ParamInvaild;
     }
     
     FILE *file = fopen(path.c_str(), "rb");
     if (file == nullptr) {
-        return false;
+        return CFileError::OpenFailed;
     }
     
-    const size_t buf_size = 1024;
-    char buffer[buf_size];
+    const size_t bufferSize = 1024;
+    char buffer[bufferSize];
     while (true) {
-        size_t got_size = fread(buffer, 1, buf_size, file);
-        content->insert(content->end(), buffer, buffer + got_size);
-        if (got_size < buf_size) {
+        size_t gotSize = fread(buffer, 1, bufferSize, file);
+        content->insert(content->end(), buffer, buffer + gotSize);
+        if (gotSize < bufferSize) {
             break;
         }
     }
     
     fclose(file);
-    return true;
+    return CFileError::None;
 }
 
-bool fwrite(const string &path, const vector<char> &content) {
+CFileError CWriteFile(const string &path, const vector<char> &content) {
     if (path.empty()) {
-        return false;
+        return CFileError::ParamInvaild;
     }
     
     FILE *file = fopen(path.c_str(), "wb");
     if (file == nullptr) {
-        return false;
+        return CFileError::OpenFailed;
     }
     fwrite(content.data(), 1, content.size(), file);
     fclose(file);
-    return true;
+    return CFileError::None;
 }

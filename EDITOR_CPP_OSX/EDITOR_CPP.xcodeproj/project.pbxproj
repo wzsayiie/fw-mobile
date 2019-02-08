@@ -7,17 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B4A1386921E30B98000218AF /* demo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A1385821E30B98000218AF /* demo.cpp */; };
-		B4A1386A21E30B98000218AF /* demo.mm in Sources */ = {isa = PBXBuildFile; fileRef = B4A1385921E30B98000218AF /* demo.mm */; };
-		B4A1386B21E30B98000218AF /* unify_source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A1385B21E30B98000218AF /* unify_source.cpp */; };
-		B4A1386C21E30B98000218AF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A1385C21E30B98000218AF /* main.cpp */; };
-		B4A1386D21E30B98000218AF /* types.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A1385F21E30B98000218AF /* types.cpp */; };
-		B4A1386E21E30B98000218AF /* logging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A1386021E30B98000218AF /* logging.cpp */; };
-		B4A1386F21E30B98000218AF /* entry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A1386221E30B98000218AF /* entry.cpp */; };
-		B4A1387021E30B98000218AF /* filesystem_osx.mm in Sources */ = {isa = PBXBuildFile; fileRef = B4A1386521E30B98000218AF /* filesystem_osx.mm */; };
-		B4A1387121E30B98000218AF /* filesystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A1386621E30B98000218AF /* filesystem.cpp */; };
-		B4A1387221E30B98000218AF /* utf8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A1386721E30B98000218AF /* utf8.cpp */; };
-		B4AC2B2221E44CE400185FBF /* base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4AC2B2121E44CE300185FBF /* base.cpp */; };
+		CE21BEA322085E4B00AED03F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE9522085E4B00AED03F /* main.cpp */; };
+		CE21BEA422085E4B00AED03F /* demo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE9622085E4B00AED03F /* demo.cpp */; };
+		CE21BEA622085E4B00AED03F /* cahead.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE9B22085E4B00AED03F /* cahead.cpp */; };
+		CE21BEAA22085E4B00AED03F /* demo.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEA222085E4B00AED03F /* demo.mm */; };
+		CE21BEAE2208620300AED03F /* cfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEAB2208620300AED03F /* cfile.cpp */; };
+		CE21BEAF2208620300AED03F /* cfile_osx.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEAC2208620300AED03F /* cfile_osx.mm */; };
+		CE21BEB2220868B900AED03F /* clog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEB0220868B900AED03F /* clog.cpp */; };
+		CE844339220D5874008D3F79 /* cutf8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE844337220D5874008D3F79 /* cutf8.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,24 +30,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B4A1385821E30B98000218AF /* demo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = demo.cpp; sourceTree = "<group>"; };
-		B4A1385921E30B98000218AF /* demo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = demo.mm; sourceTree = "<group>"; };
-		B4A1385B21E30B98000218AF /* unify_source.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = unify_source.cpp; sourceTree = "<group>"; };
-		B4A1385C21E30B98000218AF /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		B4A1385E21E30B98000218AF /* filesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filesystem.h; sourceTree = "<group>"; };
-		B4A1385F21E30B98000218AF /* types.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = types.cpp; sourceTree = "<group>"; };
-		B4A1386021E30B98000218AF /* logging.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = logging.cpp; sourceTree = "<group>"; };
-		B4A1386121E30B98000218AF /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
-		B4A1386221E30B98000218AF /* entry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = entry.cpp; sourceTree = "<group>"; };
-		B4A1386321E30B98000218AF /* logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logging.h; sourceTree = "<group>"; };
-		B4A1386421E30B98000218AF /* entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entry.h; sourceTree = "<group>"; };
-		B4A1386521E30B98000218AF /* filesystem_osx.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = filesystem_osx.mm; sourceTree = "<group>"; };
-		B4A1386621E30B98000218AF /* filesystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filesystem.cpp; sourceTree = "<group>"; };
-		B4A1386721E30B98000218AF /* utf8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utf8.cpp; sourceTree = "<group>"; };
-		B4A1386821E30B98000218AF /* utf8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utf8.h; sourceTree = "<group>"; };
-		B4AC2B2021E44C7900185FBF /* base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base.h; sourceTree = "<group>"; };
-		B4AC2B2121E44CE300185FBF /* base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base.cpp; sourceTree = "<group>"; };
+		CE21BE9522085E4B00AED03F /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		CE21BE9622085E4B00AED03F /* demo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = demo.cpp; sourceTree = "<group>"; };
+		CE21BE9B22085E4B00AED03F /* cahead.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cahead.cpp; sourceTree = "<group>"; };
+		CE21BE9C22085E4B00AED03F /* cahead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cahead.h; sourceTree = "<group>"; };
+		CE21BEA122085E4B00AED03F /* utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utility.h; sourceTree = "<group>"; };
+		CE21BEA222085E4B00AED03F /* demo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = demo.mm; sourceTree = "<group>"; };
+		CE21BEAB2208620300AED03F /* cfile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cfile.cpp; sourceTree = "<group>"; };
+		CE21BEAC2208620300AED03F /* cfile_osx.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = cfile_osx.mm; sourceTree = "<group>"; };
+		CE21BEAD2208620300AED03F /* cfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cfile.h; sourceTree = "<group>"; };
+		CE21BEB0220868B900AED03F /* clog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clog.cpp; sourceTree = "<group>"; };
+		CE21BEB1220868B900AED03F /* clog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clog.h; sourceTree = "<group>"; };
 		CE2BF73121BFF1D10013614A /* EDITOR_CPP */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EDITOR_CPP; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE844337220D5874008D3F79 /* cutf8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cutf8.cpp; sourceTree = "<group>"; };
+		CE844338220D5874008D3F79 /* cutf8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cutf8.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,50 +60,30 @@
 		B4A1385621E30B98000218AF /* EDITOR_CPP */ = {
 			isa = PBXGroup;
 			children = (
-				B4A1385D21E30B98000218AF /* base */,
-				B4A1385721E30B98000218AF /* demo */,
-				B4A1385C21E30B98000218AF /* main.cpp */,
-				B4A1385A21E30B98000218AF /* unify_source */,
+				CE21BE9622085E4B00AED03F /* demo.cpp */,
+				CE21BEA222085E4B00AED03F /* demo.mm */,
+				CE21BE9522085E4B00AED03F /* main.cpp */,
+				CE21BE9722085E4B00AED03F /* utility */,
 			);
 			name = EDITOR_CPP;
 			path = ../EDITOR_CPP;
 			sourceTree = "<group>";
 		};
-		B4A1385721E30B98000218AF /* demo */ = {
+		CE21BE9722085E4B00AED03F /* utility */ = {
 			isa = PBXGroup;
 			children = (
-				B4A1385821E30B98000218AF /* demo.cpp */,
-				B4A1385921E30B98000218AF /* demo.mm */,
+				CE21BE9C22085E4B00AED03F /* cahead.h */,
+				CE21BE9B22085E4B00AED03F /* cahead.cpp */,
+				CE21BEAD2208620300AED03F /* cfile.h */,
+				CE21BEAC2208620300AED03F /* cfile_osx.mm */,
+				CE21BEAB2208620300AED03F /* cfile.cpp */,
+				CE21BEB1220868B900AED03F /* clog.h */,
+				CE21BEB0220868B900AED03F /* clog.cpp */,
+				CE844338220D5874008D3F79 /* cutf8.h */,
+				CE844337220D5874008D3F79 /* cutf8.cpp */,
+				CE21BEA122085E4B00AED03F /* utility.h */,
 			);
-			path = demo;
-			sourceTree = "<group>";
-		};
-		B4A1385A21E30B98000218AF /* unify_source */ = {
-			isa = PBXGroup;
-			children = (
-				B4A1385B21E30B98000218AF /* unify_source.cpp */,
-			);
-			path = unify_source;
-			sourceTree = "<group>";
-		};
-		B4A1385D21E30B98000218AF /* base */ = {
-			isa = PBXGroup;
-			children = (
-				B4AC2B2021E44C7900185FBF /* base.h */,
-				B4AC2B2121E44CE300185FBF /* base.cpp */,
-				B4A1386421E30B98000218AF /* entry.h */,
-				B4A1386221E30B98000218AF /* entry.cpp */,
-				B4A1385E21E30B98000218AF /* filesystem.h */,
-				B4A1386621E30B98000218AF /* filesystem.cpp */,
-				B4A1386521E30B98000218AF /* filesystem_osx.mm */,
-				B4A1386321E30B98000218AF /* logging.h */,
-				B4A1386021E30B98000218AF /* logging.cpp */,
-				B4A1386121E30B98000218AF /* types.h */,
-				B4A1385F21E30B98000218AF /* types.cpp */,
-				B4A1386821E30B98000218AF /* utf8.h */,
-				B4A1386721E30B98000218AF /* utf8.cpp */,
-			);
-			path = base;
+			path = utility;
 			sourceTree = "<group>";
 		};
 		CE2BF72821BFF1D10013614A = {
@@ -185,17 +158,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4A1386A21E30B98000218AF /* demo.mm in Sources */,
-				B4AC2B2221E44CE400185FBF /* base.cpp in Sources */,
-				B4A1386E21E30B98000218AF /* logging.cpp in Sources */,
-				B4A1386F21E30B98000218AF /* entry.cpp in Sources */,
-				B4A1386B21E30B98000218AF /* unify_source.cpp in Sources */,
-				B4A1386C21E30B98000218AF /* main.cpp in Sources */,
-				B4A1387121E30B98000218AF /* filesystem.cpp in Sources */,
-				B4A1386921E30B98000218AF /* demo.cpp in Sources */,
-				B4A1386D21E30B98000218AF /* types.cpp in Sources */,
-				B4A1387221E30B98000218AF /* utf8.cpp in Sources */,
-				B4A1387021E30B98000218AF /* filesystem_osx.mm in Sources */,
+				CE21BEAF2208620300AED03F /* cfile_osx.mm in Sources */,
+				CE21BEA422085E4B00AED03F /* demo.cpp in Sources */,
+				CE21BEAA22085E4B00AED03F /* demo.mm in Sources */,
+				CE21BEB2220868B900AED03F /* clog.cpp in Sources */,
+				CE844339220D5874008D3F79 /* cutf8.cpp in Sources */,
+				CE21BEAE2208620300AED03F /* cfile.cpp in Sources */,
+				CE21BEA322085E4B00AED03F /* main.cpp in Sources */,
+				CE21BEA622085E4B00AED03F /* cahead.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,7 +287,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = $SRCROOT/../EDITOR_CPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -326,7 +295,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = $SRCROOT/../EDITOR_CPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

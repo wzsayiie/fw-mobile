@@ -1,28 +1,29 @@
 #import <Foundation/Foundation.h>
-#import "filesystem.h"
+#import "cfile.h"
 #import "unistd.h"
 
-const bool ON_OSX = true;
-const bool ON_WINDOWS = false;
-const char PATH_SEP = '/';
+const bool COnOSX = true;
+const bool COnWindows = false;
 
-string get_work_dir() {
+const char CPathSeperator = '/';
+
+string CGetWorkDirectory() {
     const size_t size = 1024;
     char buffer[size];
     return getcwd(buffer, size);
 }
 
-bool change_dir(const string &path) {
+bool CChangeDirectory(const string &path) {
     return chdir(path.c_str()) == 0;
 }
 
-bool exist_path(const string &path, bool *is_dir) {
+bool CFileExistsAtPath(const string &path, bool *isDirectory) {
     NSFileManager *manager = NSFileManager.defaultManager;
     NSString *target = @(path.c_str());
-    return [manager fileExistsAtPath:target isDirectory:(BOOL *)is_dir];
+    return [manager fileExistsAtPath:target isDirectory:(BOOL *)isDirectory];
 }
 
-vector<string> contents_of_dir(const string &path) {
+vector<string> CContentsOfDirectory(const string &path) {
     NSFileManager *manager = [NSFileManager defaultManager];
     NSString *target = @(path.c_str());
     
