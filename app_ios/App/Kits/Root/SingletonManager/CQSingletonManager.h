@@ -1,6 +1,6 @@
 //
 
-@interface KTSingletonManager : NSObject
+@interface CQSingletonManager : NSObject
 
 + (instancetype)sharedObject;
 

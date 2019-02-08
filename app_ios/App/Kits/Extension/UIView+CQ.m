@@ -1,6 +1,6 @@
-#import "UIView+KT.h"
+#import "UIView+CQ.h"
 
-@implementation UIView (KT)
+@implementation UIView (CQ)
 
 - (NSLayoutConstraint *)constraint:(UIView *)subview align:(NSLayoutAttribute)direction {
     return [NSLayoutConstraint constraintWithItem:subview

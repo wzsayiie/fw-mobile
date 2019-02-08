@@ -1,6 +1,6 @@
-#import "KTHotfixManager.h"
+#import "CQHotfixManager.h"
 
-@implementation KTHotfixManager
+@implementation CQHotfixManager
 
 - (instancetype)init {
     if (self = [super init]) {

@@ -1,6 +1,6 @@
-#import "KTCrashListener.h"
+#import "CQCrashListener.h"
 
-@implementation KTCrashListener
+@implementation CQCrashListener
 
 + (instancetype)sharedObject {
     static id object = nil;

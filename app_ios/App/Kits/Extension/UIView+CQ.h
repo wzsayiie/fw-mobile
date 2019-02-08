@@ -1,6 +1,6 @@
 //
 
-@interface UIView (KT)
+@interface UIView (CQ)
 
 - (void)addFillingSubview:(UIView *)subview;
 

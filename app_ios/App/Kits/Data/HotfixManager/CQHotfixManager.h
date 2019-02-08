@@ -1,0 +1,4 @@
+//
+
+@interface CQHotfixManager : NSObject
+@end

@@ -1,6 +1,6 @@
 //
 
-@interface KTCrashListener : NSObject
+@interface CQCrashListener : NSObject
 
 + (instancetype)sharedObject;
 

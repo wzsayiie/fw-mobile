@@ -1,7 +1,7 @@
-#import "UIDevice+KT.h"
+#import "UIDevice+CQ.h"
 #import <sys/utsname.h>
 
-@implementation UIDevice (KT)
+@implementation UIDevice (CQ)
 
 - (NSString *)hardwareType {
     struct utsname info;

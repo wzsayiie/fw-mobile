@@ -1,6 +1,6 @@
 //
 
-@interface KTBus : NSObject
+@interface CQBus : NSObject
 
 //NOTE: these static member designed for thread safe.
 
@@ -8,7 +8,7 @@
 + (void)addObserver:(NSObject *)observer selector:(SEL)selector name:(NSString *)name;
 
 //it's not necessary to remove a obserser by "removeObserver:" method.
-//KTBus save the weak reference of observer.
+//CQBus save the weak reference of observer.
 + (void)removeObserver:(NSObject *)observer;
 
 @end

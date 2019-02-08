@@ -2,10 +2,10 @@
 
 #pragma mark - Configuration Item
 
-extern NSString *const KTSceneStyleStack;
-extern NSString *const KTSceneStyleFloat;
+extern NSString *const CQSceneStyleStack;
+extern NSString *const CQSceneStyleFloat;
 
-@interface KTSceneConfigurationItem : NSObject
+@interface CQSceneConfigurationItem : NSObject
 @property (nonatomic, copy  ) NSString *address;
 @property (nonatomic, copy  ) NSString *controller;
 @property (nonatomic, copy  ) NSString *style;
@@ -14,8 +14,8 @@ extern NSString *const KTSceneStyleFloat;
 
 #pragma mark - Data Item
 
-@interface KTSceneDataItem : NSObject
-@property (nonatomic, strong) KTSceneConfigurationItem *configuration;
+@interface CQSceneDataItem : NSObject
+@property (nonatomic, strong) CQSceneConfigurationItem *configuration;
 @property (nonatomic, copy  ) NSString *address;
 @property (nonatomic, copy  ) NSDictionary<NSString *, id> *query;
 @property (nonatomic, strong) NSMutableDictionary<NSString *, id> *result;
@@ -24,7 +24,7 @@ extern NSString *const KTSceneStyleFloat;
 
 #pragma mark - Navigator
 
-@interface KTSceneNavigator : UIViewController
+@interface CQSceneNavigator : UIViewController
 
 + (instancetype)sharedObject;
 

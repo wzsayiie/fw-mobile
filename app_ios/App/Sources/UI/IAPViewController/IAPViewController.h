@@ -1,6 +1,6 @@
 //
 
-#import "KTDemoViewController.h"
+#import "CQDemoViewController.h"
 
-@interface IAPViewController : KTDemoViewController
+@interface IAPViewController : CQDemoViewController
 @end

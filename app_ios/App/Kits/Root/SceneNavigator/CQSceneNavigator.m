@@ -1,25 +1,25 @@
-#import "KTSceneNavigator.h"
+#import "CQSceneNavigator.h"
 
 #pragma mark - Configuration & Data
 
-NSString *const KTSceneStyleStack = @"KTSceneStyleStack";
-NSString *const KTSceneStyleFloat = @"KTSceneStyleFloat";
+NSString *const CQSceneStyleStack = @"CQSceneStyleStack";
+NSString *const CQSceneStyleFloat = @"CQSceneStyleFloat";
 
-@implementation KTSceneConfigurationItem
+@implementation CQSceneConfigurationItem
 @end
 
-@implementation KTSceneDataItem
+@implementation CQSceneDataItem
 @end
 
 #pragma mark - Navigator
 
-@interface KTSceneNavigator () <UINavigationControllerDelegate>
-@property (nonatomic, copy  ) NSArray<KTSceneConfigurationItem *> *configuration;
+@interface CQSceneNavigator () <UINavigationControllerDelegate>
+@property (nonatomic, copy  ) NSArray<CQSceneConfigurationItem *> *configuration;
 @property (nonatomic, strong) UINavigationController *navigationController;
 @property (nonatomic, weak  ) UIViewController *cachedTopController;
 @end
 
-@implementation KTSceneNavigator
+@implementation CQSceneNavigator
 
 + (instancetype)sharedObject {
     static id object = nil;
@@ -46,13 +46,13 @@ NSString *const KTSceneStyleFloat = @"KTSceneStyleFloat";
     self.configuration = [self loadConfiguration];
     
     //launch scenes
-    KTSceneConfigurationItem *stackItem = nil;
-    KTSceneConfigurationItem *floatItem = nil;
-    for (KTSceneConfigurationItem *item in self.configuration) {
-        if (stackItem == nil && item.style == KTSceneStyleStack && item.launch) {
+    CQSceneConfigurationItem *stackItem = nil;
+    CQSceneConfigurationItem *floatItem = nil;
+    for (CQSceneConfigurationItem *item in self.configuration) {
+        if (stackItem == nil && item.style == CQSceneStyleStack && item.launch) {
             stackItem = item;
         }
-        if (floatItem == nil && item.style == KTSceneStyleFloat && item.launch) {
+        if (floatItem == nil && item.style == CQSceneStyleFloat && item.launch) {
             floatItem = item;
         }
         if (stackItem != nil && floatItem != nil) {
@@ -85,8 +85,8 @@ NSString *const KTSceneStyleFloat = @"KTSceneStyleFloat";
         return;
     }
     
-    KTSceneConfigurationItem *configurationItem = nil;
-    for (KTSceneConfigurationItem *item in self.configuration) {
+    CQSceneConfigurationItem *configurationItem = nil;
+    for (CQSceneConfigurationItem *item in self.configuration) {
         if ([address hasPrefix:item.address]) {
             configurationItem = item;
             break;
@@ -111,7 +111,7 @@ NSString *const KTSceneStyleFloat = @"KTSceneStyleFloat";
     NSMutableDictionary *newQuery = [NSMutableDictionary dictionaryWithDictionary:query];
     NSString *newAddress = [self mergeQueryFromAddress:address query:newQuery];
     
-    controller.sceneData = [[KTSceneDataItem alloc] init];
+    controller.sceneData = [[CQSceneDataItem alloc] init];
     controller.sceneData.configuration = configurationItem;
     controller.sceneData.address = newAddress;
     controller.sceneData.query = newQuery;
@@ -119,12 +119,12 @@ NSString *const KTSceneStyleFloat = @"KTSceneStyleFloat";
     controller.sceneData.response = response;
     
     //3 show
-    if (configurationItem.style == KTSceneStyleStack) {
+    if (configurationItem.style == CQSceneStyleStack) {
         
         I(@"push scene '%@'", newAddress);
         [self.navigationController pushViewController:controller animated:YES];
         
-    } else if (configurationItem.style == KTSceneStyleFloat) {
+    } else if (configurationItem.style == CQSceneStyleFloat) {
         
         I(@"show scene '%@'", newAddress);
         [self addFillingSubviewWithController:controller];
@@ -132,8 +132,8 @@ NSString *const KTSceneStyleFloat = @"KTSceneStyleFloat";
 }
 
 - (void)finishScene:(UIViewController *)viewController {
-    KTSceneConfigurationItem *configurationItem = viewController.sceneData.configuration;
-    if (configurationItem.style == KTSceneStyleStack) {
+    CQSceneConfigurationItem *configurationItem = viewController.sceneData.configuration;
+    if (configurationItem.style == CQSceneStyleStack) {
         
         if (viewController == self.navigationController.topViewController) {
             //clean work will execute in the navigation controller's delegate method.
@@ -143,8 +143,8 @@ NSString *const KTSceneStyleFloat = @"KTSceneStyleFloat";
             E(@"try pop a controller but it is't top controller");
         }
         
-    } else if (configurationItem.style == KTSceneStyleFloat) {
-        KTSceneDataItem *dataItem = viewController.sceneData;
+    } else if (configurationItem.style == CQSceneStyleFloat) {
+        CQSceneDataItem *dataItem = viewController.sceneData;
         
         if (![self.childViewControllers containsObject:viewController]) {
             E(@"can not remove '%@' cause it's not child of the navigation", dataItem.address);
@@ -175,7 +175,7 @@ NSString *const KTSceneStyleFloat = @"KTSceneStyleFloat";
         //consider that it was popped.
         NSArray *stackControllers = self.navigationController.childViewControllers;
         if (![stackControllers containsObject:self.cachedTopController]) {
-            KTSceneDataItem *dataItem = self.cachedTopController.sceneData;
+            CQSceneDataItem *dataItem = self.cachedTopController.sceneData;
             if (dataItem.response != nil) {
                 I(@"scene '%@' reponds result %@", dataItem.address, dataItem.result);
                 dataItem.response(dataItem.result);
@@ -188,7 +188,7 @@ NSString *const KTSceneStyleFloat = @"KTSceneStyleFloat";
     self.cachedTopController = viewController;
 }
 
-- (NSArray<KTSceneConfigurationItem *> *)loadConfiguration {
+- (NSArray<CQSceneConfigurationItem *> *)loadConfiguration {
     
     NSString *fileName = @"Scenes.plist";
     
@@ -205,18 +205,18 @@ NSString *const KTSceneStyleFloat = @"KTSceneStyleFloat";
         return nil;
     }
     
-    NSMutableArray<KTSceneConfigurationItem *> *itemList = [NSMutableArray array];
+    NSMutableArray<CQSceneConfigurationItem *> *itemList = [NSMutableArray array];
     for (NSDictionary *scene in sceneList) {
-        KTSceneConfigurationItem *item = [[KTSceneConfigurationItem alloc] init];
+        CQSceneConfigurationItem *item = [[CQSceneConfigurationItem alloc] init];
         
         item.address = scene[@"Address"];
         item.controller = scene[@"Controller"];
         
         NSString *style = scene[@"Style"];
         if ([style isEqualToString:@"Stack"]) {
-            item.style = KTSceneStyleStack;
+            item.style = CQSceneStyleStack;
         } else if ([style isEqualToString:@"Float"]) {
-            item.style = KTSceneStyleFloat;
+            item.style = CQSceneStyleFloat;
         }
         
         item.launch = ((NSNumber *)scene[@"Launch"]).boolValue;

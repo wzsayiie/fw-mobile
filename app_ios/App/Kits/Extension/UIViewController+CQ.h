@@ -1,6 +1,6 @@
 //
 
-@interface UIViewController (KT)
+@interface UIViewController (CQ)
 
 - (void)addFillingSubviewWithController:(UIViewController *)childController;
 

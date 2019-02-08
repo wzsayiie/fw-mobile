@@ -1,4 +1,0 @@
-//
-
-@interface KTHotfixManager : NSObject
-@end

@@ -1,6 +1,6 @@
 //
 
-@interface NSObject (KTSingleton)
+@interface NSObject (CQSingleton)
 
 + (instancetype)sharedObject;
 

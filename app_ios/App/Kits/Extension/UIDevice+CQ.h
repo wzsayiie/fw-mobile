@@ -1,6 +1,6 @@
 //
 
-@interface UIDevice (KT)
+@interface UIDevice (CQ)
 
 @property (nonatomic, readonly) NSString *hardwareType;
 

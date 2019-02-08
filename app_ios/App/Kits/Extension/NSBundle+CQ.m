@@ -1,6 +1,6 @@
-#import "NSBundle+KT.h"
+#import "NSBundle+CQ.h"
 
-@implementation NSBundle (KT)
+@implementation NSBundle (CQ)
 
 - (NSString *)appVersion {
     NSDictionary *info = NSBundle.mainBundle.infoDictionary;

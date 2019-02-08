@@ -1,4 +1,4 @@
-#import "KTLogManager.h"
+#import "CQLogManager.h"
 #import "CQFoundation.h"
 
 #define FORMAT_STRING(NAME, FORMAT)\
@@ -9,7 +9,7 @@
 /**/        va_end(args);\
 /**/    }
 
-@implementation KTLogManager
+@implementation CQLogManager
 
 + (void)printInfoWithFormat:(NSString *)format, ... {
     FORMAT_STRING(message, format);

@@ -1,7 +1,7 @@
 #import "AppDelegate.h"
-#import "KTSingletonManager.h"
-#import "KTSceneNavigator.h"
-#import "KTCrashListener.h"
+#import "CQSingletonManager.h"
+#import "CQSceneNavigator.h"
+#import "CQCrashListener.h"
 
 @implementation AppDelegate
 
@@ -16,11 +16,11 @@
     I(@"  vendor id  : %@", UIDevice.currentDevice.identifierForVendor);
     I(@"}");
     
-    [KTCrashListener sharedObject];
-    [KTSingletonManager sharedObject];
+    [CQCrashListener sharedObject];
+    [CQSingletonManager sharedObject];
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    self.window.rootViewController = KTSceneNavigator.sharedObject;
+    self.window.rootViewController = CQSceneNavigator.sharedObject;
     [self.window makeKeyAndVisible];
     
     return YES;

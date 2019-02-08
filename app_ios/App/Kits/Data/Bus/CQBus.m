@@ -1,6 +1,6 @@
-#import "KTBus.h"
+#import "CQBus.h"
 
-@implementation KTBus
+@implementation CQBus
 
 + (void)post:(NSString *)name param:(NSObject *)param {
     if (name.length == 0) {

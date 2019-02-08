@@ -1,13 +1,13 @@
-#import "KTSingletonManager.h"
+#import "CQSingletonManager.h"
 
-@interface KTSingletonManager ()
+@interface CQSingletonManager ()
 @property (nonatomic, strong) NSMutableDictionary<Class, NSObject *> *objects;
 @end
 
-@implementation KTSingletonManager
+@implementation CQSingletonManager
 
 + (instancetype)sharedObject {
-    static KTSingletonManager *manager = nil;
+    static CQSingletonManager *manager = nil;
     if (manager == nil) {
         manager = [[self alloc] init];
         manager.objects = [[NSMutableDictionary alloc] init];

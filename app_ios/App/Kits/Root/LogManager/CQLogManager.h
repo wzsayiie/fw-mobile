@@ -1,6 +1,6 @@
 //
 
-@interface KTLogManager : NSObject
+@interface CQLogManager : NSObject
 
 //NOTE: these static member designed for thread safe.
 
@@ -9,5 +9,5 @@
 
 @end
 
-#define I(...) [KTLogManager printInfoWithFormat :__VA_ARGS__]
-#define E(...) [KTLogManager printErrorWithFormat:__VA_ARGS__]
+#define I(...) [CQLogManager printInfoWithFormat :__VA_ARGS__]
+#define E(...) [CQLogManager printErrorWithFormat:__VA_ARGS__]

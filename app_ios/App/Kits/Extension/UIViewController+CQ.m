@@ -1,6 +1,6 @@
-#import "UIViewController+KT.h"
+#import "UIViewController+CQ.h"
 
-@implementation UIViewController (KT)
+@implementation UIViewController (CQ)
 
 - (void)addFillingSubviewWithController:(UIViewController *)childController {
     [self addChildViewController:childController];

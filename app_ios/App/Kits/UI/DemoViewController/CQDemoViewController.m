@@ -1,20 +1,20 @@
-#import "KTDemoViewController.h"
+#import "CQDemoViewController.h"
 
-@interface KTDemoViewControllerDataRow : NSObject
+@interface CQDemoViewControllerDataRow : NSObject
 @property (nonatomic) NSString *text;
 @property (nonatomic) NSValue *action;
 @end
 
-@implementation KTDemoViewControllerDataRow
+@implementation CQDemoViewControllerDataRow
 @end
 
-static NSString *const KTDemoViewControllerCellID = @"Cell";
+static NSString *const CQDemoViewControllerCellID = @"Cell";
 
-@interface KTDemoViewController() <UITableViewDataSource, UITableViewDelegate>
-@property (nonatomic) NSMutableArray<KTDemoViewControllerDataRow *> *dataSource;
+@interface CQDemoViewController() <UITableViewDataSource, UITableViewDelegate>
+@property (nonatomic) NSMutableArray<CQDemoViewControllerDataRow *> *dataSource;
 @end
 
-@implementation KTDemoViewController
+@implementation CQDemoViewController
 
 #pragma mark - Controller Life Events
 
@@ -37,13 +37,13 @@ static NSString *const KTDemoViewControllerCellID = @"Cell";
         return;
     }
     
-    [tableView registerClass:UITableViewCell.class forCellReuseIdentifier:KTDemoViewControllerCellID];
+    [tableView registerClass:UITableViewCell.class forCellReuseIdentifier:CQDemoViewControllerCellID];
     tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     tableView.dataSource = self;
     tableView.delegate = self;
 }
 
-- (NSMutableArray<KTDemoViewControllerDataRow *> *)dataSource {
+- (NSMutableArray<CQDemoViewControllerDataRow *> *)dataSource {
     if (_dataSource == nil) {
         _dataSource = [NSMutableArray array];
     }
@@ -55,7 +55,7 @@ static NSString *const KTDemoViewControllerCellID = @"Cell";
         return;
     }
     
-    KTDemoViewControllerDataRow *row = [[KTDemoViewControllerDataRow alloc] init];
+    CQDemoViewControllerDataRow *row = [[CQDemoViewControllerDataRow alloc] init];
     row.text = rowText;
     row.action = [NSValue valueWithPointer:action];
     [self.dataSource addObject:row];
@@ -69,7 +69,7 @@ static NSString *const KTDemoViewControllerCellID = @"Cell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:KTDemoViewControllerCellID];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CQDemoViewControllerCellID];
     cell.textLabel.text = self.dataSource[indexPath.row].text;
     return cell;
 }

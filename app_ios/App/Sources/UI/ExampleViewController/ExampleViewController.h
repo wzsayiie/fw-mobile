@@ -1,4 +1,4 @@
-#import "KTDemoViewController.h"
+#import "CQDemoViewController.h"
 
-@interface ExampleViewController : KTDemoViewController
+@interface ExampleViewController : CQDemoViewController
 @end
