@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cbridgecore_p.h"
+#include "cqbridgecore_p.h"
 #include <jni.h>
 
 JavaVM *CQJavaGetVM();

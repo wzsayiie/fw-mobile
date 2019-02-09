@@ -1,4 +1,4 @@
-#include "cbridge.h"
+#include "cqbridge.hh"
 
 CQ_EXPORT void CQ_Logger_info(CQType message) {
     CQJavaCallStatic("src/library/foundation/Bridge", "info", message, CQTypeNULL, CQTypeNULL, CQTypeNULL);

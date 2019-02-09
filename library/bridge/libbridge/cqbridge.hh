@@ -4,7 +4,7 @@
 #include <string>
 
 # ifdef ANDROID
-#   include "candroidbridge_p.h"
+#   include "cqandroidbridge.hh"
 # endif
 
 template<class T> struct CQValue;

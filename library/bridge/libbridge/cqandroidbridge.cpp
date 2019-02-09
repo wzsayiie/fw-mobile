@@ -1,6 +1,6 @@
 #ifdef ANDROID
 
-#include "candroidbridge_p.h"
+#include "cqandroidbridge.hh"
 #include <android/log.h>
 
 //use original api to print,
