@@ -4,11 +4,11 @@ package src.library.foundation;
 
 public abstract class Logger {
 
-    public static void info(String message) {
-        LoggerImpl.info(message);
+    public static void info(String message, String file, int line) {
+        LoggerImpl.info(message, file, line);
     }
 
-    public static void error(String message) {
-        LoggerImpl.error(message);
+    public static void error(String message, String file, int line) {
+        LoggerImpl.error(message, file, line);
     }
 }

@@ -8,12 +8,12 @@ public class L {
 
     public static void i(String format, Object... args) {
         String message = formalize(format, args);
-        Logger.info(message);
+        Logger.info(message, null, 0);
     }
 
     public static void e(String format, Object... args) {
         String message = formalize(format, args);
-        Logger.error(message);
+        Logger.error(message, null, 0);
     }
 
     public static String string(Object object) {

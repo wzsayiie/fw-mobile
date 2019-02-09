@@ -4,10 +4,13 @@
 
 //NOTE: these static member designed for thread safe.
 
-+ (void)printInfoWithFormat :(NSString *)format, ... NS_FORMAT_FUNCTION(1, 2);
-+ (void)printErrorWithFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(1, 2);
++ (void)infoWithFile:(const char *)file line:(int)line format:(NSString *)format, ...
+NS_FORMAT_FUNCTION(3, 4);
+
++ (void)errorWithFile:(const char *)file line:(int)line format:(NSString *)format, ...
+NS_FORMAT_FUNCTION(3, 4);
 
 @end
 
-#define I(...) [CQLogManager printInfoWithFormat :__VA_ARGS__]
-#define E(...) [CQLogManager printErrorWithFormat:__VA_ARGS__]
+#define I(...) [CQLogManager  infoWithFile:__FILE__ line:__LINE__ format:__VA_ARGS__]
+#define E(...) [CQLogManager errorWithFile:__FILE__ line:__LINE__ format:__VA_ARGS__]

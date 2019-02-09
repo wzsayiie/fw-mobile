@@ -11,14 +11,14 @@
 
 @implementation CQLogManager
 
-+ (void)printInfoWithFormat:(NSString *)format, ... {
++ (void)infoWithFile:(const char *)file line:(int)line format:(NSString *)format, ... {
     FORMAT_STRING(message, format);
-    [CQLogger info:message];
+    [CQLogger info:message file:@(file) line:line];
 }
 
-+ (void)printErrorWithFormat:(NSString *)format, ... {
++ (void)errorWithFile:(const char *)file line:(int)line format:(NSString *)format, ... {
     FORMAT_STRING(message, format);
-    [CQLogger error:message];
+    [CQLogger error:message file:@(file) line:line];
 }
 
 @end

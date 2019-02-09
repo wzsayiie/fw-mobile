@@ -4,30 +4,28 @@ static id<CQLoggerAgent> sAgent = nil;
 
 @implementation CQLogger
 
-+ (void)info:(NSString *)message {
++ (void)info:(NSString *)message file:(NSString *)file line:(int32_t)line {
     if (sAgent != nil) {
-        [sAgent loggerAgentHandleInfoMessage:message];
+        [sAgent loggerAgentHandleInfo:message file:file line:line];
         return;
     }
     
-    #if defined(DEBUG)
-        fprintf(stderr, "info|%s\n", message.UTF8String);
-    #else
-        NSLog(@"info|%@", message);
-    #endif
+    const char *M = message.UTF8String;
+    const char *F = file.UTF8String;
+    int L = (int)line;
+    fprintf(stderr, "info|%s(%d)|%s\n", F, L, M);
 }
 
-+ (void)error:(NSString *)message {
++ (void)error:(NSString *)message file:(NSString *)file line:(int32_t)line {
     if (sAgent != nil) {
-        [sAgent loggerAgentHandleErrorMessage:message];
+        [sAgent loggerAgentHandleError:message file:file line:line];
         return;
     }
     
-    #if defined(DEBUG)
-        fprintf(stderr, "ERROR|%s\n", message.UTF8String);
-    #else
-        NSLog(@"ERROR|%@", message);
-    #endif
+    const char *M = message.UTF8String;
+    const char *F = file.UTF8String;
+    int L = (int)line;
+    fprintf(stderr, "ERROR|%s(%d)|%s\n", F, L, M);
 }
 
 + (void)setAgent:(id<CQLoggerAgent>)agent {

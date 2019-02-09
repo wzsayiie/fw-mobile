@@ -3,12 +3,12 @@
 #import <Foundation/Foundation.h>
 
 @protocol CQLoggerAgent <NSObject>
-- (void)loggerAgentHandleInfoMessage:(NSString *)message;
-- (void)loggerAgentHandleErrorMessage:(NSString *)message;
+- (void)loggerAgentHandleInfo:(NSString *)message file:(NSString *)file line:(int32_t)line;
+- (void)loggerAgentHandleError:(NSString *)message file:(NSString *)file line:(int32_t)line;
 @end
 
 @interface CQLogger : NSObject
-+ (void)info:(NSString *)message;
-+ (void)error:(NSString *)message;
++ (void)info:(NSString *)message file:(NSString *)file line:(int32_t)line;
++ (void)error:(NSString *)message file:(NSString *)file line:(int32_t)line;
 + (void)setAgent:(id<CQLoggerAgent>)agent;
 @end
