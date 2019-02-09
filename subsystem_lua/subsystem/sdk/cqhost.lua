@@ -1,34 +1,34 @@
-CHost = extends(CObject, {
+CQHost = extends(CQObject, {
     theListeners = {},
 })
 
-CHost.Event = {
+CQHost.Event = {
     AppCreate   = 1,
     UILoad      = 2,
     UIAppear    = 3,
     UIDisappear = 4,
 }
 
-CHost.Listener = extends(CObject, {
+CQHost.Listener = extends(CQObject, {
     onEvent = function(event) end,
 })
 
-function CHost:addListener(event, listener)
+function CQHost:addListener(event, listener)
     if listener == nil then
         return
     end
 
-    local list = CHost.theListeners[event]
+    local list = CQHost.theListeners[event]
     if list == nil then
         list = {}
-        CHost.theListeners[event] = list
+        CQHost.theListeners[event] = list
     end
 
     table.insert(list, listener)
 end
 
-function CHost:onEvent(event)
-    local list = CHost.theListeners[event]
+function CQHost:onEvent(event)
+    local list = CQHost.theListeners[event]
     if list == nil then
         return
     end

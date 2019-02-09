@@ -1,4 +1,4 @@
-RootViewController = extends(CViewController, {
+RootViewController = extends(CQViewController, {
 })
 
 function RootViewController:init()

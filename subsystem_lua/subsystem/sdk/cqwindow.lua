@@ -1,24 +1,24 @@
-CWindow = extends(CView, {
+CQWindow = extends(CQView, {
     rootViewController = nil,
 })
 
-function CWindow:init()
-    CWindow.super.init(self)
+function CQWindow:init()
+    CQWindow.super.init(self)
 end
 
-function CWindow:setRootViewController(controller)
+function CQWindow:setRootViewController(controller)
     self.rootViewController = controller
 end
 
-function CWindow:getRootViewController()
+function CQWindow:getRootViewController()
     return self.rootViewController
 end
 
-function CWindow:makeKeyAndVisible()
+function CQWindow:makeKeyAndVisible()
     local a = self
-    CHost:addListener(CHost.Event.UILoad     , function() onUILoad     (a) end)
-    CHost:addListener(CHost.Event.UIAppear   , function() onUIAppear   (a) end)
-    CHost:addListener(CHost.Event.UIDisappear, function() onUIDisappear(a) end)
+    CQHost:addListener(CQHost.Event.UILoad     , function() onUILoad     (a) end)
+    CQHost:addListener(CQHost.Event.UIAppear   , function() onUIAppear   (a) end)
+    CQHost:addListener(CQHost.Event.UIDisappear, function() onUIDisappear(a) end)
 end
 
 function onUILoad(self)

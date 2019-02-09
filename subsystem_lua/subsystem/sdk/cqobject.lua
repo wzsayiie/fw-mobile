@@ -1,10 +1,10 @@
-CObject = {}
+CQObject = {}
 
-function CObject:new(...)
+function CQObject:new(...)
     local object = setmetatable({}, {__index = self})
     object:init(...)
     return object
 end
 
-function CObject:init()
+function CQObject:init()
 end

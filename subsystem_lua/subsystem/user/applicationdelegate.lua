@@ -1,13 +1,13 @@
-ApplicationDelegate = extends(CApplication.Delegate, {
+ApplicationDelegate = extends(CQApplication.Delegate, {
     window = nil
 })
 
 function ApplicationDelegate:applicationDidFinishLaunching()
     ii("app finish launch")
 
-    local viewController = RootViewController:new()
-    self.window = CWindow:new()
-    self.window:setRootViewController(viewController)
+    local controller = RootViewController:new()
+    self.window = CQWindow:new()
+    self.window:setRootViewController(controller)
     self.window:makeKeyAndVisible()
 end
 

@@ -1,4 +1,4 @@
 function main()
     local delegate = ApplicationDelegate:new()
-    CApplicationMain(delegate)
+    CQApplicationMain(delegate)
 end
