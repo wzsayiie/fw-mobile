@@ -1,21 +1,21 @@
-#include "cutf8.h"
+#include "cqutf8.hh"
 
-bool CStartsWithUTF8BOM(const char *ptr, const char *end) {
+bool CQStartsWithUTF8BOM(const char *ptr, const char *end) {
     if (ptr == nullptr) {
         return false;
     }
-    if (ptr + CUTF8BOMSize > end) {
+    if (ptr + CQUTF8BOMSize > end) {
         return false;
     }
     
-    if (strncmp(ptr, CUTF8BOM, CUTF8BOMSize) == 0) {
+    if (strncmp(ptr, CQUTF8BOM, CQUTF8BOMSize) == 0) {
         return true;
     } else {
         return false;
     }
 }
 
-size_t CGetUTF8Char(const char *ptr, const char *end, char *ascii) {
+size_t CQGetUTF8Char(const char *ptr, const char *end, char *ascii) {
     int size = 0;
     
     //check first byte

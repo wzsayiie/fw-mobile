@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		CE21BEA322085E4B00AED03F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE9522085E4B00AED03F /* main.cpp */; };
 		CE21BEA422085E4B00AED03F /* demo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE9622085E4B00AED03F /* demo.cpp */; };
-		CE21BEA622085E4B00AED03F /* cahead.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE9B22085E4B00AED03F /* cahead.cpp */; };
+		CE21BEA622085E4B00AED03F /* cqahead.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE9B22085E4B00AED03F /* cqahead.cpp */; };
 		CE21BEAA22085E4B00AED03F /* demo.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEA222085E4B00AED03F /* demo.mm */; };
-		CE21BEAE2208620300AED03F /* cfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEAB2208620300AED03F /* cfile.cpp */; };
-		CE21BEAF2208620300AED03F /* cfile_osx.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEAC2208620300AED03F /* cfile_osx.mm */; };
-		CE21BEB2220868B900AED03F /* clog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEB0220868B900AED03F /* clog.cpp */; };
-		CE844339220D5874008D3F79 /* cutf8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE844337220D5874008D3F79 /* cutf8.cpp */; };
+		CE21BEAE2208620300AED03F /* cqfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEAB2208620300AED03F /* cqfile.cpp */; };
+		CE21BEAF2208620300AED03F /* cqfile_osx.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEAC2208620300AED03F /* cqfile_osx.mm */; };
+		CE21BEB2220868B900AED03F /* cqlog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEB0220868B900AED03F /* cqlog.cpp */; };
+		CE844339220D5874008D3F79 /* cqutf8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE844337220D5874008D3F79 /* cqutf8.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,18 +32,18 @@
 /* Begin PBXFileReference section */
 		CE21BE9522085E4B00AED03F /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		CE21BE9622085E4B00AED03F /* demo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = demo.cpp; sourceTree = "<group>"; };
-		CE21BE9B22085E4B00AED03F /* cahead.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cahead.cpp; sourceTree = "<group>"; };
-		CE21BE9C22085E4B00AED03F /* cahead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cahead.h; sourceTree = "<group>"; };
-		CE21BEA122085E4B00AED03F /* utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utility.h; sourceTree = "<group>"; };
+		CE21BE9B22085E4B00AED03F /* cqahead.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqahead.cpp; sourceTree = "<group>"; };
+		CE21BE9C22085E4B00AED03F /* cqahead.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqahead.hh; sourceTree = "<group>"; };
+		CE21BEA122085E4B00AED03F /* utility.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = utility.hh; sourceTree = "<group>"; };
 		CE21BEA222085E4B00AED03F /* demo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = demo.mm; sourceTree = "<group>"; };
-		CE21BEAB2208620300AED03F /* cfile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cfile.cpp; sourceTree = "<group>"; };
-		CE21BEAC2208620300AED03F /* cfile_osx.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = cfile_osx.mm; sourceTree = "<group>"; };
-		CE21BEAD2208620300AED03F /* cfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cfile.h; sourceTree = "<group>"; };
-		CE21BEB0220868B900AED03F /* clog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clog.cpp; sourceTree = "<group>"; };
-		CE21BEB1220868B900AED03F /* clog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clog.h; sourceTree = "<group>"; };
+		CE21BEAB2208620300AED03F /* cqfile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqfile.cpp; sourceTree = "<group>"; };
+		CE21BEAC2208620300AED03F /* cqfile_osx.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = cqfile_osx.mm; sourceTree = "<group>"; };
+		CE21BEAD2208620300AED03F /* cqfile.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqfile.hh; sourceTree = "<group>"; };
+		CE21BEB0220868B900AED03F /* cqlog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqlog.cpp; sourceTree = "<group>"; };
+		CE21BEB1220868B900AED03F /* cqlog.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqlog.hh; sourceTree = "<group>"; };
 		CE2BF73121BFF1D10013614A /* EDITOR_CPP */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EDITOR_CPP; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE844337220D5874008D3F79 /* cutf8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cutf8.cpp; sourceTree = "<group>"; };
-		CE844338220D5874008D3F79 /* cutf8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cutf8.h; sourceTree = "<group>"; };
+		CE844337220D5874008D3F79 /* cqutf8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqutf8.cpp; sourceTree = "<group>"; };
+		CE844338220D5874008D3F79 /* cqutf8.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqutf8.hh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,16 +72,16 @@
 		CE21BE9722085E4B00AED03F /* utility */ = {
 			isa = PBXGroup;
 			children = (
-				CE21BE9C22085E4B00AED03F /* cahead.h */,
-				CE21BE9B22085E4B00AED03F /* cahead.cpp */,
-				CE21BEAD2208620300AED03F /* cfile.h */,
-				CE21BEAC2208620300AED03F /* cfile_osx.mm */,
-				CE21BEAB2208620300AED03F /* cfile.cpp */,
-				CE21BEB1220868B900AED03F /* clog.h */,
-				CE21BEB0220868B900AED03F /* clog.cpp */,
-				CE844338220D5874008D3F79 /* cutf8.h */,
-				CE844337220D5874008D3F79 /* cutf8.cpp */,
-				CE21BEA122085E4B00AED03F /* utility.h */,
+				CE21BE9C22085E4B00AED03F /* cqahead.hh */,
+				CE21BE9B22085E4B00AED03F /* cqahead.cpp */,
+				CE21BEAD2208620300AED03F /* cqfile.hh */,
+				CE21BEAC2208620300AED03F /* cqfile_osx.mm */,
+				CE21BEAB2208620300AED03F /* cqfile.cpp */,
+				CE21BEB1220868B900AED03F /* cqlog.hh */,
+				CE21BEB0220868B900AED03F /* cqlog.cpp */,
+				CE844338220D5874008D3F79 /* cqutf8.hh */,
+				CE844337220D5874008D3F79 /* cqutf8.cpp */,
+				CE21BEA122085E4B00AED03F /* utility.hh */,
 			);
 			path = utility;
 			sourceTree = "<group>";
@@ -158,14 +158,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE21BEAF2208620300AED03F /* cfile_osx.mm in Sources */,
+				CE21BEAF2208620300AED03F /* cqfile_osx.mm in Sources */,
 				CE21BEA422085E4B00AED03F /* demo.cpp in Sources */,
 				CE21BEAA22085E4B00AED03F /* demo.mm in Sources */,
-				CE21BEB2220868B900AED03F /* clog.cpp in Sources */,
-				CE844339220D5874008D3F79 /* cutf8.cpp in Sources */,
-				CE21BEAE2208620300AED03F /* cfile.cpp in Sources */,
+				CE21BEB2220868B900AED03F /* cqlog.cpp in Sources */,
+				CE844339220D5874008D3F79 /* cqutf8.cpp in Sources */,
+				CE21BEAE2208620300AED03F /* cqfile.cpp in Sources */,
 				CE21BEA322085E4B00AED03F /* main.cpp in Sources */,
-				CE21BEA622085E4B00AED03F /* cahead.cpp in Sources */,
+				CE21BEA622085E4B00AED03F /* cqahead.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

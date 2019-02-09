@@ -1,4 +1,4 @@
-#include "clog.h"
+#include "cqlog.hh"
 
 #define IMPL(TAG)\
 /**/    va_list args;\

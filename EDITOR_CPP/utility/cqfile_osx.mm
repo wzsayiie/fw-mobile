@@ -1,29 +1,29 @@
 #import <Foundation/Foundation.h>
-#import "cfile.h"
+#import "cqfile.hh"
 #import "unistd.h"
 
-const bool COnOSX = true;
-const bool COnWindows = false;
+const bool CQOnOSX = true;
+const bool CQOnWindows = false;
 
-const char CPathSeperator = '/';
+const char CQPathSeperator = '/';
 
-string CGetWorkDirectory() {
+string CQGetWorkDirectory() {
     const size_t size = 1024;
     char buffer[size];
     return getcwd(buffer, size);
 }
 
-bool CChangeDirectory(const string &path) {
+bool CQChangeDirectory(const string &path) {
     return chdir(path.c_str()) == 0;
 }
 
-bool CFileExistsAtPath(const string &path, bool *isDirectory) {
+bool CQFileExistsAtPath(const string &path, bool *isDirectory) {
     NSFileManager *manager = NSFileManager.defaultManager;
     NSString *target = @(path.c_str());
     return [manager fileExistsAtPath:target isDirectory:(BOOL *)isDirectory];
 }
 
-vector<string> CContentsOfDirectory(const string &path) {
+vector<string> CQContentsOfDirectory(const string &path) {
     NSFileManager *manager = [NSFileManager defaultManager];
     NSString *target = @(path.c_str());
     

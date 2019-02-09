@@ -1,6 +1,6 @@
-#include "cahead.h"
+#include "cqahead.hh"
 
-bool CStringHasPrefix(const string &str, const string &prefix) {
+bool CQStringHasPrefix(const string &str, const string &prefix) {
     if (str.size() <= prefix.size()) {
         return false;
     }
@@ -15,7 +15,7 @@ bool CStringHasPrefix(const string &str, const string &prefix) {
     }
 }
 
-bool CStringHasSuffix(const string &str, const string &suffix) {
+bool CQStringHasSuffix(const string &str, const string &suffix) {
     if (str.size() <= suffix.size()) {
         return false;
     }

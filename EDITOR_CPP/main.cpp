@@ -1,4 +1,4 @@
-#include "utility/utility.h"
+#include "utility/utility.hh"
 
 void ObjCPPMain(int argc, const char *argv[]);
 void CPPMain   (int argc, const char *argv[]);
@@ -11,10 +11,10 @@ static void GotoWorkDirectory() {
     size_t position = filePath.find(rootDirectory);
     if (position != string::npos) {
         string rootPath = filePath.substr(0, position + rootDirectory.size());
-        CChangeDirectory(rootPath);
+        CQChangeDirectory(rootPath);
     }
     
-    string currentPath = CGetWorkDirectory();
+    string currentPath = CQGetWorkDirectory();
     I("Work Path: %s", currentPath.c_str());
 }
 

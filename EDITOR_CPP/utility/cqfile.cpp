@@ -1,15 +1,15 @@
-#include "cfile.h"
+#include "cqfile.hh"
 
-bool CIsPathSeperator(char ch) {
-    if (COnWindows) {
+bool CQIsPathSeperator(char ch) {
+    if (CQOnWindows) {
         return ch == '/' || ch == '\\';
-    } else /* ON_MAC */ {
+    } else /* ON_OSX */ {
         return ch == '/';
     }
 }
 
 static string ReadPathItem(const char **reader) {
-    while (CIsPathSeperator(**reader)) {
+    while (CQIsPathSeperator(**reader)) {
         ++(*reader);
     }
     if (**reader == '\0') {
@@ -17,14 +17,14 @@ static string ReadPathItem(const char **reader) {
     }
     
     string item;
-    while (!CIsPathSeperator(**reader) && **reader != '\0') {
+    while (!CQIsPathSeperator(**reader) && **reader != '\0') {
         item.append(1, **reader);
         ++(*reader);
     }
     return item;
 }
 
-vector<string> CSplitPath(const string &path) {
+vector<string> CQSplitPath(const string &path) {
     if (path.empty()) {
         return vector<string>();
     }
@@ -53,8 +53,8 @@ vector<string> CSplitPath(const string &path) {
     }
     
     //if is root
-    if (COnOSX && CIsPathSeperator(path[0])) {
-        char seperator[] = { CPathSeperator, '\0' };
+    if (CQOnOSX && CQIsPathSeperator(path[0])) {
+        char seperator[] = { CQPathSeperator, '\0' };
         if (items.size() > 0) {
             items[0] = string(seperator) + items[0];
         } else {
@@ -65,19 +65,19 @@ vector<string> CSplitPath(const string &path) {
     return items;
 }
 
-void CAppendPath(string *path, const string &item) {
+void CQAppendPath(string *path, const string &item) {
     if (path == nullptr || item.empty()) {
         return;
     }
     
-    if (!path->empty() && !CIsPathSeperator(path->back())) {
-        path->append(1, CPathSeperator);
+    if (!path->empty() && !CQIsPathSeperator(path->back())) {
+        path->append(1, CQPathSeperator);
     }
     path->append(item);
 }
 
-string CBaseName(const string &path) {
-    vector<string> items = CSplitPath(path);
+string CQBaseName(const string &path) {
+    vector<string> items = CQSplitPath(path);
     if (items.size() > 0) {
         return items.back();
     } else {
@@ -85,15 +85,15 @@ string CBaseName(const string &path) {
     }
 }
 
-string CDirectoryPath(const string &path) {
-    vector<string> items = CSplitPath(path);
+string CQDirectoryPath(const string &path) {
+    vector<string> items = CQSplitPath(path);
     
     if (items.size() > 1) {
         
         string directory;
         for (auto it = items.begin(); it < items.end() - 1; ++it) {
             if (!directory.empty()) {
-                directory.append(1, CPathSeperator);
+                directory.append(1, CQPathSeperator);
             }
             directory.append(*it);
         }
@@ -105,14 +105,14 @@ string CDirectoryPath(const string &path) {
     }
 }
 
-CFileError CReadFile(const string &path, vector<char> *content) {
+CQFileError CQReadFile(const string &path, vector<char> *content) {
     if (path.empty() || content == nullptr) {
-        return CFileError::ParamInvaild;
+        return CQFileError::ParamInvaild;
     }
     
     FILE *file = fopen(path.c_str(), "rb");
     if (file == nullptr) {
-        return CFileError::OpenFailed;
+        return CQFileError::OpenFailed;
     }
     
     const size_t bufferSize = 1024;
@@ -126,19 +126,19 @@ CFileError CReadFile(const string &path, vector<char> *content) {
     }
     
     fclose(file);
-    return CFileError::None;
+    return CQFileError::None;
 }
 
-CFileError CWriteFile(const string &path, const vector<char> &content) {
+CQFileError CWriteFile(const string &path, const vector<char> &content) {
     if (path.empty()) {
-        return CFileError::ParamInvaild;
+        return CQFileError::ParamInvaild;
     }
     
     FILE *file = fopen(path.c_str(), "wb");
     if (file == nullptr) {
-        return CFileError::OpenFailed;
+        return CQFileError::OpenFailed;
     }
     fwrite(content.data(), 1, content.size(), file);
     fclose(file);
-    return CFileError::None;
+    return CQFileError::None;
 }
