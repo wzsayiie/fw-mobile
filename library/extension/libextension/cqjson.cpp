@@ -1,4 +1,4 @@
-#include "cextension.h"
+#include "cqextension.hh"
 
 std::shared_ptr<CQJSONValue> CQJSONValue::fromString(const std::string &string) {
     return std::shared_ptr<CQJSONValue>();

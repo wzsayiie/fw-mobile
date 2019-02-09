@@ -1,4 +1,4 @@
-#include "cbridgecore_p.h"
+#include "cqbridgecore_p.h"
 
 const CQType CQTypeNULL = {0LL};
 

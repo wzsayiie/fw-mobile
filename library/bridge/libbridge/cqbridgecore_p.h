@@ -10,12 +10,10 @@
 # endif
 
 typedef struct CQType {
-
     union {
         int64_t handle;
         void *ptr;
     };
-
 } CQType;
 
 CQ_EXPORT const CQType CQTypeNULL;

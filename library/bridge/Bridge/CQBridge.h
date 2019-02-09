@@ -1,2 +1,2 @@
 #import <Foundation/Foundation.h>
-#import "cbridgecore_p.h"
+#import "cqbridgecore_p.h"

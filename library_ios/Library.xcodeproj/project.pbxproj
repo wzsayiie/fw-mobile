@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B40B7B84220443F200C0A22E /* candroidbridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B7B220443F200C0A22E /* candroidbridge.cpp */; };
-		B40B7B85220443F200C0A22E /* cbridgecore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B7D220443F200C0A22E /* cbridgecore.cpp */; };
-		B40B7B86220443F200C0A22E /* cbridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B80220443F200C0A22E /* cbridge.cpp */; };
+		B40B7B84220443F200C0A22E /* cqandroidbridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B7B220443F200C0A22E /* cqandroidbridge.cpp */; };
+		B40B7B85220443F200C0A22E /* cqbridgecore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B7D220443F200C0A22E /* cqbridgecore.cpp */; };
+		B40B7B86220443F200C0A22E /* cqbridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B80220443F200C0A22E /* cqbridge.cpp */; };
 		B40B7B87220443F200C0A22E /* CQBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B83220443F200C0A22E /* CQBridge.m */; };
-		B40B7B8F2204440000C0A22E /* cextension.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B892204440000C0A22E /* cextension.cpp */; };
-		B40B7B902204440000C0A22E /* cjson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B8A2204440000C0A22E /* cjson.cpp */; };
+		B40B7B8F2204440000C0A22E /* cqextension.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B892204440000C0A22E /* cqextension.cpp */; };
+		B40B7B902204440000C0A22E /* cqjson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B8A2204440000C0A22E /* cqjson.cpp */; };
 		B40B7B912204440000C0A22E /* CQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B8D2204440000C0A22E /* CQExtension.m */; };
-		B40B7B992204440E00C0A22E /* cfoundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B932204440E00C0A22E /* cfoundation.cpp */; };
+		B40B7B992204440E00C0A22E /* cqfoundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B932204440E00C0A22E /* cqfoundation.cpp */; };
 		B40B7B9A2204440E00C0A22E /* CQPrint.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B962204440E00C0A22E /* CQPrint.m */; };
 		B40B7B9B2204440E00C0A22E /* CQFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B982204440E00C0A22E /* CQFoundation.m */; };
 /* End PBXBuildFile section */
@@ -32,21 +32,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B40B7B7B220443F200C0A22E /* candroidbridge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = candroidbridge.cpp; sourceTree = "<group>"; };
-		B40B7B7C220443F200C0A22E /* candroidbridge_p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = candroidbridge_p.h; sourceTree = "<group>"; };
-		B40B7B7D220443F200C0A22E /* cbridgecore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cbridgecore.cpp; sourceTree = "<group>"; };
-		B40B7B7E220443F200C0A22E /* cbridgecore_p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cbridgecore_p.h; sourceTree = "<group>"; };
-		B40B7B7F220443F200C0A22E /* cbridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cbridge.h; sourceTree = "<group>"; };
-		B40B7B80220443F200C0A22E /* cbridge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cbridge.cpp; sourceTree = "<group>"; };
+		B40B7B7B220443F200C0A22E /* cqandroidbridge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqandroidbridge.cpp; sourceTree = "<group>"; };
+		B40B7B7C220443F200C0A22E /* cqandroidbridge.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqandroidbridge.hh; sourceTree = "<group>"; };
+		B40B7B7D220443F200C0A22E /* cqbridgecore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqbridgecore.cpp; sourceTree = "<group>"; };
+		B40B7B7E220443F200C0A22E /* cqbridgecore_p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqbridgecore_p.h; sourceTree = "<group>"; };
+		B40B7B7F220443F200C0A22E /* cqbridge.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqbridge.hh; sourceTree = "<group>"; };
+		B40B7B80220443F200C0A22E /* cqbridge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqbridge.cpp; sourceTree = "<group>"; };
 		B40B7B82220443F200C0A22E /* CQBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQBridge.h; sourceTree = "<group>"; };
 		B40B7B83220443F200C0A22E /* CQBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQBridge.m; sourceTree = "<group>"; };
-		B40B7B892204440000C0A22E /* cextension.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cextension.cpp; sourceTree = "<group>"; };
-		B40B7B8A2204440000C0A22E /* cjson.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cjson.cpp; sourceTree = "<group>"; };
-		B40B7B8B2204440000C0A22E /* cextension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cextension.h; sourceTree = "<group>"; };
+		B40B7B892204440000C0A22E /* cqextension.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqextension.cpp; sourceTree = "<group>"; };
+		B40B7B8A2204440000C0A22E /* cqjson.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqjson.cpp; sourceTree = "<group>"; };
+		B40B7B8B2204440000C0A22E /* cqextension.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqextension.hh; sourceTree = "<group>"; };
 		B40B7B8D2204440000C0A22E /* CQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQExtension.m; sourceTree = "<group>"; };
 		B40B7B8E2204440000C0A22E /* CQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQExtension.h; sourceTree = "<group>"; };
-		B40B7B932204440E00C0A22E /* cfoundation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cfoundation.cpp; sourceTree = "<group>"; };
-		B40B7B942204440E00C0A22E /* cfoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cfoundation.h; sourceTree = "<group>"; };
+		B40B7B932204440E00C0A22E /* cqfoundation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqfoundation.cpp; sourceTree = "<group>"; };
+		B40B7B942204440E00C0A22E /* cqfoundation.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqfoundation.hh; sourceTree = "<group>"; };
 		B40B7B962204440E00C0A22E /* CQPrint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQPrint.m; sourceTree = "<group>"; };
 		B40B7B972204440E00C0A22E /* CQFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQFoundation.h; sourceTree = "<group>"; };
 		B40B7B982204440E00C0A22E /* CQFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQFoundation.m; sourceTree = "<group>"; };
@@ -67,12 +67,12 @@
 		B40B7B7A220443F200C0A22E /* libbridge */ = {
 			isa = PBXGroup;
 			children = (
-				B40B7B7E220443F200C0A22E /* cbridgecore_p.h */,
-				B40B7B7D220443F200C0A22E /* cbridgecore.cpp */,
-				B40B7B7F220443F200C0A22E /* cbridge.h */,
-				B40B7B80220443F200C0A22E /* cbridge.cpp */,
-				B40B7B7C220443F200C0A22E /* candroidbridge_p.h */,
-				B40B7B7B220443F200C0A22E /* candroidbridge.cpp */,
+				B40B7B7E220443F200C0A22E /* cqbridgecore_p.h */,
+				B40B7B7D220443F200C0A22E /* cqbridgecore.cpp */,
+				B40B7B7F220443F200C0A22E /* cqbridge.hh */,
+				B40B7B80220443F200C0A22E /* cqbridge.cpp */,
+				B40B7B7C220443F200C0A22E /* cqandroidbridge.hh */,
+				B40B7B7B220443F200C0A22E /* cqandroidbridge.cpp */,
 			);
 			name = libbridge;
 			path = ../library/bridge/libbridge;
@@ -91,9 +91,9 @@
 		B40B7B882204440000C0A22E /* libextension */ = {
 			isa = PBXGroup;
 			children = (
-				B40B7B8B2204440000C0A22E /* cextension.h */,
-				B40B7B892204440000C0A22E /* cextension.cpp */,
-				B40B7B8A2204440000C0A22E /* cjson.cpp */,
+				B40B7B8B2204440000C0A22E /* cqextension.hh */,
+				B40B7B892204440000C0A22E /* cqextension.cpp */,
+				B40B7B8A2204440000C0A22E /* cqjson.cpp */,
 			);
 			name = libextension;
 			path = ../library/extension/libextension;
@@ -112,8 +112,8 @@
 		B40B7B922204440E00C0A22E /* libfoundation */ = {
 			isa = PBXGroup;
 			children = (
-				B40B7B942204440E00C0A22E /* cfoundation.h */,
-				B40B7B932204440E00C0A22E /* cfoundation.cpp */,
+				B40B7B942204440E00C0A22E /* cqfoundation.hh */,
+				B40B7B932204440E00C0A22E /* cqfoundation.cpp */,
 			);
 			name = libfoundation;
 			path = ../library/foundation/libfoundation;
@@ -207,14 +207,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B40B7B84220443F200C0A22E /* candroidbridge.cpp in Sources */,
-				B40B7B8F2204440000C0A22E /* cextension.cpp in Sources */,
-				B40B7B992204440E00C0A22E /* cfoundation.cpp in Sources */,
-				B40B7B85220443F200C0A22E /* cbridgecore.cpp in Sources */,
-				B40B7B902204440000C0A22E /* cjson.cpp in Sources */,
+				B40B7B84220443F200C0A22E /* cqandroidbridge.cpp in Sources */,
+				B40B7B8F2204440000C0A22E /* cqextension.cpp in Sources */,
+				B40B7B992204440E00C0A22E /* cqfoundation.cpp in Sources */,
+				B40B7B85220443F200C0A22E /* cqbridgecore.cpp in Sources */,
+				B40B7B902204440000C0A22E /* cqjson.cpp in Sources */,
 				B40B7B9A2204440E00C0A22E /* CQPrint.m in Sources */,
 				B40B7B87220443F200C0A22E /* CQBridge.m in Sources */,
-				B40B7B86220443F200C0A22E /* cbridge.cpp in Sources */,
+				B40B7B86220443F200C0A22E /* cqbridge.cpp in Sources */,
 				B40B7B9B2204440E00C0A22E /* CQFoundation.m in Sources */,
 				B40B7B912204440000C0A22E /* CQExtension.m in Sources */,
 			);

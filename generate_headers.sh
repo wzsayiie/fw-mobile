@@ -18,7 +18,7 @@ function generate_headers() {
     mkdir -p $generate_dir
 
     local found_dir=$current_path/$1
-    for src_path in `find $found_dir -name "*.h"`; do
+    for src_path in `find $found_dir -name "*.h*"`; do
 
         local hdr_name=`basename $src_path`
         local dst_path=$generate_dir/$hdr_name
