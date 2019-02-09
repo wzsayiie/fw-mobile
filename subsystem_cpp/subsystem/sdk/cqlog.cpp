@@ -1,4 +1,4 @@
-#include "clog.h"
+#include "cqlog.hh"
 
 # ifdef ANDROID
 #    include <android/log.h>

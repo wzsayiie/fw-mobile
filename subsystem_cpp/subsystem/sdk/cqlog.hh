@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cahead.h"
+#include "cqobject.hh"
 
 void CLogI(const char *file, int line, const char *format, ...) __printflike(3, 4);
 void CLogE(const char *file, int line, const char *format, ...) __printflike(3, 4);

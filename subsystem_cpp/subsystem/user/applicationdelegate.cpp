@@ -1,8 +1,8 @@
-#include "applicationdelegate.h"
-#include "rootviewcontroller.h"
+#include "applicationdelegate.hh"
+#include "rootviewcontroller.hh"
 
 struct _self_ApplicationDelegate {
-    CWindow::ref window;
+    CQWindow::ref window;
 };
 
 ApplicationDelegate::ApplicationDelegate() {
@@ -13,12 +13,12 @@ void ApplicationDelegate::applicationDidFinishLaunching() {
     
     RootViewController::ref rootController = RootViewController::create();
     
-    self->window = CWindow::create();
+    self->window = CQWindow::create();
     self->window->setRootViewController(rootController);
     self->window->makeKeyAndVisible();
 }
 
 extern "C" void _main() {
     ApplicationDelegate::ref delegate = ApplicationDelegate::create();
-    CApplicationMain(delegate);
+    CQApplicationMain(delegate);
 }

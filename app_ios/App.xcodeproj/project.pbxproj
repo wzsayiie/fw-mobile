@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B40B7BA1220464FC00C0A22E /* cahead.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7BA0220464FC00C0A22E /* cahead.cpp */; };
+		B40B7BA1220464FC00C0A22E /* cqobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7BA0220464FC00C0A22E /* cqobject.cpp */; };
 		B416F18921A2CD630045FDF6 /* Scenes.plist in Resources */ = {isa = PBXBuildFile; fileRef = B416F18821A2CD630045FDF6 /* Scenes.plist */; };
 		B416F18B21A2D4940045FDF6 /* QuickModels.plist in Resources */ = {isa = PBXBuildFile; fileRef = B416F18A21A2D4940045FDF6 /* QuickModels.plist */; };
 		B416F18E21A3AFCF0045FDF6 /* UIViewController+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B416F18C21A3AFCF0045FDF6 /* UIViewController+CQ.m */; };
@@ -43,14 +43,14 @@
 		B4DCD87F21F17DAE0090BFBB /* UserSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DCD87C21F17DAE0090BFBB /* UserSetting.m */; };
 		B4F7176821F976AD0090F949 /* NSBundle+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F7176721F976AD0090F949 /* NSBundle+CQ.m */; };
 		B4FCC39821F0912700D152DF /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FCC39721F0912700D152DF /* libc++.tbd */; };
-		CE224EA72206AED300B8FB53 /* cview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EA22206AED300B8FB53 /* cview.cpp */; };
-		CE224EA82206AED300B8FB53 /* cviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EA32206AED300B8FB53 /* cviewcontroller.cpp */; };
-		CE224EA92206AED300B8FB53 /* capplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EA42206AED300B8FB53 /* capplication.cpp */; };
-		CE224EAC2206B3C100B8FB53 /* cwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EAB2206B3C100B8FB53 /* cwindow.cpp */; };
+		CE224EA72206AED300B8FB53 /* cqview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EA22206AED300B8FB53 /* cqview.cpp */; };
+		CE224EA82206AED300B8FB53 /* cqviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EA32206AED300B8FB53 /* cqviewcontroller.cpp */; };
+		CE224EA92206AED300B8FB53 /* cqapplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EA42206AED300B8FB53 /* cqapplication.cpp */; };
+		CE224EAC2206B3C100B8FB53 /* cqwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EAB2206B3C100B8FB53 /* cqwindow.cpp */; };
 		CE224EB32206C15B00B8FB53 /* rootviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EB02206C15B00B8FB53 /* rootviewcontroller.cpp */; };
 		CE224EB62206C3FD00B8FB53 /* applicationdelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EB42206C3FD00B8FB53 /* applicationdelegate.cpp */; };
-		CE224EB92206C86600B8FB53 /* chost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EB72206C86500B8FB53 /* chost.cpp */; };
-		CE79B403220735F400581FBD /* clog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE79B402220735F400581FBD /* clog.cpp */; };
+		CE224EB92206C86600B8FB53 /* cqhost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EB72206C86500B8FB53 /* cqhost.cpp */; };
+		CE79B403220735F400581FBD /* cqlog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE79B402220735F400581FBD /* cqlog.cpp */; };
 		CE9F962A22081B4F003E79C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9F962922081B4F003E79C7 /* main.m */; };
 /* End PBXBuildFile section */
 
@@ -72,8 +72,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B40B7B9F220464FC00C0A22E /* cahead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cahead.h; sourceTree = "<group>"; };
-		B40B7BA0220464FC00C0A22E /* cahead.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cahead.cpp; sourceTree = "<group>"; };
+		B40B7B9F220464FC00C0A22E /* cqobject.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqobject.hh; sourceTree = "<group>"; };
+		B40B7BA0220464FC00C0A22E /* cqobject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqobject.cpp; sourceTree = "<group>"; };
 		B416F18821A2CD630045FDF6 /* Scenes.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Scenes.plist; sourceTree = "<group>"; };
 		B416F18A21A2D4940045FDF6 /* QuickModels.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = QuickModels.plist; sourceTree = "<group>"; };
 		B416F18C21A3AFCF0045FDF6 /* UIViewController+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CQ.m"; sourceTree = "<group>"; };
@@ -138,23 +138,23 @@
 		B4F7176621F976AD0090F949 /* NSBundle+CQ.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+CQ.h"; sourceTree = "<group>"; };
 		B4F7176721F976AD0090F949 /* NSBundle+CQ.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+CQ.m"; sourceTree = "<group>"; };
 		B4FCC39721F0912700D152DF /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		CE224EA12206AED300B8FB53 /* cview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cview.h; sourceTree = "<group>"; };
-		CE224EA22206AED300B8FB53 /* cview.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cview.cpp; sourceTree = "<group>"; };
-		CE224EA32206AED300B8FB53 /* cviewcontroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cviewcontroller.cpp; sourceTree = "<group>"; };
-		CE224EA42206AED300B8FB53 /* capplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = capplication.cpp; sourceTree = "<group>"; };
-		CE224EA52206AED300B8FB53 /* capplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = capplication.h; sourceTree = "<group>"; };
-		CE224EA62206AED300B8FB53 /* cviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cviewcontroller.h; sourceTree = "<group>"; };
-		CE224EAA2206B3C100B8FB53 /* cwindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cwindow.h; sourceTree = "<group>"; };
-		CE224EAB2206B3C100B8FB53 /* cwindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cwindow.cpp; sourceTree = "<group>"; };
-		CE224EAD2206BA1F00B8FB53 /* cuikit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cuikit.h; sourceTree = "<group>"; };
+		CE224EA12206AED300B8FB53 /* cqview.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqview.hh; sourceTree = "<group>"; };
+		CE224EA22206AED300B8FB53 /* cqview.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqview.cpp; sourceTree = "<group>"; };
+		CE224EA32206AED300B8FB53 /* cqviewcontroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqviewcontroller.cpp; sourceTree = "<group>"; };
+		CE224EA42206AED300B8FB53 /* cqapplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqapplication.cpp; sourceTree = "<group>"; };
+		CE224EA52206AED300B8FB53 /* cqapplication.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqapplication.hh; sourceTree = "<group>"; };
+		CE224EA62206AED300B8FB53 /* cqviewcontroller.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqviewcontroller.hh; sourceTree = "<group>"; };
+		CE224EAA2206B3C100B8FB53 /* cqwindow.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqwindow.hh; sourceTree = "<group>"; };
+		CE224EAB2206B3C100B8FB53 /* cqwindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqwindow.cpp; sourceTree = "<group>"; };
+		CE224EAD2206BA1F00B8FB53 /* cquikit.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cquikit.hh; sourceTree = "<group>"; };
 		CE224EB02206C15B00B8FB53 /* rootviewcontroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rootviewcontroller.cpp; sourceTree = "<group>"; };
-		CE224EB12206C15B00B8FB53 /* rootviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rootviewcontroller.h; sourceTree = "<group>"; };
+		CE224EB12206C15B00B8FB53 /* rootviewcontroller.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rootviewcontroller.hh; sourceTree = "<group>"; };
 		CE224EB42206C3FD00B8FB53 /* applicationdelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = applicationdelegate.cpp; sourceTree = "<group>"; };
-		CE224EB52206C3FD00B8FB53 /* applicationdelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = applicationdelegate.h; sourceTree = "<group>"; };
-		CE224EB72206C86500B8FB53 /* chost.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = chost.cpp; sourceTree = "<group>"; };
-		CE224EB82206C86600B8FB53 /* chost_p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chost_p.h; sourceTree = "<group>"; };
-		CE79B401220735F400581FBD /* clog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clog.h; sourceTree = "<group>"; };
-		CE79B402220735F400581FBD /* clog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clog.cpp; sourceTree = "<group>"; };
+		CE224EB52206C3FD00B8FB53 /* applicationdelegate.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = applicationdelegate.hh; sourceTree = "<group>"; };
+		CE224EB72206C86500B8FB53 /* cqhost.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqhost.cpp; sourceTree = "<group>"; };
+		CE224EB82206C86600B8FB53 /* cqhost_p.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqhost_p.hh; sourceTree = "<group>"; };
+		CE79B401220735F400581FBD /* cqlog.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqlog.hh; sourceTree = "<group>"; };
+		CE79B402220735F400581FBD /* cqlog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqlog.cpp; sourceTree = "<group>"; };
 		CE9F962922081B4F003E79C7 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -440,9 +440,9 @@
 		B4BC9CA32204331C00CFD84C /* user */ = {
 			isa = PBXGroup;
 			children = (
-				CE224EB52206C3FD00B8FB53 /* applicationdelegate.h */,
+				CE224EB52206C3FD00B8FB53 /* applicationdelegate.hh */,
 				CE224EB42206C3FD00B8FB53 /* applicationdelegate.cpp */,
-				CE224EB12206C15B00B8FB53 /* rootviewcontroller.h */,
+				CE224EB12206C15B00B8FB53 /* rootviewcontroller.hh */,
 				CE224EB02206C15B00B8FB53 /* rootviewcontroller.cpp */,
 			);
 			path = user;
@@ -451,21 +451,21 @@
 		B4BC9CA52204331C00CFD84C /* sdk */ = {
 			isa = PBXGroup;
 			children = (
-				B40B7B9F220464FC00C0A22E /* cahead.h */,
-				B40B7BA0220464FC00C0A22E /* cahead.cpp */,
-				CE224EA52206AED300B8FB53 /* capplication.h */,
-				CE224EA42206AED300B8FB53 /* capplication.cpp */,
-				CE224EB82206C86600B8FB53 /* chost_p.h */,
-				CE224EB72206C86500B8FB53 /* chost.cpp */,
-				CE79B401220735F400581FBD /* clog.h */,
-				CE79B402220735F400581FBD /* clog.cpp */,
-				CE224EAD2206BA1F00B8FB53 /* cuikit.h */,
-				CE224EA12206AED300B8FB53 /* cview.h */,
-				CE224EA22206AED300B8FB53 /* cview.cpp */,
-				CE224EA62206AED300B8FB53 /* cviewcontroller.h */,
-				CE224EA32206AED300B8FB53 /* cviewcontroller.cpp */,
-				CE224EAA2206B3C100B8FB53 /* cwindow.h */,
-				CE224EAB2206B3C100B8FB53 /* cwindow.cpp */,
+				CE224EA52206AED300B8FB53 /* cqapplication.hh */,
+				CE224EA42206AED300B8FB53 /* cqapplication.cpp */,
+				CE224EB82206C86600B8FB53 /* cqhost_p.hh */,
+				CE224EB72206C86500B8FB53 /* cqhost.cpp */,
+				CE79B401220735F400581FBD /* cqlog.hh */,
+				CE79B402220735F400581FBD /* cqlog.cpp */,
+				B40B7B9F220464FC00C0A22E /* cqobject.hh */,
+				B40B7BA0220464FC00C0A22E /* cqobject.cpp */,
+				CE224EAD2206BA1F00B8FB53 /* cquikit.hh */,
+				CE224EA12206AED300B8FB53 /* cqview.hh */,
+				CE224EA22206AED300B8FB53 /* cqview.cpp */,
+				CE224EA62206AED300B8FB53 /* cqviewcontroller.hh */,
+				CE224EA32206AED300B8FB53 /* cqviewcontroller.cpp */,
+				CE224EAA2206B3C100B8FB53 /* cqwindow.hh */,
+				CE224EAB2206B3C100B8FB53 /* cqwindow.cpp */,
 			);
 			path = sdk;
 			sourceTree = "<group>";
@@ -713,14 +713,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE224EA72206AED300B8FB53 /* cview.cpp in Sources */,
+				CE224EA72206AED300B8FB53 /* cqview.cpp in Sources */,
 				B4CFD97021C7475000FFF4CF /* CollectionViewController.m in Sources */,
-				CE79B403220735F400581FBD /* clog.cpp in Sources */,
+				CE79B403220735F400581FBD /* cqlog.cpp in Sources */,
 				B4BC9CAD2204331C00CFD84C /* cqcppcarrier.mm in Sources */,
 				B45C1BFE21A03824007CB374 /* NSObject+CQSingleton.m in Sources */,
-				CE224EAC2206B3C100B8FB53 /* cwindow.cpp in Sources */,
+				CE224EAC2206B3C100B8FB53 /* cqwindow.cpp in Sources */,
 				B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */,
-				B40B7BA1220464FC00C0A22E /* cahead.cpp in Sources */,
+				B40B7BA1220464FC00C0A22E /* cqobject.cpp in Sources */,
 				B4CFD97421C7475000FFF4CF /* ExampleViewController.m in Sources */,
 				B4CFD97121C7475000FFF4CF /* TableViewController.m in Sources */,
 				B45C1BF721A03824007CB374 /* UIView+CQ.m in Sources */,
@@ -736,17 +736,17 @@
 				CE9F962A22081B4F003E79C7 /* main.m in Sources */,
 				B4CFD97321C7475000FFF4CF /* IAPViewController.m in Sources */,
 				B4CFD97521C7475000FFF4CF /* FloatViewController.m in Sources */,
-				CE224EA82206AED300B8FB53 /* cviewcontroller.cpp in Sources */,
+				CE224EA82206AED300B8FB53 /* cqviewcontroller.cpp in Sources */,
 				B4CFD97621C7475000FFF4CF /* WebViewController.m in Sources */,
 				B45C1C0021A03824007CB374 /* CQHotfixManager.m in Sources */,
 				B42806CF21C531C500B886A7 /* CQBus.m in Sources */,
-				CE224EA92206AED300B8FB53 /* capplication.cpp in Sources */,
+				CE224EA92206AED300B8FB53 /* cqapplication.cpp in Sources */,
 				B4CFD96F21C7475000FFF4CF /* TabBarViewController.m in Sources */,
 				B4CFD97221C7475000FFF4CF /* DocumentViewController.m in Sources */,
 				CE224EB32206C15B00B8FB53 /* rootviewcontroller.cpp in Sources */,
 				B45C1BF521A03824007CB374 /* CQDemoViewController.m in Sources */,
 				B45C1BFF21A03824007CB374 /* CQSingletonManager.m in Sources */,
-				CE224EB92206C86600B8FB53 /* chost.cpp in Sources */,
+				CE224EB92206C86600B8FB53 /* cqhost.cpp in Sources */,
 				B4CFD97721C7475000FFF4CF /* AlertViewController.m in Sources */,
 				B42806D221C542DB00B886A7 /* UIDevice+CQ.m in Sources */,
 				B45C1BFC21A03824007CB374 /* CQCrashListener.m in Sources */,

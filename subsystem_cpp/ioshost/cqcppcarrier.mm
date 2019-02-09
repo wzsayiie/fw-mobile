@@ -1,5 +1,5 @@
 #import <UIKit/UIKit.h>
-#import "chost_p.h"
+#import "cqhost_p.hh"
 
 //entry
 
@@ -17,20 +17,20 @@ extern "C" void _main();
     self.view.backgroundColor = UIColor.whiteColor;
     
     _main();
-    CHostOnEvent(CHostEventAppCreate);
-    CHostOnEvent(CHostEventUILoad);
+    CQHostOnEvent(CQHostEventAppCreate);
+    CQHostOnEvent(CQHostEventUILoad);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    CHostOnEvent(CHostEventUIAppear);
+    CQHostOnEvent(CQHostEventUIAppear);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     
-    CHostOnEvent(CHostEventUIDisappear);
+    CQHostOnEvent(CQHostEventUIDisappear);
 }
 
 @end

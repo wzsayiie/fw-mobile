@@ -1,9 +1,9 @@
 #pragma once
 
-#include "cuikit.h"
+#include "cquikit.hh"
 
-struct RootViewController : CViewController {
-C_CLAS(RootViewController , CViewController , _self_RootViewController);
+struct RootViewController : CQViewController {
+CQ_CLS(RootViewController , CQViewController , _self_RootViewController);
     
     RootViewController();
     

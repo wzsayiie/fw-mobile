@@ -1,4 +1,4 @@
-#include "rootviewcontroller.h"
+#include "rootviewcontroller.hh"
 
 struct _self_RootViewController {
 };
