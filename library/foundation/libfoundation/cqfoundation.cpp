@@ -3,8 +3,8 @@
 #include "cqfoundation.hh"
 #include "cqbridge.hh"
 
-CQ_EXPORT void CQ_Logger_info(CQType message, CQType file, CQType line);
-CQ_EXPORT void CQ_Logger_error(CQType message, CQType file, CQType line);
+CQ_C_LINK void CQ_Logger_info(CQType message, CQType file, CQType line);
+CQ_C_LINK void CQ_Logger_error(CQType message, CQType file, CQType line);
 
 void CQLogger::info(const std::string &message, const std::string &file, int32_t line) {
     CQType aa = CQValue<std::string>::create(message);
