@@ -7,21 +7,16 @@
 #   include "cqandroidbridge.hh"
 # endif
 
-template<class T> struct CQValue;
+template<class T> struct CQValueMaker;
 
-template<> struct CQValue<std::string> {
-    static CQType create(const std::string &value) {
+template<> struct CQValueMaker<std::string> {
+    static CQValue create(const std::string &value) {
         return CQCreateString(value.c_str(), (int32_t)value.size());
     }
 };
 
-template<class T> struct _CQValueInteger {
-    static CQType create(T value) {
-        return CQCreateInteger(value);
+template<> struct CQValueMaker<int32_t> {
+    static CQValue create(int32_t value) {
+        return CQCreateInt32(value);
     }
 };
-
-template<> struct CQValue<int8_t > : _CQValueInteger<int8_t > {};
-template<> struct CQValue<int16_t> : _CQValueInteger<int16_t> {};
-template<> struct CQValue<int32_t> : _CQValueInteger<int32_t> {};
-template<> struct CQValue<int64_t> : _CQValueInteger<int64_t> {};

@@ -3,8 +3,8 @@
 #import "CQFoundation.h"
 #import "CQBridge.h"
 
-CQ_C_LINK void CQ_Logger_info(CQType message, CQType file, CQType line) {
+CQ_C_LINK void CQ_Logger_info(CQValue message, CQValue file, CQValue line) {
 }
 
-CQ_C_LINK void CQ_Logger_error(CQType message, CQType file, CQType line) {
+CQ_C_LINK void CQ_Logger_error(CQValue message, CQValue file, CQValue line) {
 }

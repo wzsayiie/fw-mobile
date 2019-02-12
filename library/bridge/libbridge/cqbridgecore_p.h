@@ -9,36 +9,42 @@
 #   define CQ_C_LINK
 # endif
 
-typedef struct CQType {
-    union {
-        int64_t handle;
-        void *ptr;
-    };
-} CQType;
+typedef struct {
+    int64_t n;
+} CQValue;
 
-CQ_C_LINK const CQType CQTypeNULL;
+static const CQValue CQValueNull = {0};
 
-CQ_C_LINK CQType CQCreateBool(bool value);
-CQ_C_LINK CQType CQCreateInteger(int64_t value);
-CQ_C_LINK CQType CQCreateFloat(double value);
-CQ_C_LINK CQType CQCreateString(const char *value, int32_t length);
+#ifdef __cplusplus
+inline CQValue CQValueMake(int64_t n) { CQValue v = {(int64_t)n}; return v; }
+inline CQValue CQValueMake(void   *n) { CQValue v = {(int64_t)n}; return v; }
+#endif
 
-CQ_C_LINK bool    CQGetBool  (CQType value);
-CQ_C_LINK int8_t  CQGetInt8  (CQType value);
-CQ_C_LINK int16_t CQGetInt16 (CQType value);
-CQ_C_LINK int32_t CQGetInt32 (CQType value);
-CQ_C_LINK int64_t CQGetInt64 (CQType value);
-CQ_C_LINK float   CQGetFloat (CQType value);
-CQ_C_LINK double  CQGetDouble(CQType value);
+CQ_C_LINK CQValue CQCreateBool  (bool    raw);
+CQ_C_LINK CQValue CQCreateInt8  (int8_t  raw);
+CQ_C_LINK CQValue CQCreateInt16 (int16_t raw);
+CQ_C_LINK CQValue CQCreateInt32 (int32_t raw);
+CQ_C_LINK CQValue CQCreateInt64 (int64_t raw);
+CQ_C_LINK CQValue CQCreateFloat (float   raw);
+CQ_C_LINK CQValue CQCreateDouble(double  raw);
 
-CQ_C_LINK int32_t     CQGetStringLength(CQType value);
-CQ_C_LINK const char *CQGetStringValue (CQType value);
+CQ_C_LINK bool    CQGetBool  (CQValue value);
+CQ_C_LINK int8_t  CQGetInt8  (CQValue value);
+CQ_C_LINK int16_t CQGetInt16 (CQValue value);
+CQ_C_LINK int32_t CQGetInt32 (CQValue value);
+CQ_C_LINK int64_t CQGetInt64 (CQValue value);
+CQ_C_LINK float   CQGetFloat (CQValue value);
+CQ_C_LINK double  CQGetDouble(CQValue value);
 
-CQ_C_LINK CQType  CQCreateArray  (void);
-CQ_C_LINK void    CQAddArrayItem (CQType array, CQType item0, CQType item1);
-CQ_C_LINK int32_t CQGetArraySize (CQType array);
-CQ_C_LINK CQType  CQGetArrayItem0(CQType array, int32_t position);
-CQ_C_LINK CQType  CQGetArrayItem1(CQType array, int32_t position);
+CQ_C_LINK CQValue     CQCreateString   (const char *raw, int32_t length);
+CQ_C_LINK int32_t     CQGetStringLength(CQValue value);
+CQ_C_LINK const char *CQGetStringValue (CQValue value);
 
-CQ_C_LINK void CQRetain (CQType value);
-CQ_C_LINK void CQRelease(CQType value);
+CQ_C_LINK CQValue CQCreateTable  (void);
+CQ_C_LINK void    CQAddTableItem (CQValue table, CQValue item0, CQValue item1);
+CQ_C_LINK int32_t CQGetTableSize (CQValue table);
+CQ_C_LINK CQValue CQGetTableItem0(CQValue table, int32_t position);
+CQ_C_LINK CQValue CQGetTableItem1(CQValue table, int32_t position);
+
+CQ_C_LINK void CQRetain (CQValue value);
+CQ_C_LINK void CQRelease(CQValue value);

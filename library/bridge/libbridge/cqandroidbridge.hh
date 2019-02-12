@@ -6,11 +6,11 @@
 JavaVM *CQJavaGetVM();
 JNIEnv *CQJavaGetEnv();
 
-CQType CQJavaCallStatic(
+CQValue CQJavaCallStatic(
     const char *classPath,
     const char *methodName,
-    CQType arg0,
-    CQType arg1,
-    CQType arg2,
-    CQType arg3
+    CQValue arg0,
+    CQValue arg1,
+    CQValue arg2,
+    CQValue arg3
 );

@@ -61,38 +61,37 @@ JNIEnv *CQJavaGetEnv() {
     return env;
 }
 
-CQType CQJavaCallStatic(
+CQValue CQJavaCallStatic(
     const char *classPath,
     const char *methodName,
-    CQType arg0,
-    CQType arg1,
-    CQType arg2,
-    CQType arg3
+    CQValue arg0,
+    CQValue arg1,
+    CQValue arg2,
+    CQValue arg3
 )
 {
     JNIEnv *env = CQJavaGetEnv();
     if (env == nullptr) {
         error("try call static java method but java env is invalid");
-        return CQTypeNULL;
+        return CQValueNull;
     }
 
     jclass clazz = env->FindClass(classPath);
     if (JavaException(env)) {
-        return CQTypeNULL;
+        return CQValueNull;
     }
 
     jmethodID methodID = env->GetStaticMethodID(clazz, methodName, "(JJJJ)J");
     if (JavaException(env)) {
-        return CQTypeNULL;
+        return CQValueNull;
     }
 
-    CQType ret;
-    ret.handle = env->CallStaticLongMethod(clazz, methodID, arg0, arg1, arg2, arg3);
+    jlong ret = env->CallStaticLongMethod(clazz, methodID, arg0, arg1, arg2, arg3);
     if (JavaException(env)) {
-        return CQTypeNULL;
+        return CQValueNull;
     }
 
-    return ret;
+    return CQValueMake(ret);
 }
 
 #endif
