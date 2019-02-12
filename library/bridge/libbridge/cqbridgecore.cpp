@@ -35,30 +35,30 @@ static bool IsWeight(CQValue value) {
 
 static CQValue CreateLightBool(bool raw) {
     if (raw) {
-        return CQValueMake(0x0100LL & MaskLightBool);
+        return CQValueMake(0x0100LL | MaskLightBool);
     } else {
-        return CQValueMake(0x0000LL & MaskLightBool);
+        return CQValueMake(0x0000LL | MaskLightBool);
     }
 }
 static bool GetLightBool(CQValue value) {
-    return (bool)(value.n >> 1);
+    return (bool)(value.n >> 8);
 }
 
 static CQValue CreateLightInt(int64_t raw) {
-    return CQValueMake((raw << 1) & MaskLightInt);
+    return CQValueMake((raw << 8) | MaskLightInt);
 }
 static int64_t GetLightInt(CQValue value) {
-    return value.n >> 1;
+    return value.n >> 8;
 }
 
 static CQValue CreateLightFloat(float raw) {
     int32_t aa = *(int32_t *)&raw;
-    int64_t bb = (int64_t)aa << 1;
-    int64_t cc = bb & MaskLightFloat;
+    int64_t bb = (int64_t)aa << 8;
+    int64_t cc = bb | MaskLightFloat;
     return CQValueMake(cc);
 }
 static float GetLightFloat(CQValue value) {
-    int64_t aa = value.n >> 1;
+    int64_t aa = value.n >> 8;
     int32_t bb = (int32_t)aa;
     float cc = *(float *)&bb;
     return cc;

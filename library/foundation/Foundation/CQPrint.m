@@ -11,7 +11,7 @@ static id<CQLoggerAgent> sAgent = nil;
     }
     
     const char *M = message.UTF8String;
-    const char *F = file.UTF8String;
+    const char *F = file.lastPathComponent.UTF8String;
     int L = (int)line;
     fprintf(stderr, "info|%s(%d)|%s\n", F, L, M);
 }
@@ -23,7 +23,7 @@ static id<CQLoggerAgent> sAgent = nil;
     }
     
     const char *M = message.UTF8String;
-    const char *F = file.UTF8String;
+    const char *F = file.lastPathComponent.UTF8String;
     int L = (int)line;
     fprintf(stderr, "ERROR|%s(%d)|%s\n", F, L, M);
 }

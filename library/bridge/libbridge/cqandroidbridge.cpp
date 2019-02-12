@@ -94,4 +94,19 @@ CQValue CQJavaCallStatic(
     return CQValueMake(ret);
 }
 
+extern "C" jint JNICALL
+Java_src_library_bridge_CQValue_getInt(JNIEnv *, jclass, jlong handle) {
+    CQValue value = CQValueMake(handle);
+    jint raw = CQGetInt32(value);
+    return raw;
+}
+
+extern "C" jstring JNICALL
+Java_src_library_bridge_CQValue_getString(JNIEnv *env, jclass, jlong handle) {
+    CQValue value = CQValueMake(handle);
+    const char *bytes = CQGetStringValue(value);
+    jstring str = env->NewStringUTF(bytes);
+    return str;
+}
+
 #endif

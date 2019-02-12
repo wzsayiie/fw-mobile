@@ -1,31 +1,24 @@
 #include "cqlog.hh"
+#include "cqfoundation.hh"
 
-# ifdef ANDROID
-#    include <android/log.h>
-# endif
-
-void CLogI(const char *file, int line, const char *format, ...) {
+void CQLogI(const char *file, int line, const char *format, ...) {
     va_list args;
     va_start(args, format);
 
-#ifdef ANDROID
-    __android_log_vprint(ANDROID_LOG_INFO, "zzz", format, args);
-#else
-    vprintf(format, args);
-#endif
-
+    char buffer[1024];
+    vsnprintf(buffer, 1024, format, args);
+    CQLogger::info(buffer, file, line);
+    
     va_end(args);
 }
 
-void CLogE(const char *file, int line, const char *format, ...) {
+void CQLogE(const char *file, int line, const char *format, ...) {
     va_list args;
     va_start(args, format);
 
-#ifdef ANDROID
-    __android_log_vprint(ANDROID_LOG_ERROR, "zzz", format, args);
-#else
-    vprintf(format, args);
-#endif
-
+    char buffer[1024];
+    vsnprintf(buffer, 1024, format, args);
+    CQLogger::error(buffer, file, line);
+    
     va_end(args);
 }
