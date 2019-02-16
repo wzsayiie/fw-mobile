@@ -2,8 +2,7 @@
 
 #include "cqobject.hh"
 
-struct CQView : CQObject {
-CQ_CLS(CQView , CQObject , _self_CQView)
+struct CQView : cq_class<CQView, struct _self_CQView, CQObject> {
     
     CQView();
 };

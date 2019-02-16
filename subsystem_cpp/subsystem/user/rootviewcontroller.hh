@@ -2,9 +2,8 @@
 
 #include "cquikit.hh"
 
-struct RootViewController : CQViewController {
-CQ_CLS(RootViewController , CQViewController , _self_RootViewController);
-    
+struct RootViewController : cq_class<RootViewController, struct _self_RootViewController, CQViewController> {
+
     RootViewController();
     
     virtual void viewDidLoad();

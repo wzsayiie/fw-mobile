@@ -2,8 +2,7 @@
 
 #include "cqview.hh"
 
-struct CQViewController : CQObject {
-CQ_CLS(CQViewController , CQObject , _self_CQViewController)
+struct CQViewController : cq_class<CQViewController, struct _self_CQViewController, CQObject> {
     
     CQViewController();
     
