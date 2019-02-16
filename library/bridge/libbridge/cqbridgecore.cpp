@@ -4,186 +4,226 @@
 
 using namespace std;
 
-//value catagrory: null, light, weight
-
-static const char MaskLightBool  = 113;
-static const char MaskLightInt   = 109;
-static const char MaskLightFloat = 107;
-
-static bool IsLightBool (CQValue v) { return (v.n & 0xFF) == MaskLightBool ; }
-static bool IsLightInt  (CQValue v) { return (v.n & 0xFF) == MaskLightInt  ; }
-static bool IsLightFloat(CQValue v) { return (v.n & 0xFF) == MaskLightFloat; }
-
-static bool IsWeight(CQValue value) {
-    if (value.n == CQValueNull.n) {
-        return false;
-    }
-    if (IsLightBool(value)) {
-        return false;
-    }
-    if (IsLightInt(value)) {
-        return false;
-    }
-    if (IsLightFloat(value)) {
-        return false;
-    }
-    
-    return true;
-}
+const CQType CQTypeNull   =  3;
+const CQType CQTypeBool   =  5;
+const CQType CQTypeInt8   =  7;
+const CQType CQTypeInt16  = 11;
+const CQType CQTypeInt32  = 13;
+const CQType CQTypeInt64  = 17;
+const CQType CQTypeFloat  = 19;
+const CQType CQTypeDouble = 23;
+const CQType CQTypeString = 31;
+const CQType CQTypeTable  = 37;
 
 //light value
 
-static CQValue CreateLightBool(bool raw) {
-    if (raw) {
-        return CQValueMake(0x0100LL | MaskLightBool);
-    } else {
-        return CQValueMake(0x0000LL | MaskLightBool);
+struct CQLightValue {
+    int32_t type;
+    union {
+        bool    aBool;
+        int8_t  aInt8;
+        int16_t aInt16;
+        int32_t aInt32;
+        float   aFloat;
+    };
+};
+
+static CQLightValue *CQLightCast(CQValue value) {
+    auto casted = (CQLightValue *)&value;
+    
+    switch (casted->type) {
+        case CQTypeBool : return casted;
+        case CQTypeInt8 : return casted;
+        case CQTypeInt16: return casted;
+        case CQTypeInt32: return casted;
+        case CQTypeFloat: return casted;
+
+        default: return nullptr;
     }
-}
-static bool GetLightBool(CQValue value) {
-    return (bool)(value.n >> 8);
-}
-
-static CQValue CreateLightInt(int64_t raw) {
-    return CQValueMake((raw << 8) | MaskLightInt);
-}
-static int64_t GetLightInt(CQValue value) {
-    return value.n >> 8;
-}
-
-static CQValue CreateLightFloat(float raw) {
-    int32_t aa = *(int32_t *)&raw;
-    int64_t bb = (int64_t)aa << 8;
-    int64_t cc = bb | MaskLightFloat;
-    return CQValueMake(cc);
-}
-static float GetLightFloat(CQValue value) {
-    int64_t aa = value.n >> 8;
-    int32_t bb = (int32_t)aa;
-    float cc = *(float *)&bb;
-    return cc;
 }
 
 //weight value
 
-#define NAMESPACE_BEGIN namespace {
-#define NAMESPACE_END   }
-
-NAMESPACE_BEGIN
-
-struct WeightValue {
+struct CQWeightValue {
+    
+    virtual ~CQWeightValue() = default;
+    virtual CQType type() = 0;
+    
+    CQWeightValue();
+    void retain();
+    void release();
+    
+private:
     
     int32_t _retainCount;
-    
-    WeightValue() : _retainCount(1) {
-    }
-    void retain() {
-        ++_retainCount;
-    }
-    void release() {
-        if (--_retainCount <= 0) {
-            delete this;
-        }
-    }
-    
-    virtual bool isInt64 () { return false; }
-    virtual bool isDouble() { return false; }
-    virtual bool isString() { return false; }
-    virtual bool isTable () { return false; }
-    
-    virtual ~WeightValue() = default;
 };
 
-struct WeightInt64 : WeightValue {
-    int64_t value = 0;
-    bool isInt64() override {
-        return true;
+CQWeightValue::CQWeightValue() {
+    _retainCount = 1;
+}
+void CQWeightValue::retain() {
+    _retainCount += 1;
+}
+void CQWeightValue::release() {
+    if (_retainCount-- <= 1) {
+        delete this;
     }
+}
+
+static CQWeightValue *CQWeightCast(CQValue value) {
+    if (value.handle == 0) {
+        return nullptr;
+    }
+    if (CQLightCast(value) == nullptr) {
+        return nullptr;
+    }
+    
+    return (CQWeightValue *)value.handle;
+}
+
+//weight int64
+
+struct CQInt64 : CQWeightValue {
+    
+    CQInt64(int64_t value);
+    CQType type() override;
+    
+    int64_t value;
 };
 
-struct WeightDouble : WeightValue {
-    double value = 0;
-    bool isDouble() override {
-        return true;
-    }
+CQInt64::CQInt64(int64_t value) : value(value) {
+}
+CQType CQInt64::type() {
+    return CQTypeInt64;
+}
+
+//weight double
+
+struct CQDouble : CQWeightValue {
+    
+    CQDouble(double value);
+    CQType type() override;
+    
+    double value;
 };
 
-struct WeightString : WeightValue {
+CQDouble::CQDouble(double value) : value(value) {
+}
+CQType CQDouble::type() {
+    return CQTypeDouble;
+}
+
+//weight string
+
+struct CQString : CQWeightValue {
+    
+    CQString(const char *raw, int32_t len);
+    CQType type() override;
+    
     string value;
-    bool isString() {
-        return true;
-    }
 };
 
-struct WeightTable : WeightValue {
-    
-    vector<CQValue> table0;
-    vector<CQValue> table1;
-    
-    virtual bool isTable() {
-        return true;
-    }
-    
-    void addItem(CQValue item0, CQValue item1) {
-        CQRetain(item0);
-        CQRetain(item1);
-        table0.push_back(item0);
-        table0.push_back(item1);
-    }
-    
-    ~WeightTable() {
-        for (CQValue value : table0) {
-            CQRelease(value);
-        }
-        for (CQValue value : table1) {
-            CQRelease(value);
+CQString::CQString(const char *raw, int32_t len) : value(raw, len) {
+}
+CQType CQString::type() {
+    return CQTypeString;
+}
+
+static CQString *CQStringCast(CQValue value) {
+    if (auto it = CQWeightCast(value)) {
+        if (it->type() == CQTypeString) {
+            return (CQString *)it;
         }
     }
+    return nullptr;
+}
+
+//weight table
+
+struct CQTable :CQWeightValue {
+    
+    CQType type() override;
+    void addItem(CQValue item0, CQValue item1);
+    ~CQTable();
+    
+    vector<CQValue> table[2];
 };
 
-NAMESPACE_END
+CQType CQTable::type() {
+    return CQTypeTable;
+}
+void CQTable::addItem(CQValue item0, CQValue item1) {
+    CQRetain(item0);
+    CQRetain(item1);
+    table[0].push_back(item0);
+    table[1].push_back(item1);
+}
+CQTable::~CQTable() {
+    for (auto it : table[0]) {
+        CQRelease(it);
+    }
+    for (auto it : table[1]) {
+        CQRelease(it);
+    }
+}
+
+static CQTable *CQTableCast(CQValue value) {
+    if (auto it = CQWeightCast(value)) {
+        if (it->type() == CQTypeTable) {
+            return (CQTable *)it;
+        }
+    }
+    return nullptr;
+}
 
 //interfaces
 
-CQValue CQCreateBool (bool    v) { return CreateLightBool (v); }
-CQValue CQCreateInt8 (int8_t  v) { return CreateLightInt  (v); }
-CQValue CQCreateInt16(int16_t v) { return CreateLightInt  (v); }
-CQValue CQCreateInt32(int32_t v) { return CreateLightInt  (v); }
-CQValue CQCreateFloat(float   v) { return CreateLightFloat(v); }
-
-CQValue CQCreateInt64(int64_t value) {
-    auto ptr = new WeightInt64;
-    ptr->value = value;
-    return CQValueMake(ptr);
+CQType CQCheckType(CQValue value) {
+    if (auto it = CQLightCast(value)) {
+        return it->type;
+    }
+    if (auto it = CQWeightCast(value)) {
+        return it->type();
+    }
+    return CQTypeNull;
 }
 
-CQValue CQCreateDouble(double value) {
-    auto ptr = new WeightDouble;
-    ptr->value = value;
-    return CQValueMake(ptr);
+template<class T> CQValue CQCreateLight(CQType type, T raw) {
+    CQLightValue value = {type, 0};
+    
+    char *ptr = (char *)&value + 4;
+    *(T *)ptr = raw;
+    
+    return *(CQValue *)&value;
 }
+
+CQValue CQCreateBool (bool    r) { return CQCreateLight(CQTypeBool , r); }
+CQValue CQCreateInt8 (int8_t  r) { return CQCreateLight(CQTypeInt8 , r); }
+CQValue CQCreateInt16(int16_t r) { return CQCreateLight(CQTypeInt16, r); }
+CQValue CQCreateInt32(int32_t r) { return CQCreateLight(CQTypeInt32, r); }
+CQValue CQCreateFloat(float   r) { return CQCreateLight(CQTypeFloat, r); }
+
+CQValue CQCreateInt64 (int64_t r) { return CQValueMake(new CQInt64 (r)); }
+CQValue CQCreateDouble(double  r) { return CQValueMake(new CQDouble(r)); }
 
 template<class T> T CQGetNumber(CQValue value) {
-    
-    if (value.n == CQValueNull.n) {
-        return 0;
-    }
-    if (IsLightBool(value)) {
-        return (T)GetLightBool(value);
-    }
-    if (IsLightInt(value)) {
-        return (T)GetLightInt(value);
-    }
-    if (IsLightFloat(value)) {
-        return (T)GetLightFloat(value);
+    if (auto it = CQLightCast(value)) {
+        switch (it->type) {
+            case CQTypeBool : return (T)it->aBool ;
+            case CQTypeInt8 : return (T)it->aInt8 ;
+            case CQTypeInt16: return (T)it->aInt16;
+            case CQTypeInt32: return (T)it->aInt32;
+            case CQTypeFloat: return (T)it->aFloat;
+            default:;
+        }
     }
     
-    auto ptr = (WeightValue *)value.n;
-    if (ptr->isInt64()) {
-        return (T)((WeightInt64 *)ptr)->value;
-    }
-    if (ptr->isDouble()) {
-        return (T)((WeightDouble *)ptr)->value;
+    if (auto it = CQWeightCast(value)) {
+        switch (it->type()) {
+            case CQTypeInt64 : return (T)((CQInt64  *)it)->value;
+            case CQTypeDouble: return (T)((CQDouble *)it)->value;
+            default:;
+        }
     }
     
     return 0;
@@ -197,108 +237,62 @@ int64_t CQGetInt64 (CQValue v) { return CQGetNumber<int64_t>(v); }
 float   CQGetFloat (CQValue v) { return CQGetNumber<float  >(v); }
 double  CQGetDouble(CQValue v) { return CQGetNumber<double >(v); }
 
-CQValue CQCreateString(const char *value, int32_t length) {
-    auto ptr = new WeightString;
-    if (value != nullptr && length > 0) {
-        ptr->value.assign(value, length);
-    }
-    return CQValueMake(ptr);
-}
-
-static WeightString *CastWeightString(CQValue value) {
-    if (!IsWeight(value)) {
-        return nullptr;
-    }
-    if (!((WeightValue *)value.n)->isString()) {
-        return nullptr;
-    }
-    return (WeightString *)value.n;
+CQValue CQCreateString(const char *raw, int32_t len) {
+    return CQValueMake(new CQString(raw, len));
 }
 
 int32_t CQGetStringLength(CQValue value) {
-    WeightString *ptr = CastWeightString(value);
-    if (ptr != nullptr) {
-        return (int32_t)ptr->value.length();
-    } else {
-        return 0;
+    if (auto it = CQStringCast(value)) {
+        return (int32_t)it->value.length();
     }
+    return 0;
 }
 
 const char *CQGetStringValue(CQValue value) {
-    WeightString *ptr = CastWeightString(value);
-    if (ptr != nullptr) {
-        return ptr->value.c_str();
-    } else {
-        return "";
+    if (auto it = CQStringCast(value)) {
+        return it->value.c_str();
     }
+    return "";
 }
 
 CQValue CQCreateTable(void) {
-    auto ptr = new WeightTable;
-    return CQValueMake(ptr);
-}
-
-static WeightTable *CastWeightTable(CQValue value) {
-    if (!IsWeight(value)) {
-        return nullptr;
-    }
-    if (!((WeightValue *)value.n)->isTable()) {
-        return nullptr;
-    }
-    return (WeightTable *)value.n;
+    return CQValueMake(new CQTable);
 }
 
 void CQAddTableItem(CQValue table, CQValue item0, CQValue item1) {
-    WeightTable *ptr = CastWeightTable(table);
-    if (ptr == nullptr) {
-        return;
+    if (auto it = CQTableCast(table)) {
+        it->addItem(item0, item1);
     }
-    ptr->addItem(item0, item1);
 }
 
 int32_t CQGetTableSize(CQValue table) {
-    WeightTable *ptr = CastWeightTable(table);
-    if (ptr != nullptr) {
-        return (int32_t)ptr->table0.size();
-    } else {
-        return 0;
+    if (auto it = CQTableCast(table)) {
+        return (int32_t)it->table[0].size();
     }
+    return 0;
 }
 
-CQValue CQGetTableItem0(CQValue table, int32_t position) {
-    WeightTable *ptr = CastWeightTable(table);
-    if (ptr == nullptr) {
-        return CQValueNull;
+static CQValue CQGetTableItem(CQValue table, int32_t index, int32_t position) {
+    if (auto it = CQTableCast(table)) {
+        vector<CQValue> &tab = it->table[index];
+        if (0 <= position && position < tab.size()) {
+            return tab[position];
+        }
     }
-    if (ptr->table0.size() <= position) {
-        return CQValueNull;
-    }
-    
-    return ptr->table0[position];
+    return CQValueNull;
 }
 
-CQValue CQGetTableItem1(CQValue table, int32_t position) {
-    WeightTable *ptr = CastWeightTable(table);
-    if (ptr == nullptr) {
-        return CQValueNull;
-    }
-    if (ptr->table1.size() <= position) {
-        return CQValueNull;
-    }
-    
-    return ptr->table1[position];
-}
+CQValue CQGetTableItem0(CQValue t, int32_t p) { return CQGetTableItem(t, 0, p); }
+CQValue CQGetTableItem1(CQValue t, int32_t p) { return CQGetTableItem(t, 1, p); }
 
 void CQRetain(CQValue value) {
-    if (IsWeight(value)) {
-        auto ptr = (WeightValue *)value.n;
-        ptr->retain();
+    if (auto it = CQWeightCast(value)) {
+        it->retain();
     }
 }
 
 void CQRelease(CQValue value) {
-    if (IsWeight(value)) {
-        auto ptr = (WeightValue *)value.n;
-        ptr->release();
+    if (auto it = CQWeightCast(value)) {
+        it->retain();
     }
 }
