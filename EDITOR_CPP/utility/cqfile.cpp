@@ -1,4 +1,5 @@
 #include "cqfile.hh"
+#include "cqlog.hh"
 
 bool CQIsPathSeperator(char ch) {
     if (CQOnWindows) {
@@ -141,4 +142,70 @@ CQFileError CWriteFile(const string &path, const vector<char> &content) {
     fwrite(content.data(), 1, content.size(), file);
     fclose(file);
     return CQFileError::None;
+}
+
+#define FIL(tag, indent, name) I("[%s] %*s%s" , tag.c_str(), indent * 2, "", name.c_str());
+#define DIR(tag, indent, name) I("[%s] %*s%s/", tag.c_str(), indent * 2, "", name.c_str());
+
+static void CQTraverseFile(
+    const string &name,
+    int indent,
+    CQTraverseDelegate *delegate)
+{
+    string tag;
+    if (delegate->onTraverseFindFile(name, &tag)) {
+        FIL(tag, indent, name);
+    }
+}
+
+static void CQTraverseDirectory(
+    const string &name,
+    const string &tag,
+    int indent,
+    CQTraverseDelegate *delegate)
+{
+    DIR(tag, indent, name);
+    
+    CQChangeDirectory(name);
+    vector<string> contents = CQContentsOfDirectory(".");
+    for (const string &it : contents) {
+        bool isDirectory = false;
+        CQFileExistsAtPath(it, &isDirectory);
+        if (isDirectory) {
+            CQTraverseDirectory(it, tag, indent + 1, delegate);
+        } else {
+            CQTraverseFile(it, indent + 1, delegate);
+        }
+    }
+    CQChangeDirectory("..");
+}
+
+#undef FIL
+#undef DIR
+
+void CQTraverse(const string &path, CQTraverseDelegate *delegate) {
+    if (delegate == nullptr) {
+        return;
+    }
+    
+    bool isDirectory = false;
+    bool fileExists = CQFileExistsAtPath(path, &isDirectory);
+    if (!fileExists) {
+        E("not found '%s'", path.c_str());
+        return;
+    }
+    
+    string originDirectory = CQGetWorkDirectory();
+    string targetParent = CQDirectoryPath(path);
+    string targetBase = CQBaseName(path);
+    
+    CQChangeDirectory(targetParent);
+    if (isDirectory) {
+        string tag;
+        tag.append(delegate->onTraverseGetTagSize(), '\x20');
+        CQTraverseDirectory(targetBase, tag, 0, delegate);
+    } else {
+        CQTraverseFile(targetBase, 0, delegate);
+    }
+    CQChangeDirectory(originDirectory);
 }

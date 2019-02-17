@@ -8,6 +8,10 @@
 
 using namespace std;
 
+struct CQObject {
+    virtual ~CQObject() = default;
+};
+
 //note: if str == prefix, return false
 bool CQStringHasPrefix(const string &str, const string &prefix);
 

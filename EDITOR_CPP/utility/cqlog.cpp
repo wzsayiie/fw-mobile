@@ -12,4 +12,4 @@
 /**/    va_end(args);\
 
 void I(const char *format, ...) { IMPL(""       ) }
-void W(const char *format, ...) { IMPL("ERROR: ") }
+void E(const char *format, ...) { IMPL("ERROR: ") }

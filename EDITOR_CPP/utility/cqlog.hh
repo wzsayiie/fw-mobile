@@ -9,4 +9,4 @@
 # endif
 
 void I(const char *format, ...) CQ_PRINTF_LIKE(1, 2);
-void W(const char *format, ...) CQ_PRINTF_LIKE(1, 2);
+void E(const char *format, ...) CQ_PRINTF_LIKE(1, 2);

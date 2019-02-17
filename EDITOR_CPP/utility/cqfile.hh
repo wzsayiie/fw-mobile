@@ -38,3 +38,15 @@ enum class CQFileError {
 
 CQFileError CQReadFile(const string &path, vector<char> *content);
 CQFileError CQWriteFile(const string &path, const vector<char> &content);
+
+void CQTraverse(const string &path, struct CQTraverseDelegate *delegate);
+
+struct CQTraverseDelegate : CQObject {
+    
+    //specify tag size
+    virtual int onTraverseGetTagSize() = 0;
+    
+    //if return false, don't print the file information;
+    //else if return true, parameter *outTag specifies print tag text;
+    virtual bool onTraverseFindFile(const string &file, string *outTag) = 0;
+};

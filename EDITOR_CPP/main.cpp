@@ -1,7 +1,7 @@
 #include "utility/utility.hh"
 
-void ObjCPPMain(int argc, const char *argv[]);
-void CPPMain   (int argc, const char *argv[]);
+void ObjCPPMain();
+void CPPMain();
 
 static void GotoWorkDirectory() {
 
@@ -21,11 +21,7 @@ static void GotoWorkDirectory() {
 int main(int argc, const char *argv[]) {
     
     GotoWorkDirectory();
-    
-    const char *ARGS[] = {"editor.exe"};
-    argc = sizeof(ARGS) / sizeof(*ARGS);
-    argv = ARGS;
-    
-    ObjCPPMain(argc, argv);
-    CPPMain   (argc, argv);
+
+    ObjCPPMain();
+    CPPMain();
 }
