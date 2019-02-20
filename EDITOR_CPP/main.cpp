@@ -1,8 +1,5 @@
 #include "utility/utility.hh"
 
-void ObjCPPMain();
-void CPPMain();
-
 static void GotoWorkDirectory() {
 
     string rootDirectory = "fw-mobile";
@@ -18,10 +15,11 @@ static void GotoWorkDirectory() {
     I("Work Path: %s", currentPath.c_str());
 }
 
+#define ENTRY(NAME) void NAME(); NAME();
+
 int main(int argc, const char *argv[]) {
-    
     GotoWorkDirectory();
 
-    ObjCPPMain();
-    CPPMain();
+    ENTRY(ObjCPPMain)
+    ENTRY(CPPMain)
 }
