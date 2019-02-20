@@ -50,3 +50,54 @@ size_t CQGetUTF8Char(const char *ptr, const char *end, char *ascii) {
     }
     return size;
 }
+
+bool CQUTF8Check(const char *ptr, const char *end, bool *_adjusted, vector<char> *_out) {
+    bool adjusted = false;
+    vector<char> out;
+    
+    if (CQStartsWithUTF8BOM(ptr, end)) {
+        ptr += CQUTF8BOMSize;
+        adjusted = true;
+    }
+    
+    while (ptr < end) {
+        char ascii = 0;
+        size_t size = CQGetUTF8Char(ptr, end, &ascii);
+        
+        if (size == 1) {
+            
+            if (ascii == '\r' && ptr + 1 < end && ptr[1] == '\n') {
+                out.push_back('\n');
+                ptr += 2;
+            } else if (ascii == '\r') {
+                out.push_back('\n');
+                ptr += 1;
+            } else {
+                out.push_back(ascii);
+                ptr += 1;
+            }
+            
+        } else if (size > 1) {
+            
+            out.insert(out.end(), ptr, ptr + size);
+            ptr += size;
+            
+        } else /* size == 0 */ {
+            
+            break;
+        }
+    }
+    
+    if (ptr == end) {
+        if (_adjusted != nullptr) {
+            *_adjusted = adjusted;
+        }
+        if (_out != nullptr) {
+            _out->clear();
+            _out->swap(out);
+        }
+        return true;
+    } else {
+        return false;
+    }
+}
