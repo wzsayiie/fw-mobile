@@ -8,23 +8,52 @@
 
 using namespace std;
 
-struct CQObject {
-    virtual ~CQObject() = default;
+//root
+
+struct _CQRoot {
+    virtual ~_CQRoot() = default;
 };
 
-#define CQ_ITF(NAME)\
-/**/    typedef shared_ptr<NAME> ref;\
-/**/    template<typename... A> static NAME::ref create(A... a) {\
-/**/        return make_shared<NAME>(a...);\
-/**/    }
+//base interface
 
-#define CQ_CLS(NAME, SUPER, DATA)\
-/**/    private:\
-/**/    typedef SUPER super;\
-/**/    public:\
-/**/    shared_ptr<struct DATA> self;\
-/**/    CQ_ITF(NAME)
+template<class SELF, class SUPER> struct cq_interface : SUPER {
+    
+    static_assert(sizeof(SUPER) == sizeof(void *),
+        "interface shouldn't extend a class that contains data member");
+    
+    typedef shared_ptr<SELF> ref;
+    
+    template<class... A> static ref create(A... a) {
+        return make_shared<SELF>(a...);
+    }
+};
 
-template<typename T> void C_INIT(shared_ptr<T> &value) {
-    value = make_shared<T>();
-}
+struct CQInterface : cq_interface<CQInterface, _CQRoot> {
+};
+
+//base class
+
+template<class SELF, class DATA_STRUCT, class SUPER> struct cq_class : SUPER {
+    
+public:
+    
+    typedef shared_ptr<SELF> ref;
+    
+    template<class... A> static ref create(A... a) {
+        return make_shared<SELF>(a...);
+    }
+    
+protected:
+    
+    typedef SUPER super;
+    
+    shared_ptr<DATA_STRUCT> self;
+    
+    cq_class() : self(make_shared<DATA_STRUCT>()) {
+    }
+};
+
+struct CQObject : cq_class<CQObject, struct _self_CQObject, _CQRoot> {
+    
+    CQObject();
+};

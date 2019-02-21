@@ -32,7 +32,6 @@ static void onUIDisappear(shared_ptr<_self_CQApplication> self) {
 }
 
 CQApplication::CQApplication() {
-    C_INIT(self);
     
     CQHostAddListener(CQHostEventAppCreate  , bind(onAppCreate  , self));
     CQHostAddListener(CQHostEventUIAppear   , bind(onUIAppear   , self));

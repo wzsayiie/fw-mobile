@@ -1,9 +1,12 @@
 //
 
 int main(int argc, char *argv[]) {
+    NSString *delegate = nil;
     
-    NSString *delegate = @"AppDelegate";
-//    NSString *delegate = @"CQCPPCarrierAppDelegate";
+//    delegate = @"CQCPPCarrierAppDelegate";
     
+    if (delegate == nil) {
+        delegate = @"AppDelegate";
+    }
     return UIApplicationMain(argc, argv, nil, delegate);
 }

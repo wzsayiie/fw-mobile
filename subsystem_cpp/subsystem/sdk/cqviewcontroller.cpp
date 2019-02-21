@@ -5,7 +5,6 @@ struct _self_CQViewController {
 };
 
 CQViewController::CQViewController() {
-    C_INIT(self);
 }
 
 void CQViewController::viewDidLoad() {

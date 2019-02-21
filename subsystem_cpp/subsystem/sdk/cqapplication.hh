@@ -2,16 +2,14 @@
 
 #include "cqobject.hh"
 
-struct CQApplicationDelegate : CQObject {
-CQ_ITF(CQApplicationDelegate)
+struct CQApplicationDelegate : cq_interface<CQApplicationDelegate, CQInterface> {
     
     virtual void applicationDidFinishLaunching() {}
     virtual void applicationDidBecomeActive() {}
     virtual void applicationDidEnterBackground() {}
 };
 
-struct CQApplication : CQObject {
-CQ_CLS(CQApplication , CQObject, _self_CQApplication)
+struct CQApplication : cq_class<CQApplication, struct _self_CQApplication, CQObject> {
     
     static CQApplication::ref sharedApplication();
     

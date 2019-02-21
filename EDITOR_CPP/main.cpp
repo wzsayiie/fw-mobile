@@ -1,8 +1,5 @@
 #include "utility/utility.hh"
 
-void ObjCPPMain(int argc, const char *argv[]);
-void CPPMain   (int argc, const char *argv[]);
-
 static void GotoWorkDirectory() {
 
     string rootDirectory = "fw-mobile";
@@ -18,14 +15,11 @@ static void GotoWorkDirectory() {
     I("Work Path: %s", currentPath.c_str());
 }
 
+#define ENTRY(NAME) void NAME(); NAME();
+
 int main(int argc, const char *argv[]) {
-    
     GotoWorkDirectory();
-    
-    const char *ARGS[] = {"editor.exe"};
-    argc = sizeof(ARGS) / sizeof(*ARGS);
-    argv = ARGS;
-    
-    ObjCPPMain(argc, argv);
-    CPPMain   (argc, argv);
+
+    ENTRY(ObjCPPMain)
+    ENTRY(CPPMain)
 }

@@ -6,7 +6,6 @@ struct _self_CQWindow {
 };
 
 CQWindow::CQWindow() {
-    C_INIT(self);
 }
 
 void CQWindow::setRootViewController(CQViewController::ref controller) {
