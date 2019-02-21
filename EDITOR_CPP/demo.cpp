@@ -1,4 +1,4 @@
-#include "utility/utility.hh"
+#include "utility.hh"
 
 void CPPMain() {
 }

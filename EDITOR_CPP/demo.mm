@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "utility/utility.hh"
+#import "utility.hh"
 
 void ObjCPPMain() {
 }
