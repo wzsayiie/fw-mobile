@@ -15,11 +15,12 @@ static void GotoWorkDirectory() {
     I("Work Path: %s", currentPath.c_str());
 }
 
-#define ENTRY(NAME) void NAME(); NAME();
+#define ENTRY(F) do { void F(); F(); } while (0)
 
 int main(int argc, const char *argv[]) {
     GotoWorkDirectory();
 
-    ENTRY(ObjCPPMain)
-    ENTRY(CPPMain)
+    ENTRY(ObjCPPMain);
+    ENTRY(CPPMain);
+    ENTRY(CodeCountMain);
 }

@@ -1,15 +1,22 @@
 #include "cqlog.hh"
 
-#define IMPL(TAG)\
-/**/    va_list args;\
-/**/    va_start(args, format);\
-/**/    \
-/**/    const size_t size = 1024;\
-/**/    char buffer[size];\
-/**/    vsnprintf(buffer, size, format, args);\
-/**/    printf("%s%s\n", TAG, buffer);\
-/**/    \
-/**/    va_end(args);\
+static void print(const char *tag, const char *format, va_list args) {
+    const size_t size = 256;
+    char buffer[size];
+    vsnprintf(buffer, size, format, args);
+    printf("%s%s\n", tag, buffer);
+}
 
-void I(const char *format, ...) { IMPL(""       ) }
-void E(const char *format, ...) { IMPL("ERROR: ") }
+void I(const char *format, ...) {
+    va_list args;
+    va_start(args, format);
+    print("", format, args);
+    va_end(args);
+}
+
+void E(const char *format, ...) {
+    va_list args;
+    va_start(args, format);
+    print("ERROR: ", format, args);
+    va_end(args);
+}

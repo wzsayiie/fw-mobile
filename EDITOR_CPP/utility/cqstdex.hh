@@ -1,7 +1,5 @@
 #pragma once
 
-#include <functional>
-#include <memory>
 #include <string>
 #include <vector>
 #include <map>
@@ -10,7 +8,6 @@
 #   import <Foundation/Foundation.h>
 # endif
 
-using std::shared_ptr;
 using std::vector;
 using std::map;
 
