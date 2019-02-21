@@ -6,16 +6,19 @@
 //use original api to print,
 //cause it's possible that user log system depends on JNI context.
 
-#define LOG(LEVEL, FORMAT)\
-/**/    va_list args;\
-/**/    va_start(args, format);\
-/**/    __android_log_vprint(LEVEL , "zzz", FORMAT, args);\
-/**/    va_end(args)
+__printflike(1, 2) static void info(const char *format, ...) {
+    va_list args;
+    va_start(args, format);
+    __android_log_vprint(ANDROID_LOG_INFO, "zzz", format, args);
+    va_end(args);
+}
 
-__printflike(1, 2) static void info (const char *format, ...) { LOG(ANDROID_LOG_INFO , format); }
-__printflike(1, 2) static void error(const char *format, ...) { LOG(ANDROID_LOG_ERROR, format); }
-
-#undef LOG
+__printflike(1, 2) static void error(const char *format, ...) {
+    va_list args;
+    va_start(args, format);
+    __android_log_vprint(ANDROID_LOG_ERROR, "zzz", format, args);
+    va_end(args);
+}
 
 static bool JavaException(JNIEnv *env) {
     if (env->ExceptionCheck()) {

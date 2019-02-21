@@ -1,24 +1,26 @@
 #import "CQLogManager.h"
 #import "CQFoundation.h"
 
-#define FORMAT_STRING(NAME, FORMAT)\
-/**/    NSString *NAME = nil; {\
-/**/        va_list args;\
-/**/        va_start(args, FORMAT);\
-/**/        NAME = [[NSString alloc] initWithFormat:FORMAT arguments:args];\
-/**/        va_end(args);\
-/**/    }
-
 @implementation CQLogManager
 
 + (void)infoWithFile:(const char *)file line:(int)line format:(NSString *)format, ... {
-    FORMAT_STRING(message, format);
+    va_list args;
+    va_start(args, format);
+    
+    NSString *message = [[NSString alloc] initWithFormat:format arguments:args];
     [CQLogger info:message file:@(file) line:line];
+    
+    va_end(args);
 }
 
 + (void)errorWithFile:(const char *)file line:(int)line format:(NSString *)format, ... {
-    FORMAT_STRING(message, format);
+    va_list args;
+    va_start(args, format);
+    
+    NSString *message = [[NSString alloc] initWithFormat:format arguments:args];
     [CQLogger error:message file:@(file) line:line];
+    
+    va_end(args);
 }
 
 @end

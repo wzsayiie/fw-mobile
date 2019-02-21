@@ -1,12 +1,12 @@
 #import <objc/runtime.h>
 
-#define _CQ_SYNTHESIZE(ref, setter, getter, ...)\
-/**/    - (void)setter:(__VA_ARGS__)value {\
-/**/        objc_setAssociatedObject(self, @selector(getter), value, OBJC_ASSOCIATION_##ref##_NONATOMIC);\
-/**/    }\
-/**/    - (__VA_ARGS__)getter {\
-/**/        return objc_getAssociatedObject(self, @selector(getter));\
-/**/    }
+void CQStrongProperty(id object, const void *key, id value);
+void CQCopyProperty  (id object, const void *key, id value);
+id   CQGetProperty   (id object, const void *key);
 
-#define CQ_SYNTHESIZE_STRONG(setter, getter, ...) _CQ_SYNTHESIZE(RETAIN, setter, getter, __VA_ARGS__)
-#define CQ_SYNTHESIZE_COPY(  setter, getter, ...) _CQ_SYNTHESIZE(COPY  , setter, getter, __VA_ARGS__)
+#define _CQ_STER_S(T, G, S) - (void)S:T v {        CQStrongProperty(self, @selector(G), v); }
+#define _CQ_STER_C(T, G, S) - (void)S:T v {        CQCopyProperty  (self, @selector(G), v); }
+#define _CQ_GETTER(T, G)    - T     G     { return CQGetProperty   (self, @selector(G)   ); }
+
+#define cq_synthesize_strong(T, G, S) _CQ_STER_S(T, G, S) _CQ_GETTER(T, G)
+#define cq_synthesize_copy(  T, G, S) _CQ_STER_C(T, G, S) _CQ_GETTER(T, G)
