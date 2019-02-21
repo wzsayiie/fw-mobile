@@ -1,4 +1,3 @@
-#import <Foundation/Foundation.h>
 #import "cqfile.hh"
 #import "unistd.h"
 
@@ -14,21 +13,19 @@ string CQGetWorkDirectory() {
 }
 
 bool CQChangeDirectory(const string &path) {
-    return chdir(path.c_str()) == 0;
+    return chdir(path) == 0;
 }
 
 bool CQFileExistsAtPath(const string &path, bool *isDirectory) {
     NSFileManager *manager = NSFileManager.defaultManager;
-    NSString *target = @(path.c_str());
-    return [manager fileExistsAtPath:target isDirectory:(BOOL *)isDirectory];
+    return [manager fileExistsAtPath:path isDirectory:(BOOL *)isDirectory];
 }
 
 vector<string> CQContentsOfDirectory(const string &path) {
     NSFileManager *manager = [NSFileManager defaultManager];
-    NSString *target = @(path.c_str());
     
     //get
-    NSArray<NSString *> *items = [manager contentsOfDirectoryAtPath:target error:nil];
+    NSArray<NSString *> *items = [manager contentsOfDirectoryAtPath:path error:nil];
     
     //sort
     id comparer = ^NSComparisonResult(NSString *a, NSString *b) {

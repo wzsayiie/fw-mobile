@@ -111,7 +111,7 @@ CQFileError CQReadFile(const string &path, vector<char> *content) {
         return CQFileError::ParamInvaild;
     }
     
-    FILE *file = fopen(path.c_str(), "rb");
+    FILE *file = fopen(path, "rb");
     if (file == nullptr) {
         return CQFileError::OpenFailed;
     }
@@ -135,7 +135,7 @@ CQFileError CWriteFile(const string &path, const vector<char> &content) {
         return CQFileError::ParamInvaild;
     }
     
-    FILE *file = fopen(path.c_str(), "wb");
+    FILE *file = fopen(path, "wb");
     if (file == nullptr) {
         return CQFileError::OpenFailed;
     }

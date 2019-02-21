@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cqahead.hh"
+#include "cqstdex.hh"
 
 static const char *const CQUTF8BOM = "\xEF\xBB\xBF";
 static const size_t CQUTF8BOMSize = 3;

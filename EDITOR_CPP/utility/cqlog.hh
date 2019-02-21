@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cqahead.hh"
+#include "cqstdex.hh"
 
 # ifdef __clang__
 #   define CQ_PRINTF_LIKE(F, A) __attribute((format(printf, F, A)))

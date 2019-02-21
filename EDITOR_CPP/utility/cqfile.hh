@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cqahead.hh"
+#include "cqstdex.hh"
 
 //depends on OS
 
@@ -41,7 +41,7 @@ CQFileError CQWriteFile(const string &path, const vector<char> &content);
 
 void CQTraverse(const string &path, struct CQTraverseDelegate *delegate);
 
-struct CQTraverseDelegate : CQObject {
+struct CQTraverseDelegate : object {
     
     //specify tag size
     virtual int onTraverseGetTagSize() = 0;

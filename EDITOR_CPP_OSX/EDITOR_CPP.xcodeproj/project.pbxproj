@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B499A30D221E61780060165A /* cqstdex_osx.mm in Sources */ = {isa = PBXBuildFile; fileRef = B499A30C221E61780060165A /* cqstdex_osx.mm */; };
 		CE21BEA322085E4B00AED03F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE9522085E4B00AED03F /* main.cpp */; };
 		CE21BEA422085E4B00AED03F /* demo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE9622085E4B00AED03F /* demo.cpp */; };
-		CE21BEA622085E4B00AED03F /* cqahead.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE9B22085E4B00AED03F /* cqahead.cpp */; };
+		CE21BEA622085E4B00AED03F /* cqstdex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE9B22085E4B00AED03F /* cqstdex.cpp */; };
 		CE21BEAA22085E4B00AED03F /* demo.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEA222085E4B00AED03F /* demo.mm */; };
 		CE21BEAE2208620300AED03F /* cqfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEAB2208620300AED03F /* cqfile.cpp */; };
 		CE21BEAF2208620300AED03F /* cqfile_osx.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEAC2208620300AED03F /* cqfile_osx.mm */; };
@@ -30,10 +31,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B499A30C221E61780060165A /* cqstdex_osx.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = cqstdex_osx.mm; sourceTree = "<group>"; };
 		CE21BE9522085E4B00AED03F /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		CE21BE9622085E4B00AED03F /* demo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = demo.cpp; sourceTree = "<group>"; };
-		CE21BE9B22085E4B00AED03F /* cqahead.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqahead.cpp; sourceTree = "<group>"; };
-		CE21BE9C22085E4B00AED03F /* cqahead.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqahead.hh; sourceTree = "<group>"; };
+		CE21BE9B22085E4B00AED03F /* cqstdex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqstdex.cpp; sourceTree = "<group>"; };
+		CE21BE9C22085E4B00AED03F /* cqstdex.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqstdex.hh; sourceTree = "<group>"; };
 		CE21BEA122085E4B00AED03F /* utility.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = utility.hh; sourceTree = "<group>"; };
 		CE21BEA222085E4B00AED03F /* demo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = demo.mm; sourceTree = "<group>"; };
 		CE21BEAB2208620300AED03F /* cqfile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqfile.cpp; sourceTree = "<group>"; };
@@ -72,8 +74,9 @@
 		CE21BE9722085E4B00AED03F /* utility */ = {
 			isa = PBXGroup;
 			children = (
-				CE21BE9C22085E4B00AED03F /* cqahead.hh */,
-				CE21BE9B22085E4B00AED03F /* cqahead.cpp */,
+				CE21BE9C22085E4B00AED03F /* cqstdex.hh */,
+				CE21BE9B22085E4B00AED03F /* cqstdex.cpp */,
+				B499A30C221E61780060165A /* cqstdex_osx.mm */,
 				CE21BEAD2208620300AED03F /* cqfile.hh */,
 				CE21BEAC2208620300AED03F /* cqfile_osx.mm */,
 				CE21BEAB2208620300AED03F /* cqfile.cpp */,
@@ -159,13 +162,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE21BEAF2208620300AED03F /* cqfile_osx.mm in Sources */,
+				B499A30D221E61780060165A /* cqstdex_osx.mm in Sources */,
 				CE21BEA422085E4B00AED03F /* demo.cpp in Sources */,
 				CE21BEAA22085E4B00AED03F /* demo.mm in Sources */,
 				CE21BEB2220868B900AED03F /* cqlog.cpp in Sources */,
 				CE844339220D5874008D3F79 /* cqutf8.cpp in Sources */,
 				CE21BEAE2208620300AED03F /* cqfile.cpp in Sources */,
 				CE21BEA322085E4B00AED03F /* main.cpp in Sources */,
-				CE21BEA622085E4B00AED03F /* cqahead.cpp in Sources */,
+				CE21BEA622085E4B00AED03F /* cqstdex.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
