@@ -3,10 +3,16 @@
 #include "cqstdex.hh"
 
 # ifdef __clang__
-#   define CQ_PRINTF_LIKE(F, A) __attribute((format(printf, F, A)))
+#   include <sys/cdefs.h>
 # else
-#   define CQ_PRINTF_LIKE(F, A)
+#   define __printflike(format, first_va)
 # endif
 
-void I(const char *format, ...) CQ_PRINTF_LIKE(1, 2);
-void E(const char *format, ...) CQ_PRINTF_LIKE(1, 2);
+# ifdef _MSC_VER
+#   include <sal.h>
+# else
+#   define _Printf_format_string_
+# endif
+
+void I(_Printf_format_string_ const char *format, ...) __printflike(1, 2);
+void E(_Printf_format_string_ const char *format, ...) __printflike(1, 2);
