@@ -115,14 +115,14 @@
 		CE21BE9722085E4B00AED03F /* utility */ = {
 			isa = PBXGroup;
 			children = (
-				CE21BE9C22085E4B00AED03F /* cqstdex.hh */,
-				B499A30C221E61780060165A /* cqstdex_osx.mm */,
-				CE21BE9B22085E4B00AED03F /* cqstdex.cpp */,
 				CE21BEAD2208620300AED03F /* cqfile.hh */,
 				CE21BEAC2208620300AED03F /* cqfile_osx.mm */,
 				CE21BEAB2208620300AED03F /* cqfile.cpp */,
 				CE21BEB1220868B900AED03F /* cqlog.hh */,
 				CE21BEB0220868B900AED03F /* cqlog.cpp */,
+				CE21BE9C22085E4B00AED03F /* cqstdex.hh */,
+				B499A30C221E61780060165A /* cqstdex_osx.mm */,
+				CE21BE9B22085E4B00AED03F /* cqstdex.cpp */,
 				CE844338220D5874008D3F79 /* cqutf8.hh */,
 				CE844337220D5874008D3F79 /* cqutf8.cpp */,
 				CE21BEA122085E4B00AED03F /* utility.hh */,
