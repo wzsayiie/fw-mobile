@@ -6,13 +6,13 @@ function RootViewController:init()
 end
 
 function RootViewController:viewDidLoad()
-    ii("view load")
+    I("view load")
 end
 
 function RootViewController:viewDidAppear()
-    ii("view appear")
+    I("view appear")
 end
 
 function RootViewController:viewDidDisappear()
-    ii("view disappear")
+    I("view disappear")
 end

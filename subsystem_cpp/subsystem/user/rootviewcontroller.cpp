@@ -9,15 +9,15 @@ RootViewController::RootViewController() {
 
 void RootViewController::viewDidLoad() {
     super::viewDidLoad();
-    ii("view load");
+    I("view load");
 }
 
 void RootViewController::viewDidAppear() {
     super::viewDidAppear();
-    ii("view appear");
+    I("view appear");
 }
 
 void RootViewController::viewDidDisappear() {
     super::viewDidDisappear();
-    ii("view disappear");
+    I("view disappear");
 }

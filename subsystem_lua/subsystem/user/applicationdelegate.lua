@@ -3,7 +3,7 @@ ApplicationDelegate = extends(CQApplication.Delegate, {
 })
 
 function ApplicationDelegate:applicationDidFinishLaunching()
-    ii("app finish launch")
+    I("app finish launch")
 
     local controller = RootViewController:new()
     self.window = CQWindow:new()
@@ -12,9 +12,9 @@ function ApplicationDelegate:applicationDidFinishLaunching()
 end
 
 function ApplicationDelegate:applicationDidBecomeActive()
-    ii("app become active")
+    I("app become active")
 end
 
 function ApplicationDelegate:applicationDidEnterBackground()
-    ii("app enter background")
+    I("app enter background")
 end

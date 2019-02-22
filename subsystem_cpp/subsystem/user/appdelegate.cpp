@@ -9,7 +9,7 @@ AppDelegate::AppDelegate() {
 }
 
 void AppDelegate::applicationDidFinishLaunching() {
-    ii("application launching");
+    I("application launching");
     
     RootViewController::ref controller = RootViewController::create();
     
