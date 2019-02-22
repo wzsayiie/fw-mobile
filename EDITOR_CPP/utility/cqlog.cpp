@@ -1,22 +1,22 @@
 #include "cqlog.hh"
 
-static void print(const char *tag, const char *format, va_list args) {
+static void print(const char *begin, const char *format, va_list args, const char *end) {
     const size_t size = 256;
     char buffer[size];
     vsnprintf(buffer, size, format, args);
-    printf("%s%s\n", tag, buffer);
+    printf("%s%s%s", begin, buffer, end);
 }
 
 void I(const char *format, ...) {
     va_list args;
     va_start(args, format);
-    print("", format, args);
+    print("", format, args, "");
     va_end(args);
 }
 
 void E(const char *format, ...) {
     va_list args;
     va_start(args, format);
-    print("ERROR: ", format, args);
+    print("ERROR: ", format, args, "\n");
     va_end(args);
 }

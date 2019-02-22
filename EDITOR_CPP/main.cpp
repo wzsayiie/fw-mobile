@@ -12,15 +12,21 @@ static void GotoWorkDirectory() {
     }
     
     string currentPath = CQGetWorkDirectory();
-    I("Work Path: %s", currentPath.c_str());
+    I("Work Path: %s\n", currentPath.c_str());
 }
 
-#define ENTRY(F) do { void F(); F(); } while (0)
+static void Execute(void (*func)(), const int *enabled) {
+    if (*enabled != 0) {
+        func();
+    }
+}
+
+#define E(N) extern const int N##Enabled; void N(); Execute(N, &N##Enabled);
 
 int main(int argc, const char *argv[]) {
     GotoWorkDirectory();
-
-    ENTRY(ObjCPPMain);
-    ENTRY(CPPMain);
-    ENTRY(CodeCountMain);
+    
+    E(ObjcppMain);
+    E(CPPMain);
+    E(CodeCountMain);
 }

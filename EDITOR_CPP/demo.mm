@@ -1,5 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "utility.hh"
 
-void ObjCPPMain() {
+extern const int ObjcppMainEnabled = 1;
+
+void ObjcppMain() {
 }

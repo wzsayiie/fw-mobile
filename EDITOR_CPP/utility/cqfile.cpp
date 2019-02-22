@@ -144,16 +144,16 @@ CQFileError CWriteFile(const string &path, const vector<char> &content) {
     return CQFileError::None;
 }
 
-#define FIL(tag, indent, name) I("[%s] %*s%s" , tag.c_str(), indent * 2, "", name.c_str());
-#define DIR(tag, indent, name) I("[%s] %*s%s/", tag.c_str(), indent * 2, "", name.c_str());
+#define FIL(tag, indent, name) I("%s %*s%s\n" , tag.c_str(), indent * 2, "", name.c_str());
+#define DIR(tag, indent, name) I("%s %*s%s/\n", tag.c_str(), indent * 2, "", name.c_str());
 
 static void CQTraverseFile(
     const string &name,
     int indent,
-    CQTraverseDelegate *delegate)
+    CQTraverserDelegate *delegate)
 {
     string tag;
-    if (delegate->onTraverseFindFile(name, &tag)) {
+    if (delegate->traverserFindFile(name, &tag)) {
         FIL(tag, indent, name);
     }
 }
@@ -162,7 +162,7 @@ static void CQTraverseDirectory(
     const string &name,
     const string &tag,
     int indent,
-    CQTraverseDelegate *delegate)
+    CQTraverserDelegate *delegate)
 {
     DIR(tag, indent, name);
     
@@ -183,7 +183,7 @@ static void CQTraverseDirectory(
 #undef FIL
 #undef DIR
 
-void CQTraverse(const string &path, CQTraverseDelegate *delegate) {
+void CQTraverse(const string &path, CQTraverserDelegate *delegate) {
     if (delegate == nullptr) {
         return;
     }
@@ -191,7 +191,6 @@ void CQTraverse(const string &path, CQTraverseDelegate *delegate) {
     bool isDirectory = false;
     bool fileExists = CQFileExistsAtPath(path, &isDirectory);
     if (!fileExists) {
-        E("not found '%s'", path.c_str());
         return;
     }
     
@@ -201,8 +200,7 @@ void CQTraverse(const string &path, CQTraverseDelegate *delegate) {
     
     CQChangeDirectory(targetParent);
     if (isDirectory) {
-        string tag;
-        tag.append(delegate->onTraverseGetTagSize(), '\x20');
+        string tag = delegate->traverserGetDefaultTag();
         CQTraverseDirectory(targetBase, tag, 0, delegate);
     } else {
         CQTraverseFile(targetBase, 0, delegate);
