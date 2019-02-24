@@ -10,9 +10,6 @@ static void GotoWorkDirectory() {
         string rootPath = filePath.substr(0, position + rootDirectory.size());
         CQChangeDirectory(rootPath);
     }
-    
-    string currentPath = CQGetWorkDirectory();
-    I("Work Path: %s\n", currentPath.c_str());
 }
 
 static void Execute(void (*func)(), const int *enabled) {
@@ -25,6 +22,9 @@ static void Execute(void (*func)(), const int *enabled) {
 
 int main(int argc, const char *argv[]) {
     GotoWorkDirectory();
+    
+    string currentPath = CQGetWorkDirectory();
+    continue_last.print("work path: %s", currentPath.c_str());
     
     E(ObjcppMain);
     E(CPPMain);

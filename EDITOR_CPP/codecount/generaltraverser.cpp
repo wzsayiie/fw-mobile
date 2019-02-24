@@ -37,10 +37,10 @@ static void PrintResult(int files, int codes, int empties) {
     int codeP  = (codes   == total) ? 99 : (codes   * 100 / total);
     int emptyP = (empties == total) ? 99 : (empties * 100 / total);
     
-    I("file count: %s\n", Traverser::ts(files));
-    I("total line: %s\n", Traverser::ts(total));
-    I("code  line: %s(%2d%%)\n", Traverser::ts(codes  ), codeP );
-    I("empty line: %s(%2d%%)\n", Traverser::ts(empties), emptyP);
+    space_line(1).print("file count: %s", Traverser::ts(files));
+    start_newline.print("total line: %s", Traverser::ts(total));
+    start_newline.print("code  line: %s(%2d%%)", Traverser::ts(codes  ), codeP );
+    start_newline.print("empty line: %s(%2d%%)", Traverser::ts(empties), emptyP);
 }
 
 void GeneralTraverser::onStart(vector<string> *outTypes, string *outDefaultTag) {
@@ -52,8 +52,8 @@ void GeneralTraverser::onStart(vector<string> *outTypes, string *outDefaultTag) 
     _tCodes = 0;
     _tEmpties = 0;
     
-    I("%s\n", sTitleFirst );
-    I("%s\n", sTitleSecond);
+    space_line(1).print("%s", sTitleFirst );
+    start_newline.print("%s", sTitleSecond);
 }
 
 void GeneralTraverser::onBeginTask() {
@@ -103,6 +103,7 @@ void GeneralTraverser::onEndTask() {
 }
 
 void GeneralTraverser::onStop() {
-    I("total:\n\n");
+    space_line(1).print("total:");
     PrintResult(_tFiles, _tCodes, _tEmpties);
+    space_line(1);
 }

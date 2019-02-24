@@ -144,8 +144,8 @@ CQFileError CWriteFile(const string &path, const vector<char> &content) {
     return CQFileError::None;
 }
 
-#define FIL(tag, indent, name) I("%s %*s%s\n" , tag.c_str(), indent * 2, "", name.c_str());
-#define DIR(tag, indent, name) I("%s %*s%s/\n", tag.c_str(), indent * 2, "", name.c_str());
+#define FIL(T, I, N) start_newline.print("%s %*s%s" , T.c_str(), I * 2, "", N.c_str());
+#define DIR(T, I, N) start_newline.print("%s %*s%s/", T.c_str(), I * 2, "", N.c_str());
 
 static void CQTraverseFile(
     const string &name,

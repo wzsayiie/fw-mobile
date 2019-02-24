@@ -5,22 +5,21 @@ void Traverser::count(const vector<string> &paths, Traverser *traverser) {
     traverser->_defaultTag.clear();
     
     //1
-    I("\n");
     traverser->onStart(&traverser->_types, &traverser->_defaultTag);
     
     //2
     for (const string &it : paths) {
-        I("\n@ %s:\n\n", it.c_str());
+        
+        space_line(1).print("@ %s:", it.c_str());
+        space_line(1);
+        
         traverser->onBeginTask();
         CQTraverse(it, traverser);
-        I("\n");
         traverser->onEndTask();
     }
     
     //3
-    I("\n");
     traverser->onStop();
-    I("\n");
 }
 
 string Traverser::traverserGetDefaultTag() {

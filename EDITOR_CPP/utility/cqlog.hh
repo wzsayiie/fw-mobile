@@ -8,11 +8,10 @@
 #   define __printflike(format, first_va)
 # endif
 
-# ifdef _MSC_VER
-#   include <sal.h>
-# else
-#   define _Printf_format_string_
-# endif
+struct _CONTINUE_LAST { void print(const char *format, ...) __printflike(2, 3); };
+struct _START_NEWLINE { void print(const char *format, ...) __printflike(2, 3); };
 
-void I(_Printf_format_string_ const char *format, ...) __printflike(1, 2);
-void E(_Printf_format_string_ const char *format, ...) __printflike(1, 2);
+extern _CONTINUE_LAST continue_last;
+extern _START_NEWLINE start_newline;
+
+_CONTINUE_LAST &space_line(int n);
