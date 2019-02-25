@@ -41,6 +41,7 @@
 		B4CFD97A21C75AB300FFF4CF /* IAPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4CFD97921C75AB300FFF4CF /* IAPViewController.xib */; };
 		B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DCD87B21F17DAE0090BFBB /* UserIdentity.m */; };
 		B4DCD87F21F17DAE0090BFBB /* UserSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DCD87C21F17DAE0090BFBB /* UserSetting.m */; };
+		B4E7CD0F2224098800122637 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E7CD0E2224098800122637 /* main.m */; };
 		B4F7176821F976AD0090F949 /* NSBundle+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F7176721F976AD0090F949 /* NSBundle+CQ.m */; };
 		B4FCC39821F0912700D152DF /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FCC39721F0912700D152DF /* libc++.tbd */; };
 		CE224EA72206AED300B8FB53 /* cqview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EA22206AED300B8FB53 /* cqview.cpp */; };
@@ -51,7 +52,6 @@
 		CE224EB62206C3FD00B8FB53 /* appdelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EB42206C3FD00B8FB53 /* appdelegate.cpp */; };
 		CE224EB92206C86600B8FB53 /* cqhost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EB72206C86500B8FB53 /* cqhost.cpp */; };
 		CE79B403220735F400581FBD /* cqlog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE79B402220735F400581FBD /* cqlog.cpp */; };
-		CE9F962A22081B4F003E79C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9F962922081B4F003E79C7 /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +134,7 @@
 		B4DCD87B21F17DAE0090BFBB /* UserIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserIdentity.m; sourceTree = "<group>"; };
 		B4DCD87C21F17DAE0090BFBB /* UserSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSetting.m; sourceTree = "<group>"; };
 		B4DCD87D21F17DAE0090BFBB /* UserIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserIdentity.h; sourceTree = "<group>"; };
+		B4E7CD0E2224098800122637 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B4EC3C6621DF6D8800E287A4 /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../library_ios/Library.xcodeproj; sourceTree = "<group>"; };
 		B4F7176621F976AD0090F949 /* NSBundle+CQ.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+CQ.h"; sourceTree = "<group>"; };
 		B4F7176721F976AD0090F949 /* NSBundle+CQ.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+CQ.m"; sourceTree = "<group>"; };
@@ -155,7 +156,6 @@
 		CE224EB82206C86600B8FB53 /* cqhost_p.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqhost_p.hh; sourceTree = "<group>"; };
 		CE79B401220735F400581FBD /* cqlog.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqlog.hh; sourceTree = "<group>"; };
 		CE79B402220735F400581FBD /* cqlog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqlog.cpp; sourceTree = "<group>"; };
-		CE9F962922081B4F003E79C7 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +215,7 @@
 				B45C1B7421A02B19007CB374 /* Properties */,
 				B45C1B7921A02B19007CB374 /* Sources */,
 				B45C1B7621A02B19007CB374 /* Resoures */,
+				B4E7CD0E2224098800122637 /* main.m */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -273,7 +274,6 @@
 			children = (
 				B45C1B8D21A02B19007CB374 /* AppDelegate.h */,
 				B45C1B8E21A02B19007CB374 /* AppDelegate.m */,
-				CE9F962922081B4F003E79C7 /* main.m */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -733,7 +733,7 @@
 				B4DCD87F21F17DAE0090BFBB /* UserSetting.m in Sources */,
 				CE224EB62206C3FD00B8FB53 /* appdelegate.cpp in Sources */,
 				B45C1BF821A03824007CB374 /* CQSceneNavigator.m in Sources */,
-				CE9F962A22081B4F003E79C7 /* main.m in Sources */,
+				B4E7CD0F2224098800122637 /* main.m in Sources */,
 				B4CFD97321C7475000FFF4CF /* IAPViewController.m in Sources */,
 				B4CFD97521C7475000FFF4CF /* FloatViewController.m in Sources */,
 				CE224EA82206AED300B8FB53 /* cqviewcontroller.cpp in Sources */,
