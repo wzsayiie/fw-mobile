@@ -74,7 +74,7 @@ static CQWeightValue *CQWeightCast(CQValue value) {
     if (value.handle == 0) {
         return nullptr;
     }
-    if (CQLightCast(value) == nullptr) {
+    if (CQLightCast(value) != nullptr) {
         return nullptr;
     }
     
@@ -293,6 +293,6 @@ void CQRetain(CQValue value) {
 
 void CQRelease(CQValue value) {
     if (auto it = CQWeightCast(value)) {
-        it->retain();
+        it->release();
     }
 }
