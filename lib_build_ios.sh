@@ -11,6 +11,8 @@ target_nam="Library"
 archs_list="x86_64 arm64 arm64e"
 ultima_dir="app_unity/Plugins/iOS"
 ultima_fil="libLibrary.a"
+
+sh generate_headers.sh
 ### configutation end
 
 # build library
@@ -45,8 +47,6 @@ function merge_archives() {
     local merged_lib="$projct_dir/build/outputs/$ultima_fil"
     lipo -create $thin_archs -output $merged_lib
 }
-
-sh generate_headers.sh
 
 clean_cache
 for arch_item in $archs_list; do

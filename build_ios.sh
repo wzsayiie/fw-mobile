@@ -24,6 +24,8 @@ schm_nam="App"
 archs_li="-arch armv7s -arch arm64 -arch arm64e"
 outs_dir="BUILD"
 outs_fil="app"
+
+sh generate_headers.sh
 ##
 ## configrution end
 
@@ -99,7 +101,6 @@ function copy_outputs() {
     mv $proj_dir/build/$schm_nam.xcarchive/dSYMs/$schm_nam.app.dSYM $outs_dir/$outs_fil.dSym
 }
 
-sh generate_headers.sh
 clean_cache
 build_archive
 resign_archive
