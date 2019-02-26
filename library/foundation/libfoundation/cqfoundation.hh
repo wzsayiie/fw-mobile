@@ -2,9 +2,18 @@
 
 #pragma once
 
-#include <string>
+#include "CQRUNTIME.hh"
 
-struct CQLogger {
+struct CQLoggerAgent : cq_interface<CQLoggerAgent, CQInterface> {
+    virtual void loggerAgentHandleInfo(const std::string &message, const std::string &file, int32_t line) {}
+    virtual void loggerAgentHandleError(const std::string &message, const std::string &file, int32_t line) {}
+};
+
+struct CQLogger : cq_class<CQLogger, struct _self_CQLogger, CQObject> {
+    
     static void info(const std::string &message, const std::string &file, int32_t line);
     static void error(const std::string &message, const std::string &file, int32_t line);
+    static void setAgent(CQLoggerAgent::ref agent);
+    
+    CQLogger();
 };
