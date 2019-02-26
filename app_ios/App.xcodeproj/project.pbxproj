@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B40B7BA1220464FC00C0A22E /* cqobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7BA0220464FC00C0A22E /* cqobject.cpp */; };
 		B416F18921A2CD630045FDF6 /* Scenes.plist in Resources */ = {isa = PBXBuildFile; fileRef = B416F18821A2CD630045FDF6 /* Scenes.plist */; };
 		B416F18B21A2D4940045FDF6 /* QuickModels.plist in Resources */ = {isa = PBXBuildFile; fileRef = B416F18A21A2D4940045FDF6 /* QuickModels.plist */; };
 		B416F18E21A3AFCF0045FDF6 /* UIViewController+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B416F18C21A3AFCF0045FDF6 /* UIViewController+CQ.m */; };
@@ -72,8 +71,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B40B7B9F220464FC00C0A22E /* cqobject.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqobject.hh; sourceTree = "<group>"; };
-		B40B7BA0220464FC00C0A22E /* cqobject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqobject.cpp; sourceTree = "<group>"; };
 		B416F18821A2CD630045FDF6 /* Scenes.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Scenes.plist; sourceTree = "<group>"; };
 		B416F18A21A2D4940045FDF6 /* QuickModels.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = QuickModels.plist; sourceTree = "<group>"; };
 		B416F18C21A3AFCF0045FDF6 /* UIViewController+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CQ.m"; sourceTree = "<group>"; };
@@ -457,8 +454,6 @@
 				CE224EB72206C86500B8FB53 /* cqhost.cpp */,
 				CE79B401220735F400581FBD /* cqlog.hh */,
 				CE79B402220735F400581FBD /* cqlog.cpp */,
-				B40B7B9F220464FC00C0A22E /* cqobject.hh */,
-				B40B7BA0220464FC00C0A22E /* cqobject.cpp */,
 				CE224EAD2206BA1F00B8FB53 /* cquikit.hh */,
 				CE224EA12206AED300B8FB53 /* cqview.hh */,
 				CE224EA22206AED300B8FB53 /* cqview.cpp */,
@@ -720,7 +715,6 @@
 				B45C1BFE21A03824007CB374 /* NSObject+CQSingleton.m in Sources */,
 				CE224EAC2206B3C100B8FB53 /* cqwindow.cpp in Sources */,
 				B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */,
-				B40B7BA1220464FC00C0A22E /* cqobject.cpp in Sources */,
 				B4CFD97421C7475000FFF4CF /* ExampleViewController.m in Sources */,
 				B4CFD97121C7475000FFF4CF /* TableViewController.m in Sources */,
 				B45C1BF721A03824007CB374 /* UIView+CQ.m in Sources */,

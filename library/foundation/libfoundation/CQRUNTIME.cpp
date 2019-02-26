@@ -1,4 +1,4 @@
-#include "cqobject.hh"
+#include "CQRUNTIME.hh"
 
 struct _self_CQObject {
 };
