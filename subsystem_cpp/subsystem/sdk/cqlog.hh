@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cqobject.hh"
+#include "CQRUNTIME.hh"
 
 void _CQLogInfo (const char *file, int line, const char *format, ...) __printflike(3, 4);
 void _CQLogError(const char *file, int line, const char *format, ...) __printflike(3, 4);

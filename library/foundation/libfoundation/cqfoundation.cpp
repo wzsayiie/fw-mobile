@@ -6,6 +6,9 @@
 CQ_C_LINK void CQ_Logger_info(CQValue message, CQValue file, CQValue line);
 CQ_C_LINK void CQ_Logger_error(CQValue message, CQValue file, CQValue line);
 
+struct _self_CQLogger {
+};
+
 void CQLogger::info(const std::string &message, const std::string &file, int32_t line) {
     CQValue aa = CQValueMaker<std::string>::create(message);
     CQValue bb = CQValueMaker<std::string>::create(file);
@@ -24,4 +27,10 @@ void CQLogger::error(const std::string &message, const std::string &file, int32_
     CQRelease(aa);
     CQRelease(bb);
     CQRelease(cc);
+}
+
+void CQLogger::setAgent(CQLoggerAgent::ref agent) {
+}
+
+CQLogger::CQLogger() {
 }

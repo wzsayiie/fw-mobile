@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cqobject.hh"
+#include "CQRUNTIME.hh"
 
 struct CQApplicationDelegate : cq_interface<CQApplicationDelegate, CQInterface> {
     
