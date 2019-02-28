@@ -1,9 +1,9 @@
-package src.app.host;
+package src.app.host.cpp;
 
 import android.app.Activity;
 import android.os.Bundle;
 
-public class CPPCarrierActivity extends Activity {
+public class CPPActivity extends Activity {
 
     static {
         System.loadLibrary("cargo");

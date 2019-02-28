@@ -26,6 +26,7 @@ outs_dir="BUILD"
 outs_fil="app"
 
 sh generate_headers.sh
+sh subsystem_lua/generate_lua.sh
 ##
 ## configrution end
 

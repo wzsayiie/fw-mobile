@@ -1,8 +1,8 @@
-package src.app.host;
+package src.app.host.cpp;
 
 import android.app.Application;
 
-public class CPPCarrierApplication extends Application {
+public class CPPApplication extends Application {
 
     @Override
     public void onCreate() {
