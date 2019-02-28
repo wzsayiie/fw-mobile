@@ -1,7 +1,7 @@
 #include "cqlog.hh"
 #include "cqfoundation.hh"
 
-void _CQLogInfo(const char *file, int line, const char *format, ...) {
+void _CQLogger_info(const char *file, int line, const char *format, ...) {
     va_list args;
     va_start(args, format);
 
@@ -12,7 +12,7 @@ void _CQLogInfo(const char *file, int line, const char *format, ...) {
     va_end(args);
 }
 
-void _CQLogError(const char *file, int line, const char *format, ...) {
+void _CQLogger_error(const char *file, int line, const char *format, ...) {
     va_list args;
     va_start(args, format);
 

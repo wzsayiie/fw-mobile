@@ -1,5 +1,7 @@
 package src.app.utility.application;
 
+import src.library.foundation.L;
+
 public class CrashListener {
 
     private static CrashListener sInstance;

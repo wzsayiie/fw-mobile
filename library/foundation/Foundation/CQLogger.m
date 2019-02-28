@@ -1,4 +1,5 @@
 #import "CQFoundation.h"
+#import "CQLogger.h"
 
 static id<CQLoggerAgent> sAgent = nil;
 
@@ -33,3 +34,23 @@ static id<CQLoggerAgent> sAgent = nil;
 }
 
 @end
+
+void _CQLogger_info(const char *file, int line, NSString *format, ...) {
+    va_list args;
+    va_start(args, format);
+    
+    NSString *message = [[NSString alloc] initWithFormat:format arguments:args];
+    [CQLogger info:message file:@(file) line:line];
+    
+    va_end(args);
+}
+
+void _CQLogger_error(const char *file, int line, NSString *format, ...) {
+    va_list args;
+    va_start(args, format);
+    
+    NSString *message = [[NSString alloc] initWithFormat:format arguments:args];
+    [CQLogger error:message file:@(file) line:line];
+    
+    va_end(args);
+}

@@ -1,10 +1,6 @@
-package src.app.utility.application;
-
-import src.library.foundation.Logger;
+package src.library.foundation;
 
 public class L {
-
-    //NOTE: these static member designed for thread safe.
 
     public static void i(String format, Object... args) {
         String message = formalize(format, args);

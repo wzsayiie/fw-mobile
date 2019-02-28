@@ -10,7 +10,7 @@
 #import "UIViewController+CQ.h"
 
 //Root
-#import "CQLogManager.h"
+#import "CQLogger.h"
 #import "UIViewController+CQScene.h"
 #import "NSObject+CQSingleton.h"
 

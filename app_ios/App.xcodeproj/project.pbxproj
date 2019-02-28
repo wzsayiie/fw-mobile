@@ -23,7 +23,6 @@
 		B45C1BF721A03824007CB374 /* UIView+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1BD921A03824007CB374 /* UIView+CQ.m */; };
 		B45C1BF821A03824007CB374 /* CQSceneNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1BDF21A03824007CB374 /* CQSceneNavigator.m */; };
 		B45C1BF921A03824007CB374 /* UIViewController+CQScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1BE021A03824007CB374 /* UIViewController+CQScene.m */; };
-		B45C1BFB21A03824007CB374 /* CQLogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1BE621A03824007CB374 /* CQLogManager.m */; };
 		B45C1BFC21A03824007CB374 /* CQCrashListener.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1BE821A03824007CB374 /* CQCrashListener.m */; };
 		B45C1BFE21A03824007CB374 /* NSObject+CQSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1BEC21A03824007CB374 /* NSObject+CQSingleton.m */; };
 		B45C1BFF21A03824007CB374 /* CQSingletonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1BED21A03824007CB374 /* CQSingletonManager.m */; };
@@ -56,7 +55,6 @@
 		CE224EB32206C15B00B8FB53 /* rootviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EB02206C15B00B8FB53 /* rootviewcontroller.cpp */; };
 		CE224EB62206C3FD00B8FB53 /* appdelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EB42206C3FD00B8FB53 /* appdelegate.cpp */; };
 		CE224EB92206C86600B8FB53 /* cqhost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EB72206C86500B8FB53 /* cqhost.cpp */; };
-		CE79B403220735F400581FBD /* cqlog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE79B402220735F400581FBD /* cqlog.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,8 +103,6 @@
 		B45C1BE021A03824007CB374 /* UIViewController+CQScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CQScene.m"; sourceTree = "<group>"; };
 		B45C1BE121A03824007CB374 /* CQSceneNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQSceneNavigator.h; sourceTree = "<group>"; };
 		B45C1BE321A03824007CB374 /* UIViewController+CQScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CQScene.h"; sourceTree = "<group>"; };
-		B45C1BE521A03824007CB374 /* CQLogManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQLogManager.h; sourceTree = "<group>"; };
-		B45C1BE621A03824007CB374 /* CQLogManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQLogManager.m; sourceTree = "<group>"; };
 		B45C1BE821A03824007CB374 /* CQCrashListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQCrashListener.m; sourceTree = "<group>"; };
 		B45C1BE921A03824007CB374 /* CQCrashListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQCrashListener.h; sourceTree = "<group>"; };
 		B45C1BEC21A03824007CB374 /* NSObject+CQSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CQSingleton.m"; sourceTree = "<group>"; };
@@ -170,8 +166,6 @@
 		CE224EB52206C3FD00B8FB53 /* appdelegate.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = appdelegate.hh; sourceTree = "<group>"; };
 		CE224EB72206C86500B8FB53 /* cqhost.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqhost.cpp; sourceTree = "<group>"; };
 		CE224EB82206C86600B8FB53 /* cqhost_p.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqhost_p.hh; sourceTree = "<group>"; };
-		CE79B401220735F400581FBD /* cqlog.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqlog.hh; sourceTree = "<group>"; };
-		CE79B402220735F400581FBD /* cqlog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqlog.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -383,7 +377,6 @@
 			isa = PBXGroup;
 			children = (
 				B45C1BDD21A03824007CB374 /* SceneNavigator */,
-				B45C1BE421A03824007CB374 /* LogManager */,
 				B45C1BE721A03824007CB374 /* CrashListener */,
 				B45C1BEA21A03824007CB374 /* SingletonManager */,
 			);
@@ -399,15 +392,6 @@
 				B45C1BE021A03824007CB374 /* UIViewController+CQScene.m */,
 			);
 			path = SceneNavigator;
-			sourceTree = "<group>";
-		};
-		B45C1BE421A03824007CB374 /* LogManager */ = {
-			isa = PBXGroup;
-			children = (
-				B45C1BE521A03824007CB374 /* CQLogManager.h */,
-				B45C1BE621A03824007CB374 /* CQLogManager.m */,
-			);
-			path = LogManager;
 			sourceTree = "<group>";
 		};
 		B45C1BE721A03824007CB374 /* CrashListener */ = {
@@ -506,8 +490,6 @@
 				CE224EA42206AED300B8FB53 /* cqapplication.cpp */,
 				CE224EB82206C86600B8FB53 /* cqhost_p.hh */,
 				CE224EB72206C86500B8FB53 /* cqhost.cpp */,
-				CE79B401220735F400581FBD /* cqlog.hh */,
-				CE79B402220735F400581FBD /* cqlog.cpp */,
 				CE224EAD2206BA1F00B8FB53 /* cquikit.hh */,
 				CE224EA12206AED300B8FB53 /* cqview.hh */,
 				CE224EA22206AED300B8FB53 /* cqview.cpp */,
@@ -770,7 +752,6 @@
 				CE224EA72206AED300B8FB53 /* cqview.cpp in Sources */,
 				B4B9433222250FE500CE3C9A /* cqluaappdelegate.mm in Sources */,
 				B4CFD97021C7475000FFF4CF /* CollectionViewController.m in Sources */,
-				CE79B403220735F400581FBD /* cqlog.cpp in Sources */,
 				B4BC9CAD2204331C00CFD84C /* cqcppviewcontroller.mm in Sources */,
 				B45C1BFE21A03824007CB374 /* NSObject+CQSingleton.m in Sources */,
 				CE224EAC2206B3C100B8FB53 /* cqwindow.cpp in Sources */,
@@ -781,7 +762,6 @@
 				B45C1BF721A03824007CB374 /* UIView+CQ.m in Sources */,
 				B45C1BF921A03824007CB374 /* UIViewController+CQScene.m in Sources */,
 				B416F18E21A3AFCF0045FDF6 /* UIViewController+CQ.m in Sources */,
-				B45C1BFB21A03824007CB374 /* CQLogManager.m in Sources */,
 				B45C1BB821A02B19007CB374 /* AppDelegate.m in Sources */,
 				B45C1BF621A03824007CB374 /* NSObject+CQ.m in Sources */,
 				B4F7176821F976AD0090F949 /* NSBundle+CQ.m in Sources */,

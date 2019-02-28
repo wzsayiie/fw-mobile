@@ -2,6 +2,8 @@ package src.app.utility.application;
 
 import android.app.Application;
 
+import src.library.foundation.L;
+
 public abstract class AppDelegate {
 
     //NOTE: these static member designed for thread safe.

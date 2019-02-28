@@ -7,8 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import src.app.utility.application.AppDelegate;
-import src.app.utility.application.L;
 import src.app.utility.application.SingletonManager;
+import src.library.foundation.L;
 
 public class ActivityDispatcher {
 

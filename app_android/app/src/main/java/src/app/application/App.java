@@ -5,8 +5,8 @@ import android.os.Build;
 
 import src.app.utility.application.AppDelegate;
 import src.app.utility.application.CrashListener;
-import src.app.utility.application.L;
 import src.app.utility.data.AppInfo;
+import src.library.foundation.L;
 
 public class App extends Application {
 

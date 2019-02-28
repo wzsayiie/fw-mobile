@@ -9,9 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import src.app.utility.application.L;
-
 import java.util.ArrayList;
+
+import src.library.foundation.L;
 
 public abstract class DemoActivity extends Activity {
 

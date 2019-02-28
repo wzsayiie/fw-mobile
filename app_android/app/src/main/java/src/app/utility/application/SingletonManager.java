@@ -2,6 +2,8 @@ package src.app.utility.application;
 
 import java.util.HashMap;
 
+import src.library.foundation.L;
+
 public class SingletonManager {
 
     private static SingletonManager sInstance;

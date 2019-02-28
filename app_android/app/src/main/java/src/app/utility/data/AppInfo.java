@@ -12,7 +12,7 @@ import android.provider.Settings;
 import android.text.TextUtils;
 
 import src.app.utility.application.AppDelegate;
-import src.app.utility.application.L;
+import src.library.foundation.L;
 
 public class AppInfo {
 

@@ -4,7 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import src.app.utility.application.AppDelegate;
-import src.app.utility.application.L;
+import src.library.foundation.L;
 
 public class Bus {
 
