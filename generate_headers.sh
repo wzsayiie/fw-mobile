@@ -37,3 +37,4 @@ function generate_headers() {
 clean_geneated
 generate_headers library
 generate_headers subsystem_cpp
+generate_headers subsystem_lua

@@ -17,9 +17,13 @@ endfunction()
 set(lib_name cargo)
 
 list(APPEND inc_path ../../GENERATED_HEADERS)
+list(APPEND inc_path ../../thirds_android/includes)
+
 list(APPEND src_aims ../../subsystem_cpp/*.cpp)
+list(APPEND src_aims ../../subsystem_lua/*.cpp)
 
 list(APPEND sys_libs log)
+list(APPEND usr_libs ../../thirds_android/jniLibs/${ANDROID_ABI}/liblua.so)
 list(APPEND usr_libs ../../library_android/${built_jni_subpath}/liblibrary.so)
 ### configutation end
 

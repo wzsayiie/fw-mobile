@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B408A5B92226539B00F4239B /* cqluavm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B408A5B82226539B00F4239B /* cqluavm.cpp */; };
 		B40B7BA1220464FC00C0A22E /* cqobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7BA0220464FC00C0A22E /* cqobject.cpp */; };
 		B416F18921A2CD630045FDF6 /* Scenes.plist in Resources */ = {isa = PBXBuildFile; fileRef = B416F18821A2CD630045FDF6 /* Scenes.plist */; };
 		B416F18B21A2D4940045FDF6 /* QuickModels.plist in Resources */ = {isa = PBXBuildFile; fileRef = B416F18A21A2D4940045FDF6 /* QuickModels.plist */; };
@@ -28,6 +29,10 @@
 		B45C1BFE21A03824007CB374 /* NSObject+CQSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1BEC21A03824007CB374 /* NSObject+CQSingleton.m */; };
 		B45C1BFF21A03824007CB374 /* CQSingletonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1BED21A03824007CB374 /* CQSingletonManager.m */; };
 		B45C1C0021A03824007CB374 /* CQHotfixManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1BF321A03824007CB374 /* CQHotfixManager.m */; };
+		B49706742227785C00E8D717 /* cqluaviewcontroller.mm in Sources */ = {isa = PBXBuildFile; fileRef = B49706732227785C00E8D717 /* cqluaviewcontroller.mm */; };
+		B4AF89932226AEC000F73B6F /* cqluasource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4AF89922226AEC000F73B6F /* cqluasource.cpp */; };
+		B4B9433222250FE500CE3C9A /* cqluaappdelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = B4B9432522250FE500CE3C9A /* cqluaappdelegate.mm */; };
+		B4B9D32022278D4E00B35E72 /* liblua.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B9D31F22278D4D00B35E72 /* liblua.a */; };
 		B4BC9CAD2204331C00CFD84C /* cqcppcarrier.mm in Sources */ = {isa = PBXBuildFile; fileRef = B4BC9CA92204331C00CFD84C /* cqcppcarrier.mm */; };
 		B4CFD96F21C7475000FFF4CF /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD95421C7475000FFF4CF /* TabBarViewController.m */; };
 		B4CFD97021C7475000FFF4CF /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD95721C7475000FFF4CF /* CollectionViewController.m */; };
@@ -72,6 +77,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B408A5B72226539B00F4239B /* cqluavm.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqluavm.hh; sourceTree = "<group>"; };
+		B408A5B82226539B00F4239B /* cqluavm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluavm.cpp; sourceTree = "<group>"; };
 		B40B7B9F220464FC00C0A22E /* cqobject.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqobject.hh; sourceTree = "<group>"; };
 		B40B7BA0220464FC00C0A22E /* cqobject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqobject.cpp; sourceTree = "<group>"; };
 		B416F18821A2CD630045FDF6 /* Scenes.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Scenes.plist; sourceTree = "<group>"; };
@@ -110,6 +117,14 @@
 		B45C1BEF21A03824007CB374 /* NSObject+CQSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CQSingleton.h"; sourceTree = "<group>"; };
 		B45C1BF321A03824007CB374 /* CQHotfixManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQHotfixManager.m; sourceTree = "<group>"; };
 		B45C1BF421A03824007CB374 /* CQHotfixManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQHotfixManager.h; sourceTree = "<group>"; };
+		B49706702227756C00E8D717 /* cqluasource.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqluasource.hh; sourceTree = "<group>"; };
+		B49706712227785C00E8D717 /* cqluaviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluaviewcontroller.h; sourceTree = "<group>"; };
+		B49706722227785C00E8D717 /* cqluaappdelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluaappdelegate.h; sourceTree = "<group>"; };
+		B49706732227785C00E8D717 /* cqluaviewcontroller.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = cqluaviewcontroller.mm; sourceTree = "<group>"; };
+		B4AF89922226AEC000F73B6F /* cqluasource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluasource.cpp; sourceTree = "<group>"; };
+		B4B9432522250FE500CE3C9A /* cqluaappdelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = cqluaappdelegate.mm; sourceTree = "<group>"; };
+		B4B943332225179800CE3C9A /* liblua.5.3.5.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblua.5.3.5.a; path = ../thirds_libs_ios/liblua.5.3.5.a; sourceTree = "<group>"; };
+		B4B9D31F22278D4D00B35E72 /* liblua.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblua.a; path = ../thirds_ios/libs/liblua.a; sourceTree = "<group>"; };
 		B4BC9CA92204331C00CFD84C /* cqcppcarrier.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = cqcppcarrier.mm; sourceTree = "<group>"; };
 		B4CFD95321C7475000FFF4CF /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		B4CFD95421C7475000FFF4CF /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
@@ -163,6 +178,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4B9D32022278D4E00B35E72 /* liblua.a in Frameworks */,
 				B4FCC39821F0912700D152DF /* libc++.tbd in Frameworks */,
 				B444D8E321DF6DDF00E5FF54 /* libLibrary.a in Frameworks */,
 			);
@@ -171,6 +187,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B408A5B62226539B00F4239B /* luavm */ = {
+			isa = PBXGroup;
+			children = (
+				B49706702227756C00E8D717 /* cqluasource.hh */,
+				B4AF89922226AEC000F73B6F /* cqluasource.cpp */,
+				B408A5B72226539B00F4239B /* cqluavm.hh */,
+				B408A5B82226539B00F4239B /* cqluavm.cpp */,
+			);
+			name = luavm;
+			path = ../subsystem_lua/luavm;
+			sourceTree = "<group>";
+		};
 		B416F18721A2CCE50045FDF6 /* Root */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +222,7 @@
 			children = (
 				B45C1B5D21A02562007CB374 /* App */,
 				B4BC9C9622041E5500CFD84C /* SubsystemCPP */,
+				B4B9431422250FB500CE3C9A /* SubsystemLua */,
 				B4EC3C6621DF6D8800E287A4 /* Library.xcodeproj */,
 				B45C1B5C21A02562007CB374 /* Products */,
 				B4FCC39621F0912700D152DF /* Frameworks */,
@@ -418,6 +447,27 @@
 			path = HotfixManager;
 			sourceTree = "<group>";
 		};
+		B4B9431422250FB500CE3C9A /* SubsystemLua */ = {
+			isa = PBXGroup;
+			children = (
+				B4B9432422250FE500CE3C9A /* ioshost */,
+				B408A5B62226539B00F4239B /* luavm */,
+			);
+			name = SubsystemLua;
+			sourceTree = "<group>";
+		};
+		B4B9432422250FE500CE3C9A /* ioshost */ = {
+			isa = PBXGroup;
+			children = (
+				B49706722227785C00E8D717 /* cqluaappdelegate.h */,
+				B4B9432522250FE500CE3C9A /* cqluaappdelegate.mm */,
+				B49706712227785C00E8D717 /* cqluaviewcontroller.h */,
+				B49706732227785C00E8D717 /* cqluaviewcontroller.mm */,
+			);
+			name = ioshost;
+			path = ../subsystem_lua/ioshost;
+			sourceTree = "<group>";
+		};
 		B4BC9C9622041E5500CFD84C /* SubsystemCPP */ = {
 			isa = PBXGroup;
 			children = (
@@ -618,6 +668,8 @@
 		B4FCC39621F0912700D152DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B4B9D31F22278D4D00B35E72 /* liblua.a */,
+				B4B943332225179800CE3C9A /* liblua.5.3.5.a */,
 				B4FCC39721F0912700D152DF /* libc++.tbd */,
 			);
 			name = Frameworks;
@@ -714,11 +766,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE224EA72206AED300B8FB53 /* cqview.cpp in Sources */,
+				B4B9433222250FE500CE3C9A /* cqluaappdelegate.mm in Sources */,
 				B4CFD97021C7475000FFF4CF /* CollectionViewController.m in Sources */,
 				CE79B403220735F400581FBD /* cqlog.cpp in Sources */,
 				B4BC9CAD2204331C00CFD84C /* cqcppcarrier.mm in Sources */,
 				B45C1BFE21A03824007CB374 /* NSObject+CQSingleton.m in Sources */,
 				CE224EAC2206B3C100B8FB53 /* cqwindow.cpp in Sources */,
+				B4AF89932226AEC000F73B6F /* cqluasource.cpp in Sources */,
 				B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */,
 				B40B7BA1220464FC00C0A22E /* cqobject.cpp in Sources */,
 				B4CFD97421C7475000FFF4CF /* ExampleViewController.m in Sources */,
@@ -732,9 +786,11 @@
 				B4F7176821F976AD0090F949 /* NSBundle+CQ.m in Sources */,
 				B4DCD87F21F17DAE0090BFBB /* UserSetting.m in Sources */,
 				CE224EB62206C3FD00B8FB53 /* appdelegate.cpp in Sources */,
+				B408A5B92226539B00F4239B /* cqluavm.cpp in Sources */,
 				B45C1BF821A03824007CB374 /* CQSceneNavigator.m in Sources */,
 				B4E7CD0F2224098800122637 /* main.m in Sources */,
 				B4CFD97321C7475000FFF4CF /* IAPViewController.m in Sources */,
+				B49706742227785C00E8D717 /* cqluaviewcontroller.mm in Sources */,
 				B4CFD97521C7475000FFF4CF /* FloatViewController.m in Sources */,
 				CE224EA82206AED300B8FB53 /* cqviewcontroller.cpp in Sources */,
 				B4CFD97621C7475000FFF4CF /* WebViewController.m in Sources */,
@@ -885,12 +941,16 @@
 				DEVELOPMENT_TEAM = C7Z95JWD4Y;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/App/Kits/Prefix.pch";
-				HEADER_SEARCH_PATHS = $SRCROOT/../GENERATED_HEADERS;
+				HEADER_SEARCH_PATHS = (
+					$SRCROOT/../GENERATED_HEADERS,
+					"$(SRCROOT)/../thirds_ios/includes",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/App/Properties/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../thirds_ios/libs";
 				PRODUCT_BUNDLE_IDENTIFIER = me.wzsayiie.app.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -907,12 +967,16 @@
 				DEVELOPMENT_TEAM = C7Z95JWD4Y;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/App/Kits/Prefix.pch";
-				HEADER_SEARCH_PATHS = $SRCROOT/../GENERATED_HEADERS;
+				HEADER_SEARCH_PATHS = (
+					$SRCROOT/../GENERATED_HEADERS,
+					"$(SRCROOT)/../thirds_ios/includes",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/App/Properties/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../thirds_ios/libs";
 				PRODUCT_BUNDLE_IDENTIFIER = me.wzsayiie.app.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

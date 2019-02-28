@@ -24,3 +24,4 @@
 # the project's local files
 BUILD/
 GENERATED_HEADERS/
+GENERATED_LUA/
