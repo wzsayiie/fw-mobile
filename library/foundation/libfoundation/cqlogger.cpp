@@ -1,4 +1,4 @@
-#include "cqlog.hh"
+#include "cqlogger.hh"
 #include "cqfoundation.hh"
 
 void _CQLogger_info(const char *file, int line, const char *format, ...) {

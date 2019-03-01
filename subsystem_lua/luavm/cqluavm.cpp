@@ -1,25 +1,23 @@
 #include "cqluavm.hh"
+#include "cqlogger.hh"
 #include "lua.hpp"
+#include <unistd.h>
 
-static std::string *sPath = nullptr;
-static lua_State   *sLua  = nullptr;
+static lua_State *sLua = nullptr;
 
 void CQLuaVMOpen(const std::string &path) {
     CQLuaVMClose();
     
-    sPath = new std::string(path);
-    sLua  = luaL_newstate();
+    chdir(path.c_str());
     
+    sLua = luaL_newstate();
     luaL_openlibs(sLua);
-    CQLuaVMDoString("package.path = '" + path + "/?.lua'");
+    CQLuaVMDoString("package.cpath = ''");
+    CQLuaVMDoString("package.path = '?.lua'");
     CQLuaVMDoFile("CQRUNTIME.lua");
 }
 
 void CQLuaVMClose() {
-    if (sPath != nullptr) {
-        delete sPath;
-        sPath = nullptr;
-    }
     if (sLua != nullptr) {
         lua_close(sLua);
         sLua = nullptr;
@@ -33,13 +31,9 @@ static int CQLuaVMTraceback(lua_State *lua) {
     lua_pushvalue(lua, 1);
     lua_pushinteger(lua, 2);
     lua_call(lua, 2, 1);
-
-//    if (sLua != nullptr) {
-//        std::string info;
-//        info.append("lua runtime error:\n");
-//        info.append(lua_tostring(lua, -1));
-//        sLog(info);
-//    }
+    const char *ret = lua_tostring(lua, -1);
+    
+    E("LUA RUNTIME ERROR:\n%s", ret);
     
     return 1;
 }
@@ -48,23 +42,15 @@ void CQLuaVMDoFile(const std::string &fileName) {
     if (sLua == nullptr) {
         return;
     }
-    if (sPath == nullptr) {
-        return;
-    }
     
     //trackback function
     lua_pushcfunction(sLua, CQLuaVMTraceback);
     
     //load
-    std::string filePath = *sPath + "/" + fileName;
-    int error = luaL_loadfile(sLua, filePath.c_str());
+    int error = luaL_loadfile(sLua, fileName.c_str());
     if (error) {
-//        if (sLog != nullptr) {
-//            std::string info;
-//            info.append("lua syntax error:\n");
-//            info.append(lua_tostring(sLua, -1));
-//            sLog(info);
-//        }
+        const char *info = lua_tostring(sLua, -1);
+        E("LUA SYNTAX ERROR:\n%s", info);
         return;
     }
     
@@ -84,12 +70,8 @@ void CQLuaVMDoString(const std::string &source) {
     //load
     int error = luaL_loadstring(sLua, source.c_str());
     if (error) {
-//        if (sLog != nullptr) {
-//            std::string info;
-//            info.append("lua syntax error:\n");
-//            info.append(lua_tostring(sLua, -1));
-//            sLog(info);
-//        }
+        const char *info = lua_tostring(sLua, -1);
+        E("LUA SYNTAX ERROR:\n%s", info);
         return;
     }
     

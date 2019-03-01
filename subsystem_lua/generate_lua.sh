@@ -12,5 +12,5 @@ mkdir -p `dirname $output_file`
 
 for lua_file in `find $search_path -name "*.lua"`; do
     echo "\"`basename $lua_file`\"," >> $output_file
-    echo "R\"===(\n`cat $lua_file`\n)===\"," >> $output_file
+    echo "R\"===(`cat $lua_file`\n)===\"," >> $output_file
 done

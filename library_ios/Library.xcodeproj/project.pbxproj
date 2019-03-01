@@ -17,7 +17,7 @@
 		B40B7B992204440E00C0A22E /* cqfoundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B932204440E00C0A22E /* cqfoundation.cpp */; };
 		B40B7B9A2204440E00C0A22E /* CQLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B962204440E00C0A22E /* CQLogger.m */; };
 		B40B7B9B2204440E00C0A22E /* CQFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B982204440E00C0A22E /* CQFoundation.m */; };
-		B46997DC22280F4E0067478B /* cqlog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B46997DB22280F4E0067478B /* cqlog.cpp */; };
+		B46997DC22280F4E0067478B /* cqlogger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B46997DB22280F4E0067478B /* cqlogger.cpp */; };
 		CE8E328A2225838700B287C6 /* CQRUNTIME.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE8E32882225838700B287C6 /* CQRUNTIME.cpp */; };
 /* End PBXBuildFile section */
 
@@ -53,8 +53,8 @@
 		B40B7B972204440E00C0A22E /* CQFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQFoundation.h; sourceTree = "<group>"; };
 		B40B7B982204440E00C0A22E /* CQFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQFoundation.m; sourceTree = "<group>"; };
 		B46997D922280CCE0067478B /* CQLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQLogger.h; sourceTree = "<group>"; };
-		B46997DA22280F4E0067478B /* cqlog.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqlog.hh; sourceTree = "<group>"; };
-		B46997DB22280F4E0067478B /* cqlog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqlog.cpp; sourceTree = "<group>"; };
+		B46997DA22280F4E0067478B /* cqlogger.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqlogger.hh; sourceTree = "<group>"; };
+		B46997DB22280F4E0067478B /* cqlogger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqlogger.cpp; sourceTree = "<group>"; };
 		CE219ADF21DA51FD006A27B6 /* libLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE8E32882225838700B287C6 /* CQRUNTIME.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CQRUNTIME.cpp; sourceTree = "<group>"; };
 		CE8E32892225838700B287C6 /* CQRUNTIME.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CQRUNTIME.hh; sourceTree = "<group>"; };
@@ -121,8 +121,8 @@
 			children = (
 				B40B7B942204440E00C0A22E /* cqfoundation.hh */,
 				B40B7B932204440E00C0A22E /* cqfoundation.cpp */,
-				B46997DA22280F4E0067478B /* cqlog.hh */,
-				B46997DB22280F4E0067478B /* cqlog.cpp */,
+				B46997DA22280F4E0067478B /* cqlogger.hh */,
+				B46997DB22280F4E0067478B /* cqlogger.cpp */,
 				CE8E32892225838700B287C6 /* CQRUNTIME.hh */,
 				CE8E32882225838700B287C6 /* CQRUNTIME.cpp */,
 			);
@@ -219,7 +219,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B46997DC22280F4E0067478B /* cqlog.cpp in Sources */,
+				B46997DC22280F4E0067478B /* cqlogger.cpp in Sources */,
 				B40B7B84220443F200C0A22E /* cqandroidbridge.cpp in Sources */,
 				B40B7B8F2204440000C0A22E /* cqextension.cpp in Sources */,
 				B40B7B992204440E00C0A22E /* cqfoundation.cpp in Sources */,
