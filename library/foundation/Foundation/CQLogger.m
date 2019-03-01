@@ -11,10 +11,14 @@ static id<CQLoggerAgent> sAgent = nil;
         return;
     }
     
-    const char *M = message.UTF8String;
-    const char *F = file.lastPathComponent.UTF8String;
-    int L = (int)line;
-    fprintf(stderr, "info|%s(%d)|%s\n", F, L, M);
+    if (file.length > 0 && line > 0) {
+        const char *M = message.UTF8String;
+        const char *F = file.lastPathComponent.UTF8String;
+        int L = (int)line;
+        fprintf(stderr, "info|%s(%d)|%s\n", F, L, M);
+    } else {
+        fprintf(stderr, "info|%s\n", message.UTF8String);
+    }
 }
 
 + (void)error:(NSString *)message file:(NSString *)file line:(int32_t)line {
@@ -23,10 +27,14 @@ static id<CQLoggerAgent> sAgent = nil;
         return;
     }
     
-    const char *M = message.UTF8String;
-    const char *F = file.lastPathComponent.UTF8String;
-    int L = (int)line;
-    fprintf(stderr, "ERROR|%s(%d)|%s\n", F, L, M);
+    if (file.length > 0 && line > 0) {
+        const char *M = message.UTF8String;
+        const char *F = file.lastPathComponent.UTF8String;
+        int L = (int)line;
+        fprintf(stderr, "ERROR|%s(%d)|%s\n", F, L, M);
+    } else {
+        fprintf(stderr, "ERROR|%s\n", message.UTF8String);
+    }
 }
 
 + (void)setAgent:(id<CQLoggerAgent>)agent {

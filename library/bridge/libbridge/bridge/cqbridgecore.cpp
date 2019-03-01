@@ -1,4 +1,4 @@
-#include "cqbridgecore_p.h"
+#include "cqbridgecore.h"
 #include <string>
 #include <vector>
 

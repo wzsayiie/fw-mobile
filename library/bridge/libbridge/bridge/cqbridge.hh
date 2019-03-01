@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cqbridgecore_p.h"
+#include "cqbridgecore.h"
 #include <string>
 
 # ifdef ANDROID

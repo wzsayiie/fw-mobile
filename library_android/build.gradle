@@ -31,6 +31,8 @@ android {
             java.srcDirs += '../library/bridge/java'
             java.srcDirs += '../library/extension/java'
             java.srcDirs += '../library/foundation/java'
+
+            jniLibs.srcDirs += '../thirds_android/jniLibs'
         }
     }
     externalNativeBuild {

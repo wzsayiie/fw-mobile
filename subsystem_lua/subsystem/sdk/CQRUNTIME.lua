@@ -2,13 +2,13 @@
 
 function I(message)
     if message ~= nil then
-        print("info: " .. message)
+        CQLogger:info(message, "", 0)
     end
 end
 
 function E(message)
     if message ~= nil then
-        print("ERROR: " .. message)
+        CQLogger:error(message, "", 0)
     end
 end
 

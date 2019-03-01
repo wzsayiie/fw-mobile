@@ -925,7 +925,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/App/Kits/Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					$SRCROOT/../GENERATED_HEADERS,
-					"$(SRCROOT)/../thirds_ios/includes",
+					$SRCROOT/../thirds_ios/includes,
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/App/Properties/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -951,7 +951,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/App/Kits/Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					$SRCROOT/../GENERATED_HEADERS,
-					"$(SRCROOT)/../thirds_ios/includes",
+					$SRCROOT/../thirds_ios/includes,
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/App/Properties/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

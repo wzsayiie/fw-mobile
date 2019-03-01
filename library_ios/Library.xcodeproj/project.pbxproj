@@ -7,18 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B40B7B84220443F200C0A22E /* cqandroidbridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B7B220443F200C0A22E /* cqandroidbridge.cpp */; };
-		B40B7B85220443F200C0A22E /* cqbridgecore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B7D220443F200C0A22E /* cqbridgecore.cpp */; };
-		B40B7B86220443F200C0A22E /* cqbridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B80220443F200C0A22E /* cqbridge.cpp */; };
-		B40B7B87220443F200C0A22E /* CQBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B83220443F200C0A22E /* CQBridge.m */; };
-		B40B7B8F2204440000C0A22E /* cqextension.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B892204440000C0A22E /* cqextension.cpp */; };
-		B40B7B902204440000C0A22E /* cqjson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B8A2204440000C0A22E /* cqjson.cpp */; };
-		B40B7B912204440000C0A22E /* CQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B8D2204440000C0A22E /* CQExtension.m */; };
-		B40B7B992204440E00C0A22E /* cqfoundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B932204440E00C0A22E /* cqfoundation.cpp */; };
-		B40B7B9A2204440E00C0A22E /* CQLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B962204440E00C0A22E /* CQLogger.m */; };
-		B40B7B9B2204440E00C0A22E /* CQFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B7B982204440E00C0A22E /* CQFoundation.m */; };
-		B46997DC22280F4E0067478B /* cqlogger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B46997DB22280F4E0067478B /* cqlogger.cpp */; };
-		CE8E328A2225838700B287C6 /* CQRUNTIME.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE8E32882225838700B287C6 /* CQRUNTIME.cpp */; };
+		B468C64322293CEF00A9657F /* CQLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B468C60122293CEF00A9657F /* CQLogger.m */; };
+		B468C64422293CEF00A9657F /* CQFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = B468C60222293CEF00A9657F /* CQFoundation.m */; };
+		B468C64922293CEF00A9657F /* cqfoundation.lua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468C60E22293CEF00A9657F /* cqfoundation.lua.cpp */; };
+		B468C64B22293CEF00A9657F /* CQRUNTIME.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468C61522293CEF00A9657F /* CQRUNTIME.cpp */; };
+		B468C64C22293CEF00A9657F /* cqfoundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468C61622293CEF00A9657F /* cqfoundation.cpp */; };
+		B468C64D22293CEF00A9657F /* cqlogger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468C61722293CEF00A9657F /* cqlogger.cpp */; };
+		B468C64F22293CEF00A9657F /* cqandroidbridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468C61E22293CEF00A9657F /* cqandroidbridge.cpp */; };
+		B468C65022293CEF00A9657F /* cqbridgecore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468C62122293CEF00A9657F /* cqbridgecore.cpp */; };
+		B468C65122293CEF00A9657F /* cqbridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468C62222293CEF00A9657F /* cqbridge.cpp */; };
+		B468C65222293CEF00A9657F /* cqbridge.lua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468C62622293CEF00A9657F /* cqbridge.lua.cpp */; };
+		B468C65322293CEF00A9657F /* CQBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B468C62922293CEF00A9657F /* CQBridge.m */; };
+		B468C65522293CEF00A9657F /* CQExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = B468C63122293CEF00A9657F /* CQExtension.m */; };
+		B468C65622293CEF00A9657F /* cqextension.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468C63622293CEF00A9657F /* cqextension.cpp */; };
+		B468C65722293CEF00A9657F /* cqjson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468C63722293CEF00A9657F /* cqjson.cpp */; };
+		B468C65922293CEF00A9657F /* cqextension.lua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468C63B22293CEF00A9657F /* cqextension.lua.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,30 +37,36 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B40B7B7B220443F200C0A22E /* cqandroidbridge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqandroidbridge.cpp; sourceTree = "<group>"; };
-		B40B7B7C220443F200C0A22E /* cqandroidbridge.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqandroidbridge.hh; sourceTree = "<group>"; };
-		B40B7B7D220443F200C0A22E /* cqbridgecore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqbridgecore.cpp; sourceTree = "<group>"; };
-		B40B7B7E220443F200C0A22E /* cqbridgecore_p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqbridgecore_p.h; sourceTree = "<group>"; };
-		B40B7B7F220443F200C0A22E /* cqbridge.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqbridge.hh; sourceTree = "<group>"; };
-		B40B7B80220443F200C0A22E /* cqbridge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqbridge.cpp; sourceTree = "<group>"; };
-		B40B7B82220443F200C0A22E /* CQBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQBridge.h; sourceTree = "<group>"; };
-		B40B7B83220443F200C0A22E /* CQBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQBridge.m; sourceTree = "<group>"; };
-		B40B7B892204440000C0A22E /* cqextension.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqextension.cpp; sourceTree = "<group>"; };
-		B40B7B8A2204440000C0A22E /* cqjson.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqjson.cpp; sourceTree = "<group>"; };
-		B40B7B8B2204440000C0A22E /* cqextension.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqextension.hh; sourceTree = "<group>"; };
-		B40B7B8D2204440000C0A22E /* CQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQExtension.m; sourceTree = "<group>"; };
-		B40B7B8E2204440000C0A22E /* CQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQExtension.h; sourceTree = "<group>"; };
-		B40B7B932204440E00C0A22E /* cqfoundation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqfoundation.cpp; sourceTree = "<group>"; };
-		B40B7B942204440E00C0A22E /* cqfoundation.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqfoundation.hh; sourceTree = "<group>"; };
-		B40B7B962204440E00C0A22E /* CQLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQLogger.m; sourceTree = "<group>"; };
-		B40B7B972204440E00C0A22E /* CQFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQFoundation.h; sourceTree = "<group>"; };
-		B40B7B982204440E00C0A22E /* CQFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQFoundation.m; sourceTree = "<group>"; };
-		B46997D922280CCE0067478B /* CQLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQLogger.h; sourceTree = "<group>"; };
-		B46997DA22280F4E0067478B /* cqlogger.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqlogger.hh; sourceTree = "<group>"; };
-		B46997DB22280F4E0067478B /* cqlogger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqlogger.cpp; sourceTree = "<group>"; };
+		B468C60022293CEF00A9657F /* CQFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQFoundation.h; sourceTree = "<group>"; };
+		B468C60122293CEF00A9657F /* CQLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQLogger.m; sourceTree = "<group>"; };
+		B468C60222293CEF00A9657F /* CQFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQFoundation.m; sourceTree = "<group>"; };
+		B468C60322293CEF00A9657F /* CQLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQLogger.h; sourceTree = "<group>"; };
+		B468C60E22293CEF00A9657F /* cqfoundation.lua.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqfoundation.lua.cpp; sourceTree = "<group>"; };
+		B468C60F22293CEF00A9657F /* cqfoundation.lua.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqfoundation.lua.hh; sourceTree = "<group>"; };
+		B468C61322293CEF00A9657F /* cqfoundation.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqfoundation.hh; sourceTree = "<group>"; };
+		B468C61422293CEF00A9657F /* cqlogger.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqlogger.hh; sourceTree = "<group>"; };
+		B468C61522293CEF00A9657F /* CQRUNTIME.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CQRUNTIME.cpp; sourceTree = "<group>"; };
+		B468C61622293CEF00A9657F /* cqfoundation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqfoundation.cpp; sourceTree = "<group>"; };
+		B468C61722293CEF00A9657F /* cqlogger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqlogger.cpp; sourceTree = "<group>"; };
+		B468C61822293CEF00A9657F /* CQRUNTIME.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CQRUNTIME.hh; sourceTree = "<group>"; };
+		B468C61E22293CEF00A9657F /* cqandroidbridge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqandroidbridge.cpp; sourceTree = "<group>"; };
+		B468C61F22293CEF00A9657F /* cqandroidbridge.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqandroidbridge.hh; sourceTree = "<group>"; };
+		B468C62022293CEF00A9657F /* cqbridgecore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqbridgecore.h; sourceTree = "<group>"; };
+		B468C62122293CEF00A9657F /* cqbridgecore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqbridgecore.cpp; sourceTree = "<group>"; };
+		B468C62222293CEF00A9657F /* cqbridge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqbridge.cpp; sourceTree = "<group>"; };
+		B468C62322293CEF00A9657F /* cqbridge.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqbridge.hh; sourceTree = "<group>"; };
+		B468C62522293CEF00A9657F /* cqbridge.lua.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqbridge.lua.hh; sourceTree = "<group>"; };
+		B468C62622293CEF00A9657F /* cqbridge.lua.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqbridge.lua.cpp; sourceTree = "<group>"; };
+		B468C62822293CEF00A9657F /* CQBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQBridge.h; sourceTree = "<group>"; };
+		B468C62922293CEF00A9657F /* CQBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQBridge.m; sourceTree = "<group>"; };
+		B468C63122293CEF00A9657F /* CQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQExtension.m; sourceTree = "<group>"; };
+		B468C63222293CEF00A9657F /* CQExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQExtension.h; sourceTree = "<group>"; };
+		B468C63522293CEF00A9657F /* cqextension.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqextension.hh; sourceTree = "<group>"; };
+		B468C63622293CEF00A9657F /* cqextension.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqextension.cpp; sourceTree = "<group>"; };
+		B468C63722293CEF00A9657F /* cqjson.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqjson.cpp; sourceTree = "<group>"; };
+		B468C63B22293CEF00A9657F /* cqextension.lua.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqextension.lua.cpp; sourceTree = "<group>"; };
+		B468C63C22293CEF00A9657F /* cqextension.lua.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqextension.lua.hh; sourceTree = "<group>"; };
 		CE219ADF21DA51FD006A27B6 /* libLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE8E32882225838700B287C6 /* CQRUNTIME.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CQRUNTIME.cpp; sourceTree = "<group>"; };
-		CE8E32892225838700B287C6 /* CQRUNTIME.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CQRUNTIME.hh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,86 +80,161 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B40B7B7A220443F200C0A22E /* libbridge */ = {
+		B468C5FE22293CEF00A9657F /* foundation */ = {
 			isa = PBXGroup;
 			children = (
-				B40B7B7E220443F200C0A22E /* cqbridgecore_p.h */,
-				B40B7B7D220443F200C0A22E /* cqbridgecore.cpp */,
-				B40B7B7F220443F200C0A22E /* cqbridge.hh */,
-				B40B7B80220443F200C0A22E /* cqbridge.cpp */,
-				B40B7B7C220443F200C0A22E /* cqandroidbridge.hh */,
-				B40B7B7B220443F200C0A22E /* cqandroidbridge.cpp */,
+				B468C5FF22293CEF00A9657F /* Foundation */,
+				B468C60C22293CEF00A9657F /* libfoundation */,
 			);
-			name = libbridge;
-			path = ../library/bridge/libbridge;
+			name = foundation;
+			path = ../library/foundation;
 			sourceTree = "<group>";
 		};
-		B40B7B81220443F200C0A22E /* Bridge */ = {
+		B468C5FF22293CEF00A9657F /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				B40B7B82220443F200C0A22E /* CQBridge.h */,
-				B40B7B83220443F200C0A22E /* CQBridge.m */,
+				B468C60022293CEF00A9657F /* CQFoundation.h */,
+				B468C60222293CEF00A9657F /* CQFoundation.m */,
+				B468C60322293CEF00A9657F /* CQLogger.h */,
+				B468C60122293CEF00A9657F /* CQLogger.m */,
 			);
-			name = Bridge;
-			path = ../library/bridge/Bridge;
+			path = Foundation;
 			sourceTree = "<group>";
 		};
-		B40B7B882204440000C0A22E /* libextension */ = {
+		B468C60C22293CEF00A9657F /* libfoundation */ = {
 			isa = PBXGroup;
 			children = (
-				B40B7B8B2204440000C0A22E /* cqextension.hh */,
-				B40B7B892204440000C0A22E /* cqextension.cpp */,
-				B40B7B8A2204440000C0A22E /* cqjson.cpp */,
+				B468C61222293CEF00A9657F /* foundation */,
+				B468C60D22293CEF00A9657F /* lua_foundation */,
 			);
-			name = libextension;
-			path = ../library/extension/libextension;
+			path = libfoundation;
 			sourceTree = "<group>";
 		};
-		B40B7B8C2204440000C0A22E /* Extension */ = {
+		B468C60D22293CEF00A9657F /* lua_foundation */ = {
 			isa = PBXGroup;
 			children = (
-				B40B7B8E2204440000C0A22E /* CQExtension.h */,
-				B40B7B8D2204440000C0A22E /* CQExtension.m */,
+				B468C60F22293CEF00A9657F /* cqfoundation.lua.hh */,
+				B468C60E22293CEF00A9657F /* cqfoundation.lua.cpp */,
 			);
-			name = Extension;
-			path = ../library/extension/Extension;
+			path = lua_foundation;
 			sourceTree = "<group>";
 		};
-		B40B7B922204440E00C0A22E /* libfoundation */ = {
+		B468C61222293CEF00A9657F /* foundation */ = {
 			isa = PBXGroup;
 			children = (
-				B40B7B942204440E00C0A22E /* cqfoundation.hh */,
-				B40B7B932204440E00C0A22E /* cqfoundation.cpp */,
-				B46997DA22280F4E0067478B /* cqlogger.hh */,
-				B46997DB22280F4E0067478B /* cqlogger.cpp */,
-				CE8E32892225838700B287C6 /* CQRUNTIME.hh */,
-				CE8E32882225838700B287C6 /* CQRUNTIME.cpp */,
+				B468C61322293CEF00A9657F /* cqfoundation.hh */,
+				B468C61622293CEF00A9657F /* cqfoundation.cpp */,
+				B468C61422293CEF00A9657F /* cqlogger.hh */,
+				B468C61722293CEF00A9657F /* cqlogger.cpp */,
+				B468C61522293CEF00A9657F /* CQRUNTIME.cpp */,
+				B468C61822293CEF00A9657F /* CQRUNTIME.hh */,
 			);
-			name = libfoundation;
-			path = ../library/foundation/libfoundation;
+			path = foundation;
 			sourceTree = "<group>";
 		};
-		B40B7B952204440E00C0A22E /* Foundation */ = {
+		B468C61922293CEF00A9657F /* bridge */ = {
 			isa = PBXGroup;
 			children = (
-				B40B7B972204440E00C0A22E /* CQFoundation.h */,
-				B40B7B982204440E00C0A22E /* CQFoundation.m */,
-				B46997D922280CCE0067478B /* CQLogger.h */,
-				B40B7B962204440E00C0A22E /* CQLogger.m */,
+				B468C62722293CEF00A9657F /* Bridge */,
+				B468C61A22293CEF00A9657F /* libbridge */,
 			);
-			name = Foundation;
-			path = ../library/foundation/Foundation;
+			name = bridge;
+			path = ../library/bridge;
+			sourceTree = "<group>";
+		};
+		B468C61A22293CEF00A9657F /* libbridge */ = {
+			isa = PBXGroup;
+			children = (
+				B468C61D22293CEF00A9657F /* bridge */,
+				B468C62422293CEF00A9657F /* lua_bridge */,
+			);
+			path = libbridge;
+			sourceTree = "<group>";
+		};
+		B468C61D22293CEF00A9657F /* bridge */ = {
+			isa = PBXGroup;
+			children = (
+				B468C61F22293CEF00A9657F /* cqandroidbridge.hh */,
+				B468C61E22293CEF00A9657F /* cqandroidbridge.cpp */,
+				B468C62322293CEF00A9657F /* cqbridge.hh */,
+				B468C62222293CEF00A9657F /* cqbridge.cpp */,
+				B468C62022293CEF00A9657F /* cqbridgecore.h */,
+				B468C62122293CEF00A9657F /* cqbridgecore.cpp */,
+			);
+			path = bridge;
+			sourceTree = "<group>";
+		};
+		B468C62422293CEF00A9657F /* lua_bridge */ = {
+			isa = PBXGroup;
+			children = (
+				B468C62522293CEF00A9657F /* cqbridge.lua.hh */,
+				B468C62622293CEF00A9657F /* cqbridge.lua.cpp */,
+			);
+			path = lua_bridge;
+			sourceTree = "<group>";
+		};
+		B468C62722293CEF00A9657F /* Bridge */ = {
+			isa = PBXGroup;
+			children = (
+				B468C62822293CEF00A9657F /* CQBridge.h */,
+				B468C62922293CEF00A9657F /* CQBridge.m */,
+			);
+			path = Bridge;
+			sourceTree = "<group>";
+		};
+		B468C62F22293CEF00A9657F /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				B468C63022293CEF00A9657F /* Extension */,
+				B468C63322293CEF00A9657F /* libextension */,
+			);
+			name = extension;
+			path = ../library/extension;
+			sourceTree = "<group>";
+		};
+		B468C63022293CEF00A9657F /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B468C63222293CEF00A9657F /* CQExtension.h */,
+				B468C63122293CEF00A9657F /* CQExtension.m */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		B468C63322293CEF00A9657F /* libextension */ = {
+			isa = PBXGroup;
+			children = (
+				B468C63422293CEF00A9657F /* extension */,
+				B468C63A22293CEF00A9657F /* lua_extension */,
+			);
+			path = libextension;
+			sourceTree = "<group>";
+		};
+		B468C63422293CEF00A9657F /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				B468C63522293CEF00A9657F /* cqextension.hh */,
+				B468C63622293CEF00A9657F /* cqextension.cpp */,
+				B468C63722293CEF00A9657F /* cqjson.cpp */,
+			);
+			path = extension;
+			sourceTree = "<group>";
+		};
+		B468C63A22293CEF00A9657F /* lua_extension */ = {
+			isa = PBXGroup;
+			children = (
+				B468C63C22293CEF00A9657F /* cqextension.lua.hh */,
+				B468C63B22293CEF00A9657F /* cqextension.lua.cpp */,
+			);
+			path = lua_extension;
 			sourceTree = "<group>";
 		};
 		CE219AD621DA51FD006A27B6 = {
 			isa = PBXGroup;
 			children = (
-				B40B7B81220443F200C0A22E /* Bridge */,
-				B40B7B7A220443F200C0A22E /* libbridge */,
-				B40B7B8C2204440000C0A22E /* Extension */,
-				B40B7B882204440000C0A22E /* libextension */,
-				B40B7B952204440E00C0A22E /* Foundation */,
-				B40B7B922204440E00C0A22E /* libfoundation */,
+				B468C61922293CEF00A9657F /* bridge */,
+				B468C62F22293CEF00A9657F /* extension */,
+				B468C5FE22293CEF00A9657F /* foundation */,
 				CE219AE021DA51FD006A27B6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -219,18 +303,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B46997DC22280F4E0067478B /* cqlogger.cpp in Sources */,
-				B40B7B84220443F200C0A22E /* cqandroidbridge.cpp in Sources */,
-				B40B7B8F2204440000C0A22E /* cqextension.cpp in Sources */,
-				B40B7B992204440E00C0A22E /* cqfoundation.cpp in Sources */,
-				CE8E328A2225838700B287C6 /* CQRUNTIME.cpp in Sources */,
-				B40B7B85220443F200C0A22E /* cqbridgecore.cpp in Sources */,
-				B40B7B902204440000C0A22E /* cqjson.cpp in Sources */,
-				B40B7B9A2204440E00C0A22E /* CQLogger.m in Sources */,
-				B40B7B87220443F200C0A22E /* CQBridge.m in Sources */,
-				B40B7B86220443F200C0A22E /* cqbridge.cpp in Sources */,
-				B40B7B9B2204440E00C0A22E /* CQFoundation.m in Sources */,
-				B40B7B912204440000C0A22E /* CQExtension.m in Sources */,
+				B468C65122293CEF00A9657F /* cqbridge.cpp in Sources */,
+				B468C65222293CEF00A9657F /* cqbridge.lua.cpp in Sources */,
+				B468C64B22293CEF00A9657F /* CQRUNTIME.cpp in Sources */,
+				B468C65522293CEF00A9657F /* CQExtension.m in Sources */,
+				B468C64422293CEF00A9657F /* CQFoundation.m in Sources */,
+				B468C65022293CEF00A9657F /* cqbridgecore.cpp in Sources */,
+				B468C64922293CEF00A9657F /* cqfoundation.lua.cpp in Sources */,
+				B468C64D22293CEF00A9657F /* cqlogger.cpp in Sources */,
+				B468C64F22293CEF00A9657F /* cqandroidbridge.cpp in Sources */,
+				B468C65322293CEF00A9657F /* CQBridge.m in Sources */,
+				B468C65722293CEF00A9657F /* cqjson.cpp in Sources */,
+				B468C65622293CEF00A9657F /* cqextension.cpp in Sources */,
+				B468C64C22293CEF00A9657F /* cqfoundation.cpp in Sources */,
+				B468C65922293CEF00A9657F /* cqextension.lua.cpp in Sources */,
+				B468C64322293CEF00A9657F /* CQLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,7 +440,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = $SRCROOT/../GENERATED_HEADERS;
+				HEADER_SEARCH_PATHS = (
+					$SRCROOT/../GENERATED_HEADERS,
+					$SRCROOT/../thirds_ios/includes,
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -365,7 +455,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = $SRCROOT/../GENERATED_HEADERS;
+				HEADER_SEARCH_PATHS = (
+					$SRCROOT/../GENERATED_HEADERS,
+					$SRCROOT/../thirds_ios/includes,
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

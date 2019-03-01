@@ -1,8 +1,8 @@
 int main(int argc, char *argv[]) {
-    NSString *delegate = @"AppDelegate";
     
-//    delegate = @"CQCPPAppDelegate";
-//    delegate = @"CQLuaAppDelegate";
+    NSString *delegate = @"AppDelegate";
+//    NSString *delegate = @"CQCPPAppDelegate";
+//    NSString *delegate = @"CQLuaAppDelegate";
     
     return UIApplicationMain(argc, argv, nil, delegate);
 }

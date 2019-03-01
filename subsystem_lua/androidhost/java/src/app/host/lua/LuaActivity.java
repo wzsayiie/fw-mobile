@@ -3,6 +3,8 @@ package src.app.host.lua;
 import android.app.Activity;
 import android.os.Bundle;
 
+import java.io.File;
+
 public class LuaActivity extends Activity {
 
     static {
@@ -12,7 +14,13 @@ public class LuaActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        handleCreate();
+
+        String luaPathString = getCacheDir().toString() + "/LUA";
+        File luaPath = new File(luaPathString);
+        if (!luaPath.exists()) {
+            luaPath.mkdir();
+        }
+        handleCreate(luaPath.getPath());
     }
 
     @Override
@@ -27,7 +35,7 @@ public class LuaActivity extends Activity {
         handleStop();
     }
 
-    private native void handleCreate();
+    private native void handleCreate(String path);
     private native void handleStart();
     private native void handleStop();
 }
