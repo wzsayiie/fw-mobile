@@ -4,8 +4,6 @@
 #include "luatraverser.hh"
 #include "objcpptraverser.hh"
 
-extern const int CodeCountMainEnabled = 1;
-
 void CodeCountMain() {
     
     vector<string> javas = {
@@ -18,9 +16,8 @@ void CodeCountMain() {
         "app_ios/App/Sources",
         "EDITOR_CPP",
         "library/bridge/Bridge",
-        "library/bridge/jni",
         "library/bridge/libbridge",
-        "library/extension/libextension",
+        "library/extension/libextension/extension",
         "library/foundation/Foundation",
         "subsystem_cpp",
     };

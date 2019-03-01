@@ -1,6 +1,9 @@
 #include "utility.hh"
 
-static void GotoWorkDirectory() {
+static void init();
+static void run();
+
+void init() {
 
     string rootDirectory = "fw-mobile";
     string filePath = __FILE__;
@@ -9,22 +12,20 @@ static void GotoWorkDirectory() {
     if (position != string::npos) {
         string rootPath = filePath.substr(0, position + rootDirectory.size());
         CQChangeDirectory(rootPath);
+        continue_last.print("work path: %s", rootPath.c_str());
+    } else {
+        continue_last.print("FAILED to change the path");
     }
 }
-
-static void Execute(void (*func)(), const int *enabled) {
-    if (*enabled != 0) {
-        func();
-    }
-}
-
-#define E(N) extern const int N##Enabled; void N(); Execute(N, &N##Enabled);
 
 int main(int argc, const char *argv[]) {
-    GotoWorkDirectory();
-    
-    string currentPath = CQGetWorkDirectory();
-    continue_last.print("work path: %s", currentPath.c_str());
+    init();
+    run();
+}
+
+void run() {
+
+#define E(F) do { void F(); F(); } while (0)
     
     E(ObjcppMain);
     E(CPPMain);
