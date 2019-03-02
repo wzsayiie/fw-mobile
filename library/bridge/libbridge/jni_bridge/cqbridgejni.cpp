@@ -1,6 +1,6 @@
 #ifdef ANDROID
 
-#include "cqandroidbridge.hh"
+#include "cqbridgejni.hh"
 #include <android/log.h>
 
 //use original api to print,
@@ -64,52 +64,37 @@ JNIEnv *CQJavaGetEnv() {
     return env;
 }
 
-CQValue CQJavaCallStatic(
+CQBridgeValue CQJavaCallStatic(
     const char *classPath,
     const char *methodName,
-    CQValue arg0,
-    CQValue arg1,
-    CQValue arg2,
-    CQValue arg3
+    CQBridgeValue arg0,
+    CQBridgeValue arg1,
+    CQBridgeValue arg2,
+    CQBridgeValue arg3
 )
 {
     JNIEnv *env = CQJavaGetEnv();
     if (env == nullptr) {
         error("try call static java method but java env is invalid");
-        return CQValueNull;
+        return CQBridgeValueNull;
     }
 
     jclass clazz = env->FindClass(classPath);
     if (JavaException(env)) {
-        return CQValueNull;
+        return CQBridgeValueNull;
     }
 
     jmethodID methodID = env->GetStaticMethodID(clazz, methodName, "(JJJJ)J");
     if (JavaException(env)) {
-        return CQValueNull;
+        return CQBridgeValueNull;
     }
 
     jlong ret = env->CallStaticLongMethod(clazz, methodID, arg0, arg1, arg2, arg3);
     if (JavaException(env)) {
-        return CQValueNull;
+        return CQBridgeValueNull;
     }
 
-    return CQValueMake(ret);
-}
-
-extern "C" jint JNICALL
-Java_src_library_bridge_CQValue_getInt(JNIEnv *, jclass, jlong handle) {
-    CQValue value = CQValueMake(handle);
-    jint raw = CQGetInt32(value);
-    return raw;
-}
-
-extern "C" jstring JNICALL
-Java_src_library_bridge_CQValue_getString(JNIEnv *env, jclass, jlong handle) {
-    CQValue value = CQValueMake(handle);
-    const char *bytes = CQGetStringValue(value);
-    jstring str = env->NewStringUTF(bytes);
-    return str;
+    return CQBridgeValueMake(ret);
 }
 
 #endif

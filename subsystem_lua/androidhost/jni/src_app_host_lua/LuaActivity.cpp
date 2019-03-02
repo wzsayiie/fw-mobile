@@ -11,14 +11,12 @@ Java_src_app_host_lua_LuaActivity_handleCreate(JNIEnv *env, jobject, jstring pat
         env->ReleaseStringUTFChars(path, copy);
     }
 
-    CQLuaSourceUpdate(luaPath, [=]() {
+    CQLuaSourceUpdate(luaPath);
+    CQLuaVMOpen(luaPath);
 
-        CQLuaVMOpen(luaPath);
-
-        CQLuaVMDoString("main()");
-        CQLuaVMDoString("CQHost:onEvent(CQHost.Event.AppCreate)");
-        CQLuaVMDoString("CQHost:onEvent(CQHost.Event.UILoad)");
-    });
+    CQLuaVMDoString("main()");
+    CQLuaVMDoString("CQHost:onEvent(CQHost.Event.AppCreate)");
+    CQLuaVMDoString("CQHost:onEvent(CQHost.Event.UILoad)");
 }
 
 extern "C" JNIEXPORT void JNICALL

@@ -6,7 +6,7 @@ static const char *LUA_SOURCES[] = {
 nullptr, nullptr,
 };
 
-static void CQLuaSourceDispatch(const std::string &path) {
+void CQLuaSourceUpdate(const std::string &path) {
     
     const char **fileName    = LUA_SOURCES + 0;
     const char **fileContent = LUA_SOURCES + 1;
@@ -24,9 +24,4 @@ static void CQLuaSourceDispatch(const std::string &path) {
         fileName += 2;
         fileContent += 2;
     }
-}
-
-void CQLuaSourceUpdate(const std::string &path, std::function<void ()> completion) {
-    CQLuaSourceDispatch(path);
-    completion();
 }

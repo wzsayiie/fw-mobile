@@ -1,6 +1,6 @@
 #include "cqluavm.hh"
-#include "cqextension.lua.hh"
-#include "cqfoundation.lua.hh"
+#include "cqextensionlua.hh"
+#include "cqfoundationlua.hh"
 #include "cqlogger.hh"
 #include "lua.hpp"
 #include <unistd.h>
@@ -16,7 +16,7 @@ void CQLuaVMOpen(const std::string &path) {
     luaL_openlibs(sLua);
     CQLuaVMDoString("package.cpath = ''");
     CQLuaVMDoString("package.path = '?.lua'");
-    CQLuaVMDoFile("CQRUNTIME.lua");
+    CQLuaVMDoString("require 'CQRUNTIME'");
     
     CQExtensionOpenLuaLibrary(sLua);
     CQFoundationOpenLuaLibrary(sLua);
@@ -41,27 +41,6 @@ static int CQLuaVMTraceback(lua_State *lua) {
     E("LUA RUNTIME ERROR:\n%s", ret);
     
     return 1;
-}
-
-void CQLuaVMDoFile(const std::string &fileName) {
-    if (sLua == nullptr) {
-        return;
-    }
-    
-    //trackback function
-    lua_pushcfunction(sLua, CQLuaVMTraceback);
-    
-    //load
-    int error = luaL_loadfile(sLua, fileName.c_str());
-    if (error) {
-        const char *info = lua_tostring(sLua, -1);
-        E("LUA SYNTAX ERROR:\n%s", info);
-        return;
-    }
-    
-    //execute
-    int tracebackFuncIndex = lua_gettop(sLua) - 1;
-    lua_pcall(sLua, 0, 0, tracebackFuncIndex);
 }
 
 void CQLuaVMDoString(const std::string &source) {
