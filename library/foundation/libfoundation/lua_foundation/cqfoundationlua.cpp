@@ -1,4 +1,4 @@
-#include "cqfoundation.lua.hh"
+#include "cqfoundationlua.hh"
 #include "cqbridge.hh"
 
 CQ_C_LINK void CQ_Logger_info(CQBridgeValue message, CQBridgeValue file, CQBridgeValue line);
