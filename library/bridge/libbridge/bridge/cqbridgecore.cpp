@@ -4,20 +4,20 @@
 
 using namespace std;
 
-const CQType CQTypeNull   =  3;
-const CQType CQTypeBool   =  5;
-const CQType CQTypeInt8   =  7;
-const CQType CQTypeInt16  = 11;
-const CQType CQTypeInt32  = 13;
-const CQType CQTypeInt64  = 17;
-const CQType CQTypeFloat  = 19;
-const CQType CQTypeDouble = 23;
-const CQType CQTypeString = 31;
-const CQType CQTypeTable  = 37;
+const CQBridgeType CQBridgeTypeNull   =  3;
+const CQBridgeType CQBridgeTypeBool   =  5;
+const CQBridgeType CQBridgeTypeInt8   =  7;
+const CQBridgeType CQBridgeTypeInt16  = 11;
+const CQBridgeType CQBridgeTypeInt32  = 13;
+const CQBridgeType CQBridgeTypeInt64  = 17;
+const CQBridgeType CQBridgeTypeFloat  = 19;
+const CQBridgeType CQBridgeTypeDouble = 23;
+const CQBridgeType CQBridgeTypeString = 31;
+const CQBridgeType CQBridgeTypeTable  = 37;
 
 //light value
 
-struct CQLightValue {
+struct CQBridgeLightValue {
     int32_t type;
     union {
         bool    aBool;
@@ -28,15 +28,15 @@ struct CQLightValue {
     };
 };
 
-static CQLightValue *CQLightCast(CQValue value) {
-    auto casted = (CQLightValue *)&value;
+static CQBridgeLightValue *CQBridgeLightCast(CQBridgeValue value) {
+    auto casted = (CQBridgeLightValue *)&value;
     
     switch (casted->type) {
-        case CQTypeBool : return casted;
-        case CQTypeInt8 : return casted;
-        case CQTypeInt16: return casted;
-        case CQTypeInt32: return casted;
-        case CQTypeFloat: return casted;
+        case CQBridgeTypeBool : return casted;
+        case CQBridgeTypeInt8 : return casted;
+        case CQBridgeTypeInt16: return casted;
+        case CQBridgeTypeInt32: return casted;
+        case CQBridgeTypeFloat: return casted;
 
         default: return nullptr;
     }
@@ -44,12 +44,12 @@ static CQLightValue *CQLightCast(CQValue value) {
 
 //weight value
 
-struct CQWeightValue {
+struct CQBridgeWeightValue {
     
-    virtual ~CQWeightValue() = default;
-    virtual CQType type() = 0;
+    virtual ~CQBridgeWeightValue() = default;
+    virtual CQBridgeType type() = 0;
     
-    CQWeightValue();
+    CQBridgeWeightValue();
     void retain();
     void release();
     
@@ -58,81 +58,81 @@ private:
     int32_t _retainCount;
 };
 
-CQWeightValue::CQWeightValue() {
+CQBridgeWeightValue::CQBridgeWeightValue() {
     _retainCount = 1;
 }
-void CQWeightValue::retain() {
+void CQBridgeWeightValue::retain() {
     _retainCount += 1;
 }
-void CQWeightValue::release() {
+void CQBridgeWeightValue::release() {
     if (_retainCount-- <= 1) {
         delete this;
     }
 }
 
-static CQWeightValue *CQWeightCast(CQValue value) {
+static CQBridgeWeightValue *CQBridgeWeightCast(CQBridgeValue value) {
     if (value.handle == 0) {
         return nullptr;
     }
-    if (CQLightCast(value) != nullptr) {
+    if (CQBridgeLightCast(value) != nullptr) {
         return nullptr;
     }
     
-    return (CQWeightValue *)value.handle;
+    return (CQBridgeWeightValue *)value.handle;
 }
 
 //weight int64
 
-struct CQInt64 : CQWeightValue {
+struct CQBridgeInt64 : CQBridgeWeightValue {
     
-    CQInt64(int64_t value);
-    CQType type() override;
+    CQBridgeInt64(int64_t value);
+    CQBridgeType type() override;
     
     int64_t value;
 };
 
-CQInt64::CQInt64(int64_t value) : value(value) {
+CQBridgeInt64::CQBridgeInt64(int64_t value) : value(value) {
 }
-CQType CQInt64::type() {
-    return CQTypeInt64;
+CQBridgeType CQBridgeInt64::type() {
+    return CQBridgeTypeInt64;
 }
 
 //weight double
 
-struct CQDouble : CQWeightValue {
+struct CQBridgeDouble : CQBridgeWeightValue {
     
-    CQDouble(double value);
-    CQType type() override;
+    CQBridgeDouble(double value);
+    CQBridgeType type() override;
     
     double value;
 };
 
-CQDouble::CQDouble(double value) : value(value) {
+CQBridgeDouble::CQBridgeDouble(double value) : value(value) {
 }
-CQType CQDouble::type() {
-    return CQTypeDouble;
+CQBridgeType CQBridgeDouble::type() {
+    return CQBridgeTypeDouble;
 }
 
 //weight string
 
-struct CQString : CQWeightValue {
+struct CQBridgeString : CQBridgeWeightValue {
     
-    CQString(const char *raw, int32_t len);
-    CQType type() override;
+    CQBridgeString(const char *raw, int32_t len);
+    CQBridgeType type() override;
     
     string value;
 };
 
-CQString::CQString(const char *raw, int32_t len) : value(raw, len) {
+CQBridgeString::CQBridgeString(const char *raw, int32_t len) : value(raw, len) {
 }
-CQType CQString::type() {
-    return CQTypeString;
+CQBridgeType CQBridgeString::type() {
+    return CQBridgeTypeString;
 }
 
-static CQString *CQStringCast(CQValue value) {
-    if (auto it = CQWeightCast(value)) {
-        if (it->type() == CQTypeString) {
-            return (CQString *)it;
+static CQBridgeString *CQBridgeStringCast(CQBridgeValue value) {
+    if (auto it = CQBridgeWeightCast(value)) {
+        if (it->type() == CQBridgeTypeString) {
+            return (CQBridgeString *)it;
         }
     }
     return nullptr;
@@ -140,37 +140,37 @@ static CQString *CQStringCast(CQValue value) {
 
 //weight table
 
-struct CQTable :CQWeightValue {
+struct CQBridgeTable :CQBridgeWeightValue {
     
-    CQType type() override;
-    void addItem(CQValue item0, CQValue item1);
-    ~CQTable();
+    CQBridgeType type() override;
+    void add(CQBridgeValue key, CQBridgeValue value);
+    ~CQBridgeTable();
     
-    vector<CQValue> table[2];
+    vector<CQBridgeValue> table[2];
 };
 
-CQType CQTable::type() {
-    return CQTypeTable;
+CQBridgeType CQBridgeTable::type() {
+    return CQBridgeTypeTable;
 }
-void CQTable::addItem(CQValue item0, CQValue item1) {
-    CQRetain(item0);
-    CQRetain(item1);
-    table[0].push_back(item0);
-    table[1].push_back(item1);
+void CQBridgeTable::add(CQBridgeValue key, CQBridgeValue value) {
+    CQBridgeRetain(key);
+    CQBridgeRetain(value);
+    table[0].push_back(key);
+    table[1].push_back(value);
 }
-CQTable::~CQTable() {
+CQBridgeTable::~CQBridgeTable() {
     for (auto it : table[0]) {
-        CQRelease(it);
+        CQBridgeRelease(it);
     }
     for (auto it : table[1]) {
-        CQRelease(it);
+        CQBridgeRelease(it);
     }
 }
 
-static CQTable *CQTableCast(CQValue value) {
-    if (auto it = CQWeightCast(value)) {
-        if (it->type() == CQTypeTable) {
-            return (CQTable *)it;
+static CQBridgeTable *CQBridgeTableCast(CQBridgeValue value) {
+    if (auto it = CQBridgeWeightCast(value)) {
+        if (it->type() == CQBridgeTypeTable) {
+            return (CQBridgeTable *)it;
         }
     }
     return nullptr;
@@ -178,50 +178,50 @@ static CQTable *CQTableCast(CQValue value) {
 
 //interfaces
 
-CQType CQCheckType(CQValue value) {
-    if (auto it = CQLightCast(value)) {
+CQBridgeType CQBridgeCheckType(CQBridgeValue value) {
+    if (auto it = CQBridgeLightCast(value)) {
         return it->type;
     }
-    if (auto it = CQWeightCast(value)) {
+    if (auto it = CQBridgeWeightCast(value)) {
         return it->type();
     }
-    return CQTypeNull;
+    return CQBridgeTypeNull;
 }
 
-template<class T> CQValue CQCreateLight(CQType type, T raw) {
-    CQLightValue value = {type, 0};
+template<class T> CQBridgeValue CQBridgeCreateLight(CQBridgeType type, T raw) {
+    CQBridgeLightValue value = {type, 0};
     
     char *ptr = (char *)&value + 4;
     *(T *)ptr = raw;
     
-    return *(CQValue *)&value;
+    return *(CQBridgeValue *)&value;
 }
 
-CQValue CQCreateBool (bool    r) { return CQCreateLight(CQTypeBool , r); }
-CQValue CQCreateInt8 (int8_t  r) { return CQCreateLight(CQTypeInt8 , r); }
-CQValue CQCreateInt16(int16_t r) { return CQCreateLight(CQTypeInt16, r); }
-CQValue CQCreateInt32(int32_t r) { return CQCreateLight(CQTypeInt32, r); }
-CQValue CQCreateFloat(float   r) { return CQCreateLight(CQTypeFloat, r); }
+CQBridgeValue CQBridgeCreateBool (bool    r) { return CQBridgeCreateLight(CQBridgeTypeBool , r); }
+CQBridgeValue CQBridgeCreateInt8 (int8_t  r) { return CQBridgeCreateLight(CQBridgeTypeInt8 , r); }
+CQBridgeValue CQBridgeCreateInt16(int16_t r) { return CQBridgeCreateLight(CQBridgeTypeInt16, r); }
+CQBridgeValue CQBridgeCreateInt32(int32_t r) { return CQBridgeCreateLight(CQBridgeTypeInt32, r); }
+CQBridgeValue CQBridgeCreateFloat(float   r) { return CQBridgeCreateLight(CQBridgeTypeFloat, r); }
 
-CQValue CQCreateInt64 (int64_t r) { return CQValueMake(new CQInt64 (r)); }
-CQValue CQCreateDouble(double  r) { return CQValueMake(new CQDouble(r)); }
+CQBridgeValue CQBridgeCreateInt64 (int64_t r) { return CQBridgeValueMake(new CQBridgeInt64 (r)); }
+CQBridgeValue CQBridgeCreateDouble(double  r) { return CQBridgeValueMake(new CQBridgeDouble(r)); }
 
-template<class T> T CQGetNumber(CQValue value) {
-    if (auto it = CQLightCast(value)) {
+template<class T> T CQBridgeGetNumber(CQBridgeValue value) {
+    if (auto it = CQBridgeLightCast(value)) {
         switch (it->type) {
-            case CQTypeBool : return (T)it->aBool ;
-            case CQTypeInt8 : return (T)it->aInt8 ;
-            case CQTypeInt16: return (T)it->aInt16;
-            case CQTypeInt32: return (T)it->aInt32;
-            case CQTypeFloat: return (T)it->aFloat;
+            case CQBridgeTypeBool : return (T)it->aBool ;
+            case CQBridgeTypeInt8 : return (T)it->aInt8 ;
+            case CQBridgeTypeInt16: return (T)it->aInt16;
+            case CQBridgeTypeInt32: return (T)it->aInt32;
+            case CQBridgeTypeFloat: return (T)it->aFloat;
             default:;
         }
     }
     
-    if (auto it = CQWeightCast(value)) {
+    if (auto it = CQBridgeWeightCast(value)) {
         switch (it->type()) {
-            case CQTypeInt64 : return (T)((CQInt64  *)it)->value;
-            case CQTypeDouble: return (T)((CQDouble *)it)->value;
+            case CQBridgeTypeInt64 : return (T)((CQBridgeInt64  *)it)->value;
+            case CQBridgeTypeDouble: return (T)((CQBridgeDouble *)it)->value;
             default:;
         }
     }
@@ -229,70 +229,70 @@ template<class T> T CQGetNumber(CQValue value) {
     return 0;
 }
 
-bool    CQGetBool  (CQValue v) { return CQGetNumber<bool   >(v); }
-int8_t  CQGetInt8  (CQValue v) { return CQGetNumber<int8_t >(v); }
-int16_t CQGetInt16 (CQValue v) { return CQGetNumber<int16_t>(v); }
-int32_t CQGetInt32 (CQValue v) { return CQGetNumber<int32_t>(v); }
-int64_t CQGetInt64 (CQValue v) { return CQGetNumber<int64_t>(v); }
-float   CQGetFloat (CQValue v) { return CQGetNumber<float  >(v); }
-double  CQGetDouble(CQValue v) { return CQGetNumber<double >(v); }
+bool    CQBridgeGetBool  (CQBridgeValue v) { return CQBridgeGetNumber<bool   >(v); }
+int8_t  CQBridgeGetInt8  (CQBridgeValue v) { return CQBridgeGetNumber<int8_t >(v); }
+int16_t CQBridgeGetInt16 (CQBridgeValue v) { return CQBridgeGetNumber<int16_t>(v); }
+int32_t CQBridgeGetInt32 (CQBridgeValue v) { return CQBridgeGetNumber<int32_t>(v); }
+int64_t CQBridgeGetInt64 (CQBridgeValue v) { return CQBridgeGetNumber<int64_t>(v); }
+float   CQBridgeGetFloat (CQBridgeValue v) { return CQBridgeGetNumber<float  >(v); }
+double  CQBridgeGetDouble(CQBridgeValue v) { return CQBridgeGetNumber<double >(v); }
 
-CQValue CQCreateString(const char *raw, int32_t len) {
-    return CQValueMake(new CQString(raw, len));
+CQBridgeValue CQBridgeCreateString(const char *raw, int32_t len) {
+    return CQBridgeValueMake(new CQBridgeString(raw, len));
 }
 
-int32_t CQGetStringLength(CQValue value) {
-    if (auto it = CQStringCast(value)) {
+int32_t CQBridgeStringLength(CQBridgeValue value) {
+    if (auto it = CQBridgeStringCast(value)) {
         return (int32_t)it->value.length();
     }
     return 0;
 }
 
-const char *CQGetStringValue(CQValue value) {
-    if (auto it = CQStringCast(value)) {
+const char *CQBridgeStringValue(CQBridgeValue value) {
+    if (auto it = CQBridgeStringCast(value)) {
         return it->value.c_str();
     }
     return "";
 }
 
-CQValue CQCreateTable(void) {
-    return CQValueMake(new CQTable);
+CQBridgeValue CQBridgeCreateTable(void) {
+    return CQBridgeValueMake(new CQBridgeTable);
 }
 
-void CQAddTableItem(CQValue table, CQValue item0, CQValue item1) {
-    if (auto it = CQTableCast(table)) {
-        it->addItem(item0, item1);
+void CQBridgeTableAdd(CQBridgeValue table, CQBridgeValue key, CQBridgeValue value) {
+    if (auto it = CQBridgeTableCast(table)) {
+        it->add(key, value);
     }
 }
 
-int32_t CQGetTableSize(CQValue table) {
-    if (auto it = CQTableCast(table)) {
+int32_t CQBridgeTableSize(CQBridgeValue table) {
+    if (auto it = CQBridgeTableCast(table)) {
         return (int32_t)it->table[0].size();
     }
     return 0;
 }
 
-static CQValue CQGetTableItem(CQValue table, int32_t index, int32_t position) {
-    if (auto it = CQTableCast(table)) {
-        vector<CQValue> &tab = it->table[index];
+static CQBridgeValue CQBridgeTableGet(CQBridgeValue table, int32_t index, int32_t position) {
+    if (auto it = CQBridgeTableCast(table)) {
+        vector<CQBridgeValue> &tab = it->table[index];
         if (0 <= position && position < tab.size()) {
             return tab[position];
         }
     }
-    return CQValueNull;
+    return CQBridgeValueNull;
 }
 
-CQValue CQGetTableItem0(CQValue t, int32_t p) { return CQGetTableItem(t, 0, p); }
-CQValue CQGetTableItem1(CQValue t, int32_t p) { return CQGetTableItem(t, 1, p); }
+CQBridgeValue CQBridgeTableGetKey  (CQBridgeValue t, int32_t p) { return CQBridgeTableGet(t, 0, p); }
+CQBridgeValue CQBridgeTableGetValue(CQBridgeValue t, int32_t p) { return CQBridgeTableGet(t, 1, p); }
 
-void CQRetain(CQValue value) {
-    if (auto it = CQWeightCast(value)) {
+void CQBridgeRetain(CQBridgeValue value) {
+    if (auto it = CQBridgeWeightCast(value)) {
         it->retain();
     }
 }
 
-void CQRelease(CQValue value) {
-    if (auto it = CQWeightCast(value)) {
+void CQBridgeRelease(CQBridgeValue value) {
+    if (auto it = CQBridgeWeightCast(value)) {
         it->release();
     }
 }

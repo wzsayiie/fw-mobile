@@ -1,6 +1,6 @@
 package src.library.bridge;
 
-public class CQValue {
+public class BridgeValue {
 
     public static final long Null = 0;
 

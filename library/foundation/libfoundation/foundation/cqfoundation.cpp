@@ -3,30 +3,30 @@
 #include "cqfoundation.hh"
 #include "cqbridge.hh"
 
-CQ_C_LINK void CQ_Logger_info(CQValue message, CQValue file, CQValue line);
-CQ_C_LINK void CQ_Logger_error(CQValue message, CQValue file, CQValue line);
+CQ_C_LINK void CQ_Logger_info(CQBridgeValue message, CQBridgeValue file, CQBridgeValue line);
+CQ_C_LINK void CQ_Logger_error(CQBridgeValue message, CQBridgeValue file, CQBridgeValue line);
 
 struct _self_CQLogger {
 };
 
 void CQLogger::info(const std::string &message, const std::string &file, int32_t line) {
-    CQValue aa = CQValueMaker<std::string>::create(message);
-    CQValue bb = CQValueMaker<std::string>::create(file);
-    CQValue cc = CQValueMaker<int32_t>::create(line);
+    CQBridgeValue aa = CQBridgeCPP<std::string>::create(message);
+    CQBridgeValue bb = CQBridgeCPP<std::string>::create(file);
+    CQBridgeValue cc = CQBridgeCPP<int32_t>::create(line);
     CQ_Logger_info(aa, bb, cc);
-    CQRelease(aa);
-    CQRelease(bb);
-    CQRelease(cc);
+    CQBridgeRelease(aa);
+    CQBridgeRelease(bb);
+    CQBridgeRelease(cc);
 }
 
 void CQLogger::error(const std::string &message, const std::string &file, int32_t line) {
-    CQValue aa = CQValueMaker<std::string>::create(message);
-    CQValue bb = CQValueMaker<std::string>::create(file);
-    CQValue cc = CQValueMaker<int32_t>::create(line);
+    CQBridgeValue aa = CQBridgeCPP<std::string>::create(message);
+    CQBridgeValue bb = CQBridgeCPP<std::string>::create(file);
+    CQBridgeValue cc = CQBridgeCPP<int32_t>::create(line);
     CQ_Logger_error(aa, bb, cc);
-    CQRelease(aa);
-    CQRelease(bb);
-    CQRelease(cc);
+    CQBridgeRelease(aa);
+    CQBridgeRelease(bb);
+    CQBridgeRelease(cc);
 }
 
 void CQLogger::setAgent(CQLoggerAgent::ref agent) {
