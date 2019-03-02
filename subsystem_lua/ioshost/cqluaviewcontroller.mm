@@ -17,14 +17,12 @@
     NSFileManager *fileManager = NSFileManager.defaultManager;
     [fileManager createDirectoryAtPath:luaPath withIntermediateDirectories:YES attributes:nil error:nil];
     
-    CQLuaSourceUpdate(luaPath.UTF8String, [=]() {
-        
-        CQLuaVMOpen(luaPath.UTF8String);
-        
-        CQLuaVMDoString("main()");
-        CQLuaVMDoString("CQHost:onEvent(CQHost.Event.AppCreate)");
-        CQLuaVMDoString("CQHost:onEvent(CQHost.Event.UILoad)");
-    });
+    CQLuaSourceUpdate(luaPath.UTF8String);
+    CQLuaVMOpen(luaPath.UTF8String);
+    
+    CQLuaVMDoString("main()");
+    CQLuaVMDoString("CQHost:onEvent(CQHost.Event.AppCreate)");
+    CQLuaVMDoString("CQHost:onEvent(CQHost.Event.UILoad)");
 }
 
 - (void)viewDidAppear:(BOOL)animated {

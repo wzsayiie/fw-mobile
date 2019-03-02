@@ -3,4 +3,4 @@
 #include <functional>
 #include <string>
 
-void CQLuaSourceUpdate(const std::string &path, std::function<void ()> completion);
+void CQLuaSourceUpdate(const std::string &path);
