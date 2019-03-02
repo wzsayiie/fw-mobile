@@ -1,17 +1,13 @@
 #include "cqfoundationlua.hh"
-#include "cqbridge.hh"
+#include "cqbridgelua.hh"
 
 CQ_C_LINK void CQ_Logger_info(CQBridgeValue message, CQBridgeValue file, CQBridgeValue line);
 CQ_C_LINK void CQ_Logger_error(CQBridgeValue message, CQBridgeValue file, CQBridgeValue line);
 
 static int Logger_info(lua_State *lua) {
-    const char *a = luaL_checkstring(lua, 2);
-    const char *b = luaL_checkstring(lua, 3);
-    int32_t c = (int32_t)luaL_checkinteger(lua, 4);
-    
-    CQBridgeValue aa = CQBridgeCreateString(a, (int32_t)strlen(a));
-    CQBridgeValue bb = CQBridgeCreateString(b, (int32_t)strlen(b));
-    CQBridgeValue cc = CQBridgeCreateInt32(c);
+    CQBridgeValue aa = CQBridgeLua<std::string>::create(lua, 2);
+    CQBridgeValue bb = CQBridgeLua<std::string>::create(lua, 3);
+    CQBridgeValue cc = CQBridgeLua<int32_t>::create(lua, 4);
     CQ_Logger_info(aa, bb, cc);
     CQBridgeRelease(aa);
     CQBridgeRelease(bb);
@@ -21,13 +17,9 @@ static int Logger_info(lua_State *lua) {
 }
 
 static int Logger_error(lua_State *lua) {
-    const char *a = luaL_checkstring(lua, 2);
-    const char *b = luaL_checkstring(lua, 3);
-    int32_t c = (int32_t)luaL_checkinteger(lua, 4);
-    
-    CQBridgeValue aa = CQBridgeCreateString(a, (int32_t)strlen(a));
-    CQBridgeValue bb = CQBridgeCreateString(b, (int32_t)strlen(b));
-    CQBridgeValue cc = CQBridgeCreateInt32(c);
+    CQBridgeValue aa = CQBridgeLua<std::string>::create(lua, 2);
+    CQBridgeValue bb = CQBridgeLua<std::string>::create(lua, 3);
+    CQBridgeValue cc = CQBridgeLua<int32_t>::create(lua, 4);
     CQ_Logger_error(aa, bb, cc);
     CQBridgeRelease(aa);
     CQBridgeRelease(bb);
