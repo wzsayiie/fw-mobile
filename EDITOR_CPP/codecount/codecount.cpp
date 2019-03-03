@@ -1,43 +1,47 @@
-#include "csharptraverser.hh"
-#include "generaltraverser.hh"
-#include "javatraverser.hh"
-#include "luatraverser.hh"
-#include "objcpptraverser.hh"
+#include "cccsharptraverser.hh"
+#include "ccgeneraltraverser.hh"
+#include "ccjavatraverser.hh"
+#include "ccluatraverser.hh"
+#include "ccobjcpptraverser.hh"
+
+void AppendJavas(vector<string> *sources) {
+    sources->push_back("app_android/app/src/main/java");
+    sources->push_back("library/bridge/java");
+    sources->push_back("library/foundation/java");
+}
+
+void AppendObjcpps(vector<string> *sources) {
+    sources->push_back("app_ios/App/Kits");
+    sources->push_back("app_ios/App/Sources");
+    sources->push_back("EDITOR_CPP");
+    sources->push_back("library/bridge/Bridge");
+    sources->push_back("library/bridge/libbridge");
+    sources->push_back("library/extension/libextension/extension");
+    sources->push_back("library/foundation/Foundation");
+    sources->push_back("subsystem_cpp");
+}
+
+void AppendCSharps(vector<string> *sources) {
+    sources->push_back("app_unity/Assets/Scripts");
+    sources->push_back("EDITOR_CS");
+};
+
+void AppendLuas(vector<string> *sources) {
+    sources->push_back("subsystem_lua");
+};
 
 void CodeCountMain() {
     
-    vector<string> javas = {
-        "app_android/app/src/main/java",
-        "library/bridge/java",
-        "library/foundation/java",
-    };
-    vector<string> objcpps = {
-        "app_ios/App/Kits",
-        "app_ios/App/Sources",
-        "EDITOR_CPP",
-        "library/bridge/Bridge",
-        "library/bridge/libbridge",
-        "library/extension/libextension/extension",
-        "library/foundation/Foundation",
-        "subsystem_cpp",
-    };
-    vector<string> csharps = {
-        "app_unity/Assets/Scripts",
-        "EDITOR_CS",
-    };
-    vector<string> luas = {
-        "subsystem_lua",
-    };
+    vector<string> sources;
     
-    vector<string> generals;
-    generals.insert(generals.end(), javas  .begin(), javas  .end());
-    generals.insert(generals.end(), objcpps.begin(), objcpps.end());
-    generals.insert(generals.end(), csharps.begin(), csharps.end());
-    generals.insert(generals.end(), luas   .begin(), luas   .end());
+    AppendJavas  (&sources);
+    AppendObjcpps(&sources);
+    AppendCSharps(&sources);
+    AppendLuas   (&sources);
     
-    Traverser::count(generals, new GeneralTraverser);
-//    Traverser::count(javas   , new JavaTraverser   );
-//    Traverser::count(objcpps , new ObjcppTraverser );
-//    Traverser::count(csharps , new CSharpTraverser );
-//    Traverser::count(luas    , new LuaTraverser    );
+    (new CCGeneralTraverser)->count(sources);
+//    (new CCJavaTraverser   )->count(sources);
+//    (new CCObjcppTraverser )->count(sources);
+//    (new CCCSharpTraverser )->count(sources);
+//    (new CCLuaTraverser    )->count(sources);
 }

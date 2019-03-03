@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		B499A30D221E61780060165A /* cqstdex_osx.mm in Sources */ = {isa = PBXBuildFile; fileRef = B499A30C221E61780060165A /* cqstdex_osx.mm */; };
 		B499A310221E72510060165A /* codecount.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B499A30F221E72500060165A /* codecount.cpp */; };
-		B4B19641221EB6C7007D4146 /* generaltraverser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B19635221EB6C7007D4146 /* generaltraverser.cpp */; };
-		B4B19642221EB6C7007D4146 /* traverser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B19636221EB6C7007D4146 /* traverser.cpp */; };
-		B4B19643221EB6C7007D4146 /* objcpptraverser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B1963C221EB6C7007D4146 /* objcpptraverser.cpp */; };
-		B4B19644221EB6C7007D4146 /* luatraverser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B1963D221EB6C7007D4146 /* luatraverser.cpp */; };
-		B4B19645221EB6C7007D4146 /* csharptraverser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B1963E221EB6C7007D4146 /* csharptraverser.cpp */; };
-		B4B19646221EB6C7007D4146 /* javatraverser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B1963F221EB6C7007D4146 /* javatraverser.cpp */; };
+		B4B19641221EB6C7007D4146 /* ccgeneraltraverser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B19635221EB6C7007D4146 /* ccgeneraltraverser.cpp */; };
+		B4B19642221EB6C7007D4146 /* cctraverser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B19636221EB6C7007D4146 /* cctraverser.cpp */; };
+		B4B19643221EB6C7007D4146 /* ccobjcpptraverser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B1963C221EB6C7007D4146 /* ccobjcpptraverser.cpp */; };
+		B4B19644221EB6C7007D4146 /* ccluatraverser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B1963D221EB6C7007D4146 /* ccluatraverser.cpp */; };
+		B4B19645221EB6C7007D4146 /* cccsharptraverser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B1963E221EB6C7007D4146 /* cccsharptraverser.cpp */; };
+		B4B19646221EB6C7007D4146 /* ccjavatraverser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B1963F221EB6C7007D4146 /* ccjavatraverser.cpp */; };
 		CE1DEC8A2229986C0015A49D /* cppdemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE1DEC872229986C0015A49D /* cppdemo.cpp */; };
 		CE1DEC8B2229986C0015A49D /* objcppdemo.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE1DEC892229986C0015A49D /* objcppdemo.mm */; };
 		CE21BEA322085E4B00AED03F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE9522085E4B00AED03F /* main.cpp */; };
@@ -23,6 +23,7 @@
 		CE21BEAF2208620300AED03F /* cqfile_osx.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEAC2208620300AED03F /* cqfile_osx.mm */; };
 		CE21BEB2220868B900AED03F /* cqlog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEB0220868B900AED03F /* cqlog.cpp */; };
 		CE844339220D5874008D3F79 /* cqutf8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE844337220D5874008D3F79 /* cqutf8.cpp */; };
+		CE938D1F222BBB8A0017BD01 /* cqerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE938D1D222BBB8A0017BD01 /* cqerror.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,18 +41,18 @@
 /* Begin PBXFileReference section */
 		B499A30C221E61780060165A /* cqstdex_osx.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = cqstdex_osx.mm; sourceTree = "<group>"; };
 		B499A30F221E72500060165A /* codecount.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = codecount.cpp; sourceTree = "<group>"; };
-		B4B19635221EB6C7007D4146 /* generaltraverser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = generaltraverser.cpp; sourceTree = "<group>"; };
-		B4B19636221EB6C7007D4146 /* traverser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = traverser.cpp; sourceTree = "<group>"; };
-		B4B19637221EB6C7007D4146 /* javatraverser.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = javatraverser.hh; sourceTree = "<group>"; };
-		B4B19638221EB6C7007D4146 /* csharptraverser.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csharptraverser.hh; sourceTree = "<group>"; };
-		B4B19639221EB6C7007D4146 /* generaltraverser.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = generaltraverser.hh; sourceTree = "<group>"; };
-		B4B1963A221EB6C7007D4146 /* luatraverser.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = luatraverser.hh; sourceTree = "<group>"; };
-		B4B1963B221EB6C7007D4146 /* objcpptraverser.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = objcpptraverser.hh; sourceTree = "<group>"; };
-		B4B1963C221EB6C7007D4146 /* objcpptraverser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = objcpptraverser.cpp; sourceTree = "<group>"; };
-		B4B1963D221EB6C7007D4146 /* luatraverser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = luatraverser.cpp; sourceTree = "<group>"; };
-		B4B1963E221EB6C7007D4146 /* csharptraverser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csharptraverser.cpp; sourceTree = "<group>"; };
-		B4B1963F221EB6C7007D4146 /* javatraverser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = javatraverser.cpp; sourceTree = "<group>"; };
-		B4B19640221EB6C7007D4146 /* traverser.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = traverser.hh; sourceTree = "<group>"; };
+		B4B19635221EB6C7007D4146 /* ccgeneraltraverser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ccgeneraltraverser.cpp; sourceTree = "<group>"; };
+		B4B19636221EB6C7007D4146 /* cctraverser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cctraverser.cpp; sourceTree = "<group>"; };
+		B4B19637221EB6C7007D4146 /* ccjavatraverser.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ccjavatraverser.hh; sourceTree = "<group>"; };
+		B4B19638221EB6C7007D4146 /* cccsharptraverser.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cccsharptraverser.hh; sourceTree = "<group>"; };
+		B4B19639221EB6C7007D4146 /* ccgeneraltraverser.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ccgeneraltraverser.hh; sourceTree = "<group>"; };
+		B4B1963A221EB6C7007D4146 /* ccluatraverser.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ccluatraverser.hh; sourceTree = "<group>"; };
+		B4B1963B221EB6C7007D4146 /* ccobjcpptraverser.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ccobjcpptraverser.hh; sourceTree = "<group>"; };
+		B4B1963C221EB6C7007D4146 /* ccobjcpptraverser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ccobjcpptraverser.cpp; sourceTree = "<group>"; };
+		B4B1963D221EB6C7007D4146 /* ccluatraverser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ccluatraverser.cpp; sourceTree = "<group>"; };
+		B4B1963E221EB6C7007D4146 /* cccsharptraverser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cccsharptraverser.cpp; sourceTree = "<group>"; };
+		B4B1963F221EB6C7007D4146 /* ccjavatraverser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ccjavatraverser.cpp; sourceTree = "<group>"; };
+		B4B19640221EB6C7007D4146 /* cctraverser.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cctraverser.hh; sourceTree = "<group>"; };
 		CE1DEC872229986C0015A49D /* cppdemo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cppdemo.cpp; sourceTree = "<group>"; };
 		CE1DEC892229986C0015A49D /* objcppdemo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = objcppdemo.mm; sourceTree = "<group>"; };
 		CE21BE9522085E4B00AED03F /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -66,6 +67,8 @@
 		CE2BF73121BFF1D10013614A /* EDITOR_CPP */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EDITOR_CPP; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE844337220D5874008D3F79 /* cqutf8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqutf8.cpp; sourceTree = "<group>"; };
 		CE844338220D5874008D3F79 /* cqutf8.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqutf8.hh; sourceTree = "<group>"; };
+		CE938D1D222BBB8A0017BD01 /* cqerror.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqerror.cpp; sourceTree = "<group>"; };
+		CE938D1E222BBB8A0017BD01 /* cqerror.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqerror.hh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,18 +86,18 @@
 			isa = PBXGroup;
 			children = (
 				B499A30F221E72500060165A /* codecount.cpp */,
-				B4B19638221EB6C7007D4146 /* csharptraverser.hh */,
-				B4B1963E221EB6C7007D4146 /* csharptraverser.cpp */,
-				B4B19639221EB6C7007D4146 /* generaltraverser.hh */,
-				B4B19635221EB6C7007D4146 /* generaltraverser.cpp */,
-				B4B19637221EB6C7007D4146 /* javatraverser.hh */,
-				B4B1963F221EB6C7007D4146 /* javatraverser.cpp */,
-				B4B1963A221EB6C7007D4146 /* luatraverser.hh */,
-				B4B1963D221EB6C7007D4146 /* luatraverser.cpp */,
-				B4B1963B221EB6C7007D4146 /* objcpptraverser.hh */,
-				B4B1963C221EB6C7007D4146 /* objcpptraverser.cpp */,
-				B4B19640221EB6C7007D4146 /* traverser.hh */,
-				B4B19636221EB6C7007D4146 /* traverser.cpp */,
+				B4B19638221EB6C7007D4146 /* cccsharptraverser.hh */,
+				B4B1963E221EB6C7007D4146 /* cccsharptraverser.cpp */,
+				B4B19639221EB6C7007D4146 /* ccgeneraltraverser.hh */,
+				B4B19635221EB6C7007D4146 /* ccgeneraltraverser.cpp */,
+				B4B19637221EB6C7007D4146 /* ccjavatraverser.hh */,
+				B4B1963F221EB6C7007D4146 /* ccjavatraverser.cpp */,
+				B4B1963A221EB6C7007D4146 /* ccluatraverser.hh */,
+				B4B1963D221EB6C7007D4146 /* ccluatraverser.cpp */,
+				B4B1963B221EB6C7007D4146 /* ccobjcpptraverser.hh */,
+				B4B1963C221EB6C7007D4146 /* ccobjcpptraverser.cpp */,
+				B4B19640221EB6C7007D4146 /* cctraverser.hh */,
+				B4B19636221EB6C7007D4146 /* cctraverser.cpp */,
 			);
 			path = codecount;
 			sourceTree = "<group>";
@@ -131,6 +134,8 @@
 		CE21BE9722085E4B00AED03F /* utility */ = {
 			isa = PBXGroup;
 			children = (
+				CE938D1E222BBB8A0017BD01 /* cqerror.hh */,
+				CE938D1D222BBB8A0017BD01 /* cqerror.cpp */,
 				CE21BEAD2208620300AED03F /* cqfile.hh */,
 				CE21BEAC2208620300AED03F /* cqfile_osx.mm */,
 				CE21BEAB2208620300AED03F /* cqfile.cpp */,
@@ -218,20 +223,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4B19642221EB6C7007D4146 /* traverser.cpp in Sources */,
+				B4B19642221EB6C7007D4146 /* cctraverser.cpp in Sources */,
 				CE21BEAF2208620300AED03F /* cqfile_osx.mm in Sources */,
-				B4B19646221EB6C7007D4146 /* javatraverser.cpp in Sources */,
+				B4B19646221EB6C7007D4146 /* ccjavatraverser.cpp in Sources */,
 				B499A30D221E61780060165A /* cqstdex_osx.mm in Sources */,
 				B499A310221E72510060165A /* codecount.cpp in Sources */,
-				B4B19645221EB6C7007D4146 /* csharptraverser.cpp in Sources */,
+				B4B19645221EB6C7007D4146 /* cccsharptraverser.cpp in Sources */,
 				CE21BEB2220868B900AED03F /* cqlog.cpp in Sources */,
 				CE844339220D5874008D3F79 /* cqutf8.cpp in Sources */,
 				CE1DEC8B2229986C0015A49D /* objcppdemo.mm in Sources */,
 				CE21BEAE2208620300AED03F /* cqfile.cpp in Sources */,
-				B4B19644221EB6C7007D4146 /* luatraverser.cpp in Sources */,
+				B4B19644221EB6C7007D4146 /* ccluatraverser.cpp in Sources */,
 				CE21BEA322085E4B00AED03F /* main.cpp in Sources */,
-				B4B19641221EB6C7007D4146 /* generaltraverser.cpp in Sources */,
-				B4B19643221EB6C7007D4146 /* objcpptraverser.cpp in Sources */,
+				B4B19641221EB6C7007D4146 /* ccgeneraltraverser.cpp in Sources */,
+				B4B19643221EB6C7007D4146 /* ccobjcpptraverser.cpp in Sources */,
+				CE938D1F222BBB8A0017BD01 /* cqerror.cpp in Sources */,
 				CE21BEA622085E4B00AED03F /* cqstdex.cpp in Sources */,
 				CE1DEC8A2229986C0015A49D /* cppdemo.cpp in Sources */,
 			);

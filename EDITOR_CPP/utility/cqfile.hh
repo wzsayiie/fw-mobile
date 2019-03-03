@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cqstdex.hh"
+#include "cqerror.hh"
 
 //depends on OS
 
@@ -30,23 +31,13 @@ void CQAppendPath(string *path, const string &item);
 string CQBaseName(const string &path);
 string CQDirectoryPath(const string &path);
 
-enum class CQFileError {
-    None         = 0,
-    ParamInvaild = 1,
-    OpenFailed   = 2,
-};
-
-CQFileError CQReadFile(const string &path, vector<char> *content);
-CQFileError CQWriteFile(const string &path, const vector<char> &content);
+CQError CQReadFile(const string &path, vector<char> *content);
+CQError CQWriteFile(const string &path, const vector<char> &content);
 
 void CQTraverse(const string &path, struct CQTraverserDelegate *delegate);
 
 struct CQTraverserDelegate : object {
     
-    //deafult tag
-    virtual string traverserGetDefaultTag() = 0;
-    
-    //if return false, don't print the file information;
-    //else if return true, parameter *outTag specifies print tag text;
-    virtual bool traverserFindFile(const string &file, string *outTag) = 0;
+    virtual void traverserGetDirectory(const string &name, int indent) = 0;
+    virtual void traverserGetFile     (const string &name, int indent) = 0;
 };

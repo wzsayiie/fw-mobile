@@ -18,7 +18,7 @@ void init() {
     }
 }
 
-int main(int argc, const char *argv[]) {
+int main() {
     init();
     run();
 }
@@ -27,7 +27,7 @@ void run() {
 
 #define E(F) do { void F(); F(); } while (0)
     
-    E(ObjcppMain);
-    E(CPPMain);
-    E(CodeCountMain);
+//    E(ObjcppMain);
+//    E(CPPMain);
+//    E(CodeCountMain);
 }
