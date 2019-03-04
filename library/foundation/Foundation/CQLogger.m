@@ -43,7 +43,7 @@ static id<CQLoggerAgent> sAgent = nil;
 
 @end
 
-void _CQLogger_info(const char *file, int line, NSString *format, ...) {
+void _I(const char *file, int line, NSString *format, ...) {
     va_list args;
     va_start(args, format);
     
@@ -53,7 +53,7 @@ void _CQLogger_info(const char *file, int line, NSString *format, ...) {
     va_end(args);
 }
 
-void _CQLogger_error(const char *file, int line, NSString *format, ...) {
+void _E(const char *file, int line, NSString *format, ...) {
     va_list args;
     va_start(args, format);
     

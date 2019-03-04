@@ -9,6 +9,8 @@
 - (BOOL) /* ------ */ application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    I(@"iOS Host: Application didFinishLaunching");
+    
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     self.window.rootViewController = [[CQCPPViewController alloc] init];
     [self.window makeKeyAndVisible];

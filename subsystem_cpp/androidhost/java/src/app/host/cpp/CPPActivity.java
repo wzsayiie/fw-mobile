@@ -3,6 +3,8 @@ package src.app.host.cpp;
 import android.app.Activity;
 import android.os.Bundle;
 
+import src.library.foundation.L;
+
 public class CPPActivity extends Activity {
 
     static {
@@ -12,6 +14,7 @@ public class CPPActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        L.i("Android Host: Activity onCreate");
 
         handleCreate();
     }
@@ -19,6 +22,7 @@ public class CPPActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
+        L.i("Android Host: Activity onStart");
 
         handleStart();
     }
@@ -26,6 +30,7 @@ public class CPPActivity extends Activity {
     @Override
     protected void onStop() {
         super.onStop();
+        L.i("Android Host: Activity onStop");
 
         handleStop();
     }
