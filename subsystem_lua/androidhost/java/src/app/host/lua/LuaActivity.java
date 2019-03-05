@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import java.io.File;
 
+import src.library.foundation.L;
+
 public class LuaActivity extends Activity {
 
     static {
@@ -14,24 +16,28 @@ public class LuaActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        L.i("Android Host: Activity onCreate");
 
-        String luaPathString = getCacheDir().toString() + "/LUA";
-        File luaPath = new File(luaPathString);
-        if (!luaPath.exists()) {
-            luaPath.mkdir();
-        }
+        String cachePath= getCacheDir().toString();
+        File luaPath = new File(cachePath + "/LUA");
+        luaPath.mkdir();
+
         handleCreate(luaPath.getPath());
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        L.i("Android Host: Activity onStart");
+
         handleStart();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        L.i("Android Host: Activity onStop");
+
         handleStop();
     }
 

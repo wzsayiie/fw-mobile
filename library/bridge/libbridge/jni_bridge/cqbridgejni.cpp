@@ -3,22 +3,9 @@
 #include "cqbridgejni.hh"
 #include <android/log.h>
 
-//use original api to print,
-//cause it's possible that user log system depends on JNI context.
-
-__printflike(1, 2) static void info(const char *format, ...) {
-    va_list args;
-    va_start(args, format);
-    __android_log_vprint(ANDROID_LOG_INFO, "zzz", format, args);
-    va_end(args);
-}
-
-__printflike(1, 2) static void error(const char *format, ...) {
-    va_list args;
-    va_start(args, format);
-    __android_log_vprint(ANDROID_LOG_ERROR, "zzz", format, args);
-    va_end(args);
-}
+//NOTE:
+//the bridge code does not print any log, because the log system will depends on the former.
+//It will increase complexity if the bridge code print log.
 
 static bool JavaException(JNIEnv *env) {
     if (env->ExceptionCheck()) {
@@ -36,32 +23,17 @@ static int sJNIVersion = 0;
 jint JNI_OnLoad(JavaVM *vm, void *) {
     sJavaVM = vm;
     sJNIVersion = JNI_VERSION_1_6;
-
-    if (sJavaVM != nullptr) {
-        info("set java vm %p", sJavaVM);
-    } else {
-        error("set empty java vm");
-    }
-
     return sJNIVersion;
 }
 
-JavaVM *CQJavaGetVM() {
-    if (sJavaVM == nullptr) {
-        error("java vm didn't set");
-    }
-    return sJavaVM;
-}
-
 JNIEnv *CQJavaGetEnv() {
-    JNIEnv *env = nullptr;
-    jint result = CQJavaGetVM()->GetEnv((void **)&env, sJNIVersion);
-    if (result != JNI_OK) {
-        error("didn't get java env, code %d", result);
+    if (sJavaVM != nullptr) {
+        JNIEnv *env = nullptr;
+        sJavaVM->GetEnv((void **) &env, sJNIVersion);
+        return env;
+    } else {
         return nullptr;
     }
-
-    return env;
 }
 
 CQBridgeValue CQJavaCallStatic(
@@ -75,7 +47,6 @@ CQBridgeValue CQJavaCallStatic(
 {
     JNIEnv *env = CQJavaGetEnv();
     if (env == nullptr) {
-        error("try call static java method but java env is invalid");
         return CQBridgeValueNull;
     }
 

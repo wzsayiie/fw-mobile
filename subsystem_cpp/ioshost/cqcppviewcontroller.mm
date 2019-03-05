@@ -10,7 +10,7 @@ extern "C" void _main();
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    I(@"iOS Host: viewDidLoad");
+    I(@"iOS Host: ViewController viewDidLoad");
     
     self.view.backgroundColor = UIColor.whiteColor;
     
@@ -26,7 +26,7 @@ extern "C" void _main();
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    I(@"iOS Host: viewDidAppear");
+    I(@"iOS Host: ViewController viewDidAppear");
     
     I(@"iOS Host: post event UIAppear");
     CQHostOnEvent(CQHostEventUIAppear);
@@ -34,7 +34,7 @@ extern "C" void _main();
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    I(@"iOS Host: viewDidDisappear");
+    I(@"iOS Host: ViewController viewDidDisappear");
     
     I(@"iOS Host: post event UIDisappear");
     CQHostOnEvent(CQHostEventUIDisappear);

@@ -3,9 +3,6 @@
 #include "cqbridgecore.h"
 #include <jni.h>
 
-JavaVM *CQJavaGetVM();
-JNIEnv *CQJavaGetEnv();
-
 CQBridgeValue CQJavaCallStatic(
     const char *classPath,
     const char *methodName,

@@ -10,6 +10,8 @@ static lua_State *sLua = nullptr;
 void CQLuaVMOpen(const std::string &path) {
     CQLuaVMClose();
     
+    I("Lua VM: startup");
+    
     chdir(path.c_str());
     
     sLua = luaL_newstate();
@@ -24,6 +26,7 @@ void CQLuaVMOpen(const std::string &path) {
 
 void CQLuaVMClose() {
     if (sLua != nullptr) {
+        I("Lua VM: shoutdown");
         lua_close(sLua);
         sLua = nullptr;
     }
@@ -38,7 +41,7 @@ static int CQLuaVMTraceback(lua_State *lua) {
     lua_call(lua, 2, 1);
     const char *ret = lua_tostring(lua, -1);
     
-    E("LUA RUNTIME ERROR:\n%s", ret);
+    E("lua runtime error:\n%s", ret);
     
     return 1;
 }
@@ -55,7 +58,7 @@ void CQLuaVMDoString(const std::string &source) {
     int error = luaL_loadstring(sLua, source.c_str());
     if (error) {
         const char *info = lua_tostring(sLua, -1);
-        E("LUA SYNTAX ERROR:\n%s", info);
+        E("lua syntax error:\n%s", info);
         return;
     }
     
