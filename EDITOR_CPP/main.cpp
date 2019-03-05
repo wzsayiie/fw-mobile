@@ -1,9 +1,6 @@
 #include "utility.hh"
 
-static void init();
-static void run();
-
-void init() {
+void initialize() {
 
     string rootDirectory = "fw-mobile";
     string filePath = __FILE__;
@@ -18,14 +15,16 @@ void init() {
     }
 }
 
-int main() {
-    init();
-    run();
+static void execute();
+
+int main(int argc, char *argv[]) {
+    initialize();
+    execute();
+    space_line(1);
 }
 
-void run() {
-
-#define E(F) do { void F(); F(); } while (0)
+void execute() {
+    #define E(F) do { void F(); F(); } while (0)
     
 //    E(ObjcppMain);
 //    E(CPPMain);
