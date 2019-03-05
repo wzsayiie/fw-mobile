@@ -1,8 +1,8 @@
-#include "cccsharptraverser.hh"
-#include "ccgeneraltraverser.hh"
-#include "ccjavatraverser.hh"
-#include "ccluatraverser.hh"
-#include "ccobjcpptraverser.hh"
+#include "cccsharp.hh"
+#include "ccgeneral.hh"
+#include "ccjava.hh"
+#include "cclua.hh"
+#include "ccobjcpp.hh"
 
 void AppendJavas(vector<string> *sources) {
     sources->push_back("app_android/app/src/main/java");
@@ -34,12 +34,12 @@ void CodeCountMain() {
     
     vector<string> sources;
     
-    AppendJavas  (&sources);
-    AppendObjcpps(&sources);
-    AppendCSharps(&sources);
-    AppendLuas   (&sources);
+//    AppendJavas  (&sources);
+//    AppendObjcpps(&sources);
+//    AppendCSharps(&sources);
+//    AppendLuas   (&sources);
     
-    (new CCGeneralTraverser)->count(sources);
+//    (new CCGeneralTraverser)->count(sources);
 //    (new CCJavaTraverser   )->count(sources);
 //    (new CCObjcppTraverser )->count(sources);
 //    (new CCCSharpTraverser )->count(sources);

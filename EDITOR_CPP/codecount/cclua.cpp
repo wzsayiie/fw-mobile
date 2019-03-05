@@ -1,4 +1,4 @@
-#include "ccluatraverser.hh"
+#include "cclua.hh"
 
 void CCLuaTraverser::onBegin(CCData *data) {
 }

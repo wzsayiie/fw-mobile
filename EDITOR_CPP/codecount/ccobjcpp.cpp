@@ -1,4 +1,4 @@
-#include "ccobjcpptraverser.hh"
+#include "ccobjcpp.hh"
 
 void CCObjcppTraverser::onBegin(CCData *data) {
 }

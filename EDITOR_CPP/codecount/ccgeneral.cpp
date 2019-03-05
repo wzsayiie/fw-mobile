@@ -1,4 +1,4 @@
-#include "ccgeneraltraverser.hh"
+#include "ccgeneral.hh"
 
 static void ScanSource(const vector<char> &bytes, int *codeLine, int *emptyLine) {
     const char *ptr = bytes.data();

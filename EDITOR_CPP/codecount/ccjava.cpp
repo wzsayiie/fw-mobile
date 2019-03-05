@@ -1,4 +1,4 @@
-#include "ccjavatraverser.hh"
+#include "ccjava.hh"
 
 void CCJavaTraverser::onBegin(CCData *data) {
 }

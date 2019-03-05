@@ -1,4 +1,4 @@
-#include "cccsharptraverser.hh"
+#include "cccsharp.hh"
 
 void CCCSharpTraverser::onBegin(CCData *data) {
 }
