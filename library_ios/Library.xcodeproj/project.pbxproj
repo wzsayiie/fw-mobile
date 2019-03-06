@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B4576C1A222FD54900720DB1 /* cqconvention.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4576C19222FD54900720DB1 /* cqconvention.cpp */; };
+		B4576C1E222FD6B100720DB1 /* cqconventionlua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4576C1C222FD6B100720DB1 /* cqconventionlua.cpp */; };
 		B468C64322293CEF00A9657F /* CQLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B468C60122293CEF00A9657F /* CQLogger.m */; };
 		B468C64422293CEF00A9657F /* CQFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = B468C60222293CEF00A9657F /* CQFoundation.m */; };
 		B468C64922293CEF00A9657F /* cqfoundationlua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468C60E22293CEF00A9657F /* cqfoundationlua.cpp */; };
-		B468C64B22293CEF00A9657F /* CQRUNTIME.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468C61522293CEF00A9657F /* CQRUNTIME.cpp */; };
 		B468C64C22293CEF00A9657F /* cqfoundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468C61622293CEF00A9657F /* cqfoundation.cpp */; };
 		B468C64D22293CEF00A9657F /* cqlogger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468C61722293CEF00A9657F /* cqlogger.cpp */; };
 		B468C65322293CEF00A9657F /* CQBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B468C62922293CEF00A9657F /* CQBridge.m */; };
@@ -36,6 +37,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B4576C18222FD54900720DB1 /* cqconvention.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqconvention.hh; sourceTree = "<group>"; };
+		B4576C19222FD54900720DB1 /* cqconvention.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqconvention.cpp; sourceTree = "<group>"; };
+		B4576C1C222FD6B100720DB1 /* cqconventionlua.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqconventionlua.cpp; sourceTree = "<group>"; };
+		B4576C1D222FD6B100720DB1 /* cqconventionlua.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqconventionlua.hh; sourceTree = "<group>"; };
 		B468C60022293CEF00A9657F /* CQFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQFoundation.h; sourceTree = "<group>"; };
 		B468C60122293CEF00A9657F /* CQLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQLogger.m; sourceTree = "<group>"; };
 		B468C60222293CEF00A9657F /* CQFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQFoundation.m; sourceTree = "<group>"; };
@@ -44,10 +49,8 @@
 		B468C60F22293CEF00A9657F /* cqfoundationlua.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqfoundationlua.hh; sourceTree = "<group>"; };
 		B468C61322293CEF00A9657F /* cqfoundation.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqfoundation.hh; sourceTree = "<group>"; };
 		B468C61422293CEF00A9657F /* cqlogger.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqlogger.hh; sourceTree = "<group>"; };
-		B468C61522293CEF00A9657F /* CQRUNTIME.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CQRUNTIME.cpp; sourceTree = "<group>"; };
 		B468C61622293CEF00A9657F /* cqfoundation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqfoundation.cpp; sourceTree = "<group>"; };
 		B468C61722293CEF00A9657F /* cqlogger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqlogger.cpp; sourceTree = "<group>"; };
-		B468C61822293CEF00A9657F /* CQRUNTIME.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CQRUNTIME.hh; sourceTree = "<group>"; };
 		B468C62822293CEF00A9657F /* CQBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQBridge.h; sourceTree = "<group>"; };
 		B468C62922293CEF00A9657F /* CQBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQBridge.m; sourceTree = "<group>"; };
 		B468C63122293CEF00A9657F /* CQExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQExtension.m; sourceTree = "<group>"; };
@@ -77,6 +80,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B4576C15222FD54900720DB1 /* CONVENTION */ = {
+			isa = PBXGroup;
+			children = (
+				B4576C16222FD54900720DB1 /* libconvention */,
+			);
+			name = CONVENTION;
+			path = ../library/CONVENTION;
+			sourceTree = "<group>";
+		};
+		B4576C16222FD54900720DB1 /* libconvention */ = {
+			isa = PBXGroup;
+			children = (
+				B4576C17222FD54900720DB1 /* cpp_convention */,
+				B4576C1B222FD6B100720DB1 /* lua_convention */,
+			);
+			path = libconvention;
+			sourceTree = "<group>";
+		};
+		B4576C17222FD54900720DB1 /* cpp_convention */ = {
+			isa = PBXGroup;
+			children = (
+				B4576C18222FD54900720DB1 /* cqconvention.hh */,
+				B4576C19222FD54900720DB1 /* cqconvention.cpp */,
+			);
+			path = cpp_convention;
+			sourceTree = "<group>";
+		};
+		B4576C1B222FD6B100720DB1 /* lua_convention */ = {
+			isa = PBXGroup;
+			children = (
+				B4576C1D222FD6B100720DB1 /* cqconventionlua.hh */,
+				B4576C1C222FD6B100720DB1 /* cqconventionlua.cpp */,
+			);
+			path = lua_convention;
+			sourceTree = "<group>";
+		};
 		B468C5FE22293CEF00A9657F /* foundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,7 +140,7 @@
 		B468C60C22293CEF00A9657F /* libfoundation */ = {
 			isa = PBXGroup;
 			children = (
-				B468C61222293CEF00A9657F /* foundation */,
+				B468C61222293CEF00A9657F /* cpp_foundation */,
 				B468C60D22293CEF00A9657F /* lua_foundation */,
 			);
 			path = libfoundation;
@@ -116,27 +155,25 @@
 			path = lua_foundation;
 			sourceTree = "<group>";
 		};
-		B468C61222293CEF00A9657F /* foundation */ = {
+		B468C61222293CEF00A9657F /* cpp_foundation */ = {
 			isa = PBXGroup;
 			children = (
 				B468C61322293CEF00A9657F /* cqfoundation.hh */,
 				B468C61622293CEF00A9657F /* cqfoundation.cpp */,
 				B468C61422293CEF00A9657F /* cqlogger.hh */,
 				B468C61722293CEF00A9657F /* cqlogger.cpp */,
-				B468C61822293CEF00A9657F /* CQRUNTIME.hh */,
-				B468C61522293CEF00A9657F /* CQRUNTIME.cpp */,
 			);
-			path = foundation;
+			path = cpp_foundation;
 			sourceTree = "<group>";
 		};
-		B468C61922293CEF00A9657F /* bridge */ = {
+		B468C61922293CEF00A9657F /* BRIDGE */ = {
 			isa = PBXGroup;
 			children = (
 				B468C62722293CEF00A9657F /* Bridge */,
 				B468C65C222AC27400A9657F /* libbridge */,
 			);
-			name = bridge;
-			path = ../library/bridge;
+			name = BRIDGE;
+			path = ../library/BRIDGE;
 			sourceTree = "<group>";
 		};
 		B468C62722293CEF00A9657F /* Bridge */ = {
@@ -170,20 +207,20 @@
 		B468C63322293CEF00A9657F /* libextension */ = {
 			isa = PBXGroup;
 			children = (
-				B468C63422293CEF00A9657F /* extension */,
+				B468C63422293CEF00A9657F /* cpp_extension */,
 				B468C63A22293CEF00A9657F /* lua_extension */,
 			);
 			path = libextension;
 			sourceTree = "<group>";
 		};
-		B468C63422293CEF00A9657F /* extension */ = {
+		B468C63422293CEF00A9657F /* cpp_extension */ = {
 			isa = PBXGroup;
 			children = (
 				B468C63522293CEF00A9657F /* cqextension.hh */,
 				B468C63622293CEF00A9657F /* cqextension.cpp */,
 				B468C63722293CEF00A9657F /* cqjson.cpp */,
 			);
-			path = extension;
+			path = cpp_extension;
 			sourceTree = "<group>";
 		};
 		B468C63A22293CEF00A9657F /* lua_extension */ = {
@@ -235,7 +272,8 @@
 		CE219AD621DA51FD006A27B6 = {
 			isa = PBXGroup;
 			children = (
-				B468C61922293CEF00A9657F /* bridge */,
+				B468C61922293CEF00A9657F /* BRIDGE */,
+				B4576C15222FD54900720DB1 /* CONVENTION */,
 				B468C62F22293CEF00A9657F /* extension */,
 				B468C5FE22293CEF00A9657F /* foundation */,
 				CE219AE021DA51FD006A27B6 /* Products */,
@@ -308,17 +346,18 @@
 			files = (
 				B468C66E222AC27400A9657F /* cqbridge.cpp in Sources */,
 				B468C66C222AC27400A9657F /* cqbridgecore.cpp in Sources */,
-				B468C64B22293CEF00A9657F /* CQRUNTIME.cpp in Sources */,
 				B468C65522293CEF00A9657F /* CQExtension.m in Sources */,
 				B468C64422293CEF00A9657F /* CQFoundation.m in Sources */,
 				B468C64922293CEF00A9657F /* cqfoundationlua.cpp in Sources */,
 				B468C64D22293CEF00A9657F /* cqlogger.cpp in Sources */,
 				B468C66D222AC27400A9657F /* cqbridgelua.cpp in Sources */,
 				B468C65322293CEF00A9657F /* CQBridge.m in Sources */,
+				B4576C1A222FD54900720DB1 /* cqconvention.cpp in Sources */,
 				B468C65722293CEF00A9657F /* cqjson.cpp in Sources */,
 				B468C65622293CEF00A9657F /* cqextension.cpp in Sources */,
 				B468C64C22293CEF00A9657F /* cqfoundation.cpp in Sources */,
 				B468C65922293CEF00A9657F /* cqextensionlua.cpp in Sources */,
+				B4576C1E222FD6B100720DB1 /* cqconventionlua.cpp in Sources */,
 				B468C64322293CEF00A9657F /* CQLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "CQRUNTIME.hh"
+#include "cqconvention.hh"
 
 struct CQLoggerAgent : cq_interface<CQLoggerAgent, CQInterface> {
     virtual void loggerAgentHandleInfo(const std::string &message, const std::string &file, int32_t line) {}

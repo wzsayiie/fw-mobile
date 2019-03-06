@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CQRUNTIME.hh"
+#include "cqconvention.hh"
 
 enum CQHostEvent {
     CQHostEventAppCreate   = 1,

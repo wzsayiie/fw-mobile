@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CQRUNTIME.hh"
+#include "cqconvention.hh"
 
 void _I(const char *file, int line, const char *format, ...) __printflike(3, 4);
 void _E(const char *file, int line, const char *format, ...) __printflike(3, 4);
