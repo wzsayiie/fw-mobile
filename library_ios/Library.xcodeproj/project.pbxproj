@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B4576C1A222FD54900720DB1 /* cqconvention.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4576C19222FD54900720DB1 /* cqconvention.cpp */; };
 		B4576C1E222FD6B100720DB1 /* cqconventionlua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4576C1C222FD6B100720DB1 /* cqconventionlua.cpp */; };
+		B4576C22222FEF0700720DB1 /* cqfoundationbridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4576C20222FEF0700720DB1 /* cqfoundationbridge.cpp */; };
+		B4576C26222FEF2B00720DB1 /* cqextensionbridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4576C24222FEF2B00720DB1 /* cqextensionbridge.cpp */; };
 		B468C64322293CEF00A9657F /* CQLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B468C60122293CEF00A9657F /* CQLogger.m */; };
 		B468C64422293CEF00A9657F /* CQFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = B468C60222293CEF00A9657F /* CQFoundation.m */; };
 		B468C64922293CEF00A9657F /* cqfoundationlua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468C60E22293CEF00A9657F /* cqfoundationlua.cpp */; };
@@ -41,6 +43,10 @@
 		B4576C19222FD54900720DB1 /* cqconvention.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqconvention.cpp; sourceTree = "<group>"; };
 		B4576C1C222FD6B100720DB1 /* cqconventionlua.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqconventionlua.cpp; sourceTree = "<group>"; };
 		B4576C1D222FD6B100720DB1 /* cqconventionlua.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqconventionlua.hh; sourceTree = "<group>"; };
+		B4576C20222FEF0700720DB1 /* cqfoundationbridge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqfoundationbridge.cpp; sourceTree = "<group>"; };
+		B4576C21222FEF0700720DB1 /* cqfoundationbridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqfoundationbridge.h; sourceTree = "<group>"; };
+		B4576C24222FEF2B00720DB1 /* cqextensionbridge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqextensionbridge.cpp; sourceTree = "<group>"; };
+		B4576C25222FEF2B00720DB1 /* cqextensionbridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqextensionbridge.h; sourceTree = "<group>"; };
 		B468C60022293CEF00A9657F /* CQFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQFoundation.h; sourceTree = "<group>"; };
 		B468C60122293CEF00A9657F /* CQLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQLogger.m; sourceTree = "<group>"; };
 		B468C60222293CEF00A9657F /* CQFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQFoundation.m; sourceTree = "<group>"; };
@@ -116,6 +122,24 @@
 			path = lua_convention;
 			sourceTree = "<group>";
 		};
+		B4576C1F222FEF0700720DB1 /* bridge */ = {
+			isa = PBXGroup;
+			children = (
+				B4576C21222FEF0700720DB1 /* cqfoundationbridge.h */,
+				B4576C20222FEF0700720DB1 /* cqfoundationbridge.cpp */,
+			);
+			path = bridge;
+			sourceTree = "<group>";
+		};
+		B4576C23222FEF2B00720DB1 /* bridge */ = {
+			isa = PBXGroup;
+			children = (
+				B4576C25222FEF2B00720DB1 /* cqextensionbridge.h */,
+				B4576C24222FEF2B00720DB1 /* cqextensionbridge.cpp */,
+			);
+			path = bridge;
+			sourceTree = "<group>";
+		};
 		B468C5FE22293CEF00A9657F /* foundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +164,7 @@
 		B468C60C22293CEF00A9657F /* libfoundation */ = {
 			isa = PBXGroup;
 			children = (
+				B4576C1F222FEF0700720DB1 /* bridge */,
 				B468C61222293CEF00A9657F /* cpp_foundation */,
 				B468C60D22293CEF00A9657F /* lua_foundation */,
 			);
@@ -207,6 +232,7 @@
 		B468C63322293CEF00A9657F /* libextension */ = {
 			isa = PBXGroup;
 			children = (
+				B4576C23222FEF2B00720DB1 /* bridge */,
 				B468C63422293CEF00A9657F /* cpp_extension */,
 				B468C63A22293CEF00A9657F /* lua_extension */,
 			);
@@ -349,6 +375,7 @@
 				B468C65522293CEF00A9657F /* CQExtension.m in Sources */,
 				B468C64422293CEF00A9657F /* CQFoundation.m in Sources */,
 				B468C64922293CEF00A9657F /* cqfoundationlua.cpp in Sources */,
+				B4576C26222FEF2B00720DB1 /* cqextensionbridge.cpp in Sources */,
 				B468C64D22293CEF00A9657F /* cqlogger.cpp in Sources */,
 				B468C66D222AC27400A9657F /* cqbridgelua.cpp in Sources */,
 				B468C65322293CEF00A9657F /* CQBridge.m in Sources */,
@@ -359,6 +386,7 @@
 				B468C65922293CEF00A9657F /* cqextensionlua.cpp in Sources */,
 				B4576C1E222FD6B100720DB1 /* cqconventionlua.cpp in Sources */,
 				B468C64322293CEF00A9657F /* CQLogger.m in Sources */,
+				B4576C22222FEF0700720DB1 /* cqfoundationbridge.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
