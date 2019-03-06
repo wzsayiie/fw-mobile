@@ -123,8 +123,8 @@
 				B468C61622293CEF00A9657F /* cqfoundation.cpp */,
 				B468C61422293CEF00A9657F /* cqlogger.hh */,
 				B468C61722293CEF00A9657F /* cqlogger.cpp */,
-				B468C61522293CEF00A9657F /* CQRUNTIME.cpp */,
 				B468C61822293CEF00A9657F /* CQRUNTIME.hh */,
+				B468C61522293CEF00A9657F /* CQRUNTIME.cpp */,
 			);
 			path = foundation;
 			sourceTree = "<group>";
