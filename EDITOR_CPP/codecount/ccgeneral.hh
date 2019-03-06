@@ -5,6 +5,6 @@
 struct CCGeneral : CCTraverser {
     
     void onGetSupportedFiles(vector<string> *out) override;
-    void onGetSupportedOptions(CCMask *out) override;
-    void onHandleFile(const vector<char> &bytes, CCData *result) override;
+    void onGetSupportedOptions(CCStatisticsMask *out) override;
+    void onHandleFile(const vector<char> &bytes, CCStatisticsData *result) override;
 };

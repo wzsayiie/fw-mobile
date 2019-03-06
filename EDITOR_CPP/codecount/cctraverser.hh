@@ -2,13 +2,13 @@
 
 #include "utility.hh"
 
-using CCMask = int;
-const CCMask CCMaskCodeLine    = 0x1;
-const CCMask CCMaskCodeAndCmnt = 0x2;
-const CCMask CCMaskCommentLine = 0x4;
-const CCMask CCMaskEmptyLine   = 0x8;
+using CCStatisticsMask = int;
+const CCStatisticsMask CCStatisticsMaskCodeLine    = 0x1;
+const CCStatisticsMask CCStatisticsMaskCodeAndCmnt = 0x2;
+const CCStatisticsMask CCStatisticsMaskCommentLine = 0x4;
+const CCStatisticsMask CCStatisticsMaskEmptyLine   = 0x8;
 
-struct CCData {
+struct CCStatisticsData {
     int codeLine    = 0;
     int codeAndCmnt = 0;
     int commentLine = 0;
@@ -23,17 +23,17 @@ struct CCTraverser : CQTraverserDelegate {
     void traverserGetFile     (const string &name, int indent) override;
     
     virtual void onGetSupportedFiles(vector<string> *out) = 0;
-    virtual void onGetSupportedOptions(CCMask *out) = 0;
-    virtual void onHandleFile(const vector<char> &bytes, CCData *result) = 0;
+    virtual void onGetSupportedOptions(CCStatisticsMask *out) = 0;
+    virtual void onHandleFile(const vector<char> &bytes, CCStatisticsData *result) = 0;
     
 private:
     
     vector<string> _supportedFiles;
-    CCMask _supportedOptions;
+    CCStatisticsMask _supportedOptions;
     
-    CCData _globalData;
+    CCStatisticsData _globalData;
     int _globalFiles;
     
-    CCData _stageData;
+    CCStatisticsData _stageData;
     int _stageFiles;
 };

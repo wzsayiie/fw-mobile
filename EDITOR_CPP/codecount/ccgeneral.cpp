@@ -34,10 +34,10 @@ void CCGeneral::onGetSupportedFiles(vector<string> *out) {
     *out = {".java", ".h", ".hh", ".m", ".mm", ".cpp", ".cs", ".lua"};
 }
 
-void CCGeneral::onGetSupportedOptions(CCMask *out) {
-    *out = CCMaskCodeLine | CCMaskEmptyLine;
+void CCGeneral::onGetSupportedOptions(CCStatisticsMask *out) {
+    *out = CCStatisticsMaskCodeLine | CCStatisticsMaskEmptyLine;
 }
 
-void CCGeneral::onHandleFile(const vector<char> &bytes, CCData *result) {
+void CCGeneral::onHandleFile(const vector<char> &bytes, CCStatisticsData *result) {
     ScanSource(bytes, &result->codeLine, &result->emptyLine);
 }

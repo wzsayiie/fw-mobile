@@ -9,13 +9,13 @@ static bool IsSupportedFile(const string &name, const vector<string> &suffixes) 
     return false;
 }
 
-static int GetTotalLine(CCMask options, const CCData &data) {
+static int GetTotalLine(CCStatisticsMask options, const CCStatisticsData &data) {
     int totalLine = 0;
     
-    if (options & CCMaskCodeLine   ) { totalLine += data.codeLine   ; }
-    if (options & CCMaskCodeAndCmnt) { totalLine += data.codeAndCmnt; }
-    if (options & CCMaskCommentLine) { totalLine += data.commentLine; }
-    if (options & CCMaskEmptyLine  ) { totalLine += data.emptyLine  ; }
+    if (options & CCStatisticsMaskCodeLine   ) { totalLine += data.codeLine   ; }
+    if (options & CCStatisticsMaskCodeAndCmnt) { totalLine += data.codeAndCmnt; }
+    if (options & CCStatisticsMaskCommentLine) { totalLine += data.commentLine; }
+    if (options & CCStatisticsMaskEmptyLine  ) { totalLine += data.emptyLine  ; }
     
     return totalLine;
 }
@@ -32,7 +32,7 @@ const int nEmpty   = 3;
 const int nReadErr = 4;
 const int nNotUTF8 = 5;
 
-static void PrintLine(CCMask m, int n, const string &name, const char *tail, int indent) {
+static void PrintLine(CCStatisticsMask m, int n, const string &name, const char *tail, int indent) {
     
     if /**/ (n == nHeader0) { start_newline.print("| sum"); }
     else if (n == nHeader1) { start_newline.print("|----"); }
@@ -40,29 +40,29 @@ static void PrintLine(CCMask m, int n, const string &name, const char *tail, int
     else if (n == nReadErr) { start_newline.print("[    "); }
     else if (n == nNotUTF8) { start_newline.print("[    "); }
     
-    if /**/ (n == nHeader0 && (m & CCMaskCodeLine   )) { continue_last.print("|  code  "); }
-    else if (n == nHeader1 && (m & CCMaskCodeLine   )) { continue_last.print("|--------"); }
-    else if (n == nEmpty   && (m & CCMaskCodeLine   )) { continue_last.print("         "); }
-    else if (n == nReadErr && (m & CCMaskCodeLine   )) { continue_last.print(" READ ERR"); }
-    else if (n == nNotUTF8 && (m & CCMaskCodeLine   )) { continue_last.print(" NOT UTF8"); }
+    if /**/ (n == nHeader0 && (m & CCStatisticsMaskCodeLine   )) { continue_last.print("|  code  "); }
+    else if (n == nHeader1 && (m & CCStatisticsMaskCodeLine   )) { continue_last.print("|--------"); }
+    else if (n == nEmpty   && (m & CCStatisticsMaskCodeLine   )) { continue_last.print("         "); }
+    else if (n == nReadErr && (m & CCStatisticsMaskCodeLine   )) { continue_last.print(" READ ERR"); }
+    else if (n == nNotUTF8 && (m & CCStatisticsMaskCodeLine   )) { continue_last.print(" NOT UTF8"); }
     
-    if /**/ (n == nHeader0 && (m & CCMaskCodeAndCmnt)) { continue_last.print("|cod&cmnt"); }
-    else if (n == nHeader1 && (m & CCMaskCodeAndCmnt)) { continue_last.print("|--------"); }
-    else if (n == nEmpty   && (m & CCMaskCodeAndCmnt)) { continue_last.print("         "); }
-    else if (n == nReadErr && (m & CCMaskCodeAndCmnt)) { continue_last.print("         "); }
-    else if (n == nNotUTF8 && (m & CCMaskCodeAndCmnt)) { continue_last.print("         "); }
+    if /**/ (n == nHeader0 && (m & CCStatisticsMaskCodeAndCmnt)) { continue_last.print("|cod&cmnt"); }
+    else if (n == nHeader1 && (m & CCStatisticsMaskCodeAndCmnt)) { continue_last.print("|--------"); }
+    else if (n == nEmpty   && (m & CCStatisticsMaskCodeAndCmnt)) { continue_last.print("         "); }
+    else if (n == nReadErr && (m & CCStatisticsMaskCodeAndCmnt)) { continue_last.print("         "); }
+    else if (n == nNotUTF8 && (m & CCStatisticsMaskCodeAndCmnt)) { continue_last.print("         "); }
     
-    if /**/ (n == nHeader0 && (m & CCMaskCommentLine)) { continue_last.print("| comment"); }
-    else if (n == nHeader1 && (m & CCMaskCommentLine)) { continue_last.print("|--------"); }
-    else if (n == nEmpty   && (m & CCMaskCommentLine)) { continue_last.print("         "); }
-    else if (n == nReadErr && (m & CCMaskCommentLine)) { continue_last.print("         "); }
-    else if (n == nNotUTF8 && (m & CCMaskCommentLine)) { continue_last.print("         "); }
+    if /**/ (n == nHeader0 && (m & CCStatisticsMaskCommentLine)) { continue_last.print("| comment"); }
+    else if (n == nHeader1 && (m & CCStatisticsMaskCommentLine)) { continue_last.print("|--------"); }
+    else if (n == nEmpty   && (m & CCStatisticsMaskCommentLine)) { continue_last.print("         "); }
+    else if (n == nReadErr && (m & CCStatisticsMaskCommentLine)) { continue_last.print("         "); }
+    else if (n == nNotUTF8 && (m & CCStatisticsMaskCommentLine)) { continue_last.print("         "); }
     
-    if /**/ (n == nHeader0 && (m & CCMaskEmptyLine  )) { continue_last.print("|  empty "); }
-    else if (n == nHeader1 && (m & CCMaskEmptyLine  )) { continue_last.print("|--------"); }
-    else if (n == nEmpty   && (m & CCMaskEmptyLine  )) { continue_last.print("         "); }
-    else if (n == nReadErr && (m & CCMaskEmptyLine  )) { continue_last.print("         "); }
-    else if (n == nNotUTF8 && (m & CCMaskEmptyLine  )) { continue_last.print("         "); }
+    if /**/ (n == nHeader0 && (m & CCStatisticsMaskEmptyLine  )) { continue_last.print("|  empty "); }
+    else if (n == nHeader1 && (m & CCStatisticsMaskEmptyLine  )) { continue_last.print("|--------"); }
+    else if (n == nEmpty   && (m & CCStatisticsMaskEmptyLine  )) { continue_last.print("         "); }
+    else if (n == nReadErr && (m & CCStatisticsMaskEmptyLine  )) { continue_last.print("         "); }
+    else if (n == nNotUTF8 && (m & CCStatisticsMaskEmptyLine  )) { continue_last.print("         "); }
     
     if /**/ (n == nHeader0) { continue_last.print(" |"); }
     else if (n == nHeader1) { continue_last.print("-|"); }
@@ -86,14 +86,14 @@ static void PrintDataItem(int part, int total) {
     continue_last.print(" %4d/%02d%%", part, centage);
 }
 
-static void PrintDataLine(CCMask m, const CCData &d, const string &name, const char *tail, int indent) {
+static void PrintDataLine(CCStatisticsMask m, const CCStatisticsData &d, const string &name, const char *tail, int indent) {
     int totalLine = GetTotalLine(m, d);
     start_newline.print("[%4d", totalLine);
     
-    if (m & CCMaskCodeLine   ) { PrintDataItem(d.codeLine   , totalLine); }
-    if (m & CCMaskCodeAndCmnt) { PrintDataItem(d.codeAndCmnt, totalLine); }
-    if (m & CCMaskCommentLine) { PrintDataItem(d.commentLine, totalLine); }
-    if (m & CCMaskEmptyLine  ) { PrintDataItem(d.emptyLine  , totalLine); }
+    if (m & CCStatisticsMaskCodeLine   ) { PrintDataItem(d.codeLine   , totalLine); }
+    if (m & CCStatisticsMaskCodeAndCmnt) { PrintDataItem(d.codeAndCmnt, totalLine); }
+    if (m & CCStatisticsMaskCommentLine) { PrintDataItem(d.commentLine, totalLine); }
+    if (m & CCStatisticsMaskEmptyLine  ) { PrintDataItem(d.emptyLine  , totalLine); }
     
     continue_last.print(" ]");
     
@@ -110,21 +110,21 @@ static void PrintSummaryItem(const char *title, int part, int total) {
     }
 }
 
-static void PrintSummary(CCMask options, int files, const CCData &data) {
-    int totalLine = GetTotalLine(options, data);
+static void PrintSummary(CCStatisticsMask m, int files, const CCStatisticsData &d) {
+    int totalLine = GetTotalLine(m, d);
     
     space_line(1);
-    /* ---- ---- ---- ---- ---- --- */ PrintSummaryItem("file count  ", files, 0);
-    /* ---- ---- ---- ---- ---- --- */ PrintSummaryItem("total line  ", totalLine, 0);
-    if (options & CCMaskCodeLine   ) { PrintSummaryItem("code line   ", data.codeLine   , totalLine); }
-    if (options & CCMaskCodeAndCmnt) { PrintSummaryItem("code&comment", data.codeAndCmnt, totalLine); }
-    if (options & CCMaskCommentLine) { PrintSummaryItem("comment line", data.commentLine, totalLine); }
-    if (options & CCMaskEmptyLine  ) { PrintSummaryItem("empty line  ", data.emptyLine  , totalLine); }
+    /* ---- ---- ---- ---- ---- ---- -- */ PrintSummaryItem("file count  ", files, 0);
+    /* ---- ---- ---- ---- ---- ---- -- */ PrintSummaryItem("total line  ", totalLine, 0);
+    if (m & CCStatisticsMaskCodeLine   ) { PrintSummaryItem("code line   ", d.codeLine   , totalLine); }
+    if (m & CCStatisticsMaskCodeAndCmnt) { PrintSummaryItem("code&comment", d.codeAndCmnt, totalLine); }
+    if (m & CCStatisticsMaskCommentLine) { PrintSummaryItem("comment line", d.commentLine, totalLine); }
+    if (m & CCStatisticsMaskEmptyLine  ) { PrintSummaryItem("empty line  ", d.emptyLine  , totalLine); }
 }
 
-static const CCData CCDataZero = {0, 0, 0, 0};
+static const CCStatisticsData CCStatisticsDataZero = {0, 0, 0, 0};
 
-static void operator+=(CCData &out, const CCData &append) {
+static void operator+=(CCStatisticsData &out, const CCStatisticsData &append) {
     out.codeLine    += append.codeLine   ;
     out.codeAndCmnt += append.codeAndCmnt;
     out.commentLine += append.commentLine;
@@ -135,7 +135,7 @@ void CCTraverser::count(const vector<string> &paths) {
     
     _supportedFiles.clear();
     _supportedOptions = 0;
-    _globalData = CCDataZero;
+    _globalData = CCStatisticsDataZero;
     _globalFiles = 0;
     onGetSupportedFiles(&_supportedFiles);
     onGetSupportedOptions(&_supportedOptions);
@@ -144,7 +144,7 @@ void CCTraverser::count(const vector<string> &paths) {
         space_line(1).print("@ %s:", it.c_str());
         space_line(1);
         
-        _stageData = CCDataZero;
+        _stageData = CCStatisticsDataZero;
         _stageFiles = 0;
         CQTraverse(it, this);
         _globalData += _stageData;
@@ -183,7 +183,7 @@ void CCTraverser::traverserGetFile(const string &name, int indent) {
         PrintLine(_supportedOptions, nNotUTF8, name, "", indent);
         return;
     }
-    CCData data;
+    CCStatisticsData data;
     onHandleFile(utf8, &data);
     PrintDataLine(_supportedOptions, data, name, "", indent);
     _stageData += data;
