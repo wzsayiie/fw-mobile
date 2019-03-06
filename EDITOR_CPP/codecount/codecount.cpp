@@ -39,9 +39,9 @@ void CodeCountMain() {
 //    AppendCSharps(&sources);
 //    AppendLuas   (&sources);
     
-//    (new CCGeneral         )->count(sources);
-//    (new CCJavaTraverser   )->count(sources);
-//    (new CCObjcppTraverser )->count(sources);
-//    (new CCCSharpTraverser )->count(sources);
-//    (new CCLuaTraverser    )->count(sources);
+//    (new CCGeneral)->count(sources);
+//    (new CCJava   )->count(sources);
+//    (new CCObjcpp )->count(sources);
+//    (new CCCSharp )->count(sources);
+//    (new CCLua    )->count(sources);
 }
