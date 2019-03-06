@@ -106,14 +106,14 @@ string CQDirectoryPath(const string &path) {
     }
 }
 
-CQError CQReadFile(const string &path, vector<char> *content) {
+bool CQReadFile(const string &path, vector<char> *content) {
     if (path.empty() || content == nullptr) {
-        return CQErrorParamInvaild;
+        return false;
     }
     
     FILE *file = fopen(path, "rb");
     if (file == nullptr) {
-        return CQErrorOpenFailed;
+        return false;
     }
     
     const size_t bufferSize = 1024;
@@ -127,21 +127,21 @@ CQError CQReadFile(const string &path, vector<char> *content) {
     }
     
     fclose(file);
-    return CQErrorNone;
+    return true;
 }
 
-CQError CWriteFile(const string &path, const vector<char> &content) {
+bool CQWriteFile(const string &path, const vector<char> &content) {
     if (path.empty()) {
-        return CQErrorParamInvaild;
+        return false;
     }
     
     FILE *file = fopen(path, "wb");
     if (file == nullptr) {
-        return CQErrorOpenFailed;
+        return false;
     }
     fwrite(content.data(), 1, content.size(), file);
     fclose(file);
-    return CQErrorNone;
+    return true;
 }
 
 static void CQTraverseFile(const string &name, int indent, CQTraverserDelegate *delegate) {

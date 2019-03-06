@@ -39,7 +39,7 @@ void CodeCountMain() {
 //    AppendCSharps(&sources);
 //    AppendLuas   (&sources);
     
-//    (new CCGeneralTraverser)->count(sources);
+//    (new CCGeneral         )->count(sources);
 //    (new CCJavaTraverser   )->count(sources);
 //    (new CCObjcppTraverser )->count(sources);
 //    (new CCCSharpTraverser )->count(sources);

@@ -2,16 +2,9 @@
 
 #include "cctraverser.hh"
 
-struct CCGeneralTraverser : CCTraverser {
+struct CCGeneral : CCTraverser {
     
-protected:
-    
-    void onBegin     (CCData *data) override;
-    void onBeginStage(CCData *data) override;
-    
-    void onHandleDirectory(CCData *data, const string &name, int indent) override;
-    void onHandleFile     (CCData *data, const string &name, int indent) override;
-    
-    void onEndStage(CCData *data) override;
-    void onEnd     (CCData *data) override;
+    void onGetSupportedFiles(vector<string> *out) override;
+    void onGetSupportedOptions(CCMask *out) override;
+    void onHandleFile(const vector<char> &bytes, CCData *result) override;
 };

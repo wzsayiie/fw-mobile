@@ -1,7 +1,6 @@
 #pragma once
 
 #include "cqstdex.hh"
-#include "cqerror.hh"
 
 //depends on OS
 
@@ -31,8 +30,8 @@ void CQAppendPath(string *path, const string &item);
 string CQBaseName(const string &path);
 string CQDirectoryPath(const string &path);
 
-CQError CQReadFile(const string &path, vector<char> *content);
-CQError CQWriteFile(const string &path, const vector<char> &content);
+bool CQReadFile(const string &path, vector<char> *content);
+bool CQWriteFile(const string &path, const vector<char> &content);
 
 void CQTraverse(const string &path, struct CQTraverserDelegate *delegate);
 
