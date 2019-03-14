@@ -45,7 +45,7 @@
 		B4CFD97A21C75AB300FFF4CF /* IAPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4CFD97921C75AB300FFF4CF /* IAPViewController.xib */; };
 		B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DCD87B21F17DAE0090BFBB /* UserIdentity.m */; };
 		B4DCD87F21F17DAE0090BFBB /* UserSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DCD87C21F17DAE0090BFBB /* UserSetting.m */; };
-		B4E7CD0F2224098800122637 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E7CD0E2224098800122637 /* main.m */; };
+		B4E7CD0F2224098800122637 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = B4E7CD0E2224098800122637 /* main.mm */; };
 		B4F7176821F976AD0090F949 /* NSBundle+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F7176721F976AD0090F949 /* NSBundle+CQ.m */; };
 		B4FCC39821F0912700D152DF /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FCC39721F0912700D152DF /* libc++.tbd */; };
 		CE224EA72206AED300B8FB53 /* cqview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EA22206AED300B8FB53 /* cqview.cpp */; };
@@ -146,7 +146,7 @@
 		B4DCD87B21F17DAE0090BFBB /* UserIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserIdentity.m; sourceTree = "<group>"; };
 		B4DCD87C21F17DAE0090BFBB /* UserSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSetting.m; sourceTree = "<group>"; };
 		B4DCD87D21F17DAE0090BFBB /* UserIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserIdentity.h; sourceTree = "<group>"; };
-		B4E7CD0E2224098800122637 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B4E7CD0E2224098800122637 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		B4EC3C6621DF6D8800E287A4 /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../library_ios/Library.xcodeproj; sourceTree = "<group>"; };
 		B4F7176621F976AD0090F949 /* NSBundle+CQ.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+CQ.h"; sourceTree = "<group>"; };
 		B4F7176721F976AD0090F949 /* NSBundle+CQ.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+CQ.m"; sourceTree = "<group>"; };
@@ -239,7 +239,7 @@
 				B45C1B7421A02B19007CB374 /* Properties */,
 				B45C1B7921A02B19007CB374 /* Sources */,
 				B45C1B7621A02B19007CB374 /* Resoures */,
-				B4E7CD0E2224098800122637 /* main.m */,
+				B4E7CD0E2224098800122637 /* main.mm */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -769,7 +769,7 @@
 				CE224EB62206C3FD00B8FB53 /* appdelegate.cpp in Sources */,
 				B408A5B92226539B00F4239B /* cqluavm.cpp in Sources */,
 				B45C1BF821A03824007CB374 /* CQSceneNavigator.m in Sources */,
-				B4E7CD0F2224098800122637 /* main.m in Sources */,
+				B4E7CD0F2224098800122637 /* main.mm in Sources */,
 				B4CFD97321C7475000FFF4CF /* IAPViewController.m in Sources */,
 				B49706742227785C00E8D717 /* cqluaviewcontroller.mm in Sources */,
 				B4CFD97521C7475000FFF4CF /* FloatViewController.m in Sources */,
