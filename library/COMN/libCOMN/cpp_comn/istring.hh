@@ -17,6 +17,6 @@ struct iString : iComponent {
 };
 
 struct iStringCallee : iComponentCallee {
-    int64_t called(coGUID method, iComponentCalleeParams params) override;
+    void called(coGUID method, iComponentCalleeParams params, int64_t *ret) override;
     iString *component();
 };

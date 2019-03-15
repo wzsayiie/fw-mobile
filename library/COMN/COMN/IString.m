@@ -30,18 +30,15 @@ static const COGUID mthdUTF8Length = COGUIDMake(u,t,f,8,l,e,n,g,t,h,_,_,_);
     return _component;
 }
 
-- (int64_t)called:(COGUID)method raws:(IComponentCalleeParams *)params {
+- (void)called:(COGUID)method params:(IComponentCalleeParams *)params ret:(int64_t *)ret {
     if (method == mthdSetUTF8) {
         int64_t data = params.a0;
         int32_t length = (int32_t)params.a1;
         [self.component setUTF8WithData:data length:length];
-        return 0;
     } else if (method == mthdUTF8Data) {
-        return [self.component utf8Data];
+        *ret = [self.component utf8Data];
     } else if (method == mthdUTF8Length) {
-        return [self.component utf8Length];
-    } else {
-        return 0;
+        *ret = [self.component utf8Length];
     }
 }
 

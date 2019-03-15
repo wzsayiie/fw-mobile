@@ -31,17 +31,14 @@ iString *iStringCallee::component() {
     return (iString *)_component;
 }
 
-int64_t iStringCallee::called(coGUID method, iComponentCalleeParams params) {
+void iStringCallee::called(coGUID method, iComponentCalleeParams params, int64_t *ret) {
     if (method == mthdSetUTF8) {
         auto data = params.a0;
         auto length = (int32_t)params.a1;
         component()->setUTF8(data, length);
-        return 0;
     } else if (method == mthdUTF8Data) {
-        return component()->utf8Data();
+        *ret = component()->utf8Data();
     } else if (method == mthdUTF8Length) {
-        return component()->utf8Length();
-    } else {
-        return 0;
+        *ret = component()->utf8Length();
     }
 }

@@ -4,8 +4,15 @@
 
 struct iComponent {
     
-    iComponent *call(coGUID method, iComponent *object0, iComponent *object1 = 0, iComponent *object2 = 0, iComponent *object3 = 0);
-    int64_t call(coGUID method, int64_t raw0, int64_t raw1 = 0, int64_t raw2 = 0, int64_t raw3 = 0);
+    iComponent *call(coGUID method, iComponent *object0,
+                     iComponent *object1 = 0,
+                     iComponent *object2 = 0,
+                     iComponent *object3 = 0);
+    
+    int64_t call(coGUID method, int64_t raw0,
+                 int64_t raw1 = 0,
+                 int64_t raw2 = 0,
+                 int64_t raw3 = 0);
 };
 
 struct iComponentCalleeParams {
@@ -16,6 +23,6 @@ struct iComponentCalleeParams {
 };
 
 struct iComponentCallee {
-    virtual int64_t called(coGUID method, iComponentCalleeParams params);
+    virtual void called(coGUID method, iComponentCalleeParams params, int64_t *ret);
     iComponent *_component;
 };

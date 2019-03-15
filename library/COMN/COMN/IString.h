@@ -1,6 +1,6 @@
 #import "IComponent.h"
 
-static const COGUID IStringGUIDString = COGUIDMake(i,s,t,r,i,n,g,_,_,_,_,_,_);
+static const COGUID IStringGUID = COGUIDMake(i,s,t,r,i,n,g,_,_,_,_,_,_);
 
 @interface IString : IComponent
 - (void)setUTF8WithData:(int64_t)data length:(int32_t)length;

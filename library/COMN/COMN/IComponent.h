@@ -25,5 +25,5 @@
 @public
     id _component;
 }
-- (int64_t)called:(COGUID)method raws:(IComponentCalleeParams *)params;
+- (void)called:(COGUID)method params:(IComponentCalleeParams *)params ret:(int64_t *)ret;
 @end

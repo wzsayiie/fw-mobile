@@ -5,11 +5,11 @@
 
 @implementation IComponent
 
-- (id)call:(COGUID)method object0:(id)object0 object1:(id)object1 object2:(id)object2 object3:(id)object3 {
+- (id)call:(COGUID)method object0:(id)a object1:(id)b object2:(id)c object3:(id)d {
     return nil;
 }
 
-- (int64_t)call:(COGUID)method raw0:(COGUID)raw0 raw1:(COGUID)raw1 raw2:(COGUID)raw2 raw3:(COGUID)raw3 {
+- (int64_t)call:(COGUID)method raw0:(int64_t)a raw1:(int64_t)b raw2:(int64_t)c raw3:(int64_t)d {
     return 0;
 }
 
@@ -31,8 +31,7 @@
 
 @implementation IComponentCallee
 
-- (int64_t)called:(COGUID)method raws:(IComponentCalleeParams *)params {
-    return 0;
+- (void)called:(COGUID)method params:(IComponentCalleeParams *)params ret:(int64_t *)ret {
 }
 
 @end

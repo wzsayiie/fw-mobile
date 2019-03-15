@@ -1,4 +1,4 @@
-//Cross-language Object coNvention
+//Cross-language Object coMponent coNvention
 
 #pragma once
 
