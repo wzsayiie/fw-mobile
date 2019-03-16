@@ -85,12 +85,12 @@
 		B4C3421D2239F17C001296D5 /* istring.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = istring.cpp; sourceTree = "<group>"; };
 		B4C3421E2239F17C001296D5 /* costring.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = costring.cpp; sourceTree = "<group>"; };
 		B4C3421F2239F17C001296D5 /* icomponent.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = icomponent.hh; sourceTree = "<group>"; };
-		B4C342202239F17C001296D5 /* comn.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = comn.hh; sourceTree = "<group>"; };
+		B4C342202239F17C001296D5 /* corefoundation.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = corefoundation.hh; sourceTree = "<group>"; };
 		B4C342212239F17C001296D5 /* coruntime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = coruntime.cpp; sourceTree = "<group>"; };
 		B4C342222239F17C001296D5 /* coruntime.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = coruntime.hh; sourceTree = "<group>"; };
 		B4C342242239F17C001296D5 /* IComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IComponent.m; sourceTree = "<group>"; };
 		B4C342252239F17C001296D5 /* CORuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CORuntime.m; sourceTree = "<group>"; };
-		B4C342262239F17C001296D5 /* COMN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COMN.h; sourceTree = "<group>"; };
+		B4C342262239F17C001296D5 /* CoreFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreFoundation.h; sourceTree = "<group>"; };
 		B4C342272239F17C001296D5 /* IString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IString.h; sourceTree = "<group>"; };
 		B4C342282239F17C001296D5 /* IComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IComponent.h; sourceTree = "<group>"; };
 		B4C342292239F17C001296D5 /* IString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IString.m; sourceTree = "<group>"; };
@@ -318,28 +318,28 @@
 			path = cpp_bridge;
 			sourceTree = "<group>";
 		};
-		B4C342172239F17C001296D5 /* COMN */ = {
+		B4C342172239F17C001296D5 /* corefoundation */ = {
 			isa = PBXGroup;
 			children = (
-				B4C342232239F17C001296D5 /* COMN */,
-				B4C342182239F17C001296D5 /* libCOMN */,
+				B4C342232239F17C001296D5 /* CoreFoundation */,
+				B4C342182239F17C001296D5 /* libcorefoundaion */,
 			);
-			name = COMN;
-			path = ../library/COMN;
+			name = corefoundation;
+			path = ../library/corefoundation;
 			sourceTree = "<group>";
 		};
-		B4C342182239F17C001296D5 /* libCOMN */ = {
+		B4C342182239F17C001296D5 /* libcorefoundaion */ = {
 			isa = PBXGroup;
 			children = (
-				B4C342192239F17C001296D5 /* cpp_comn */,
+				B4C342192239F17C001296D5 /* cpp_corefoundation */,
 			);
-			path = libCOMN;
+			path = libcorefoundaion;
 			sourceTree = "<group>";
 		};
-		B4C342192239F17C001296D5 /* cpp_comn */ = {
+		B4C342192239F17C001296D5 /* cpp_corefoundation */ = {
 			isa = PBXGroup;
 			children = (
-				B4C342202239F17C001296D5 /* comn.hh */,
+				B4C342202239F17C001296D5 /* corefoundation.hh */,
 				B4C342222239F17C001296D5 /* coruntime.hh */,
 				B4C342212239F17C001296D5 /* coruntime.cpp */,
 				B4C3421B2239F17C001296D5 /* costring.hh */,
@@ -349,13 +349,13 @@
 				B4C3421C2239F17C001296D5 /* istring.hh */,
 				B4C3421D2239F17C001296D5 /* istring.cpp */,
 			);
-			path = cpp_comn;
+			path = cpp_corefoundation;
 			sourceTree = "<group>";
 		};
-		B4C342232239F17C001296D5 /* COMN */ = {
+		B4C342232239F17C001296D5 /* CoreFoundation */ = {
 			isa = PBXGroup;
 			children = (
-				B4C342262239F17C001296D5 /* COMN.h */,
+				B4C342262239F17C001296D5 /* CoreFoundation.h */,
 				B4C3422A2239F17C001296D5 /* CORuntime.h */,
 				B4C342252239F17C001296D5 /* CORuntime.m */,
 				B4C342282239F17C001296D5 /* IComponent.h */,
@@ -363,14 +363,14 @@
 				B4C342272239F17C001296D5 /* IString.h */,
 				B4C342292239F17C001296D5 /* IString.m */,
 			);
-			path = COMN;
+			path = CoreFoundation;
 			sourceTree = "<group>";
 		};
 		CE219AD621DA51FD006A27B6 = {
 			isa = PBXGroup;
 			children = (
 				B468C61922293CEF00A9657F /* BRIDGE */,
-				B4C342172239F17C001296D5 /* COMN */,
+				B4C342172239F17C001296D5 /* corefoundation */,
 				B4576C15222FD54900720DB1 /* CONVENTION */,
 				B468C62F22293CEF00A9657F /* extension */,
 				B468C5FE22293CEF00A9657F /* foundation */,

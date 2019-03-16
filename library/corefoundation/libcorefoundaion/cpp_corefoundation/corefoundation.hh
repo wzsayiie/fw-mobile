@@ -1,5 +1,3 @@
-//Cross-language Object coMponent coNvention
-
 #pragma once
 
 #include "coruntime.hh"

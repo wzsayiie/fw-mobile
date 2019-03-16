@@ -1,6 +1,3 @@
-#import "COMN.h"
-#import "comn.hh"
-
 int main(int argc, char *argv[]) {
     
     NSString *delegate = @"AppDelegate";
