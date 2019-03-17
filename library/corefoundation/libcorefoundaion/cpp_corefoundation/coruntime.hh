@@ -20,3 +20,19 @@ typedef int64_t coGUID;
 /**/    (_coGUIDChar(*(""#_10))) *27*27*27*27*27*27*27*27*27*27 +\
 /**/    (_coGUIDChar(*(""#_11))) *27*27*27*27*27*27*27*27*27*27*27 +\
 /**/    (_coGUIDChar(*(""#_12))) *27*27*27*27*27*27*27*27*27*27*27*27)
+
+struct coLanguagePort {
+    
+    virtual int64_t createComponent(coGUID objectGUID) = 0;
+    virtual void retaionComponent(int64_t objectIndex) = 0;
+    virtual void releaseComponent(int64_t objectIndex) = 0;
+    
+    virtual int64_t callComponent
+    /*---*/(coGUID objectGUID,
+            coGUID methodGUID,
+            int64_t objectIndex,
+            int64_t param0,
+            int64_t param1,
+            int64_t param2,
+            int64_t param3) = 0;
+};

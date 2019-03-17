@@ -31,6 +31,8 @@
 		B4C3422F2239F17C001296D5 /* IComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C342242239F17C001296D5 /* IComponent.m */; };
 		B4C342302239F17C001296D5 /* CORuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C342252239F17C001296D5 /* CORuntime.m */; };
 		B4C342312239F17C001296D5 /* IString.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C342292239F17C001296D5 /* IString.m */; };
+		CE2A8E9B223D46680026146B /* COCoreFoundationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2A8E9A223D46680026146B /* COCoreFoundationManager.m */; };
+		CE2A8E9E223D46760026146B /* cocorefoundationmanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE2A8E9C223D46750026146B /* cocorefoundationmanager.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -85,17 +87,21 @@
 		B4C3421D2239F17C001296D5 /* istring.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = istring.cpp; sourceTree = "<group>"; };
 		B4C3421E2239F17C001296D5 /* costring.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = costring.cpp; sourceTree = "<group>"; };
 		B4C3421F2239F17C001296D5 /* icomponent.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = icomponent.hh; sourceTree = "<group>"; };
-		B4C342202239F17C001296D5 /* corefoundation.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = corefoundation.hh; sourceTree = "<group>"; };
+		B4C342202239F17C001296D5 /* cocorefoundation.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cocorefoundation.hh; sourceTree = "<group>"; };
 		B4C342212239F17C001296D5 /* coruntime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = coruntime.cpp; sourceTree = "<group>"; };
 		B4C342222239F17C001296D5 /* coruntime.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = coruntime.hh; sourceTree = "<group>"; };
 		B4C342242239F17C001296D5 /* IComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IComponent.m; sourceTree = "<group>"; };
 		B4C342252239F17C001296D5 /* CORuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CORuntime.m; sourceTree = "<group>"; };
-		B4C342262239F17C001296D5 /* CoreFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreFoundation.h; sourceTree = "<group>"; };
+		B4C342262239F17C001296D5 /* COCoreFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COCoreFoundation.h; sourceTree = "<group>"; };
 		B4C342272239F17C001296D5 /* IString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IString.h; sourceTree = "<group>"; };
 		B4C342282239F17C001296D5 /* IComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IComponent.h; sourceTree = "<group>"; };
 		B4C342292239F17C001296D5 /* IString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IString.m; sourceTree = "<group>"; };
 		B4C3422A2239F17C001296D5 /* CORuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CORuntime.h; sourceTree = "<group>"; };
 		CE219ADF21DA51FD006A27B6 /* libLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE2A8E99223D46680026146B /* COCoreFoundationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COCoreFoundationManager.h; sourceTree = "<group>"; };
+		CE2A8E9A223D46680026146B /* COCoreFoundationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COCoreFoundationManager.m; sourceTree = "<group>"; };
+		CE2A8E9C223D46750026146B /* cocorefoundationmanager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cocorefoundationmanager.cpp; sourceTree = "<group>"; };
+		CE2A8E9D223D46760026146B /* cocorefoundationmanager.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cocorefoundationmanager.hh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -339,7 +345,9 @@
 		B4C342192239F17C001296D5 /* cpp_corefoundation */ = {
 			isa = PBXGroup;
 			children = (
-				B4C342202239F17C001296D5 /* corefoundation.hh */,
+				B4C342202239F17C001296D5 /* cocorefoundation.hh */,
+				CE2A8E9D223D46760026146B /* cocorefoundationmanager.hh */,
+				CE2A8E9C223D46750026146B /* cocorefoundationmanager.cpp */,
 				B4C342222239F17C001296D5 /* coruntime.hh */,
 				B4C342212239F17C001296D5 /* coruntime.cpp */,
 				B4C3421B2239F17C001296D5 /* costring.hh */,
@@ -355,7 +363,9 @@
 		B4C342232239F17C001296D5 /* CoreFoundation */ = {
 			isa = PBXGroup;
 			children = (
-				B4C342262239F17C001296D5 /* CoreFoundation.h */,
+				B4C342262239F17C001296D5 /* COCoreFoundation.h */,
+				CE2A8E99223D46680026146B /* COCoreFoundationManager.h */,
+				CE2A8E9A223D46680026146B /* COCoreFoundationManager.m */,
 				B4C3422A2239F17C001296D5 /* CORuntime.h */,
 				B4C342252239F17C001296D5 /* CORuntime.m */,
 				B4C342282239F17C001296D5 /* IComponent.h */,
@@ -444,6 +454,7 @@
 			files = (
 				B468C66E222AC27400A9657F /* cqbridge.cpp in Sources */,
 				B468C66C222AC27400A9657F /* cqbridgecore.cpp in Sources */,
+				CE2A8E9B223D46680026146B /* COCoreFoundationManager.m in Sources */,
 				B4C3422D2239F17C001296D5 /* costring.cpp in Sources */,
 				B468C65522293CEF00A9657F /* CQExtension.m in Sources */,
 				B4C342312239F17C001296D5 /* IString.m in Sources */,
@@ -456,6 +467,7 @@
 				B468C64D22293CEF00A9657F /* cqlogger.cpp in Sources */,
 				B468C66D222AC27400A9657F /* cqbridgelua.cpp in Sources */,
 				B468C65322293CEF00A9657F /* CQBridge.m in Sources */,
+				CE2A8E9E223D46760026146B /* cocorefoundationmanager.cpp in Sources */,
 				B4576C1A222FD54900720DB1 /* cqconvention.cpp in Sources */,
 				B468C65722293CEF00A9657F /* cqjson.cpp in Sources */,
 				B468C65622293CEF00A9657F /* cqextension.cpp in Sources */,
