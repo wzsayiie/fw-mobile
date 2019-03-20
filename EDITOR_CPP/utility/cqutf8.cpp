@@ -1,21 +1,21 @@
 #include "cqutf8.hh"
 
-bool CQStartsWithUTF8BOM(const char *ptr, const char *end) {
+bool cqStartsWithUTF8BOM(const char *ptr, const char *end) {
     if (ptr == nullptr) {
         return false;
     }
-    if (ptr + CQUTF8BOMSize > end) {
+    if (ptr + cqUTF8BOMSize > end) {
         return false;
     }
     
-    if (strncmp(ptr, CQUTF8BOM, CQUTF8BOMSize) == 0) {
+    if (strncmp(ptr, cqUTF8BOM, cqUTF8BOMSize) == 0) {
         return true;
     } else {
         return false;
     }
 }
 
-size_t CQGetUTF8Char(const char *ptr, const char *end, char *ascii) {
+size_t cqGetUTF8Char(const char *ptr, const char *end, char *ascii) {
     int size = 0;
     
     //check first byte
@@ -51,18 +51,18 @@ size_t CQGetUTF8Char(const char *ptr, const char *end, char *ascii) {
     return size;
 }
 
-bool CQUTF8Check(const char *ptr, const char *end, bool *_adjusted, vector<char> *_out) {
+bool cqUTF8Check(const char *ptr, const char *end, bool *_adjusted, vector<char> *_out) {
     bool adjusted = false;
     vector<char> out;
     
-    if (CQStartsWithUTF8BOM(ptr, end)) {
-        ptr += CQUTF8BOMSize;
+    if (cqStartsWithUTF8BOM(ptr, end)) {
+        ptr += cqUTF8BOMSize;
         adjusted = true;
     }
     
     while (ptr < end) {
         char ascii = 0;
-        size_t size = CQGetUTF8Char(ptr, end, &ascii);
+        size_t size = cqGetUTF8Char(ptr, end, &ascii);
         
         if (size == 1) {
             

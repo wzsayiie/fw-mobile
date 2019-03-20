@@ -4,38 +4,38 @@
 
 //depends on OS
 
-extern const bool CQOnOSX;
-extern const bool CQOnWindows;
+extern const bool cqOnOSX;
+extern const bool cqOnWindows;
 
-extern const char CQPathSeperator;
+extern const char cqPathSeperator;
 
-string CQGetWorkDirectory();
-bool CQChangeDirectory(const string &path);
-bool CQFileExistsAtPath(const string &path, bool *isDirectory);
+string cqGetWorkDirectory();
+bool cqChangeDirectory(const string &path);
+bool cqFileExistsAtPath(const string &path, bool *isDirectory);
 
 //exclude hidden files and directories.
 //the returned items were sorted.
-vector<string> CQContentsOfDirectory(const string &path);
+vector<string> cqContentsOfDirectory(const string &path);
 
 //portable
 
-bool CQIsPathSeperator(char ch);
+bool cqIsPathSeperator(char ch);
 
 //will erase "." and ".."
-vector<string> CQSplitPath(const string &path);
+vector<string> cqSplitPath(const string &path);
 
 //only append "item" to "path"
-void CQAppendPath(string *path, const string &item);
+void cqAppendPath(string *path, const string &item);
 
-string CQBaseName(const string &path);
-string CQDirectoryPath(const string &path);
+string cqBaseName(const string &path);
+string cqDirectoryPath(const string &path);
 
-bool CQReadFile(const string &path, vector<char> *content);
-bool CQWriteFile(const string &path, const vector<char> &content);
+bool cqReadFile(const string &path, vector<char> *content);
+bool cqWriteFile(const string &path, const vector<char> &content);
 
-void CQTraverse(const string &path, struct CQTraverserDelegate *delegate);
+void cqTraverse(const string &path, struct cqTraverserDelegate *delegate);
 
-struct CQTraverserDelegate : object {
+struct cqTraverserDelegate : object {
     
     virtual void traverserGetDirectory(const string &name, int indent) = 0;
     virtual void traverserGetFile     (const string &name, int indent) = 0;

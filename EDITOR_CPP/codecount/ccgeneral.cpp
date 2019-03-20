@@ -27,14 +27,14 @@ static void ScanSource(const vector<char> &bytes, int *codeLine, int *emptyLine)
     }
 }
 
-void CCGeneral::onGetSupportedFiles(vector<string> *out) {
+void ccGeneral::onGetSupportedFiles(vector<string> *out) {
     *out = {".java", ".h", ".hh", ".m", ".mm", ".cpp", ".cs", ".lua"};
 }
 
-void CCGeneral::onGetSupportedOptions(CCStatisticsMask *out) {
-    *out = CCStatisticsMaskCodeLine | CCStatisticsMaskEmptyLine;
+void ccGeneral::onGetSupportedOptions(ccStatisticsMask *out) {
+    *out = ccStatisticsMaskCodeLine | ccStatisticsMaskEmptyLine;
 }
 
-void CCGeneral::onHandleFile(const vector<char> &bytes, CCStatisticsData *result) {
+void ccGeneral::onHandleFile(const vector<char> &bytes, ccStatisticsData *result) {
     ScanSource(bytes, &result->codeLine, &result->emptyLine);
 }

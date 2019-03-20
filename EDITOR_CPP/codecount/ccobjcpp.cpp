@@ -102,10 +102,10 @@ static bool ReadParagraphString(const char **ptr, const char *end, int *nCount) 
     return true;
 }
 
-static void AccumulateAndReset(CCStatisticsData *data, CCContentMask *contents) {
+static void AccumulateAndReset(ccStatisticsData *data, ccContentMask *contents) {
     
-    bool hasCode    = (*contents & CCContentMaskCode   );
-    bool hasComment = (*contents & CCContentMaskComment);
+    bool hasCode    = (*contents & ccContentMaskCode   );
+    bool hasComment = (*contents & ccContentMaskComment);
     
     if /**/ (hasCode && hasComment) { data->codeAndCmnt += 1; }
     else if (hasCode              ) { data->codeLine    += 1; }
@@ -118,46 +118,46 @@ static void AccumulateAndReset(CCStatisticsData *data, CCContentMask *contents) 
 static void ScanSourceOnce
     (const char **ptr,
      const char *end,
-     CCContentMask *contents,
-     CCStatisticsData *data)
+     ccContentMask *contents,
+     ccStatisticsData *data)
 {
     int nCount = 0;
     
     if (ReadLineComment(ptr, end)) {
         
-        *contents |= CCContentMaskComment;
+        *contents |= ccContentMaskComment;
         AccumulateAndReset(data, contents);
         
     } else if (ReadParagraphComment(ptr, end, &nCount)) {
         
         if (nCount > 0) {
             //first line
-            *contents |= CCContentMaskComment;
+            *contents |= ccContentMaskComment;
             AccumulateAndReset(data, contents);
             //lines in middle
             data->commentLine += nCount - 1;
             //last line
-            *contents |= CCContentMaskComment;
+            *contents |= ccContentMaskComment;
         } else {
-            *contents |= CCContentMaskComment;
+            *contents |= ccContentMaskComment;
         }
         
     } else if (ReadLineString(ptr, end)) {
         
-        *contents |= CCContentMaskCode;
+        *contents |= ccContentMaskCode;
         
     } else if (ReadParagraphString(ptr, end, &nCount)) {
         
         if (nCount > 0) {
             //first line
-            *contents |= CCContentMaskCode;
+            *contents |= ccContentMaskCode;
             AccumulateAndReset(data, contents);
             //lines in middle
             data->codeLine += nCount - 1;
             //last line
-            *contents |= CCContentMaskCode;
+            *contents |= ccContentMaskCode;
         } else {
-            *contents |= CCContentMaskCode;
+            *contents |= ccContentMaskCode;
         }
         
     } else if (**ptr == '\n') {
@@ -167,7 +167,7 @@ static void ScanSourceOnce
         
     } else if (**ptr != ' ' && **ptr != '\t') {
         
-        *contents |= CCContentMaskCode;
+        *contents |= ccContentMaskCode;
         *ptr += 1;
         
     } else {
@@ -176,11 +176,11 @@ static void ScanSourceOnce
     }
 }
 
-static void ScanSource(const vector<char> &bytes, CCStatisticsData *data) {
+static void ScanSource(const vector<char> &bytes, ccStatisticsData *data) {
     
     const char *ptr = bytes.data();
     const char *end = bytes.data() + bytes.size();
-    CCContentMask contents = 0;
+    ccContentMask contents = 0;
     
     while (ptr < end) {
         ScanSourceOnce(&ptr, end, &contents, data);
@@ -188,18 +188,18 @@ static void ScanSource(const vector<char> &bytes, CCStatisticsData *data) {
     AccumulateAndReset(data, &contents);
 }
 
-void CCObjcpp::onGetSupportedFiles(vector<string> *out) {
+void ccObjcpp::onGetSupportedFiles(vector<string> *out) {
     *out = {".h", ".hh", ".m", ".mm", ".cpp"};
 }
 
-void CCObjcpp::onGetSupportedOptions(CCStatisticsMask *out) {
+void ccObjcpp::onGetSupportedOptions(ccStatisticsMask *out) {
     *out  = 0;
-    *out |= CCStatisticsMaskCodeLine   ;
-    *out |= CCStatisticsMaskCodeAndCmnt;
-    *out |= CCStatisticsMaskCommentLine;
-    *out |= CCStatisticsMaskEmptyLine  ;
+    *out |= ccStatisticsMaskCodeLine   ;
+    *out |= ccStatisticsMaskCodeAndCmnt;
+    *out |= ccStatisticsMaskCommentLine;
+    *out |= ccStatisticsMaskEmptyLine  ;
 }
 
-void CCObjcpp::onHandleFile(const vector<char> &bytes, CCStatisticsData *result) {
+void ccObjcpp::onHandleFile(const vector<char> &bytes, ccStatisticsData *result) {
     ScanSource(bytes, result);
 }

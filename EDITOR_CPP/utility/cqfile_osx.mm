@@ -1,27 +1,27 @@
 #import "cqfile.hh"
 #import "unistd.h"
 
-const bool CQOnOSX = true;
-const bool CQOnWindows = false;
+const bool cqOnOSX = true;
+const bool cqOnWindows = false;
 
-const char CQPathSeperator = '/';
+const char cqPathSeperator = '/';
 
-string CQGetWorkDirectory() {
+string cqGetWorkDirectory() {
     const size_t size = 1024;
     char buffer[size];
     return getcwd(buffer, size);
 }
 
-bool CQChangeDirectory(const string &path) {
+bool cqChangeDirectory(const string &path) {
     return chdir(path) == 0;
 }
 
-bool CQFileExistsAtPath(const string &path, bool *isDirectory) {
+bool cqFileExistsAtPath(const string &path, bool *isDirectory) {
     NSFileManager *manager = NSFileManager.defaultManager;
     return [manager fileExistsAtPath:path isDirectory:(BOOL *)isDirectory];
 }
 
-vector<string> CQContentsOfDirectory(const string &path) {
+vector<string> cqContentsOfDirectory(const string &path) {
     NSFileManager *manager = [NSFileManager defaultManager];
     
     //get

@@ -1,8 +1,8 @@
 #include "cqfile.hh"
 #include "cqlog.hh"
 
-bool CQIsPathSeperator(char ch) {
-    if (CQOnWindows) {
+bool cqIsPathSeperator(char ch) {
+    if (cqOnWindows) {
         return ch == '/' || ch == '\\';
     } else /* ON_OSX */ {
         return ch == '/';
@@ -10,7 +10,7 @@ bool CQIsPathSeperator(char ch) {
 }
 
 static string ReadPathItem(const char **reader) {
-    while (CQIsPathSeperator(**reader)) {
+    while (cqIsPathSeperator(**reader)) {
         ++(*reader);
     }
     if (**reader == '\0') {
@@ -18,14 +18,14 @@ static string ReadPathItem(const char **reader) {
     }
     
     string item;
-    while (!CQIsPathSeperator(**reader) && **reader != '\0') {
+    while (!cqIsPathSeperator(**reader) && **reader != '\0') {
         item.append(1, **reader);
         ++(*reader);
     }
     return item;
 }
 
-vector<string> CQSplitPath(const string &path) {
+vector<string> cqSplitPath(const string &path) {
     if (path.empty()) {
         return vector<string>();
     }
@@ -54,8 +54,8 @@ vector<string> CQSplitPath(const string &path) {
     }
     
     //if is root
-    if (CQOnOSX && CQIsPathSeperator(path[0])) {
-        char seperator[] = { CQPathSeperator, '\0' };
+    if (cqOnOSX && cqIsPathSeperator(path[0])) {
+        char seperator[] = { cqPathSeperator, '\0' };
         if (items.size() > 0) {
             items[0] = string(seperator) + items[0];
         } else {
@@ -66,19 +66,19 @@ vector<string> CQSplitPath(const string &path) {
     return items;
 }
 
-void CQAppendPath(string *path, const string &item) {
+void cqAppendPath(string *path, const string &item) {
     if (path == nullptr || item.empty()) {
         return;
     }
     
-    if (!path->empty() && !CQIsPathSeperator(path->back())) {
-        path->append(1, CQPathSeperator);
+    if (!path->empty() && !cqIsPathSeperator(path->back())) {
+        path->append(1, cqPathSeperator);
     }
     path->append(item);
 }
 
-string CQBaseName(const string &path) {
-    vector<string> items = CQSplitPath(path);
+string cqBaseName(const string &path) {
+    vector<string> items = cqSplitPath(path);
     if (items.size() > 0) {
         return items.back();
     } else {
@@ -86,15 +86,15 @@ string CQBaseName(const string &path) {
     }
 }
 
-string CQDirectoryPath(const string &path) {
-    vector<string> items = CQSplitPath(path);
+string cqDirectoryPath(const string &path) {
+    vector<string> items = cqSplitPath(path);
     
     if (items.size() > 1) {
         
         string directory;
         for (auto it = items.begin(); it < items.end() - 1; ++it) {
             if (!directory.empty()) {
-                directory.append(1, CQPathSeperator);
+                directory.append(1, cqPathSeperator);
             }
             directory.append(*it);
         }
@@ -106,7 +106,7 @@ string CQDirectoryPath(const string &path) {
     }
 }
 
-bool CQReadFile(const string &path, vector<char> *content) {
+bool cqReadFile(const string &path, vector<char> *content) {
     if (path.empty() || content == nullptr) {
         return false;
     }
@@ -130,7 +130,7 @@ bool CQReadFile(const string &path, vector<char> *content) {
     return true;
 }
 
-bool CQWriteFile(const string &path, const vector<char> &content) {
+bool cqWriteFile(const string &path, const vector<char> &content) {
     if (path.empty()) {
         return false;
     }
@@ -144,47 +144,47 @@ bool CQWriteFile(const string &path, const vector<char> &content) {
     return true;
 }
 
-static void CQTraverseFile(const string &name, int indent, CQTraverserDelegate *delegate) {
+static void cqTraverseFile(const string &name, int indent, cqTraverserDelegate *delegate) {
     delegate->traverserGetFile(name, indent);
 }
 
-static void CQTraverseDirectory(const string &name, int indent, CQTraverserDelegate *delegate) {
+static void cqTraverseDirectory(const string &name, int indent, cqTraverserDelegate *delegate) {
     delegate->traverserGetDirectory(name, indent);
     
-    CQChangeDirectory(name);
-    vector<string> contents = CQContentsOfDirectory(".");
+    cqChangeDirectory(name);
+    vector<string> contents = cqContentsOfDirectory(".");
     for (const string &it : contents) {
         bool isDirectory = false;
-        CQFileExistsAtPath(it, &isDirectory);
+        cqFileExistsAtPath(it, &isDirectory);
         if (isDirectory) {
-            CQTraverseDirectory(it, indent + 1, delegate);
+            cqTraverseDirectory(it, indent + 1, delegate);
         } else {
-            CQTraverseFile(it, indent + 1, delegate);
+            cqTraverseFile(it, indent + 1, delegate);
         }
     }
-    CQChangeDirectory("..");
+    cqChangeDirectory("..");
 }
 
-void CQTraverse(const string &path, CQTraverserDelegate *delegate) {
+void cqTraverse(const string &path, cqTraverserDelegate *delegate) {
     if (delegate == nullptr) {
         return;
     }
     
     bool isDirectory = false;
-    bool fileExists = CQFileExistsAtPath(path, &isDirectory);
+    bool fileExists = cqFileExistsAtPath(path, &isDirectory);
     if (!fileExists) {
         return;
     }
     
-    string originDirectory = CQGetWorkDirectory();
-    string targetParent = CQDirectoryPath(path);
-    string targetBase = CQBaseName(path);
+    string originDirectory = cqGetWorkDirectory();
+    string targetParent = cqDirectoryPath(path);
+    string targetBase = cqBaseName(path);
     
-    CQChangeDirectory(targetParent);
+    cqChangeDirectory(targetParent);
     if (isDirectory) {
-        CQTraverseDirectory(targetBase, 0, delegate);
+        cqTraverseDirectory(targetBase, 0, delegate);
     } else {
-        CQTraverseFile(targetBase, 0, delegate);
+        cqTraverseFile(targetBase, 0, delegate);
     }
-    CQChangeDirectory(originDirectory);
+    cqChangeDirectory(originDirectory);
 }

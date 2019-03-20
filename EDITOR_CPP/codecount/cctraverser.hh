@@ -2,24 +2,24 @@
 
 #include "utility.hh"
 
-using CCContentMask = int;
-const CCContentMask CCContentMaskCode    = 0x1;
-const CCContentMask CCContentMaskComment = 0x2;
+using ccContentMask = int;
+const ccContentMask ccContentMaskCode    = 0x1;
+const ccContentMask ccContentMaskComment = 0x2;
 
-using CCStatisticsMask = int;
-const CCStatisticsMask CCStatisticsMaskCodeLine    = 0x1;
-const CCStatisticsMask CCStatisticsMaskCodeAndCmnt = 0x2;
-const CCStatisticsMask CCStatisticsMaskCommentLine = 0x4;
-const CCStatisticsMask CCStatisticsMaskEmptyLine   = 0x8;
+using ccStatisticsMask = int;
+const ccStatisticsMask ccStatisticsMaskCodeLine    = 0x1;
+const ccStatisticsMask ccStatisticsMaskCodeAndCmnt = 0x2;
+const ccStatisticsMask ccStatisticsMaskCommentLine = 0x4;
+const ccStatisticsMask ccStatisticsMaskEmptyLine   = 0x8;
 
-struct CCStatisticsData {
+struct ccStatisticsData {
     int codeLine    = 0;
     int codeAndCmnt = 0;
     int commentLine = 0;
     int emptyLine   = 0;
 };
 
-struct CCTraverser : CQTraverserDelegate {
+struct ccTraverser : cqTraverserDelegate {
     
     void count(const vector<string> &paths);
     
@@ -27,17 +27,17 @@ struct CCTraverser : CQTraverserDelegate {
     void traverserGetFile     (const string &name, int indent) override;
     
     virtual void onGetSupportedFiles(vector<string> *out) = 0;
-    virtual void onGetSupportedOptions(CCStatisticsMask *out) = 0;
-    virtual void onHandleFile(const vector<char> &bytes, CCStatisticsData *result) = 0;
+    virtual void onGetSupportedOptions(ccStatisticsMask *out) = 0;
+    virtual void onHandleFile(const vector<char> &bytes, ccStatisticsData *result) = 0;
     
 private:
     
     vector<string> _supportedFiles;
-    CCStatisticsMask _supportedOptions;
+    ccStatisticsMask _supportedOptions;
     
-    CCStatisticsData _globalData;
+    ccStatisticsData _globalData;
     int _globalFiles;
     
-    CCStatisticsData _stageData;
+    ccStatisticsData _stageData;
     int _stageFiles;
 };

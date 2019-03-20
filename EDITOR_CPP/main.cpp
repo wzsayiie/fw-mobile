@@ -8,7 +8,7 @@ void initialize() {
     size_t position = filePath.find(rootDirectory);
     if (position != string::npos) {
         string rootPath = filePath.substr(0, position + rootDirectory.size());
-        CQChangeDirectory(rootPath);
+        cqChangeDirectory(rootPath);
         continue_last.print("work path: %s", rootPath.c_str());
     } else {
         continue_last.print("FAILED to change the path");
