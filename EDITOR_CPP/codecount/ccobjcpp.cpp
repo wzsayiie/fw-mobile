@@ -102,72 +102,72 @@ static bool ReadParagraphString(const char **ptr, const char *end, int *nCount) 
     return true;
 }
 
-static void AccumulateAndReset(CCStatisticsData *data, CCContextMask *contexts) {
+static void AccumulateAndReset(CCStatisticsData *data, CCContentMask *contents) {
     
-    bool hasCode    = (*contexts & CCContextMaskCode   );
-    bool hasComment = (*contexts & CCContextMaskComment);
+    bool hasCode    = (*contents & CCContentMaskCode   );
+    bool hasComment = (*contents & CCContentMaskComment);
     
     if /**/ (hasCode && hasComment) { data->codeAndCmnt += 1; }
     else if (hasCode              ) { data->codeLine    += 1; }
     else if (hasComment           ) { data->commentLine += 1; }
     else /* !hasCode,!hasComment */ { data->emptyLine   += 1; }
     
-    *contexts = 0;
+    *contents = 0;
 }
 
 static void ScanSourceOnce
     (const char **ptr,
      const char *end,
-     CCContextMask *contexts,
+     CCContentMask *contents,
      CCStatisticsData *data)
 {
     int nCount = 0;
     
     if (ReadLineComment(ptr, end)) {
         
-        *contexts |= CCContextMaskComment;
-        AccumulateAndReset(data, contexts);
+        *contents |= CCContentMaskComment;
+        AccumulateAndReset(data, contents);
         
     } else if (ReadParagraphComment(ptr, end, &nCount)) {
         
         if (nCount > 0) {
             //first line
-            *contexts |= CCContextMaskComment;
-            AccumulateAndReset(data, contexts);
+            *contents |= CCContentMaskComment;
+            AccumulateAndReset(data, contents);
             //lines in middle
             data->commentLine += nCount - 1;
             //last line
-            *contexts |= CCContextMaskComment;
+            *contents |= CCContentMaskComment;
         } else {
-            *contexts |= CCContextMaskComment;
+            *contents |= CCContentMaskComment;
         }
         
     } else if (ReadLineString(ptr, end)) {
         
-        *contexts |= CCContextMaskCode;
+        *contents |= CCContentMaskCode;
         
     } else if (ReadParagraphString(ptr, end, &nCount)) {
         
         if (nCount > 0) {
             //first line
-            *contexts |= CCContextMaskCode;
-            AccumulateAndReset(data, contexts);
+            *contents |= CCContentMaskCode;
+            AccumulateAndReset(data, contents);
             //lines in middle
             data->codeLine += nCount - 1;
             //last line
-            *contexts |= CCContextMaskCode;
+            *contents |= CCContentMaskCode;
         } else {
-            *contexts |= CCContextMaskCode;
+            *contents |= CCContentMaskCode;
         }
         
     } else if (**ptr == '\n') {
         
-        AccumulateAndReset(data, contexts);
+        AccumulateAndReset(data, contents);
         *ptr += 1;
         
     } else if (**ptr != ' ' && **ptr != '\t') {
         
-        *contexts |= CCContextMaskCode;
+        *contents |= CCContentMaskCode;
         *ptr += 1;
         
     } else {
@@ -180,12 +180,12 @@ static void ScanSource(const vector<char> &bytes, CCStatisticsData *data) {
     
     const char *ptr = bytes.data();
     const char *end = bytes.data() + bytes.size();
-    CCContextMask contexts = 0;
+    CCContentMask contents = 0;
     
     while (ptr < end) {
-        ScanSourceOnce(&ptr, end, &contexts, data);
+        ScanSourceOnce(&ptr, end, &contents, data);
     }
-    AccumulateAndReset(data, &contexts);
+    AccumulateAndReset(data, &contents);
 }
 
 void CCObjcpp::onGetSupportedFiles(vector<string> *out) {

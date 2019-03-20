@@ -2,9 +2,9 @@
 
 #include "utility.hh"
 
-using CCContextMask = int;
-const CCContextMask CCContextMaskCode    = 0x1;
-const CCContextMask CCContextMaskComment = 0x2;
+using CCContentMask = int;
+const CCContentMask CCContentMaskCode    = 0x1;
+const CCContentMask CCContentMaskComment = 0x2;
 
 using CCStatisticsMask = int;
 const CCStatisticsMask CCStatisticsMaskCodeLine    = 0x1;
