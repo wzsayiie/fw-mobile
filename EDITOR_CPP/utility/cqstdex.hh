@@ -11,6 +11,8 @@
 using std::vector;
 using std::map;
 
+bool starts_with(const char *prefix, const char *str, const char *str_end);
+
 struct string : std::string {
     
     string();

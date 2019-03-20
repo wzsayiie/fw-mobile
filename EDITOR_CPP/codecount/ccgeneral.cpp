@@ -4,9 +4,6 @@ static void ScanSource(const vector<char> &bytes, int *codeLine, int *emptyLine)
     const char *ptr = bytes.data();
     const char *end = bytes.data() + bytes.size();
     
-    *codeLine = 0;
-    *emptyLine = 0;
-    
     bool hasCode = false;
     for (; ptr < end; ++ptr) {
         if (*ptr == '\n') {

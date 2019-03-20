@@ -1,5 +1,18 @@
 #include "cqstdex.hh"
 
+bool starts_with(const char *prefix, const char *str, const char *str_end) {
+    if (prefix == nullptr || str > str_end) {
+        return false;
+    }
+    
+    while (*prefix != '\0' && str != str_end) {
+        if (*prefix++ != *str++) {
+            return false;
+        }
+    }
+    return *prefix == '\0';
+}
+
 string::string() : std::string() {
 }
 
