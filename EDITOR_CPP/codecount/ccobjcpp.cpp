@@ -46,16 +46,17 @@ static bool ReadLineString(const char **ptr, const char *end) {
     else if (starts_with("u8\"", *ptr, end)) { *ptr += 3; }
     else if (starts_with("u\"" , *ptr, end)) { *ptr += 2; }
     else if (starts_with("U\"" , *ptr, end)) { *ptr += 2; }
+    else if (starts_with("@\"" , *ptr, end)) { *ptr += 2; }
     else {
         return false;
     }
     
     while (*ptr < end) {
-        if (starts_with("\\\"", *ptr, end)) {
-            *ptr += 2;
-        } else if (**ptr == '\"') {
+        if (**ptr == '\"') {
             *ptr += 1;
             break;
+        } else if (**ptr == '\\') {
+            *ptr += 2;
         } else {
             *ptr += 1;
         }
@@ -99,6 +100,26 @@ static bool ReadParagraphString(const char **ptr, const char *end, int *nCount) 
         }
     }
     
+    return true;
+}
+
+static bool ReadChar(const char **ptr, const char *end) {
+    if (**ptr == '\'') {
+        *ptr += 1;
+    } else {
+        return false;
+    }
+    
+    while (*ptr < end) {
+        if (**ptr == '\'') {
+            *ptr += 1;
+            break;
+        } else if (**ptr == '\\') {
+            *ptr += 2;
+        } else {
+            *ptr += 1;
+        }
+    }
     return true;
 }
 
@@ -159,6 +180,10 @@ static void ScanSourceOnce
         } else {
             *contents |= ccContentMaskCode;
         }
+        
+    } else if (ReadChar(ptr, end)) {
+        
+        *contents |= ccContentMaskCode;
         
     } else if (**ptr == '\n') {
         
