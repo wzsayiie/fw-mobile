@@ -24,9 +24,15 @@ int main(int argc, char *argv[]) {
 }
 
 void execute() {
-    #define E(F) do { void F(); F(); } while (0)
     
-//    E(ObjcppMain);
-//    E(CPPMain);
-//    E(CodeCountMain);
+    extern bool ccMainEnabled;
+    extern bool xxMainEnabled;
+    extern bool mmMainEnabled;
+    void ccMain();
+    void xxMain();
+    void mmMain();
+    
+    if (ccMainEnabled) { ccMain(); }
+    if (xxMainEnabled) { xxMain(); }
+    if (mmMainEnabled) { mmMain(); }
 }

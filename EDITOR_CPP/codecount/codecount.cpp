@@ -30,7 +30,8 @@ void AppendLuas(vector<string> *sources) {
     sources->push_back("subsystem_lua");
 };
 
-void CodeCountMain() {
+bool ccMainEnabled = 0;
+void ccMain() {
     
     vector<string> sources;
     

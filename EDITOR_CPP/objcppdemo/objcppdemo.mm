@@ -1,5 +1,5 @@
-#import <Foundation/Foundation.h>
 #import "utility.hh"
 
-void ObjcppMain() {
+bool mmMainEnabled = 0;
+void mmMain() {
 }

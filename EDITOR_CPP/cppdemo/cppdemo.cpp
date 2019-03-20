@@ -1,4 +1,5 @@
 #include "utility.hh"
 
-void CPPMain() {
+bool xxMainEnabled = 0;
+void xxMain() {
 }
