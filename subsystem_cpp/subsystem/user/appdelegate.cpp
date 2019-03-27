@@ -1,5 +1,4 @@
 #include "appdelegate.hh"
-#include "cocorefoundation.hh"
 #include "rootviewcontroller.hh"
 
 struct _self_AppDelegate {
@@ -10,9 +9,6 @@ AppDelegate::AppDelegate() {
 }
 
 void AppDelegate::applicationDidFinishLaunching() {
-    
-    coCoreFoundationInstall();
-    
     I("application launching");
     
     RootViewController::ref controller = RootViewController::create();

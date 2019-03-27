@@ -1,5 +1,4 @@
 #import "AppDelegate.h"
-#import "COCoreFoundation.h"
 #import "CQSingletonManager.h"
 #import "CQSceneNavigator.h"
 #import "CQCrashListener.h"
@@ -9,8 +8,6 @@
 - (BOOL) /* ------ */ application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    COCoreFoundationInstall();
-    
     I(@"app launching {");
     I(@"  hardware   : %@", UIDevice.currentDevice.hardwareType);
     I(@"  os version : %@", UIDevice.currentDevice.systemVersion);
