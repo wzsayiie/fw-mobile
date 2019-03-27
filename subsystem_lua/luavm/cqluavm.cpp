@@ -1,5 +1,4 @@
 #include "cqluavm.hh"
-#include "cqextensionlua.hh"
 #include "cqfoundationlua.hh"
 #include "cqlogger.hh"
 #include "lua.hpp"
@@ -20,7 +19,6 @@ void CQLuaVMOpen(const std::string &path) {
     CQLuaVMDoString("package.path = '?.lua'");
     CQLuaVMDoString("require 'CQRUNTIME'");
     
-    CQExtensionOpenLuaLibrary(sLua);
     CQFoundationOpenLuaLibrary(sLua);
 }
 
