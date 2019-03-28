@@ -1,5 +1,5 @@
 #include <jni.h>
-#include "cqlogger.hh"
+#include "cqlog.hh"
 #include "cqluasource.hh"
 #include "cqluavm.hh"
 

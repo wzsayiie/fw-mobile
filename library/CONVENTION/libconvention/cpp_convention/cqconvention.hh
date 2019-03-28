@@ -1,10 +1,11 @@
 #pragma once
 
+#include "cqconvention.h"
 #include <functional>
-#include <memory>
-#include <vector>
-#include <string>
 #include <map>
+#include <memory>
+#include <string>
+#include <vector>
 
 using namespace std;
 

@@ -1,16 +1,11 @@
 package src.library.foundation;
 
+import android.util.Log;
+
 public class L {
 
-    public static void i(String format, Object... args) {
-        String message = formalize(format, args);
-        Logger.info(message, null, 0);
-    }
-
-    public static void e(String format, Object... args) {
-        String message = formalize(format, args);
-        Logger.error(message, null, 0);
-    }
+    public static void i(String f, Object... a) { info (null, 0, formalize(f, a)); }
+    public static void e(String f, Object... a) { error(null, 0, formalize(f, a)); }
 
     public static String string(Object object) {
         if (object != null) {
@@ -29,4 +24,7 @@ public class L {
             return "EXCEPTION OUTPUT";
         }
     }
+
+    public static void info (String file, int line, String message) { Log.i("zzz", message); }
+    public static void error(String file, int line, String message) { Log.e("zzz", message); }
 }

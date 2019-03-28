@@ -1,5 +1,5 @@
 #include "cqluasource.hh"
-#include "cqlogger.hh"
+#include "cqlog.hh"
 
 static const char *LUA_SOURCES[] = {
 //use generate.sh (or generate.bat) to create GENERATED_LUA.

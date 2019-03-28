@@ -1,5 +1,4 @@
 #include "rootviewcontroller.hh"
-#include "cqlogger.hh"
 
 struct _self_RootViewController {
 };

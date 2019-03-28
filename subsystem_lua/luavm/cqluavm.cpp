@@ -1,6 +1,6 @@
 #include "cqluavm.hh"
 #include "cqfoundationlua.hh"
-#include "cqlogger.hh"
+#include "cqlog.hh"
 #include "lua.hpp"
 #include <unistd.h>
 

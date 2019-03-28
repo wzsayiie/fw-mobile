@@ -1,6 +1,6 @@
 #include <jni.h>
 #include "cqhost_p.hh"
-#include "cqlogger.hh"
+#include "cqlog.hh"
 
 extern "C" void _main();
 
