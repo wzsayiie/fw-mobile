@@ -6,7 +6,6 @@
 
 void AppendJavas(vector<string> *sources) {
     sources->push_back("app_android/app/src/main/java");
-    sources->push_back("library/bridge/java");
     sources->push_back("library/foundation/java");
 }
 
@@ -14,10 +13,9 @@ void AppendObjcpps(vector<string> *sources) {
     sources->push_back("app_ios/App/Kits");
     sources->push_back("app_ios/App/Sources");
     sources->push_back("EDITOR_CPP");
-    sources->push_back("library/bridge/Bridge");
-    sources->push_back("library/bridge/libbridge");
-    sources->push_back("library/extension/libextension/extension");
+    sources->push_back("library/CONVENTION/libconvention");
     sources->push_back("library/foundation/Foundation");
+    sources->push_back("library/foundation/libfoundation");
     sources->push_back("subsystem_cpp");
 }
 

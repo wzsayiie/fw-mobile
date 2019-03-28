@@ -13,9 +13,7 @@ set(lib_name library)
 list(APPEND inc_path ../GENERATED_HEADERS)
 list(APPEND inc_path ../thirds_android/includes)
 
-list(APPEND src_aims ../library/BRIDGE/*.cpp)
 list(APPEND src_aims ../library/CONVENTION/*.cpp)
-list(APPEND src_aims ../library/extension/*.cpp)
 list(APPEND src_aims ../library/foundation/*.cpp)
 
 list(APPEND sys_libs log)
