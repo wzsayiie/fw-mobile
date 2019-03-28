@@ -30,6 +30,7 @@
 		B46997D8222801C30067478B /* cqcppappdelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = B46997D5222801C30067478B /* cqcppappdelegate.mm */; };
 		B49706742227785C00E8D717 /* cqluaviewcontroller.mm in Sources */ = {isa = PBXBuildFile; fileRef = B49706732227785C00E8D717 /* cqluaviewcontroller.mm */; };
 		B4AF89932226AEC000F73B6F /* cqluasource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4AF89922226AEC000F73B6F /* cqluasource.cpp */; };
+		B4B35638224CB51D0046FE98 /* cqhostapi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B35636224CB51D0046FE98 /* cqhostapi.cpp */; };
 		B4B9433222250FE500CE3C9A /* cqluaappdelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = B4B9432522250FE500CE3C9A /* cqluaappdelegate.mm */; };
 		B4B9D32022278D4E00B35E72 /* liblua.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B9D31F22278D4D00B35E72 /* liblua.a */; };
 		B4BC9CAD2204331C00CFD84C /* cqcppviewcontroller.mm in Sources */ = {isa = PBXBuildFile; fileRef = B4BC9CA92204331C00CFD84C /* cqcppviewcontroller.mm */; };
@@ -119,6 +120,8 @@
 		B49706722227785C00E8D717 /* cqluaappdelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluaappdelegate.h; sourceTree = "<group>"; };
 		B49706732227785C00E8D717 /* cqluaviewcontroller.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = cqluaviewcontroller.mm; sourceTree = "<group>"; };
 		B4AF89922226AEC000F73B6F /* cqluasource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluasource.cpp; sourceTree = "<group>"; };
+		B4B35636224CB51D0046FE98 /* cqhostapi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqhostapi.cpp; sourceTree = "<group>"; };
+		B4B35637224CB51D0046FE98 /* cqhostapi.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqhostapi.hh; sourceTree = "<group>"; };
 		B4B9432522250FE500CE3C9A /* cqluaappdelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = cqluaappdelegate.mm; sourceTree = "<group>"; };
 		B4B943332225179800CE3C9A /* liblua.5.3.5.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblua.5.3.5.a; path = ../thirds_libs_ios/liblua.5.3.5.a; sourceTree = "<group>"; };
 		B4B9D31F22278D4D00B35E72 /* liblua.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblua.a; path = ../thirds_ios/libs/liblua.a; sourceTree = "<group>"; };
@@ -432,6 +435,15 @@
 			path = HotfixManager;
 			sourceTree = "<group>";
 		};
+		B4B35635224CB51D0046FE98 /* api */ = {
+			isa = PBXGroup;
+			children = (
+				B4B35637224CB51D0046FE98 /* cqhostapi.hh */,
+				B4B35636224CB51D0046FE98 /* cqhostapi.cpp */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
 		B4B9431422250FB500CE3C9A /* SubsystemLua */ = {
 			isa = PBXGroup;
 			children = (
@@ -465,6 +477,7 @@
 		B4BC9CA22204331C00CFD84C /* subsystem */ = {
 			isa = PBXGroup;
 			children = (
+				B4B35635224CB51D0046FE98 /* api */,
 				B4BC9CA52204331C00CFD84C /* sdk */,
 				B4BC9CA32204331C00CFD84C /* user */,
 			);
@@ -776,6 +789,7 @@
 				CE224EA82206AED300B8FB53 /* cqviewcontroller.cpp in Sources */,
 				B4CFD97621C7475000FFF4CF /* WebViewController.m in Sources */,
 				B45C1C0021A03824007CB374 /* CQHotfixManager.m in Sources */,
+				B4B35638224CB51D0046FE98 /* cqhostapi.cpp in Sources */,
 				B42806CF21C531C500B886A7 /* CQBus.m in Sources */,
 				CE224EA92206AED300B8FB53 /* cqapplication.cpp in Sources */,
 				B4CFD96F21C7475000FFF4CF /* TabBarViewController.m in Sources */,

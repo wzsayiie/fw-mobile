@@ -2,7 +2,7 @@
 
 #include "cqview.hh"
 
-struct CQViewController : cq_class<CQViewController, struct _self_CQViewController, CQObject> {
+struct CQViewController : cq_class<CQViewController, struct _self_CQViewController, cqObject> {
     
     CQViewController();
     

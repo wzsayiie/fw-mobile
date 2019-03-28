@@ -1,7 +1,7 @@
 #include "cqconvention.hh"
 
-struct _self_CQObject {
+struct _self_cqObject {
 };
 
-CQObject::CQObject() {
+cqObject::cqObject() {
 }

@@ -11,8 +11,8 @@ using namespace std;
 
 //root
 
-struct _CQRoot {
-    virtual ~_CQRoot() = default;
+struct _cqRoot {
+    virtual ~_cqRoot() = default;
 };
 
 //base interface
@@ -29,7 +29,7 @@ template<class SELF, class SUPER> struct cq_interface : SUPER {
     }
 };
 
-struct CQInterface : cq_interface<CQInterface, _CQRoot> {
+struct cqInterface : cq_interface<cqInterface, _cqRoot> {
 };
 
 //base class
@@ -54,7 +54,7 @@ protected:
     }
 };
 
-struct CQObject : cq_class<CQObject, struct _self_CQObject, _CQRoot> {
+struct cqObject : cq_class<cqObject, struct _self_cqObject, _cqRoot> {
     
-    CQObject();
+    cqObject();
 };

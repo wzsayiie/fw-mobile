@@ -2,14 +2,14 @@
 
 #include "cqconvention.hh"
 
-struct CQApplicationDelegate : cq_interface<CQApplicationDelegate, CQInterface> {
+struct CQApplicationDelegate : cq_interface<CQApplicationDelegate, cqInterface> {
     
     virtual void applicationDidFinishLaunching() {}
     virtual void applicationDidBecomeActive() {}
     virtual void applicationDidEnterBackground() {}
 };
 
-struct CQApplication : cq_class<CQApplication, struct _self_CQApplication, CQObject> {
+struct CQApplication : cq_class<CQApplication, struct _self_CQApplication, cqObject> {
     
     static CQApplication::ref sharedApplication();
     
