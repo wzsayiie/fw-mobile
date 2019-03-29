@@ -1,5 +1,5 @@
-#import "cqcppappdelegate.h"
-#import "cqcppviewcontroller.h"
+#import "CQCPPAppDelegate.h"
+#import "CQCPPViewController.h"
 
 @interface CQCPPAppDelegate ()
 @end
