@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B43F02BD224B568E003DF2A1 /* CSRC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B43F02BC224B568E003DF2A1 /* CSRC.cpp */; };
-		B43F02BF224B56AD003DF2A1 /* CSRC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B43F02BE224B56AD003DF2A1 /* CSRC.cpp */; };
+		B43F02BD224B568E003DF2A1 /* cqconvention.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B43F02BC224B568E003DF2A1 /* cqconvention.cpp */; };
+		B43F02BF224B56AD003DF2A1 /* cqproto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B43F02BE224B56AD003DF2A1 /* cqproto.cpp */; };
 		B4576C1A222FD54900720DB1 /* cqconvention.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4576C19222FD54900720DB1 /* cqconvention.cpp */; };
 		B4576C1E222FD6B100720DB1 /* cqconventionlua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4576C1C222FD6B100720DB1 /* cqconventionlua.cpp */; };
 		B468C64322293CEF00A9657F /* CQLog.m in Sources */ = {isa = PBXBuildFile; fileRef = B468C60122293CEF00A9657F /* CQLog.m */; };
@@ -29,10 +29,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B43F02B7224B1F73003DF2A1 /* cqlog_p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqlog_p.h; sourceTree = "<group>"; };
+		B43F02B7224B1F73003DF2A1 /* cqproto_log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqproto_log.h; sourceTree = "<group>"; };
 		B43F02B9224B2034003DF2A1 /* cqconvention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqconvention.h; sourceTree = "<group>"; };
-		B43F02BC224B568E003DF2A1 /* CSRC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSRC.cpp; sourceTree = "<group>"; };
-		B43F02BE224B56AD003DF2A1 /* CSRC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSRC.cpp; sourceTree = "<group>"; };
+		B43F02BC224B568E003DF2A1 /* cqconvention.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqconvention.cpp; sourceTree = "<group>"; };
+		B43F02BE224B56AD003DF2A1 /* cqproto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqproto.cpp; sourceTree = "<group>"; };
 		B4576C18222FD54900720DB1 /* cqconvention.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqconvention.hh; sourceTree = "<group>"; };
 		B4576C19222FD54900720DB1 /* cqconvention.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqconvention.cpp; sourceTree = "<group>"; };
 		B4576C1C222FD6B100720DB1 /* cqconventionlua.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqconventionlua.cpp; sourceTree = "<group>"; };
@@ -60,8 +60,8 @@
 		B43F02B6224B1F73003DF2A1 /* prototype */ = {
 			isa = PBXGroup;
 			children = (
-				B43F02B7224B1F73003DF2A1 /* cqlog_p.h */,
-				B43F02BE224B56AD003DF2A1 /* CSRC.cpp */,
+				B43F02B7224B1F73003DF2A1 /* cqproto_log.h */,
+				B43F02BE224B56AD003DF2A1 /* cqproto.cpp */,
 			);
 			path = prototype;
 			sourceTree = "<group>";
@@ -70,7 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				B43F02B9224B2034003DF2A1 /* cqconvention.h */,
-				B43F02BC224B568E003DF2A1 /* CSRC.cpp */,
+				B43F02BC224B568E003DF2A1 /* cqconvention.cpp */,
 			);
 			path = c_convention;
 			sourceTree = "<group>";
@@ -236,9 +236,9 @@
 				B468C64922293CEF00A9657F /* cqfoundationlua.cpp in Sources */,
 				B468C64D22293CEF00A9657F /* cqlog.cpp in Sources */,
 				B4576C1A222FD54900720DB1 /* cqconvention.cpp in Sources */,
-				B43F02BF224B56AD003DF2A1 /* CSRC.cpp in Sources */,
+				B43F02BF224B56AD003DF2A1 /* cqproto.cpp in Sources */,
 				B4576C1E222FD6B100720DB1 /* cqconventionlua.cpp in Sources */,
-				B43F02BD224B568E003DF2A1 /* CSRC.cpp in Sources */,
+				B43F02BD224B568E003DF2A1 /* cqconvention.cpp in Sources */,
 				B468C64322293CEF00A9657F /* CQLog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

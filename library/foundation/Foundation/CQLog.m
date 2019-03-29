@@ -1,5 +1,5 @@
 #import "CQLog.h"
-#import "cqlog_p.h"
+#import "cqproto_log.h"
 
 static void Info(NSString *file, int line, NSString *msg) {
     if (file.length > 0 && line > 0) {

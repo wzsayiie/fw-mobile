@@ -1,5 +1,5 @@
 #include "cqlog.hh"
-#include "cqlog_p.h"
+#include "cqproto_log.h"
 #include <cstdarg>
 #include <cstdio>
 
