@@ -25,4 +25,5 @@ cqApplicationDelegate::ref cqApplication::delegate() {
 
 void cqApplicationMain(cqApplicationDelegate::ref delegate) {
     cqApplication::sharedApplication()->setDelegate(delegate);
+    delegate->applicationDidFinishLaunching();
 }
