@@ -1,28 +1,28 @@
 #include "cqviewcontroller.hh"
 
-struct _self_CQViewController {
-    CQView::ref view;
+struct _self_cqViewController {
+    cqView::ref view;
 };
 
-CQViewController::CQViewController() {
+cqViewController::cqViewController() {
 }
 
-void CQViewController::viewDidLoad() {
+void cqViewController::viewDidLoad() {
 }
 
-void CQViewController::viewDidAppear() {
+void cqViewController::viewDidAppear() {
 }
 
-void CQViewController::viewDidDisappear() {
+void cqViewController::viewDidDisappear() {
 }
 
-CQView::ref CQViewController::view() {
+cqView::ref cqViewController::view() {
     if (self->view == nullptr) {
         loadView();
     }
     return self->view;
 }
 
-void CQViewController::loadView() {
-    self->view = CQView::create();
+void cqViewController::loadView() {
+    self->view = cqView::create();
 }

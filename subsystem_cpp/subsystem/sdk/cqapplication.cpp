@@ -1,51 +1,28 @@
 #include "cqapplication.hh"
-#include "cqhost_p.hh"
 
-struct _self_CQApplication {
-    CQApplicationDelegate::ref delegate;
+struct _self_cqApplication {
+    cqApplicationDelegate::ref delegate;
 };
 
-CQApplication::ref CQApplication::sharedApplication() {
-    static CQApplication::ref object;
+cqApplication::ref cqApplication::sharedApplication() {
+    static cqApplication::ref object;
     if (object == nullptr) {
-        object = CQApplication::create();
+        object = cqApplication::create();
     }
     return object;
 }
 
-static void onAppCreate(shared_ptr<_self_CQApplication> self) {
-    if (self->delegate != nullptr) {
-        self->delegate->applicationDidFinishLaunching();
-    }
+cqApplication::cqApplication() {
 }
 
-static void onUIAppear(shared_ptr<_self_CQApplication> self) {
-    if (self->delegate != nullptr) {
-        self->delegate->applicationDidBecomeActive();
-    }
-}
-
-static void onUIDisappear(shared_ptr<_self_CQApplication> self) {
-    if (self->delegate != nullptr) {
-        self->delegate->applicationDidEnterBackground();
-    }
-}
-
-CQApplication::CQApplication() {
-    
-    CQHostAddListener(CQHostEventAppCreate  , bind(onAppCreate  , self));
-    CQHostAddListener(CQHostEventUIAppear   , bind(onUIAppear   , self));
-    CQHostAddListener(CQHostEventUIDisappear, bind(onUIDisappear, self));
-}
-
-void CQApplication::setDelegate(CQApplicationDelegate::ref delegate) {
+void cqApplication::setDelegate(cqApplicationDelegate::ref delegate) {
     self->delegate = delegate;
 }
 
-CQApplicationDelegate::ref CQApplication::delegate() {
+cqApplicationDelegate::ref cqApplication::delegate() {
     return self->delegate;
 }
 
-void CQApplicationMain(CQApplicationDelegate::ref delegate) {
-    CQApplication::sharedApplication()->setDelegate(delegate);
+void cqApplicationMain(cqApplicationDelegate::ref delegate) {
+    cqApplication::sharedApplication()->setDelegate(delegate);
 }

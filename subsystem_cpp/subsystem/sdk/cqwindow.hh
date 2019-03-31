@@ -2,12 +2,12 @@
 
 #include "cqviewcontroller.hh"
 
-struct CQWindow : cq_class<CQWindow, struct _self_CQWindow, CQView> {
+struct cqWindow : cq_class<cqWindow, struct _self_cqWindow, cqView> {
     
-    CQWindow();
+    cqWindow();
     
-    virtual void setRootViewController(CQViewController::ref controller);
-    virtual CQViewController::ref rootViewController();
+    virtual void setRootViewController(cqViewController::ref controller);
+    virtual cqViewController::ref rootViewController();
     
     virtual void makeKeyAndVisible();
 };

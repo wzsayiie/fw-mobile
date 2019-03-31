@@ -2,7 +2,7 @@
 
 #include "cqconvention.hh"
 
-struct CQView : cq_class<CQView, struct _self_CQView, cqObject> {
+struct cqView : cq_class<cqView, struct _self_cqView, cqObject> {
     
-    CQView();
+    cqView();
 };

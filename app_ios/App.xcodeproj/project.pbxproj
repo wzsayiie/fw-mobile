@@ -55,7 +55,6 @@
 		CE224EAC2206B3C100B8FB53 /* cqwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EAB2206B3C100B8FB53 /* cqwindow.cpp */; };
 		CE224EB32206C15B00B8FB53 /* rootviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EB02206C15B00B8FB53 /* rootviewcontroller.cpp */; };
 		CE224EB62206C3FD00B8FB53 /* appdelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EB42206C3FD00B8FB53 /* appdelegate.cpp */; };
-		CE224EB92206C86600B8FB53 /* cqhost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EB72206C86500B8FB53 /* cqhost.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,8 +166,6 @@
 		CE224EB12206C15B00B8FB53 /* rootviewcontroller.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rootviewcontroller.hh; sourceTree = "<group>"; };
 		CE224EB42206C3FD00B8FB53 /* appdelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = appdelegate.cpp; sourceTree = "<group>"; };
 		CE224EB52206C3FD00B8FB53 /* appdelegate.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = appdelegate.hh; sourceTree = "<group>"; };
-		CE224EB72206C86500B8FB53 /* cqhost.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqhost.cpp; sourceTree = "<group>"; };
-		CE224EB82206C86600B8FB53 /* cqhost_p.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqhost_p.hh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -501,8 +498,6 @@
 			children = (
 				CE224EA52206AED300B8FB53 /* cqapplication.hh */,
 				CE224EA42206AED300B8FB53 /* cqapplication.cpp */,
-				CE224EB82206C86600B8FB53 /* cqhost_p.hh */,
-				CE224EB72206C86500B8FB53 /* cqhost.cpp */,
 				CE224EAD2206BA1F00B8FB53 /* cquikit.hh */,
 				CE224EA12206AED300B8FB53 /* cqview.hh */,
 				CE224EA22206AED300B8FB53 /* cqview.cpp */,
@@ -798,7 +793,6 @@
 				CE224EB32206C15B00B8FB53 /* rootviewcontroller.cpp in Sources */,
 				B45C1BF521A03824007CB374 /* CQDemoViewController.m in Sources */,
 				B45C1BFF21A03824007CB374 /* CQSingletonManager.m in Sources */,
-				CE224EB92206C86600B8FB53 /* cqhost.cpp in Sources */,
 				B4CFD97721C7475000FFF4CF /* AlertViewController.m in Sources */,
 				B42806D221C542DB00B886A7 /* UIDevice+CQ.m in Sources */,
 				B45C1BFC21A03824007CB374 /* CQCrashListener.m in Sources */,

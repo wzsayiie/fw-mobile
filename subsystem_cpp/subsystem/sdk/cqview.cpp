@@ -1,7 +1,7 @@
 #include "cqview.hh"
 
-struct _self_CQView {
+struct _self_cqView {
 };
 
-CQView::CQView() {
+cqView::cqView() {
 }

@@ -2,14 +2,14 @@
 
 #include "cqview.hh"
 
-struct CQViewController : cq_class<CQViewController, struct _self_CQViewController, cqObject> {
+struct cqViewController : cq_class<cqViewController, struct _self_cqViewController, cqObject> {
     
-    CQViewController();
+    cqViewController();
     
     virtual void viewDidLoad();
     virtual void viewDidAppear();
     virtual void viewDidDisappear();
     
-    virtual CQView::ref view();
+    virtual cqView::ref view();
     virtual void loadView();
 };
