@@ -115,32 +115,6 @@ void cq_window_set_back_color(cq_window *window, float r, float g, float b) {
     }
 }
 
-void cq_window_set_procedure(cq_window *window, cq_window_procedure *procedure) {
-    if (window == NULL) {
-        return;
-    }
-    
-    if (procedure == NULL) {
-        memset(&window->procedure, 0, sizeof(cq_window_procedure));
-    } else {
-        window->procedure = *procedure;
-    }
-}
-
-void cq_window_set_extra(cq_window *window, void *extra) {
-    if (window != NULL) {
-        window->extra = extra;
-    }
-}
-
-cq_window_procedure *cq_window_get_procedure(cq_window *window) {
-    if (window != NULL) {
-        return &window->procedure;
-    } else {
-        return NULL;
-    }
-}
-
 float cq_window_get_width(cq_window *window) {
     if (window != NULL) {
         return sHostController.view.bounds.size.width;
@@ -162,6 +136,32 @@ float cq_window_get_screen_scale(cq_window *window) {
         return UIScreen.mainScreen.scale;
     } else {
         return 0;
+    }
+}
+
+void cq_window_set_procedure(cq_window *window, cq_window_procedure *procedure) {
+    if (window == NULL) {
+        return;
+    }
+    
+    if (procedure == NULL) {
+        memset(&window->procedure, 0, sizeof(cq_window_procedure));
+    } else {
+        window->procedure = *procedure;
+    }
+}
+
+cq_window_procedure *cq_window_get_procedure(cq_window *window) {
+    if (window != NULL) {
+        return &window->procedure;
+    } else {
+        return NULL;
+    }
+}
+
+void cq_window_set_extra(cq_window *window, void *extra) {
+    if (window != NULL) {
+        window->extra = extra;
     }
 }
 
