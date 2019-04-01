@@ -2,17 +2,12 @@
 #include "cqapplication.hh"
 #include "cqhostapi.h"
 
-static cqApplication *sApplication = nullptr;
-static cqWindow *sWindow = nullptr;
-
 struct _self_cqWindow {
     cqViewController::ref rootViewController;
     cq_window *window = nullptr;
 };
 
 cqWindow::cqWindow() {
-    sApplication = cqApplication::sharedApplication().get();
-    sWindow = this;
 }
 
 void cqWindow::setRootViewController(cqViewController::ref controller) {
@@ -24,17 +19,27 @@ cqViewController::ref cqWindow::rootViewController() {
 }
 
 static void cqWindow_load(cq_window *window) {
-    sWindow->rootViewController()->viewDidLoad();
+    
+    auto self = (cqWindow *)cq_window_get_extra(window);
+    self->rootViewController()->viewDidLoad();
 }
 
 static void cqWindow_show(cq_window *window) {
-    sApplication->delegate()->applicationDidBecomeActive();
-    sWindow->rootViewController()->viewDidAppear();
+    
+    auto application = cqApplication::sharedApplication().get();
+    application->delegate()->applicationDidBecomeActive();
+    
+    auto self = (cqWindow *)cq_window_get_extra(window);
+    self->rootViewController()->viewDidAppear();
 }
 
 static void cqWindow_hide(cq_window *window) {
-    sApplication->delegate()->applicationDidEnterBackground();
-    sWindow->rootViewController()->viewDidDisappear();
+    
+    auto application = cqApplication::sharedApplication().get();
+    application->delegate()->applicationDidEnterBackground();
+    
+    auto self = (cqWindow *)cq_window_get_extra(window);
+    self->rootViewController()->viewDidDisappear();
 }
 
 static void cqWindow_touchBegan(cq_window *window, float x, float y) {
@@ -52,7 +57,8 @@ void cqWindow::makeKeyAndVisible() {
     cq_window *window = cq_window_create();
     
     //configurate
-    cq_window_set_background_color(window, 1, 1, 1);
+    cq_window_set_back_color(window, 1, 1, 1);
+    cq_window_set_extra(window, this);
     
     cq_window_get_procedure(window)->load = cqWindow_load;
     cq_window_get_procedure(window)->show = cqWindow_show;
@@ -63,6 +69,6 @@ void cqWindow::makeKeyAndVisible() {
     cq_window_get_procedure(window)->touch_ended = cqWindow_touchEnded;
     
     //show
-    cq_window_show(window);
+    cq_window_load(window);
     self->window = window;
 }

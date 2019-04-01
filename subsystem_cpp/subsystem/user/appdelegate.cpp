@@ -18,7 +18,7 @@ void AppDelegate::applicationDidFinishLaunching() {
     self->window->makeKeyAndVisible();
 }
 
-extern "C" void _main() {
+extern "C" void _entry() {
     AppDelegate::ref delegate = AppDelegate::create();
     cqApplicationMain(delegate);
 }
