@@ -20,7 +20,7 @@ cqViewController::ref cqWindow::rootViewController() {
 
 static void cqWindow_load(cq_window *window) {
     
-    auto self = (cqWindow *)cq_window_get_extra(window);
+    auto self = (cqWindow *)window->user_data;
     self->rootViewController()->viewDidLoad();
 }
 
@@ -29,7 +29,7 @@ static void cqWindow_show(cq_window *window) {
     auto application = cqApplication::sharedApplication().get();
     application->delegate()->applicationDidBecomeActive();
     
-    auto self = (cqWindow *)cq_window_get_extra(window);
+    auto self = (cqWindow *)window->user_data;
     self->rootViewController()->viewDidAppear();
 }
 
@@ -38,7 +38,7 @@ static void cqWindow_hide(cq_window *window) {
     auto application = cqApplication::sharedApplication().get();
     application->delegate()->applicationDidEnterBackground();
     
-    auto self = (cqWindow *)cq_window_get_extra(window);
+    auto self = (cqWindow *)window->user_data;
     self->rootViewController()->viewDidDisappear();
 }
 
@@ -58,15 +58,15 @@ void cqWindow::makeKeyAndVisible() {
     
     //configurate
     cq_window_set_back_color(window, 1, 1, 1);
-    cq_window_set_extra(window, this);
+    window->user_data = (int64_t)this;
     
-    cq_window_get_procedure(window)->load = cqWindow_load;
-    cq_window_get_procedure(window)->show = cqWindow_show;
-    cq_window_get_procedure(window)->hide = cqWindow_hide;
+    window->procedure.load = cqWindow_load;
+    window->procedure.show = cqWindow_show;
+    window->procedure.hide = cqWindow_hide;
     
-    cq_window_get_procedure(window)->touch_began = cqWindow_touchBegan;
-    cq_window_get_procedure(window)->touch_moved = cqWindow_touchMoved;
-    cq_window_get_procedure(window)->touch_ended = cqWindow_touchEnded;
+    window->procedure.touch_began = cqWindow_touchBegan;
+    window->procedure.touch_moved = cqWindow_touchMoved;
+    window->procedure.touch_ended = cqWindow_touchEnded;
     
     //show
     cq_window_load(window);

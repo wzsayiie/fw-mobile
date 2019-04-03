@@ -1,34 +1,42 @@
 #import "CQCPPViewController.h"
 #import "cqhostapi.h"
 
-static CQCPPViewController *sHostController = nil;
-static cq_window *s_user_window = NULL;
-
-struct cq_window {
-    cq_window_procedure procedure;
-    
-    //life cycle ->
-    bool loaded;
-    
-    //properties ->
-    float back_color_r;
-    float back_color_g;
-    float back_color_b;
-    
-    void *extra;
-};
-
 @interface CQCPPViewController ()
-@property (nonatomic) BOOL viewVisible;
+
+@property (nonatomic) BOOL hostViewVisible;
+
+@property (nonatomic) cq_window *userWindow;
+@property (nonatomic) BOOL userWindowLoaded;
+@property (nonatomic) float userBackColorR;
+@property (nonatomic) float userBackColorG;
+@property (nonatomic) float userBackColorB;
+
 @end
 
 @implementation CQCPPViewController
+
++ (instancetype)resetSharedObject:(id)object reset:(BOOL)reset {
+    static id shared = nil;
+    if (reset) {
+        shared = object;
+    }
+    return shared;
+}
+
++ (instancetype)sharedObjectWithPtr:(cq_window *)ptr {
+    //there is one window on iOS, parameter 'ptr' is unused.
+    return ptr ? [self resetSharedObject:nil reset:NO] : nil;
+}
+
++ (instancetype)sharedObject {
+    return [self resetSharedObject:nil reset:NO];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     I(@"iOS Host: viewDidLoad enter");
     {
-        sHostController = self;
+        [CQCPPViewController resetSharedObject:self reset:YES];
         _entry();
     }
     I(@"iOS Host: viewDidLoad exit");
@@ -38,11 +46,9 @@ struct cq_window {
     [super viewDidAppear:animated];
     I(@"iOS Host: viewDidAppear enter");
     {
-        self.viewVisible = YES;
-        if (s_user_window != NULL && s_user_window->loaded) {
-            if (s_user_window->procedure.show != NULL) {
-                s_user_window->procedure.show(s_user_window);
-            }
+        self.hostViewVisible = YES;
+        if (self.userWindow->procedure.show && self.userWindowLoaded) {
+            self.userWindow->procedure.show(self.userWindow);
         }
     }
     I(@"iOS Host: viewDidAppear exit");
@@ -52,11 +58,9 @@ struct cq_window {
     [super viewDidDisappear:animated];
     I(@"iOS Host: viewDidDisappear enter");
     {
-        self.viewVisible = NO;
-        if (s_user_window != NULL && s_user_window->loaded) {
-            if (s_user_window->procedure.hide != NULL) {
-                s_user_window->procedure.hide(s_user_window);
-            }
+        self.hostViewVisible = NO;
+        if (self.userWindow->procedure.hide && self.userWindowLoaded) {
+            self.userWindow->procedure.hide(self.userWindow);
         }
     }
     I(@"iOS Host: viewDidDisappear exit");
@@ -65,110 +69,80 @@ struct cq_window {
 @end
 
 cq_window *cq_window_create(void) {
-    
     //on iOS, only one window can be created
-    if (s_user_window == NULL) {
-        s_user_window = malloc(sizeof(cq_window));
-        memset(s_user_window, 0, sizeof(cq_window));
-        return s_user_window;
+    CQCPPViewController *controller = [CQCPPViewController sharedObject];
+    if (controller.userWindow == NULL) {
+        controller.userWindow = calloc(sizeof(cq_window), 1);
+        return controller.userWindow;
     } else {
         return NULL;
     }
 }
 
 void cq_window_load(cq_window *window) {
-    if (window == NULL) {
+    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithPtr:window];
+    if (controller == nil) {
         return;
     }
-    if (window->loaded) {
+    if (controller.userWindowLoaded) {
         return;
     }
     
     //life cycle ->
-    window->loaded = true;
-    if (window->procedure.load != NULL) {
-        window->procedure.load(window);
+    controller.userWindowLoaded = YES;
+    if (controller.userWindow->procedure.load) {
+        controller.userWindow->procedure.load(controller.userWindow);
     }
-    if (window->procedure.show != NULL && sHostController.viewVisible) {
-        window->procedure.show(window);
+    if (controller.userWindow->procedure.show && controller.hostViewVisible) {
+        controller.userWindow->procedure.show(controller.userWindow);
     }
     
     //properties ->
-    float back_r = window->back_color_r;
-    float back_g = window->back_color_g;
-    float back_b = window->back_color_b;
-    UIColor *back_color = [UIColor colorWithRed:back_r green:back_g blue:back_b alpha:1];
-    [sHostController.view setBackgroundColor:back_color];
+    float r = controller.userBackColorR;
+    float g = controller.userBackColorG;
+    float b = controller.userBackColorB;
+    UIColor *color = [UIColor colorWithRed:r green:g blue:b alpha:1];
+    [controller.view setBackgroundColor:color];
 }
 
 void cq_window_set_back_color(cq_window *window, float r, float g, float b) {
-    if (window == NULL) {
+    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithPtr:window];
+    if (controller == nil) {
         return;
     }
     
-    window->back_color_r = r;
-    window->back_color_g = g;
-    window->back_color_b = b;
-    if (window->loaded) {
+    controller.userBackColorR = r;
+    controller.userBackColorG = g;
+    controller.userBackColorB = b;
+    if (controller.userWindowLoaded) {
         UIColor *color = [UIColor colorWithRed:r green:g blue:b alpha:1];
-        [sHostController.view setBackgroundColor:color];
+        [controller.view setBackgroundColor:color];
     }
 }
 
 float cq_window_get_width(cq_window *window) {
-    if (window != NULL) {
-        return sHostController.view.bounds.size.width;
+    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithPtr:window];
+    if (controller.userWindowLoaded) {
+        return controller.view.bounds.size.width;
     } else {
         return 0;
     }
 }
 
 float cq_window_get_height(cq_window *window) {
-    if (window != NULL) {
-        return sHostController.view.bounds.size.height;
+    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithPtr:window];
+    if (controller.userWindowLoaded) {
+        return controller.view.bounds.size.height;
     } else {
         return 0;
     }
 }
 
 float cq_window_get_screen_scale(cq_window *window) {
-    if (window != NULL) {
+    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithPtr:window];
+    if (controller.userWindowLoaded) {
         return UIScreen.mainScreen.scale;
     } else {
         return 0;
-    }
-}
-
-void cq_window_set_procedure(cq_window *window, cq_window_procedure *procedure) {
-    if (window == NULL) {
-        return;
-    }
-    
-    if (procedure == NULL) {
-        memset(&window->procedure, 0, sizeof(cq_window_procedure));
-    } else {
-        window->procedure = *procedure;
-    }
-}
-
-cq_window_procedure *cq_window_get_procedure(cq_window *window) {
-    if (window != NULL) {
-        return &window->procedure;
-    } else {
-        return NULL;
-    }
-}
-
-void cq_window_set_extra(cq_window *window, void *extra) {
-    if (window != NULL) {
-        window->extra = extra;
-    }
-}
-
-void *cq_window_get_extra(cq_window *window) {
-    if (window != NULL) {
-        return window->extra;
-    } else {
-        return NULL;
     }
 }
