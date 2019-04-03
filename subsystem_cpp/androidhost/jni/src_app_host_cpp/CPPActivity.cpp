@@ -1,32 +1,37 @@
 #include <jni.h>
-#include "cqhost_p.hh"
+#include "cqhostapi.h"
 #include "cqlog.hh"
-
-extern "C" void _main();
 
 extern "C" JNIEXPORT void JNICALL
 Java_src_app_host_cpp_CPPActivity_handleCreate(JNIEnv *, jobject) {
-
-    I("Android Host: call main()");
-    _main();
-
-    I("Android Host: post event AppCreate");
-    CQHostOnEvent(CQHostEventAppCreate);
-
-    I("Android Host: post event UILoad");
-    CQHostOnEvent(CQHostEventUILoad);
 }
 
 extern "C" JNIEXPORT void JNICALL
 Java_src_app_host_cpp_CPPActivity_handleStart(JNIEnv *, jobject) {
-
-    I("Android Host: post event UIAppear");
-    CQHostOnEvent(CQHostEventUIAppear);
 }
 
 extern "C" JNIEXPORT void JNICALL
 Java_src_app_host_cpp_CPPActivity_handleStop(JNIEnv *, jobject) {
+}
 
-    I("Android Host: post event UIDisappear");
-    CQHostOnEvent(CQHostEventUIDisappear);
+cq_window *cq_window_create(void) {
+    return nullptr;
+}
+
+void cq_window_load(cq_window *window) {
+}
+
+void cq_window_set_back_color(cq_window *window, float r, float g, float b) {
+}
+
+float cq_window_get_width(cq_window *window) {
+    return 0;
+}
+
+float cq_window_get_height(cq_window *window) {
+    return 0;
+}
+
+float cq_window_get_screen_scale(cq_window *window) {
+    return 0;
 }

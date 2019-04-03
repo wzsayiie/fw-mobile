@@ -1,4 +1,4 @@
-#include "cqlog_p.h"
+#include "cqproto_log.h"
 #include "cqjnihelper.hh"
 
 static jclass GetClass() {
