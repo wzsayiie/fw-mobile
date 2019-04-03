@@ -66,6 +66,42 @@
     I(@"iOS Host: viewDidDisappear exit");
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    CGPoint pt = [touches.anyObject locationInView:self.view];
+    if (self.userWindowLoaded) {
+        if (self.userWindow->procedure.touch_began) {
+            self.userWindow->procedure.touch_began(self.userWindow, pt.x, pt.y);
+        }
+    }
+}
+
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    CGPoint pt = [touches.anyObject locationInView:self.view];
+    if (self.userWindowLoaded) {
+        if (self.userWindow->procedure.touch_moved) {
+            self.userWindow->procedure.touch_moved(self.userWindow, pt.x, pt.y);
+        }
+    }
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    CGPoint pt = [touches.anyObject locationInView:self.view];
+    if (self.userWindowLoaded) {
+        if (self.userWindow->procedure.touch_ended) {
+            self.userWindow->procedure.touch_ended(self.userWindow, pt.x, pt.y);
+        }
+    }
+}
+
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    CGPoint pt = [touches.anyObject locationInView:self.view];
+    if (self.userWindowLoaded) {
+        if (self.userWindow->procedure.touch_ended) {
+            self.userWindow->procedure.touch_ended(self.userWindow, pt.x, pt.y);
+        }
+    }
+}
+
 @end
 
 cq_window *cq_window_create(void) {
