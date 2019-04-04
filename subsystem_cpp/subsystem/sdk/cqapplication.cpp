@@ -2,6 +2,7 @@
 
 struct _self_cqApplication {
     cqApplicationDelegate::ref delegate;
+    cqWindow::ref window;
 };
 
 cqApplication::ref cqApplication::sharedApplication() {
@@ -23,7 +24,30 @@ cqApplicationDelegate::ref cqApplication::delegate() {
     return self->delegate;
 }
 
+void cqApplication::setWindow(cqWindow::ref window) {
+    self->window = window;
+}
+
+cqWindow::ref cqApplication::window() {
+    return self->window;
+}
+
 void cqApplicationMain(cqApplicationDelegate::ref delegate) {
-    cqApplication::sharedApplication()->setDelegate(delegate);
-    delegate->applicationDidFinishLaunching();
+    auto application = cqApplication::sharedApplication();
+    application->setDelegate(delegate);
+}
+
+void _cq_default_window_created(cq_window *window) {
+    _entry();
+    
+    auto win = cqWindow::create();
+    win->setHostWindow(window);
+    
+    auto application = cqApplication::sharedApplication();
+    application->setWindow(win);
+    
+    auto delegate = application->delegate();
+    if (delegate != nullptr) {
+        delegate->applicationDidFinishLaunching(win);
+    }
 }

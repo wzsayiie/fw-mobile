@@ -8,17 +8,14 @@ struct _self_AppDelegate {
 AppDelegate::AppDelegate() {
 }
 
-void AppDelegate::applicationDidFinishLaunching() {
+void AppDelegate::applicationDidFinishLaunching(cqWindow::ref window) {
     I("application launching");
     
     RootViewController::ref controller = RootViewController::create();
-    
-    self->window = cqWindow::create();
-    self->window->setRootViewController(controller);
-    self->window->makeKeyAndVisible();
+    window->setRootViewController(controller);
 }
 
-extern "C" void _entry() {
+void _entry() {
     AppDelegate::ref delegate = AppDelegate::create();
     cqApplicationMain(delegate);
 }

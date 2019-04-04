@@ -6,5 +6,5 @@ struct AppDelegate : cq_class<AppDelegate, struct _self_AppDelegate, cqApplicati
     
     AppDelegate();
     
-    virtual void applicationDidFinishLaunching();
+    virtual void applicationDidFinishLaunching(cqWindow::ref window);
 };

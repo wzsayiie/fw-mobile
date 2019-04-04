@@ -2,15 +2,6 @@
 #import "cqhostapi.h"
 
 @interface CQCPPViewController ()
-
-@property (nonatomic) BOOL hostViewVisible;
-
-@property (nonatomic) cq_window *userWindow;
-@property (nonatomic) BOOL userWindowLoaded;
-@property (nonatomic) float userBackColorR;
-@property (nonatomic) float userBackColorG;
-@property (nonatomic) float userBackColorB;
-
 @end
 
 @implementation CQCPPViewController
@@ -23,160 +14,106 @@
     return shared;
 }
 
-+ (instancetype)sharedObjectWithPtr:(cq_window *)ptr {
-    //there is one window on iOS, parameter 'ptr' is unused.
-    return ptr ? [self resetSharedObject:nil reset:NO] : nil;
++ (instancetype)sharedObjectWithIndex:(int64_t)index {
+    //there is one window on iOS, parameter 'index' is unused.
+    return index ? [self resetSharedObject:nil reset:NO] : nil;
 }
 
-+ (instancetype)sharedObject {
-    return [self resetSharedObject:nil reset:NO];
-}
+#pragma mark - life cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    I(@"iOS Host: viewDidLoad enter");
-    {
-        [CQCPPViewController resetSharedObject:self reset:YES];
-        _entry();
-    }
-    I(@"iOS Host: viewDidLoad exit");
+    [CQCPPViewController resetSharedObject:self reset:YES];
+    
+    I(@"host: view did load enter");
+    _cq_notify_default_window_created(self.hash);
+    _cq_notify_window_load(self.hash);
+    I(@"host: view did load exit");
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    I(@"iOS Host: viewDidAppear enter");
-    {
-        self.hostViewVisible = YES;
-        if (self.userWindow->procedure.show && self.userWindowLoaded) {
-            self.userWindow->procedure.show(self.userWindow);
-        }
-    }
-    I(@"iOS Host: viewDidAppear exit");
+    
+    I(@"host: view did appear enter");
+    _cq_notify_window_show(self.hash);
+    I(@"host: view did appear exit");
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    I(@"iOS Host: viewDidDisappear enter");
-    {
-        self.hostViewVisible = NO;
-        if (self.userWindow->procedure.hide && self.userWindowLoaded) {
-            self.userWindow->procedure.hide(self.userWindow);
-        }
-    }
-    I(@"iOS Host: viewDidDisappear exit");
+    
+    I(@"host: view did disappear enter");
+    _cq_notify_window_hide(self.hash);
+    I(@"host: view did disappear exit");
 }
+
+#pragma mark - touch event
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     CGPoint pt = [touches.anyObject locationInView:self.view];
-    if (self.userWindowLoaded) {
-        if (self.userWindow->procedure.touch_began) {
-            self.userWindow->procedure.touch_began(self.userWindow, pt.x, pt.y);
-        }
-    }
+    
+    I(@"host: touches began enter");
+    _cq_notify_window_touch_began(self.hash, pt.x, pt.y);
+    I(@"host: touches began exit");
 }
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     CGPoint pt = [touches.anyObject locationInView:self.view];
-    if (self.userWindowLoaded) {
-        if (self.userWindow->procedure.touch_moved) {
-            self.userWindow->procedure.touch_moved(self.userWindow, pt.x, pt.y);
-        }
-    }
+    
+    I(@"host: touches moved enter");
+    _cq_notify_window_touch_moved(self.hash, pt.x, pt.y);
+    I(@"host: touches moved exit");
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     CGPoint pt = [touches.anyObject locationInView:self.view];
-    if (self.userWindowLoaded) {
-        if (self.userWindow->procedure.touch_ended) {
-            self.userWindow->procedure.touch_ended(self.userWindow, pt.x, pt.y);
-        }
-    }
+    
+    I(@"host: touches ended enter");
+    _cq_notify_window_touch_ended(self.hash, pt.x, pt.y);
+    I(@"host: touches ended exit");
 }
 
 - (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     CGPoint pt = [touches.anyObject locationInView:self.view];
-    if (self.userWindowLoaded) {
-        if (self.userWindow->procedure.touch_ended) {
-            self.userWindow->procedure.touch_ended(self.userWindow, pt.x, pt.y);
-        }
-    }
+    
+    I(@"host: touches cancelled enter");
+    _cq_notify_window_touch_ended(self.hash, pt.x, pt.y);
+    I(@"host: touches cancelled exit");
 }
 
 @end
 
-cq_window *cq_window_create(void) {
-    //on iOS, only one window can be created
-    CQCPPViewController *controller = [CQCPPViewController sharedObject];
-    if (controller.userWindow == NULL) {
-        controller.userWindow = calloc(sizeof(cq_window), 1);
-        return controller.userWindow;
-    } else {
-        return NULL;
-    }
-}
+#pragma mark - functions
 
-void cq_window_load(cq_window *window) {
-    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithPtr:window];
-    if (controller == nil) {
-        return;
-    }
-    if (controller.userWindowLoaded) {
-        return;
-    }
-    
-    //life cycle ->
-    controller.userWindowLoaded = YES;
-    if (controller.userWindow->procedure.load) {
-        controller.userWindow->procedure.load(controller.userWindow);
-    }
-    if (controller.userWindow->procedure.show && controller.hostViewVisible) {
-        controller.userWindow->procedure.show(controller.userWindow);
-    }
-    
-    //properties ->
-    float r = controller.userBackColorR;
-    float g = controller.userBackColorG;
-    float b = controller.userBackColorB;
-    UIColor *color = [UIColor colorWithRed:r green:g blue:b alpha:1];
-    [controller.view setBackgroundColor:color];
-}
-
-void cq_window_set_back_color(cq_window *window, float r, float g, float b) {
-    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithPtr:window];
-    if (controller == nil) {
-        return;
-    }
-    
-    controller.userBackColorR = r;
-    controller.userBackColorG = g;
-    controller.userBackColorB = b;
-    if (controller.userWindowLoaded) {
+void _cq_window_set_back_color(int64_t window_idx, float r, float g, float b) {
+    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithIndex:window_idx];
+    if (controller != nil) {
         UIColor *color = [UIColor colorWithRed:r green:g blue:b alpha:1];
         [controller.view setBackgroundColor:color];
     }
 }
 
-float cq_window_get_width(cq_window *window) {
-    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithPtr:window];
-    if (controller.userWindowLoaded) {
+float _cq_window_get_width(int64_t window_idx) {
+    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithIndex:window_idx];
+    if (controller != nil) {
         return controller.view.bounds.size.width;
     } else {
         return 0;
     }
 }
 
-float cq_window_get_height(cq_window *window) {
-    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithPtr:window];
-    if (controller.userWindowLoaded) {
+float _cq_window_get_height(int64_t window_idx) {
+    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithIndex:window_idx];
+    if (controller != nil) {
         return controller.view.bounds.size.height;
     } else {
         return 0;
     }
 }
 
-float cq_window_get_screen_scale(cq_window *window) {
-    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithPtr:window];
-    if (controller.userWindowLoaded) {
+float _cq_window_get_screen_scale(int64_t window_idx) {
+    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithIndex:window_idx];
+    if (controller != nil) {
         return UIScreen.mainScreen.scale;
     } else {
         return 0;
