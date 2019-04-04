@@ -10,6 +10,6 @@ public class CPPApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        L.i("Android Host: Application onCreate");
+        L.i("host: application create()");
     }
 }

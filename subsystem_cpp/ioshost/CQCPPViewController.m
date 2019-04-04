@@ -1,4 +1,5 @@
 #import "CQCPPViewController.h"
+#import "CQLog.h"
 #import "cqhostapi.h"
 
 @interface CQCPPViewController ()

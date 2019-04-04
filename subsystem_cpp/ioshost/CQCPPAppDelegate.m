@@ -1,5 +1,6 @@
 #import "CQCPPAppDelegate.h"
 #import "CQCPPViewController.h"
+#import "CQLog.h"
 
 @interface CQCPPAppDelegate ()
 @end
