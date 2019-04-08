@@ -2,21 +2,19 @@
 #include "cqjnihelper.hh"
 #include <jni.h>
 
-extern "C" JNIEXPORT void JNICALL
-Java_src_app_host_cpp_CPPActivity_handleCreate(JNIEnv *, jobject, jlong window_idx) {
+#define _F(n) extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_##n
+
+_F(notifyDefaultWindowCreated)(JNIEnv *, jobject, jlong window_idx) {
     _cq_notify_default_window_created(window_idx);
-    _cq_notify_window_load(window_idx);
 }
 
-extern "C" JNIEXPORT void JNICALL
-Java_src_app_host_cpp_CPPActivity_handleStart(JNIEnv *, jobject, jlong window_idx) {
-    _cq_notify_window_show(window_idx);
-}
+_F(notifyLoad)(JNIEnv *, jobject, jlong idx) {_cq_notify_window_load(idx);}
+_F(notifyShow)(JNIEnv *, jobject, jlong idx) {_cq_notify_window_show(idx);}
+_F(notifyHide)(JNIEnv *, jobject, jlong idx) {_cq_notify_window_hide(idx);}
 
-extern "C" JNIEXPORT void JNICALL
-Java_src_app_host_cpp_CPPActivity_handleStop(JNIEnv *, jobject, jlong window_idx) {
-    _cq_notify_window_hide(window_idx);
-}
+_F(notifyTouchBegan)(JNIEnv *, jobject, jlong idx, jfloat x, jfloat y) {_cq_notify_window_touch_began(idx, x, y);}
+_F(notifyTouchMoved)(JNIEnv *, jobject, jlong idx, jfloat x, jfloat y) {_cq_notify_window_touch_moved(idx, x, y);}
+_F(notifyTouchEnded)(JNIEnv *, jobject, jlong idx, jfloat x, jfloat y) {_cq_notify_window_touch_ended(idx, x, y);}
 
 static jclass find_class() {
     static jclass clazz = nullptr;
