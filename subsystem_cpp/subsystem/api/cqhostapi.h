@@ -28,7 +28,7 @@ CQ_C_LINK float cq_window_get_width(cq_window *window);
 CQ_C_LINK float cq_window_get_height(cq_window *window);
 CQ_C_LINK float cq_window_get_screen_scale(cq_window *window);
 
-//host implementation ->
+//implemented by host-level ->
 
 CQ_C_LINK void _cq_window_set_back_color(int64_t window_idx, float r, float g, float b);
 
@@ -36,7 +36,7 @@ CQ_C_LINK float _cq_window_get_width(int64_t window_idx);
 CQ_C_LINK float _cq_window_get_height(int64_t window_idx);
 CQ_C_LINK float _cq_window_get_screen_scale(int64_t window_idx);
 
-//api implementation ->
+//implemented by api-level ->
 
 CQ_C_LINK void _cq_notify_default_window_created(int64_t window_idx);
 
@@ -48,6 +48,6 @@ CQ_C_LINK void _cq_notify_window_touch_began(int64_t window_idx, float x, float 
 CQ_C_LINK void _cq_notify_window_touch_moved(int64_t window_idx, float x, float y);
 CQ_C_LINK void _cq_notify_window_touch_ended(int64_t window_idx, float x, float y);
 
-//sdk implementation ->
+//implemented by sdk-level ->
 
 CQ_C_LINK void _cq_default_window_created(cq_window *window);
