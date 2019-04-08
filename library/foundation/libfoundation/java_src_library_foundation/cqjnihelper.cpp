@@ -107,12 +107,13 @@ string cqJNIFromJString(JNIEnv *env, jstring from) {
     return to;
 }
 
-cqJNIStaticMethod::cqJNIStaticMethod() {
+cqJNIStaticMethod::cqJNIStaticMethod(jclass clazz, jmethodID *prefer, const char *name) {
 
-    _env = cqJNIGetEnv();
-    _clazz = nullptr;
-    _methodID = &_METHOD_ID;
+    _env       = cqJNIGetEnv();
+    _clazz     = clazz;
+    _methodID  = prefer ? prefer : &_METHOD_ID;
     _METHOD_ID = nullptr;
+    _name      = name ? name : "";
 
     _signature.append("(");
 }
@@ -124,19 +125,6 @@ cqJNIStaticMethod::~cqJNIStaticMethod() {
 
     for (jobject it : _objects) {
         _env->DeleteLocalRef(it);
-    }
-}
-
-void cqJNIStaticMethod::select(jclass clazz) {
-    _clazz = clazz;
-}
-
-void cqJNIStaticMethod::select(jmethodID *methodID, const char *name) {
-    if (methodID != nullptr) {
-        _methodID = methodID;
-    }
-    if (name != nullptr) {
-        _name = name;
     }
 }
 

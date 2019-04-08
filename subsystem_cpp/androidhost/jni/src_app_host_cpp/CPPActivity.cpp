@@ -16,7 +16,7 @@ _F(notifyTouchBegan)(JNIEnv *, jobject, jlong idx, jfloat x, jfloat y) {_cq_noti
 _F(notifyTouchMoved)(JNIEnv *, jobject, jlong idx, jfloat x, jfloat y) {_cq_notify_window_touch_moved(idx, x, y);}
 _F(notifyTouchEnded)(JNIEnv *, jobject, jlong idx, jfloat x, jfloat y) {_cq_notify_window_touch_ended(idx, x, y);}
 
-static jclass find_class() {
+static jclass clazz() {
     static jclass clazz = nullptr;
     if (clazz == nullptr) {
         cqJNIFindClass(&clazz, cqJNIGetEnv(), "src/app/host/cpp/CPPActivity");
@@ -27,9 +27,7 @@ static jclass find_class() {
 void _cq_window_set_back_color(int64_t window_idx, float r, float g, float b) {
     static jmethodID methodID = nullptr;
 
-    cqJNIStaticMethod method;
-    method.select(find_class());
-    method.select(&methodID, "_cq_window_set_back_color");
+    cqJNIStaticMethod method(clazz(), &methodID, "_cq_window_set_back_color");
 
     method.push(window_idx);
     method.push(r);
@@ -42,9 +40,7 @@ void _cq_window_set_back_color(int64_t window_idx, float r, float g, float b) {
 float _cq_window_get_width(int64_t window_idx) {
     static jmethodID methodID = nullptr;
 
-    cqJNIStaticMethod method;
-    method.select(find_class());
-    method.select(&methodID, "_cq_window_get_width");
+    cqJNIStaticMethod method(clazz(), &methodID, "_cq_window_get_width");
 
     method.push(window_idx);
 
@@ -54,9 +50,7 @@ float _cq_window_get_width(int64_t window_idx) {
 float _cq_window_get_height(int64_t window_idx) {
     static jmethodID methodID = nullptr;
 
-    cqJNIStaticMethod method;
-    method.select(find_class());
-    method.select(&methodID, "_cq_window_get_height");
+    cqJNIStaticMethod method(clazz(), &methodID, "_cq_window_get_height");
 
     method.push(window_idx);
 
@@ -66,9 +60,7 @@ float _cq_window_get_height(int64_t window_idx) {
 float _cq_window_get_screen_scale(int64_t window_idx) {
     static jmethodID methodID = nullptr;
 
-    cqJNIStaticMethod method;
-    method.select(find_class());
-    method.select(&methodID, "_cq_window_get_screen_scale");
+    cqJNIStaticMethod method(clazz(), &methodID, "_cq_window_get_screen_scale");
 
     method.push(window_idx);
 

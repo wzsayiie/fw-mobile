@@ -18,16 +18,11 @@ string cqJNIFromJString(JNIEnv *env, jstring from);
 
 struct cqJNIStaticMethod {
 
-    cqJNIStaticMethod();
+    cqJNIStaticMethod(jclass clazz, jmethodID *prefer, const char *name);
     ~cqJNIStaticMethod();
 
     cqJNIStaticMethod(const cqJNIStaticMethod &) = delete;
     void operator=(const cqJNIStaticMethod &) = delete;
-
-    void select(jclass clazz);
-
-    //if *prefer != null then use it, else find the methodID and assign *prefer.
-    void select(jmethodID *prefer, const char *name);
 
     void push(bool    param) { push("Z", from(param)); }
     void push(int8_t  param) { push("B", from(param)); }

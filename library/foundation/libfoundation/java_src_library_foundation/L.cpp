@@ -1,7 +1,7 @@
 #include "cqproto_log.h"
 #include "cqjnihelper.hh"
 
-static jclass GetClass() {
+static jclass clazz() {
     static jclass clazz = nullptr;
     if (clazz == nullptr) {
         cqJNIFindClass(&clazz, cqJNIGetEnv(), "src/library/foundation/L");
@@ -12,9 +12,7 @@ static jclass GetClass() {
 void cq_log_info(const char *file, int32_t line, const char *message) {
     static jmethodID methodID = nullptr;
 
-    cqJNIStaticMethod method;
-    method.select(GetClass());
-    method.select(&methodID, "info");
+    cqJNIStaticMethod method(clazz(), &methodID, "info");
 
     method.push(file);
     method.push(line);
@@ -26,9 +24,7 @@ void cq_log_info(const char *file, int32_t line, const char *message) {
 void cq_log_error(const char *file, int32_t line, const char *message) {
     static jmethodID methodID = nullptr;
 
-    cqJNIStaticMethod method;
-    method.select(GetClass());
-    method.select(&methodID, "error");
+    cqJNIStaticMethod method(clazz(), &methodID, "error");
 
     method.push(file);
     method.push(line);
