@@ -7,6 +7,8 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 
+import src.library.foundation.L;
+
 public class CPPActivity extends Activity {
 
     static {
@@ -32,6 +34,7 @@ public class CPPActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        L.i("host event: activity on create");
 
         mContentView = new View(this);
         setContentView(mContentView);
@@ -44,12 +47,16 @@ public class CPPActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
+        L.i("host event: activity on start");
+
         notifyShow(hashCode());
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        L.i("host event: activity on stop");
+
         notifyHide(hashCode());
     }
 
@@ -62,16 +69,23 @@ public class CPPActivity extends Activity {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-        int   h = hashCode();
-        float s = _cq_window_get_screen_scale(h);
-        float x = event.getX() / s;
-        float y = event.getY() / s;
+        Display display = getWindowManager().getDefaultDisplay();
+        DisplayMetrics metrics = new DisplayMetrics();
+        display.getMetrics(metrics);
+
+        float x = event.getX() / metrics.density;
+        float y = event.getY() / metrics.density;
 
         switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN  : notifyTouchBegan(h, x, y); break;
-            case MotionEvent.ACTION_MOVE  : notifyTouchMoved(h, x, y); break;
-            case MotionEvent.ACTION_UP    : notifyTouchEnded(h, x, y); break;
-            case MotionEvent.ACTION_CANCEL: notifyTouchEnded(h, x, y); break;
+            case MotionEvent.ACTION_DOWN  : L.i("host event: action down"  ); break;
+            case MotionEvent.ACTION_UP    : L.i("host event: action up"    ); break;
+            case MotionEvent.ACTION_CANCEL: L.i("host event: action cancel"); break;
+        }
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN  : notifyTouchBegan(hashCode(), x, y); break;
+            case MotionEvent.ACTION_MOVE  : notifyTouchMoved(hashCode(), x, y); break;
+            case MotionEvent.ACTION_UP    : notifyTouchEnded(hashCode(), x, y); break;
+            case MotionEvent.ACTION_CANCEL: notifyTouchEnded(hashCode(), x, y); break;
         }
         return true;
     }
@@ -85,6 +99,8 @@ public class CPPActivity extends Activity {
     }
 
     public static void _cq_window_set_back_color(long index, float r, float g, float b) {
+        L.i("host invoke: set window background color");
+
         CPPActivity activity = sharedActivityWithHash(index);
         if (activity == null) {
             return;
@@ -97,6 +113,8 @@ public class CPPActivity extends Activity {
     }
 
     public static float _cq_window_get_width(long index) {
+        L.i("host invoke: get window width");
+
         CPPActivity activity = sharedActivityWithHash(index);
         if (activity == null) {
             return 0;
@@ -110,6 +128,8 @@ public class CPPActivity extends Activity {
     }
 
     public static float _cq_window_get_height(long index) {
+        L.i("host invoke: get window height");
+
         CPPActivity activity = sharedActivityWithHash(index);
         if (activity == null) {
             return 0;
@@ -123,6 +143,8 @@ public class CPPActivity extends Activity {
     }
 
     public static float _cq_window_get_screen_scale(long index) {
+        L.i("host invoke: get screen scale");
+
         CPPActivity activity = sharedActivityWithHash(index);
         if (activity == null) {
             return 0;

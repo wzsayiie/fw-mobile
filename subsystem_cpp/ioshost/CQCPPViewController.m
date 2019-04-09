@@ -1,4 +1,5 @@
 #import "CQCPPViewController.h"
+#import "CQLog.h"
 #import "cqhostapi.h"
 
 @interface CQCPPViewController ()
@@ -23,25 +24,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [CQCPPViewController resetSharedObject:self reset:YES];
+    I(@"host event: view did load");
     
+    [CQCPPViewController resetSharedObject:self reset:YES];
     _cq_notify_default_window_created(self.hash);
     _cq_notify_window_load(self.hash);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    I(@"host event: view did appear");
+    
     _cq_notify_window_show(self.hash);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
+    I(@"host event: view did disappear");
+    
     _cq_notify_window_hide(self.hash);
 }
 
 #pragma mark - touch event
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    I(@"host event: touches began");
+    
     CGPoint pt = [touches.anyObject locationInView:self.view];
     _cq_notify_window_touch_began(self.hash, pt.x, pt.y);
 }
@@ -52,11 +60,15 @@
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    I(@"host event: touches ended");
+    
     CGPoint pt = [touches.anyObject locationInView:self.view];
     _cq_notify_window_touch_ended(self.hash, pt.x, pt.y);
 }
 
 - (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    I(@"host event: touches cancelled");
+    
     CGPoint pt = [touches.anyObject locationInView:self.view];
     _cq_notify_window_touch_ended(self.hash, pt.x, pt.y);
 }
@@ -70,6 +82,8 @@ static inline float range(float min, float v, float max) {
 }
 
 void _cq_window_set_back_color(int64_t window_idx, float r, float g, float b) {
+    I(@"host invoke: set window background color");
+    
     CQCPPViewController *controller = [CQCPPViewController sharedObjectWithHash:window_idx];
     if (controller != nil) {
         
@@ -83,6 +97,8 @@ void _cq_window_set_back_color(int64_t window_idx, float r, float g, float b) {
 }
 
 float _cq_window_get_width(int64_t window_idx) {
+    I(@"host invoke: get window width");
+    
     CQCPPViewController *controller = [CQCPPViewController sharedObjectWithHash:window_idx];
     if (controller != nil) {
         return controller.view.bounds.size.width;
@@ -92,6 +108,8 @@ float _cq_window_get_width(int64_t window_idx) {
 }
 
 float _cq_window_get_height(int64_t window_idx) {
+    I(@"host invoke: get window height");
+    
     CQCPPViewController *controller = [CQCPPViewController sharedObjectWithHash:window_idx];
     if (controller != nil) {
         return controller.view.bounds.size.height;
@@ -101,6 +119,8 @@ float _cq_window_get_height(int64_t window_idx) {
 }
 
 float _cq_window_get_screen_scale(int64_t window_idx) {
+    I(@"host invoke: get screen scale");
+    
     CQCPPViewController *controller = [CQCPPViewController sharedObjectWithHash:window_idx];
     if (controller != nil) {
         return UIScreen.mainScreen.scale;
