@@ -10,9 +10,13 @@
 
 static lua_State *_lua_state = nullptr;
 
-void cq_lua_vm_open(const char *directory_path) {
-    I("lua vm: open '%s'", directory_path);
+lua_State *cq_lua_vm_open(const char *directory_path) {
+    I("lua vm: open");
+    
     cq_lua_vm_close();
+    if (directory_path == nullptr) {
+        return nullptr;
+    }
     
     _lua_state = luaL_newstate();
     luaL_openlibs(_lua_state);
@@ -24,6 +28,8 @@ void cq_lua_vm_open(const char *directory_path) {
 #endif
     cq_lua_vm_do_string("package.cpath = ''");
     cq_lua_vm_do_string("package.path = '?.lua'");
+    
+    return _lua_state;
 }
 
 void cq_lua_vm_close() {
