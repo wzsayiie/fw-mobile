@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cqconvention.h"
+#include "cq_convention.h"
 
 typedef struct cq_window cq_window;
 

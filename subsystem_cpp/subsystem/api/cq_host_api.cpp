@@ -1,4 +1,4 @@
-#include "cqhostapi.h"
+#include "cq_host_api.h"
 #include "cqconvention.hh"
 
 struct cq_window {

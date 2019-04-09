@@ -1,7 +1,7 @@
 #pragma once
 
 #include "cqviewcontroller.hh"
-#include "cqhostapi.h"
+#include "cq_host_api.h"
 
 struct cqWindow : cq_class<cqWindow, struct _self_cqWindow, cqView> {
     

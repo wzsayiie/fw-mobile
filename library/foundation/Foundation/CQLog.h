@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "cqconvention.h"
+#import "cq_convention.h"
 
 CQ_C_LINK void CQLogInfo (NSString *file, int line, NSString *format, ...) NS_FORMAT_FUNCTION(3, 4);
 CQ_C_LINK void CQLogError(NSString *file, int line, NSString *format, ...) NS_FORMAT_FUNCTION(3, 4);
