@@ -29,6 +29,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B428A88B225F4CDB007AB597 /* cq_lua_foundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cq_lua_foundation.h; sourceTree = "<group>"; };
 		B43F02B7224B1F73003DF2A1 /* cq_log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cq_log.h; sourceTree = "<group>"; };
 		B43F02B9224B2034003DF2A1 /* cq_convention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cq_convention.h; sourceTree = "<group>"; };
 		B43F02BC224B568E003DF2A1 /* cq_convention.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cq_convention.cpp; sourceTree = "<group>"; };
@@ -146,6 +147,7 @@
 		B468C60D22293CEF00A9657F /* lua_foundation */ = {
 			isa = PBXGroup;
 			children = (
+				B428A88B225F4CDB007AB597 /* cq_lua_foundation.h */,
 				B468C60F22293CEF00A9657F /* cq_lua_foundation.lua.h */,
 				B468C60E22293CEF00A9657F /* cq_lua_foundation.cpp */,
 			);

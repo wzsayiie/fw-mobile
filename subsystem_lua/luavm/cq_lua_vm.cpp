@@ -81,7 +81,7 @@ void cq_lua_vm_open(const char *directory_path) {
     do_string("package.cpath = ''");
     do_string("package.path = '?.lua'");
     
-    //load third libraries
+    //register handlers
     _cq_lua_set_register_func_h(register_func);
     _cq_lua_set_do_string_h(do_string);
     
@@ -92,9 +92,6 @@ void cq_lua_vm_open(const char *directory_path) {
     _cq_lua_set_push_integer_h(push_integer);
     _cq_lua_set_push_double_h (push_double );
     _cq_lua_set_push_string_h (push_string );
-    
-    cq_lua_register_added_func();
-    cq_lua_do_added_string();
 }
 
 void cq_lua_vm_close() {

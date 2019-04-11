@@ -1,7 +1,8 @@
 #include "cq_lua_convention.h"
+#include "cq_lua_foundation.h"
 #include "cq_log.h"
 
-CQ_LUA_FUNC(cq_log_info)(lua_State *state) {
+static int32_t log_info(lua_State *state) {
     
     const char *file = cq_lua_check_string(state, 1);
     int32_t     line = cq_lua_check_int32 (state, 2);
@@ -12,7 +13,7 @@ CQ_LUA_FUNC(cq_log_info)(lua_State *state) {
     return 0;
 }
 
-CQ_LUA_FUNC(cq_log_error)(lua_State *state) {
+static int32_t log_error(lua_State *state) {
     
     const char *file = cq_lua_check_string(state, 1);
     int32_t     line = cq_lua_check_int32 (state, 2);
@@ -23,8 +24,12 @@ CQ_LUA_FUNC(cq_log_error)(lua_State *state) {
     return 0;
 }
 
-CQ_LUA_STRING(get_source)() {
+void cq_lua_load_lib_foundation() {
+    
+    cq_lua_register_func("cq_log_info" , log_info );
+    cq_lua_register_func("cq_log_error", log_error);
+    
     const char *source = nullptr;
     #include "cq_lua_foundation.lua.h"
-    return source;
+    cq_lua_do_string(source);
 }
