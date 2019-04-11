@@ -11,6 +11,8 @@
 #   define CQ_C_LINK
 # endif
 
+typedef const char *PCSTR;
+
 //storing a string on current thread,
 //until call of cq_string_store_xx again on same thread.
 CQ_C_LINK const char *cq_string_store_string(const char *value);
