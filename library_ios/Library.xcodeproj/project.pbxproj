@@ -40,9 +40,10 @@
 		B468C60122293CEF00A9657F /* CQLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQLog.m; sourceTree = "<group>"; };
 		B468C60322293CEF00A9657F /* CQLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQLog.h; sourceTree = "<group>"; };
 		B468C60E22293CEF00A9657F /* cq_lua_foundation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cq_lua_foundation.cpp; sourceTree = "<group>"; };
-		B468C60F22293CEF00A9657F /* cq_lua_foundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cq_lua_foundation.h; sourceTree = "<group>"; };
+		B468C60F22293CEF00A9657F /* cq_lua_foundation.lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cq_lua_foundation.lua.h; sourceTree = "<group>"; };
 		B468C61422293CEF00A9657F /* cqlog.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqlog.hh; sourceTree = "<group>"; };
 		B468C61722293CEF00A9657F /* cqlog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqlog.cpp; sourceTree = "<group>"; };
+		B4A380FC225F03A600CA4650 /* cq_lua_convention.lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cq_lua_convention.lua.h; sourceTree = "<group>"; };
 		CE219ADF21DA51FD006A27B6 /* libLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -107,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				B4576C1D222FD6B100720DB1 /* cq_lua_convention.h */,
+				B4A380FC225F03A600CA4650 /* cq_lua_convention.lua.h */,
 				B4576C1C222FD6B100720DB1 /* cq_lua_convention.cpp */,
 			);
 			path = lua_convention;
@@ -144,7 +146,7 @@
 		B468C60D22293CEF00A9657F /* lua_foundation */ = {
 			isa = PBXGroup;
 			children = (
-				B468C60F22293CEF00A9657F /* cq_lua_foundation.h */,
+				B468C60F22293CEF00A9657F /* cq_lua_foundation.lua.h */,
 				B468C60E22293CEF00A9657F /* cq_lua_foundation.cpp */,
 			);
 			path = lua_foundation;

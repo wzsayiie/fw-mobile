@@ -1,4 +1,4 @@
-#include "cqproto_log.h"
+#include "cq_log.h"
 #include "cqjnihelper.hh"
 
 static jclass clazz() {

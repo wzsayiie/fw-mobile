@@ -1,11 +1,6 @@
 #import "CQLuaViewController.h"
 #import "CQLog.h"
 
-#import "cq_lua_source.h"
-#import "cq_lua_vm.h"
-#import "cq_lua_convention.h"
-#import "cq_lua_foundation.h"
-
 @interface CQLuaViewController()
 @property (nonatomic) NSString *luaDirectory;
 @end
@@ -14,11 +9,15 @@
 
 - (NSString *)luaDirectory {
     if (_luaDirectory.length == 0) {
-        NSString *cachesDirectory = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
+        
+        NSSearchPathDirectory  d = NSCachesDirectory;
+        NSSearchPathDomainMask m = NSUserDomainMask;
+        NSString *cachesDirectory = NSSearchPathForDirectoriesInDomains(d, m, YES)[0];
         NSString *luaDirectory = [cachesDirectory stringByAppendingPathComponent:@"LUA"];
         
         NSFileManager *manager = NSFileManager.defaultManager;
-        [manager createDirectoryAtPath:luaDirectory withIntermediateDirectories:YES attributes:nil error:nil];
+        [manager createDirectoryAtPath:luaDirectory
+           withIntermediateDirectories:YES attributes:nil error:nil];
         
         _luaDirectory = luaDirectory;
     }

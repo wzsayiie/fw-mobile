@@ -16,7 +16,7 @@ public class LuaActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        L.i("Android Host: Activity onCreate");
+        L.i("host: on create");
 
         String cachePath= getCacheDir().toString();
         File luaPath = new File(cachePath + "/LUA");
@@ -28,7 +28,7 @@ public class LuaActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-        L.i("Android Host: Activity onStart");
+        L.i("host: on start");
 
         handleStart();
     }
@@ -36,7 +36,7 @@ public class LuaActivity extends Activity {
     @Override
     protected void onStop() {
         super.onStop();
-        L.i("Android Host: Activity onStop");
+        L.i("host: on stop");
 
         handleStop();
     }
