@@ -4,6 +4,16 @@
 <array>
 	<dict>
 		<key>Address</key>
+		<string>apps://blank</string>
+		<key>Controller</key>
+		<string>BlankViewController</string>
+		<key>Style</key>
+		<string>Stack</string>
+		<key>Launch</key>
+		<false/>
+	</dict>
+	<dict>
+		<key>Address</key>
 		<string>apps://example</string>
 		<key>Controller</key>
 		<string>ExampleViewController</string>
