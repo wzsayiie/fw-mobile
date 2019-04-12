@@ -27,6 +27,7 @@
 		B45C1BFE21A03824007CB374 /* NSObject+CQSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1BEC21A03824007CB374 /* NSObject+CQSingleton.m */; };
 		B45C1BFF21A03824007CB374 /* CQSingletonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1BED21A03824007CB374 /* CQSingletonManager.m */; };
 		B45C1C0021A03824007CB374 /* CQHotfixManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1BF321A03824007CB374 /* CQHotfixManager.m */; };
+		B4696784226098DF00279E50 /* cq_lua_vm_libs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4696783226098DF00279E50 /* cq_lua_vm_libs.cpp */; };
 		B46997D8222801C30067478B /* CQCPPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B46997D5222801C30067478B /* CQCPPAppDelegate.m */; };
 		B49706742227785C00E8D717 /* CQLuaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B49706732227785C00E8D717 /* CQLuaViewController.m */; };
 		B4AF89932226AEC000F73B6F /* cq_lua_source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4AF89922226AEC000F73B6F /* cq_lua_source.cpp */; };
@@ -111,6 +112,7 @@
 		B45C1BEF21A03824007CB374 /* NSObject+CQSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CQSingleton.h"; sourceTree = "<group>"; };
 		B45C1BF321A03824007CB374 /* CQHotfixManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQHotfixManager.m; sourceTree = "<group>"; };
 		B45C1BF421A03824007CB374 /* CQHotfixManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQHotfixManager.h; sourceTree = "<group>"; };
+		B4696783226098DF00279E50 /* cq_lua_vm_libs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cq_lua_vm_libs.cpp; sourceTree = "<group>"; };
 		B46997D5222801C30067478B /* CQCPPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQCPPAppDelegate.m; sourceTree = "<group>"; };
 		B46997D6222801C30067478B /* CQCPPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQCPPViewController.h; sourceTree = "<group>"; };
 		B46997D7222801C30067478B /* CQCPPAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQCPPAppDelegate.h; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				B49706702227756C00E8D717 /* cq_lua_source.h */,
 				B4AF89922226AEC000F73B6F /* cq_lua_source.cpp */,
 				B408A5B72226539B00F4239B /* cq_lua_vm.h */,
+				B4696783226098DF00279E50 /* cq_lua_vm_libs.cpp */,
 				B408A5B82226539B00F4239B /* cq_lua_vm.cpp */,
 			);
 			name = luavm;
@@ -760,6 +763,7 @@
 				CE224EA72206AED300B8FB53 /* cqview.cpp in Sources */,
 				B4B9433222250FE500CE3C9A /* CQLuaAppDelegate.m in Sources */,
 				B4CFD97021C7475000FFF4CF /* CollectionViewController.m in Sources */,
+				B4696784226098DF00279E50 /* cq_lua_vm_libs.cpp in Sources */,
 				B4BC9CAD2204331C00CFD84C /* CQCPPViewController.m in Sources */,
 				B45C1BFE21A03824007CB374 /* NSObject+CQSingleton.m in Sources */,
 				CE224EAC2206B3C100B8FB53 /* cqwindow.cpp in Sources */,

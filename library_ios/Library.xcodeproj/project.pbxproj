@@ -10,10 +10,11 @@
 		B43F02BD224B568E003DF2A1 /* cq_convention.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B43F02BC224B568E003DF2A1 /* cq_convention.cpp */; };
 		B43F02BF224B56AD003DF2A1 /* cq_log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B43F02BE224B56AD003DF2A1 /* cq_log.cpp */; };
 		B4576C1A222FD54900720DB1 /* cqconvention.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4576C19222FD54900720DB1 /* cqconvention.cpp */; };
-		B4576C1E222FD6B100720DB1 /* cq_lua_convention.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4576C1C222FD6B100720DB1 /* cq_lua_convention.cpp */; };
 		B468C64322293CEF00A9657F /* CQLog.m in Sources */ = {isa = PBXBuildFile; fileRef = B468C60122293CEF00A9657F /* CQLog.m */; };
 		B468C64922293CEF00A9657F /* cq_lua_foundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468C60E22293CEF00A9657F /* cq_lua_foundation.cpp */; };
 		B468C64D22293CEF00A9657F /* cqlog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468C61722293CEF00A9657F /* cqlog.cpp */; };
+		B4CEAEFA2260935D00E270C7 /* cq_lua_api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4CEAEF62260935D00E270C7 /* cq_lua_api.cpp */; };
+		B4CEAEFB2260935D00E270C7 /* cq_lua_runtime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4CEAEF72260935D00E270C7 /* cq_lua_runtime.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,15 +37,17 @@
 		B43F02BE224B56AD003DF2A1 /* cq_log.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cq_log.cpp; sourceTree = "<group>"; };
 		B4576C18222FD54900720DB1 /* cqconvention.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqconvention.hh; sourceTree = "<group>"; };
 		B4576C19222FD54900720DB1 /* cqconvention.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqconvention.cpp; sourceTree = "<group>"; };
-		B4576C1C222FD6B100720DB1 /* cq_lua_convention.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cq_lua_convention.cpp; sourceTree = "<group>"; };
-		B4576C1D222FD6B100720DB1 /* cq_lua_convention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cq_lua_convention.h; sourceTree = "<group>"; };
 		B468C60122293CEF00A9657F /* CQLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQLog.m; sourceTree = "<group>"; };
 		B468C60322293CEF00A9657F /* CQLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQLog.h; sourceTree = "<group>"; };
 		B468C60E22293CEF00A9657F /* cq_lua_foundation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cq_lua_foundation.cpp; sourceTree = "<group>"; };
 		B468C60F22293CEF00A9657F /* cq_lua_foundation.lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cq_lua_foundation.lua.h; sourceTree = "<group>"; };
 		B468C61422293CEF00A9657F /* cqlog.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqlog.hh; sourceTree = "<group>"; };
 		B468C61722293CEF00A9657F /* cqlog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqlog.cpp; sourceTree = "<group>"; };
-		B4A380FC225F03A600CA4650 /* cq_lua_convention.lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cq_lua_convention.lua.h; sourceTree = "<group>"; };
+		B4A380FC225F03A600CA4650 /* cq_lua_runtime.lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cq_lua_runtime.lua.h; sourceTree = "<group>"; };
+		B4CEAEF62260935D00E270C7 /* cq_lua_api.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cq_lua_api.cpp; sourceTree = "<group>"; };
+		B4CEAEF72260935D00E270C7 /* cq_lua_runtime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cq_lua_runtime.cpp; sourceTree = "<group>"; };
+		B4CEAEF82260935D00E270C7 /* cq_lua_runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cq_lua_runtime.h; sourceTree = "<group>"; };
+		B4CEAEF92260935D00E270C7 /* cq_lua_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cq_lua_api.h; sourceTree = "<group>"; };
 		CE219ADF21DA51FD006A27B6 /* libLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -108,9 +111,11 @@
 		B4576C1B222FD6B100720DB1 /* lua_convention */ = {
 			isa = PBXGroup;
 			children = (
-				B4576C1D222FD6B100720DB1 /* cq_lua_convention.h */,
-				B4A380FC225F03A600CA4650 /* cq_lua_convention.lua.h */,
-				B4576C1C222FD6B100720DB1 /* cq_lua_convention.cpp */,
+				B4CEAEF92260935D00E270C7 /* cq_lua_api.h */,
+				B4CEAEF62260935D00E270C7 /* cq_lua_api.cpp */,
+				B4CEAEF82260935D00E270C7 /* cq_lua_runtime.h */,
+				B4A380FC225F03A600CA4650 /* cq_lua_runtime.lua.h */,
+				B4CEAEF72260935D00E270C7 /* cq_lua_runtime.cpp */,
 			);
 			path = lua_convention;
 			sourceTree = "<group>";
@@ -241,9 +246,10 @@
 				B468C64D22293CEF00A9657F /* cqlog.cpp in Sources */,
 				B4576C1A222FD54900720DB1 /* cqconvention.cpp in Sources */,
 				B43F02BF224B56AD003DF2A1 /* cq_log.cpp in Sources */,
-				B4576C1E222FD6B100720DB1 /* cq_lua_convention.cpp in Sources */,
+				B4CEAEFA2260935D00E270C7 /* cq_lua_api.cpp in Sources */,
 				B43F02BD224B568E003DF2A1 /* cq_convention.cpp in Sources */,
 				B468C64322293CEF00A9657F /* CQLog.m in Sources */,
+				B4CEAEFB2260935D00E270C7 /* cq_lua_runtime.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

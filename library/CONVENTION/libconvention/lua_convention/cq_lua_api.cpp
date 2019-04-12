@@ -1,4 +1,4 @@
-#include "cq_lua_convention.h"
+#include "cq_lua_api.h"
 #include "cqconvention.hh"
 
 static void (*_register_func)(const char *, lua_CFunction) = nullptr;
@@ -26,7 +26,7 @@ void cq_lua_do_string(const char *code) {
 
 void cq_lua_load_lib_convention() {
     const char *source = nullptr;
-    #include "cq_lua_convention.lua.h"
+    #include "cq_lua_runtime.lua.h"
     cq_lua_do_string(source);
 }
 
@@ -48,13 +48,13 @@ void cq_lua_push_float (lua_State *s, float   v) {if (_push_double ) _push_doubl
 void cq_lua_push_double(lua_State *s, double  v) {if (_push_double ) _push_double (s, v);}
 void cq_lua_push_string(lua_State *s, PCSTR   v) {if (_push_string ) _push_string (s, v);}
 
-void _cq_lua_set_register_func_h(void (*h)(const char *, lua_CFunction)) {_register_func = h;}
-void _cq_lua_set_do_string_h    (void (*h)(const char *               )) {_do_string     = h;}
+void _cq_lua_set_register_func_handler(void (*h)(const char *, lua_CFunction)) {_register_func = h;}
+void _cq_lua_set_do_string_handler    (void (*h)(const char *               )) {_do_string     = h;}
 
-void _cq_lua_set_check_integer_h(int64_t (*h)(lua_State *, int32_t)) {_check_integer = h;}
-void _cq_lua_set_check_double_h (double  (*h)(lua_State *, int32_t)) {_check_double  = h;}
-void _cq_lua_set_check_string_h (PCSTR   (*h)(lua_State *, int32_t)) {_check_string  = h;}
+void _cq_lua_set_check_integer_handler(int64_t (*h)(lua_State *, int32_t)) {_check_integer = h;}
+void _cq_lua_set_check_double_handler (double  (*h)(lua_State *, int32_t)) {_check_double  = h;}
+void _cq_lua_set_check_string_handler (PCSTR   (*h)(lua_State *, int32_t)) {_check_string  = h;}
 
-void _cq_lua_set_push_integer_h(void (*h)(lua_State *, int64_t)) {_push_integer = h;}
-void _cq_lua_set_push_double_h (void (*h)(lua_State *, double )) {_push_double  = h;}
-void _cq_lua_set_push_string_h (void (*h)(lua_State *, PCSTR  )) {_push_string  = h;}
+void _cq_lua_set_push_integer_handler(void (*h)(lua_State *, int64_t)) {_push_integer = h;}
+void _cq_lua_set_push_double_handler (void (*h)(lua_State *, double )) {_push_double  = h;}
+void _cq_lua_set_push_string_handler (void (*h)(lua_State *, PCSTR  )) {_push_string  = h;}

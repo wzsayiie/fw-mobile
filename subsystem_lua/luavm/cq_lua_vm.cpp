@@ -1,5 +1,5 @@
 #include "cq_lua_vm.h"
-#include "cq_lua_convention.h"
+#include "cq_lua_api.h"
 #include "cqlog.hh"
 #include "lua.hpp"
 
@@ -82,16 +82,20 @@ void cq_lua_vm_open(const char *directory_path) {
     do_string("package.path = '?.lua'");
     
     //register handlers
-    _cq_lua_set_register_func_h(register_func);
-    _cq_lua_set_do_string_h(do_string);
+    _cq_lua_set_register_func_handler(register_func);
+    _cq_lua_set_do_string_handler(do_string);
     
-    _cq_lua_set_check_integer_h(check_integer);
-    _cq_lua_set_check_double_h (check_double );
-    _cq_lua_set_check_string_h (check_string );
+    _cq_lua_set_check_integer_handler(check_integer);
+    _cq_lua_set_check_double_handler (check_double );
+    _cq_lua_set_check_string_handler (check_string );
     
-    _cq_lua_set_push_integer_h(push_integer);
-    _cq_lua_set_push_double_h (push_double );
-    _cq_lua_set_push_string_h (push_string );
+    _cq_lua_set_push_integer_handler(push_integer);
+    _cq_lua_set_push_double_handler (push_double );
+    _cq_lua_set_push_string_handler (push_string );
+    
+    //load libs
+    void cq_lua_vm_load_libs();
+    cq_lua_vm_load_libs();
 }
 
 void cq_lua_vm_close() {
@@ -102,16 +106,16 @@ void cq_lua_vm_close() {
     I("lua vm: close");
     
     //disable third library
-    _cq_lua_set_register_func_h(nullptr);
-    _cq_lua_set_do_string_h(nullptr);
+    _cq_lua_set_register_func_handler(nullptr);
+    _cq_lua_set_do_string_handler(nullptr);
     
-    _cq_lua_set_check_integer_h(nullptr);
-    _cq_lua_set_check_double_h (nullptr);
-    _cq_lua_set_check_string_h (nullptr);
+    _cq_lua_set_check_integer_handler(nullptr);
+    _cq_lua_set_check_double_handler (nullptr);
+    _cq_lua_set_check_string_handler (nullptr);
     
-    _cq_lua_set_push_integer_h(nullptr);
-    _cq_lua_set_push_double_h (nullptr);
-    _cq_lua_set_push_string_h (nullptr);
+    _cq_lua_set_push_integer_handler(nullptr);
+    _cq_lua_set_push_double_handler (nullptr);
+    _cq_lua_set_push_string_handler (nullptr);
     
     //delete lua vm
     lua_close(_lua_state);
