@@ -1,16 +1,15 @@
 #include <jni.h>
-#include "cqlog.hh"
+#include "cqjnihelper.hh"
 #include "cq_lua_source.h"
 #include "cq_lua_vm.h"
 
-extern "C" JNIEXPORT void JNICALL
-Java_src_app_host_lua_LuaActivity_handleCreate(JNIEnv *env, jobject, jstring path) {
+#define J(func) Java_src_app_host_lua_LuaActivity_##func
+
+CQ_JNI(void) J(onCreate)(JNIEnv *, jobject, jstring path, jlong index) {
 }
 
-extern "C" JNIEXPORT void JNICALL
-Java_src_app_host_lua_LuaActivity_handleStart(JNIEnv *, jobject) {
+CQ_JNI(void) J(onStart)(JNIEnv *, jobject, jlong index) {
 }
 
-extern "C" JNIEXPORT void JNICALL
-Java_src_app_host_lua_LuaActivity_handleStop(JNIEnv *, jobject) {
+CQ_JNI(void) J(onStop)(JNIEnv *, jobject, jlong index) {
 }
