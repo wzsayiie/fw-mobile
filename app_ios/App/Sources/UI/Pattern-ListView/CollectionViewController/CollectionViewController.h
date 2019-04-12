@@ -1,4 +1,0 @@
-//
-
-@interface CollectionViewController : UIViewController
-@end

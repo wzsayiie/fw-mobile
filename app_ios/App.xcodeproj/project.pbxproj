@@ -35,18 +35,12 @@
 		B4B9433222250FE500CE3C9A /* CQLuaAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B9432522250FE500CE3C9A /* CQLuaAppDelegate.m */; };
 		B4B9D32022278D4E00B35E72 /* liblua.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B9D31F22278D4D00B35E72 /* liblua.a */; };
 		B4BC9CAD2204331C00CFD84C /* CQCPPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BC9CA92204331C00CFD84C /* CQCPPViewController.m */; };
-		B4CFD96F21C7475000FFF4CF /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD95421C7475000FFF4CF /* TabBarViewController.m */; };
-		B4CFD97021C7475000FFF4CF /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD95721C7475000FFF4CF /* CollectionViewController.m */; };
-		B4CFD97121C7475000FFF4CF /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD95A21C7475000FFF4CF /* TableViewController.m */; };
-		B4CFD97221C7475000FFF4CF /* DocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD95E21C7475000FFF4CF /* DocumentViewController.m */; };
 		B4CFD97321C7475000FFF4CF /* IAPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96021C7475000FFF4CF /* IAPViewController.m */; };
 		B4CFD97421C7475000FFF4CF /* ExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96421C7475000FFF4CF /* ExampleViewController.m */; };
-		B4CFD97521C7475000FFF4CF /* FloatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96721C7475000FFF4CF /* FloatViewController.m */; };
-		B4CFD97621C7475000FFF4CF /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96A21C7475000FFF4CF /* WebViewController.m */; };
-		B4CFD97721C7475000FFF4CF /* AlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96D21C7475000FFF4CF /* AlertViewController.m */; };
 		B4CFD97A21C75AB300FFF4CF /* IAPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4CFD97921C75AB300FFF4CF /* IAPViewController.xib */; };
 		B4D3B3922260C15B007D3E4A /* BlankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D3B3902260C15B007D3E4A /* BlankViewController.m */; };
 		B4D3B3952260C21D007D3E4A /* BlankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D3B3942260C21D007D3E4A /* BlankViewController.xib */; };
+		B4D3B39A2260C88E007D3E4A /* FloatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D3B3982260C88E007D3E4A /* FloatViewController.m */; };
 		B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DCD87B21F17DAE0090BFBB /* UserIdentity.m */; };
 		B4DCD87F21F17DAE0090BFBB /* UserSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DCD87C21F17DAE0090BFBB /* UserSetting.m */; };
 		B4E7CD0F2224098800122637 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E7CD0E2224098800122637 /* main.m */; };
@@ -129,28 +123,16 @@
 		B4B943332225179800CE3C9A /* liblua.5.3.5.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblua.5.3.5.a; path = ../thirds_libs_ios/liblua.5.3.5.a; sourceTree = "<group>"; };
 		B4B9D31F22278D4D00B35E72 /* liblua.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblua.a; path = ../thirds_ios/libs/liblua.a; sourceTree = "<group>"; };
 		B4BC9CA92204331C00CFD84C /* CQCPPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQCPPViewController.m; sourceTree = "<group>"; };
-		B4CFD95321C7475000FFF4CF /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
-		B4CFD95421C7475000FFF4CF /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
-		B4CFD95621C7475000FFF4CF /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
-		B4CFD95721C7475000FFF4CF /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
-		B4CFD95921C7475000FFF4CF /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
-		B4CFD95A21C7475000FFF4CF /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
-		B4CFD95D21C7475000FFF4CF /* DocumentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentViewController.h; sourceTree = "<group>"; };
-		B4CFD95E21C7475000FFF4CF /* DocumentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentViewController.m; sourceTree = "<group>"; };
 		B4CFD96021C7475000FFF4CF /* IAPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPViewController.m; sourceTree = "<group>"; };
 		B4CFD96121C7475000FFF4CF /* IAPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPViewController.h; sourceTree = "<group>"; };
 		B4CFD96321C7475000FFF4CF /* ExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleViewController.h; sourceTree = "<group>"; };
 		B4CFD96421C7475000FFF4CF /* ExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleViewController.m; sourceTree = "<group>"; };
-		B4CFD96721C7475000FFF4CF /* FloatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatViewController.m; sourceTree = "<group>"; };
-		B4CFD96821C7475000FFF4CF /* FloatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatViewController.h; sourceTree = "<group>"; };
-		B4CFD96A21C7475000FFF4CF /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
-		B4CFD96B21C7475000FFF4CF /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
-		B4CFD96D21C7475000FFF4CF /* AlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertViewController.m; sourceTree = "<group>"; };
-		B4CFD96E21C7475000FFF4CF /* AlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertViewController.h; sourceTree = "<group>"; };
 		B4CFD97921C75AB300FFF4CF /* IAPViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IAPViewController.xib; sourceTree = "<group>"; };
 		B4D3B3902260C15B007D3E4A /* BlankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlankViewController.m; sourceTree = "<group>"; };
 		B4D3B3912260C15B007D3E4A /* BlankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlankViewController.h; sourceTree = "<group>"; };
 		B4D3B3942260C21D007D3E4A /* BlankViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlankViewController.xib; sourceTree = "<group>"; };
+		B4D3B3982260C88E007D3E4A /* FloatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatViewController.m; sourceTree = "<group>"; };
+		B4D3B3992260C88E007D3E4A /* FloatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatViewController.h; sourceTree = "<group>"; };
 		B4DCD87A21F17DAE0090BFBB /* UserSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSetting.h; sourceTree = "<group>"; };
 		B4DCD87B21F17DAE0090BFBB /* UserIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserIdentity.m; sourceTree = "<group>"; };
 		B4DCD87C21F17DAE0090BFBB /* UserSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSetting.m; sourceTree = "<group>"; };
@@ -286,10 +268,8 @@
 			children = (
 				B4D3B38F2260C15B007D3E4A /* BlankViewController */,
 				B4CFD96221C7475000FFF4CF /* ExampleViewController */,
+				B4D3B3972260C88E007D3E4A /* FloatViewController */,
 				B4CFD95F21C7475000FFF4CF /* IAPViewController */,
-				B4CFD95B21C7475000FFF4CF /* Pattern-Document */,
-				B4CFD95121C7475000FFF4CF /* Pattern-ListView */,
-				B4CFD96521C7475000FFF4CF /* Pattern-SingleView */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -531,60 +511,6 @@
 			path = ../subsystem_cpp/ioshost;
 			sourceTree = "<group>";
 		};
-		B4CFD95121C7475000FFF4CF /* Pattern-ListView */ = {
-			isa = PBXGroup;
-			children = (
-				B4CFD95521C7475000FFF4CF /* CollectionViewController */,
-				B4CFD95221C7475000FFF4CF /* TabBarViewController */,
-				B4CFD95821C7475000FFF4CF /* TableViewController */,
-			);
-			path = "Pattern-ListView";
-			sourceTree = "<group>";
-		};
-		B4CFD95221C7475000FFF4CF /* TabBarViewController */ = {
-			isa = PBXGroup;
-			children = (
-				B4CFD95321C7475000FFF4CF /* TabBarViewController.h */,
-				B4CFD95421C7475000FFF4CF /* TabBarViewController.m */,
-			);
-			path = TabBarViewController;
-			sourceTree = "<group>";
-		};
-		B4CFD95521C7475000FFF4CF /* CollectionViewController */ = {
-			isa = PBXGroup;
-			children = (
-				B4CFD95621C7475000FFF4CF /* CollectionViewController.h */,
-				B4CFD95721C7475000FFF4CF /* CollectionViewController.m */,
-			);
-			path = CollectionViewController;
-			sourceTree = "<group>";
-		};
-		B4CFD95821C7475000FFF4CF /* TableViewController */ = {
-			isa = PBXGroup;
-			children = (
-				B4CFD95921C7475000FFF4CF /* TableViewController.h */,
-				B4CFD95A21C7475000FFF4CF /* TableViewController.m */,
-			);
-			path = TableViewController;
-			sourceTree = "<group>";
-		};
-		B4CFD95B21C7475000FFF4CF /* Pattern-Document */ = {
-			isa = PBXGroup;
-			children = (
-				B4CFD95C21C7475000FFF4CF /* DocumentViewController */,
-			);
-			path = "Pattern-Document";
-			sourceTree = "<group>";
-		};
-		B4CFD95C21C7475000FFF4CF /* DocumentViewController */ = {
-			isa = PBXGroup;
-			children = (
-				B4CFD95D21C7475000FFF4CF /* DocumentViewController.h */,
-				B4CFD95E21C7475000FFF4CF /* DocumentViewController.m */,
-			);
-			path = DocumentViewController;
-			sourceTree = "<group>";
-		};
 		B4CFD95F21C7475000FFF4CF /* IAPViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -601,43 +527,6 @@
 				B4CFD96421C7475000FFF4CF /* ExampleViewController.m */,
 			);
 			path = ExampleViewController;
-			sourceTree = "<group>";
-		};
-		B4CFD96521C7475000FFF4CF /* Pattern-SingleView */ = {
-			isa = PBXGroup;
-			children = (
-				B4CFD96C21C7475000FFF4CF /* AlertViewController */,
-				B4CFD96621C7475000FFF4CF /* FloatViewController */,
-				B4CFD96921C7475000FFF4CF /* WebViewController */,
-			);
-			path = "Pattern-SingleView";
-			sourceTree = "<group>";
-		};
-		B4CFD96621C7475000FFF4CF /* FloatViewController */ = {
-			isa = PBXGroup;
-			children = (
-				B4CFD96821C7475000FFF4CF /* FloatViewController.h */,
-				B4CFD96721C7475000FFF4CF /* FloatViewController.m */,
-			);
-			path = FloatViewController;
-			sourceTree = "<group>";
-		};
-		B4CFD96921C7475000FFF4CF /* WebViewController */ = {
-			isa = PBXGroup;
-			children = (
-				B4CFD96B21C7475000FFF4CF /* WebViewController.h */,
-				B4CFD96A21C7475000FFF4CF /* WebViewController.m */,
-			);
-			path = WebViewController;
-			sourceTree = "<group>";
-		};
-		B4CFD96C21C7475000FFF4CF /* AlertViewController */ = {
-			isa = PBXGroup;
-			children = (
-				B4CFD96E21C7475000FFF4CF /* AlertViewController.h */,
-				B4CFD96D21C7475000FFF4CF /* AlertViewController.m */,
-			);
-			path = AlertViewController;
 			sourceTree = "<group>";
 		};
 		B4CFD97821C75A0600FFF4CF /* IAPViewController */ = {
@@ -663,6 +552,15 @@
 				B4D3B3942260C21D007D3E4A /* BlankViewController.xib */,
 			);
 			path = BlankViewController;
+			sourceTree = "<group>";
+		};
+		B4D3B3972260C88E007D3E4A /* FloatViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B4D3B3992260C88E007D3E4A /* FloatViewController.h */,
+				B4D3B3982260C88E007D3E4A /* FloatViewController.m */,
+			);
+			path = FloatViewController;
 			sourceTree = "<group>";
 		};
 		B4DCD87921F17DAE0090BFBB /* UserInfo */ = {
@@ -787,7 +685,6 @@
 			files = (
 				CE224EA72206AED300B8FB53 /* cqview.cpp in Sources */,
 				B4B9433222250FE500CE3C9A /* CQLuaAppDelegate.m in Sources */,
-				B4CFD97021C7475000FFF4CF /* CollectionViewController.m in Sources */,
 				B4696784226098DF00279E50 /* cq_lua_vm_libs.cpp in Sources */,
 				B4BC9CAD2204331C00CFD84C /* CQCPPViewController.m in Sources */,
 				B45C1BFE21A03824007CB374 /* NSObject+CQSingleton.m in Sources */,
@@ -795,7 +692,6 @@
 				B4AF89932226AEC000F73B6F /* cq_lua_source.cpp in Sources */,
 				B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */,
 				B4CFD97421C7475000FFF4CF /* ExampleViewController.m in Sources */,
-				B4CFD97121C7475000FFF4CF /* TableViewController.m in Sources */,
 				B45C1BF721A03824007CB374 /* UIView+CQ.m in Sources */,
 				B45C1BF921A03824007CB374 /* UIViewController+CQScene.m in Sources */,
 				B4D3B3922260C15B007D3E4A /* BlankViewController.m in Sources */,
@@ -810,21 +706,17 @@
 				B4E7CD0F2224098800122637 /* main.m in Sources */,
 				B4CFD97321C7475000FFF4CF /* IAPViewController.m in Sources */,
 				B49706742227785C00E8D717 /* CQLuaViewController.m in Sources */,
-				B4CFD97521C7475000FFF4CF /* FloatViewController.m in Sources */,
 				CE224EA82206AED300B8FB53 /* cqviewcontroller.cpp in Sources */,
-				B4CFD97621C7475000FFF4CF /* WebViewController.m in Sources */,
 				B45C1C0021A03824007CB374 /* CQHotfixManager.m in Sources */,
 				B4B35638224CB51D0046FE98 /* cq_host_api.cpp in Sources */,
 				B42806CF21C531C500B886A7 /* CQBus.m in Sources */,
 				CE224EA92206AED300B8FB53 /* cqapplication.cpp in Sources */,
-				B4CFD96F21C7475000FFF4CF /* TabBarViewController.m in Sources */,
-				B4CFD97221C7475000FFF4CF /* DocumentViewController.m in Sources */,
 				B46997D8222801C30067478B /* CQCPPAppDelegate.m in Sources */,
 				CE224EB32206C15B00B8FB53 /* rootviewcontroller.cpp in Sources */,
 				B45C1BF521A03824007CB374 /* CQDemoViewController.m in Sources */,
 				B45C1BFF21A03824007CB374 /* CQSingletonManager.m in Sources */,
-				B4CFD97721C7475000FFF4CF /* AlertViewController.m in Sources */,
 				B42806D221C542DB00B886A7 /* UIDevice+CQ.m in Sources */,
+				B4D3B39A2260C88E007D3E4A /* FloatViewController.m in Sources */,
 				B45C1BFC21A03824007CB374 /* CQCrashListener.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,4 +1,0 @@
-//
-
-@interface AlertViewController : UIViewController
-@end

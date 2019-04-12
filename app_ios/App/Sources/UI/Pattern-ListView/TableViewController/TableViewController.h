@@ -1,4 +1,0 @@
-//
-
-@interface TableViewController : UIViewController
-@end

@@ -1,4 +1,0 @@
-//
-
-@interface DocumentViewController : UIViewController
-@end

@@ -1,4 +1,0 @@
-//
-
-@interface WebViewController : UIViewController
-@end

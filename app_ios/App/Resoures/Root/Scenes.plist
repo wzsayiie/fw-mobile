@@ -34,56 +34,6 @@
 	</dict>
 	<dict>
 		<key>Address</key>
-		<string>apps://document</string>
-		<key>Controller</key>
-		<string>DocumentViewController</string>
-		<key>Style</key>
-		<string>Stack</string>
-		<key>Launch</key>
-		<false/>
-	</dict>
-	<dict>
-		<key>Address</key>
-		<string>apps://collection</string>
-		<key>Controller</key>
-		<string>CollectionViewController</string>
-		<key>Style</key>
-		<string>Stack</string>
-		<key>Launch</key>
-		<false/>
-	</dict>
-	<dict>
-		<key>Address</key>
-		<string>apps://tabbar</string>
-		<key>Controller</key>
-		<string>TabBarBiewController</string>
-		<key>Style</key>
-		<string>Stack</string>
-		<key>Launch</key>
-		<false/>
-	</dict>
-	<dict>
-		<key>Address</key>
-		<string>apps://table</string>
-		<key>Controller</key>
-		<string>TableViewController</string>
-		<key>Style</key>
-		<string>Stack</string>
-		<key>Launch</key>
-		<false/>
-	</dict>
-	<dict>
-		<key>Address</key>
-		<string>flot://alter</string>
-		<key>Controller</key>
-		<string>AlterViewController</string>
-		<key>Style</key>
-		<string>Float</string>
-		<key>Launch</key>
-		<false/>
-	</dict>
-	<dict>
-		<key>Address</key>
 		<string>flot://float</string>
 		<key>Controller</key>
 		<string>FloatViewController</string>
@@ -91,16 +41,6 @@
 		<string>Float</string>
 		<key>Launch</key>
 		<true/>
-	</dict>
-	<dict>
-		<key>Address</key>
-		<string>http://</string>
-		<key>Controller</key>
-		<string>WebViewController</string>
-		<key>Style</key>
-		<string>Stack</string>
-		<key>Launch</key>
-		<false/>
 	</dict>
 </array>
 </plist>
