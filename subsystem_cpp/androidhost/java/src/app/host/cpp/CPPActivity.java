@@ -40,31 +40,26 @@ public class CPPActivity extends Activity {
         setContentView(mContentView);
 
         resetSharedActivity(this, true);
-        notifyDefaultWindowCreated(hashCode());
-        notifyLoad(hashCode());
+        onCreate(hashCode());
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         L.i("host event: activity on start");
-
-        notifyShow(hashCode());
+        onStart(hashCode());
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         L.i("host event: activity on stop");
-
-        notifyHide(hashCode());
+        onStop(hashCode());
     }
 
-    private native void notifyDefaultWindowCreated(long index);
-
-    private native void notifyLoad(long index);
-    private native void notifyShow(long index);
-    private native void notifyHide(long index);
+    private native void onCreate(long index);
+    private native void onStart(long index);
+    private native void onStop(long index);
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -82,23 +77,23 @@ public class CPPActivity extends Activity {
             case MotionEvent.ACTION_CANCEL: L.i("host event: action cancel"); break;
         }
         switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN  : notifyTouchBegan(hashCode(), x, y); break;
-            case MotionEvent.ACTION_MOVE  : notifyTouchMoved(hashCode(), x, y); break;
-            case MotionEvent.ACTION_UP    : notifyTouchEnded(hashCode(), x, y); break;
-            case MotionEvent.ACTION_CANCEL: notifyTouchEnded(hashCode(), x, y); break;
+            case MotionEvent.ACTION_DOWN  : onTouchBegan(hashCode(), x, y); break;
+            case MotionEvent.ACTION_MOVE  : onTouchMoved(hashCode(), x, y); break;
+            case MotionEvent.ACTION_UP    : onTouchEnded(hashCode(), x, y); break;
+            case MotionEvent.ACTION_CANCEL: onTouchEnded(hashCode(), x, y); break;
         }
         return true;
     }
 
-    private native void notifyTouchBegan(long index, float x, float y);
-    private native void notifyTouchMoved(long index, float x, float y);
-    private native void notifyTouchEnded(long index, float x, float y);
+    private native void onTouchBegan(long index, float x, float y);
+    private native void onTouchMoved(long index, float x, float y);
+    private native void onTouchEnded(long index, float x, float y);
 
     private static float range(float min, float v, float max) {
         return v < min ? min : (v > max ? max : v);
     }
 
-    public static void _cq_window_set_back_color(long index, float r, float g, float b) {
+    public static void window_set_back_color(long index, float r, float g, float b) {
         L.i("host invoke: set window background color");
 
         CPPActivity activity = sharedActivityWithHash(index);
@@ -112,7 +107,7 @@ public class CPPActivity extends Activity {
         activity.mContentView.setBackgroundColor((0xff << 24) | (ir << 16) | (ig << 8) | ib);
     }
 
-    public static float _cq_window_get_width(long index) {
+    public static float window_get_width(long index) {
         L.i("host invoke: get window width");
 
         CPPActivity activity = sharedActivityWithHash(index);
@@ -127,7 +122,7 @@ public class CPPActivity extends Activity {
         return ((float) metrics.widthPixels) / metrics.density;
     }
 
-    public static float _cq_window_get_height(long index) {
+    public static float window_get_height(long index) {
         L.i("host invoke: get window height");
 
         CPPActivity activity = sharedActivityWithHash(index);
@@ -142,7 +137,7 @@ public class CPPActivity extends Activity {
         return ((float) metrics.heightPixels) / metrics.density;
     }
 
-    public static float _cq_window_get_screen_scale(long index) {
+    public static float window_get_screen_scale(long index) {
         L.i("host invoke: get screen scale");
 
         CPPActivity activity = sharedActivityWithHash(index);
