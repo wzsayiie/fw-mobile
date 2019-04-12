@@ -1,6 +1,11 @@
 #include "cq_host_api.h"
 #include "cqconvention.hh"
 
+static void  (*_window_set_back_color  )(int64_t, float, float, float) = nullptr;
+static float (*_window_get_width       )(int64_t) = nullptr;
+static float (*_window_get_height      )(int64_t) = nullptr;
+static float (*_window_get_screen_scale)(int64_t) = nullptr;
+
 struct cq_window {
     cq_window_procedure procedure;
     int64_t idx;
@@ -8,7 +13,7 @@ struct cq_window {
 };
 
 void cq_window_set_procedure(cq_window *window, cq_window_procedure *procedure) {
-    if (window != nullptr && procedure != nullptr) {
+    if (window && procedure) {
         window->procedure = *procedure;
     }
 }
@@ -18,7 +23,7 @@ cq_window_procedure *cq_window_get_procedure(cq_window *window) {
 }
 
 void cq_window_set_extra(cq_window *window, int64_t extra) {
-    if (window != nullptr) {
+    if (window) {
         window->extra = extra;
     }
 }
@@ -28,21 +33,33 @@ int64_t cq_window_get_extra(cq_window *window) {
 }
 
 void cq_window_set_back_color(cq_window *window, float r, float g, float b) {
-    if (window != nullptr) {
-        _cq_window_set_back_color(window->idx, r, g, b);
+    if (_window_set_back_color && window) {
+        _window_set_back_color(window->idx, r, g, b);
     }
 }
 
 float cq_window_get_width(cq_window *window) {
-    return window ? _cq_window_get_width(window->idx) : 0;
+    if (_window_get_width && window) {
+        return _window_get_width(window->idx);
+    } else {
+        return 0;
+    }
 }
 
 float cq_window_get_height(cq_window *window) {
-    return window ? _cq_window_get_height(window->idx) : 0;
+    if (_window_get_height && window) {
+        return _window_get_height(window->idx);
+    } else {
+        return 0;
+    }
 }
 
 float cq_window_get_screen_scale(cq_window *window) {
-    return window ? _cq_window_get_screen_scale(window->idx) : 0;
+    if (_window_get_screen_scale && window) {
+        return _window_get_screen_scale(window->idx);
+    } else {
+        return 0;
+    }
 }
 
 static map<int64_t, cq_window *> *get_window_store() {
@@ -62,6 +79,19 @@ static cq_window *window_from_idx(int64_t idx) {
     auto store = get_window_store();
     auto it = store->find(idx);
     return it != store->end() ? it->second : nullptr;
+}
+
+void _cq_install_window_set_back_color_handler(void (*h)(int64_t, float, float, float)) {
+    _window_set_back_color = h;
+}
+void _cq_install_window_get_width_handler(float (*h)(int64_t)) {
+    _window_get_width = h;
+}
+void _cq_install_window_get_height_handler(float (*h)(int64_t)) {
+    _window_get_height = h;
+}
+void _cq_install_window_get_screen_scale_handler(float (*h)(int64_t)) {
+    _window_get_screen_scale = h;
 }
 
 void _cq_notify_default_window_created(int64_t window_idx) {

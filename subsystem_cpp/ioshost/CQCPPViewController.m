@@ -3,9 +3,66 @@
 #import "cq_host_api.h"
 
 @interface CQCPPViewController ()
++ (instancetype)sharedObjectWithHash:(int64_t)hash;
 @end
 
+#pragma mark - interfaces
+
+static inline float range(float min, float v, float max) {
+    return v < min ? min : (v > max ? max : v);
+}
+
+static void window_set_back_color(int64_t window_idx, float r, float g, float b) {
+    I(@"host invoke: set window background color");
+    
+    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithHash:window_idx];
+    if (controller != nil) {
+        
+        r = range(0.f, r, 1.f);
+        g = range(0.f, g, 1.f);
+        b = range(0.f, b, 1.f);
+        
+        UIColor *color = [UIColor colorWithRed:r green:g blue:b alpha:1];
+        [controller.view setBackgroundColor:color];
+    }
+}
+
+static float window_get_width(int64_t window_idx) {
+    I(@"host invoke: get window width");
+    
+    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithHash:window_idx];
+    if (controller != nil) {
+        return controller.view.bounds.size.width;
+    } else {
+        return 0;
+    }
+}
+
+static float window_get_height(int64_t window_idx) {
+    I(@"host invoke: get window height");
+    
+    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithHash:window_idx];
+    if (controller != nil) {
+        return controller.view.bounds.size.height;
+    } else {
+        return 0;
+    }
+}
+
+static float window_get_screen_scale(int64_t window_idx) {
+    I(@"host invoke: get screen scale");
+    
+    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithHash:window_idx];
+    if (controller != nil) {
+        return UIScreen.mainScreen.scale;
+    } else {
+        return 0;
+    }
+}
+
 @implementation CQCPPViewController
+
+#pragma mark - object storage
 
 + (instancetype)resetSharedObject:(id)object reset:(BOOL)reset {
     static id shared = nil;
@@ -27,6 +84,12 @@
     I(@"host event: view did load");
     
     [CQCPPViewController resetSharedObject:self reset:YES];
+    
+    _cq_install_window_set_back_color_handler(window_set_back_color);
+    _cq_install_window_get_width_handler(window_get_width);
+    _cq_install_window_get_height_handler(window_get_height);
+    _cq_install_window_get_screen_scale_handler(window_get_screen_scale);
+    
     _cq_notify_default_window_created(self.hash);
     _cq_notify_window_load(self.hash);
 }
@@ -74,57 +137,3 @@
 }
 
 @end
-
-#pragma mark - functions
-
-static inline float range(float min, float v, float max) {
-    return v < min ? min : (v > max ? max : v);
-}
-
-void _cq_window_set_back_color(int64_t window_idx, float r, float g, float b) {
-    I(@"host invoke: set window background color");
-    
-    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithHash:window_idx];
-    if (controller != nil) {
-        
-        r = range(0.f, r, 1.f);
-        g = range(0.f, g, 1.f);
-        b = range(0.f, b, 1.f);
-        
-        UIColor *color = [UIColor colorWithRed:r green:g blue:b alpha:1];
-        [controller.view setBackgroundColor:color];
-    }
-}
-
-float _cq_window_get_width(int64_t window_idx) {
-    I(@"host invoke: get window width");
-    
-    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithHash:window_idx];
-    if (controller != nil) {
-        return controller.view.bounds.size.width;
-    } else {
-        return 0;
-    }
-}
-
-float _cq_window_get_height(int64_t window_idx) {
-    I(@"host invoke: get window height");
-    
-    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithHash:window_idx];
-    if (controller != nil) {
-        return controller.view.bounds.size.height;
-    } else {
-        return 0;
-    }
-}
-
-float _cq_window_get_screen_scale(int64_t window_idx) {
-    I(@"host invoke: get screen scale");
-    
-    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithHash:window_idx];
-    if (controller != nil) {
-        return UIScreen.mainScreen.scale;
-    } else {
-        return 0;
-    }
-}
