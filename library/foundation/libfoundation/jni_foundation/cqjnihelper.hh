@@ -3,8 +3,6 @@
 #include "cqconvention.hh"
 #include <jni.h>
 
-#define CQ_JNI(type) CQ_C_LINK JNIEXPORT type JNICALL
-
 JNIEnv *cqJNIGetEnv();
 
 //if there was a java exception, remove it and return true.

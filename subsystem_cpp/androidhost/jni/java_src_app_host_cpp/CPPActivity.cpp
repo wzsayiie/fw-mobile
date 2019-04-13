@@ -45,10 +45,9 @@ static float window_get_screen_scale(int64_t window_idx) {
     return method.callFloat();
 }
 
-#define J(func) Java_src_app_host_cpp_CPPActivity_##func
-
-CQ_JNI(void) J(onCreate)(JNIEnv *, jobject, jlong index) {
-
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_onCreate
+/**/(JNIEnv *, jobject, jlong index)
+{
     _cq_install_window_set_back_color_handler(window_set_back_color);
     _cq_install_window_get_width_handler(window_get_width);
     _cq_install_window_get_width_handler(window_get_height);
@@ -58,22 +57,32 @@ CQ_JNI(void) J(onCreate)(JNIEnv *, jobject, jlong index) {
     _cq_notify_window_load(index);
 }
 
-CQ_JNI(void) J(onStart)(JNIEnv *, jobject, jlong index) {
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_onStart
+/**/(JNIEnv *, jobject, jlong index)
+{
     _cq_notify_window_show(index);
 }
 
-CQ_JNI(void) J(onStop)(JNIEnv *, jobject, jlong index) {
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_onStop
+/**/(JNIEnv *, jobject, jlong index)
+{
     _cq_notify_window_hide(index);
 }
 
-CQ_JNI(void) J(onTouchBegan)(JNIEnv *, jobject, jlong index, jfloat x, jfloat y) {
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_onTouchBegan
+/**/(JNIEnv *, jobject, jlong index, jfloat x, jfloat y)
+{
     _cq_notify_window_touch_began(index, x, y);
 }
 
-CQ_JNI(void) J(onTouchMoved)(JNIEnv *, jobject, jlong index, jfloat x, jfloat y) {
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_onTouchMoved
+/**/(JNIEnv *, jobject, jlong index, jfloat x, jfloat y)
+{
     _cq_notify_window_touch_moved(index, x, y);
 }
 
-CQ_JNI(void) J(onTouchEnded)(JNIEnv *, jobject, jlong index, jfloat x, jfloat y) {
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_onTouchEnded
+/**/(JNIEnv *, jobject, jlong index, jfloat x, jfloat y)
+{
     _cq_notify_window_touch_ended(index, x, y);
 }
