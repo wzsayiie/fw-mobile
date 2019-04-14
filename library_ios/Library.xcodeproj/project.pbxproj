@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B43F02BD224B568E003DF2A1 /* cq_convention.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B43F02BC224B568E003DF2A1 /* cq_convention.cpp */; };
-		B43F02BF224B56AD003DF2A1 /* cq_log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B43F02BE224B56AD003DF2A1 /* cq_log.cpp */; };
-		B4576C1A222FD54900720DB1 /* cqconvention.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4576C19222FD54900720DB1 /* cqconvention.cpp */; };
+		B43F02BD224B568E003DF2A1 /* cqcbasis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B43F02BC224B568E003DF2A1 /* cqcbasis.cpp */; };
+		B4576C1A222FD54900720DB1 /* cqcppbasis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4576C19222FD54900720DB1 /* cqcppbasis.cpp */; };
 		B468C64322293CEF00A9657F /* CQLog.m in Sources */ = {isa = PBXBuildFile; fileRef = B468C60122293CEF00A9657F /* CQLog.m */; };
-		B468C64922293CEF00A9657F /* cq_lua_foundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468C60E22293CEF00A9657F /* cq_lua_foundation.cpp */; };
+		B468C64922293CEF00A9657F /* cqluafoundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468C60E22293CEF00A9657F /* cqluafoundation.cpp */; };
 		B468C64D22293CEF00A9657F /* cqlog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468C61722293CEF00A9657F /* cqlog.cpp */; };
-		B4CEAEFA2260935D00E270C7 /* cq_lua_api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4CEAEF62260935D00E270C7 /* cq_lua_api.cpp */; };
-		B4CEAEFB2260935D00E270C7 /* cq_lua_runtime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4CEAEF72260935D00E270C7 /* cq_lua_runtime.cpp */; };
+		B4CEAEFA2260935D00E270C7 /* cqluaapi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4CEAEF62260935D00E270C7 /* cqluaapi.cpp */; };
+		B4CEAEFB2260935D00E270C7 /* cqluaruntime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4CEAEF72260935D00E270C7 /* cqluaruntime.cpp */; };
+		CE86064022636DA5006B5952 /* cqfoundationproto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE86063F22636DA5006B5952 /* cqfoundationproto.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,25 +30,28 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B428A88B225F4CDB007AB597 /* cq_lua_foundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cq_lua_foundation.h; sourceTree = "<group>"; };
-		B43F02B7224B1F73003DF2A1 /* cq_log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cq_log.h; sourceTree = "<group>"; };
-		B43F02B9224B2034003DF2A1 /* cq_convention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cq_convention.h; sourceTree = "<group>"; };
-		B43F02BC224B568E003DF2A1 /* cq_convention.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cq_convention.cpp; sourceTree = "<group>"; };
-		B43F02BE224B56AD003DF2A1 /* cq_log.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cq_log.cpp; sourceTree = "<group>"; };
-		B4576C18222FD54900720DB1 /* cqconvention.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqconvention.hh; sourceTree = "<group>"; };
-		B4576C19222FD54900720DB1 /* cqconvention.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqconvention.cpp; sourceTree = "<group>"; };
+		B428A88B225F4CDB007AB597 /* cqluafoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluafoundation.h; sourceTree = "<group>"; };
+		B43F02B7224B1F73003DF2A1 /* cqfoundationproto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqfoundationproto.h; sourceTree = "<group>"; };
+		B43F02B9224B2034003DF2A1 /* cqcbasis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqcbasis.h; sourceTree = "<group>"; };
+		B43F02BC224B568E003DF2A1 /* cqcbasis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqcbasis.cpp; sourceTree = "<group>"; };
+		B4576C18222FD54900720DB1 /* cqcppbasis.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqcppbasis.hh; sourceTree = "<group>"; };
+		B4576C19222FD54900720DB1 /* cqcppbasis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqcppbasis.cpp; sourceTree = "<group>"; };
 		B468C60122293CEF00A9657F /* CQLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQLog.m; sourceTree = "<group>"; };
 		B468C60322293CEF00A9657F /* CQLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQLog.h; sourceTree = "<group>"; };
-		B468C60E22293CEF00A9657F /* cq_lua_foundation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cq_lua_foundation.cpp; sourceTree = "<group>"; };
-		B468C60F22293CEF00A9657F /* cq_lua_foundation.lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cq_lua_foundation.lua.h; sourceTree = "<group>"; };
+		B468C60E22293CEF00A9657F /* cqluafoundation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluafoundation.cpp; sourceTree = "<group>"; };
+		B468C60F22293CEF00A9657F /* cqluafoundation_lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluafoundation_lua.h; sourceTree = "<group>"; };
 		B468C61422293CEF00A9657F /* cqlog.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqlog.hh; sourceTree = "<group>"; };
 		B468C61722293CEF00A9657F /* cqlog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqlog.cpp; sourceTree = "<group>"; };
-		B4A380FC225F03A600CA4650 /* cq_lua_runtime.lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cq_lua_runtime.lua.h; sourceTree = "<group>"; };
-		B4CEAEF62260935D00E270C7 /* cq_lua_api.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cq_lua_api.cpp; sourceTree = "<group>"; };
-		B4CEAEF72260935D00E270C7 /* cq_lua_runtime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cq_lua_runtime.cpp; sourceTree = "<group>"; };
-		B4CEAEF82260935D00E270C7 /* cq_lua_runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cq_lua_runtime.h; sourceTree = "<group>"; };
-		B4CEAEF92260935D00E270C7 /* cq_lua_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cq_lua_api.h; sourceTree = "<group>"; };
+		B4A380FC225F03A600CA4650 /* cqluaruntime_lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluaruntime_lua.h; sourceTree = "<group>"; };
+		B4CEAEF62260935D00E270C7 /* cqluaapi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluaapi.cpp; sourceTree = "<group>"; };
+		B4CEAEF72260935D00E270C7 /* cqluaruntime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluaruntime.cpp; sourceTree = "<group>"; };
+		B4CEAEF82260935D00E270C7 /* cqluaruntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluaruntime.h; sourceTree = "<group>"; };
+		B4CEAEF92260935D00E270C7 /* cqluaapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluaapi.h; sourceTree = "<group>"; };
 		CE219ADF21DA51FD006A27B6 /* libLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE86063F22636DA5006B5952 /* cqfoundationproto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqfoundationproto.cpp; sourceTree = "<group>"; };
+		CEBF0FFD22625414000A31BC /* cqluabasis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluabasis.h; sourceTree = "<group>"; };
+		CEBF0FFE22626520000A31BC /* CQFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQFoundation.h; sourceTree = "<group>"; };
+		CEBF0FFF226265C3000A31BC /* cqfoundation.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqfoundation.hh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,62 +65,63 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B43F02B6224B1F73003DF2A1 /* prototype */ = {
+		B43F02B6224B1F73003DF2A1 /* proto */ = {
 			isa = PBXGroup;
 			children = (
-				B43F02B7224B1F73003DF2A1 /* cq_log.h */,
-				B43F02BE224B56AD003DF2A1 /* cq_log.cpp */,
+				B43F02B7224B1F73003DF2A1 /* cqfoundationproto.h */,
+				CE86063F22636DA5006B5952 /* cqfoundationproto.cpp */,
 			);
-			path = prototype;
+			path = proto;
 			sourceTree = "<group>";
 		};
-		B43F02B8224B2034003DF2A1 /* c_convention */ = {
+		B43F02B8224B2034003DF2A1 /* cbasis */ = {
 			isa = PBXGroup;
 			children = (
-				B43F02B9224B2034003DF2A1 /* cq_convention.h */,
-				B43F02BC224B568E003DF2A1 /* cq_convention.cpp */,
+				B43F02B9224B2034003DF2A1 /* cqcbasis.h */,
+				B43F02BC224B568E003DF2A1 /* cqcbasis.cpp */,
 			);
-			path = c_convention;
+			path = cbasis;
 			sourceTree = "<group>";
 		};
-		B4576C15222FD54900720DB1 /* CONVENTION */ = {
+		B4576C15222FD54900720DB1 /* BASIS */ = {
 			isa = PBXGroup;
 			children = (
-				B4576C16222FD54900720DB1 /* libconvention */,
+				B4576C16222FD54900720DB1 /* libbasis */,
 			);
-			name = CONVENTION;
-			path = ../library/CONVENTION;
+			name = BASIS;
+			path = ../library/BASIS;
 			sourceTree = "<group>";
 		};
-		B4576C16222FD54900720DB1 /* libconvention */ = {
+		B4576C16222FD54900720DB1 /* libbasis */ = {
 			isa = PBXGroup;
 			children = (
-				B43F02B8224B2034003DF2A1 /* c_convention */,
-				B4576C17222FD54900720DB1 /* cpp_convention */,
-				B4576C1B222FD6B100720DB1 /* lua_convention */,
+				B43F02B8224B2034003DF2A1 /* cbasis */,
+				B4576C17222FD54900720DB1 /* cppbasis */,
+				B4576C1B222FD6B100720DB1 /* luabasis */,
 			);
-			path = libconvention;
+			path = libbasis;
 			sourceTree = "<group>";
 		};
-		B4576C17222FD54900720DB1 /* cpp_convention */ = {
+		B4576C17222FD54900720DB1 /* cppbasis */ = {
 			isa = PBXGroup;
 			children = (
-				B4576C18222FD54900720DB1 /* cqconvention.hh */,
-				B4576C19222FD54900720DB1 /* cqconvention.cpp */,
+				B4576C18222FD54900720DB1 /* cqcppbasis.hh */,
+				B4576C19222FD54900720DB1 /* cqcppbasis.cpp */,
 			);
-			path = cpp_convention;
+			path = cppbasis;
 			sourceTree = "<group>";
 		};
-		B4576C1B222FD6B100720DB1 /* lua_convention */ = {
+		B4576C1B222FD6B100720DB1 /* luabasis */ = {
 			isa = PBXGroup;
 			children = (
-				B4CEAEF92260935D00E270C7 /* cq_lua_api.h */,
-				B4CEAEF62260935D00E270C7 /* cq_lua_api.cpp */,
-				B4CEAEF82260935D00E270C7 /* cq_lua_runtime.h */,
-				B4A380FC225F03A600CA4650 /* cq_lua_runtime.lua.h */,
-				B4CEAEF72260935D00E270C7 /* cq_lua_runtime.cpp */,
+				CEBF0FFD22625414000A31BC /* cqluabasis.h */,
+				B4CEAEF92260935D00E270C7 /* cqluaapi.h */,
+				B4CEAEF62260935D00E270C7 /* cqluaapi.cpp */,
+				B4CEAEF82260935D00E270C7 /* cqluaruntime.h */,
+				B4A380FC225F03A600CA4650 /* cqluaruntime_lua.h */,
+				B4CEAEF72260935D00E270C7 /* cqluaruntime.cpp */,
 			);
-			path = lua_convention;
+			path = luabasis;
 			sourceTree = "<group>";
 		};
 		B468C5FE22293CEF00A9657F /* foundation */ = {
@@ -133,6 +137,7 @@
 		B468C5FF22293CEF00A9657F /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				CEBF0FFE22626520000A31BC /* CQFoundation.h */,
 				B468C60322293CEF00A9657F /* CQLog.h */,
 				B468C60122293CEF00A9657F /* CQLog.m */,
 			);
@@ -142,36 +147,37 @@
 		B468C60C22293CEF00A9657F /* libfoundation */ = {
 			isa = PBXGroup;
 			children = (
-				B468C61222293CEF00A9657F /* cpp_foundation */,
-				B468C60D22293CEF00A9657F /* lua_foundation */,
-				B43F02B6224B1F73003DF2A1 /* prototype */,
+				B468C61222293CEF00A9657F /* cppfoundation */,
+				B468C60D22293CEF00A9657F /* luafoundation */,
+				B43F02B6224B1F73003DF2A1 /* proto */,
 			);
 			path = libfoundation;
 			sourceTree = "<group>";
 		};
-		B468C60D22293CEF00A9657F /* lua_foundation */ = {
+		B468C60D22293CEF00A9657F /* luafoundation */ = {
 			isa = PBXGroup;
 			children = (
-				B428A88B225F4CDB007AB597 /* cq_lua_foundation.h */,
-				B468C60F22293CEF00A9657F /* cq_lua_foundation.lua.h */,
-				B468C60E22293CEF00A9657F /* cq_lua_foundation.cpp */,
+				B428A88B225F4CDB007AB597 /* cqluafoundation.h */,
+				B468C60F22293CEF00A9657F /* cqluafoundation_lua.h */,
+				B468C60E22293CEF00A9657F /* cqluafoundation.cpp */,
 			);
-			path = lua_foundation;
+			path = luafoundation;
 			sourceTree = "<group>";
 		};
-		B468C61222293CEF00A9657F /* cpp_foundation */ = {
+		B468C61222293CEF00A9657F /* cppfoundation */ = {
 			isa = PBXGroup;
 			children = (
+				CEBF0FFF226265C3000A31BC /* cqfoundation.hh */,
 				B468C61422293CEF00A9657F /* cqlog.hh */,
 				B468C61722293CEF00A9657F /* cqlog.cpp */,
 			);
-			path = cpp_foundation;
+			path = cppfoundation;
 			sourceTree = "<group>";
 		};
 		CE219AD621DA51FD006A27B6 = {
 			isa = PBXGroup;
 			children = (
-				B4576C15222FD54900720DB1 /* CONVENTION */,
+				B4576C15222FD54900720DB1 /* BASIS */,
 				B468C5FE22293CEF00A9657F /* foundation */,
 				CE219AE021DA51FD006A27B6 /* Products */,
 			);
@@ -242,14 +248,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B468C64922293CEF00A9657F /* cq_lua_foundation.cpp in Sources */,
+				B468C64922293CEF00A9657F /* cqluafoundation.cpp in Sources */,
 				B468C64D22293CEF00A9657F /* cqlog.cpp in Sources */,
-				B4576C1A222FD54900720DB1 /* cqconvention.cpp in Sources */,
-				B43F02BF224B56AD003DF2A1 /* cq_log.cpp in Sources */,
-				B4CEAEFA2260935D00E270C7 /* cq_lua_api.cpp in Sources */,
-				B43F02BD224B568E003DF2A1 /* cq_convention.cpp in Sources */,
+				B4576C1A222FD54900720DB1 /* cqcppbasis.cpp in Sources */,
+				B4CEAEFA2260935D00E270C7 /* cqluaapi.cpp in Sources */,
+				B43F02BD224B568E003DF2A1 /* cqcbasis.cpp in Sources */,
+				CE86064022636DA5006B5952 /* cqfoundationproto.cpp in Sources */,
 				B468C64322293CEF00A9657F /* CQLog.m in Sources */,
-				B4CEAEFB2260935D00E270C7 /* cq_lua_runtime.cpp in Sources */,
+				B4CEAEFB2260935D00E270C7 /* cqluaruntime.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

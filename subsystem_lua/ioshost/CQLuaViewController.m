@@ -1,7 +1,7 @@
 #import "CQLuaViewController.h"
-#import "CQLog.h"
-#import "cq_lua_source.h"
-#import "cq_lua_vm.h"
+#import "CQFoundation.h"
+#import "cqluasource.h"
+#import "cqluavm.h"
 
 @interface CQLuaViewController()
 @property (nonatomic) NSString *luaDirectory;
