@@ -11,7 +11,8 @@
 using std::vector;
 using std::map;
 
-bool starts_with(const char *prefix, const char *str, const char *str_end);
+bool begins_with(const char *prefix, const char *str, const char *str_end);
+bool ends_with  (const char *suffix, const char *str, const char *str_end);
 
 struct string : std::string {
     

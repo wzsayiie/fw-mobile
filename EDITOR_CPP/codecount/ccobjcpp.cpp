@@ -1,7 +1,7 @@
 #include "ccobjcpp.hh"
 
 static bool ReadLineComment(const char **ptr, const char *end) {
-    if (starts_with("//", *ptr, end)) {
+    if (begins_with("//", *ptr, end)) {
         *ptr += 2;
     } else {
         return false;
@@ -20,14 +20,14 @@ static bool ReadLineComment(const char **ptr, const char *end) {
 
 //parameter nCount is count of '\n'
 static bool ReadParagraphComment(const char **ptr, const char *end, int *nCount) {
-    if (starts_with("/*", *ptr, end)) {
+    if (begins_with("/*", *ptr, end)) {
         *ptr += 2;
     } else {
         return false;
     }
     
     while (*ptr < end) {
-        if (starts_with("*/", *ptr, end)) {
+        if (begins_with("*/", *ptr, end)) {
             *ptr += 2;
             break;
         } else if (**ptr == '\n') {
@@ -41,12 +41,12 @@ static bool ReadParagraphComment(const char **ptr, const char *end, int *nCount)
 }
 
 static bool ReadLineString(const char **ptr, const char *end) {
-    if /**/ (starts_with("\""  , *ptr, end)) { *ptr += 1; }
-    else if (starts_with("L\"" , *ptr, end)) { *ptr += 2; }
-    else if (starts_with("u8\"", *ptr, end)) { *ptr += 3; }
-    else if (starts_with("u\"" , *ptr, end)) { *ptr += 2; }
-    else if (starts_with("U\"" , *ptr, end)) { *ptr += 2; }
-    else if (starts_with("@\"" , *ptr, end)) { *ptr += 2; }
+    if /**/ (begins_with("\""  , *ptr, end)) { *ptr += 1; }
+    else if (begins_with("L\"" , *ptr, end)) { *ptr += 2; }
+    else if (begins_with("u8\"", *ptr, end)) { *ptr += 3; }
+    else if (begins_with("u\"" , *ptr, end)) { *ptr += 2; }
+    else if (begins_with("U\"" , *ptr, end)) { *ptr += 2; }
+    else if (begins_with("@\"" , *ptr, end)) { *ptr += 2; }
     else {
         return false;
     }
@@ -66,11 +66,11 @@ static bool ReadLineString(const char **ptr, const char *end) {
 
 //parameter nCount is count of '\n'
 static bool ReadParagraphString(const char **ptr, const char *end, int *nCount) {
-    if /**/ (starts_with("R\""  , *ptr, end)) { *ptr += 2; }
-    else if (starts_with("LR\"" , *ptr, end)) { *ptr += 3; }
-    else if (starts_with("u8R\"", *ptr, end)) { *ptr += 4; }
-    else if (starts_with("uR\"" , *ptr, end)) { *ptr += 3; }
-    else if (starts_with("UR\"" , *ptr, end)) { *ptr += 3; }
+    if /**/ (begins_with("R\""  , *ptr, end)) { *ptr += 2; }
+    else if (begins_with("LR\"" , *ptr, end)) { *ptr += 3; }
+    else if (begins_with("u8R\"", *ptr, end)) { *ptr += 4; }
+    else if (begins_with("uR\"" , *ptr, end)) { *ptr += 3; }
+    else if (begins_with("UR\"" , *ptr, end)) { *ptr += 3; }
     else {
         return false;
     }
@@ -89,7 +89,7 @@ static bool ReadParagraphString(const char **ptr, const char *end, int *nCount) 
     delimiter.insert(delimiter.end()  , '"');
     
     while (*ptr < end) {
-        if (starts_with(delimiter.c_str(), *ptr, end)) {
+        if (begins_with(delimiter.c_str(), *ptr, end)) {
             *ptr += delimiter.size();
             break;
         } else if (**ptr == '\n') {

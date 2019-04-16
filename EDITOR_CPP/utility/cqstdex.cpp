@@ -1,7 +1,7 @@
 #include "cqstdex.hh"
 
-bool starts_with(const char *prefix, const char *str, const char *str_end) {
-    if (prefix == nullptr || str > str_end) {
+bool begins_with(const char *prefix, const char *str, const char *str_end) {
+    if (prefix == nullptr || str >= str_end) {
         return false;
     }
     
@@ -13,17 +13,37 @@ bool starts_with(const char *prefix, const char *str, const char *str_end) {
     return *prefix == '\0';
 }
 
+bool ends_with(const char *suffix, const char *str, const char *str_end) {
+    if (suffix == nullptr || str >= str_end) {
+        return false;
+    }
+    
+    size_t suffix_len = strlen(suffix);
+    size_t str_len = str_end - str;
+    if (suffix_len > str_len) {
+        return false;
+    }
+    
+    size_t offset = str_len - suffix_len;
+    if (strncmp(suffix, str + offset, suffix_len) == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 string::string() : std::string() {
 }
 
 string::string(const std::string &that) : std::string(that) {
 }
 
-string::string(const char *that) : std::string(non_null(that)) {
+//do not judge 'that' is null or not, keep consistent with std::string.
+string::string(const char *that) : std::string(that) {
 }
 
 const string &string::operator=(const char *that) {
-    assign(non_null(that));
+    assign(that);
     return *this;
 }
 
@@ -32,34 +52,21 @@ string::operator const char *() const {
 }
 
 bool string::has_prefix(const string &prefix) const {
-    if (size() <= prefix.size()) {
-        return false;
+    if (begins_with(prefix.c_str(), c_str(), c_str() + size())) {
+        if (prefix.size() != size()) {
+            return true;
+        }
     }
-    if (prefix.size() == 0) {
-        return true;
-    }
-    
-    if (strncmp(c_str(), prefix, prefix.size()) == 0) {
-        return true;
-    } else {
-        return false;
-    }
+    return false;
 }
 
 bool string::has_suffix(const string &suffix) const {
-    if (size() <= suffix.size()) {
-        return false;
+    if (ends_with(suffix.c_str(), c_str(), c_str() + size())) {
+        if (suffix.size() != size()) {
+            return true;
+        }
     }
-    if (suffix.size() == 0) {
-        return true;
-    }
-    
-    size_t offset = size() - suffix.size();
-    if (strncmp(c_str() + offset, suffix, suffix.size()) == 0) {
-        return true;
-    } else {
-        return false;
-    }
+    return false;
 }
 
 const char *string::non_null(const char *value) {
