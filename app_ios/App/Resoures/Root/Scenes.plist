@@ -40,7 +40,7 @@
 		<key>Style</key>
 		<string>Float</string>
 		<key>Launch</key>
-		<true/>
+		<false/>
 	</dict>
 </array>
 </plist>
