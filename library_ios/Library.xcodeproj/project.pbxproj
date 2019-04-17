@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B43F02BD224B568E003DF2A1 /* cqcbasis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B43F02BC224B568E003DF2A1 /* cqcbasis.cpp */; };
-		B4576C1A222FD54900720DB1 /* cqcppbasis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4576C19222FD54900720DB1 /* cqcppbasis.cpp */; };
-		B468C64322293CEF00A9657F /* CQLog.m in Sources */ = {isa = PBXBuildFile; fileRef = B468C60122293CEF00A9657F /* CQLog.m */; };
-		B468C64922293CEF00A9657F /* cqluafoundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468C60E22293CEF00A9657F /* cqluafoundation.cpp */; };
-		B468C64D22293CEF00A9657F /* cqlog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B468C61722293CEF00A9657F /* cqlog.cpp */; };
-		B4CEAEFA2260935D00E270C7 /* cqluaapi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4CEAEF62260935D00E270C7 /* cqluaapi.cpp */; };
-		B4CEAEFB2260935D00E270C7 /* cqluaruntime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4CEAEF72260935D00E270C7 /* cqluaruntime.cpp */; };
-		CE86064022636DA5006B5952 /* cqfoundationproto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE86063F22636DA5006B5952 /* cqfoundationproto.cpp */; };
+		B439E57C2266CC7500B66285 /* cqcppbasis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5702266CC7500B66285 /* cqcppbasis.cpp */; };
+		B439E57D2266CC7500B66285 /* cqluaruntime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5742266CC7500B66285 /* cqluaruntime.cpp */; };
+		B439E57E2266CC7500B66285 /* cqluaapi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5762266CC7500B66285 /* cqluaapi.cpp */; };
+		B439E57F2266CC7500B66285 /* cqcbasis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E57A2266CC7500B66285 /* cqcbasis.cpp */; };
+		B439E5902266CCDE00B66285 /* CQLog.m in Sources */ = {isa = PBXBuildFile; fileRef = B439E5832266CCDE00B66285 /* CQLog.m */; };
+		B439E5912266CCDE00B66285 /* cqfoundationarche.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5862266CCDE00B66285 /* cqfoundationarche.cpp */; };
+		B439E5922266CCDE00B66285 /* cqluafoundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5892266CCDE00B66285 /* cqluafoundation.cpp */; };
+		B439E5932266CCDE00B66285 /* cqlog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E58E2266CCDE00B66285 /* cqlog.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,28 +30,28 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B428A88B225F4CDB007AB597 /* cqluafoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluafoundation.h; sourceTree = "<group>"; };
-		B43F02B7224B1F73003DF2A1 /* cqfoundationproto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqfoundationproto.h; sourceTree = "<group>"; };
-		B43F02B9224B2034003DF2A1 /* cqcbasis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqcbasis.h; sourceTree = "<group>"; };
-		B43F02BC224B568E003DF2A1 /* cqcbasis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqcbasis.cpp; sourceTree = "<group>"; };
-		B4576C18222FD54900720DB1 /* cqcppbasis.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqcppbasis.hh; sourceTree = "<group>"; };
-		B4576C19222FD54900720DB1 /* cqcppbasis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqcppbasis.cpp; sourceTree = "<group>"; };
-		B468C60122293CEF00A9657F /* CQLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQLog.m; sourceTree = "<group>"; };
-		B468C60322293CEF00A9657F /* CQLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQLog.h; sourceTree = "<group>"; };
-		B468C60E22293CEF00A9657F /* cqluafoundation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluafoundation.cpp; sourceTree = "<group>"; };
-		B468C60F22293CEF00A9657F /* cqluafoundation_lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluafoundation_lua.h; sourceTree = "<group>"; };
-		B468C61422293CEF00A9657F /* cqlog.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqlog.hh; sourceTree = "<group>"; };
-		B468C61722293CEF00A9657F /* cqlog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqlog.cpp; sourceTree = "<group>"; };
-		B4A380FC225F03A600CA4650 /* cqluaruntime_lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluaruntime_lua.h; sourceTree = "<group>"; };
-		B4CEAEF62260935D00E270C7 /* cqluaapi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluaapi.cpp; sourceTree = "<group>"; };
-		B4CEAEF72260935D00E270C7 /* cqluaruntime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluaruntime.cpp; sourceTree = "<group>"; };
-		B4CEAEF82260935D00E270C7 /* cqluaruntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluaruntime.h; sourceTree = "<group>"; };
-		B4CEAEF92260935D00E270C7 /* cqluaapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluaapi.h; sourceTree = "<group>"; };
+		B439E5702266CC7500B66285 /* cqcppbasis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqcppbasis.cpp; sourceTree = "<group>"; };
+		B439E5712266CC7500B66285 /* cqcppbasis.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqcppbasis.hh; sourceTree = "<group>"; };
+		B439E5732266CC7500B66285 /* cqluaapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluaapi.h; sourceTree = "<group>"; };
+		B439E5742266CC7500B66285 /* cqluaruntime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluaruntime.cpp; sourceTree = "<group>"; };
+		B439E5752266CC7500B66285 /* cqluaruntime_lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluaruntime_lua.h; sourceTree = "<group>"; };
+		B439E5762266CC7500B66285 /* cqluaapi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluaapi.cpp; sourceTree = "<group>"; };
+		B439E5772266CC7500B66285 /* cqluaruntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluaruntime.h; sourceTree = "<group>"; };
+		B439E5782266CC7500B66285 /* cqluabasis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluabasis.h; sourceTree = "<group>"; };
+		B439E57A2266CC7500B66285 /* cqcbasis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqcbasis.cpp; sourceTree = "<group>"; };
+		B439E57B2266CC7500B66285 /* cqcbasis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqcbasis.h; sourceTree = "<group>"; };
+		B439E5812266CCDE00B66285 /* CQFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQFoundation.h; sourceTree = "<group>"; };
+		B439E5822266CCDE00B66285 /* CQLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQLog.h; sourceTree = "<group>"; };
+		B439E5832266CCDE00B66285 /* CQLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQLog.m; sourceTree = "<group>"; };
+		B439E5862266CCDE00B66285 /* cqfoundationarche.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqfoundationarche.cpp; sourceTree = "<group>"; };
+		B439E5872266CCDE00B66285 /* cqfoundationarche.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqfoundationarche.h; sourceTree = "<group>"; };
+		B439E5892266CCDE00B66285 /* cqluafoundation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluafoundation.cpp; sourceTree = "<group>"; };
+		B439E58A2266CCDE00B66285 /* cqluafoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluafoundation.h; sourceTree = "<group>"; };
+		B439E58B2266CCDE00B66285 /* cqluafoundation_lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluafoundation_lua.h; sourceTree = "<group>"; };
+		B439E58D2266CCDE00B66285 /* cqfoundation.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqfoundation.hh; sourceTree = "<group>"; };
+		B439E58E2266CCDE00B66285 /* cqlog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqlog.cpp; sourceTree = "<group>"; };
+		B439E58F2266CCDE00B66285 /* cqlog.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqlog.hh; sourceTree = "<group>"; };
 		CE219ADF21DA51FD006A27B6 /* libLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE86063F22636DA5006B5952 /* cqfoundationproto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqfoundationproto.cpp; sourceTree = "<group>"; };
-		CEBF0FFD22625414000A31BC /* cqluabasis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluabasis.h; sourceTree = "<group>"; };
-		CEBF0FFE22626520000A31BC /* CQFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQFoundation.h; sourceTree = "<group>"; };
-		CEBF0FFF226265C3000A31BC /* cqfoundation.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqfoundation.hh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,111 +65,112 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B43F02B6224B1F73003DF2A1 /* proto */ = {
+		B439E56C2266CC4E00B66285 /* BASIS */ = {
 			isa = PBXGroup;
 			children = (
-				B43F02B7224B1F73003DF2A1 /* cqfoundationproto.h */,
-				CE86063F22636DA5006B5952 /* cqfoundationproto.cpp */,
-			);
-			path = proto;
-			sourceTree = "<group>";
-		};
-		B43F02B8224B2034003DF2A1 /* cbasis */ = {
-			isa = PBXGroup;
-			children = (
-				B43F02B9224B2034003DF2A1 /* cqcbasis.h */,
-				B43F02BC224B568E003DF2A1 /* cqcbasis.cpp */,
-			);
-			path = cbasis;
-			sourceTree = "<group>";
-		};
-		B4576C15222FD54900720DB1 /* BASIS */ = {
-			isa = PBXGroup;
-			children = (
-				B4576C16222FD54900720DB1 /* libbasis */,
+				B439E56E2266CC7500B66285 /* libbasis */,
 			);
 			name = BASIS;
-			path = ../library/BASIS;
 			sourceTree = "<group>";
 		};
-		B4576C16222FD54900720DB1 /* libbasis */ = {
+		B439E56D2266CC5A00B66285 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				B43F02B8224B2034003DF2A1 /* cbasis */,
-				B4576C17222FD54900720DB1 /* cppbasis */,
-				B4576C1B222FD6B100720DB1 /* luabasis */,
+				B439E5802266CCDE00B66285 /* Foundation */,
+				B439E5842266CCDE00B66285 /* libfoundation */,
 			);
-			path = libbasis;
+			name = Foundation;
 			sourceTree = "<group>";
 		};
-		B4576C17222FD54900720DB1 /* cppbasis */ = {
+		B439E56E2266CC7500B66285 /* libbasis */ = {
 			isa = PBXGroup;
 			children = (
-				B4576C18222FD54900720DB1 /* cqcppbasis.hh */,
-				B4576C19222FD54900720DB1 /* cqcppbasis.cpp */,
+				B439E5792266CC7500B66285 /* cbasis */,
+				B439E56F2266CC7500B66285 /* cppbasis */,
+				B439E5722266CC7500B66285 /* luabasis */,
+			);
+			name = libbasis;
+			path = ../library/BASIS/libbasis;
+			sourceTree = "<group>";
+		};
+		B439E56F2266CC7500B66285 /* cppbasis */ = {
+			isa = PBXGroup;
+			children = (
+				B439E5712266CC7500B66285 /* cqcppbasis.hh */,
+				B439E5702266CC7500B66285 /* cqcppbasis.cpp */,
 			);
 			path = cppbasis;
 			sourceTree = "<group>";
 		};
-		B4576C1B222FD6B100720DB1 /* luabasis */ = {
+		B439E5722266CC7500B66285 /* luabasis */ = {
 			isa = PBXGroup;
 			children = (
-				CEBF0FFD22625414000A31BC /* cqluabasis.h */,
-				B4CEAEF92260935D00E270C7 /* cqluaapi.h */,
-				B4CEAEF62260935D00E270C7 /* cqluaapi.cpp */,
-				B4CEAEF82260935D00E270C7 /* cqluaruntime.h */,
-				B4A380FC225F03A600CA4650 /* cqluaruntime_lua.h */,
-				B4CEAEF72260935D00E270C7 /* cqluaruntime.cpp */,
+				B439E5782266CC7500B66285 /* cqluabasis.h */,
+				B439E5732266CC7500B66285 /* cqluaapi.h */,
+				B439E5762266CC7500B66285 /* cqluaapi.cpp */,
+				B439E5772266CC7500B66285 /* cqluaruntime.h */,
+				B439E5752266CC7500B66285 /* cqluaruntime_lua.h */,
+				B439E5742266CC7500B66285 /* cqluaruntime.cpp */,
 			);
 			path = luabasis;
 			sourceTree = "<group>";
 		};
-		B468C5FE22293CEF00A9657F /* foundation */ = {
+		B439E5792266CC7500B66285 /* cbasis */ = {
 			isa = PBXGroup;
 			children = (
-				B468C5FF22293CEF00A9657F /* Foundation */,
-				B468C60C22293CEF00A9657F /* libfoundation */,
+				B439E57B2266CC7500B66285 /* cqcbasis.h */,
+				B439E57A2266CC7500B66285 /* cqcbasis.cpp */,
 			);
-			name = foundation;
-			path = ../library/foundation;
+			path = cbasis;
 			sourceTree = "<group>";
 		};
-		B468C5FF22293CEF00A9657F /* Foundation */ = {
+		B439E5802266CCDE00B66285 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				CEBF0FFE22626520000A31BC /* CQFoundation.h */,
-				B468C60322293CEF00A9657F /* CQLog.h */,
-				B468C60122293CEF00A9657F /* CQLog.m */,
+				B439E5812266CCDE00B66285 /* CQFoundation.h */,
+				B439E5822266CCDE00B66285 /* CQLog.h */,
+				B439E5832266CCDE00B66285 /* CQLog.m */,
 			);
-			path = Foundation;
+			name = Foundation;
+			path = ../library/foundation/Foundation;
 			sourceTree = "<group>";
 		};
-		B468C60C22293CEF00A9657F /* libfoundation */ = {
+		B439E5842266CCDE00B66285 /* libfoundation */ = {
 			isa = PBXGroup;
 			children = (
-				B468C61222293CEF00A9657F /* cppfoundation */,
-				B468C60D22293CEF00A9657F /* luafoundation */,
-				B43F02B6224B1F73003DF2A1 /* proto */,
+				B439E5852266CCDE00B66285 /* archetype */,
+				B439E58C2266CCDE00B66285 /* cppfoundation */,
+				B439E5882266CCDE00B66285 /* luafoundation */,
 			);
-			path = libfoundation;
+			name = libfoundation;
+			path = ../library/foundation/libfoundation;
 			sourceTree = "<group>";
 		};
-		B468C60D22293CEF00A9657F /* luafoundation */ = {
+		B439E5852266CCDE00B66285 /* archetype */ = {
 			isa = PBXGroup;
 			children = (
-				B428A88B225F4CDB007AB597 /* cqluafoundation.h */,
-				B468C60F22293CEF00A9657F /* cqluafoundation_lua.h */,
-				B468C60E22293CEF00A9657F /* cqluafoundation.cpp */,
+				B439E5872266CCDE00B66285 /* cqfoundationarche.h */,
+				B439E5862266CCDE00B66285 /* cqfoundationarche.cpp */,
+			);
+			path = archetype;
+			sourceTree = "<group>";
+		};
+		B439E5882266CCDE00B66285 /* luafoundation */ = {
+			isa = PBXGroup;
+			children = (
+				B439E58A2266CCDE00B66285 /* cqluafoundation.h */,
+				B439E58B2266CCDE00B66285 /* cqluafoundation_lua.h */,
+				B439E5892266CCDE00B66285 /* cqluafoundation.cpp */,
 			);
 			path = luafoundation;
 			sourceTree = "<group>";
 		};
-		B468C61222293CEF00A9657F /* cppfoundation */ = {
+		B439E58C2266CCDE00B66285 /* cppfoundation */ = {
 			isa = PBXGroup;
 			children = (
-				CEBF0FFF226265C3000A31BC /* cqfoundation.hh */,
-				B468C61422293CEF00A9657F /* cqlog.hh */,
-				B468C61722293CEF00A9657F /* cqlog.cpp */,
+				B439E58D2266CCDE00B66285 /* cqfoundation.hh */,
+				B439E58F2266CCDE00B66285 /* cqlog.hh */,
+				B439E58E2266CCDE00B66285 /* cqlog.cpp */,
 			);
 			path = cppfoundation;
 			sourceTree = "<group>";
@@ -177,8 +178,8 @@
 		CE219AD621DA51FD006A27B6 = {
 			isa = PBXGroup;
 			children = (
-				B4576C15222FD54900720DB1 /* BASIS */,
-				B468C5FE22293CEF00A9657F /* foundation */,
+				B439E56C2266CC4E00B66285 /* BASIS */,
+				B439E56D2266CC5A00B66285 /* Foundation */,
 				CE219AE021DA51FD006A27B6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -248,14 +249,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B468C64922293CEF00A9657F /* cqluafoundation.cpp in Sources */,
-				B468C64D22293CEF00A9657F /* cqlog.cpp in Sources */,
-				B4576C1A222FD54900720DB1 /* cqcppbasis.cpp in Sources */,
-				B4CEAEFA2260935D00E270C7 /* cqluaapi.cpp in Sources */,
-				B43F02BD224B568E003DF2A1 /* cqcbasis.cpp in Sources */,
-				CE86064022636DA5006B5952 /* cqfoundationproto.cpp in Sources */,
-				B468C64322293CEF00A9657F /* CQLog.m in Sources */,
-				B4CEAEFB2260935D00E270C7 /* cqluaruntime.cpp in Sources */,
+				B439E5932266CCDE00B66285 /* cqlog.cpp in Sources */,
+				B439E57C2266CC7500B66285 /* cqcppbasis.cpp in Sources */,
+				B439E5922266CCDE00B66285 /* cqluafoundation.cpp in Sources */,
+				B439E57D2266CC7500B66285 /* cqluaruntime.cpp in Sources */,
+				B439E57F2266CC7500B66285 /* cqcbasis.cpp in Sources */,
+				B439E5902266CCDE00B66285 /* CQLog.m in Sources */,
+				B439E5912266CCDE00B66285 /* cqfoundationarche.cpp in Sources */,
+				B439E57E2266CC7500B66285 /* cqluaapi.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 #include "cqlog.hh"
-#include "cqfoundationproto.h"
+#include "cqfoundationarche.h"
 #include <cstdarg>
 #include <cstdio>
 

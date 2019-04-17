@@ -1,5 +1,5 @@
 #include "cqluafoundation.h"
-#include "cqfoundationproto.h"
+#include "cqfoundationarche.h"
 
 static int32_t log_info(lua_State *state) {
     

@@ -1,4 +1,4 @@
-#include "cqfoundationproto.h"
+#include "cqfoundationarche.h"
 #include "cqjnihelper.hh"
 
 static jclass clazz() {

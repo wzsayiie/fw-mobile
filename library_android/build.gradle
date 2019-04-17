@@ -28,7 +28,7 @@ android {
     }
     sourceSets {
         main {
-            java.srcDirs    += '../library/foundation/java'
+            java.srcDirs    += '../library/foundation/android/java'
             jniLibs.srcDirs += '../thirds_android/jniLibs'
         }
     }
