@@ -6,17 +6,30 @@
 
 void AppendJavas(vector<string> *sources) {
     sources->push_back("app_android/app/src/main/java");
-    sources->push_back("library/foundation/java");
+    sources->push_back("library/BASIS/android/java");
+    sources->push_back("library/foundation/android/java");
 }
 
 void AppendObjcpps(vector<string> *sources) {
     sources->push_back("app_ios/App/Kits");
     sources->push_back("app_ios/App/Sources");
+    
+    sources->push_back("cusapp_cpp/android/cpp");
+    sources->push_back("cusapp_cpp/CPPCusapp");
+    sources->push_back("cusapp_cpp/libcppcusapp");
+    
+    sources->push_back("cusapp_lua/android/cpp");
+    sources->push_back("cusapp_lua/LuaCusapp");
+    sources->push_back("cusapp_lua/libluacusapp");
+    
     sources->push_back("EDITOR_CPP");
-    sources->push_back("library/CONVENTION/libconvention");
+    
+    sources->push_back("library/BASIS/android/cpp");
+    sources->push_back("library/BASIS/libbasis");
+    
+    sources->push_back("library/foundation/android/cpp");
     sources->push_back("library/foundation/Foundation");
     sources->push_back("library/foundation/libfoundation");
-    sources->push_back("subsystem_cpp");
 }
 
 void AppendCSharps(vector<string> *sources) {
@@ -25,7 +38,7 @@ void AppendCSharps(vector<string> *sources) {
 };
 
 void AppendLuas(vector<string> *sources) {
-    sources->push_back("subsystem_lua");
+    sources->push_back("cusapp_lua/libluacusappscript");
 };
 
 bool ccMainEnabled = 0;

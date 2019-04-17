@@ -33,6 +33,14 @@ to run `*.sh` on macOS, run `*.bat` on Windows.
 * build_unity.sh
 * build_unity.bat
 
+**Portable Custom App:**
+
+Lightweight application framework.
+Developer can use them to build little, portable application.
+
+* cusapp_cpp
+* cusapp_lua
+
 **Tools:**
 
 Tools and the projects
@@ -77,14 +85,6 @@ and copy them to *app_unity/Plugins*.
 * lib_build_ios.sh
 * lib_build_osx.sh
 * lib_build_windows.bat
-
-**Portable App:**
-
-Lightweight application framework.
-Developer can use them to build little, portable application.
-
-* subsystem_cpp
-* subsystem_lua
 
 **Resource Dispatch:**
 
