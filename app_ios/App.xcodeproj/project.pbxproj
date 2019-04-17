@@ -279,8 +279,8 @@
 				B45C1B5D21A02562007CB374 /* App */,
 				B4BC9C9622041E5500CFD84C /* CPPCusapp */,
 				B4B9431422250FB500CE3C9A /* LuaCusapp */,
-				B45C1B5C21A02562007CB374 /* Products */,
 				B4FCC39621F0912700D152DF /* Frameworks */,
+				B45C1B5C21A02562007CB374 /* Products */,
 				B4EC3C6621DF6D8800E287A4 /* Library.xcodeproj */,
 			);
 			sourceTree = "<group>";
