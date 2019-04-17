@@ -106,8 +106,8 @@
 			isa = PBXGroup;
 			children = (
 				B42505A4226744B10035F91A /* archetype */,
-				B42505A7226744B10035F91A /* luasubsystem */,
 				B42505AB226744B10035F91A /* cppsubsystem */,
+				B42505A7226744B10035F91A /* luasubsystem */,
 			);
 			name = libsubsystem;
 			path = ../library/subsystem/libsubsystem;
