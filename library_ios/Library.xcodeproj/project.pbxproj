@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B42505AE226744B10035F91A /* CQSubsystemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B42505A1226744B10035F91A /* CQSubsystemViewController.m */; };
+		B42505AF226744B10035F91A /* CQSubsystem.m in Sources */ = {isa = PBXBuildFile; fileRef = B42505A2226744B10035F91A /* CQSubsystem.m */; };
+		B42505B0226744B10035F91A /* cqsubsystemarche.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42505A6226744B10035F91A /* cqsubsystemarche.cpp */; };
+		B42505B1226744B10035F91A /* cqluasubsystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42505AA226744B10035F91A /* cqluasubsystem.cpp */; };
+		B42505B2226744B10035F91A /* cqsubsystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42505AC226744B10035F91A /* cqsubsystem.cpp */; };
 		B439E57C2266CC7500B66285 /* cqcppbasis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5702266CC7500B66285 /* cqcppbasis.cpp */; };
 		B439E57D2266CC7500B66285 /* cqluaruntime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5742266CC7500B66285 /* cqluaruntime.cpp */; };
 		B439E57E2266CC7500B66285 /* cqluaapi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5762266CC7500B66285 /* cqluaapi.cpp */; };
@@ -30,6 +35,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B425059F226744B10035F91A /* CQSubsystemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQSubsystemViewController.h; sourceTree = "<group>"; };
+		B42505A0226744B10035F91A /* CQSubsystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQSubsystem.h; sourceTree = "<group>"; };
+		B42505A1226744B10035F91A /* CQSubsystemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQSubsystemViewController.m; sourceTree = "<group>"; };
+		B42505A2226744B10035F91A /* CQSubsystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQSubsystem.m; sourceTree = "<group>"; };
+		B42505A5226744B10035F91A /* cqsubsystemarche.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqsubsystemarche.h; sourceTree = "<group>"; };
+		B42505A6226744B10035F91A /* cqsubsystemarche.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqsubsystemarche.cpp; sourceTree = "<group>"; };
+		B42505A8226744B10035F91A /* cqluasubsystem_lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluasubsystem_lua.h; sourceTree = "<group>"; };
+		B42505A9226744B10035F91A /* cqluasubsystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluasubsystem.h; sourceTree = "<group>"; };
+		B42505AA226744B10035F91A /* cqluasubsystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluasubsystem.cpp; sourceTree = "<group>"; };
+		B42505AC226744B10035F91A /* cqsubsystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqsubsystem.cpp; sourceTree = "<group>"; };
+		B42505AD226744B10035F91A /* cqsubsystem.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqsubsystem.hh; sourceTree = "<group>"; };
 		B439E5702266CC7500B66285 /* cqcppbasis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqcppbasis.cpp; sourceTree = "<group>"; };
 		B439E5712266CC7500B66285 /* cqcppbasis.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqcppbasis.hh; sourceTree = "<group>"; };
 		B439E5732266CC7500B66285 /* cqluaapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluaapi.h; sourceTree = "<group>"; };
@@ -65,6 +81,66 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B425059D226744930035F91A /* Subsystem */ = {
+			isa = PBXGroup;
+			children = (
+				B425059E226744B10035F91A /* Subsystem */,
+				B42505A3226744B10035F91A /* libsubsystem */,
+			);
+			name = Subsystem;
+			sourceTree = "<group>";
+		};
+		B425059E226744B10035F91A /* Subsystem */ = {
+			isa = PBXGroup;
+			children = (
+				B42505A0226744B10035F91A /* CQSubsystem.h */,
+				B42505A2226744B10035F91A /* CQSubsystem.m */,
+				B425059F226744B10035F91A /* CQSubsystemViewController.h */,
+				B42505A1226744B10035F91A /* CQSubsystemViewController.m */,
+			);
+			name = Subsystem;
+			path = ../library/subsystem/Subsystem;
+			sourceTree = "<group>";
+		};
+		B42505A3226744B10035F91A /* libsubsystem */ = {
+			isa = PBXGroup;
+			children = (
+				B42505A4226744B10035F91A /* archetype */,
+				B42505A7226744B10035F91A /* luasubsystem */,
+				B42505AB226744B10035F91A /* cppsubsystem */,
+			);
+			name = libsubsystem;
+			path = ../library/subsystem/libsubsystem;
+			sourceTree = "<group>";
+		};
+		B42505A4226744B10035F91A /* archetype */ = {
+			isa = PBXGroup;
+			children = (
+				B42505A5226744B10035F91A /* cqsubsystemarche.h */,
+				B42505A6226744B10035F91A /* cqsubsystemarche.cpp */,
+			);
+			path = archetype;
+			sourceTree = "<group>";
+		};
+		B42505A7226744B10035F91A /* luasubsystem */ = {
+			isa = PBXGroup;
+			children = (
+				B42505A9226744B10035F91A /* cqluasubsystem.h */,
+				B42505A8226744B10035F91A /* cqluasubsystem_lua.h */,
+				B42505AA226744B10035F91A /* cqluasubsystem.cpp */,
+			);
+			path = luasubsystem;
+			sourceTree = "<group>";
+		};
+		B42505AB226744B10035F91A /* cppsubsystem */ = {
+			isa = PBXGroup;
+			children = (
+				B42505AD226744B10035F91A /* cqsubsystem.hh */,
+				B42505AC226744B10035F91A /* cqsubsystem.cpp */,
+			);
+			path = cppsubsystem;
+			sourceTree = "<group>";
+		};
 		B439E56C2266CC4E00B66285 /* BASIS */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +256,7 @@
 			children = (
 				B439E56C2266CC4E00B66285 /* BASIS */,
 				B439E56D2266CC5A00B66285 /* Foundation */,
+				B425059D226744930035F91A /* Subsystem */,
 				CE219AE021DA51FD006A27B6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -249,12 +326,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B42505B2226744B10035F91A /* cqsubsystem.cpp in Sources */,
+				B42505B1226744B10035F91A /* cqluasubsystem.cpp in Sources */,
+				B42505AE226744B10035F91A /* CQSubsystemViewController.m in Sources */,
 				B439E5932266CCDE00B66285 /* cqlog.cpp in Sources */,
+				B42505B0226744B10035F91A /* cqsubsystemarche.cpp in Sources */,
 				B439E57C2266CC7500B66285 /* cqcppbasis.cpp in Sources */,
 				B439E5922266CCDE00B66285 /* cqluafoundation.cpp in Sources */,
 				B439E57D2266CC7500B66285 /* cqluaruntime.cpp in Sources */,
 				B439E57F2266CC7500B66285 /* cqcbasis.cpp in Sources */,
 				B439E5902266CCDE00B66285 /* CQLog.m in Sources */,
+				B42505AF226744B10035F91A /* CQSubsystem.m in Sources */,
 				B439E5912266CCDE00B66285 /* cqfoundationarche.cpp in Sources */,
 				B439E57E2266CC7500B66285 /* cqluaapi.cpp in Sources */,
 			);

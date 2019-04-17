@@ -15,6 +15,7 @@ list(APPEND inc_path ../thirds_android/includes)
 
 list(APPEND src_aims ../library/BASIS/*.cpp)
 list(APPEND src_aims ../library/foundation/*.cpp)
+list(APPEND src_aims ../library/subsystem/*.cpp)
 
 list(APPEND sys_libs log)
 list(APPEND usr_libs ../thirds_android/jniLibs/${ANDROID_ABI}/liblua.so)
