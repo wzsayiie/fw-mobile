@@ -7,12 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B408A5B92226539B00F4239B /* cqluavm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B408A5B82226539B00F4239B /* cqluavm.cpp */; };
 		B416F18921A2CD630045FDF6 /* Scenes.plist in Resources */ = {isa = PBXBuildFile; fileRef = B416F18821A2CD630045FDF6 /* Scenes.plist */; };
 		B416F18B21A2D4940045FDF6 /* QuickModels.plist in Resources */ = {isa = PBXBuildFile; fileRef = B416F18A21A2D4940045FDF6 /* QuickModels.plist */; };
 		B416F18E21A3AFCF0045FDF6 /* UIViewController+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B416F18C21A3AFCF0045FDF6 /* UIViewController+CQ.m */; };
 		B42806CF21C531C500B886A7 /* CQBus.m in Sources */ = {isa = PBXBuildFile; fileRef = B42806CE21C531C500B886A7 /* CQBus.m */; };
 		B42806D221C542DB00B886A7 /* UIDevice+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B42806D021C542DB00B886A7 /* UIDevice+CQ.m */; };
+		B439E5DD2266FBCF00B66285 /* appdelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5C82266FBCF00B66285 /* appdelegate.cpp */; };
+		B439E5DE2266FBCF00B66285 /* rootviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5CA2266FBCF00B66285 /* rootviewcontroller.cpp */; };
+		B439E5DF2266FBCF00B66285 /* cqviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5CD2266FBCF00B66285 /* cqviewcontroller.cpp */; };
+		B439E5E02266FBCF00B66285 /* cqview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5D02266FBCF00B66285 /* cqview.cpp */; };
+		B439E5E12266FBCF00B66285 /* cqwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5D12266FBCF00B66285 /* cqwindow.cpp */; };
+		B439E5E22266FBCF00B66285 /* cqapplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5D42266FBCF00B66285 /* cqapplication.cpp */; };
+		B439E5E32266FBCF00B66285 /* cqhostapi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5D62266FBCF00B66285 /* cqhostapi.cpp */; };
+		B439E5E42266FBCF00B66285 /* CQCPPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B439E5DA2266FBCF00B66285 /* CQCPPAppDelegate.m */; };
+		B439E5E52266FBCF00B66285 /* CQCPPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B439E5DB2266FBCF00B66285 /* CQCPPViewController.m */; };
+		B439E5F12266FC9100B66285 /* CQLuaAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B439E5E72266FC9100B66285 /* CQLuaAppDelegate.m */; };
+		B439E5F22266FC9100B66285 /* CQLuaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B439E5EA2266FC9100B66285 /* CQLuaViewController.m */; };
+		B439E5F32266FC9100B66285 /* cqluavm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5EC2266FC9100B66285 /* cqluavm.cpp */; };
+		B439E5F42266FC9100B66285 /* cqluavmlibs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5EE2266FC9100B66285 /* cqluavmlibs.cpp */; };
+		B439E5F52266FC9100B66285 /* cqluasource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5F02266FC9100B66285 /* cqluasource.cpp */; };
 		B444D8E321DF6DDF00E5FF54 /* libLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4EC3C6B21DF6D8800E287A4 /* libLibrary.a */; };
 		B45C1BB121A02B19007CB374 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B45C1B7721A02B19007CB374 /* LaunchScreen.storyboard */; };
 		B45C1BB221A02B19007CB374 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B45C1B7821A02B19007CB374 /* Assets.xcassets */; };
@@ -27,14 +40,7 @@
 		B45C1BFE21A03824007CB374 /* NSObject+CQSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1BEC21A03824007CB374 /* NSObject+CQSingleton.m */; };
 		B45C1BFF21A03824007CB374 /* CQSingletonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1BED21A03824007CB374 /* CQSingletonManager.m */; };
 		B45C1C0021A03824007CB374 /* CQHotfixManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1BF321A03824007CB374 /* CQHotfixManager.m */; };
-		B4696784226098DF00279E50 /* cqluavmlibs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4696783226098DF00279E50 /* cqluavmlibs.cpp */; };
-		B46997D8222801C30067478B /* CQCPPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B46997D5222801C30067478B /* CQCPPAppDelegate.m */; };
-		B49706742227785C00E8D717 /* CQLuaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B49706732227785C00E8D717 /* CQLuaViewController.m */; };
-		B4AF89932226AEC000F73B6F /* cqluasource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4AF89922226AEC000F73B6F /* cqluasource.cpp */; };
-		B4B35638224CB51D0046FE98 /* cqhostapi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B35636224CB51D0046FE98 /* cqhostapi.cpp */; };
-		B4B9433222250FE500CE3C9A /* CQLuaAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B9432522250FE500CE3C9A /* CQLuaAppDelegate.m */; };
 		B4B9D32022278D4E00B35E72 /* liblua.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B9D31F22278D4D00B35E72 /* liblua.a */; };
-		B4BC9CAD2204331C00CFD84C /* CQCPPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BC9CA92204331C00CFD84C /* CQCPPViewController.m */; };
 		B4CFD97321C7475000FFF4CF /* IAPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96021C7475000FFF4CF /* IAPViewController.m */; };
 		B4CFD97421C7475000FFF4CF /* ExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96421C7475000FFF4CF /* ExampleViewController.m */; };
 		B4CFD97A21C75AB300FFF4CF /* IAPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4CFD97921C75AB300FFF4CF /* IAPViewController.xib */; };
@@ -46,12 +52,6 @@
 		B4E7CD0F2224098800122637 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E7CD0E2224098800122637 /* main.m */; };
 		B4F7176821F976AD0090F949 /* NSBundle+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F7176721F976AD0090F949 /* NSBundle+CQ.m */; };
 		B4FCC39821F0912700D152DF /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FCC39721F0912700D152DF /* libc++.tbd */; };
-		CE224EA72206AED300B8FB53 /* cqview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EA22206AED300B8FB53 /* cqview.cpp */; };
-		CE224EA82206AED300B8FB53 /* cqviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EA32206AED300B8FB53 /* cqviewcontroller.cpp */; };
-		CE224EA92206AED300B8FB53 /* cqapplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EA42206AED300B8FB53 /* cqapplication.cpp */; };
-		CE224EAC2206B3C100B8FB53 /* cqwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EAB2206B3C100B8FB53 /* cqwindow.cpp */; };
-		CE224EB32206C15B00B8FB53 /* rootviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EB02206C15B00B8FB53 /* rootviewcontroller.cpp */; };
-		CE224EB62206C3FD00B8FB53 /* appdelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE224EB42206C3FD00B8FB53 /* appdelegate.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,8 +72,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B408A5B72226539B00F4239B /* cqluavm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluavm.h; sourceTree = "<group>"; };
-		B408A5B82226539B00F4239B /* cqluavm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluavm.cpp; sourceTree = "<group>"; };
 		B416F18821A2CD630045FDF6 /* Scenes.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Scenes.plist; sourceTree = "<group>"; };
 		B416F18A21A2D4940045FDF6 /* QuickModels.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = QuickModels.plist; sourceTree = "<group>"; };
 		B416F18C21A3AFCF0045FDF6 /* UIViewController+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CQ.m"; sourceTree = "<group>"; };
@@ -82,6 +80,34 @@
 		B42806CE21C531C500B886A7 /* CQBus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQBus.m; sourceTree = "<group>"; };
 		B42806D021C542DB00B886A7 /* UIDevice+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+CQ.m"; sourceTree = "<group>"; };
 		B42806D121C542DB00B886A7 /* UIDevice+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+CQ.h"; sourceTree = "<group>"; };
+		B439E5C72266FBCF00B66285 /* rootviewcontroller.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rootviewcontroller.hh; sourceTree = "<group>"; };
+		B439E5C82266FBCF00B66285 /* appdelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = appdelegate.cpp; sourceTree = "<group>"; };
+		B439E5C92266FBCF00B66285 /* appdelegate.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = appdelegate.hh; sourceTree = "<group>"; };
+		B439E5CA2266FBCF00B66285 /* rootviewcontroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rootviewcontroller.cpp; sourceTree = "<group>"; };
+		B439E5CC2266FBCF00B66285 /* cqview.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqview.hh; sourceTree = "<group>"; };
+		B439E5CD2266FBCF00B66285 /* cqviewcontroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqviewcontroller.cpp; sourceTree = "<group>"; };
+		B439E5CE2266FBCF00B66285 /* cquikit.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cquikit.hh; sourceTree = "<group>"; };
+		B439E5CF2266FBCF00B66285 /* cqviewcontroller.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqviewcontroller.hh; sourceTree = "<group>"; };
+		B439E5D02266FBCF00B66285 /* cqview.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqview.cpp; sourceTree = "<group>"; };
+		B439E5D12266FBCF00B66285 /* cqwindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqwindow.cpp; sourceTree = "<group>"; };
+		B439E5D22266FBCF00B66285 /* cqwindow.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqwindow.hh; sourceTree = "<group>"; };
+		B439E5D32266FBCF00B66285 /* cqapplication.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqapplication.hh; sourceTree = "<group>"; };
+		B439E5D42266FBCF00B66285 /* cqapplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqapplication.cpp; sourceTree = "<group>"; };
+		B439E5D62266FBCF00B66285 /* cqhostapi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqhostapi.cpp; sourceTree = "<group>"; };
+		B439E5D72266FBCF00B66285 /* cqhostapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqhostapi.h; sourceTree = "<group>"; };
+		B439E5D92266FBCF00B66285 /* CQCPPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQCPPViewController.h; sourceTree = "<group>"; };
+		B439E5DA2266FBCF00B66285 /* CQCPPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQCPPAppDelegate.m; sourceTree = "<group>"; };
+		B439E5DB2266FBCF00B66285 /* CQCPPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQCPPViewController.m; sourceTree = "<group>"; };
+		B439E5DC2266FBCF00B66285 /* CQCPPAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQCPPAppDelegate.h; sourceTree = "<group>"; };
+		B439E5E72266FC9100B66285 /* CQLuaAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQLuaAppDelegate.m; sourceTree = "<group>"; };
+		B439E5E82266FC9100B66285 /* CQLuaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQLuaViewController.h; sourceTree = "<group>"; };
+		B439E5E92266FC9100B66285 /* CQLuaAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQLuaAppDelegate.h; sourceTree = "<group>"; };
+		B439E5EA2266FC9100B66285 /* CQLuaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQLuaViewController.m; sourceTree = "<group>"; };
+		B439E5EC2266FC9100B66285 /* cqluavm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluavm.cpp; sourceTree = "<group>"; };
+		B439E5ED2266FC9100B66285 /* cqluavm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluavm.h; sourceTree = "<group>"; };
+		B439E5EE2266FC9100B66285 /* cqluavmlibs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluavmlibs.cpp; sourceTree = "<group>"; };
+		B439E5EF2266FC9100B66285 /* cqluasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluasource.h; sourceTree = "<group>"; };
+		B439E5F02266FC9100B66285 /* cqluasource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluasource.cpp; sourceTree = "<group>"; };
 		B45C1B5B21A02562007CB374 /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B45C1B7521A02B19007CB374 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B45C1B7721A02B19007CB374 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -108,21 +134,8 @@
 		B45C1BEF21A03824007CB374 /* NSObject+CQSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CQSingleton.h"; sourceTree = "<group>"; };
 		B45C1BF321A03824007CB374 /* CQHotfixManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQHotfixManager.m; sourceTree = "<group>"; };
 		B45C1BF421A03824007CB374 /* CQHotfixManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQHotfixManager.h; sourceTree = "<group>"; };
-		B4696783226098DF00279E50 /* cqluavmlibs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluavmlibs.cpp; sourceTree = "<group>"; };
-		B46997D5222801C30067478B /* CQCPPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQCPPAppDelegate.m; sourceTree = "<group>"; };
-		B46997D6222801C30067478B /* CQCPPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQCPPViewController.h; sourceTree = "<group>"; };
-		B46997D7222801C30067478B /* CQCPPAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQCPPAppDelegate.h; sourceTree = "<group>"; };
-		B49706702227756C00E8D717 /* cqluasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluasource.h; sourceTree = "<group>"; };
-		B49706712227785C00E8D717 /* CQLuaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQLuaViewController.h; sourceTree = "<group>"; };
-		B49706722227785C00E8D717 /* CQLuaAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQLuaAppDelegate.h; sourceTree = "<group>"; };
-		B49706732227785C00E8D717 /* CQLuaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQLuaViewController.m; sourceTree = "<group>"; };
-		B4AF89922226AEC000F73B6F /* cqluasource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluasource.cpp; sourceTree = "<group>"; };
-		B4B35636224CB51D0046FE98 /* cqhostapi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqhostapi.cpp; sourceTree = "<group>"; };
-		B4B35637224CB51D0046FE98 /* cqhostapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqhostapi.h; sourceTree = "<group>"; };
-		B4B9432522250FE500CE3C9A /* CQLuaAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQLuaAppDelegate.m; sourceTree = "<group>"; };
 		B4B943332225179800CE3C9A /* liblua.5.3.5.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblua.5.3.5.a; path = ../thirds_libs_ios/liblua.5.3.5.a; sourceTree = "<group>"; };
 		B4B9D31F22278D4D00B35E72 /* liblua.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblua.a; path = ../thirds_ios/libs/liblua.a; sourceTree = "<group>"; };
-		B4BC9CA92204331C00CFD84C /* CQCPPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQCPPViewController.m; sourceTree = "<group>"; };
 		B4CFD96021C7475000FFF4CF /* IAPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPViewController.m; sourceTree = "<group>"; };
 		B4CFD96121C7475000FFF4CF /* IAPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPViewController.h; sourceTree = "<group>"; };
 		B4CFD96321C7475000FFF4CF /* ExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleViewController.h; sourceTree = "<group>"; };
@@ -142,19 +155,6 @@
 		B4F7176621F976AD0090F949 /* NSBundle+CQ.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+CQ.h"; sourceTree = "<group>"; };
 		B4F7176721F976AD0090F949 /* NSBundle+CQ.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+CQ.m"; sourceTree = "<group>"; };
 		B4FCC39721F0912700D152DF /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		CE224EA12206AED300B8FB53 /* cqview.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqview.hh; sourceTree = "<group>"; };
-		CE224EA22206AED300B8FB53 /* cqview.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqview.cpp; sourceTree = "<group>"; };
-		CE224EA32206AED300B8FB53 /* cqviewcontroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqviewcontroller.cpp; sourceTree = "<group>"; };
-		CE224EA42206AED300B8FB53 /* cqapplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqapplication.cpp; sourceTree = "<group>"; };
-		CE224EA52206AED300B8FB53 /* cqapplication.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqapplication.hh; sourceTree = "<group>"; };
-		CE224EA62206AED300B8FB53 /* cqviewcontroller.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqviewcontroller.hh; sourceTree = "<group>"; };
-		CE224EAA2206B3C100B8FB53 /* cqwindow.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqwindow.hh; sourceTree = "<group>"; };
-		CE224EAB2206B3C100B8FB53 /* cqwindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqwindow.cpp; sourceTree = "<group>"; };
-		CE224EAD2206BA1F00B8FB53 /* cquikit.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cquikit.hh; sourceTree = "<group>"; };
-		CE224EB02206C15B00B8FB53 /* rootviewcontroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rootviewcontroller.cpp; sourceTree = "<group>"; };
-		CE224EB12206C15B00B8FB53 /* rootviewcontroller.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rootviewcontroller.hh; sourceTree = "<group>"; };
-		CE224EB42206C3FD00B8FB53 /* appdelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = appdelegate.cpp; sourceTree = "<group>"; };
-		CE224EB52206C3FD00B8FB53 /* appdelegate.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = appdelegate.hh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,19 +171,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B408A5B62226539B00F4239B /* luavm */ = {
-			isa = PBXGroup;
-			children = (
-				B49706702227756C00E8D717 /* cqluasource.h */,
-				B4AF89922226AEC000F73B6F /* cqluasource.cpp */,
-				B408A5B72226539B00F4239B /* cqluavm.h */,
-				B4696783226098DF00279E50 /* cqluavmlibs.cpp */,
-				B408A5B82226539B00F4239B /* cqluavm.cpp */,
-			);
-			name = luavm;
-			path = ../subsystem_lua/luavm;
-			sourceTree = "<group>";
-		};
 		B416F18721A2CCE50045FDF6 /* Root */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,12 +189,96 @@
 			path = Bus;
 			sourceTree = "<group>";
 		};
+		B439E5C52266FBCF00B66285 /* libcppcusapp */ = {
+			isa = PBXGroup;
+			children = (
+				B439E5D52266FBCF00B66285 /* api */,
+				B439E5CB2266FBCF00B66285 /* sdk */,
+				B439E5C62266FBCF00B66285 /* user */,
+			);
+			name = libcppcusapp;
+			path = ../cusapp_cpp/libcppcusapp;
+			sourceTree = "<group>";
+		};
+		B439E5C62266FBCF00B66285 /* user */ = {
+			isa = PBXGroup;
+			children = (
+				B439E5C92266FBCF00B66285 /* appdelegate.hh */,
+				B439E5C82266FBCF00B66285 /* appdelegate.cpp */,
+				B439E5C72266FBCF00B66285 /* rootviewcontroller.hh */,
+				B439E5CA2266FBCF00B66285 /* rootviewcontroller.cpp */,
+			);
+			path = user;
+			sourceTree = "<group>";
+		};
+		B439E5CB2266FBCF00B66285 /* sdk */ = {
+			isa = PBXGroup;
+			children = (
+				B439E5D32266FBCF00B66285 /* cqapplication.hh */,
+				B439E5D42266FBCF00B66285 /* cqapplication.cpp */,
+				B439E5CE2266FBCF00B66285 /* cquikit.hh */,
+				B439E5CC2266FBCF00B66285 /* cqview.hh */,
+				B439E5D02266FBCF00B66285 /* cqview.cpp */,
+				B439E5CF2266FBCF00B66285 /* cqviewcontroller.hh */,
+				B439E5CD2266FBCF00B66285 /* cqviewcontroller.cpp */,
+				B439E5D22266FBCF00B66285 /* cqwindow.hh */,
+				B439E5D12266FBCF00B66285 /* cqwindow.cpp */,
+			);
+			path = sdk;
+			sourceTree = "<group>";
+		};
+		B439E5D52266FBCF00B66285 /* api */ = {
+			isa = PBXGroup;
+			children = (
+				B439E5D72266FBCF00B66285 /* cqhostapi.h */,
+				B439E5D62266FBCF00B66285 /* cqhostapi.cpp */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
+		B439E5D82266FBCF00B66285 /* CPPCusapp */ = {
+			isa = PBXGroup;
+			children = (
+				B439E5DC2266FBCF00B66285 /* CQCPPAppDelegate.h */,
+				B439E5DA2266FBCF00B66285 /* CQCPPAppDelegate.m */,
+				B439E5D92266FBCF00B66285 /* CQCPPViewController.h */,
+				B439E5DB2266FBCF00B66285 /* CQCPPViewController.m */,
+			);
+			name = CPPCusapp;
+			path = ../cusapp_cpp/CPPCusapp;
+			sourceTree = "<group>";
+		};
+		B439E5E62266FC9100B66285 /* LuaCusapp */ = {
+			isa = PBXGroup;
+			children = (
+				B439E5E92266FC9100B66285 /* CQLuaAppDelegate.h */,
+				B439E5E72266FC9100B66285 /* CQLuaAppDelegate.m */,
+				B439E5E82266FC9100B66285 /* CQLuaViewController.h */,
+				B439E5EA2266FC9100B66285 /* CQLuaViewController.m */,
+			);
+			name = LuaCusapp;
+			path = ../cusapp_lua/LuaCusapp;
+			sourceTree = "<group>";
+		};
+		B439E5EB2266FC9100B66285 /* libluacusapp */ = {
+			isa = PBXGroup;
+			children = (
+				B439E5EF2266FC9100B66285 /* cqluasource.h */,
+				B439E5F02266FC9100B66285 /* cqluasource.cpp */,
+				B439E5ED2266FC9100B66285 /* cqluavm.h */,
+				B439E5EC2266FC9100B66285 /* cqluavm.cpp */,
+				B439E5EE2266FC9100B66285 /* cqluavmlibs.cpp */,
+			);
+			name = libluacusapp;
+			path = ../cusapp_lua/libluacusapp;
+			sourceTree = "<group>";
+		};
 		B45C1B5221A02561007CB374 = {
 			isa = PBXGroup;
 			children = (
 				B45C1B5D21A02562007CB374 /* App */,
-				B4BC9C9622041E5500CFD84C /* SubsystemCPP */,
-				B4B9431422250FB500CE3C9A /* SubsystemLua */,
+				B4BC9C9622041E5500CFD84C /* CPPCusapp */,
+				B4B9431422250FB500CE3C9A /* LuaCusapp */,
 				B45C1B5C21A02562007CB374 /* Products */,
 				B4FCC39621F0912700D152DF /* Frameworks */,
 				B4EC3C6621DF6D8800E287A4 /* Library.xcodeproj */,
@@ -422,93 +493,22 @@
 			path = HotfixManager;
 			sourceTree = "<group>";
 		};
-		B4B35635224CB51D0046FE98 /* api */ = {
+		B4B9431422250FB500CE3C9A /* LuaCusapp */ = {
 			isa = PBXGroup;
 			children = (
-				B4B35637224CB51D0046FE98 /* cqhostapi.h */,
-				B4B35636224CB51D0046FE98 /* cqhostapi.cpp */,
+				B439E5E62266FC9100B66285 /* LuaCusapp */,
+				B439E5EB2266FC9100B66285 /* libluacusapp */,
 			);
-			path = api;
+			name = LuaCusapp;
 			sourceTree = "<group>";
 		};
-		B4B9431422250FB500CE3C9A /* SubsystemLua */ = {
+		B4BC9C9622041E5500CFD84C /* CPPCusapp */ = {
 			isa = PBXGroup;
 			children = (
-				B4B9432422250FE500CE3C9A /* ioshost */,
-				B408A5B62226539B00F4239B /* luavm */,
+				B439E5D82266FBCF00B66285 /* CPPCusapp */,
+				B439E5C52266FBCF00B66285 /* libcppcusapp */,
 			);
-			name = SubsystemLua;
-			sourceTree = "<group>";
-		};
-		B4B9432422250FE500CE3C9A /* ioshost */ = {
-			isa = PBXGroup;
-			children = (
-				B49706722227785C00E8D717 /* CQLuaAppDelegate.h */,
-				B4B9432522250FE500CE3C9A /* CQLuaAppDelegate.m */,
-				B49706712227785C00E8D717 /* CQLuaViewController.h */,
-				B49706732227785C00E8D717 /* CQLuaViewController.m */,
-			);
-			name = ioshost;
-			path = ../subsystem_lua/ioshost;
-			sourceTree = "<group>";
-		};
-		B4BC9C9622041E5500CFD84C /* SubsystemCPP */ = {
-			isa = PBXGroup;
-			children = (
-				B4BC9CA82204331C00CFD84C /* ioshost */,
-				B4BC9CA22204331C00CFD84C /* subsystem */,
-			);
-			name = SubsystemCPP;
-			sourceTree = "<group>";
-		};
-		B4BC9CA22204331C00CFD84C /* subsystem */ = {
-			isa = PBXGroup;
-			children = (
-				B4B35635224CB51D0046FE98 /* api */,
-				B4BC9CA52204331C00CFD84C /* sdk */,
-				B4BC9CA32204331C00CFD84C /* user */,
-			);
-			name = subsystem;
-			path = ../subsystem_cpp/subsystem;
-			sourceTree = "<group>";
-		};
-		B4BC9CA32204331C00CFD84C /* user */ = {
-			isa = PBXGroup;
-			children = (
-				CE224EB52206C3FD00B8FB53 /* appdelegate.hh */,
-				CE224EB42206C3FD00B8FB53 /* appdelegate.cpp */,
-				CE224EB12206C15B00B8FB53 /* rootviewcontroller.hh */,
-				CE224EB02206C15B00B8FB53 /* rootviewcontroller.cpp */,
-			);
-			path = user;
-			sourceTree = "<group>";
-		};
-		B4BC9CA52204331C00CFD84C /* sdk */ = {
-			isa = PBXGroup;
-			children = (
-				CE224EA52206AED300B8FB53 /* cqapplication.hh */,
-				CE224EA42206AED300B8FB53 /* cqapplication.cpp */,
-				CE224EAD2206BA1F00B8FB53 /* cquikit.hh */,
-				CE224EA12206AED300B8FB53 /* cqview.hh */,
-				CE224EA22206AED300B8FB53 /* cqview.cpp */,
-				CE224EA62206AED300B8FB53 /* cqviewcontroller.hh */,
-				CE224EA32206AED300B8FB53 /* cqviewcontroller.cpp */,
-				CE224EAA2206B3C100B8FB53 /* cqwindow.hh */,
-				CE224EAB2206B3C100B8FB53 /* cqwindow.cpp */,
-			);
-			path = sdk;
-			sourceTree = "<group>";
-		};
-		B4BC9CA82204331C00CFD84C /* ioshost */ = {
-			isa = PBXGroup;
-			children = (
-				B46997D7222801C30067478B /* CQCPPAppDelegate.h */,
-				B46997D5222801C30067478B /* CQCPPAppDelegate.m */,
-				B46997D6222801C30067478B /* CQCPPViewController.h */,
-				B4BC9CA92204331C00CFD84C /* CQCPPViewController.m */,
-			);
-			name = ioshost;
-			path = ../subsystem_cpp/ioshost;
+			name = CPPCusapp;
 			sourceTree = "<group>";
 		};
 		B4CFD95F21C7475000FFF4CF /* IAPViewController */ = {
@@ -683,38 +683,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE224EA72206AED300B8FB53 /* cqview.cpp in Sources */,
-				B4B9433222250FE500CE3C9A /* CQLuaAppDelegate.m in Sources */,
-				B4696784226098DF00279E50 /* cqluavmlibs.cpp in Sources */,
-				B4BC9CAD2204331C00CFD84C /* CQCPPViewController.m in Sources */,
 				B45C1BFE21A03824007CB374 /* NSObject+CQSingleton.m in Sources */,
-				CE224EAC2206B3C100B8FB53 /* cqwindow.cpp in Sources */,
-				B4AF89932226AEC000F73B6F /* cqluasource.cpp in Sources */,
+				B439E5E22266FBCF00B66285 /* cqapplication.cpp in Sources */,
+				B439E5E32266FBCF00B66285 /* cqhostapi.cpp in Sources */,
 				B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */,
 				B4CFD97421C7475000FFF4CF /* ExampleViewController.m in Sources */,
+				B439E5F22266FC9100B66285 /* CQLuaViewController.m in Sources */,
 				B45C1BF721A03824007CB374 /* UIView+CQ.m in Sources */,
+				B439E5E42266FBCF00B66285 /* CQCPPAppDelegate.m in Sources */,
+				B439E5F32266FC9100B66285 /* cqluavm.cpp in Sources */,
+				B439E5DD2266FBCF00B66285 /* appdelegate.cpp in Sources */,
 				B45C1BF921A03824007CB374 /* UIViewController+CQScene.m in Sources */,
+				B439E5E02266FBCF00B66285 /* cqview.cpp in Sources */,
+				B439E5F52266FC9100B66285 /* cqluasource.cpp in Sources */,
+				B439E5E12266FBCF00B66285 /* cqwindow.cpp in Sources */,
+				B439E5F42266FC9100B66285 /* cqluavmlibs.cpp in Sources */,
 				B4D3B3922260C15B007D3E4A /* BlankViewController.m in Sources */,
 				B416F18E21A3AFCF0045FDF6 /* UIViewController+CQ.m in Sources */,
 				B45C1BB821A02B19007CB374 /* AppDelegate.m in Sources */,
 				B45C1BF621A03824007CB374 /* NSObject+CQ.m in Sources */,
 				B4F7176821F976AD0090F949 /* NSBundle+CQ.m in Sources */,
 				B4DCD87F21F17DAE0090BFBB /* UserSetting.m in Sources */,
-				CE224EB62206C3FD00B8FB53 /* appdelegate.cpp in Sources */,
-				B408A5B92226539B00F4239B /* cqluavm.cpp in Sources */,
+				B439E5DE2266FBCF00B66285 /* rootviewcontroller.cpp in Sources */,
 				B45C1BF821A03824007CB374 /* CQSceneNavigator.m in Sources */,
 				B4E7CD0F2224098800122637 /* main.m in Sources */,
+				B439E5E52266FBCF00B66285 /* CQCPPViewController.m in Sources */,
 				B4CFD97321C7475000FFF4CF /* IAPViewController.m in Sources */,
-				B49706742227785C00E8D717 /* CQLuaViewController.m in Sources */,
-				CE224EA82206AED300B8FB53 /* cqviewcontroller.cpp in Sources */,
+				B439E5DF2266FBCF00B66285 /* cqviewcontroller.cpp in Sources */,
 				B45C1C0021A03824007CB374 /* CQHotfixManager.m in Sources */,
-				B4B35638224CB51D0046FE98 /* cqhostapi.cpp in Sources */,
 				B42806CF21C531C500B886A7 /* CQBus.m in Sources */,
-				CE224EA92206AED300B8FB53 /* cqapplication.cpp in Sources */,
-				B46997D8222801C30067478B /* CQCPPAppDelegate.m in Sources */,
-				CE224EB32206C15B00B8FB53 /* rootviewcontroller.cpp in Sources */,
 				B45C1BF521A03824007CB374 /* CQDemoViewController.m in Sources */,
 				B45C1BFF21A03824007CB374 /* CQSingletonManager.m in Sources */,
+				B439E5F12266FC9100B66285 /* CQLuaAppDelegate.m in Sources */,
 				B42806D221C542DB00B886A7 /* UIDevice+CQ.m in Sources */,
 				B4D3B39A2260C88E007D3E4A /* FloatViewController.m in Sources */,
 				B45C1BFC21A03824007CB374 /* CQCrashListener.m in Sources */,

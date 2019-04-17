@@ -28,11 +28,11 @@ android {
     }
     sourceSets {
         main {
-//            manifest.srcFile '../../subsystem_cpp/androidhost/AndroidManifest.xml'
-//            manifest.srcFile '../../subsystem_lua/androidhost/AndroidManifest.xml'
+//            manifest.srcFile '../../cusapp_cpp/androidasset/AndroidManifest.xml'
+//            manifest.srcFile '../../cusapp_lua/androidasset/AndroidManifest.xml'
 
-            java.srcDirs +=  '../../subsystem_cpp/androidhost/java'
-            java.srcDirs +=  '../../subsystem_lua/androidhost/java'
+            java.srcDirs +=  '../../cusapp_cpp/android/java'
+            java.srcDirs +=  '../../cusapp_lua/android/java'
         }
     }
     externalNativeBuild {

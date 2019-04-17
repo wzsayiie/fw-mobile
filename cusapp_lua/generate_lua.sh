@@ -4,7 +4,7 @@ set -e -u
 
 cd `dirname $0`
 
-search_path="subsystem"
+search_path="libluacusappscript"
 output_file="../GENERATED_LUA/GENERATED_LUA"
 
 rm -rf $output_file
