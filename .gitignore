@@ -21,6 +21,11 @@
 *_osx/**/xcuserdata/
 *_osx/**/build/
 
+# Visual Studio for Mac local files
+EDITOR_CS_OSX/.vs/*
+EDITOR_CS_OSX/bin/*
+EDITOR_CS_OSX/obj/*
+
 # the project's local files
 BUILD/
 GENERATED_HEADERS/
