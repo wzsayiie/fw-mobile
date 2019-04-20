@@ -21,7 +21,17 @@
 *_osx/**/xcuserdata/
 *_osx/**/build/
 
-# Visual Studio for Mac local files
+# Unity local files
+app_unity/Library/*
+app_unity/Temp/*
+
+# Visual Studio local files
+app_unity/*.sln
+app_unity/*.csproj
+app_unity/.vs/*
+app_unity/bin/*
+app_unity/obj/*
+
 EDITOR_CS_OSX/.vs/*
 EDITOR_CS_OSX/bin/*
 EDITOR_CS_OSX/obj/*
