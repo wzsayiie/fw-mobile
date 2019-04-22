@@ -26,6 +26,7 @@
 		B439E5F32266FC9100B66285 /* cqluavm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5EC2266FC9100B66285 /* cqluavm.cpp */; };
 		B439E5F42266FC9100B66285 /* cqluavmlibs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5EE2266FC9100B66285 /* cqluavmlibs.cpp */; };
 		B439E5F52266FC9100B66285 /* cqluasource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5F02266FC9100B66285 /* cqluasource.cpp */; };
+		B443BAC4226D902F000D3021 /* Assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B41264AC226D897100745ABF /* Assets.bundle */; };
 		B444D8E321DF6DDF00E5FF54 /* libLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4EC3C6B21DF6D8800E287A4 /* libLibrary.a */; };
 		B45C1BB121A02B19007CB374 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B45C1B7721A02B19007CB374 /* LaunchScreen.storyboard */; };
 		B45C1BB221A02B19007CB374 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B45C1B7821A02B19007CB374 /* Assets.xcassets */; };
@@ -55,6 +56,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B41264AB226D897100745ABF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B41264A7226D897100745ABF /* Assets.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B4EB47B6226D87C1008B5E2F;
+			remoteInfo = Assets;
+		};
+		B41264B5226D8F5400745ABF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B41264A7226D897100745ABF /* Assets.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B4EB47B5226D87C1008B5E2F;
+			remoteInfo = Assets;
+		};
 		B444D8E021DF6DD900E5FF54 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B4EC3C6621DF6D8800E287A4 /* Library.xcodeproj */;
@@ -72,6 +87,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B41264A7226D897100745ABF /* Assets.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Assets.xcodeproj; path = ../library_ios/Assets.xcodeproj; sourceTree = "<group>"; };
 		B416F18821A2CD630045FDF6 /* Scenes.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Scenes.plist; sourceTree = "<group>"; };
 		B416F18A21A2D4940045FDF6 /* QuickModels.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = QuickModels.plist; sourceTree = "<group>"; };
 		B416F18C21A3AFCF0045FDF6 /* UIViewController+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CQ.m"; sourceTree = "<group>"; };
@@ -170,6 +186,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B41264A8226D897100745ABF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B41264AC226D897100745ABF /* Assets.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		B416F18721A2CCE50045FDF6 /* Root */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +305,7 @@
 				B4FCC39621F0912700D152DF /* Frameworks */,
 				B45C1B5C21A02562007CB374 /* Products */,
 				B4EC3C6621DF6D8800E287A4 /* Library.xcodeproj */,
+				B41264A7226D897100745ABF /* Assets.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -604,6 +629,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				B41264B6226D8F5400745ABF /* PBXTargetDependency */,
 				B444D8E121DF6DD900E5FF54 /* PBXTargetDependency */,
 			);
 			name = App;
@@ -638,6 +664,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = B41264A8226D897100745ABF /* Products */;
+					ProjectRef = B41264A7226D897100745ABF /* Assets.xcodeproj */;
+				},
+				{
 					ProductGroup = B4EC3C6721DF6D8800E287A4 /* Products */;
 					ProjectRef = B4EC3C6621DF6D8800E287A4 /* Library.xcodeproj */;
 				},
@@ -650,6 +680,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		B41264AC226D897100745ABF /* Assets.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Assets.bundle;
+			remoteRef = B41264AB226D897100745ABF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		B4EC3C6B21DF6D8800E287A4 /* libLibrary.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -664,6 +701,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B443BAC4226D902F000D3021 /* Assets.bundle in Resources */,
 				B45C1BB221A02B19007CB374 /* Assets.xcassets in Resources */,
 				B45C1BD021A034C0007CB374 /* ExampleViewController.xib in Resources */,
 				B45C1BB121A02B19007CB374 /* LaunchScreen.storyboard in Resources */,
@@ -722,6 +760,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B41264B6226D8F5400745ABF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Assets;
+			targetProxy = B41264B5226D8F5400745ABF /* PBXContainerItemProxy */;
+		};
 		B444D8E121DF6DD900E5FF54 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Library;
