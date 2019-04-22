@@ -10,7 +10,7 @@
 @interface CQSubsystemManager : NSObject
 + (instancetype)sharedObject;
 @property (nonatomic, weak) id<CQSubsystemManagerDelegate> delegate;
-@property (nonatomic, readonly) NSString *startingSubsystemName;
+- (NSString *)popLastStartedSubsystemName;
 - (BOOL)startSubsystem:(NSString *)name;
 - (void)stopSubsystem:(NSString *)name;
 @end

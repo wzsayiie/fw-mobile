@@ -10,14 +10,14 @@
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
-        self.subsystemName = CQSubsystemManager.sharedObject.startingSubsystemName;
+        self.subsystemName = [CQSubsystemManager.sharedObject popLastStartedSubsystemName];
     }
     return self;
 }
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.subsystemName = CQSubsystemManager.sharedObject.startingSubsystemName;
+        self.subsystemName = [CQSubsystemManager.sharedObject popLastStartedSubsystemName];
     }
     return self;
 }

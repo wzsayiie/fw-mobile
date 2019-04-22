@@ -13,7 +13,7 @@
 @interface CQSubsystemManager ()
 @property (nonatomic) NSDictionary<NSString *, Class> *controllerClassNames;
 @property (nonatomic) NSMutableDictionary<NSString *, CQSubsystemInfo *> *runningSubsystemInfos;
-@property (nonatomic) NSString *startingSubsystemName;
+@property (nonatomic) NSMutableArray<NSString *> *lastStartedSubsystemNames;
 @end
 
 @implementation CQSubsystemManager
@@ -42,6 +42,23 @@
     return _runningSubsystemInfos;
 }
 
+- (NSMutableArray<NSString *> *)lastStartedSubsystemNames {
+    if (_lastStartedSubsystemNames == nil) {
+        _lastStartedSubsystemNames = [NSMutableArray array];
+    }
+    return _lastStartedSubsystemNames;
+}
+
+- (NSString *)popLastStartedSubsystemName {
+    if (self.lastStartedSubsystemNames.count > 0) {
+        NSString *first = self.lastStartedSubsystemNames[0];
+        [self.lastStartedSubsystemNames removeObjectAtIndex:0];
+        return first;
+    } else {
+        return nil;
+    }
+}
+
 - (BOOL)startSubsystem:(NSString *)name {
     if (name.length == 0) {
         E(@"try start subsystem but specified name is empty");
@@ -52,8 +69,10 @@
         return NO;
     }
 
+    //record this name, for the subsystem controller could find own one.
+    [self.lastStartedSubsystemNames addObject:name];
+    
     CQSubsystemInfo *subsystemInfo = nil;
-    self.startingSubsystemName = name;
     if (self.delegate == nil) do {
         I(@"try start subsystem '%@' with default method", name);
         
@@ -81,7 +100,6 @@
             subsystemInfo.controller = nil;
         }
     }
-    self.startingSubsystemName = nil;
     
     if (subsystemInfo != nil) {
         I(@"start subsystem succeeded");
