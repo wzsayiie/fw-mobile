@@ -16,6 +16,11 @@ public class ActivityDispatcher {
         return SingletonManager.get().getInstanceOf(ActivityDispatcher.class);
     }
 
+    //subsystems can find current resumed activity dynamically by this method.
+    public static Activity currentResumedActivity() {
+        return get().mResumedActivity;
+    }
+
     //activity lifecycle
 
     public ActivityDispatcher() {
