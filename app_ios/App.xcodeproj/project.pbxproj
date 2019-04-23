@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B401E5C8226F3470002F65BF /* Resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B401E5C7226F344B002F65BF /* Resource.bundle */; };
 		B416F18921A2CD630045FDF6 /* Scenes.plist in Resources */ = {isa = PBXBuildFile; fileRef = B416F18821A2CD630045FDF6 /* Scenes.plist */; };
 		B416F18B21A2D4940045FDF6 /* QuickModels.plist in Resources */ = {isa = PBXBuildFile; fileRef = B416F18A21A2D4940045FDF6 /* QuickModels.plist */; };
 		B416F18E21A3AFCF0045FDF6 /* UIViewController+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B416F18C21A3AFCF0045FDF6 /* UIViewController+CQ.m */; };
@@ -26,7 +27,6 @@
 		B439E5F32266FC9100B66285 /* cqluavm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5EC2266FC9100B66285 /* cqluavm.cpp */; };
 		B439E5F42266FC9100B66285 /* cqluavmlibs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5EE2266FC9100B66285 /* cqluavmlibs.cpp */; };
 		B439E5F52266FC9100B66285 /* cqluasource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5F02266FC9100B66285 /* cqluasource.cpp */; };
-		B443BAC4226D902F000D3021 /* Assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B41264AC226D897100745ABF /* Assets.bundle */; };
 		B444D8E321DF6DDF00E5FF54 /* libLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4EC3C6B21DF6D8800E287A4 /* libLibrary.a */; };
 		B45C1BB121A02B19007CB374 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B45C1B7721A02B19007CB374 /* LaunchScreen.storyboard */; };
 		B45C1BB221A02B19007CB374 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B45C1B7821A02B19007CB374 /* Assets.xcassets */; };
@@ -56,19 +56,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B41264AB226D897100745ABF /* PBXContainerItemProxy */ = {
+		B401E5C6226F344B002F65BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = B41264A7226D897100745ABF /* Assets.xcodeproj */;
+			containerPortal = B41264A7226D897100745ABF /* Resource.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = B4EB47B6226D87C1008B5E2F;
-			remoteInfo = Assets;
+			remoteInfo = Resource;
 		};
-		B41264B5226D8F5400745ABF /* PBXContainerItemProxy */ = {
+		B401E5C9226F3489002F65BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = B41264A7226D897100745ABF /* Assets.xcodeproj */;
+			containerPortal = B41264A7226D897100745ABF /* Resource.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = B4EB47B5226D87C1008B5E2F;
-			remoteInfo = Assets;
+			remoteInfo = Resource;
 		};
 		B444D8E021DF6DD900E5FF54 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -87,7 +87,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B41264A7226D897100745ABF /* Assets.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Assets.xcodeproj; path = ../library_ios/Assets.xcodeproj; sourceTree = "<group>"; };
+		B41264A7226D897100745ABF /* Resource.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Resource.xcodeproj; path = ../library_ios/Resource.xcodeproj; sourceTree = "<group>"; };
 		B416F18821A2CD630045FDF6 /* Scenes.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Scenes.plist; sourceTree = "<group>"; };
 		B416F18A21A2D4940045FDF6 /* QuickModels.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = QuickModels.plist; sourceTree = "<group>"; };
 		B416F18C21A3AFCF0045FDF6 /* UIViewController+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CQ.m"; sourceTree = "<group>"; };
@@ -186,10 +186,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B41264A8226D897100745ABF /* Products */ = {
+		B401E5C3226F344A002F65BF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B41264AC226D897100745ABF /* Assets.bundle */,
+				B401E5C7226F344B002F65BF /* Resource.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -305,7 +305,7 @@
 				B4FCC39621F0912700D152DF /* Frameworks */,
 				B45C1B5C21A02562007CB374 /* Products */,
 				B4EC3C6621DF6D8800E287A4 /* Library.xcodeproj */,
-				B41264A7226D897100745ABF /* Assets.xcodeproj */,
+				B41264A7226D897100745ABF /* Resource.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -629,8 +629,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				B41264B6226D8F5400745ABF /* PBXTargetDependency */,
 				B444D8E121DF6DD900E5FF54 /* PBXTargetDependency */,
+				B401E5CA226F3489002F65BF /* PBXTargetDependency */,
 			);
 			name = App;
 			productName = "App-iOS";
@@ -664,12 +664,12 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = B41264A8226D897100745ABF /* Products */;
-					ProjectRef = B41264A7226D897100745ABF /* Assets.xcodeproj */;
-				},
-				{
 					ProductGroup = B4EC3C6721DF6D8800E287A4 /* Products */;
 					ProjectRef = B4EC3C6621DF6D8800E287A4 /* Library.xcodeproj */;
+				},
+				{
+					ProductGroup = B401E5C3226F344A002F65BF /* Products */;
+					ProjectRef = B41264A7226D897100745ABF /* Resource.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -680,11 +680,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		B41264AC226D897100745ABF /* Assets.bundle */ = {
+		B401E5C7226F344B002F65BF /* Resource.bundle */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = Assets.bundle;
-			remoteRef = B41264AB226D897100745ABF /* PBXContainerItemProxy */;
+			path = Resource.bundle;
+			remoteRef = B401E5C6226F344B002F65BF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		B4EC3C6B21DF6D8800E287A4 /* libLibrary.a */ = {
@@ -701,7 +701,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B443BAC4226D902F000D3021 /* Assets.bundle in Resources */,
+				B401E5C8226F3470002F65BF /* Resource.bundle in Resources */,
 				B45C1BB221A02B19007CB374 /* Assets.xcassets in Resources */,
 				B45C1BD021A034C0007CB374 /* ExampleViewController.xib in Resources */,
 				B45C1BB121A02B19007CB374 /* LaunchScreen.storyboard in Resources */,
@@ -760,10 +760,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B41264B6226D8F5400745ABF /* PBXTargetDependency */ = {
+		B401E5CA226F3489002F65BF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Assets;
-			targetProxy = B41264B5226D8F5400745ABF /* PBXContainerItemProxy */;
+			name = Resource;
+			targetProxy = B401E5C9226F3489002F65BF /* PBXContainerItemProxy */;
 		};
 		B444D8E121DF6DD900E5FF54 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

@@ -13,7 +13,7 @@
 /* Begin PBXFileReference section */
 		B443BAC5226D908A000D3021 /* CQDefaultSubsystemController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CQDefaultSubsystemController.xib; sourceTree = "<group>"; };
 		B443BAC6226D908A000D3021 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B4EB47B6226D87C1008B5E2F /* Assets.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Assets.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4EB47B6226D87C1008B5E2F /* Resource.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Resource.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,19 +30,19 @@
 		B4E7251F226D88F1008CD949 /* Subsystem */ = {
 			isa = PBXGroup;
 			children = (
-				B4E72520226D8901008CD949 /* SubsystemAssets */,
+				B4E72520226D8901008CD949 /* SubsystemResource */,
 			);
 			name = Subsystem;
 			sourceTree = "<group>";
 		};
-		B4E72520226D8901008CD949 /* SubsystemAssets */ = {
+		B4E72520226D8901008CD949 /* SubsystemResource */ = {
 			isa = PBXGroup;
 			children = (
 				B443BAC5226D908A000D3021 /* CQDefaultSubsystemController.xib */,
 				B443BAC6226D908A000D3021 /* Info.plist */,
 			);
-			name = SubsystemAssets;
-			path = ../library/subsystem/SubsystemAssets;
+			name = SubsystemResource;
+			path = ../library/subsystem/SubsystemResource;
 			sourceTree = "<group>";
 		};
 		B4EB47AD226D87C1008B5E2F = {
@@ -56,7 +56,7 @@
 		B4EB47B7226D87C1008B5E2F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B4EB47B6226D87C1008B5E2F /* Assets.bundle */,
+				B4EB47B6226D87C1008B5E2F /* Resource.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -64,9 +64,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B4EB47B5226D87C1008B5E2F /* Assets */ = {
+		B4EB47B5226D87C1008B5E2F /* Resource */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B4EB47BC226D87C1008B5E2F /* Build configuration list for PBXNativeTarget "Assets" */;
+			buildConfigurationList = B4EB47BC226D87C1008B5E2F /* Build configuration list for PBXNativeTarget "Resource" */;
 			buildPhases = (
 				B4EB47B2226D87C1008B5E2F /* Sources */,
 				B4EB47B3226D87C1008B5E2F /* Frameworks */,
@@ -76,9 +76,9 @@
 			);
 			dependencies = (
 			);
-			name = Assets;
-			productName = Assets;
-			productReference = B4EB47B6226D87C1008B5E2F /* Assets.bundle */;
+			name = Resource;
+			productName = Resource;
+			productReference = B4EB47B6226D87C1008B5E2F /* Resource.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -95,7 +95,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B4EB47B1226D87C1008B5E2F /* Build configuration list for PBXProject "Assets" */;
+			buildConfigurationList = B4EB47B1226D87C1008B5E2F /* Build configuration list for PBXProject "Resource" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -107,7 +107,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B4EB47B5226D87C1008B5E2F /* Assets */,
+				B4EB47B5226D87C1008B5E2F /* Resource */,
 			);
 		};
 /* End PBXProject section */
@@ -250,9 +250,9 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/../library/subsystem/SubsystemAssets/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/../library/subsystem/SubsystemResource/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
-				PRODUCT_BUNDLE_IDENTIFIER = me.wzsayiie.libary.assets.Assets;
+				PRODUCT_BUNDLE_IDENTIFIER = me.wzsayiie.libary.resource;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -265,9 +265,9 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/../library/subsystem/SubsystemAssets/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/../library/subsystem/SubsystemResource/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
-				PRODUCT_BUNDLE_IDENTIFIER = me.wzsayiie.libary.assets.Assets;
+				PRODUCT_BUNDLE_IDENTIFIER = me.wzsayiie.libary.resource;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -278,7 +278,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B4EB47B1226D87C1008B5E2F /* Build configuration list for PBXProject "Assets" */ = {
+		B4EB47B1226D87C1008B5E2F /* Build configuration list for PBXProject "Resource" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B4EB47BA226D87C1008B5E2F /* Debug */,
@@ -287,7 +287,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B4EB47BC226D87C1008B5E2F /* Build configuration list for PBXNativeTarget "Assets" */ = {
+		B4EB47BC226D87C1008B5E2F /* Build configuration list for PBXNativeTarget "Resource" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B4EB47BD226D87C1008B5E2F /* Debug */,

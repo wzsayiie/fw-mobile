@@ -10,7 +10,7 @@
 }
 
 - (NSBundle *)assetsBundle {
-    NSString *bundlePath = [NSBundle.mainBundle pathForResource:@"Assets" ofType:@"bundle"];
+    NSString *bundlePath = [NSBundle.mainBundle pathForResource:@"Resource" ofType:@"bundle"];
     NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
     return bundle;
 }

@@ -64,7 +64,7 @@ NSString *const CQSceneStyleFloat = @"CQSceneStyleFloat";
         I(@"request launch stack scene '%@'", stackItem.address);
         [self request:stackItem.address query:nil response:nil];
     } else {
-        E(@"not found launch stack scene");
+        I(@"not found launch stack scene");
     }
     
     if (floatItem != nil) {
