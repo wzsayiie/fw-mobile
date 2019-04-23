@@ -7,7 +7,7 @@ struct _self_cqSubsystemManager {
 cqSubsystemManager::cqSubsystemManager() {
 }
 
-cqSubsystemManager::ref cqSubsystemManager::sharedObject() {
+cqSubsystemManager::ref cqSubsystemManager::get() {
     static cqSubsystemManager::ref object;
     if (object == nullptr) {
         object = cqSubsystemManager::create();
