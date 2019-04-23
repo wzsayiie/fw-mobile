@@ -3,7 +3,7 @@
 #include "cqviewcontroller.hh"
 #include "cqhostapi.h"
 
-struct cqWindow : cq_class<cqWindow, struct _self_cqWindow, cqView> {
+cq_class(cqWindow, _self_cqWindow, cqView) {
     
     cqWindow();
     

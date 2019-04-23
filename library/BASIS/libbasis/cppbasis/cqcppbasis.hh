@@ -17,7 +17,9 @@ struct _cqRoot {
 
 //base interface
 
-template<class SELF, class SUPER> struct cq_interface : SUPER {
+#define cq_interface(SELF, SUPER) struct SELF : _cq_interface<SELF, SUPER>
+
+template<class SELF, class SUPER> struct _cq_interface : SUPER {
     
     static_assert(sizeof(SUPER) == sizeof(void *),
         "interface shouldn't extend a class that contains data member");
@@ -29,12 +31,14 @@ template<class SELF, class SUPER> struct cq_interface : SUPER {
     }
 };
 
-struct cqInterface : cq_interface<cqInterface, _cqRoot> {
+cq_interface(cqInterface, _cqRoot) {
 };
 
 //base class
 
-template<class SELF, class DATA_STRUCT, class SUPER> struct cq_class : SUPER {
+#define cq_class(SELF, DATA, SUPER) struct SELF : _cq_class<SELF, struct DATA, SUPER>
+
+template<class SELF, class DATA, class SUPER> struct _cq_class : SUPER {
     
 public:
     
@@ -48,13 +52,13 @@ protected:
     
     typedef SUPER super;
     
-    shared_ptr<DATA_STRUCT> self;
+    shared_ptr<DATA> self;
     
-    cq_class() : self(make_shared<DATA_STRUCT>()) {
+    _cq_class() : self(make_shared<DATA>()) {
     }
 };
 
-struct cqObject : cq_class<cqObject, struct _self_cqObject, _cqRoot> {
+cq_class(cqObject, _self_cqObject, _cqRoot) {
     
     cqObject();
 };

@@ -2,7 +2,7 @@
 
 #include "cqcppbasis.hh"
 
-struct cqSubsystemManager : cq_class<cqSubsystemManager, struct _self_cqSubsystemManager, cqObject> {
+cq_class(cqSubsystemManager, _self_cqSubsystemManager, cqObject) {
     
     cqSubsystemManager();
     

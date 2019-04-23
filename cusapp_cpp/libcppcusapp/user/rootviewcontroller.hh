@@ -2,7 +2,7 @@
 
 #include "cquikit.hh"
 
-struct RootViewController : cq_class<RootViewController, struct _self_RootViewController, cqViewController> {
+cq_class(RootViewController, _self_RootViewController, cqViewController) {
 
     RootViewController();
     

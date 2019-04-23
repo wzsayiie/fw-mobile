@@ -2,7 +2,7 @@
 
 #include "cquikit.hh"
 
-struct AppDelegate : cq_class<AppDelegate, struct _self_AppDelegate, cqApplicationDelegate> {
+cq_class(AppDelegate, _self_AppDelegate, cqApplicationDelegate) {
     
     AppDelegate();
     
