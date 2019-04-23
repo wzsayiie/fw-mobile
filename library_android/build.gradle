@@ -31,7 +31,7 @@ android {
             java.srcDirs += '../library/foundation/android/java'
             java.srcDirs += '../library/subsystem/android/java'
 
-            res.srcDirs += '../library/subsystem/androidassets/res'
+            res.srcDirs += '../library/subsystem/androidresource/res'
         }
     }
     externalNativeBuild {

@@ -28,8 +28,8 @@ android {
     }
     sourceSets {
         main {
-//            manifest.srcFile '../../cusapp_cpp/androidasset/AndroidManifest.xml'
-//            manifest.srcFile '../../cusapp_lua/androidasset/AndroidManifest.xml'
+//            manifest.srcFile '../../cusapp_cpp/androidresource/AndroidManifest.xml'
+//            manifest.srcFile '../../cusapp_lua/androidresource/AndroidManifest.xml'
 
             java.srcDirs += '../../cusapp_cpp/android/java'
             java.srcDirs += '../../cusapp_lua/android/java'
