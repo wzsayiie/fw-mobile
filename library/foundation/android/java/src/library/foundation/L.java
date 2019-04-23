@@ -4,8 +4,13 @@ import android.util.Log;
 
 public class L {
 
-    public static void i(String f, Object... a) { info (null, 0, formalize(f, a)); }
-    public static void e(String f, Object... a) { error(null, 0, formalize(f, a)); }
+    public static void i(String format, Object... args) {
+        Log.i("zzz", formalize(format, args));
+    }
+
+    public static void e(String format, Object... args) {
+        Log.e("zzz", formalize(format, args));
+    }
 
     public static String string(Object object) {
         if (object != null) {
@@ -24,7 +29,4 @@ public class L {
             return "EXCEPTION OUTPUT";
         }
     }
-
-    public static void info (String file, int line, String message) { Log.i("zzz", message); }
-    public static void error(String file, int line, String message) { Log.e("zzz", message); }
 }

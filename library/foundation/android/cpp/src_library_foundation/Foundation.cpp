@@ -4,7 +4,7 @@
 static jclass clazz() {
     static jclass clazz = nullptr;
     if (clazz == nullptr) {
-        cqJNIFindClass(&clazz, cqJNIGetEnv(), "src/library/foundation/L");
+        cqJNIFindClass(&clazz, cqJNIGetEnv(), "src/library/foundation/Foundation");
     }
     return clazz;
 }
@@ -12,7 +12,7 @@ static jclass clazz() {
 void cq_log_info(const char *file, int32_t line, const char *message) {
     static jmethodID methodID = nullptr;
 
-    cqJNIStaticMethod method(clazz(), &methodID, "info");
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_log_info");
 
     method.push(file);
     method.push(line);
@@ -24,7 +24,7 @@ void cq_log_info(const char *file, int32_t line, const char *message) {
 void cq_log_error(const char *file, int32_t line, const char *message) {
     static jmethodID methodID = nullptr;
 
-    cqJNIStaticMethod method(clazz(), &methodID, "error");
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_log_error");
 
     method.push(file);
     method.push(line);

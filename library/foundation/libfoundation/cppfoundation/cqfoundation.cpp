@@ -1,4 +1,4 @@
-#include "cqlog.hh"
+#include "cqfoundation.hh"
 #include "cqfoundationarche.h"
 #include <cstdarg>
 #include <cstdio>
