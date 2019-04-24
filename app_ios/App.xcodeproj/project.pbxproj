@@ -259,7 +259,7 @@
 			path = api;
 			sourceTree = "<group>";
 		};
-		B439E5D82266FBCF00B66285 /* CPPCusapp */ = {
+		B439E5D82266FBCF00B66285 /* iOSCPPCusapp */ = {
 			isa = PBXGroup;
 			children = (
 				B439E5DC2266FBCF00B66285 /* CQCPPAppDelegate.h */,
@@ -267,11 +267,11 @@
 				B439E5D92266FBCF00B66285 /* CQCPPViewController.h */,
 				B439E5DB2266FBCF00B66285 /* CQCPPViewController.m */,
 			);
-			name = CPPCusapp;
-			path = ../cusapp_cpp/CPPCusapp;
+			name = iOSCPPCusapp;
+			path = ../cusapp_cpp/iOSCPPCusapp;
 			sourceTree = "<group>";
 		};
-		B439E5E62266FC9100B66285 /* LuaCusapp */ = {
+		B439E5E62266FC9100B66285 /* iOSLuaCusapp */ = {
 			isa = PBXGroup;
 			children = (
 				B439E5E92266FC9100B66285 /* CQLuaAppDelegate.h */,
@@ -279,8 +279,8 @@
 				B439E5E82266FC9100B66285 /* CQLuaViewController.h */,
 				B439E5EA2266FC9100B66285 /* CQLuaViewController.m */,
 			);
-			name = LuaCusapp;
-			path = ../cusapp_lua/LuaCusapp;
+			name = iOSLuaCusapp;
+			path = ../cusapp_lua/iOSLuaCusapp;
 			sourceTree = "<group>";
 		};
 		B439E5EB2266FC9100B66285 /* libluacusapp */ = {
@@ -520,7 +520,7 @@
 		B4B9431422250FB500CE3C9A /* LuaCusapp */ = {
 			isa = PBXGroup;
 			children = (
-				B439E5E62266FC9100B66285 /* LuaCusapp */,
+				B439E5E62266FC9100B66285 /* iOSLuaCusapp */,
 				B439E5EB2266FC9100B66285 /* libluacusapp */,
 			);
 			name = LuaCusapp;
@@ -529,7 +529,7 @@
 		B4BC9C9622041E5500CFD84C /* CPPCusapp */ = {
 			isa = PBXGroup;
 			children = (
-				B439E5D82266FBCF00B66285 /* CPPCusapp */,
+				B439E5D82266FBCF00B66285 /* iOSCPPCusapp */,
 				B439E5C52266FBCF00B66285 /* libcppcusapp */,
 			);
 			name = CPPCusapp;
