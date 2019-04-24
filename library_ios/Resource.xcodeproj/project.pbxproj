@@ -250,7 +250,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/../library/subsystem/SubsystemResource/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/../library/subsystem/iOSSubsystemResource/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = me.wzsayiie.libary.resource;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -265,7 +265,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/../library/subsystem/SubsystemResource/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/../library/subsystem/iOSSubsystemResource/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = me.wzsayiie.libary.resource;
 				PRODUCT_NAME = "$(TARGET_NAME)";
