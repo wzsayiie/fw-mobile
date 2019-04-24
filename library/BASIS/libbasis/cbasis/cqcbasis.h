@@ -9,22 +9,22 @@
 #   include <TargetConditionals.h>
 # endif
 
-# if defined(ANDROID)
+# if ANDROID
 #   define CQ_ON_ANDROID 1
 #   define CQ_ON_IPHONE  0
 #   define CQ_ON_OSX     0
 #   define CQ_ON_WINDOWS 0
-# elif defined(TARGET_OS_IPHONE)
+# elif TARGET_OS_IPHONE
 #   define CQ_ON_ANDROID 0
 #   define CQ_ON_IPHONE  1
 #   define CQ_ON_OSX     0
 #   define CQ_ON_WINDOWS 0
-# elif defined(TARGET_OS_OSX)
+# elif TARGET_OS_OSX
 #   define CQ_ON_ANDROID 0
 #   define CQ_ON_IPHONE  0
 #   define CQ_ON_OSX     1
 #   define CQ_ON_WINDOWS 0
-# elif defined(_WIN32)
+# elif _WIN32
 #   define CQ_ON_ANDROID 0
 #   define CQ_ON_IPHONE  0
 #   define CQ_ON_OSX     0
