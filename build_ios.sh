@@ -25,8 +25,8 @@ archs_li="-arch armv7s -arch arm64 -arch arm64e"
 outs_dir="BUILD"
 outs_fil="app"
 
-sh genm_headers.sh
-sh cusapp_lua/genm_lua.sh
+sh generate_headers.sh
+sh cusapp_lua/generate_lua.sh
 ##
 ## configrution end
 

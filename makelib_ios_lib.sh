@@ -12,7 +12,7 @@ archs_list="x86_64 arm64 arm64e"
 ultima_dir="app_unity/Plugins/iOS"
 ultima_fil="libLibrary.a"
 
-sh genm_headers.sh
+sh generate_headers.sh
 ### configutation end
 
 # build library
