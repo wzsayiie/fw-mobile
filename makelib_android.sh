@@ -8,7 +8,7 @@ cd `dirname $0`
 projct_dir="app_android"
 module_dir="library_android"
 module_nam="library"
-ultima_dir="app_unity/Plugins/Android"
+ultima_dir="app_unity/Assets/Plugins/Android"
 ultima_fil="library.aar"
 
 sh generate_headers.sh
@@ -17,6 +17,9 @@ sh generate_headers.sh
 origin_dir="$module_dir/build/outputs/aar"
 origin_fil="$module_nam-release.aar"
 
+# clean
+rm -rf $ultima_dir/$ultima_fil
+
 # build library
 pushd $projct_dir
 ./gradlew :$module_nam:clean
@@ -24,6 +27,6 @@ pushd $projct_dir
 popd
 
 # copy file
-mv $origin_dir/$origin_fil $origin_dir/$ultima_fil
 mkdir -p                   $ultima_dir
-mv $origin_dir/$ultima_fil $ultima_dir
+cp $origin_dir/$origin_fil $ultima_dir
+mv $ultima_dir/$origin_fil $ultima_dir/$ultima_fil

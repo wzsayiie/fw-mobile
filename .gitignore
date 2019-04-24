@@ -13,15 +13,18 @@
 *_android/**/*.iml
 
 # Xcode local files
-*_OSX/**/xcuserdata/
-*_OSX/**/build/
-
 *_ios/**/xcuserdata/
 *_ios/**/build/
+*_ios/**/export/
+
 *_osx/**/xcuserdata/
 *_osx/**/build/
+*_osx/**/export/
 
 # Unity local files
+app_unity/Assets/Plugins/*
+app_unity/Assets/Plugins.meta
+
 app_unity/Library/*
 app_unity/Temp/*
 

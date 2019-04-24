@@ -9,15 +9,16 @@ projct_dir="library_ios"
 projct_fil="Library.xcodeproj"
 target_nam="Library"
 archs_list="x86_64 arm64 arm64e"
-ultima_dir="app_unity/Plugins/iOS"
+ultima_dir="app_unity/Assets/Plugins/iOS"
 ultima_fil="libLibrary.a"
 
 sh generate_headers.sh
 ### configutation end
 
-# build library
-function clean_cache() {
+function clean_last() {
     rm -rf $projct_dir/build
+    rm -rf $projct_dir/export/*.a
+    rm -rf $ultima_dir/$ultima_fil
 }
 
 function build_archive() {
@@ -34,26 +35,28 @@ function build_archive() {
     cmd_line="$cmd_line -arch $arch_item"
     cmd_line="$cmd_line -sdk $sdk_type"
     cmd_line="$cmd_line -configuration Release"
-    cmd_line="$cmd_line CONFIGURATION_BUILD_DIR=build/outputs"
+    cmd_line="$cmd_line CONFIGURATION_BUILD_DIR=export"
     $cmd_line
 
-    local old_name=$projct_dir/build/outputs/lib$target_nam.a
-    local new_name=$projct_dir/build/outputs/lib$target_nam.$arch_item.a
+    local old_name=$projct_dir/export/lib$target_nam.a
+    local new_name=$projct_dir/export/lib$target_nam.$arch_item.a
     mv $old_name $new_name
 }
 
 function merge_archives() {
-    local thin_archs="$projct_dir/build/outputs/lib$target_nam.*.a"
-    local merged_lib="$projct_dir/build/outputs/$ultima_fil"
+    local thin_archs="$projct_dir/export/lib$target_nam.*.a"
+    local merged_lib="$projct_dir/export/$ultima_fil"
     lipo -create $thin_archs -output $merged_lib
 }
 
-clean_cache
+function copy_to_destination() {
+    mkdir -p                          $ultima_dir
+    cp $projct_dir/export/$ultima_fil $ultima_dir
+}
+
+clean_last
 for arch_item in $archs_list; do
     build_archive $arch_item
 done
 merge_archives
-
-# copy the library
-mkdir -p                                 $ultima_dir
-mv $projct_dir/build/outputs/$ultima_fil $ultima_dir
+copy_to_destination
