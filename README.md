@@ -5,17 +5,11 @@ This is a framework and demonstration for mobile development.
 Currently developing by
 *Xcode*, *Android Studio* and *Unity* are supported.
 
-## Top Directory's Naming Style
-
-If a direcotory is *necessary* for building Android and iOS app,
-then it named by *lowercase* and *underline*,
-otherwise it's name constituted by uppercase and underline.
-
 ## Directories Structure
 
 **App Projects:**
 
-These are `Android Studio`, `Xcode` and `Unity` project,
+These are `Android Studio`, `Xcode` and `Unity` projects,
 
 * app_android/
 * app_ios/
@@ -26,12 +20,11 @@ These are `Android Studio`, `Xcode` and `Unity` project,
 For building Android and iOS app, and placing them to *BUILD/*.
 to run `*.sh` on macOS, run `*.bat` on Windows.
 
-* BUILD/
-* build_android.sh
 * build_android.bat
+* build_android.sh
 * build_ios.sh
-* build_unity.sh
 * build_unity.bat
+* build_unity.sh
 
 **Portable Custom App:**
 
@@ -55,7 +48,7 @@ developer can use them to edit source files and project files.
 * EDITOR_CS_WINDOWS/
 
 These scripts traverse headers and create new homonymic headers
-which reference former.
+which reference former to *GENERATED_HEADERS/*.
 It will avoid developer adding vast header search paths tediously.
 
 * generate_headers.bat
@@ -66,7 +59,7 @@ It will avoid developer adding vast header search paths tediously.
 The corss-platform source,
 that can be compiled and executed on Android and iOS.
 
-*NOTE*: there are macOS and Windows Project,
+*NOTE*: macOS and Windows projects are provided,
 because developer need the library possibly on Unity editor.
 
 * library
@@ -78,20 +71,14 @@ because developer need the library possibly on Unity editor.
 **Library Build Scripts:**
 
 The scripts will compile portable libary,
-and copy them to *app_unity/Plugins*.
+and copy them to *app_unity/Assets/Plugins*.
 
-* lib_build_android.bat
-* lib_build_android.sh
-* lib_build_ios.sh
-* lib_build_osx.sh
-* lib_build_windows.bat
-
-**Resource Dispatch:**
-
-Copy the recource files (e.g. configuration files, pictures) to *app_unity*.
-
-* lib_copy_res.bat
-* lib_copy_res.sh
+* makelib_android.bat
+* makelib_android.sh
+* makelib_ios_lib.sh (for *library_ios/Library.xcodeproj*)
+* makelib_ios_res.sh (for *library_ios/Resource.xcodeproj*)
+* makelib_osx.sh
+* makelib_windows.bat
 
 **External Libraries from Thirds:**
 
