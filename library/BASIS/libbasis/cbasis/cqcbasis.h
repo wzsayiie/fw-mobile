@@ -5,6 +5,37 @@
 #include <stdlib.h>
 #include <string.h>
 
+# ifdef __APPLE__
+#   include <TargetConditionals.h>
+# endif
+
+# if defined(ANDROID)
+#   define CQ_ON_ANDROID 1
+#   define CQ_ON_IPHONE  0
+#   define CQ_ON_OSX     0
+#   define CQ_ON_WINDOWS 0
+# elif defined(TARGET_OS_IPHONE)
+#   define CQ_ON_ANDROID 0
+#   define CQ_ON_IPHONE  1
+#   define CQ_ON_OSX     0
+#   define CQ_ON_WINDOWS 0
+# elif defined(TARGET_OS_OSX)
+#   define CQ_ON_ANDROID 0
+#   define CQ_ON_IPHONE  0
+#   define CQ_ON_OSX     1
+#   define CQ_ON_WINDOWS 0
+# elif defined(_WIN32)
+#   define CQ_ON_ANDROID 0
+#   define CQ_ON_IPHONE  0
+#   define CQ_ON_OSX     0
+#   define CQ_ON_WINDOWS 1
+# endif
+
+extern const bool cq_on_android;
+extern const bool cq_on_iphone ;
+extern const bool cq_on_osx    ;
+extern const bool cq_on_windows;
+
 # ifdef __cplusplus
 #   define CQ_C_LINK extern "C"
 # else

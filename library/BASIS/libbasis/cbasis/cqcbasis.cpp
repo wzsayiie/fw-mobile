@@ -1,5 +1,10 @@
 #include "cqcbasis.h"
 
+extern const bool cq_on_android = CQ_ON_ANDROID;
+extern const bool cq_on_iphone  = CQ_ON_IPHONE ;
+extern const bool cq_on_osx     = CQ_ON_OSX    ;
+extern const bool cq_on_windows = CQ_ON_WINDOWS;
+
 static thread_local char *_string_stored_string = nullptr;
 static thread_local int32_t _string_stored_size = 0;
 
