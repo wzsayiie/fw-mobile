@@ -35,6 +35,7 @@ function build_archive() {
     cmd_line="$cmd_line -arch $arch_item"
     cmd_line="$cmd_line -sdk $sdk_type"
     cmd_line="$cmd_line -configuration Release"
+    cmd_line="$cmd_line BITCODE_GENERATION_MODE=bitcode"
     cmd_line="$cmd_line CONFIGURATION_BUILD_DIR=export"
     $cmd_line
 

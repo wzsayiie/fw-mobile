@@ -9,14 +9,14 @@ exit 1
 
 ## configrutaion begin
 ##
-team_uid="" #team id
-bundl_id="" #bundle id
+team_uid="" # team id
+bundl_id="" # bundle id
 
-priv_key="" #"security find-identity" to list private keys stored by Keychain Access
-prov_fil="" #xx.mobileprovision
-prov_nam="" #name of mobileprovision
+priv_key="" # "security find-identity" to list private keys stored by Keychain Access
+prov_fil="" # xx.mobileprovision
+prov_nam="" # name of mobileprovision
 
-ex_methd="" #"ad-hoc", "app-store", "development" or "enterprise"
+ex_methd="" # "ad-hoc", "app-store", "development" or "enterprise"
 
 proj_dir="app_ios"
 proj_fil="App.xcodeproj"
@@ -40,6 +40,7 @@ function build_archive() {
     cmd_line="$cmd_line -scheme $schm_nam"
     cmd_line="$cmd_line $archs_li"
     cmd_line="$cmd_line -configuration Release"
+    cmd_line="$cmd_line BITCODE_GENERATION_MODE=bitcode"
     cmd_line="$cmd_line archive -archivePath $proj_dir/build/$schm_nam.xcarchive"
     $cmd_line
 }
