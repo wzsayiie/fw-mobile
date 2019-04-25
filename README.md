@@ -59,14 +59,9 @@ It will avoid developer adding vast header search paths tediously.
 The corss-platform source,
 that can be compiled and executed on Android and iOS.
 
-*NOTE*: macOS and Windows projects are provided,
-because developer need the library possibly on Unity editor.
-
 * library
 * library_android
 * library_ios
-* library_osx
-* library_windows
 
 **Library Build Scripts:**
 
@@ -79,6 +74,9 @@ and copy them to *app_unity/Assets/Plugins*.
 * makelib_ios_res.sh (for *library_ios/Resource.xcodeproj*)
 * makelib_osx.sh
 * makelib_windows.bat
+
+*NOTE*: macOS and Windows build scripts are provided,
+because developer need the library possibly on Unity editor.
 
 **External Libraries from Thirds:**
 
