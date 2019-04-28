@@ -20,11 +20,12 @@ These are `Android Studio`, `Xcode` and `Unity` projects,
 For building Android and iOS app, and placing them to *BUILD/*.
 to run `*.sh` on macOS, run `*.bat` on Windows.
 
-* build_android.bat
-* build_android.sh
-* build_ios.sh
-* build_unity.bat
-* build_unity.sh
+* build_android_app_by_as.bat
+* build_android_app_by_as.sh
+* build_android_app_by_unity.bat
+* build_android_app_by_unity.sh
+* build_ios_app_by_unity.sh
+* build_ios_app_by_xcode.sh
 
 **Portable Custom App:**
 
@@ -68,12 +69,12 @@ that can be compiled and executed on Android and iOS.
 The scripts will compile portable libary,
 and copy them to *app_unity/Assets/Plugins*.
 
-* makelib_android.bat
-* makelib_android.sh
-* makelib_ios_lib.sh (for *library_ios/Library.xcodeproj*)
-* makelib_ios_res.sh (for *library_ios/Resource.xcodeproj*)
-* makelib_osx.sh
-* makelib_windows.bat
+* make_android_lib_by_as.bat
+* make_android_lib_by_as.sh
+* make_ios_lib_by_xcode.sh (for *library_ios/Library.xcodeproj*)
+* make_ios_res_by_xcode.sh (for *library_ios/Resource.xcodeproj*)
+* make_osx_lib_by_xcode.sh
+* make_windows_lib_by_vs.bat
 
 *NOTE*: macOS and Windows build scripts are provided,
 because developer need the library possibly on Unity editor.
