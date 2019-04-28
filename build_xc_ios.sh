@@ -4,7 +4,7 @@ set -e -u
 
 cd `dirname $0`
 
-echo "NOTE: to add configuration and remove this line."
+echo "NOTE: to configurate and remove 'exit 1' on next line!"
 exit 1
 
 ## configrutaion begin

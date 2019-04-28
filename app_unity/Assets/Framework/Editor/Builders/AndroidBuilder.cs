@@ -3,36 +3,37 @@ using UnityEngine;
 
 class AndroidBuilder
 {
+    // configuration begin
+    const string AppPackageID = ""; //e.g. domain.organization.appname.store.flavor
+
+    const string KeystoreFile = ""; //file path
+    const string KeystorePass = ""; //file password
+    const string KeyaliasName = ""; //key name
+    const string KeyaliasPass = ""; //key password
+
+    const string BuildAPKFile = ""; //xx.apk
+
+    static string[] Scenes
+    {
+        get
+        {
+            return new string[] { "Assets/Scenes/LaunchScene.unity" };
+        }
+    }
+    // configuration end
+
     static void Build()
     {
-        Debug.Log("to configurate !");
-        return;
+        Debug.Log("android build");
 
-        /// configuration begin
-        ///
-        string applicationPkgId = ""; //e.g. domain.organization.appname.store.flavor
-
-        string keystoreFilePath = ""; //keystore file path
-        string keystorePassword = ""; //keystore file password
-        string keyaliasName     = ""; //key name
-        string keyaliasPassword = ""; //key password
-
-        string buildAPKFilePath = ""; //output apk file path
-
-        string[] scenes = { "Assets/Scenes/LaunchScene.unity" };
-        ///
-        /// configuration end
-
-        Debug.Log("android build begin");
-
-        PlayerSettings.applicationIdentifier = applicationPkgId;
-        PlayerSettings.Android.keystoreName = keystoreFilePath;
-        PlayerSettings.Android.keystorePass = keystorePassword;
-        PlayerSettings.Android.keyaliasName = keyaliasName;
-        PlayerSettings.Android.keyaliasPass = keyaliasPassword;
+        PlayerSettings.applicationIdentifier = AppPackageID;
+        PlayerSettings.Android.keystoreName = KeystoreFile;
+        PlayerSettings.Android.keystorePass = KeystorePass;
+        PlayerSettings.Android.keyaliasName = KeyaliasName;
+        PlayerSettings.Android.keyaliasPass = KeyaliasPass;
 
         BuildTarget buildTarget = BuildTarget.Android;
         EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, buildTarget);
-        BuildPipeline.BuildPlayer(scenes, buildAPKFilePath, buildTarget, BuildOptions.None);
+        BuildPipeline.BuildPlayer(Scenes, BuildAPKFile, buildTarget, BuildOptions.None);
     }
 }
