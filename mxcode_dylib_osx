@@ -5,7 +5,7 @@ set -e -u
 cd `dirname $0`
 
 ### configuration begin
-dst_dir="app_unity/Assets/Plugins/iOS"
+dst_dir="app_unity/Assets/Plugins"
 dst_fil="library"
 
 src_dir=""
@@ -13,7 +13,7 @@ src_dir="$src_dir library/BASIS/libbasis"
 src_dir="$src_dir library/foundation/libfoundation"
 src_dir="$src_dir library/subsystem/libsubsystem"
 
-sh generate_headers.sh
+sh generate_headers
 ### configutation end
 
 src_fil="`find $src_dir -name '*.cpp'`"

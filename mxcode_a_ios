@@ -12,7 +12,7 @@ archs_list="x86_64 arm64 arm64e"
 ultima_dir="app_unity/Assets/Plugins/iOS"
 ultima_fil="libLibrary.a"
 
-sh generate_headers.sh
+sh generate_headers
 ### configutation end
 
 function clean_last() {

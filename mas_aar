@@ -11,7 +11,7 @@ module_nam="library"
 ultima_dir="app_unity/Assets/Plugins/Android"
 ultima_fil="library.aar"
 
-sh generate_headers.sh
+sh generate_headers
 ### configutation end
 
 origin_dir="$module_dir/build/outputs/aar"
