@@ -50,9 +50,9 @@ function merge_archives() {
     lipo -create $thin_archs -output $merged_lib
 }
 
-function copy_to_destination() {
+function move_to_destination() {
     mkdir -p                          $ultima_dir
-    cp $projct_dir/export/$ultima_fil $ultima_dir
+    mv $projct_dir/export/$ultima_fil $ultima_dir
 }
 
 clean_last
@@ -60,4 +60,4 @@ for arch_item in $archs_list; do
     build_archive $arch_item
 done
 merge_archives
-copy_to_destination
+move_to_destination

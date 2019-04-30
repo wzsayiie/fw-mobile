@@ -6,7 +6,6 @@ cd `dirname $0`
 
 ### configuration begin
 projct_dir="app_android"
-flavor_nam="master"
 ultima_dir="BUILD"
 ultima_fil="app.apk"
 
@@ -14,8 +13,8 @@ sh generate_headers
 sh cusapp_lua/generate_lua
 ### configutation end
 
-origin_dir="$projct_dir/app/build/outputs/apk/$flavor_nam/release"
-origin_fil="app-$flavor_nam-release.apk"
+origin_dir="$projct_dir/app/build/outputs/apk/release"
+origin_fil="app-release.apk"
 
 # build library
 pushd $projct_dir
@@ -24,6 +23,7 @@ pushd $projct_dir
 popd
 
 # copy apk
-mv $origin_dir/$origin_fil $origin_dir/$ultima_fil
+rm    -rf                  $ultima_dir/$ultima_fil
 mkdir -p                   $ultima_dir
+mv $origin_dir/$origin_fil $origin_dir/$ultima_fil
 mv $origin_dir/$ultima_fil $ultima_dir

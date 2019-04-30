@@ -17,9 +17,6 @@ sh generate_headers
 origin_dir="$module_dir/build/outputs/aar"
 origin_fil="$module_nam-release.aar"
 
-# clean
-rm -rf $ultima_dir/$ultima_fil
-
 # build library
 pushd $projct_dir
 ./gradlew :$module_nam:clean
@@ -27,6 +24,6 @@ pushd $projct_dir
 popd
 
 # copy file
+rm    -rf                  $ultima_dir/$ultima_fil
 mkdir -p                   $ultima_dir
-cp $origin_dir/$origin_fil $ultima_dir
-mv $ultima_dir/$origin_fil $ultima_dir/$ultima_fil
+mv $origin_dir/$origin_fil $ultima_dir/$ultima_fil

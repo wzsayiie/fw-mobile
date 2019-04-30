@@ -18,14 +18,14 @@ These are `Android Studio`, `Xcode` and `Unity` projects,
 **App Build Scripts:**
 
 For building Android and iOS app, and placing them to *BUILD/*.
-to run `*.sh` on macOS, run `*.bat` on Windows.
+Files without suffix name for macOS, and *.bat for Windows.
 
-* build_as_android.sh
-* build_un_android.sh
-* build_un_ios.sh
-* build_xc_ios.sh
-* bvild_as_android.bat
-* bvild_un_android.bat
+* bas_apk
+* bas_apk.bat
+* bunity_apk
+* bunity_apk.bat
+* bunity_ipa
+* bxcode_ipa
 
 **Portable Custom App:**
 
@@ -52,8 +52,8 @@ These scripts traverse headers and create new homonymic headers
 which reference former to *GENERATED_HEADERS/*.
 It will avoid developer adding vast header search paths tediously.
 
+* generate_headers
 * generate_headers.bat
-* generate_headers.sh
 
 **Portable Library:**
 
@@ -69,12 +69,12 @@ that can be compiled and executed on Android and iOS.
 The scripts will compile portable libary,
 and copy them to *app_unity/Assets/Plugins*.
 
-* makelib_as_android.sh
-* makelib_xc_ios.sh
-* makelib_xc_iosres.sh
-* makelib_xc_osx.sh
-* mokelib_as_android.bat
-* mokelib_vs_windows.bat
+* mas_aar
+* mas_aar.bat
+* mvs_dll.bat
+* mxcode_a_ios
+* mxcode_bundle_ios
+* mxcode_dylib_osx
 
 *NOTE*: macOS and Windows build scripts are provided,
 because developer need the library possibly on Unity editor.

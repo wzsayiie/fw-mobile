@@ -1,17 +1,18 @@
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 
 class AndroidBuilder
 {
     // configuration begin
-    const string AppPackageID = ""; //e.g. domain.organization.appname.store.flavor
+    const string AppPackageID = "domain.organization.appname.store.flavor";
 
-    const string KeystoreFile = ""; //file path
-    const string KeystorePass = ""; //file password
-    const string KeyaliasName = ""; //key name
-    const string KeyaliasPass = ""; //key password
+    const string KeystoreFile = "MobileKeystore/Android/master.jks";
+    const string KeystorePass = "master";
+    const string KeyaliasName = "master";
+    const string KeyaliasPass = "master";
 
-    const string BuildAPKFile = ""; //xx.apk
+    const string BuildAPKName = "unity.apk";
 
     static string[] Scenes
     {
@@ -26,6 +27,11 @@ class AndroidBuilder
     {
         Debug.Log("android build");
 
+        if (File.Exists(BuildAPKName))
+        {
+            File.Delete(BuildAPKName);
+        }
+
         PlayerSettings.applicationIdentifier = AppPackageID;
         PlayerSettings.Android.keystoreName = KeystoreFile;
         PlayerSettings.Android.keystorePass = KeystorePass;
@@ -34,6 +40,6 @@ class AndroidBuilder
 
         BuildTarget buildTarget = BuildTarget.Android;
         EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, buildTarget);
-        BuildPipeline.BuildPlayer(Scenes, BuildAPKFile, buildTarget, BuildOptions.None);
+        BuildPipeline.BuildPlayer(Scenes, BuildAPKName, buildTarget, BuildOptions.None);
     }
 }

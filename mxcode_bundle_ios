@@ -25,5 +25,5 @@ cmd_line="$cmd_line CONFIGURATION_BUILD_DIR=export"
 $cmd_line
 
 # copy
-mkdir -p                             $ultima_dir
-cp -r $projct_dir/export/$ultima_fil $ultima_dir
+mkdir -p                          $ultima_dir
+mv $projct_dir/export/$ultima_fil $ultima_dir

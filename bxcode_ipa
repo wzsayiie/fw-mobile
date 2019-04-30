@@ -94,10 +94,10 @@ function export_ipa() {
     $cmd_line
 }
 
-function copy_outputs() {
+function move_outputs() {
+    rm   -rf $outs_dir/$outs_fil.ipa
+    rm   -rf $outs_dir/$outs_fil.dSym
     mkdir -p $outs_dir
-    rm -rf   $outs_dir/$outs_fil.ipa
-    rm -rf   $outs_dir/$outs_fil.dSym
 
     mv $proj_dir/build/$schm_nam.ipa                                $outs_dir/$outs_fil.ipa
     mv $proj_dir/build/$schm_nam.xcarchive/dSYMs/$schm_nam.app.dSYM $outs_dir/$outs_fil.dSym
@@ -107,4 +107,4 @@ clean_cache
 build_archive
 resign_archive
 export_ipa
-copy_outputs
+move_outputs

@@ -34,7 +34,7 @@ android {
 
     signingConfigs {
         trunk {
-            storeFile file('keystores/master.jks')
+            storeFile file('keystore/master.jks')
             storePassword 'master'
             keyAlias 'master'
             keyPassword 'master'
