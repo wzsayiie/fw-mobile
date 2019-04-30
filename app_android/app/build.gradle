@@ -1,8 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
+
     compileSdkVersion 28
+
     defaultConfig {
+        applicationId 'domain.organization.appname.store.flavor'
         minSdkVersion 19
         targetSdkVersion 28
         versionName '1.0'
@@ -19,23 +22,6 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-    sourceSets {
-        main {
-//            manifest.srcFile '../../cusapp_cpp/androidresource/AndroidManifest.xml'
-//            manifest.srcFile '../../cusapp_lua/androidresource/AndroidManifest.xml'
-
-            java.srcDirs += '../../cusapp_cpp/android/java'
-            java.srcDirs += '../../cusapp_lua/android/java'
-
-            jniLibs.srcDirs += '../../thirds_android/jniLibs'
-        }
     }
     externalNativeBuild {
         cmake {
@@ -54,11 +40,23 @@ android {
             keyPassword 'master'
         }
     }
-    flavorDimensions ''
-    productFlavors {
-        master {
-            applicationId 'domain.organization.appname.store.flavor'
+    buildTypes {
+        release {
             signingConfig signingConfigs.trunk
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+//            manifest.srcFile '../../cusapp_cpp/androidresource/AndroidManifest.xml'
+//            manifest.srcFile '../../cusapp_lua/androidresource/AndroidManifest.xml'
+
+            java.srcDirs += '../../cusapp_cpp/android/java'
+            java.srcDirs += '../../cusapp_lua/android/java'
+
+            jniLibs.srcDirs += '../../thirds_android/jniLibs'
         }
     }
 }
