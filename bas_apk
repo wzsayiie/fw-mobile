@@ -8,7 +8,7 @@ cd `dirname $0`
 projct_dir="app_android"
 flavor_nam="master"
 ultima_dir="BUILD"
-ultima_fil="app-master.apk"
+ultima_fil="app.apk"
 
 sh generate_headers
 sh cusapp_lua/generate_lua
