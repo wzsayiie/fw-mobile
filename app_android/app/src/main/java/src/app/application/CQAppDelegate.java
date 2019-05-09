@@ -1,10 +1,10 @@
-package src.app.utility.application;
+package src.app.application;
 
 import android.app.Application;
 
 import src.library.foundation.L;
 
-public abstract class AppDelegate {
+public abstract class CQAppDelegate {
 
     //NOTE: these static member designed for thread safe.
 

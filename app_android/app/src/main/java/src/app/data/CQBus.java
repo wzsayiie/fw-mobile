@@ -1,12 +1,12 @@
-package src.app.utility.data;
+package src.app.data;
 
 import android.os.Handler;
 import android.os.Looper;
 
-import src.app.utility.application.AppDelegate;
+import src.app.application.CQAppDelegate;
 import src.library.foundation.L;
 
-public class Bus {
+public class CQBus {
 
     //NOTE: these static member designed for thread safe.
 
@@ -20,7 +20,7 @@ public class Bus {
             return;
         }
 
-        Looper looper = AppDelegate.getApp().getMainLooper();
+        Looper looper = CQAppDelegate.getApp().getMainLooper();
         new Handler(looper).postDelayed(runnable, delayMilliseconds);
     }
 }

@@ -7,8 +7,8 @@ import android.view.animation.Animation;
 import android.widget.TextView;
 
 import src.app.R;
-import src.app.utility.data.ActivityDispatcher;
-import src.app.utility.data.Bus;
+import src.app.data.CQActivityDispatcher;
+import src.app.data.CQBus;
 
 public class LaunchActivity extends Activity {
 
@@ -22,8 +22,8 @@ public class LaunchActivity extends Activity {
         animation.setDuration(1000);
         textView.startAnimation(animation);
 
-        Bus.runOnMainThread(1000, () ->
-            ActivityDispatcher.get().startActivityWithFade("apps.example", null)
+        CQBus.runOnMainThread(1000, () ->
+            CQActivityDispatcher.get().startActivityWithFade("apps.example", null)
         );
     }
 }

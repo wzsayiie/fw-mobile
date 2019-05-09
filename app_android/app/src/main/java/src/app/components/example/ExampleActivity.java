@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import src.app.R;
-import src.app.utility.components.DemoActivity;
-import src.app.utility.data.ActivityDispatcher;
+import src.app.components.CQDemoActivity;
+import src.app.data.CQActivityDispatcher;
 
-public class ExampleActivity extends DemoActivity {
+public class ExampleActivity extends CQDemoActivity {
 
     private ListView mListView;
 
@@ -34,6 +34,6 @@ public class ExampleActivity extends DemoActivity {
 
     @Override
     public void onBackPressed() {
-        ActivityDispatcher.get().moveTaskToBackground();
+        CQActivityDispatcher.get().moveTaskToBackground();
     }
 }

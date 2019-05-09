@@ -1,16 +1,16 @@
-package src.app.utility.application;
+package src.app.application;
 
 import java.util.HashMap;
 
 import src.library.foundation.L;
 
-public class SingletonManager {
+public class CQSingletonManager {
 
-    private static SingletonManager sInstance;
+    private static CQSingletonManager sInstance;
 
-    public static SingletonManager get() {
+    public static CQSingletonManager get() {
         if (sInstance == null) {
-            sInstance = new SingletonManager();
+            sInstance = new CQSingletonManager();
         }
         return sInstance;
     }

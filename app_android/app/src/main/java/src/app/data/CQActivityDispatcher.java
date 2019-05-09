@@ -1,4 +1,4 @@
-package src.app.utility.data;
+package src.app.data;
 
 import android.app.Activity;
 import android.app.Application;
@@ -6,14 +6,14 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 
-import src.app.utility.application.AppDelegate;
-import src.app.utility.application.SingletonManager;
+import src.app.application.CQAppDelegate;
+import src.app.application.CQSingletonManager;
 import src.library.foundation.L;
 
-public class ActivityDispatcher {
+public class CQActivityDispatcher {
 
-    public static ActivityDispatcher get() {
-        return SingletonManager.get().getInstanceOf(ActivityDispatcher.class);
+    public static CQActivityDispatcher get() {
+        return CQSingletonManager.get().getInstanceOf(CQActivityDispatcher.class);
     }
 
     //subsystems can find current resumed activity dynamically by this method.
@@ -23,9 +23,9 @@ public class ActivityDispatcher {
 
     //activity lifecycle
 
-    public ActivityDispatcher() {
+    public CQActivityDispatcher() {
 
-        AppDelegate.getApp().registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
+        CQAppDelegate.getApp().registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
 
             public void onActivitySaveInstanceState(Activity a, Bundle b) { onActSaveInstanceState(a, b); }
             public void onActivityCreated          (Activity a, Bundle b) { onActCreated(a, b);}
