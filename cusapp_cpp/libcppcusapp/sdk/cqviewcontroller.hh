@@ -2,7 +2,7 @@
 
 #include "cqview.hh"
 
-cq_class(cqViewController, _self_cqViewController, cqObject) {
+cq_class(cqViewController, _self_cqViewController, cqResponder) {
     
     cqViewController();
     

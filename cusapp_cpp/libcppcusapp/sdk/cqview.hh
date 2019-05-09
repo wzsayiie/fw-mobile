@@ -1,8 +1,8 @@
 #pragma once
 
-#include "cqcppbasis.hh"
+#include "cqresponder.hh"
 
-cq_class(cqView, _self_cqView, cqObject) {
+cq_class(cqView, _self_cqView, cqResponder) {
     
     cqView();
 };

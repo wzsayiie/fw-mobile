@@ -5,14 +5,14 @@
 struct cqApplication;
 
 cq_interface(cqApplicationDelegate, cqInterface) {
-    
+
     virtual void applicationDidFinishLaunching(cqWindow::ref window) {}
     virtual void applicationDidBecomeActive() {}
     virtual void applicationDidEnterBackground() {}
 };
 
-cq_class(cqApplication, _self_cqApplication, cqObject) {
-    
+cq_class(cqApplication, _self_cqApplication, cqResponder) {
+
     static cqApplication::ref sharedApplication();
     
     cqApplication();
