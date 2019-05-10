@@ -1,7 +1,7 @@
 #include "cqsubsystem.hh"
 #include "cqsubsystemarche.h"
 
-struct _self_cqSubsystemManager {
+cq_member(cqSubsystemManager) {
 };
 
 cqSubsystemManager::cqSubsystemManager() {

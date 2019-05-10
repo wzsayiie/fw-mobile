@@ -2,7 +2,7 @@
 
 #include "cqcppbasis.hh"
 
-cq_class(cqResponder, _self_cqResponder, cqObject) {
+cq_class(cqResponder, cqObject) {
     
     cqResponder();
 };

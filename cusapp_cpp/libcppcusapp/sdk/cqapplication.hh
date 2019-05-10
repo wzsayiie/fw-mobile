@@ -11,7 +11,7 @@ cq_interface(cqApplicationDelegate, cqInterface) {
     virtual void applicationDidEnterBackground() {}
 };
 
-cq_class(cqApplication, _self_cqApplication, cqResponder) {
+cq_class(cqApplication, cqResponder) {
 
     static cqApplication::ref sharedApplication();
     

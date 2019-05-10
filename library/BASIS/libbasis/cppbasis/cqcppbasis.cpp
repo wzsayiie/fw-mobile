@@ -1,6 +1,6 @@
 #include "cqcppbasis.hh"
 
-struct _self_cqObject {
+cq_member(cqObject) {
 };
 
 cqObject::cqObject() {

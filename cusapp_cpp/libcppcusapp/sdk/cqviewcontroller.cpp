@@ -1,6 +1,6 @@
 #include "cqviewcontroller.hh"
 
-struct _self_cqViewController {
+cq_member(cqViewController) {
     cqView::ref view;
 };
 

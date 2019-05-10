@@ -1,6 +1,6 @@
 #include "rootviewcontroller.hh"
 
-struct _self_RootViewController {
+cq_member(RootViewController) {
 };
 
 RootViewController::RootViewController() {

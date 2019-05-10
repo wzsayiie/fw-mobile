@@ -1,6 +1,6 @@
 #include "cqapplication.hh"
 
-struct _self_cqApplication {
+cq_member(cqApplication) {
     cqApplicationDelegate::ref delegate;
     cqWindow::ref window;
 };

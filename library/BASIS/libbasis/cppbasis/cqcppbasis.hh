@@ -17,18 +17,14 @@ struct _cqRoot {
 
 //base interface
 
-#define cq_interface(SELF, SUPER) struct SELF : _cq_interface<SELF, SUPER>
+#define cq_interface(SELF, SUPER) struct SELF : _cq_interface_middle<SELF, SUPER>
 
-template<class SELF, class SUPER> struct _cq_interface : SUPER {
+template<class SELF, class SUPER> struct _cq_interface_middle : SUPER {
     
     static_assert(sizeof(SUPER) == sizeof(void *),
         "interface shouldn't extend a class that contains data member");
     
     typedef shared_ptr<SELF> ref;
-    
-    template<class... A> static ref create(A... a) {
-        return make_shared<SELF>(a...);
-    }
 };
 
 cq_interface(cqInterface, _cqRoot) {
@@ -36,10 +32,11 @@ cq_interface(cqInterface, _cqRoot) {
 
 //base class
 
-#define cq_class(SELF, DATA, SUPER) struct SELF : _cq_class<SELF, struct DATA, SUPER>
+#define cq_member(SELF)       struct SELF##_Data
+#define cq_class(SELF, SUPER) struct SELF : _cq_class_middle<SELF, cq_member(SELF), SUPER>
 
-template<class SELF, class DATA, class SUPER> struct _cq_class : SUPER {
-    
+template<class SELF, class DATA, class SUPER> struct _cq_class_middle : SUPER {
+
 public:
     
     typedef shared_ptr<SELF> ref;
@@ -54,11 +51,11 @@ protected:
     
     shared_ptr<DATA> self;
     
-    _cq_class() : self(make_shared<DATA>()) {
+    _cq_class_middle() : self(make_shared<DATA>()) {
     }
 };
 
-cq_class(cqObject, _self_cqObject, _cqRoot) {
+cq_class(cqObject, _cqRoot) {
     
     cqObject();
 };

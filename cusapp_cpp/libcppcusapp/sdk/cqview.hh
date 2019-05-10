@@ -2,7 +2,7 @@
 
 #include "cqresponder.hh"
 
-cq_class(cqView, _self_cqView, cqResponder) {
+cq_class(cqView, cqResponder) {
     
     cqView();
 };

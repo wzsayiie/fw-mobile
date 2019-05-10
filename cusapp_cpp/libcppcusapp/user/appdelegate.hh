@@ -2,7 +2,7 @@
 
 #include "cquikit.hh"
 
-cq_class(AppDelegate, _self_AppDelegate, cqApplicationDelegate) {
+cq_class(AppDelegate, cqApplicationDelegate) {
     
     AppDelegate();
     

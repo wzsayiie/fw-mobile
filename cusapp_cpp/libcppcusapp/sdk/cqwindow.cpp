@@ -1,7 +1,7 @@
 #include "cqwindow.hh"
 #include "cqapplication.hh"
 
-struct _self_cqWindow {
+cq_member(cqWindow) {
     cqViewController::ref rootViewController;
     cq_window *window = nullptr;
 };

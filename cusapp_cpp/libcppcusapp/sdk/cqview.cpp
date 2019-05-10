@@ -1,6 +1,6 @@
 #include "cqview.hh"
 
-struct _self_cqView {
+cq_member(cqView) {
 };
 
 cqView::cqView() {

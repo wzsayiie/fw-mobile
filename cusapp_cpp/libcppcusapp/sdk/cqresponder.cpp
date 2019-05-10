@@ -1,6 +1,6 @@
 #include "cqresponder.hh"
 
-struct _self_cqResponder {
+cq_member(cqResponder) {
 };
 
 cqResponder::cqResponder() {

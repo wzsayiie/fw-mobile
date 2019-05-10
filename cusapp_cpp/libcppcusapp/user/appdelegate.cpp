@@ -1,7 +1,7 @@
 #include "appdelegate.hh"
 #include "rootviewcontroller.hh"
 
-struct _self_AppDelegate {
+cq_member(AppDelegate) {
     cqWindow::ref window;
 };
 
