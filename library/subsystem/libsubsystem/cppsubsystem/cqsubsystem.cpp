@@ -15,10 +15,10 @@ cqSubsystemManager::ref cqSubsystemManager::get() {
     return object;
 }
 
-bool cqSubsystemManager::startSubsystem(const string &name) {
-    return cq_subsystem_start(name.data());
+bool cqSubsystemManager::startSubsystem(cqString::ref name) {
+    return cq_subsystem_start(name->data());
 }
 
-void cqSubsystemManager::stopSubsystem(const string &name) {
-    cq_subsystem_stop(name.data());
+void cqSubsystemManager::stopSubsystem(cqString::ref name) {
+    cq_subsystem_stop(name->data());
 }

@@ -24,6 +24,9 @@
 		B425212622842BE4004FA04B /* NSObject+CQSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = B425212022842BE4004FA04B /* NSObject+CQSingleton.m */; };
 		B425212A22842C8E004FA04B /* CQDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B425212922842C8E004FA04B /* CQDemoViewController.m */; };
 		B425212F228451DC004FA04B /* cqresponder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B425212D228451DC004FA04B /* cqresponder.cpp */; };
+		B425213522857868004FA04B /* cqevent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B425213322857868004FA04B /* cqevent.cpp */; };
+		B425213822857AF6004FA04B /* cqtouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B425213722857AF6004FA04B /* cqtouch.cpp */; };
+		B425213B22857C42004FA04B /* cqtouchevent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B425213922857C42004FA04B /* cqtouchevent.cpp */; };
 		B439E5DD2266FBCF00B66285 /* appdelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5C82266FBCF00B66285 /* appdelegate.cpp */; };
 		B439E5DE2266FBCF00B66285 /* rootviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5CA2266FBCF00B66285 /* rootviewcontroller.cpp */; };
 		B439E5DF2266FBCF00B66285 /* cqviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5CD2266FBCF00B66285 /* cqviewcontroller.cpp */; };
@@ -120,6 +123,12 @@
 		B425212922842C8E004FA04B /* CQDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQDemoViewController.m; sourceTree = "<group>"; };
 		B425212D228451DC004FA04B /* cqresponder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqresponder.cpp; sourceTree = "<group>"; };
 		B425212E228451DC004FA04B /* cqresponder.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqresponder.hh; sourceTree = "<group>"; };
+		B425213322857868004FA04B /* cqevent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqevent.cpp; sourceTree = "<group>"; };
+		B425213422857868004FA04B /* cqevent.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqevent.hh; sourceTree = "<group>"; };
+		B425213622857AF6004FA04B /* cqtouch.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqtouch.hh; sourceTree = "<group>"; };
+		B425213722857AF6004FA04B /* cqtouch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqtouch.cpp; sourceTree = "<group>"; };
+		B425213922857C42004FA04B /* cqtouchevent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqtouchevent.cpp; sourceTree = "<group>"; };
+		B425213A22857C42004FA04B /* cqtouchevent_p.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqtouchevent_p.hh; sourceTree = "<group>"; };
 		B439E5C72266FBCF00B66285 /* rootviewcontroller.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rootviewcontroller.hh; sourceTree = "<group>"; };
 		B439E5C82266FBCF00B66285 /* appdelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = appdelegate.cpp; sourceTree = "<group>"; };
 		B439E5C92266FBCF00B66285 /* appdelegate.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = appdelegate.hh; sourceTree = "<group>"; };
@@ -308,8 +317,14 @@
 			children = (
 				B439E5D32266FBCF00B66285 /* cqapplication.hh */,
 				B439E5D42266FBCF00B66285 /* cqapplication.cpp */,
+				B425213422857868004FA04B /* cqevent.hh */,
+				B425213322857868004FA04B /* cqevent.cpp */,
 				B425212E228451DC004FA04B /* cqresponder.hh */,
 				B425212D228451DC004FA04B /* cqresponder.cpp */,
+				B425213622857AF6004FA04B /* cqtouch.hh */,
+				B425213722857AF6004FA04B /* cqtouch.cpp */,
+				B425213A22857C42004FA04B /* cqtouchevent_p.hh */,
+				B425213922857C42004FA04B /* cqtouchevent.cpp */,
 				B439E5CE2266FBCF00B66285 /* cquikit.hh */,
 				B439E5CC2266FBCF00B66285 /* cqview.hh */,
 				B439E5D02266FBCF00B66285 /* cqview.cpp */,
@@ -699,6 +714,7 @@
 				B439E5F22266FC9100B66285 /* CQLuaViewController.m in Sources */,
 				B439E5E42266FBCF00B66285 /* CQCPPAppDelegate.m in Sources */,
 				B439E5F32266FC9100B66285 /* cqluavm.cpp in Sources */,
+				B425213522857868004FA04B /* cqevent.cpp in Sources */,
 				B425210922842AD3004FA04B /* NSBundle+CQ.m in Sources */,
 				B439E5DD2266FBCF00B66285 /* appdelegate.cpp in Sources */,
 				B439E5E02266FBCF00B66285 /* cqview.cpp in Sources */,
@@ -711,6 +727,7 @@
 				B4D3B3922260C15B007D3E4A /* BlankViewController.m in Sources */,
 				B45C1BB821A02B19007CB374 /* AppDelegate.m in Sources */,
 				B425212F228451DC004FA04B /* cqresponder.cpp in Sources */,
+				B425213B22857C42004FA04B /* cqtouchevent.cpp in Sources */,
 				B4DCD87F21F17DAE0090BFBB /* UserSetting.m in Sources */,
 				B439E5DE2266FBCF00B66285 /* rootviewcontroller.cpp in Sources */,
 				B4E7CD0F2224098800122637 /* main.m in Sources */,
@@ -722,6 +739,7 @@
 				B439E5DF2266FBCF00B66285 /* cqviewcontroller.cpp in Sources */,
 				B425210B22842AD3004FA04B /* UIViewController+CQ.m in Sources */,
 				B439E5F12266FC9100B66285 /* CQLuaAppDelegate.m in Sources */,
+				B425213822857AF6004FA04B /* cqtouch.cpp in Sources */,
 				B425212222842BE4004FA04B /* CQCrashListener.m in Sources */,
 				B425212622842BE4004FA04B /* NSObject+CQSingleton.m in Sources */,
 				B425210822842AD3004FA04B /* UIView+CQ.m in Sources */,

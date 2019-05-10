@@ -19,7 +19,7 @@ void cq_lua_source_update(const char *directory_path) {
     const char **file_mass = sources + 1;
     while (*file_name != nullptr && *file_mass != nullptr) {
         
-        string file_path;
+        std::string file_path;
         file_path.append(directory_path);
         file_path.append("/");
         file_path.append(*file_name);

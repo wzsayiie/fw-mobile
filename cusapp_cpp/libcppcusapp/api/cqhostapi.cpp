@@ -62,10 +62,10 @@ float cq_window_get_screen_scale(cq_window *window) {
     }
 }
 
-static map<int64_t, cq_window *> *get_window_store() {
-    static map<int64_t, cq_window *> *store = nullptr;
+static std::map<int64_t, cq_window *> *get_window_store() {
+    static std::map<int64_t, cq_window *> *store = nullptr;
     if (store == nullptr) {
-        store = new map<int64_t, cq_window *>;
+        store = new std::map<int64_t, cq_window *>;
     }
     return store;
 }
