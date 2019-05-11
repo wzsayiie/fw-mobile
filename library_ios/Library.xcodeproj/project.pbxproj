@@ -91,13 +91,13 @@
 		B425059D226744930035F91A /* Subsystem */ = {
 			isa = PBXGroup;
 			children = (
-				B425059E226744B10035F91A /* iOSSubsystem */,
+				B425059E226744B10035F91A /* IOSSubsystem */,
 				B42505A3226744B10035F91A /* libsubsystem */,
 			);
 			name = Subsystem;
 			sourceTree = "<group>";
 		};
-		B425059E226744B10035F91A /* iOSSubsystem */ = {
+		B425059E226744B10035F91A /* IOSSubsystem */ = {
 			isa = PBXGroup;
 			children = (
 				B425059F226744B10035F91A /* CQDefaultSubsystemController.h */,
@@ -109,8 +109,8 @@
 				B41806AC2269B6CC00C0F6F0 /* CQSubsystemViewController.h */,
 				B41806AB2269B6CC00C0F6F0 /* CQSubsystemViewController.m */,
 			);
-			name = iOSSubsystem;
-			path = ../library/subsystem/iOSSubsystem;
+			name = IOSSubsystem;
+			path = ../library/subsystem/IOSSubsystem;
 			sourceTree = "<group>";
 		};
 		B42505A3226744B10035F91A /* libsubsystem */ = {
@@ -163,7 +163,7 @@
 		B439E56D2266CC5A00B66285 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				B439E5802266CCDE00B66285 /* iOSFoundation */,
+				B439E5802266CCDE00B66285 /* IOSFoundation */,
 				B439E5842266CCDE00B66285 /* libfoundation */,
 			);
 			name = Foundation;
@@ -211,7 +211,7 @@
 			path = cbasis;
 			sourceTree = "<group>";
 		};
-		B439E5802266CCDE00B66285 /* iOSFoundation */ = {
+		B439E5802266CCDE00B66285 /* IOSFoundation */ = {
 			isa = PBXGroup;
 			children = (
 				B439E5812266CCDE00B66285 /* CQFoundation.h */,
@@ -219,8 +219,8 @@
 				B439E5822266CCDE00B66285 /* CQLog.h */,
 				B439E5832266CCDE00B66285 /* CQLog.m */,
 			);
-			name = iOSFoundation;
-			path = ../library/foundation/iOSFoundation;
+			name = IOSFoundation;
+			path = ../library/foundation/IOSFoundation;
 			sourceTree = "<group>";
 		};
 		B439E5842266CCDE00B66285 /* libfoundation */ = {

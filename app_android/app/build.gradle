@@ -50,11 +50,11 @@ android {
 
     sourceSets {
         main {
-//            manifest.srcFile '../../cusapp_cpp/androidresource/AndroidManifest.xml'
-//            manifest.srcFile '../../cusapp_lua/androidresource/AndroidManifest.xml'
+//            manifest.srcFile '../../program_cpp/androidresource/AndroidManifest.xml'
+//            manifest.srcFile '../../program_lua/androidresource/AndroidManifest.xml'
 
-            java.srcDirs += '../../cusapp_cpp/android/java'
-            java.srcDirs += '../../cusapp_lua/android/java'
+            java.srcDirs += '../../program_cpp/android/java'
+            java.srcDirs += '../../program_lua/android/java'
 
             jniLibs.srcDirs += '../../thirds_android/jniLibs'
         }

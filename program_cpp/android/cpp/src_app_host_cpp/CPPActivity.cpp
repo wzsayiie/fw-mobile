@@ -1,4 +1,4 @@
-#include "cqhostapi.h"
+#include "cqosapi.h"
 #include "cqjnihelper.hh"
 #include <jni.h>
 

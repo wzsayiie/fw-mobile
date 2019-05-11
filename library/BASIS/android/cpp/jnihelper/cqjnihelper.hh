@@ -14,7 +14,7 @@ jclass cqJNIFindClass(jclass *prefer, JNIEnv *env, const char *name);
 //if *prefer != null then return *prefer, else get the methodID and assign *prefer.
 jmethodID cqJNIGetStatic(jmethodID *prefer, JNIEnv *env, jclass clazz, const char *name, const char *signature);
 
-string cqJNIFromJString(JNIEnv *env, jstring from);
+std::string cqJNIFromJString(JNIEnv *env, jstring from);
 
 struct cqJNIStaticMethod {
 
@@ -43,7 +43,7 @@ struct cqJNIStaticMethod {
 
     void push(const char *param);
 
-    string callString();
+    std::string callString();
 
 private:
 
@@ -79,9 +79,9 @@ private:
     jmethodID *_methodID;
     jmethodID _METHOD_ID;
 
-    string _name;
-    string _signature;
+    std::string _name;
+    std::string _signature;
 
-    vector<jvalue> _params;
-    vector<jobject> _objects;
+    std::vector<jvalue> _params;
+    std::vector<jobject> _objects;
 };

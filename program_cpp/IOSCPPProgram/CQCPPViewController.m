@@ -1,6 +1,6 @@
 #import "CQCPPViewController.h"
 #import "CQFoundation.h"
-#import "cqhostapi.h"
+#import "cqosapi.h"
 
 @interface CQCPPViewController ()
 + (instancetype)sharedObjectWithHash:(int64_t)hash;

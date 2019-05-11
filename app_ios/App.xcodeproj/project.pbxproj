@@ -23,24 +23,6 @@
 		B425212522842BE4004FA04B /* CQSingletonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B425211F22842BE4004FA04B /* CQSingletonManager.m */; };
 		B425212622842BE4004FA04B /* NSObject+CQSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = B425212022842BE4004FA04B /* NSObject+CQSingleton.m */; };
 		B425212A22842C8E004FA04B /* CQDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B425212922842C8E004FA04B /* CQDemoViewController.m */; };
-		B425212F228451DC004FA04B /* cqresponder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B425212D228451DC004FA04B /* cqresponder.cpp */; };
-		B425213522857868004FA04B /* cqevent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B425213322857868004FA04B /* cqevent.cpp */; };
-		B425213822857AF6004FA04B /* cqtouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B425213722857AF6004FA04B /* cqtouch.cpp */; };
-		B425213B22857C42004FA04B /* cqtouchevent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B425213922857C42004FA04B /* cqtouchevent.cpp */; };
-		B439E5DD2266FBCF00B66285 /* appdelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5C82266FBCF00B66285 /* appdelegate.cpp */; };
-		B439E5DE2266FBCF00B66285 /* rootviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5CA2266FBCF00B66285 /* rootviewcontroller.cpp */; };
-		B439E5DF2266FBCF00B66285 /* cqviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5CD2266FBCF00B66285 /* cqviewcontroller.cpp */; };
-		B439E5E02266FBCF00B66285 /* cqview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5D02266FBCF00B66285 /* cqview.cpp */; };
-		B439E5E12266FBCF00B66285 /* cqwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5D12266FBCF00B66285 /* cqwindow.cpp */; };
-		B439E5E22266FBCF00B66285 /* cqapplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5D42266FBCF00B66285 /* cqapplication.cpp */; };
-		B439E5E32266FBCF00B66285 /* cqhostapi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5D62266FBCF00B66285 /* cqhostapi.cpp */; };
-		B439E5E42266FBCF00B66285 /* CQCPPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B439E5DA2266FBCF00B66285 /* CQCPPAppDelegate.m */; };
-		B439E5E52266FBCF00B66285 /* CQCPPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B439E5DB2266FBCF00B66285 /* CQCPPViewController.m */; };
-		B439E5F12266FC9100B66285 /* CQLuaAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B439E5E72266FC9100B66285 /* CQLuaAppDelegate.m */; };
-		B439E5F22266FC9100B66285 /* CQLuaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B439E5EA2266FC9100B66285 /* CQLuaViewController.m */; };
-		B439E5F32266FC9100B66285 /* cqluavm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5EC2266FC9100B66285 /* cqluavm.cpp */; };
-		B439E5F42266FC9100B66285 /* cqluavmlibs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5EE2266FC9100B66285 /* cqluavmlibs.cpp */; };
-		B439E5F52266FC9100B66285 /* cqluasource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5F02266FC9100B66285 /* cqluasource.cpp */; };
 		B444D8E321DF6DDF00E5FF54 /* libLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4EC3C6B21DF6D8800E287A4 /* libLibrary.a */; };
 		B45C1BB121A02B19007CB374 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B45C1B7721A02B19007CB374 /* LaunchScreen.storyboard */; };
 		B45C1BB221A02B19007CB374 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B45C1B7821A02B19007CB374 /* Assets.xcassets */; };
@@ -57,6 +39,24 @@
 		B4DCD87F21F17DAE0090BFBB /* UserSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DCD87C21F17DAE0090BFBB /* UserSetting.m */; };
 		B4E7CD0F2224098800122637 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E7CD0E2224098800122637 /* main.m */; };
 		B4FCC39821F0912700D152DF /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FCC39721F0912700D152DF /* libc++.tbd */; };
+		CE90E647228727460071D4D3 /* cqluavm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E63D228727460071D4D3 /* cqluavm.cpp */; };
+		CE90E648228727460071D4D3 /* cqluavmlibs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E63F228727460071D4D3 /* cqluavmlibs.cpp */; };
+		CE90E649228727460071D4D3 /* cqluasource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E641228727460071D4D3 /* cqluasource.cpp */; };
+		CE90E64A228727460071D4D3 /* CQLuaAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE90E643228727460071D4D3 /* CQLuaAppDelegate.m */; };
+		CE90E64B228727460071D4D3 /* CQLuaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE90E646228727460071D4D3 /* CQLuaViewController.m */; };
+		CE90E677228729CF0071D4D3 /* CQCPPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE90E669228729CF0071D4D3 /* CQCPPAppDelegate.m */; };
+		CE90E678228729CF0071D4D3 /* CQCPPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE90E66A228729CF0071D4D3 /* CQCPPViewController.m */; };
+		CE90E69422872A350071D4D3 /* appdelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E67C22872A350071D4D3 /* appdelegate.cpp */; };
+		CE90E69522872A350071D4D3 /* rootviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E67E22872A350071D4D3 /* rootviewcontroller.cpp */; };
+		CE90E69622872A350071D4D3 /* cqviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E68222872A350071D4D3 /* cqviewcontroller.cpp */; };
+		CE90E69722872A350071D4D3 /* cqtouchevent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E68322872A350071D4D3 /* cqtouchevent.cpp */; };
+		CE90E69822872A350071D4D3 /* cqresponder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E68622872A350071D4D3 /* cqresponder.cpp */; };
+		CE90E69922872A350071D4D3 /* cqview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E68822872A350071D4D3 /* cqview.cpp */; };
+		CE90E69A22872A350071D4D3 /* cqwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E68A22872A350071D4D3 /* cqwindow.cpp */; };
+		CE90E69B22872A350071D4D3 /* cqevent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E68E22872A350071D4D3 /* cqevent.cpp */; };
+		CE90E69C22872A350071D4D3 /* cqapplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E68F22872A350071D4D3 /* cqapplication.cpp */; };
+		CE90E69D22872A350071D4D3 /* cqtouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E69022872A350071D4D3 /* cqtouch.cpp */; };
+		CE90E69E22872A350071D4D3 /* cqosapi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E69322872A350071D4D3 /* cqosapi.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,7 +86,7 @@
 			containerPortal = B4EC3C6621DF6D8800E287A4 /* Library.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = CE219ADF21DA51FD006A27B6;
-			remoteInfo = "Library-iOS";
+			remoteInfo = "Library";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -121,42 +121,6 @@
 		B425212122842BE4004FA04B /* CQSingletonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQSingletonManager.h; sourceTree = "<group>"; };
 		B425212822842C8E004FA04B /* CQDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQDemoViewController.h; sourceTree = "<group>"; };
 		B425212922842C8E004FA04B /* CQDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQDemoViewController.m; sourceTree = "<group>"; };
-		B425212D228451DC004FA04B /* cqresponder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqresponder.cpp; sourceTree = "<group>"; };
-		B425212E228451DC004FA04B /* cqresponder.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqresponder.hh; sourceTree = "<group>"; };
-		B425213322857868004FA04B /* cqevent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqevent.cpp; sourceTree = "<group>"; };
-		B425213422857868004FA04B /* cqevent.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqevent.hh; sourceTree = "<group>"; };
-		B425213622857AF6004FA04B /* cqtouch.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqtouch.hh; sourceTree = "<group>"; };
-		B425213722857AF6004FA04B /* cqtouch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqtouch.cpp; sourceTree = "<group>"; };
-		B425213922857C42004FA04B /* cqtouchevent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqtouchevent.cpp; sourceTree = "<group>"; };
-		B425213A22857C42004FA04B /* cqtouchevent_p.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqtouchevent_p.hh; sourceTree = "<group>"; };
-		B439E5C72266FBCF00B66285 /* rootviewcontroller.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rootviewcontroller.hh; sourceTree = "<group>"; };
-		B439E5C82266FBCF00B66285 /* appdelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = appdelegate.cpp; sourceTree = "<group>"; };
-		B439E5C92266FBCF00B66285 /* appdelegate.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = appdelegate.hh; sourceTree = "<group>"; };
-		B439E5CA2266FBCF00B66285 /* rootviewcontroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rootviewcontroller.cpp; sourceTree = "<group>"; };
-		B439E5CC2266FBCF00B66285 /* cqview.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqview.hh; sourceTree = "<group>"; };
-		B439E5CD2266FBCF00B66285 /* cqviewcontroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqviewcontroller.cpp; sourceTree = "<group>"; };
-		B439E5CE2266FBCF00B66285 /* cquikit.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cquikit.hh; sourceTree = "<group>"; };
-		B439E5CF2266FBCF00B66285 /* cqviewcontroller.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqviewcontroller.hh; sourceTree = "<group>"; };
-		B439E5D02266FBCF00B66285 /* cqview.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqview.cpp; sourceTree = "<group>"; };
-		B439E5D12266FBCF00B66285 /* cqwindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqwindow.cpp; sourceTree = "<group>"; };
-		B439E5D22266FBCF00B66285 /* cqwindow.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqwindow.hh; sourceTree = "<group>"; };
-		B439E5D32266FBCF00B66285 /* cqapplication.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqapplication.hh; sourceTree = "<group>"; };
-		B439E5D42266FBCF00B66285 /* cqapplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqapplication.cpp; sourceTree = "<group>"; };
-		B439E5D62266FBCF00B66285 /* cqhostapi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqhostapi.cpp; sourceTree = "<group>"; };
-		B439E5D72266FBCF00B66285 /* cqhostapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqhostapi.h; sourceTree = "<group>"; };
-		B439E5D92266FBCF00B66285 /* CQCPPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQCPPViewController.h; sourceTree = "<group>"; };
-		B439E5DA2266FBCF00B66285 /* CQCPPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQCPPAppDelegate.m; sourceTree = "<group>"; };
-		B439E5DB2266FBCF00B66285 /* CQCPPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQCPPViewController.m; sourceTree = "<group>"; };
-		B439E5DC2266FBCF00B66285 /* CQCPPAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQCPPAppDelegate.h; sourceTree = "<group>"; };
-		B439E5E72266FC9100B66285 /* CQLuaAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQLuaAppDelegate.m; sourceTree = "<group>"; };
-		B439E5E82266FC9100B66285 /* CQLuaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQLuaViewController.h; sourceTree = "<group>"; };
-		B439E5E92266FC9100B66285 /* CQLuaAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQLuaAppDelegate.h; sourceTree = "<group>"; };
-		B439E5EA2266FC9100B66285 /* CQLuaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQLuaViewController.m; sourceTree = "<group>"; };
-		B439E5EC2266FC9100B66285 /* cqluavm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluavm.cpp; sourceTree = "<group>"; };
-		B439E5ED2266FC9100B66285 /* cqluavm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluavm.h; sourceTree = "<group>"; };
-		B439E5EE2266FC9100B66285 /* cqluavmlibs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluavmlibs.cpp; sourceTree = "<group>"; };
-		B439E5EF2266FC9100B66285 /* cqluasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluasource.h; sourceTree = "<group>"; };
-		B439E5F02266FC9100B66285 /* cqluasource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluasource.cpp; sourceTree = "<group>"; };
 		B45C1B5B21A02562007CB374 /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B45C1B7521A02B19007CB374 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B45C1B7721A02B19007CB374 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -182,6 +146,42 @@
 		B4E7CD0E2224098800122637 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B4EC3C6621DF6D8800E287A4 /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../library_ios/Library.xcodeproj; sourceTree = "<group>"; };
 		B4FCC39721F0912700D152DF /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		CE90E63D228727460071D4D3 /* cqluavm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluavm.cpp; sourceTree = "<group>"; };
+		CE90E63E228727460071D4D3 /* cqluavm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluavm.h; sourceTree = "<group>"; };
+		CE90E63F228727460071D4D3 /* cqluavmlibs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluavmlibs.cpp; sourceTree = "<group>"; };
+		CE90E640228727460071D4D3 /* cqluasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluasource.h; sourceTree = "<group>"; };
+		CE90E641228727460071D4D3 /* cqluasource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluasource.cpp; sourceTree = "<group>"; };
+		CE90E643228727460071D4D3 /* CQLuaAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQLuaAppDelegate.m; sourceTree = "<group>"; };
+		CE90E644228727460071D4D3 /* CQLuaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQLuaViewController.h; sourceTree = "<group>"; };
+		CE90E645228727460071D4D3 /* CQLuaAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQLuaAppDelegate.h; sourceTree = "<group>"; };
+		CE90E646228727460071D4D3 /* CQLuaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQLuaViewController.m; sourceTree = "<group>"; };
+		CE90E668228729CF0071D4D3 /* CQCPPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQCPPViewController.h; sourceTree = "<group>"; };
+		CE90E669228729CF0071D4D3 /* CQCPPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQCPPAppDelegate.m; sourceTree = "<group>"; };
+		CE90E66A228729CF0071D4D3 /* CQCPPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQCPPViewController.m; sourceTree = "<group>"; };
+		CE90E66B228729CF0071D4D3 /* CQCPPAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQCPPAppDelegate.h; sourceTree = "<group>"; };
+		CE90E67B22872A350071D4D3 /* rootviewcontroller.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rootviewcontroller.hh; sourceTree = "<group>"; };
+		CE90E67C22872A350071D4D3 /* appdelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = appdelegate.cpp; sourceTree = "<group>"; };
+		CE90E67D22872A350071D4D3 /* appdelegate.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = appdelegate.hh; sourceTree = "<group>"; };
+		CE90E67E22872A350071D4D3 /* rootviewcontroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rootviewcontroller.cpp; sourceTree = "<group>"; };
+		CE90E68022872A350071D4D3 /* cqtouchevent_p.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqtouchevent_p.hh; sourceTree = "<group>"; };
+		CE90E68122872A350071D4D3 /* cqview.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqview.hh; sourceTree = "<group>"; };
+		CE90E68222872A350071D4D3 /* cqviewcontroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqviewcontroller.cpp; sourceTree = "<group>"; };
+		CE90E68322872A350071D4D3 /* cqtouchevent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqtouchevent.cpp; sourceTree = "<group>"; };
+		CE90E68422872A350071D4D3 /* cqtouch.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqtouch.hh; sourceTree = "<group>"; };
+		CE90E68522872A350071D4D3 /* cquikit.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cquikit.hh; sourceTree = "<group>"; };
+		CE90E68622872A350071D4D3 /* cqresponder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqresponder.cpp; sourceTree = "<group>"; };
+		CE90E68722872A350071D4D3 /* cqviewcontroller.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqviewcontroller.hh; sourceTree = "<group>"; };
+		CE90E68822872A350071D4D3 /* cqview.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqview.cpp; sourceTree = "<group>"; };
+		CE90E68922872A350071D4D3 /* cqresponder.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqresponder.hh; sourceTree = "<group>"; };
+		CE90E68A22872A350071D4D3 /* cqwindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqwindow.cpp; sourceTree = "<group>"; };
+		CE90E68B22872A350071D4D3 /* cqwindow.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqwindow.hh; sourceTree = "<group>"; };
+		CE90E68C22872A350071D4D3 /* cqevent.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqevent.hh; sourceTree = "<group>"; };
+		CE90E68D22872A350071D4D3 /* cqapplication.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqapplication.hh; sourceTree = "<group>"; };
+		CE90E68E22872A350071D4D3 /* cqevent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqevent.cpp; sourceTree = "<group>"; };
+		CE90E68F22872A350071D4D3 /* cqapplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqapplication.cpp; sourceTree = "<group>"; };
+		CE90E69022872A350071D4D3 /* cqtouch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqtouch.cpp; sourceTree = "<group>"; };
+		CE90E69222872A350071D4D3 /* cqosapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqosapi.h; sourceTree = "<group>"; };
+		CE90E69322872A350071D4D3 /* cqosapi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqosapi.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,104 +290,12 @@
 			path = CQDemoViewController;
 			sourceTree = "<group>";
 		};
-		B439E5C52266FBCF00B66285 /* libcppcusapp */ = {
-			isa = PBXGroup;
-			children = (
-				B439E5D52266FBCF00B66285 /* api */,
-				B439E5CB2266FBCF00B66285 /* sdk */,
-				B439E5C62266FBCF00B66285 /* user */,
-			);
-			name = libcppcusapp;
-			path = ../cusapp_cpp/libcppcusapp;
-			sourceTree = "<group>";
-		};
-		B439E5C62266FBCF00B66285 /* user */ = {
-			isa = PBXGroup;
-			children = (
-				B439E5C92266FBCF00B66285 /* appdelegate.hh */,
-				B439E5C82266FBCF00B66285 /* appdelegate.cpp */,
-				B439E5C72266FBCF00B66285 /* rootviewcontroller.hh */,
-				B439E5CA2266FBCF00B66285 /* rootviewcontroller.cpp */,
-			);
-			path = user;
-			sourceTree = "<group>";
-		};
-		B439E5CB2266FBCF00B66285 /* sdk */ = {
-			isa = PBXGroup;
-			children = (
-				B439E5D32266FBCF00B66285 /* cqapplication.hh */,
-				B439E5D42266FBCF00B66285 /* cqapplication.cpp */,
-				B425213422857868004FA04B /* cqevent.hh */,
-				B425213322857868004FA04B /* cqevent.cpp */,
-				B425212E228451DC004FA04B /* cqresponder.hh */,
-				B425212D228451DC004FA04B /* cqresponder.cpp */,
-				B425213622857AF6004FA04B /* cqtouch.hh */,
-				B425213722857AF6004FA04B /* cqtouch.cpp */,
-				B425213A22857C42004FA04B /* cqtouchevent_p.hh */,
-				B425213922857C42004FA04B /* cqtouchevent.cpp */,
-				B439E5CE2266FBCF00B66285 /* cquikit.hh */,
-				B439E5CC2266FBCF00B66285 /* cqview.hh */,
-				B439E5D02266FBCF00B66285 /* cqview.cpp */,
-				B439E5CF2266FBCF00B66285 /* cqviewcontroller.hh */,
-				B439E5CD2266FBCF00B66285 /* cqviewcontroller.cpp */,
-				B439E5D22266FBCF00B66285 /* cqwindow.hh */,
-				B439E5D12266FBCF00B66285 /* cqwindow.cpp */,
-			);
-			path = sdk;
-			sourceTree = "<group>";
-		};
-		B439E5D52266FBCF00B66285 /* api */ = {
-			isa = PBXGroup;
-			children = (
-				B439E5D72266FBCF00B66285 /* cqhostapi.h */,
-				B439E5D62266FBCF00B66285 /* cqhostapi.cpp */,
-			);
-			path = api;
-			sourceTree = "<group>";
-		};
-		B439E5D82266FBCF00B66285 /* iOSCPPCusapp */ = {
-			isa = PBXGroup;
-			children = (
-				B439E5DC2266FBCF00B66285 /* CQCPPAppDelegate.h */,
-				B439E5DA2266FBCF00B66285 /* CQCPPAppDelegate.m */,
-				B439E5D92266FBCF00B66285 /* CQCPPViewController.h */,
-				B439E5DB2266FBCF00B66285 /* CQCPPViewController.m */,
-			);
-			name = iOSCPPCusapp;
-			path = ../cusapp_cpp/iOSCPPCusapp;
-			sourceTree = "<group>";
-		};
-		B439E5E62266FC9100B66285 /* iOSLuaCusapp */ = {
-			isa = PBXGroup;
-			children = (
-				B439E5E92266FC9100B66285 /* CQLuaAppDelegate.h */,
-				B439E5E72266FC9100B66285 /* CQLuaAppDelegate.m */,
-				B439E5E82266FC9100B66285 /* CQLuaViewController.h */,
-				B439E5EA2266FC9100B66285 /* CQLuaViewController.m */,
-			);
-			name = iOSLuaCusapp;
-			path = ../cusapp_lua/iOSLuaCusapp;
-			sourceTree = "<group>";
-		};
-		B439E5EB2266FC9100B66285 /* libluacusapp */ = {
-			isa = PBXGroup;
-			children = (
-				B439E5EF2266FC9100B66285 /* cqluasource.h */,
-				B439E5F02266FC9100B66285 /* cqluasource.cpp */,
-				B439E5ED2266FC9100B66285 /* cqluavm.h */,
-				B439E5EC2266FC9100B66285 /* cqluavm.cpp */,
-				B439E5EE2266FC9100B66285 /* cqluavmlibs.cpp */,
-			);
-			name = libluacusapp;
-			path = ../cusapp_lua/libluacusapp;
-			sourceTree = "<group>";
-		};
 		B45C1B5221A02561007CB374 = {
 			isa = PBXGroup;
 			children = (
 				B45C1B5D21A02562007CB374 /* App */,
-				B4BC9C9622041E5500CFD84C /* CPPCusapp */,
-				B4B9431422250FB500CE3C9A /* LuaCusapp */,
+				B4BC9C9622041E5500CFD84C /* CPPProgam */,
+				B4B9431422250FB500CE3C9A /* LuaProgram */,
 				B4FCC39621F0912700D152DF /* Frameworks */,
 				B45C1B5C21A02562007CB374 /* Products */,
 				B4EC3C6621DF6D8800E287A4 /* Library.xcodeproj */,
@@ -505,22 +413,22 @@
 			path = ExampleViewController;
 			sourceTree = "<group>";
 		};
-		B4B9431422250FB500CE3C9A /* LuaCusapp */ = {
+		B4B9431422250FB500CE3C9A /* LuaProgram */ = {
 			isa = PBXGroup;
 			children = (
-				B439E5E62266FC9100B66285 /* iOSLuaCusapp */,
-				B439E5EB2266FC9100B66285 /* libluacusapp */,
+				CE90E642228727460071D4D3 /* IOSLuaProgram */,
+				CE90E63C228727460071D4D3 /* libluaprogram */,
 			);
-			name = LuaCusapp;
+			name = LuaProgram;
 			sourceTree = "<group>";
 		};
-		B4BC9C9622041E5500CFD84C /* CPPCusapp */ = {
+		B4BC9C9622041E5500CFD84C /* CPPProgam */ = {
 			isa = PBXGroup;
 			children = (
-				B439E5D82266FBCF00B66285 /* iOSCPPCusapp */,
-				B439E5C52266FBCF00B66285 /* libcppcusapp */,
+				CE90E667228729CF0071D4D3 /* IOSCPPProgram */,
+				CE90E67922872A350071D4D3 /* libcppprogram */,
 			);
-			name = CPPCusapp;
+			name = CPPProgam;
 			sourceTree = "<group>";
 		};
 		B4CFD95F21C7475000FFF4CF /* IAPViewController */ = {
@@ -603,6 +511,98 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CE90E63C228727460071D4D3 /* libluaprogram */ = {
+			isa = PBXGroup;
+			children = (
+				CE90E640228727460071D4D3 /* cqluasource.h */,
+				CE90E641228727460071D4D3 /* cqluasource.cpp */,
+				CE90E63E228727460071D4D3 /* cqluavm.h */,
+				CE90E63D228727460071D4D3 /* cqluavm.cpp */,
+				CE90E63F228727460071D4D3 /* cqluavmlibs.cpp */,
+			);
+			name = libluaprogram;
+			path = ../program_lua/libluaprogram;
+			sourceTree = "<group>";
+		};
+		CE90E642228727460071D4D3 /* IOSLuaProgram */ = {
+			isa = PBXGroup;
+			children = (
+				CE90E645228727460071D4D3 /* CQLuaAppDelegate.h */,
+				CE90E643228727460071D4D3 /* CQLuaAppDelegate.m */,
+				CE90E644228727460071D4D3 /* CQLuaViewController.h */,
+				CE90E646228727460071D4D3 /* CQLuaViewController.m */,
+			);
+			name = IOSLuaProgram;
+			path = ../program_lua/IOSLuaProgram;
+			sourceTree = "<group>";
+		};
+		CE90E667228729CF0071D4D3 /* IOSCPPProgram */ = {
+			isa = PBXGroup;
+			children = (
+				CE90E66B228729CF0071D4D3 /* CQCPPAppDelegate.h */,
+				CE90E669228729CF0071D4D3 /* CQCPPAppDelegate.m */,
+				CE90E668228729CF0071D4D3 /* CQCPPViewController.h */,
+				CE90E66A228729CF0071D4D3 /* CQCPPViewController.m */,
+			);
+			name = IOSCPPProgram;
+			path = ../program_cpp/IOSCPPProgram;
+			sourceTree = "<group>";
+		};
+		CE90E67922872A350071D4D3 /* libcppprogram */ = {
+			isa = PBXGroup;
+			children = (
+				CE90E69122872A350071D4D3 /* osapi */,
+				CE90E67F22872A350071D4D3 /* sdk */,
+				CE90E67A22872A350071D4D3 /* user */,
+			);
+			name = libcppprogram;
+			path = ../program_cpp/libcppprogram;
+			sourceTree = "<group>";
+		};
+		CE90E67A22872A350071D4D3 /* user */ = {
+			isa = PBXGroup;
+			children = (
+				CE90E67D22872A350071D4D3 /* appdelegate.hh */,
+				CE90E67C22872A350071D4D3 /* appdelegate.cpp */,
+				CE90E67B22872A350071D4D3 /* rootviewcontroller.hh */,
+				CE90E67E22872A350071D4D3 /* rootviewcontroller.cpp */,
+			);
+			path = user;
+			sourceTree = "<group>";
+		};
+		CE90E67F22872A350071D4D3 /* sdk */ = {
+			isa = PBXGroup;
+			children = (
+				CE90E68D22872A350071D4D3 /* cqapplication.hh */,
+				CE90E68F22872A350071D4D3 /* cqapplication.cpp */,
+				CE90E68C22872A350071D4D3 /* cqevent.hh */,
+				CE90E68E22872A350071D4D3 /* cqevent.cpp */,
+				CE90E68922872A350071D4D3 /* cqresponder.hh */,
+				CE90E68622872A350071D4D3 /* cqresponder.cpp */,
+				CE90E68422872A350071D4D3 /* cqtouch.hh */,
+				CE90E69022872A350071D4D3 /* cqtouch.cpp */,
+				CE90E68022872A350071D4D3 /* cqtouchevent_p.hh */,
+				CE90E68322872A350071D4D3 /* cqtouchevent.cpp */,
+				CE90E68522872A350071D4D3 /* cquikit.hh */,
+				CE90E68122872A350071D4D3 /* cqview.hh */,
+				CE90E68822872A350071D4D3 /* cqview.cpp */,
+				CE90E68722872A350071D4D3 /* cqviewcontroller.hh */,
+				CE90E68222872A350071D4D3 /* cqviewcontroller.cpp */,
+				CE90E68B22872A350071D4D3 /* cqwindow.hh */,
+				CE90E68A22872A350071D4D3 /* cqwindow.cpp */,
+			);
+			path = sdk;
+			sourceTree = "<group>";
+		};
+		CE90E69122872A350071D4D3 /* osapi */ = {
+			isa = PBXGroup;
+			children = (
+				CE90E69222872A350071D4D3 /* cqosapi.h */,
+				CE90E69322872A350071D4D3 /* cqosapi.cpp */,
+			);
+			path = osapi;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -621,7 +621,7 @@
 				B401E5CA226F3489002F65BF /* PBXTargetDependency */,
 			);
 			name = App;
-			productName = "App-iOS";
+			productName = "App";
 			productReference = B45C1B5B21A02562007CB374 /* App.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -707,40 +707,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B439E5E22266FBCF00B66285 /* cqapplication.cpp in Sources */,
-				B439E5E32266FBCF00B66285 /* cqhostapi.cpp in Sources */,
+				CE90E649228727460071D4D3 /* cqluasource.cpp in Sources */,
 				B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */,
 				B4CFD97421C7475000FFF4CF /* ExampleViewController.m in Sources */,
-				B439E5F22266FC9100B66285 /* CQLuaViewController.m in Sources */,
-				B439E5E42266FBCF00B66285 /* CQCPPAppDelegate.m in Sources */,
-				B439E5F32266FC9100B66285 /* cqluavm.cpp in Sources */,
-				B425213522857868004FA04B /* cqevent.cpp in Sources */,
 				B425210922842AD3004FA04B /* NSBundle+CQ.m in Sources */,
-				B439E5DD2266FBCF00B66285 /* appdelegate.cpp in Sources */,
-				B439E5E02266FBCF00B66285 /* cqview.cpp in Sources */,
+				CE90E69522872A350071D4D3 /* rootviewcontroller.cpp in Sources */,
+				CE90E69622872A350071D4D3 /* cqviewcontroller.cpp in Sources */,
+				CE90E69A22872A350071D4D3 /* cqwindow.cpp in Sources */,
 				B425211422842B91004FA04B /* CQHotfixManager.m in Sources */,
 				B425212A22842C8E004FA04B /* CQDemoViewController.m in Sources */,
-				B439E5F52266FC9100B66285 /* cqluasource.cpp in Sources */,
-				B439E5E12266FBCF00B66285 /* cqwindow.cpp in Sources */,
+				CE90E647228727460071D4D3 /* cqluavm.cpp in Sources */,
 				B425211322842B91004FA04B /* CQBus.m in Sources */,
-				B439E5F42266FC9100B66285 /* cqluavmlibs.cpp in Sources */,
+				CE90E64A228727460071D4D3 /* CQLuaAppDelegate.m in Sources */,
+				CE90E678228729CF0071D4D3 /* CQCPPViewController.m in Sources */,
 				B4D3B3922260C15B007D3E4A /* BlankViewController.m in Sources */,
 				B45C1BB821A02B19007CB374 /* AppDelegate.m in Sources */,
-				B425212F228451DC004FA04B /* cqresponder.cpp in Sources */,
-				B425213B22857C42004FA04B /* cqtouchevent.cpp in Sources */,
+				CE90E69E22872A350071D4D3 /* cqosapi.cpp in Sources */,
+				CE90E69422872A350071D4D3 /* appdelegate.cpp in Sources */,
 				B4DCD87F21F17DAE0090BFBB /* UserSetting.m in Sources */,
-				B439E5DE2266FBCF00B66285 /* rootviewcontroller.cpp in Sources */,
+				CE90E69922872A350071D4D3 /* cqview.cpp in Sources */,
 				B4E7CD0F2224098800122637 /* main.m in Sources */,
+				CE90E64B228727460071D4D3 /* CQLuaViewController.m in Sources */,
+				CE90E677228729CF0071D4D3 /* CQCPPAppDelegate.m in Sources */,
 				B425210722842AD3004FA04B /* NSObject+CQ.m in Sources */,
-				B439E5E52266FBCF00B66285 /* CQCPPViewController.m in Sources */,
+				CE90E648228727460071D4D3 /* cqluavmlibs.cpp in Sources */,
 				B4CFD97321C7475000FFF4CF /* IAPViewController.m in Sources */,
 				B425210A22842AD3004FA04B /* UIDevice+CQ.m in Sources */,
 				B425212322842BE4004FA04B /* CQSceneNavigator.m in Sources */,
-				B439E5DF2266FBCF00B66285 /* cqviewcontroller.cpp in Sources */,
+				CE90E69B22872A350071D4D3 /* cqevent.cpp in Sources */,
+				CE90E69822872A350071D4D3 /* cqresponder.cpp in Sources */,
 				B425210B22842AD3004FA04B /* UIViewController+CQ.m in Sources */,
-				B439E5F12266FC9100B66285 /* CQLuaAppDelegate.m in Sources */,
-				B425213822857AF6004FA04B /* cqtouch.cpp in Sources */,
+				CE90E69C22872A350071D4D3 /* cqapplication.cpp in Sources */,
 				B425212222842BE4004FA04B /* CQCrashListener.m in Sources */,
+				CE90E69D22872A350071D4D3 /* cqtouch.cpp in Sources */,
+				CE90E69722872A350071D4D3 /* cqtouchevent.cpp in Sources */,
 				B425212622842BE4004FA04B /* NSObject+CQSingleton.m in Sources */,
 				B425210822842AD3004FA04B /* UIView+CQ.m in Sources */,
 				B425212522842BE4004FA04B /* CQSingletonManager.m in Sources */,

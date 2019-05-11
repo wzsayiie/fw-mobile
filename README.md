@@ -27,14 +27,6 @@ Files without suffix name for macOS, and *.bat for Windows.
 * bunity_ipa
 * bxcode_ipa
 
-**Portable Custom App:**
-
-Lightweight application framework.
-Developer can use them to build little, portable application.
-
-* cusapp_cpp
-* cusapp_lua
-
 **Tools:**
 
 Tools and the projects
@@ -78,6 +70,14 @@ and copy them to *app_unity/Assets/Plugins*.
 
 *NOTE*: macOS and Windows build scripts are provided,
 because developer need the library possibly on Unity editor.
+
+**Portable Custom App:**
+
+Lightweight application framework.
+Developer can use them to build little, portable application.
+
+* program_cpp
+* program_lua
 
 **External Libraries from Thirds:**
 

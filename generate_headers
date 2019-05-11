@@ -36,5 +36,5 @@ function generate_headers() {
 
 clean_geneated
 generate_headers library
-generate_headers cusapp_cpp
-generate_headers cusapp_lua
+generate_headers program_cpp
+generate_headers program_lua

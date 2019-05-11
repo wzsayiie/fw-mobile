@@ -86,7 +86,7 @@ jmethodID cqJNIGetStatic(jmethodID *prefer, JNIEnv *env, jclass clazz, const cha
     return methodID;
 }
 
-string cqJNIFromJString(JNIEnv *env, jstring from) {
+std::string cqJNIFromJString(JNIEnv *env, jstring from) {
     if (env == nullptr) {
         return "";
     }
@@ -101,7 +101,7 @@ string cqJNIFromJString(JNIEnv *env, jstring from) {
     if (middle == nullptr) {
         return "";
     }
-    string to = middle;
+    std::string to = middle;
     env->ReleaseStringUTFChars(from, middle);
 
     return to;
@@ -145,7 +145,7 @@ void cqJNIStaticMethod::push(const char *param) {
     _objects.push_back(value.l);
 }
 
-string cqJNIStaticMethod::callString() {
+std::string cqJNIStaticMethod::callString() {
     if (_env == nullptr) {
         return "";
     }
@@ -160,7 +160,7 @@ string cqJNIStaticMethod::callString() {
         return "";
     }
 
-    string ret = cqJNIFromJString(_env, jString);
+    std::string ret = cqJNIFromJString(_env, jString);
     _env->DeleteLocalRef(jString);
     return ret;
 }

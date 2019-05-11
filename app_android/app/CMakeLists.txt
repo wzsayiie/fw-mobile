@@ -19,8 +19,8 @@ set(lib_name cargo)
 list(APPEND inc_path ../../GENERATED_HEADERS)
 list(APPEND inc_path ../../thirds_android/includes)
 
-list(APPEND src_aims ../../cusapp_cpp/*.cpp)
-list(APPEND src_aims ../../cusapp_lua/*.cpp)
+list(APPEND src_aims ../../program_cpp/*.cpp)
+list(APPEND src_aims ../../program_lua/*.cpp)
 
 list(APPEND sys_libs log)
 list(APPEND usr_libs ../../thirds_android/jniLibs/${ANDROID_ABI}/liblua.so)

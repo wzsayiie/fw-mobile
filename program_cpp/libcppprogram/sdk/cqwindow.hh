@@ -1,7 +1,7 @@
 #pragma once
 
 #include "cqviewcontroller.hh"
-#include "cqhostapi.h"
+#include "cqosapi.h"
 
 cq_class(cqWindow, cqView) {
     
