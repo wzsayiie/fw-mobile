@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cqcbasis.h"
+#include "cqluabasis.h"
 
-CQ_C_LINK void cq_lua_vm_open(const char *directory_path);
-CQ_C_LINK void cq_lua_vm_close(void);
+CQ_C_LINK void cq_lua_open_vm(void);
+CQ_C_LINK void cq_lua_close_vm(void);

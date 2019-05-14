@@ -1,4 +1,4 @@
-#include "cqluafoundation.h"
+#include "cqlualibfoundation.h"
 #include "cqfoundationarche.h"
 
 static int32_t log_info(lua_State *state) {
@@ -20,15 +20,10 @@ static int32_t log_error(lua_State *state) {
     
     cq_log_error(file, line, text);
     
-    return 0;
+    return cq_lua_push_void(state);
 }
 
 void cq_lua_load_lib_foundation() {
-    
     cq_lua_register_func("cq_log_info" , log_info );
     cq_lua_register_func("cq_log_error", log_error);
-    
-    const char *source = nullptr;
-    #include "cqluafoundation_lua.h"
-    cq_lua_do_string(source);
 }

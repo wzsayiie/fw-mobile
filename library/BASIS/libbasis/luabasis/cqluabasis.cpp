@@ -1,13 +1,14 @@
-#include "cqluaapi.h"
+#include "cqluabasis.h"
 #include "cqcppbasis.hh"
 
 static void (*_register_func)(const char *, lua_CFunction) = nullptr;
-static void (*_do_string    )(const char *) = nullptr;
+static void (*_do_string    )(const char *               ) = nullptr;
 
 static int64_t (*_check_integer)(lua_State *, int32_t) = nullptr;
 static double  (*_check_double )(lua_State *, int32_t) = nullptr;
 static PCSTR   (*_check_string )(lua_State *, int32_t) = nullptr;
 
+static void (*_push_bool   )(lua_State *, bool   ) = nullptr;
 static void (*_push_integer)(lua_State *, int64_t) = nullptr;
 static void (*_push_double )(lua_State *, double ) = nullptr;
 static void (*_push_string )(lua_State *, PCSTR  ) = nullptr;
@@ -33,14 +34,15 @@ float   cq_lua_check_float (lua_State *s, int32_t i) {return _check_double  ? (f
 double  cq_lua_check_double(lua_State *s, int32_t i) {return _check_double  ? (double )_check_double (s, i) : 0;}
 PCSTR   cq_lua_check_string(lua_State *s, int32_t i) {return _check_string  ? (PCSTR  )_check_string (s, i) : 0;}
 
-void cq_lua_push_bool  (lua_State *s, bool    v) {if (_push_integer) _push_integer(s, v);}
-void cq_lua_push_int8  (lua_State *s, int8_t  v) {if (_push_integer) _push_integer(s, v);}
-void cq_lua_push_int16 (lua_State *s, int16_t v) {if (_push_integer) _push_integer(s, v);}
-void cq_lua_push_int32 (lua_State *s, int32_t v) {if (_push_integer) _push_integer(s, v);}
-void cq_lua_push_int64 (lua_State *s, int64_t v) {if (_push_integer) _push_integer(s, v);}
-void cq_lua_push_float (lua_State *s, float   v) {if (_push_double ) _push_double (s, v);}
-void cq_lua_push_double(lua_State *s, double  v) {if (_push_double ) _push_double (s, v);}
-void cq_lua_push_string(lua_State *s, PCSTR   v) {if (_push_string ) _push_string (s, v);}
+int32_t cq_lua_push_void  (lua_State *s           ) {                                        return 0;}
+int32_t cq_lua_push_bool  (lua_State *s, bool    v) {if (_push_bool   ) _push_bool   (s, v); return 1;}
+int32_t cq_lua_push_int8  (lua_State *s, int8_t  v) {if (_push_integer) _push_integer(s, v); return 1;}
+int32_t cq_lua_push_int16 (lua_State *s, int16_t v) {if (_push_integer) _push_integer(s, v); return 1;}
+int32_t cq_lua_push_int32 (lua_State *s, int32_t v) {if (_push_integer) _push_integer(s, v); return 1;}
+int32_t cq_lua_push_int64 (lua_State *s, int64_t v) {if (_push_integer) _push_integer(s, v); return 1;}
+int32_t cq_lua_push_float (lua_State *s, float   v) {if (_push_double ) _push_double (s, v); return 1;}
+int32_t cq_lua_push_double(lua_State *s, double  v) {if (_push_double ) _push_double (s, v); return 1;}
+int32_t cq_lua_push_string(lua_State *s, PCSTR   v) {if (_push_string ) _push_string (s, v); return 1;}
 
 void _cq_lua_set_register_func_handler(void (*h)(const char *, lua_CFunction)) {_register_func = h;}
 void _cq_lua_set_do_string_handler    (void (*h)(const char *               )) {_do_string     = h;}
@@ -49,6 +51,7 @@ void _cq_lua_set_check_integer_handler(int64_t (*h)(lua_State *, int32_t)) {_che
 void _cq_lua_set_check_double_handler (double  (*h)(lua_State *, int32_t)) {_check_double  = h;}
 void _cq_lua_set_check_string_handler (PCSTR   (*h)(lua_State *, int32_t)) {_check_string  = h;}
 
+void _cq_lua_set_push_bool_handler   (void (*h)(lua_State *, bool   )) {_push_bool    = h;}
 void _cq_lua_set_push_integer_handler(void (*h)(lua_State *, int64_t)) {_push_integer = h;}
 void _cq_lua_set_push_double_handler (void (*h)(lua_State *, double )) {_push_double  = h;}
 void _cq_lua_set_push_string_handler (void (*h)(lua_State *, PCSTR  )) {_push_string  = h;}

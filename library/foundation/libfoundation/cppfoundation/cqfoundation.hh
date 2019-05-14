@@ -1,5 +1,7 @@
 #pragma once
 
+#include "cqcppbasis.hh"
+
 void cqLogInfo (const char *file, int line, const char *format, ...);
 void cqLogError(const char *file, int line, const char *format, ...);
 

@@ -1,5 +1,5 @@
 #pragma once
 
-#include "cqcbasis.h"
+#include "cqluabasis.h"
 
-CQ_C_LINK void cq_lua_source_update(const char *directory_path);
+CQ_C_LINK void cq_lua_run_scripts(void);

@@ -1,10 +1,21 @@
 #include <jni.h>
 #include "cqjnihelper.hh"
-#include "cqluasource.h"
-#include "cqluavm.h"
+
+#import "cqluasource.h"
+#import "cqluavm.h"
+#import "cqlualibfoundation.h"
+#import "cqlualibsubsystem.h"
+#import "cqlualibuikit.h"
 
 extern "C" JNIEXPORT void JNICALL Java_src_app_host_lua_LuaActivity_onCreate
-/**/(JNIEnv *, jobject, jstring path, jlong index) {
+/**/(JNIEnv *, jobject, jlong index) {
+
+    cq_lua_open_vm();
+    cq_lua_load_lib_foundation();
+    cq_lua_load_lib_subsystem();
+    cq_lua_load_lib_uikit();
+
+    cq_lua_run_scripts();
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_app_host_lua_LuaActivity_onStart

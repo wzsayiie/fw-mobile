@@ -44,6 +44,8 @@ extern const bool cq_on_windows;
 
 typedef const char *PCSTR;
 
+CQ_C_LINK bool cq_string_null_or_emptry(const char *string);
+
 //storing a string on current thread,
 //until call of cq_string_store_xx again on same thread.
 CQ_C_LINK const char *cq_string_store_string(const char *value);

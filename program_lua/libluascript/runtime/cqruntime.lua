@@ -1,22 +1,26 @@
---source = R"lua(
+--/cqruntime.lua/
+
+-- require
 
 setmetatable(_G, {__index = function(tab, key)
-    local success, error = pcall(require, string.lower(key))
-    if success then
+    local succeed = cq_require(key)
+    if succeed then
         return tab[key]
     else
         return nil
     end
 end})
-    
+
+-- object
+
 CQObject = {}
-    
+
 function CQObject:new(...)
     local object = setmetatable({}, {__index = self})
     object:init(...)
     return object
 end
-    
+
 function CQObject:init()
 end
     
@@ -26,4 +30,5 @@ function cq_extends(super, this)
     return this
 end;
 
---)lua";
+-- user need to implement this function
+entry()

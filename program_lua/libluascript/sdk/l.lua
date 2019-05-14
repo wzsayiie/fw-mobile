@@ -1,6 +1,9 @@
---source = R"lua(
+--/l.lua/
 
-function cq_string_format(format, args)
+L = cq_extends(CQObject, {
+})
+
+local function stringFormat(format, args)
     local okay, text = pcall(string.format, format, table.unpack(args))
     if okay then
         return text
@@ -9,14 +12,12 @@ function cq_string_format(format, args)
     end
 end
 
-function I(format, ...)
-    local text = cq_string_format(format, {...})
+function L:i(format, ...)
+    local text = stringFormat(format, {...})
     cq_log_info("", 0, text)
 end
 
-function E(format, ...)
-    local text = cq_string_format(format, {...})
+function L:e(format, ...)
+    local text = stringFormat(format, {...})
     cq_log_error("", 0, text)
 end
-
---)lua";

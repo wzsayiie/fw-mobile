@@ -18,16 +18,7 @@ public class LuaActivity extends Activity {
         super.onCreate(savedInstanceState);
         L.i("host: on create");
 
-        String cachePath= getCacheDir().toString();
-        File luaPath = new File(cachePath + "/LUA");
-        if (!luaPath.exists()) {
-            boolean succeed = luaPath.mkdir();
-            if (!succeed) {
-                L.e("host: failed to create lua directory");
-            }
-        }
-
-        onCreate(luaPath.getPath(), hashCode());
+        onCreate(hashCode());
     }
 
     @Override
@@ -46,7 +37,7 @@ public class LuaActivity extends Activity {
         onStop(hashCode());
     }
 
-    private native void onCreate(String path, long index);
+    private native void onCreate(long index);
     private native void onStart(long index);
     private native void onStop(long index);
 }
