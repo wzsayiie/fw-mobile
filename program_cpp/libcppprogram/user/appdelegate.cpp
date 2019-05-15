@@ -8,11 +8,14 @@ cq_member(AppDelegate) {
 AppDelegate::AppDelegate() {
 }
 
-void AppDelegate::applicationDidFinishLaunching(cqWindow::ref window) {
+void AppDelegate::applicationDidFinishLaunching() {
     I("application launching");
     
-    RootViewController::ref controller = RootViewController::create();
-    window->setRootViewController(controller);
+    auto controller = RootViewController::create();
+    
+    self->window = cqWindow::create();
+    self->window->setRootViewController(controller);
+    self->window->makeKeyAndVisible();
 }
 
 void _entry() {

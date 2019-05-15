@@ -1,12 +1,10 @@
 #pragma once
 
-#include "cqwindow.hh"
-
-struct cqApplication;
+#include "cqresponder.hh"
 
 cq_interface(cqApplicationDelegate, cqInterface) {
 
-    virtual void applicationDidFinishLaunching(cqWindow::ref window) {}
+    virtual void applicationDidFinishLaunching() {}
     virtual void applicationDidBecomeActive() {}
     virtual void applicationDidEnterBackground() {}
 };
@@ -19,9 +17,6 @@ cq_class(cqApplication, cqResponder) {
     
     virtual void setDelegate(cqApplicationDelegate::ref delegate);
     virtual cqApplicationDelegate::ref delegate();
-    
-    virtual void setWindow(cqWindow::ref window);
-    virtual cqWindow::ref window();
 };
 
 void cqApplicationMain(cqApplicationDelegate::ref delegate);

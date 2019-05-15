@@ -1,8 +1,8 @@
 #include "cqapplication.hh"
+#include "cqosapi.h"
 
 cq_member(cqApplication) {
     cqApplicationDelegate::ref delegate;
-    cqWindow::ref window;
 };
 
 cqApplication::ref cqApplication::sharedApplication() {
@@ -24,30 +24,20 @@ cqApplicationDelegate::ref cqApplication::delegate() {
     return self->delegate;
 }
 
-void cqApplication::setWindow(cqWindow::ref window) {
-    self->window = window;
-}
-
-cqWindow::ref cqApplication::window() {
-    return self->window;
-}
-
 void cqApplicationMain(cqApplicationDelegate::ref delegate) {
     auto application = cqApplication::sharedApplication();
     application->setDelegate(delegate);
 }
 
-void _cq_default_window_created(cq_window *window) {
+void _cq_default_window_created() {
+    
+    //call cqApplicationMain
     _entry();
     
-    auto win = cqWindow::create();
-    win->setHostWindow(window);
-    
+    //call applicationDidFinishLaunching
     auto application = cqApplication::sharedApplication();
-    application->setWindow(win);
-    
     auto delegate = application->delegate();
     if (delegate != nullptr) {
-        delegate->applicationDidFinishLaunching(win);
+        delegate->applicationDidFinishLaunching();
     }
 }

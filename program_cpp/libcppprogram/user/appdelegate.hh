@@ -6,5 +6,5 @@ cq_class(AppDelegate, cqApplicationDelegate) {
     
     AppDelegate();
     
-    virtual void applicationDidFinishLaunching(cqWindow::ref window);
+    virtual void applicationDidFinishLaunching();
 };

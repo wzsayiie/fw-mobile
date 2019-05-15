@@ -16,6 +16,8 @@ typedef struct cq_window_procedure {
     
 } cq_window_procedure;
 
+CQ_C_LINK cq_window *cq_window_get_default(void);
+
 CQ_C_LINK void                 cq_window_set_procedure(cq_window *w, cq_window_procedure *p);
 CQ_C_LINK cq_window_procedure *cq_window_get_procedure(cq_window *w);
 
@@ -45,4 +47,4 @@ CQ_C_LINK void _cq_notify_window_touch_ended(int64_t window_idx, float x, float 
 
 //user need implement this function ->
 
-CQ_C_LINK void _cq_default_window_created(cq_window *window);
+CQ_C_LINK void _cq_default_window_created(void);

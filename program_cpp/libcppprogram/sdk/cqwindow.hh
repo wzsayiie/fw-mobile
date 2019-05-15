@@ -1,7 +1,6 @@
 #pragma once
 
 #include "cqviewcontroller.hh"
-#include "cqosapi.h"
 
 cq_class(cqWindow, cqView) {
     
@@ -10,5 +9,5 @@ cq_class(cqWindow, cqView) {
     virtual void setRootViewController(cqViewController::ref controller);
     virtual cqViewController::ref rootViewController();
     
-    virtual void setHostWindow(cq_window *window);
+    virtual void makeKeyAndVisible();
 };

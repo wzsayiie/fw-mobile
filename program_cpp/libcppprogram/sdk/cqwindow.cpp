@@ -1,5 +1,6 @@
 #include "cqwindow.hh"
 #include "cqapplication.hh"
+#include "cqosapi.h"
 
 cq_member(cqWindow) {
     cqViewController::ref rootViewController;
@@ -70,17 +71,19 @@ static void cqWindow_touchMoved(cq_window *window, float x, float y) {
 static void cqWindow_touchEnded(cq_window *window, float x, float y) {
 }
 
-void cqWindow::setHostWindow(cq_window *window) {
-    self->window = window;
+void cqWindow::makeKeyAndVisible() {
     
-    cq_window_set_back_color(window, 1, 1, 1);
-    cq_window_set_extra(window, (int64_t)this);
+    //NOTE: currently only one window be supported in a app.
+    self->window = cq_window_get_default();
     
-    cq_window_get_procedure(window)->load = cqWindow_load;
-    cq_window_get_procedure(window)->show = cqWindow_show;
-    cq_window_get_procedure(window)->hide = cqWindow_hide;
+    cq_window_set_back_color(self->window, 1, 1, 1);
+    cq_window_set_extra(self->window, (int64_t)this);
     
-    cq_window_get_procedure(window)->touch_began = cqWindow_touchBegan;
-    cq_window_get_procedure(window)->touch_moved = cqWindow_touchMoved;
-    cq_window_get_procedure(window)->touch_ended = cqWindow_touchEnded;
+    cq_window_get_procedure(self->window)->load = cqWindow_load;
+    cq_window_get_procedure(self->window)->show = cqWindow_show;
+    cq_window_get_procedure(self->window)->hide = cqWindow_hide;
+    
+    cq_window_get_procedure(self->window)->touch_began = cqWindow_touchBegan;
+    cq_window_get_procedure(self->window)->touch_moved = cqWindow_touchMoved;
+    cq_window_get_procedure(self->window)->touch_ended = cqWindow_touchEnded;
 }
