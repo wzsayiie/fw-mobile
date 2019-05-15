@@ -1,0 +1,38 @@
+#pragma once
+
+#include "cqcppbasis.hh"
+
+struct cqPoint {
+    
+    float x;
+    float y;
+    
+    cqPoint();
+    cqPoint(float x, float y);
+};
+
+struct cqSize {
+    
+    float width;
+    float height;
+    
+    cqSize();
+    cqSize(float width, float height);
+};
+
+struct cqRect {
+    
+    cqPoint origin;
+    cqSize size;
+    
+    cqRect();
+    cqRect(float x, float y, float width, float height);
+    cqRect(cqPoint origin, cqSize size);
+    
+    float minX() const;
+    float minY() const;
+    float maxX() const;
+    float maxY() const;
+    
+    bool contains(cqPoint point) const;
+};

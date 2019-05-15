@@ -29,6 +29,7 @@
 		B45C1BB821A02B19007CB374 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1B8E21A02B19007CB374 /* AppDelegate.m */; };
 		B45C1BD021A034C0007CB374 /* ExampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B45C1BCF21A034C0007CB374 /* ExampleViewController.xib */; };
 		B4A44684228AA20000B46240 /* cqlualibuikit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A44682228AA20000B46240 /* cqlualibuikit.cpp */; };
+		B4A4468B228BA74F00B46240 /* cqgeometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A44689228BA74E00B46240 /* cqgeometry.cpp */; };
 		B4B9D32022278D4E00B35E72 /* liblua.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B9D31F22278D4D00B35E72 /* liblua.a */; };
 		B4CFD97321C7475000FFF4CF /* IAPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96021C7475000FFF4CF /* IAPViewController.m */; };
 		B4CFD97421C7475000FFF4CF /* ExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96421C7475000FFF4CF /* ExampleViewController.m */; };
@@ -130,6 +131,8 @@
 		B45C1BCF21A034C0007CB374 /* ExampleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExampleViewController.xib; sourceTree = "<group>"; };
 		B4A44682228AA20000B46240 /* cqlualibuikit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqlualibuikit.cpp; sourceTree = "<group>"; };
 		B4A44683228AA20000B46240 /* cqlualibuikit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqlualibuikit.h; sourceTree = "<group>"; };
+		B4A44689228BA74E00B46240 /* cqgeometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqgeometry.cpp; sourceTree = "<group>"; };
+		B4A4468A228BA74F00B46240 /* cqgeometry.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqgeometry.hh; sourceTree = "<group>"; };
 		B4B9D31F22278D4D00B35E72 /* liblua.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblua.a; path = ../thirds_ios/libs/liblua.a; sourceTree = "<group>"; };
 		B4CFD96021C7475000FFF4CF /* IAPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPViewController.m; sourceTree = "<group>"; };
 		B4CFD96121C7475000FFF4CF /* IAPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPViewController.h; sourceTree = "<group>"; };
@@ -579,6 +582,8 @@
 				CE90E68F22872A350071D4D3 /* cqapplication.cpp */,
 				CE90E68C22872A350071D4D3 /* cqevent.hh */,
 				CE90E68E22872A350071D4D3 /* cqevent.cpp */,
+				B4A4468A228BA74F00B46240 /* cqgeometry.hh */,
+				B4A44689228BA74E00B46240 /* cqgeometry.cpp */,
 				CE90E68922872A350071D4D3 /* cqresponder.hh */,
 				CE90E68622872A350071D4D3 /* cqresponder.cpp */,
 				CE90E68422872A350071D4D3 /* cqtouch.hh */,
@@ -732,6 +737,7 @@
 				CE90E64B228727460071D4D3 /* CQLuaViewController.m in Sources */,
 				CE90E677228729CF0071D4D3 /* CQCPPAppDelegate.m in Sources */,
 				B4A44684228AA20000B46240 /* cqlualibuikit.cpp in Sources */,
+				B4A4468B228BA74F00B46240 /* cqgeometry.cpp in Sources */,
 				B425210722842AD3004FA04B /* NSObject+CQ.m in Sources */,
 				B4CFD97321C7475000FFF4CF /* IAPViewController.m in Sources */,
 				B425210A22842AD3004FA04B /* UIDevice+CQ.m in Sources */,

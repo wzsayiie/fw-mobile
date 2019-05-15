@@ -4,6 +4,7 @@
 
 #include "cqapplication.hh"
 #include "cqevent.hh"
+#include "cqgeometry.hh"
 #include "cqresponder.hh"
 #include "cqtouch.hh"
 #include "cqview.hh"

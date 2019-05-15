@@ -8,6 +8,6 @@ cq_class(cqSubsystemManager, cqObject) {
     
     static cqSubsystemManager::ref get();
     
-    virtual bool startSubsystem(cqString::ref name);
-    virtual void stopSubsystem(cqString::ref name);
+    virtual bool startSubsystem(const std::string &name);
+    virtual void stopSubsystem(const std::string &name);
 };

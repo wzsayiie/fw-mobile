@@ -8,11 +8,11 @@
 #include <set>
 #include <vector>
 
-//interface and object
-
 struct _cqRoot {
     virtual ~_cqRoot() = default;
 };
+
+//interface
 
 #define cq_interface(SELF, SUPER) struct SELF : _cq_interface_middle<SELF, SUPER>
 
@@ -27,6 +27,8 @@ template<class SELF, class SUPER> struct _cq_interface_middle : SUPER {
 cq_interface(cqInterface, _cqRoot) {
 };
 
+//object
+
 #define cq_member(SELF)       struct SELF##_Data
 #define cq_class(SELF, SUPER) struct SELF : _cq_class_middle<SELF, cq_member(SELF), SUPER>
 
@@ -34,10 +36,21 @@ template<class SELF, class DATA, class SUPER> struct _cq_class_middle : SUPER {
 
 public:
     
+    typedef std::weak_ptr<SELF> weak_ref;
     typedef std::shared_ptr<SELF> ref;
     
     template<class... A> static ref create(A... a) {
-        return std::make_shared<SELF>(a...);
+        auto object = std::make_shared<SELF>(a...);
+        object->_weak = object;
+        return object;
+    }
+    
+    ref strong() const {
+        return _weak.lock();
+    }
+    
+    weak_ref weak() const {
+        return _weak;
     }
     
 protected:
@@ -48,31 +61,13 @@ protected:
     
     _cq_class_middle() : self(std::make_shared<DATA>()) {
     }
+    
+private:
+    
+    weak_ref _weak;
 };
 
 cq_class(cqObject, _cqRoot) {
     
     cqObject();
 };
-
-//containers
-
-template<class T> struct _cqContainer {
-    
-    typedef std::shared_ptr<T> ref;
-    
-    template<class A> static ref create(A a) {
-        return std::make_shared<T>(a);
-    }
-};
-
-struct cqString        : _cqContainer<const std::string> {};
-struct cqMutableString : _cqContainer<      std::string> {};
-
-template<class T> struct cqVector        : _cqContainer<const std::vector<T>> {};
-template<class T> struct cqMutableVector : _cqContainer<      std::vector<T>> {};
-template<class T> struct cqSet           : _cqContainer<const std::set   <T>> {};
-template<class T> struct cqMutableSet    : _cqContainer<      std::set   <T>> {};
-
-template<class K, class V> struct cqMap        : _cqContainer<const std::map<K, V>> {};
-template<class K, class V> struct cqMutableMap : _cqContainer<      std::map<K, V>> {};

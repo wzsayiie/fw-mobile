@@ -6,7 +6,7 @@ cq_class(cqResponder, cqObject) {
     
     cqResponder();
     
-    virtual void touchesBegan(cqSet<cqTouch::ref>::ref touches, cqEvent::ref event);
-    virtual void touchesMoved(cqSet<cqTouch::ref>::ref touches, cqEvent::ref event);
-    virtual void touchesEnded(cqSet<cqTouch::ref>::ref touches, cqEvent::ref event);
+    virtual void touchesBegan(const std::set<cqTouch::ref> &touches, cqEvent::ref event);
+    virtual void touchesMoved(const std::set<cqTouch::ref> &touches, cqEvent::ref event);
+    virtual void touchesEnded(const std::set<cqTouch::ref> &touches, cqEvent::ref event);
 };
