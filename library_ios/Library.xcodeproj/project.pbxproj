@@ -120,8 +120,8 @@
 		B42505A4226744B10035F91A /* archetype */ = {
 			isa = PBXGroup;
 			children = (
-				B42505A5226744B10035F91A /* cqsubsystemarche.h */,
 				B42505A6226744B10035F91A /* cqsubsystemarche.cpp */,
+				B42505A5226744B10035F91A /* cqsubsystemarche.h */,
 			);
 			path = archetype;
 			sourceTree = "<group>";
@@ -129,8 +129,8 @@
 		B42505A7226744B10035F91A /* luasubsystem */ = {
 			isa = PBXGroup;
 			children = (
-				B42505A9226744B10035F91A /* cqlualibsubsystem.h */,
 				B42505AA226744B10035F91A /* cqlualibsubsystem.cpp */,
+				B42505A9226744B10035F91A /* cqlualibsubsystem.h */,
 			);
 			path = luasubsystem;
 			sourceTree = "<group>";
@@ -138,8 +138,8 @@
 		B42505AB226744B10035F91A /* cppsubsystem */ = {
 			isa = PBXGroup;
 			children = (
-				B42505AD226744B10035F91A /* cqsubsystem.hh */,
 				B42505AC226744B10035F91A /* cqsubsystem.cpp */,
+				B42505AD226744B10035F91A /* cqsubsystem.hh */,
 			);
 			path = cppsubsystem;
 			sourceTree = "<group>";
@@ -175,8 +175,8 @@
 		B439E56F2266CC7500B66285 /* cppbasis */ = {
 			isa = PBXGroup;
 			children = (
-				B439E5712266CC7500B66285 /* cqcppbasis.hh */,
 				B439E5702266CC7500B66285 /* cqcppbasis.cpp */,
+				B439E5712266CC7500B66285 /* cqcppbasis.hh */,
 			);
 			path = cppbasis;
 			sourceTree = "<group>";
@@ -184,8 +184,8 @@
 		B439E5722266CC7500B66285 /* luabasis */ = {
 			isa = PBXGroup;
 			children = (
-				B439E5732266CC7500B66285 /* cqluabasis.h */,
 				B439E5762266CC7500B66285 /* cqluabasis.cpp */,
+				B439E5732266CC7500B66285 /* cqluabasis.h */,
 			);
 			path = luabasis;
 			sourceTree = "<group>";
@@ -193,8 +193,8 @@
 		B439E5792266CC7500B66285 /* cbasis */ = {
 			isa = PBXGroup;
 			children = (
-				B439E57B2266CC7500B66285 /* cqcbasis.h */,
 				B439E57A2266CC7500B66285 /* cqcbasis.cpp */,
+				B439E57B2266CC7500B66285 /* cqcbasis.h */,
 			);
 			path = cbasis;
 			sourceTree = "<group>";
@@ -225,8 +225,8 @@
 		B439E5852266CCDE00B66285 /* archetype */ = {
 			isa = PBXGroup;
 			children = (
-				B439E5872266CCDE00B66285 /* cqfoundationarche.h */,
 				B439E5862266CCDE00B66285 /* cqfoundationarche.cpp */,
+				B439E5872266CCDE00B66285 /* cqfoundationarche.h */,
 			);
 			path = archetype;
 			sourceTree = "<group>";
@@ -234,8 +234,8 @@
 		B439E5882266CCDE00B66285 /* luafoundation */ = {
 			isa = PBXGroup;
 			children = (
-				B439E58A2266CCDE00B66285 /* cqlualibfoundation.h */,
 				B439E5892266CCDE00B66285 /* cqlualibfoundation.cpp */,
+				B439E58A2266CCDE00B66285 /* cqlualibfoundation.h */,
 			);
 			path = luafoundation;
 			sourceTree = "<group>";
@@ -243,8 +243,8 @@
 		B439E58C2266CCDE00B66285 /* cppfoundation */ = {
 			isa = PBXGroup;
 			children = (
-				B439E58F2266CCDE00B66285 /* cqfoundation.hh */,
 				B439E58E2266CCDE00B66285 /* cqfoundation.cpp */,
+				B439E58F2266CCDE00B66285 /* cqfoundation.hh */,
 			);
 			path = cppfoundation;
 			sourceTree = "<group>";
