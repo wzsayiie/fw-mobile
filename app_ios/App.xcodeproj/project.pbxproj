@@ -40,6 +40,7 @@
 		B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DCD87B21F17DAE0090BFBB /* UserIdentity.m */; };
 		B4DCD87F21F17DAE0090BFBB /* UserSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DCD87C21F17DAE0090BFBB /* UserSetting.m */; };
 		B4E7CD0F2224098800122637 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E7CD0E2224098800122637 /* main.m */; };
+		B4EF08B6228D8D9A0089AA4C /* cqcolor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EF08B5228D8D9A0089AA4C /* cqcolor.cpp */; };
 		B4FCC39821F0912700D152DF /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FCC39721F0912700D152DF /* libc++.tbd */; };
 		CE90E647228727460071D4D3 /* cqluavm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E63D228727460071D4D3 /* cqluavm.cpp */; };
 		CE90E649228727460071D4D3 /* cqluasource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E641228727460071D4D3 /* cqluasource.cpp */; };
@@ -150,6 +151,8 @@
 		B4DCD87D21F17DAE0090BFBB /* UserIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserIdentity.h; sourceTree = "<group>"; };
 		B4E7CD0E2224098800122637 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B4EC3C6621DF6D8800E287A4 /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../library_ios/Library.xcodeproj; sourceTree = "<group>"; };
+		B4EF08B4228D8D9A0089AA4C /* cqcolor.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqcolor.hh; sourceTree = "<group>"; };
+		B4EF08B5228D8D9A0089AA4C /* cqcolor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqcolor.cpp; sourceTree = "<group>"; };
 		B4FCC39721F0912700D152DF /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		CE90E63D228727460071D4D3 /* cqluavm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluavm.cpp; sourceTree = "<group>"; };
 		CE90E63E228727460071D4D3 /* cqluavm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluavm.h; sourceTree = "<group>"; };
@@ -580,6 +583,8 @@
 			children = (
 				CE90E68F22872A350071D4D3 /* cqapplication.cpp */,
 				CE90E68D22872A350071D4D3 /* cqapplication.hh */,
+				B4EF08B5228D8D9A0089AA4C /* cqcolor.cpp */,
+				B4EF08B4228D8D9A0089AA4C /* cqcolor.hh */,
 				CE90E68E22872A350071D4D3 /* cqevent.cpp */,
 				CE90E68C22872A350071D4D3 /* cqevent.hh */,
 				B4A44689228BA74E00B46240 /* cqgeometry.cpp */,
@@ -718,6 +723,7 @@
 				B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */,
 				B4CFD97421C7475000FFF4CF /* ExampleViewController.m in Sources */,
 				B425210922842AD3004FA04B /* NSBundle+CQ.m in Sources */,
+				B4EF08B6228D8D9A0089AA4C /* cqcolor.cpp in Sources */,
 				CE90E69522872A350071D4D3 /* rootviewcontroller.cpp in Sources */,
 				CE90E69622872A350071D4D3 /* cqviewcontroller.cpp in Sources */,
 				CE90E69A22872A350071D4D3 /* cqwindow.cpp in Sources */,
