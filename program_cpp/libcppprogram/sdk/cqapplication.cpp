@@ -1,12 +1,22 @@
 #include "cqapplication.hh"
 #include "cqosapi.h"
 
-cq_member(cqApplication) {
-    cqApplicationDelegate::ref delegate;
+cq_member(cqApplicationDelegate) {
 };
 
-cqApplication::ref cqApplication::sharedApplication() {
-    static cqApplication::ref object;
+cqApplicationDelegate::cqApplicationDelegate() {
+}
+
+void cqApplicationDelegate::applicationDidFinishLaunching() {}
+void cqApplicationDelegate::applicationDidBecomeActive   () {}
+void cqApplicationDelegate::applicationDidEnterBackground() {}
+
+cq_member(cqApplication) {
+    cqApplicationDelegate::Ref delegate;
+};
+
+cqApplication::Ref cqApplication::sharedApplication() {
+    static cqApplication::Ref object;
     if (object == nullptr) {
         object = cqApplication::create();
     }
@@ -16,15 +26,19 @@ cqApplication::ref cqApplication::sharedApplication() {
 cqApplication::cqApplication() {
 }
 
-void cqApplication::setDelegate(cqApplicationDelegate::ref delegate) {
-    self->delegate = delegate;
+void cqApplication::setDelegate(cqApplicationDelegate::Ref delegate) {
+    dat->delegate = delegate;
 }
 
-cqApplicationDelegate::ref cqApplication::delegate() {
-    return self->delegate;
+cqApplicationDelegate::Ref cqApplication::delegate() {
+    return dat->delegate;
 }
 
-void cqApplicationMain(cqApplicationDelegate::ref delegate) {
+cqResponder::Ref cqApplication::nextResponder() {
+    return dat->delegate;
+}
+
+void cqApplicationMain(cqApplicationDelegate::Ref delegate) {
     auto application = cqApplication::sharedApplication();
     application->setDelegate(delegate);
 }

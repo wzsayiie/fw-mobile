@@ -6,7 +6,7 @@ cq_class(RootViewController, cqViewController) {
 
     RootViewController();
     
-    virtual void viewDidLoad();
-    virtual void viewDidAppear();
-    virtual void viewDidDisappear();
+    void viewDidLoad() override;
+    void viewDidAppear() override;
+    void viewDidDisappear() override;
 };

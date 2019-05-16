@@ -6,5 +6,5 @@ cq_class(AppDelegate, cqApplicationDelegate) {
     
     AppDelegate();
     
-    virtual void applicationDidFinishLaunching();
+    void applicationDidFinishLaunching() override;
 };

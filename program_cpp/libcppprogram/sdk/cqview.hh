@@ -11,11 +11,16 @@ cq_class(cqView, cqResponder) {
     virtual cqRect frame();
     virtual cqRect bounds();
     
-    virtual cqView::weak_ref superview();
-    virtual const std::vector<cqView::ref> &subviews();
-    virtual void addSubview(cqView::ref subview);
+    virtual cqView::Ref superview();
+    virtual const std::vector<cqView::Ref> &subviews();
+    virtual void addSubview(cqView::Ref subview);
     virtual void removeFromSuperview();
     
-    virtual cqView::ref hitTest(cqPoint point, cqEvent::ref event);
-    virtual bool pointInside(cqPoint point, cqEvent::ref event);
+    virtual cqView::Ref hitTest(cqPoint point, cqEvent::Ref event);
+    virtual bool pointInside(cqPoint point, cqEvent::Ref event);
+    
+    virtual void setViewDelegate(cqResponder::Ref viewDelegate);
+    virtual cqResponder::Ref viewDelegate();
+    
+    cqResponder::Ref nextResponder() override;
 };

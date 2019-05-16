@@ -7,8 +7,8 @@ cq_member(cqSubsystemManager) {
 cqSubsystemManager::cqSubsystemManager() {
 }
 
-cqSubsystemManager::ref cqSubsystemManager::get() {
-    static cqSubsystemManager::ref object;
+cqSubsystemManager::Ref cqSubsystemManager::get() {
+    static cqSubsystemManager::Ref object;
     if (object == nullptr) {
         object = cqSubsystemManager::create();
     }

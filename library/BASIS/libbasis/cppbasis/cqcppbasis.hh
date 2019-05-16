@@ -21,7 +21,7 @@ template<class SELF, class SUPER> struct _cq_interface_middle : SUPER {
     static_assert(sizeof(SUPER) == sizeof(void *),
         "interface shouldn't extend a class that contains data member");
     
-    typedef std::shared_ptr<SELF> ref;
+    typedef std::shared_ptr<SELF> Ref;
 };
 
 cq_interface(cqInterface, _cqRoot) {
@@ -36,38 +36,39 @@ template<class SELF, class DATA, class SUPER> struct _cq_class_middle : SUPER {
 
 public:
     
-    typedef std::weak_ptr<SELF> weak_ref;
-    typedef std::shared_ptr<SELF> ref;
+    typedef std::weak_ptr<SELF> WeakRef;
+    typedef std::shared_ptr<SELF> Ref;
     
-    template<class... A> static ref create(A... a) {
+    template<class... A> static Ref create(A... a) {
         auto object = std::make_shared<SELF>(a...);
-        object->_weak = object;
+        object->thisWeakRef = object;
         return object;
     }
     
-    ref strong() const {
-        return _weak.lock();
+    Ref strongRef() const {
+        auto ref = SUPER::thisWeakRef.lock();
+        return std::static_pointer_cast<SELF>(ref);
     }
     
-    weak_ref weak() const {
-        return _weak;
+    WeakRef weakRef() const {
+        auto ref = SUPER::thisWeakRef.lock();
+        return std::static_pointer_cast<SELF>(ref);
     }
+    
+    std::shared_ptr<DATA> dat;
     
 protected:
     
     typedef SUPER super;
     
-    std::shared_ptr<DATA> self;
-    
-    _cq_class_middle() : self(std::make_shared<DATA>()) {
+    _cq_class_middle() : dat(std::make_shared<DATA>()) {
     }
-    
-private:
-    
-    weak_ref _weak;
 };
 
-cq_class(cqObject, _cqRoot) {
-    
+struct _cqObjectRoot : _cqRoot {
+    std::weak_ptr<_cqObjectRoot> thisWeakRef;
+};
+
+cq_class(cqObject, _cqObjectRoot) {
     cqObject();
 };

@@ -6,11 +6,27 @@ cq_member(cqResponder) {
 cqResponder::cqResponder() {
 }
 
-void cqResponder::touchesBegan(const std::set<cqTouch::ref> &touches, cqEvent::ref event) {
+cqResponder::Ref cqResponder::nextResponder() {
+    return nullptr;
 }
 
-void cqResponder::touchesMoved(const std::set<cqTouch::ref> &touches, cqEvent::ref event) {
+void cqResponder::touchesBegan(const std::set<cqTouch::Ref> &touches, cqEvent::Ref event) {
+    auto next = nextResponder();
+    if (next != nullptr) {
+        next->touchesBegan(touches, event);
+    }
 }
 
-void cqResponder::touchesEnded(const std::set<cqTouch::ref> &touches, cqEvent::ref event) {
+void cqResponder::touchesMoved(const std::set<cqTouch::Ref> &touches, cqEvent::Ref event) {
+    auto next = nextResponder();
+    if (next != nullptr) {
+        next->touchesMoved(touches, event);
+    }
+}
+
+void cqResponder::touchesEnded(const std::set<cqTouch::Ref> &touches, cqEvent::Ref event) {
+    auto next = nextResponder();
+    if (next != nullptr) {
+        next->touchesEnded(touches, event);
+    }
 }

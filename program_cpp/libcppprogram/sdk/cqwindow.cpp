@@ -1,36 +1,47 @@
 #include "cqwindow.hh"
 #include "cqapplication.hh"
 #include "cqosapi.h"
+#include "cqtouchevent_p.hh"
 
 cq_member(cqWindow) {
-    cqViewController::ref rootViewController;
     cq_window *window = nullptr;
+    cqViewController::Ref rootViewController;
+    cqView::Ref touchesResponder;
 };
 
 cqWindow::cqWindow() {
 }
 
-void cqWindow::setRootViewController(cqViewController::ref controller) {
-    self->rootViewController = controller;
+void cqWindow::setRootViewController(cqViewController::Ref controller) {
+    dat->rootViewController = controller;
 }
 
-cqViewController::ref cqWindow::rootViewController() {
-    return self->rootViewController;
+cqViewController::Ref cqWindow::rootViewController() {
+    return dat->rootViewController;
 }
 
-static void cqWindow_load(cq_window *window) {
+static void load(cq_window *window) {
     auto self = (cqWindow *)cq_window_get_extra(window);
     if (self == nullptr) {
         return;
     }
     
-    cqViewController::ref controller = self->rootViewController();
+    cqRect rect; {
+        rect.size.width  = cq_window_get_width (window);
+        rect.size.height = cq_window_get_height(window);
+    }
+    self->setFrame(rect);
+    cq_window_set_back_color(window, 1, 1, 1);
+    
+    cqViewController::Ref controller = self->rootViewController();
     if (controller != nullptr) {
-        controller->viewDidLoad();
+        self->rootViewController()->viewDidLoad();
+        self->rootViewController()->view()->setFrame(rect);
+        self->addSubview(controller->view());
     }
 }
 
-static void cqWindow_show(cq_window *window) {
+static void show(cq_window *window) {
     auto self = (cqWindow *)cq_window_get_extra(window);
     if (self == nullptr) {
         return;
@@ -40,13 +51,13 @@ static void cqWindow_show(cq_window *window) {
     if (delegate != nullptr) {
         delegate->applicationDidBecomeActive();
     }
-    cqViewController::ref controller = self->rootViewController();
+    cqViewController::Ref controller = self->rootViewController();
     if (controller != nullptr) {
         controller->viewDidAppear();
     }
 }
 
-static void cqWindow_hide(cq_window *window) {
+static void hide(cq_window *window) {
     auto self = (cqWindow *)cq_window_get_extra(window);
     if (self == nullptr) {
         return;
@@ -56,34 +67,65 @@ static void cqWindow_hide(cq_window *window) {
     if (delegate != nullptr) {
         delegate->applicationDidEnterBackground();
     }
-    cqViewController::ref controller = self->rootViewController();
+    cqViewController::Ref controller = self->rootViewController();
     if (controller != nullptr) {
         controller->viewDidDisappear();
     }
 }
 
-static void cqWindow_touchBegan(cq_window *window, float x, float y) {
+static void touchBegan(cq_window *window, float x, float y) {
+    //hit test
+    auto self = (cqWindow *)cq_window_get_extra(window);
+    auto view = self->hitTest(cqPoint(x, y), cqTouchEvent::create());
+    if (view == nullptr) {
+        return;
+    }
+    
+    //began event
+    self->dat->touchesResponder = view;
+    
+    std::set<cqTouch::Ref> touches = { cqTouch::create() };
+    auto event = cqTouchEvent::create();
+    view->touchesBegan(touches, event);
 }
 
-static void cqWindow_touchMoved(cq_window *window, float x, float y) {
+static void touchMoved(cq_window *window, float x, float y) {
+    auto dat = ((cqWindow *)cq_window_get_extra(window))->dat;
+    if (dat->touchesResponder == nullptr) {
+        return;
+    }
+    
+    std::set<cqTouch::Ref> touches = { cqTouch::create() };
+    auto event = cqTouchEvent::create();
+    dat->touchesResponder->touchesMoved(touches, event);
 }
 
-static void cqWindow_touchEnded(cq_window *window, float x, float y) {
+static void touchEnded(cq_window *window, float x, float y) {
+    auto dat = ((cqWindow *)cq_window_get_extra(window))->dat;
+    if (dat->touchesResponder == nullptr) {
+        return;
+    }
+    
+    std::set<cqTouch::Ref> touches = { cqTouch::create() };
+    auto event = cqTouchEvent::create();
+    dat->touchesResponder->touchesEnded(touches, event);
 }
 
 void cqWindow::makeKeyAndVisible() {
     
     //NOTE: currently only one window be supported in a app.
-    self->window = cq_window_get_default();
+    dat->window = cq_window_get_default();
+
+    cq_window_set_extra(dat->window, (int64_t)this);
     
-    cq_window_set_back_color(self->window, 1, 1, 1);
-    cq_window_set_extra(self->window, (int64_t)this);
-    
-    cq_window_get_procedure(self->window)->load = cqWindow_load;
-    cq_window_get_procedure(self->window)->show = cqWindow_show;
-    cq_window_get_procedure(self->window)->hide = cqWindow_hide;
-    
-    cq_window_get_procedure(self->window)->touch_began = cqWindow_touchBegan;
-    cq_window_get_procedure(self->window)->touch_moved = cqWindow_touchMoved;
-    cq_window_get_procedure(self->window)->touch_ended = cqWindow_touchEnded;
+    cq_window_get_procedure(dat->window)->load = load;
+    cq_window_get_procedure(dat->window)->show = show;
+    cq_window_get_procedure(dat->window)->hide = hide;
+    cq_window_get_procedure(dat->window)->touch_began = touchBegan;
+    cq_window_get_procedure(dat->window)->touch_moved = touchMoved;
+    cq_window_get_procedure(dat->window)->touch_ended = touchEnded;
+}
+
+cqResponder::Ref cqWindow::nextResponder() {
+    return cqApplication::sharedApplication();
 }

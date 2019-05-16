@@ -2,7 +2,7 @@
 #include "rootviewcontroller.hh"
 
 cq_member(AppDelegate) {
-    cqWindow::ref window;
+    cqWindow::Ref window;
 };
 
 AppDelegate::AppDelegate() {
@@ -13,12 +13,12 @@ void AppDelegate::applicationDidFinishLaunching() {
     
     auto controller = RootViewController::create();
     
-    self->window = cqWindow::create();
-    self->window->setRootViewController(controller);
-    self->window->makeKeyAndVisible();
+    dat->window = cqWindow::create();
+    dat->window->setRootViewController(controller);
+    dat->window->makeKeyAndVisible();
 }
 
 void _entry() {
-    AppDelegate::ref delegate = AppDelegate::create();
+    AppDelegate::Ref delegate = AppDelegate::create();
     cqApplicationMain(delegate);
 }

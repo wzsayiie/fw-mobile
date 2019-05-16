@@ -5,4 +5,6 @@
 cq_class(cqTouchEvent, cqEvent) {
     
     cqTouchEvent();
+    
+    cqEventType type() override;
 };

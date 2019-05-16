@@ -6,8 +6,10 @@ cq_class(cqWindow, cqView) {
     
     cqWindow();
     
-    virtual void setRootViewController(cqViewController::ref controller);
-    virtual cqViewController::ref rootViewController();
+    virtual void setRootViewController(cqViewController::Ref controller);
+    virtual cqViewController::Ref rootViewController();
     
     virtual void makeKeyAndVisible();
+    
+    cqResponder::Ref nextResponder() override;
 };

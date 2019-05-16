@@ -1,7 +1,7 @@
 #include "cqviewcontroller.hh"
 
 cq_member(cqViewController) {
-    cqView::ref view;
+    cqView::Ref view;
 };
 
 cqViewController::cqViewController() {
@@ -16,13 +16,21 @@ void cqViewController::viewDidAppear() {
 void cqViewController::viewDidDisappear() {
 }
 
-cqView::ref cqViewController::view() {
-    if (self->view == nullptr) {
+cqView::Ref cqViewController::view() {
+    if (dat->view == nullptr) {
         loadView();
+        if (dat->view != nullptr) {
+            dat->view->setViewDelegate(strongRef());
+        }
     }
-    return self->view;
+    return dat->view;
 }
 
 void cqViewController::loadView() {
-    self->view = cqView::create();
+    dat->view = cqView::create();
+}
+
+cqResponder::Ref cqViewController::nextResponder() {
+    //unimplemented
+    return nullptr;
 }

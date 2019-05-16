@@ -50,7 +50,7 @@ extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_onCreate
 {
     _cq_install_window_set_back_color_handler(window_set_back_color);
     _cq_install_window_get_width_handler(window_get_width);
-    _cq_install_window_get_width_handler(window_get_height);
+    _cq_install_window_get_height_handler(window_get_height);
     _cq_install_window_get_screen_scale_handler(window_get_screen_scale);
 
     _cq_notify_default_window_created(index);

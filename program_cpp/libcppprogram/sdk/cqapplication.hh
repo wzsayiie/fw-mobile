@@ -2,24 +2,28 @@
 
 #include "cqresponder.hh"
 
-cq_interface(cqApplicationDelegate, cqInterface) {
+cq_class(cqApplicationDelegate, cqResponder) {
 
-    virtual void applicationDidFinishLaunching() {}
-    virtual void applicationDidBecomeActive() {}
-    virtual void applicationDidEnterBackground() {}
+    cqApplicationDelegate();
+    
+    virtual void applicationDidFinishLaunching();
+    virtual void applicationDidBecomeActive();
+    virtual void applicationDidEnterBackground();
 };
 
 cq_class(cqApplication, cqResponder) {
 
-    static cqApplication::ref sharedApplication();
+    static cqApplication::Ref sharedApplication();
     
     cqApplication();
     
-    virtual void setDelegate(cqApplicationDelegate::ref delegate);
-    virtual cqApplicationDelegate::ref delegate();
+    virtual void setDelegate(cqApplicationDelegate::Ref delegate);
+    virtual cqApplicationDelegate::Ref delegate();
+    
+    cqResponder::Ref nextResponder() override;
 };
 
-void cqApplicationMain(cqApplicationDelegate::ref delegate);
+void cqApplicationMain(cqApplicationDelegate::Ref delegate);
 
 //developers should implement _entry(), and call cqApplicationMain in it.
 void _entry();

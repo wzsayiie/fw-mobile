@@ -2,55 +2,56 @@
 
 cq_member(cqView) {
     cqRect frame;
-    cqView::weak_ref superview;
-    std::vector<cqView::ref> subviews;
+    cqView::WeakRef superview;
+    std::vector<cqView::Ref> subviews;
+    cqResponder::WeakRef viewDelegate;
 };
 
 cqView::cqView() {
 }
 
 void cqView::setFrame(cqRect frame) {
-    self->frame = frame;
+    dat->frame = frame;
 }
 
 cqRect cqView::frame() {
-    return self->frame;
+    return dat->frame;
 }
 
 cqRect cqView::bounds() {
-    return cqRect(cqPoint(), self->frame.size);
+    return cqRect(cqPoint(), dat->frame.size);
 }
 
-cqView::weak_ref cqView::superview() {
-    return self->superview;
+cqView::Ref cqView::superview() {
+    return dat->superview.lock();
 }
 
-const std::vector<cqView::ref> &cqView::subviews() {
-    return self->subviews;
+const std::vector<cqView::Ref> &cqView::subviews() {
+    return dat->subviews;
 }
 
-void cqView::addSubview(cqView::ref subview) {
+void cqView::addSubview(cqView::Ref subview) {
     if (subview == nullptr) {
         return;
     }
     
     subview->removeFromSuperview();
-    subview->self->superview = weak();
-    self->subviews.push_back(subview);
+    subview->dat->superview = weakRef();
+    dat->subviews.push_back(subview);
 }
 
 void cqView::removeFromSuperview() {
-    auto superview = self->superview.lock();
+    auto superview = dat->superview.lock();
     if (superview != nullptr) {
-        auto brothers = superview->self->subviews;
-        std::remove_if(brothers.begin(), brothers.end(), [=](cqView::ref it) {
+        auto brothers = superview->dat->subviews;
+        std::remove_if(brothers.begin(), brothers.end(), [=](cqView::Ref it) {
             return it.get() == this;
         });
-        self->superview.reset();
+        dat->superview.reset();
     }
 }
 
-cqView::ref cqView::hitTest(cqPoint point, cqEvent::ref event) {
+cqView::Ref cqView::hitTest(cqPoint point, cqEvent::Ref event) {
     if (!pointInside(point, event)) {
         return nullptr;
     }
@@ -63,9 +64,25 @@ cqView::ref cqView::hitTest(cqPoint point, cqEvent::ref event) {
             return target;
         }
     }
-    return weak().lock();
+    return strongRef();
 }
 
-bool cqView::pointInside(cqPoint point, cqEvent::ref event) {
+bool cqView::pointInside(cqPoint point, cqEvent::Ref event) {
     return bounds().contains(point);
+}
+
+void cqView::setViewDelegate(cqResponder::Ref viewDelegate) {
+    dat->viewDelegate = viewDelegate;
+}
+
+cqResponder::Ref cqView::viewDelegate() {
+    return dat->viewDelegate.lock();
+}
+
+cqResponder::Ref cqView::nextResponder() {
+    if (!dat->viewDelegate.expired()) {
+        return dat->viewDelegate.lock();
+    } else {
+        return dat->superview.lock();
+    }
 }

@@ -10,6 +10,8 @@ cq_class(cqViewController, cqResponder) {
     virtual void viewDidAppear();
     virtual void viewDidDisappear();
     
-    virtual cqView::ref view();
+    virtual cqView::Ref view();
     virtual void loadView();
+    
+    cqResponder::Ref nextResponder() override;
 };
