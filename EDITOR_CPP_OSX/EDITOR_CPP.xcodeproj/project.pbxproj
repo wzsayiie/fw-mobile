@@ -82,18 +82,18 @@
 		B499A30E221E72500060165A /* codecount */ = {
 			isa = PBXGroup;
 			children = (
-				B4B19638221EB6C7007D4146 /* cccsharp.hh */,
 				B4B1963E221EB6C7007D4146 /* cccsharp.cpp */,
-				B4B19639221EB6C7007D4146 /* ccgeneral.hh */,
+				B4B19638221EB6C7007D4146 /* cccsharp.hh */,
 				B4B19635221EB6C7007D4146 /* ccgeneral.cpp */,
-				B4B19637221EB6C7007D4146 /* ccjava.hh */,
+				B4B19639221EB6C7007D4146 /* ccgeneral.hh */,
 				B4B1963F221EB6C7007D4146 /* ccjava.cpp */,
-				B4B1963A221EB6C7007D4146 /* cclua.hh */,
+				B4B19637221EB6C7007D4146 /* ccjava.hh */,
 				B4B1963D221EB6C7007D4146 /* cclua.cpp */,
-				B4B1963B221EB6C7007D4146 /* ccobjcpp.hh */,
+				B4B1963A221EB6C7007D4146 /* cclua.hh */,
 				B4B1963C221EB6C7007D4146 /* ccobjcpp.cpp */,
-				B4B19640221EB6C7007D4146 /* cctraverser.hh */,
+				B4B1963B221EB6C7007D4146 /* ccobjcpp.hh */,
 				B4B19636221EB6C7007D4146 /* cctraverser.cpp */,
+				B4B19640221EB6C7007D4146 /* cctraverser.hh */,
 				B499A30F221E72500060165A /* codecount.cpp */,
 			);
 			path = codecount;
@@ -105,8 +105,8 @@
 				B499A30E221E72500060165A /* codecount */,
 				CE1DEC862229986C0015A49D /* cppdemo */,
 				CE1DEC882229986C0015A49D /* objcppdemo */,
-				CE21BE9522085E4B00AED03F /* main.cpp */,
 				CE21BE9722085E4B00AED03F /* utility */,
+				CE21BE9522085E4B00AED03F /* main.cpp */,
 			);
 			name = EDITOR_CPP;
 			path = ../EDITOR_CPP;
@@ -131,16 +131,16 @@
 		CE21BE9722085E4B00AED03F /* utility */ = {
 			isa = PBXGroup;
 			children = (
-				CE21BEAD2208620300AED03F /* cqfile.hh */,
 				CE21BEAC2208620300AED03F /* cqfile_osx.mm */,
 				CE21BEAB2208620300AED03F /* cqfile.cpp */,
-				CE21BEB1220868B900AED03F /* cqlog.hh */,
+				CE21BEAD2208620300AED03F /* cqfile.hh */,
 				CE21BEB0220868B900AED03F /* cqlog.cpp */,
-				CE21BE9C22085E4B00AED03F /* cqstdex.hh */,
+				CE21BEB1220868B900AED03F /* cqlog.hh */,
 				B499A30C221E61780060165A /* cqstdex_osx.mm */,
 				CE21BE9B22085E4B00AED03F /* cqstdex.cpp */,
-				CE844338220D5874008D3F79 /* cqutf8.hh */,
+				CE21BE9C22085E4B00AED03F /* cqstdex.hh */,
 				CE844337220D5874008D3F79 /* cqutf8.cpp */,
+				CE844338220D5874008D3F79 /* cqutf8.hh */,
 				CE21BEA122085E4B00AED03F /* utility.hh */,
 			);
 			path = utility;

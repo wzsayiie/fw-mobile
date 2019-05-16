@@ -8,19 +8,11 @@ void AppendJavas(vector<string> *sources) {
     sources->push_back("app_android/app/src/main/java");
     sources->push_back("library/BASIS/android/java");
     sources->push_back("library/foundation/android/java");
+    sources->push_back("library/subsystem/android/java");
 }
 
 void AppendObjcpps(vector<string> *sources) {
-    sources->push_back("app_ios/App/Kits");
     sources->push_back("app_ios/App/Sources");
-    
-    sources->push_back("cusapp_cpp/android/cpp");
-    sources->push_back("cusapp_cpp/CPPCusapp");
-    sources->push_back("cusapp_cpp/libcppcusapp");
-    
-    sources->push_back("cusapp_lua/android/cpp");
-    sources->push_back("cusapp_lua/LuaCusapp");
-    sources->push_back("cusapp_lua/libluacusapp");
     
     sources->push_back("EDITOR_CPP");
     
@@ -28,8 +20,20 @@ void AppendObjcpps(vector<string> *sources) {
     sources->push_back("library/BASIS/libbasis");
     
     sources->push_back("library/foundation/android/cpp");
-    sources->push_back("library/foundation/Foundation");
+    sources->push_back("library/foundation/IOSFoundation");
     sources->push_back("library/foundation/libfoundation");
+    
+    sources->push_back("library/subsystem/android/cpp");
+    sources->push_back("library/subsystem/IOSSubsystem");
+    sources->push_back("library/subsystem/libsubsystem");
+    
+    sources->push_back("program_cpp/android/cpp");
+    sources->push_back("program_cpp/IOSCPPProgram");
+    sources->push_back("program_cpp/libcppprogram");
+    
+    sources->push_back("program_lua/android/cpp");
+    sources->push_back("program_lua/IOSLuaProgram");
+    sources->push_back("program_lua/libluaprogram");
 }
 
 void AppendCSharps(vector<string> *sources) {
@@ -38,7 +42,7 @@ void AppendCSharps(vector<string> *sources) {
 };
 
 void AppendLuas(vector<string> *sources) {
-    sources->push_back("cusapp_lua/libluacusappscript");
+    sources->push_back("program_lua/libluascript");
 };
 
 bool ccMainEnabled = 0;
