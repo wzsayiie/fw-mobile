@@ -8,15 +8,27 @@ RootViewController::RootViewController() {
 
 void RootViewController::viewDidLoad() {
     super::viewDidLoad();
-    I("view load");
 }
 
 void RootViewController::viewDidAppear() {
     super::viewDidAppear();
-    I("view appear");
 }
 
 void RootViewController::viewDidDisappear() {
     super::viewDidDisappear();
-    I("view disappear");
+}
+
+void RootViewController::touchesBegan
+/**/(const std::set<cqTouch::Ref> &touches, cqEvent::Ref event)
+{
+}
+
+void RootViewController::touchesMoved
+/**/(const std::set<cqTouch::Ref> &touches, cqEvent::Ref event)
+{
+}
+
+void RootViewController::touchesEnded
+/**/(const std::set<cqTouch::Ref> &touches, cqEvent::Ref event)
+{
 }
