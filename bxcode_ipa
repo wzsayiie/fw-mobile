@@ -26,7 +26,7 @@ outs_dir="BUILD"
 outs_fil="app"
 
 sh generate_headers
-sh cusapp_lua/generate_lua
+sh program_lua/libluascript/generate_lua
 ##
 ## configrution end
 
