@@ -122,6 +122,7 @@ NSString *const CQSceneStyleFloat = @"CQSceneStyleFloat";
     if (configurationItem.style == CQSceneStyleStack) {
         
         I(@"push scene '%@'", newAddress);
+        controller.edgesForExtendedLayout = UIRectEdgeNone;
         [self.navigationController pushViewController:controller animated:YES];
         
     } else if (configurationItem.style == CQSceneStyleFloat) {
