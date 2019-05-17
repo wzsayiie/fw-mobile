@@ -4,7 +4,7 @@ cq_member(cqView) {
     cqRect frame;
     cqView::WeakRef superview;
     std::vector<cqView::Ref> subviews;
-    cqResponder::WeakRef viewDelegate;
+    cqResponder::WeakRef viewController;
 };
 
 cqView::cqView() {
@@ -20,6 +20,14 @@ cqRect cqView::frame() {
 
 cqRect cqView::bounds() {
     return cqRect(cqPoint(), dat->frame.size);
+}
+
+cqView::Ref cqView::window() {
+    auto it = strongRef();
+    while (it->superview() != nullptr) {
+        it = it->superview();
+    }
+    return it;
 }
 
 cqView::Ref cqView::superview() {
@@ -71,17 +79,17 @@ bool cqView::pointInside(cqPoint point, cqEvent::Ref event) {
     return bounds().contains(point);
 }
 
-void cqView::setViewDelegate(cqResponder::Ref viewDelegate) {
-    dat->viewDelegate = viewDelegate;
+void cqView::setViewController(cqResponder::Ref viewController) {
+    dat->viewController = viewController;
 }
 
-cqResponder::Ref cqView::viewDelegate() {
-    return dat->viewDelegate.lock();
+cqResponder::Ref cqView::viewController() {
+    return dat->viewController.lock();
 }
 
 cqResponder::Ref cqView::nextResponder() {
-    if (!dat->viewDelegate.expired()) {
-        return dat->viewDelegate.lock();
+    if (!dat->viewController.expired()) {
+        return dat->viewController.lock();
     } else {
         return dat->superview.lock();
     }

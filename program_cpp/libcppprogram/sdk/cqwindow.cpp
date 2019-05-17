@@ -13,7 +13,15 @@ cqWindow::cqWindow() {
 }
 
 void cqWindow::setRootViewController(cqViewController::Ref controller) {
+    if (dat->rootViewController == controller) {
+        return;
+    }
+    
+    if (dat->rootViewController != nullptr) {
+        dat->rootViewController->view()->removeFromSuperview();
+    }
     dat->rootViewController = controller;
+    addSubview(dat->rootViewController->view());
 }
 
 cqViewController::Ref cqWindow::rootViewController() {
@@ -32,13 +40,6 @@ static void load(cq_window *window) {
     }
     self->setFrame(rect);
     cq_window_set_back_color(window, 1, 1, 1);
-    
-    cqViewController::Ref controller = self->rootViewController();
-    if (controller != nullptr) {
-        self->rootViewController()->viewDidLoad();
-        self->rootViewController()->view()->setFrame(rect);
-        self->addSubview(controller->view());
-    }
 }
 
 static void show(cq_window *window) {
@@ -128,4 +129,11 @@ void cqWindow::makeKeyAndVisible() {
 
 cqResponder::Ref cqWindow::nextResponder() {
     return cqApplication::sharedApplication();
+}
+
+void cqWindow::setFrame(cqRect frame) {
+    super::setFrame(frame);
+    if (dat->rootViewController != nullptr) {
+        dat->rootViewController->view()->setFrame(frame);
+    }
 }

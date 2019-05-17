@@ -12,4 +12,5 @@ cq_class(cqWindow, cqView) {
     virtual void makeKeyAndVisible();
     
     cqResponder::Ref nextResponder() override;
+    void setFrame(cqRect frame) override;
 };
