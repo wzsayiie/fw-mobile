@@ -37,7 +37,7 @@ cqWindowRef cqView::window() {
     }
     
     if (it->isKindOfClass(cqWindow::staticClass())) {
-        return std::static_pointer_cast<cqWindow>(it);
+        return it->cast<cqWindow>();
     } else {
         return nullptr;
     }
@@ -83,7 +83,7 @@ static cqWindowRef offsetOnWindow(cqViewRef self, cqPoint *offset) {
     }
     
     if (view->isKindOfClass(cqWindow::staticClass())) {
-        return std::static_pointer_cast<cqWindow>(view);
+        return view->cast<cqWindow>();
     } else {
         return nullptr;
     }

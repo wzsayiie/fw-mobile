@@ -106,4 +106,9 @@ cq_class(cqObject, _cqObjectRoot) {
     
     virtual bool isKindOfClass(cqClassInfo *info);
     virtual bool isMemberOfClass(cqClassInfo *info);
+    
+    template<class T>
+    auto cast() -> decltype(std::static_pointer_cast<T>(strongRef())) {
+        return std::static_pointer_cast<T>(strongRef());
+    }
 };
