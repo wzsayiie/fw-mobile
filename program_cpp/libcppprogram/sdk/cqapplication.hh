@@ -13,17 +13,17 @@ cq_class(cqApplicationDelegate, cqResponder) {
 
 cq_class(cqApplication, cqResponder) {
 
-    static cqApplication::Ref sharedApplication();
+    static cqApplicationRef sharedApplication();
     
     cqApplication();
     
-    virtual void setDelegate(cqApplicationDelegate::Ref delegate);
-    virtual cqApplicationDelegate::Ref delegate();
+    virtual void setDelegate(cqApplicationDelegateRef delegate);
+    virtual cqApplicationDelegateRef delegate();
     
-    cqResponder::Ref nextResponder() override;
+    cqResponderRef nextResponder() override;
 };
 
-void cqApplicationMain(cqApplicationDelegate::Ref delegate);
+void cqApplicationMain(cqApplicationDelegateRef delegate);
 
 //developers should implement _entry(), and call cqApplicationMain in it.
 void _entry();

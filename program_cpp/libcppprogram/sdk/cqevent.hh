@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cqtouch.hh"
+#include "cqcppbasis.hh"
 
 enum cqEventType {
     cqEventTypeTouches

@@ -1,10 +1,11 @@
 #include "cqview.hh"
+#include "cqviewcontroller.hh"
 
 cq_member(cqView) {
     cqRect frame;
-    cqView::WeakRef superview;
-    std::vector<cqView::Ref> subviews;
-    cqResponder::WeakRef viewController;
+    cqViewWeakRef superview;
+    std::vector<cqViewRef> subviews;
+    cqViewControllerWeakRef viewController;
 };
 
 cqView::cqView() {
@@ -22,7 +23,7 @@ cqRect cqView::bounds() {
     return cqRect(cqPoint(), dat->frame.size);
 }
 
-cqView::Ref cqView::window() {
+cqViewRef cqView::window() {
     auto it = strongRef();
     while (it->superview() != nullptr) {
         it = it->superview();
@@ -30,15 +31,15 @@ cqView::Ref cqView::window() {
     return it;
 }
 
-cqView::Ref cqView::superview() {
+cqViewRef cqView::superview() {
     return dat->superview.lock();
 }
 
-const std::vector<cqView::Ref> &cqView::subviews() {
+const std::vector<cqViewRef> &cqView::subviews() {
     return dat->subviews;
 }
 
-void cqView::addSubview(cqView::Ref subview) {
+void cqView::addSubview(cqViewRef subview) {
     if (subview == nullptr) {
         return;
     }
@@ -52,14 +53,22 @@ void cqView::removeFromSuperview() {
     auto superview = dat->superview.lock();
     if (superview != nullptr) {
         auto brothers = superview->dat->subviews;
-        std::remove_if(brothers.begin(), brothers.end(), [=](cqView::Ref it) {
+        std::remove_if(brothers.begin(), brothers.end(), [=](cqViewRef it) {
             return it.get() == this;
         });
         dat->superview.reset();
     }
 }
 
-cqView::Ref cqView::hitTest(cqPoint point, cqEvent::Ref event) {
+cqPoint cqView::convertPointFromView(cqPoint point, cqViewRef view) {
+    return cqPoint();
+}
+
+cqPoint cqView::convertPointToView(cqPoint point, cqViewRef view) {
+    return cqPoint();
+}
+
+cqViewRef cqView::hitTest(cqPoint point, cqEventRef event) {
     if (!pointInside(point, event)) {
         return nullptr;
     }
@@ -75,19 +84,19 @@ cqView::Ref cqView::hitTest(cqPoint point, cqEvent::Ref event) {
     return strongRef();
 }
 
-bool cqView::pointInside(cqPoint point, cqEvent::Ref event) {
+bool cqView::pointInside(cqPoint point, cqEventRef event) {
     return bounds().contains(point);
 }
 
-void cqView::setViewController(cqResponder::Ref viewController) {
+void cqView::setViewController(cqViewControllerRef viewController) {
     dat->viewController = viewController;
 }
 
-cqResponder::Ref cqView::viewController() {
+cqViewControllerRef cqView::viewController() {
     return dat->viewController.lock();
 }
 
-cqResponder::Ref cqView::nextResponder() {
+cqResponderRef cqView::nextResponder() {
     if (!dat->viewController.expired()) {
         return dat->viewController.lock();
     } else {

@@ -1,14 +1,15 @@
 #pragma once
 
 #include "cqevent.hh"
+#include "cqtouch.hh"
 
 cq_class(cqResponder, cqObject) {
     
     cqResponder();
     
-    virtual cqResponder::Ref nextResponder();
+    virtual cqResponderRef nextResponder();
     
-    virtual void touchesBegan(const std::set<cqTouch::Ref> &touches, cqEvent::Ref event);
-    virtual void touchesMoved(const std::set<cqTouch::Ref> &touches, cqEvent::Ref event);
-    virtual void touchesEnded(const std::set<cqTouch::Ref> &touches, cqEvent::Ref event);
+    virtual void touchesBegan(const std::set<cqTouchRef> &touches, cqEventRef event);
+    virtual void touchesMoved(const std::set<cqTouchRef> &touches, cqEventRef event);
+    virtual void touchesEnded(const std::set<cqTouchRef> &touches, cqEventRef event);
 };

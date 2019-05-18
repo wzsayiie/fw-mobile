@@ -36,3 +36,7 @@ struct cqRect {
     
     bool contains(cqPoint point) const;
 };
+
+const char *cqStringFromPoint(cqPoint point);
+const char *cqStringFromSize(cqSize size);
+const char *cqStringFromRect(cqRect rect);

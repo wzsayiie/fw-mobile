@@ -1,7 +1,7 @@
 #include "cqviewcontroller.hh"
 
 cq_member(cqViewController) {
-    cqView::Ref view;
+    cqViewRef view;
 };
 
 cqViewController::cqViewController() {
@@ -16,7 +16,7 @@ void cqViewController::viewDidAppear() {
 void cqViewController::viewDidDisappear() {
 }
 
-cqView::Ref cqViewController::view() {
+cqViewRef cqViewController::view() {
     if (dat->view == nullptr) {
         loadView();
     }
@@ -31,6 +31,6 @@ void cqViewController::loadView() {
     }
 }
 
-cqResponder::Ref cqViewController::nextResponder() {
+cqResponderRef cqViewController::nextResponder() {
     return view()->superview();
 }

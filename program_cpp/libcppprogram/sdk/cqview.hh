@@ -3,6 +3,8 @@
 #include "cqresponder.hh"
 #include "cqgeometry.hh"
 
+cq_declare(cqViewController);
+
 cq_class(cqView, cqResponder) {
     
     cqView();
@@ -11,17 +13,20 @@ cq_class(cqView, cqResponder) {
     virtual cqRect frame();
     virtual cqRect bounds();
     
-    virtual cqView::Ref window();
-    virtual cqView::Ref superview();
-    virtual const std::vector<cqView::Ref> &subviews();
-    virtual void addSubview(cqView::Ref subview);
+    virtual cqViewRef window();
+    virtual cqViewRef superview();
+    virtual const std::vector<cqViewRef> &subviews();
+    virtual void addSubview(cqViewRef subview);
     virtual void removeFromSuperview();
     
-    virtual cqView::Ref hitTest(cqPoint point, cqEvent::Ref event);
-    virtual bool pointInside(cqPoint point, cqEvent::Ref event);
+    virtual cqPoint convertPointFromView(cqPoint point, cqViewRef view);
+    virtual cqPoint convertPointToView(cqPoint point, cqViewRef view);
     
-    virtual void setViewController(cqResponder::Ref viewController);
-    virtual cqResponder::Ref viewController();
+    virtual cqViewRef hitTest(cqPoint point, cqEventRef event);
+    virtual bool pointInside(cqPoint point, cqEventRef event);
     
-    cqResponder::Ref nextResponder() override;
+    virtual void setViewController(cqViewControllerRef viewController);
+    virtual cqViewControllerRef viewController();
+    
+    cqResponderRef nextResponder() override;
 };

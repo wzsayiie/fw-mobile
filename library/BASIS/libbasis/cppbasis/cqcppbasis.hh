@@ -8,65 +8,51 @@
 #include <set>
 #include <vector>
 
-struct _cqRoot {
-    virtual ~_cqRoot() = default;
+#define _cq_ref(CLASS)     CLASS##Ref
+#define _cq_weakref(CLASS) CLASS##WeakRef
+
+#define _cq_declare_ref(CLASS)     typedef std::shared_ptr<struct CLASS> _cq_ref(CLASS)
+#define _cq_declare_weakref(CLASS) typedef std::weak_ptr  <struct CLASS> _cq_weakref(CLASS)
+
+#define cq_declare(CLASS) _cq_declare_ref(CLASS);_cq_declare_weakref(CLASS)
+
+struct _cqObjectRoot {
+    std::weak_ptr<_cqObjectRoot> thisWeakRef;
+    virtual ~_cqObjectRoot() {}
 };
 
-//interface
+#define cq_member(CLASS) struct CLASS##Dat
 
-#define cq_interface(SELF, SUPER) struct SELF : _cq_interface_middle<SELF, SUPER>
+#define cq_class(C, S) cq_declare(C); struct C : _cqM<C, _cq_ref(C), _cq_weakref(C), cq_member(C), S>
 
-template<class SELF, class SUPER> struct _cq_interface_middle : SUPER {
-    
-    static_assert(sizeof(SUPER) == sizeof(void *),
-        "interface shouldn't extend a class that contains data member");
-    
-    typedef std::shared_ptr<SELF> Ref;
-};
-
-cq_interface(cqInterface, _cqRoot) {
-};
-
-//object
-
-#define cq_member(SELF)       struct SELF##_Data
-#define cq_class(SELF, SUPER) struct SELF : _cq_class_middle<SELF, cq_member(SELF), SUPER>
-
-template<class SELF, class DATA, class SUPER> struct _cq_class_middle : SUPER {
+template<class CLASS, class REF, class WEAKREF, class DAT, class SUPER> struct _cqM : SUPER {
 
 public:
     
-    typedef std::weak_ptr<SELF> WeakRef;
-    typedef std::shared_ptr<SELF> Ref;
-    
-    template<class... A> static Ref create(A... a) {
-        auto object = std::make_shared<SELF>(a...);
+    template<class... A> static REF create(A... a) {
+        auto object = std::make_shared<CLASS>(a...);
         object->thisWeakRef = object;
         return object;
     }
     
-    Ref strongRef() const {
+    REF strongRef() const {
         auto ref = SUPER::thisWeakRef.lock();
-        return std::static_pointer_cast<SELF>(ref);
+        return std::static_pointer_cast<CLASS>(ref);
     }
     
-    WeakRef weakRef() const {
+    WEAKREF weakRef() const {
         auto ref = SUPER::thisWeakRef.lock();
-        return std::static_pointer_cast<SELF>(ref);
+        return std::static_pointer_cast<CLASS>(ref);
     }
     
-    std::shared_ptr<DATA> dat;
+    std::shared_ptr<DAT> dat;
     
 protected:
     
     typedef SUPER super;
     
-    _cq_class_middle() : dat(std::make_shared<DATA>()) {
+    _cqM() : dat(std::make_shared<DAT>()) {
     }
-};
-
-struct _cqObjectRoot : _cqRoot {
-    std::weak_ptr<_cqObjectRoot> thisWeakRef;
 };
 
 cq_class(cqObject, _cqObjectRoot) {

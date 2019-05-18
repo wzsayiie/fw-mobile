@@ -12,11 +12,11 @@ void cqApplicationDelegate::applicationDidBecomeActive   () {}
 void cqApplicationDelegate::applicationDidEnterBackground() {}
 
 cq_member(cqApplication) {
-    cqApplicationDelegate::Ref delegate;
+    cqApplicationDelegateRef delegate;
 };
 
-cqApplication::Ref cqApplication::sharedApplication() {
-    static cqApplication::Ref object;
+cqApplicationRef cqApplication::sharedApplication() {
+    static cqApplicationRef object;
     if (object == nullptr) {
         object = cqApplication::create();
     }
@@ -26,19 +26,19 @@ cqApplication::Ref cqApplication::sharedApplication() {
 cqApplication::cqApplication() {
 }
 
-void cqApplication::setDelegate(cqApplicationDelegate::Ref delegate) {
+void cqApplication::setDelegate(cqApplicationDelegateRef delegate) {
     dat->delegate = delegate;
 }
 
-cqApplicationDelegate::Ref cqApplication::delegate() {
+cqApplicationDelegateRef cqApplication::delegate() {
     return dat->delegate;
 }
 
-cqResponder::Ref cqApplication::nextResponder() {
+cqResponderRef cqApplication::nextResponder() {
     return dat->delegate;
 }
 
-void cqApplicationMain(cqApplicationDelegate::Ref delegate) {
+void cqApplicationMain(cqApplicationDelegateRef delegate) {
     auto application = cqApplication::sharedApplication();
     application->setDelegate(delegate);
 }

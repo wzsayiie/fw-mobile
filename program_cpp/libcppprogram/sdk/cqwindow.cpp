@@ -5,14 +5,14 @@
 
 cq_member(cqWindow) {
     cq_window *window = nullptr;
-    cqViewController::Ref rootViewController;
-    cqView::Ref touchesResponder;
+    cqViewControllerRef rootViewController;
+    cqViewRef touchesResponder;
 };
 
 cqWindow::cqWindow() {
 }
 
-void cqWindow::setRootViewController(cqViewController::Ref controller) {
+void cqWindow::setRootViewController(cqViewControllerRef controller) {
     if (dat->rootViewController == controller) {
         return;
     }
@@ -24,7 +24,7 @@ void cqWindow::setRootViewController(cqViewController::Ref controller) {
     addSubview(dat->rootViewController->view());
 }
 
-cqViewController::Ref cqWindow::rootViewController() {
+cqViewControllerRef cqWindow::rootViewController() {
     return dat->rootViewController;
 }
 
@@ -52,7 +52,7 @@ static void show(cq_window *window) {
     if (delegate != nullptr) {
         delegate->applicationDidBecomeActive();
     }
-    cqViewController::Ref controller = self->rootViewController();
+    cqViewControllerRef controller = self->rootViewController();
     if (controller != nullptr) {
         controller->viewDidAppear();
     }
@@ -68,7 +68,7 @@ static void hide(cq_window *window) {
     if (delegate != nullptr) {
         delegate->applicationDidEnterBackground();
     }
-    cqViewController::Ref controller = self->rootViewController();
+    cqViewControllerRef controller = self->rootViewController();
     if (controller != nullptr) {
         controller->viewDidDisappear();
     }
@@ -85,7 +85,7 @@ static void touchBegan(cq_window *window, float x, float y) {
     //began event
     self->dat->touchesResponder = view;
     
-    std::set<cqTouch::Ref> touches = { cqTouch::create() };
+    std::set<cqTouchRef> touches = { cqTouch::create() };
     auto event = cqTouchEvent::create();
     view->touchesBegan(touches, event);
 }
@@ -96,7 +96,7 @@ static void touchMoved(cq_window *window, float x, float y) {
         return;
     }
     
-    std::set<cqTouch::Ref> touches = { cqTouch::create() };
+    std::set<cqTouchRef> touches = { cqTouch::create() };
     auto event = cqTouchEvent::create();
     dat->touchesResponder->touchesMoved(touches, event);
 }
@@ -107,7 +107,7 @@ static void touchEnded(cq_window *window, float x, float y) {
         return;
     }
     
-    std::set<cqTouch::Ref> touches = { cqTouch::create() };
+    std::set<cqTouchRef> touches = { cqTouch::create() };
     auto event = cqTouchEvent::create();
     dat->touchesResponder->touchesEnded(touches, event);
 }
@@ -127,7 +127,7 @@ void cqWindow::makeKeyAndVisible() {
     cq_window_get_procedure(dat->window)->touch_ended = touchEnded;
 }
 
-cqResponder::Ref cqWindow::nextResponder() {
+cqResponderRef cqWindow::nextResponder() {
     return cqApplication::sharedApplication();
 }
 

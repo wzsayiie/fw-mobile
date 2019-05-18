@@ -2,7 +2,7 @@
 #include "rootviewcontroller.hh"
 
 cq_member(AppDelegate) {
-    cqWindow::Ref window;
+    cqWindowRef window;
 };
 
 AppDelegate::AppDelegate() {
@@ -19,6 +19,6 @@ void AppDelegate::applicationDidFinishLaunching() {
 }
 
 void _entry() {
-    AppDelegate::Ref delegate = AppDelegate::create();
+    AppDelegateRef delegate = AppDelegate::create();
     cqApplicationMain(delegate);
 }

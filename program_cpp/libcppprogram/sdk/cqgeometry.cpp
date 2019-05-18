@@ -19,3 +19,22 @@ bool cqRect::contains(cqPoint point) const {
     return minX() <= point.x < maxX()
     /**/&& minY() <= point.y < maxY();
 }
+
+static thread_local char _string_buffer[64];
+
+const char *cqStringFromPoint(cqPoint p) {
+    snprintf(_string_buffer, sizeof(_string_buffer), "(%.1f, %.1f)", p.x, p.y);
+    return _string_buffer;
+}
+
+const char *cqStringFromSize(cqSize s) {
+    snprintf(_string_buffer, sizeof(_string_buffer), "(%.1f, %.1f)", s.width, s.height);
+    return _string_buffer;
+}
+
+const char *cqStringFromRect(cqRect r) {
+    snprintf(_string_buffer, sizeof(_string_buffer),"(%.1f, %.1f, %.1f, %.1f)",
+             r.origin.x  , r.origin.y,
+             r.size.width, r.size.height);
+    return _string_buffer;
+}

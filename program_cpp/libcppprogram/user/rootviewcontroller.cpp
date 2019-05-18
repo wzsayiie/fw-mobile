@@ -19,16 +19,19 @@ void RootViewController::viewDidDisappear() {
 }
 
 void RootViewController::touchesBegan
-/**/(const std::set<cqTouch::Ref> &touches, cqEvent::Ref event)
+/**/(const std::set<cqTouchRef> &touches, cqEventRef event)
 {
 }
 
 void RootViewController::touchesMoved
-/**/(const std::set<cqTouch::Ref> &touches, cqEvent::Ref event)
+/**/(const std::set<cqTouchRef> &touches, cqEventRef event)
 {
 }
 
 void RootViewController::touchesEnded
-/**/(const std::set<cqTouch::Ref> &touches, cqEvent::Ref event)
+/**/(const std::set<cqTouchRef> &touches, cqEventRef event)
 {
+    cqTouchRef any = *touches.begin();
+    cqPoint location = any->locationInView(view());
+    I("touch location %s", cqStringFromPoint(location));
 }
