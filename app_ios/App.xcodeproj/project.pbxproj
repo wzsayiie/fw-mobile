@@ -51,7 +51,7 @@
 		CE90E69422872A350071D4D3 /* appdelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E67C22872A350071D4D3 /* appdelegate.cpp */; };
 		CE90E69522872A350071D4D3 /* rootviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E67E22872A350071D4D3 /* rootviewcontroller.cpp */; };
 		CE90E69622872A350071D4D3 /* cqviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E68222872A350071D4D3 /* cqviewcontroller.cpp */; };
-		CE90E69722872A350071D4D3 /* cqtouchevent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E68322872A350071D4D3 /* cqtouchevent.cpp */; };
+		CE90E69722872A350071D4D3 /* cqtouchesevent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E68322872A350071D4D3 /* cqtouchesevent.cpp */; };
 		CE90E69822872A350071D4D3 /* cqresponder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E68622872A350071D4D3 /* cqresponder.cpp */; };
 		CE90E69922872A350071D4D3 /* cqview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E68822872A350071D4D3 /* cqview.cpp */; };
 		CE90E69A22872A350071D4D3 /* cqwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E68A22872A350071D4D3 /* cqwindow.cpp */; };
@@ -170,10 +170,10 @@
 		CE90E67C22872A350071D4D3 /* appdelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = appdelegate.cpp; sourceTree = "<group>"; };
 		CE90E67D22872A350071D4D3 /* appdelegate.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = appdelegate.hh; sourceTree = "<group>"; };
 		CE90E67E22872A350071D4D3 /* rootviewcontroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rootviewcontroller.cpp; sourceTree = "<group>"; };
-		CE90E68022872A350071D4D3 /* cqtouchevent_p.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqtouchevent_p.hh; sourceTree = "<group>"; };
+		CE90E68022872A350071D4D3 /* cqtouchesevent_p.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqtouchesevent_p.hh; sourceTree = "<group>"; };
 		CE90E68122872A350071D4D3 /* cqview.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqview.hh; sourceTree = "<group>"; };
 		CE90E68222872A350071D4D3 /* cqviewcontroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqviewcontroller.cpp; sourceTree = "<group>"; };
-		CE90E68322872A350071D4D3 /* cqtouchevent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqtouchevent.cpp; sourceTree = "<group>"; };
+		CE90E68322872A350071D4D3 /* cqtouchesevent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqtouchesevent.cpp; sourceTree = "<group>"; };
 		CE90E68422872A350071D4D3 /* cqtouch.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqtouch.hh; sourceTree = "<group>"; };
 		CE90E68522872A350071D4D3 /* cquikit.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cquikit.hh; sourceTree = "<group>"; };
 		CE90E68622872A350071D4D3 /* cqresponder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqresponder.cpp; sourceTree = "<group>"; };
@@ -593,8 +593,8 @@
 				CE90E68922872A350071D4D3 /* cqresponder.hh */,
 				CE90E69022872A350071D4D3 /* cqtouch.cpp */,
 				CE90E68422872A350071D4D3 /* cqtouch.hh */,
-				CE90E68022872A350071D4D3 /* cqtouchevent_p.hh */,
-				CE90E68322872A350071D4D3 /* cqtouchevent.cpp */,
+				CE90E68022872A350071D4D3 /* cqtouchesevent_p.hh */,
+				CE90E68322872A350071D4D3 /* cqtouchesevent.cpp */,
 				CE90E68522872A350071D4D3 /* cquikit.hh */,
 				CE90E68822872A350071D4D3 /* cqview.cpp */,
 				CE90E68122872A350071D4D3 /* cqview.hh */,
@@ -754,7 +754,7 @@
 				CE90E69C22872A350071D4D3 /* cqapplication.cpp in Sources */,
 				B425212222842BE4004FA04B /* CQCrashListener.m in Sources */,
 				CE90E69D22872A350071D4D3 /* cqtouch.cpp in Sources */,
-				CE90E69722872A350071D4D3 /* cqtouchevent.cpp in Sources */,
+				CE90E69722872A350071D4D3 /* cqtouchesevent.cpp in Sources */,
 				B425212622842BE4004FA04B /* NSObject+CQSingleton.m in Sources */,
 				B425210822842AD3004FA04B /* UIView+CQ.m in Sources */,
 				B425212522842BE4004FA04B /* CQSingletonManager.m in Sources */,

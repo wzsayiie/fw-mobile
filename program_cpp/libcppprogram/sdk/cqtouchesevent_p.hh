@@ -2,9 +2,9 @@
 
 #include "cqevent.hh"
 
-cq_class(cqTouchEvent, cqEvent) {
+cq_class(cqTouchesEvent, cqEvent) {
     
-    cqTouchEvent();
+    cqTouchesEvent();
     
     cqEventType type() override;
 };

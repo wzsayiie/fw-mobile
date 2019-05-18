@@ -8,6 +8,8 @@ cq_declare(cqWindow);
 
 cq_class(cqView, cqResponder) {
     
+    static cqViewRef createWithFrame(cqRect frame);
+    
     cqView();
     
     virtual void setFrame(cqRect frame);

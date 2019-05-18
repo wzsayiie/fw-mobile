@@ -1,18 +1,27 @@
 #include "cqtouch.hh"
+#include "cqwindow.hh"
 
 cq_member(cqTouch) {
     cqWindowWeakRef locatedWindow;
     cqPoint locationInWindow;
 };
 
+cqTouchRef cqTouch::createWithLocation(cqWindowRef window, cqPoint location) {
+    cqTouchRef touch = cqTouch::create();
+    touch->dat->locatedWindow = window;
+    touch->dat->locationInWindow = location;
+    return touch;
+}
+
 cqTouch::cqTouch() {
 }
 
-void cqTouch::setLocationInWindow(cqWindowRef window, cqPoint location) {
-    dat->locatedWindow = window;
-    dat->locationInWindow = location;
-}
-
 cqPoint cqTouch::locationInView(cqViewRef view) {
-    return cqPoint();
+    if (view != nullptr) {
+        auto location = dat->locationInWindow;
+        auto window = dat->locatedWindow.lock();
+        return view->convertPointFromView(location, window);
+    } else {
+        return cqPoint();
+    }
 }

@@ -9,6 +9,12 @@ cq_member(cqView) {
     cqViewControllerWeakRef viewController;
 };
 
+cqViewRef cqView::createWithFrame(cqRect frame) {
+    cqViewRef view = cqView::create();
+    view->setFrame(frame);
+    return view;
+}
+
 cqView::cqView() {
 }
 
@@ -66,12 +72,53 @@ void cqView::removeFromSuperview() {
     }
 }
 
+static cqWindowRef offsetOnWindow(cqViewRef self, cqPoint *offset) {
+    *offset = self->frame().origin;
+    
+    auto view = self;
+    for (; view->superview(); view = view->superview()) {
+        cqPoint origin = view->superview()->frame().origin;
+        offset->x += origin.x;
+        offset->y += origin.y;
+    }
+    
+    if (view->isKindOfClass(cqWindow::staticClass())) {
+        return std::static_pointer_cast<cqWindow>(view);
+    } else {
+        return nullptr;
+    }
+}
+
 cqPoint cqView::convertPointFromView(cqPoint point, cqViewRef view) {
-    return cqPoint();
+    if (view == nullptr) {
+        return point;
+    }
+    
+    cqPoint thisOffset;
+    cqPoint thatOffset;
+    cqWindowRef thisWindow = offsetOnWindow(strongRef(), &thisOffset);
+    cqWindowRef thatWindow = offsetOnWindow(view       , &thatOffset);
+    if (thisWindow == thatWindow && thisWindow != nullptr) {
+        point.x += thatOffset.x - thisOffset.x;
+        point.y += thatOffset.y - thisOffset.y;
+    }
+    return point;
 }
 
 cqPoint cqView::convertPointToView(cqPoint point, cqViewRef view) {
-    return cqPoint();
+    if (view == nullptr) {
+        return point;
+    }
+    
+    cqPoint thisOffset;
+    cqPoint thatOffset;
+    cqWindowRef thisWindow = offsetOnWindow(strongRef(), &thisOffset);
+    cqWindowRef thatWindow = offsetOnWindow(view       , &thatOffset);
+    if (thisWindow == thatWindow && thisWindow != nullptr) {
+        point.x += thisOffset.x - thatOffset.x;
+        point.y += thisOffset.y - thatOffset.y;
+    }
+    return point;
 }
 
 cqViewRef cqView::hitTest(cqPoint point, cqEventRef event) {

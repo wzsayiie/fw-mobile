@@ -58,8 +58,8 @@ struct _cqSandWich : SUPER {
 
 public:
     
-    template<class... A> static REF create(A... a) {
-        auto object = std::make_shared<CLASS>(a...);
+    static REF create() {
+        auto object = std::make_shared<CLASS>();
         object->thisWeakRef = object;
         return object;
     }

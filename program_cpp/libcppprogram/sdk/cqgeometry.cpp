@@ -1,7 +1,7 @@
 #include "cqgeometry.hh"
 
 cqPoint::cqPoint()                 : x(0), y(0) {}
-cqPoint::cqPoint(float x, float y) : x(x), y(x) {}
+cqPoint::cqPoint(float x, float y) : x(x), y(y) {}
 
 cqSize::cqSize()                 : width(0), height(0) {}
 cqSize::cqSize(float w, float h) : width(w), height(h) {}
