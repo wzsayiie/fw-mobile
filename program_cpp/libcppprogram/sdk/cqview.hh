@@ -4,6 +4,7 @@
 #include "cqgeometry.hh"
 
 cq_declare(cqViewController);
+cq_declare(cqWindow);
 
 cq_class(cqView, cqResponder) {
     
@@ -13,7 +14,7 @@ cq_class(cqView, cqResponder) {
     virtual cqRect frame();
     virtual cqRect bounds();
     
-    virtual cqViewRef window();
+    virtual cqWindowRef window();
     virtual cqViewRef superview();
     virtual const std::vector<cqViewRef> &subviews();
     virtual void addSubview(cqViewRef subview);

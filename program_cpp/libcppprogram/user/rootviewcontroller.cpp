@@ -31,7 +31,4 @@ void RootViewController::touchesMoved
 void RootViewController::touchesEnded
 /**/(const std::set<cqTouchRef> &touches, cqEventRef event)
 {
-    cqTouchRef any = *touches.begin();
-    cqPoint location = any->locationInView(view());
-    I("touch location %s", cqStringFromPoint(location));
 }

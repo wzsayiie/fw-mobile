@@ -1,5 +1,6 @@
 #include "cqview.hh"
 #include "cqviewcontroller.hh"
+#include "cqwindow.hh"
 
 cq_member(cqView) {
     cqRect frame;
@@ -23,12 +24,17 @@ cqRect cqView::bounds() {
     return cqRect(cqPoint(), dat->frame.size);
 }
 
-cqViewRef cqView::window() {
-    auto it = strongRef();
+cqWindowRef cqView::window() {
+    cqViewRef it = strongRef();
     while (it->superview() != nullptr) {
         it = it->superview();
     }
-    return it;
+    
+    if (it->isKindOfClass(cqWindow::staticClass())) {
+        return std::static_pointer_cast<cqWindow>(it);
+    } else {
+        return nullptr;
+    }
 }
 
 cqViewRef cqView::superview() {

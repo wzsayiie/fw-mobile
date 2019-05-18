@@ -9,8 +9,6 @@ AppDelegate::AppDelegate() {
 }
 
 void AppDelegate::applicationDidFinishLaunching() {
-    I("application launching");
-    
     auto controller = RootViewController::create();
     
     dat->window = cqWindow::create();
