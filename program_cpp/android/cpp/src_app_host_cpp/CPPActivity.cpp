@@ -10,17 +10,6 @@ static jclass clazz() {
     return clazz;
 }
 
-static void window_set_back_color(int64_t window_idx, float r, float g, float b) {
-    static jmethodID methodID = nullptr;
-
-    cqJNIStaticMethod method(clazz(), &methodID, "window_set_back_color");
-    method.push(window_idx);
-    method.push(r);
-    method.push(g);
-    method.push(b);
-    method.callVoid();
-}
-
 static float window_get_width(int64_t window_idx) {
     static jmethodID methodID = nullptr;
 
@@ -48,7 +37,6 @@ static float window_get_screen_scale(int64_t window_idx) {
 extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_onCreate
 /**/(JNIEnv *, jobject, jlong index)
 {
-    _cq_install_window_set_back_color_handler(window_set_back_color);
     _cq_install_window_get_width_handler(window_get_width);
     _cq_install_window_get_height_handler(window_get_height);
     _cq_install_window_get_screen_scale_handler(window_get_screen_scale);

@@ -85,18 +85,6 @@ public class CPPActivity extends Activity {
         return v < min ? min : (v > max ? max : v);
     }
 
-    public static void window_set_back_color(long index, float r, float g, float b) {
-        CPPActivity activity = sharedActivityWithHash(index);
-        if (activity == null) {
-            return;
-        }
-
-        int ir = (int)(255 * range(0.f, r, 1.f));
-        int ig = (int)(255 * range(0.f, g, 1.f));
-        int ib = (int)(255 * range(0.f, b, 1.f));
-        activity.mContentView.setBackgroundColor((0xff << 24) | (ir << 16) | (ig << 8) | ib);
-    }
-
     public static float window_get_width(long index) {
         CPPActivity activity = sharedActivityWithHash(index);
         if (activity == null) {

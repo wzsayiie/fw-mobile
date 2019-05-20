@@ -24,15 +24,12 @@ CQ_C_LINK cq_window_procedure *cq_window_get_procedure(cq_window *w);
 CQ_C_LINK void    cq_window_set_extra(cq_window *window, int64_t extra);
 CQ_C_LINK int64_t cq_window_get_extra(cq_window *window);
 
-CQ_C_LINK void cq_window_set_back_color(cq_window *window, float r, float g, float b);
-
 CQ_C_LINK float cq_window_get_width       (cq_window *window);
 CQ_C_LINK float cq_window_get_height      (cq_window *window);
 CQ_C_LINK float cq_window_get_screen_scale(cq_window *window);
 
 //host need call these functions ->
 
-CQ_C_LINK void _cq_install_window_set_back_color_handler  (void  (*h)(int64_t, float, float, float));
 CQ_C_LINK void _cq_install_window_get_width_handler       (float (*h)(int64_t));
 CQ_C_LINK void _cq_install_window_get_height_handler      (float (*h)(int64_t));
 CQ_C_LINK void _cq_install_window_get_screen_scale_handler(float (*h)(int64_t));

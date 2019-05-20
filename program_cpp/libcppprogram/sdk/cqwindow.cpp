@@ -39,7 +39,6 @@ static void load(cq_window *window) {
         rect.size.height = cq_window_get_height(window);
     }
     self->setFrame(rect);
-    cq_window_set_back_color(window, 1, 1, 1);
 }
 
 static void show(cq_window *window) {

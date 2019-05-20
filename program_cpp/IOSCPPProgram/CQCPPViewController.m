@@ -7,24 +7,6 @@
 
 #pragma mark - interfaces
 
-static inline float range(float min, float v, float max) {
-    return v < min ? min : (v > max ? max : v);
-}
-
-static void window_set_back_color(int64_t window_idx, float r, float g, float b) {
-
-    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithHash:window_idx];
-    if (controller != nil) {
-        
-        r = range(0.f, r, 1.f);
-        g = range(0.f, g, 1.f);
-        b = range(0.f, b, 1.f);
-        
-        UIColor *color = [UIColor colorWithRed:r green:g blue:b alpha:1];
-        [controller.view setBackgroundColor:color];
-    }
-}
-
 static float window_get_width(int64_t window_idx) {
 
     CQCPPViewController *controller = [CQCPPViewController sharedObjectWithHash:window_idx];
@@ -76,10 +58,10 @@ static float window_get_screen_scale(int64_t window_idx) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.view.backgroundColor = UIColor.whiteColor;
+    
     [CQCPPViewController resetSharedObject:self reset:YES];
     
-    _cq_install_window_set_back_color_handler(window_set_back_color);
     _cq_install_window_get_width_handler(window_get_width);
     _cq_install_window_get_height_handler(window_get_height);
     _cq_install_window_get_screen_scale_handler(window_get_screen_scale);
