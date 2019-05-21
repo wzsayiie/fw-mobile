@@ -13,7 +13,3 @@ cmd_line="$cmd_line -projectPath $cur_path/app_unity"
 cmd_line="$cmd_line -executeMethod IOSBuilder.Build"
 cmd_line="$cmd_line -logFile"
 $cmd_line
-
-rm   -rf BUILD/unity.ipa
-mkdir -p BUILD
-mv       app_unity/unity.ipa BUILD
