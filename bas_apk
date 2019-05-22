@@ -7,7 +7,7 @@ cd `dirname $0`
 ### configuration begin
 projct_dir="app_android"
 ultima_dir="BUILD"
-ultima_fil="app.apk"
+ultima_fil="as.apk"
 
 sh generate_headers
 sh program_lua/libluascript/generate_lua
