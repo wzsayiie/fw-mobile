@@ -5,14 +5,14 @@ using UnityEngine;
 class AndroidBuilder
 {
     // configuration begin
-    const string AppPackageID = "domain.organization.appname.store.flavor";
+    const string AppPackageID = "domain.corp.store.flavor.name";
 
     const string KeystoreFile = "MobileKeystore/Android/master.jks";
     const string KeystorePass = "master";
     const string KeyaliasName = "master";
     const string KeyaliasPass = "master";
 
-    const string BuildAPKName = "unity.apk";
+    const string BuiltAPKName = "unity.apk";
 
     static string[] Scenes
     {
@@ -25,21 +25,27 @@ class AndroidBuilder
 
     static void Build()
     {
-        Debug.Log("android build");
-
-        if (File.Exists(BuildAPKName))
+        if (File.Exists(BuiltAPKName))
         {
-            File.Delete(BuildAPKName);
+            File.Delete(BuiltAPKName);
         }
-
         PlayerSettings.applicationIdentifier = AppPackageID;
         PlayerSettings.Android.keystoreName = KeystoreFile;
         PlayerSettings.Android.keystorePass = KeystorePass;
         PlayerSettings.Android.keyaliasName = KeyaliasName;
         PlayerSettings.Android.keyaliasPass = KeyaliasPass;
+        BuildPipeline.BuildPlayer(Scenes, BuiltAPKName, BuildTarget.Android, BuildOptions.None);
 
-        BuildTarget buildTarget = BuildTarget.Android;
-        EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, buildTarget);
-        BuildPipeline.BuildPlayer(Scenes, BuildAPKName, buildTarget, BuildOptions.None);
+        string toDir = "../BUILD";
+        string toAPK = "../BUILD/" + BuiltAPKName;
+        if (!Directory.Exists(toDir))
+        {
+            Directory.CreateDirectory(toDir);
+        }
+        if (File.Exists(toAPK))
+        {
+            File.Delete(toAPK);
+        }
+        File.Move(BuiltAPKName, toAPK);
     }
 }

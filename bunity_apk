@@ -13,7 +13,3 @@ cmd_line="$cmd_line -projectPath $cur_path/app_unity"
 cmd_line="$cmd_line -executeMethod AndroidBuilder.Build"
 cmd_line="$cmd_line -logFile"
 $cmd_line
-
-rm   -rf BUILD/unity.apk
-mkdir -p BUILD
-mv       app_unity/unity.apk BUILD
