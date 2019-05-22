@@ -7,12 +7,12 @@ using UnityEditor.iOS.Xcode;
 class IOSBuilder
 {
     //configuration begin
-    const string AppPacakgeID = ""; // bundle id
+    const string AppPackageID = ""; // bundle id
     const string TeamIdentity = ""; // team id
     const string SignIdentity = ""; // command "security find-identity" to find
     const string Provisioning = ""; // name of provision profile exported in xcode
     const string ExportMethod = ""; // "ad-hoc", "app-store", "development" or "enterprise"
-
+    const string AllowBitcode = ""; // "true" or "false"
     const string ProductsName = "unity";
 
     static string[] Scenes
@@ -26,11 +26,7 @@ class IOSBuilder
 
     static void Build()
     {
-        if (AppPacakgeID.Length == 0
-         || TeamIdentity.Length == 0
-         || SignIdentity.Length == 0
-         || Provisioning.Length == 0
-         || ExportMethod.Length == 0)
+        if (AppPackageID.Length == 0)
         {
             return;
         }
@@ -65,7 +61,7 @@ class IOSBuilder
             Directory.Delete(directory, true);
         }
 
-        PlayerSettings.applicationIdentifier = AppPacakgeID;
+        PlayerSettings.applicationIdentifier = AppPackageID;
         BuildPipeline.BuildPlayer(Scenes, directory, BuildTarget.iOS, BuildOptions.None);
     }
 
@@ -100,15 +96,16 @@ class IOSBuilder
         options += "\n     <dict>";
         options += "\n         <key>$(bundleID)</key> <string>$(provision)</string>";
         options += "\n     </dict>";
-        options += "\n     <key>compileBitcode</key> <true />";
+        options += "\n     <key>compileBitcode</key> <$(bitcode) />";
         options += "\n     <key>uploadSymbols</key> <true />";
         options += "\n </dict>";
         options += "\n </plist>";
 
         options = options.Replace("$(teamID)"   , TeamIdentity);
         options = options.Replace("$(method)"   , ExportMethod);
-        options = options.Replace("$(bundleID)" , AppPacakgeID);
+        options = options.Replace("$(bundleID)" , AppPackageID);
         options = options.Replace("$(provision)", Provisioning);
+        options = options.Replace("$(bitcode)"  , AllowBitcode);
 
         File.WriteAllText(directory + "/ExportOptions.plist", options);
     }
@@ -125,18 +122,20 @@ class IOSBuilder
         script += "\n cd `dirname $0`";
         script += "\n ";
         script += "\n cmd_line=\"xcodebuild\"";
-        script += "\n cmd_line=\"$cmd_line -project Unity-iPhone.xcodeproj\"";
-        script += "\n cmd_line=\"$cmd_line -scheme Unity-iPhone\"";
         script += "\n cmd_line=\"$cmd_line clean\"";
         script += "\n cmd_line=\"$cmd_line archive\"";
+        script += "\n cmd_line=\"$cmd_line -project Unity-iPhone.xcodeproj\"";
+        script += "\n cmd_line=\"$cmd_line -scheme Unity-iPhone\"";
+        script += "\n cmd_line=\"$cmd_line -configuration Release\"";
+        script += "\n cmd_line=\"$cmd_line BITCODE_GENERATION_MODE=bitcode\"";
         script += "\n cmd_line=\"$cmd_line -archivePath Unity-iPhone.xcarchive\"";
         script += "\n $cmd_line";
         script += "\n ";
         script += "\n cmd_line=\"xcodebuild\"";
         script += "\n cmd_line=\"$cmd_line -exportArchive\"";
         script += "\n cmd_line=\"$cmd_line -archivePath Unity-iPhone.xcarchive\"";
-        script += "\n cmd_line=\"$cmd_line -exportPath Export\"";
         script += "\n cmd_line=\"$cmd_line -exportOptionsPlist ExportOptions.plist\"";
+        script += "\n cmd_line=\"$cmd_line -exportPath Export\"";
         script += "\n $cmd_line";
 
         File.WriteAllText(scriptPath, script);
@@ -169,8 +168,8 @@ class IOSBuilder
             File.Delete(toAppIPA);
         }
 
-        int nameStart = AppPacakgeID.LastIndexOf('.') + 1;
-        string name = AppPacakgeID.Substring(nameStart);
+        int nameStart = AppPackageID.LastIndexOf('.') + 1;
+        string name = AppPackageID.Substring(nameStart);
 
         string fromSymbol = fromDir + "/Unity-iPhone.xcarchive/dSYMs/" + name + ".app.dSYM";
         string fromAppIPA = fromDir + "/Export/Unity-iPhone.ipa";

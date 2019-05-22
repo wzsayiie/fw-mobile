@@ -22,7 +22,7 @@ project_fil="App.xcodeproj"
 scheme_name="App"
 archiv_list="-arch armv7s -arch arm64 -arch arm64e"
 outputs_dir="BUILD"
-outputs_nam="app"
+outputs_nam="xcode"
 
 sh generate_headers
 sh program_lua/libluascript/generate_lua
