@@ -20,12 +20,12 @@ These are `Android Studio`, `Xcode` and `Unity` projects,
 For building Android and iOS app, and placing them to *BUILD/*.
 Files without suffix name for macOS, and *.bat for Windows.
 
-* bas_apk
-* bas_apk.bat
-* bunity_apk
-* bunity_apk.bat
-* bunity_ipa
-* bxcode_ipa
+* build_as_apk
+* build_as_apk.bat
+* build_unity_apk
+* build_unity_apk.bat
+* build_unity_ipa
+* build_xcode_ipa
 
 **Tools:**
 
@@ -61,12 +61,12 @@ that can be compiled and executed on Android and iOS.
 The scripts will compile portable libary,
 and copy them to *app_unity/Assets/Plugins*.
 
-* mas_aar
-* mas_aar.bat
-* mvs_dll.bat
-* mxcode_a_ios
-* mxcode_bundle_ios
-* mxcode_dylib_osx
+* make_as_aar
+* make_as_aar.bat
+* make_vs_dll.bat
+* make_xcode_a_ios
+* make_xcode_bundle_ios
+* make_xcode_dylib_osx
 
 *NOTE*: macOS and Windows build scripts are provided,
 because developer need the library possibly on Unity editor.
