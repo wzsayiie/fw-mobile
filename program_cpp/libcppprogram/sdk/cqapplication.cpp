@@ -7,9 +7,9 @@ cq_member(cqApplicationDelegate) {
 cqApplicationDelegate::cqApplicationDelegate() {
 }
 
-void cqApplicationDelegate::applicationDidFinishLaunching() {}
-void cqApplicationDelegate::applicationDidBecomeActive   () {}
-void cqApplicationDelegate::applicationDidEnterBackground() {}
+void cqApplicationDelegate::applicationDidFinishLaunching () {}
+void cqApplicationDelegate::applicationWillEnterForeground() {}
+void cqApplicationDelegate::applicationDidEnterBackground () {}
 
 cq_member(cqApplication) {
     cqApplicationDelegateRef delegate;
@@ -43,10 +43,10 @@ void cqApplicationMain(cqApplicationDelegateRef delegate) {
     application->setDelegate(delegate);
 }
 
-void _cq_default_window_created() {
+void _cq_api_entry() {
     
     //call cqApplicationMain
-    _entry();
+    _cq_sdk_entry();
     
     //call applicationDidFinishLaunching
     auto application = cqApplication::sharedApplication();

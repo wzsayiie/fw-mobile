@@ -2,56 +2,13 @@
 #import "cqosapi.h"
 
 @interface CQCPPViewController ()
-+ (instancetype)sharedObjectWithHash:(int64_t)hash;
+@property (nonatomic) BOOL viewVisible;
 @end
-
-#pragma mark - interfaces
-
-static float window_get_width(int64_t window_idx) {
-
-    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithHash:window_idx];
-    if (controller != nil) {
-        return controller.view.bounds.size.width;
-    } else {
-        return 0;
-    }
-}
-
-static float window_get_height(int64_t window_idx) {
-
-    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithHash:window_idx];
-    if (controller != nil) {
-        return controller.view.bounds.size.height;
-    } else {
-        return 0;
-    }
-}
-
-static float window_get_screen_scale(int64_t window_idx) {
-
-    CQCPPViewController *controller = [CQCPPViewController sharedObjectWithHash:window_idx];
-    if (controller != nil) {
-        return UIScreen.mainScreen.scale;
-    } else {
-        return 0;
-    }
-}
 
 @implementation CQCPPViewController
 
-#pragma mark - object storage
-
-+ (instancetype)resetSharedObject:(id)object reset:(BOOL)reset {
-    static id shared = nil;
-    if (reset) {
-        shared = object;
-    }
-    return shared;
-}
-
-+ (instancetype)sharedObjectWithHash:(int64_t)hash {
-    //there is one window on iOS, return shared object if 'hash' != 0.
-    return hash ? [self resetSharedObject:nil reset:NO] : nil;
+- (int64_t)wid {
+    return self.hash;
 }
 
 #pragma mark - life cycle
@@ -59,49 +16,71 @@ static float window_get_screen_scale(int64_t window_idx) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.whiteColor;
+    CGSize size = self.view.frame.size;
     
-    [CQCPPViewController resetSharedObject:self reset:YES];
+    _cq_notify_window_scale (self.wid, UIScreen.mainScreen.scale);
+    _cq_notify_window_origin(self.wid, 0, 0);
+    _cq_notify_window_size  (self.wid, size.width, size.height);
+    _cq_notify_window_load  (self.wid);
     
-    _cq_install_window_get_width_handler(window_get_width);
-    _cq_install_window_get_height_handler(window_get_height);
-    _cq_install_window_get_screen_scale_handler(window_get_screen_scale);
-    
-    _cq_notify_default_window_created(self.hash);
-    _cq_notify_window_load(self.hash);
+    NSNotificationCenter *nCenter = NSNotificationCenter.defaultCenter;
+    NSNotificationName fore = UIApplicationWillEnterForegroundNotification;
+    NSNotificationName back = UIApplicationWillEnterForegroundNotification;
+    [nCenter addObserver:self selector:@selector(appWillEnterForeground) name:fore object:nil];
+    [nCenter addObserver:self selector:@selector(appDidEnterBackground)  name:back object:nil];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-
-    _cq_notify_window_show(self.hash);
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if (!self.viewVisible) {
+        _cq_notify_window_appear(self.wid);
+        self.viewVisible = true;
+    }
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
+- (void)appWillEnterForeground {
+    if (!self.viewVisible) {
+        _cq_notify_window_appear(self.wid);
+        self.viewVisible = true;
+    }
+}
 
-    _cq_notify_window_hide(self.hash);
+- (void)appDidEnterBackground {
+    if (self.viewVisible) {
+        self.viewVisible = false;
+        _cq_notify_window_disappear(self.wid);
+    }
+}
+
+#pragma mark - rotation
+
+- (void)viewWillTransitionToSize:(CGSize)size
+       withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    _cq_notify_window_size(self.wid, size.width, size.height);
 }
 
 #pragma mark - touch event
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     CGPoint pt = [touches.anyObject locationInView:self.view];
-    _cq_notify_window_touch_began(self.hash, pt.x, pt.y);
+    _cq_notify_window_touch_began(self.wid, pt.x, pt.y);
 }
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     CGPoint pt = [touches.anyObject locationInView:self.view];
-    _cq_notify_window_touch_moved(self.hash, pt.x, pt.y);
+    _cq_notify_window_touch_moved(self.wid, pt.x, pt.y);
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     CGPoint pt = [touches.anyObject locationInView:self.view];
-    _cq_notify_window_touch_ended(self.hash, pt.x, pt.y);
+    _cq_notify_window_touch_ended(self.wid, pt.x, pt.y);
 }
 
 - (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     CGPoint pt = [touches.anyObject locationInView:self.view];
-    _cq_notify_window_touch_ended(self.hash, pt.x, pt.y);
+    _cq_notify_window_touch_ended(self.wid, pt.x, pt.y);
 }
 
 @end

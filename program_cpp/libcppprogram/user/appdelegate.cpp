@@ -16,7 +16,7 @@ void AppDelegate::applicationDidFinishLaunching() {
     dat->window->makeKeyAndVisible();
 }
 
-void _entry() {
+void _cq_sdk_entry() {
     AppDelegateRef delegate = AppDelegate::create();
     cqApplicationMain(delegate);
 }

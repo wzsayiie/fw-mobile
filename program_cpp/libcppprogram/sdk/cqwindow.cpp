@@ -29,36 +29,32 @@ cqViewControllerRef cqWindow::rootViewController() {
 }
 
 static void load(cq_window *window) {
-    auto self = (cqWindow *)cq_window_get_extra(window);
+    auto self = (cqWindow *)cq_window_extra(window);
     if (self == nullptr) {
         return;
     }
     
     cqRect rect; {
-        rect.size.width  = cq_window_get_width (window);
-        rect.size.height = cq_window_get_height(window);
+        rect.size.width  = cq_window_width (window);
+        rect.size.height = cq_window_height(window);
     }
     self->setFrame(rect);
 }
 
-static void show(cq_window *window) {
-    auto self = (cqWindow *)cq_window_get_extra(window);
+static void appear(cq_window *window) {
+    auto self = (cqWindow *)cq_window_extra(window);
     if (self == nullptr) {
         return;
     }
     
     auto delegate = cqApplication::sharedApplication()->delegate();
     if (delegate != nullptr) {
-        delegate->applicationDidBecomeActive();
-    }
-    cqViewControllerRef controller = self->rootViewController();
-    if (controller != nullptr) {
-        controller->viewDidAppear();
+        delegate->applicationWillEnterForeground();
     }
 }
 
-static void hide(cq_window *window) {
-    auto self = (cqWindow *)cq_window_get_extra(window);
+static void disappear(cq_window *window) {
+    auto self = (cqWindow *)cq_window_extra(window);
     if (self == nullptr) {
         return;
     }
@@ -67,14 +63,19 @@ static void hide(cq_window *window) {
     if (delegate != nullptr) {
         delegate->applicationDidEnterBackground();
     }
-    cqViewControllerRef controller = self->rootViewController();
-    if (controller != nullptr) {
-        controller->viewDidDisappear();
+}
+
+static void resize(cq_window *window, float width, float height) {
+    auto self = (cqWindow *)cq_window_extra(window);
+    if (self == nullptr) {
+        return;
     }
+    
+    self->setFrame(cqRect(0, 0, width, height));
 }
 
 static void touchBegan(cq_window *window, float x, float y) {
-    auto self = (cqWindow *)cq_window_get_extra(window);
+    auto self = (cqWindow *)cq_window_extra(window);
     
     std::set<cqTouchRef> touches = {
         cqTouch::createWithLocation(self->strongRef(), cqPoint(x, y))
@@ -93,7 +94,7 @@ static void touchBegan(cq_window *window, float x, float y) {
 }
 
 static void touchMoved(cq_window *window, float x, float y) {
-    auto self = (cqWindow *)cq_window_get_extra(window);
+    auto self = (cqWindow *)cq_window_extra(window);
     if (self->dat->touchesResponder == nullptr) {
         return;
     }
@@ -107,7 +108,7 @@ static void touchMoved(cq_window *window, float x, float y) {
 }
 
 static void touchEnded(cq_window *window, float x, float y) {
-    auto self = (cqWindow *)cq_window_get_extra(window);
+    auto self = (cqWindow *)cq_window_extra(window);
     if (self->dat->touchesResponder == nullptr) {
         return;
     }
@@ -123,17 +124,20 @@ static void touchEnded(cq_window *window, float x, float y) {
 
 void cqWindow::makeKeyAndVisible() {
     
-    //NOTE: currently only one window be supported in a app.
-    dat->window = cq_window_get_default();
-
-    cq_window_set_extra(dat->window, (int64_t)this);
+    cq_procedure procedure;
+    memset(&procedure, 0, sizeof(procedure));
+    procedure.load = load;
+    procedure.appear = appear;
+    procedure.disappear = disappear;
+    procedure.resize = resize;
+    procedure.touch_began = touchBegan;
+    procedure.touch_moved = touchMoved;
+    procedure.touch_ended = touchEnded;
     
-    cq_window_get_procedure(dat->window)->load = load;
-    cq_window_get_procedure(dat->window)->show = show;
-    cq_window_get_procedure(dat->window)->hide = hide;
-    cq_window_get_procedure(dat->window)->touch_began = touchBegan;
-    cq_window_get_procedure(dat->window)->touch_moved = touchMoved;
-    cq_window_get_procedure(dat->window)->touch_ended = touchEnded;
+    dat->window = cq_create_window();
+    cq_set_procedure(dat->window, &procedure);
+    cq_set_window_extra(dat->window, (int64_t)this);
+    cq_show_window(dat->window);
 }
 
 cqResponderRef cqWindow::nextResponder() {

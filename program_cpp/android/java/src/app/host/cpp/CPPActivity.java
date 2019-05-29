@@ -1,6 +1,8 @@
 package src.app.host.cpp;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Display;
@@ -13,113 +15,147 @@ public class CPPActivity extends Activity {
         System.loadLibrary("cargo");
     }
 
+    @SuppressLint("StaticFieldLeak") /* there is only activity instance in app */
     private static CPPActivity sSharedActivity = null;
 
-    private static CPPActivity resetSharedActivity(CPPActivity activity, boolean reset) {
-        if (reset) {
-            sSharedActivity = activity;
-        }
-        return sSharedActivity;
+    @SuppressWarnings("unused") /* called by native code */
+    public static long create_window() {
+        return sSharedActivity.createWindow();
+    }
+    @SuppressWarnings("unused") /* called by native code */
+    public static void show_window(long wid) {
+        sSharedActivity.showWindow(wid);
     }
 
-    private static CPPActivity sharedActivityWithHash(long hash) {
-        //there is one activity on android, return shared object if 'hash' != 0.
-        return hash != 0 ? resetSharedActivity(null, false) : null;
-    }
+    private boolean mStarted;
+    private boolean mAttached;
+    private float   mDensity;
+    private float   mWidthPixels;
+    private float   mHeightPixels;
 
-    private View mContentView = null;
+    protected long getWid() {
+        return hashCode();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sSharedActivity = this;
 
-        mContentView = new View(this);
-        setContentView(mContentView);
+        View contentView = new View(this);
+        setContentView(contentView);
+        contentView.addOnLayoutChangeListener(
+            (View view,
+             int newLeft, int newTop, int newRight, int newBottom,
+             int oldLeft, int oldTop, int oldRight, int oldBottom) ->
+        {
+            Rect frame = new Rect(newLeft, newTop, newRight, newBottom);
+            onViewLayoutChange(frame);
+        });
 
-        resetSharedActivity(this, true);
-        onCreate(hashCode());
+        installInterfaces();
+        notifyAppStartup();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        onStart(hashCode());
+        if (mAttached && !mStarted) {
+            notifyWindowAppear(getWid());
+            mStarted = true;
+        }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
 
-        onStop(hashCode());
+        if (mAttached && mStarted) {
+            mStarted = false;
+            notifyWindowDisappear(getWid());
+        }
     }
 
-    private native void onCreate(long index);
-    private native void onStart(long index);
-    private native void onStop(long index);
+    private long createWindow() {
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
+        //only one window can be created on android
+        if (mAttached) {
+            return 0;
+        }
+
+        mAttached = true;
+        return sSharedActivity.getWid();
+    }
+
+    private void showWindow(long wid) {
+        if (!mAttached || wid != getWid()) {
+            return;
+        }
 
         Display display = getWindowManager().getDefaultDisplay();
         DisplayMetrics metrics = new DisplayMetrics();
         display.getMetrics(metrics);
 
-        float x = event.getX() / metrics.density;
-        float y = event.getY() / metrics.density;
+        mDensity      = metrics.density;
+        mWidthPixels  = metrics.widthPixels;
+        mHeightPixels = metrics.heightPixels;
+
+        notifyWindowScale (wid, mDensity);
+        notifyWindowOrigin(wid, 0, 0);
+        notifyWindowSize  (wid, mWidthPixels / mDensity, mHeightPixels / mDensity);
+        notifyWindowLoad  (wid);
+
+        if (sSharedActivity.mStarted) {
+            notifyWindowAppear(wid);
+        }
+    }
+
+    protected void onViewLayoutChange(Rect frame) {
+        if (!mAttached) {
+            return;
+        }
+
+        int widthPixels  = frame.right - frame.left;
+        int heightPixels = frame.bottom - frame.top;
+
+        if (mWidthPixels != widthPixels || mHeightPixels != heightPixels) {
+            notifyWindowSize(getWid(), mWidthPixels / mDensity, mHeightPixels / mDensity);
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (!mAttached || !mStarted) {
+            return true;
+        }
+
+        float x = event.getX() / mDensity;
+        float y = event.getY() / mDensity;
 
         switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN  : onTouchBegan(hashCode(), x, y); break;
-            case MotionEvent.ACTION_MOVE  : onTouchMoved(hashCode(), x, y); break;
-            case MotionEvent.ACTION_UP    : onTouchEnded(hashCode(), x, y); break;
-            case MotionEvent.ACTION_CANCEL: onTouchEnded(hashCode(), x, y); break;
+            case MotionEvent.ACTION_DOWN  : notifyWindowTouchBegan(getWid(), x, y); break;
+            case MotionEvent.ACTION_MOVE  : notifyWindowTouchMoved(getWid(), x, y); break;
+            case MotionEvent.ACTION_UP    : notifyWindowTouchEnded(getWid(), x, y); break;
+            case MotionEvent.ACTION_CANCEL: notifyWindowTouchEnded(getWid(), x, y); break;
         }
         return true;
     }
 
-    private native void onTouchBegan(long index, float x, float y);
-    private native void onTouchMoved(long index, float x, float y);
-    private native void onTouchEnded(long index, float x, float y);
+    protected native void installInterfaces();
 
-    private static float range(float min, float v, float max) {
-        return v < min ? min : (v > max ? max : v);
-    }
+    protected native void notifyAppStartup();
 
-    public static float window_get_width(long index) {
-        CPPActivity activity = sharedActivityWithHash(index);
-        if (activity == null) {
-            return 0;
-        }
+    protected native void notifyWindowScale    (long wid, float scale);
+    protected native void notifyWindowOrigin   (long wid, float x, float y);
+    protected native void notifyWindowSize     (long wid, float width, float height);
+    protected native void notifyWindowLoad     (long wid);
+    protected native void notifyWindowGLDraw   (long wid);
+    protected native void notifyWindowAppear   (long wid);
+    protected native void notifyWindowDisappear(long wid);
+    protected native void notifyWindowUnload   (long wid);
 
-        Display display = activity.getWindowManager().getDefaultDisplay();
-        DisplayMetrics metrics = new DisplayMetrics();
-        display.getMetrics(metrics);
-
-        return ((float) metrics.widthPixels) / metrics.density;
-    }
-
-    public static float window_get_height(long index) {
-        CPPActivity activity = sharedActivityWithHash(index);
-        if (activity == null) {
-            return 0;
-        }
-
-        Display display = activity.getWindowManager().getDefaultDisplay();
-        DisplayMetrics metrics = new DisplayMetrics();
-        display.getMetrics(metrics);
-
-        return ((float) metrics.heightPixels) / metrics.density;
-    }
-
-    public static float window_get_screen_scale(long index) {
-        CPPActivity activity = sharedActivityWithHash(index);
-        if (activity == null) {
-            return 0;
-        }
-
-        Display display = activity.getWindowManager().getDefaultDisplay();
-        DisplayMetrics metrics = new DisplayMetrics();
-        display.getMetrics(metrics);
-        return metrics.density;
-    }
+    protected native void notifyWindowTouchBegan(long wid, float x, float y);
+    protected native void notifyWindowTouchMoved(long wid, float x, float y);
+    protected native void notifyWindowTouchEnded(long wid, float x, float y);
 }

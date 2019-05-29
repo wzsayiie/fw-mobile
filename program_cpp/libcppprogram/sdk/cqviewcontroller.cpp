@@ -10,12 +10,6 @@ cqViewController::cqViewController() {
 void cqViewController::viewDidLoad() {
 }
 
-void cqViewController::viewDidAppear() {
-}
-
-void cqViewController::viewDidDisappear() {
-}
-
 cqViewRef cqViewController::view() {
     if (dat->view == nullptr) {
         loadView();

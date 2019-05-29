@@ -1,168 +1,214 @@
 #include "cqosapi.h"
 #include "cqcppbasis.hh"
 
-static float (*_window_get_width       )(int64_t) = nullptr;
-static float (*_window_get_height      )(int64_t) = nullptr;
-static float (*_window_get_screen_scale)(int64_t) = nullptr;
+const int ADD = 1;
+const int GET = 2;
 
-static std::map<int64_t, cq_window *> *get_window_store() {
+static cq_window *window_store(int64_t wid, cq_window *window, int intent) {
     static std::map<int64_t, cq_window *> *store = nullptr;
     if (store == nullptr) {
         store = new std::map<int64_t, cq_window *>;
     }
-    return store;
+    
+    switch (intent) {
+        case ADD: {
+            if (wid != 0 && window != nullptr) {
+                store->insert(std::make_pair(wid, window));
+            }
+            return nullptr;
+        }
+        case GET: {
+            if (store->find(wid) != store->end()) {
+                return store->at(wid);
+            } else {
+                return nullptr;
+            }
+        }
+        default: {
+            return nullptr;
+        }
+    }
 }
-
-static void set_window_pair(int64_t idx, cq_window *window) {
-    auto store = get_window_store();
-    (*store)[idx] = window;
+static void add_window(int64_t wid, cq_window *window) {
+    window_store(wid, window, ADD);
 }
-
-static cq_window *window_from_idx(int64_t idx) {
-    auto store = get_window_store();
-    auto it = store->find(idx);
-    return it != store->end() ? it->second : nullptr;
+static cq_window *get_window(int64_t wid) {
+    return window_store(wid, nullptr, GET);
 }
-
-static int64_t _default_window_idx = 0;
 
 struct cq_window {
-    cq_window_procedure procedure;
-    int64_t idx;
+    cq_procedure procedure;
+    
+    float scale;
+    float x;
+    float y;
+    float width;
+    float height;
+    
+    bool loaded;
+    bool visible;
+    bool touching;
+    
+    int64_t wid;
     int64_t extra;
 };
 
-cq_window *cq_window_get_default() {
-    return window_from_idx(_default_window_idx);
+static _cq_interfaces _interfaces = {nullptr};
+
+cq_window *cq_create_window() {
+    if (_interfaces.create_window) {
+        if (int64_t wid = _interfaces.create_window()) {
+            auto window = (cq_window *)calloc(1, sizeof(cq_window));
+            window->wid = wid;
+            add_window(wid, window);
+            return window;
+        }
+    }
+    return nullptr;
 }
 
-void cq_window_set_procedure(cq_window *window, cq_window_procedure *procedure) {
+void cq_show_window(cq_window *window) {
+    if (window && _interfaces.show_window) {
+        _interfaces.show_window(window->wid);
+    }
+}
+
+void cq_set_procedure(cq_window *window, cq_procedure *procedure) {
     if (window && procedure) {
         window->procedure = *procedure;
     }
 }
 
-cq_window_procedure *cq_window_get_procedure(cq_window *window) {
-    return window ? &window->procedure : nullptr;
-}
-
-void cq_window_set_extra(cq_window *window, int64_t extra) {
-    if (window) {
+void cq_set_window_extra(cq_window *window, int64_t extra) {
+    if (window != nullptr) {
         window->extra = extra;
     }
 }
-
-int64_t cq_window_get_extra(cq_window *window) {
-    return  window ? window->extra : 0;
-}
-
-float cq_window_get_width(cq_window *window) {
-    if (_window_get_width && window) {
-        return _window_get_width(window->idx);
+int64_t cq_window_extra(cq_window *window) {
+    if (window != nullptr) {
+        return window->extra;
     } else {
         return 0;
     }
 }
 
-float cq_window_get_height(cq_window *window) {
-    if (_window_get_height && window) {
-        return _window_get_height(window->idx);
-    } else {
-        return 0;
+bool cq_window_loaded (cq_window *w) {return w ? w->loaded  : false;}
+bool cq_window_visible(cq_window *w) {return w ? w->visible : false;}
+
+float cq_window_scale (cq_window *w) {return w ? w->scale  : 0.f;}
+float cq_window_x     (cq_window *w) {return w ? w->x      : 0.f;}
+float cq_window_y     (cq_window *w) {return w ? w->y      : 0.f;}
+float cq_window_width (cq_window *w) {return w ? w->width  : 0.f;}
+float cq_window_height(cq_window *w) {return w ? w->height : 0.f;}
+
+void _cq_install_interfaces(_cq_interfaces *interfaces) {
+    if (interfaces != nullptr) {
+        _interfaces = *interfaces;
     }
 }
 
-float cq_window_get_screen_scale(cq_window *window) {
-    if (_window_get_screen_scale && window) {
-        return _window_get_screen_scale(window->idx);
-    } else {
-        return 0;
+template<class F, class... A> void notify(F f, A... a) {
+    if (f != nullptr) {
+        f(a...);
     }
 }
 
-void _cq_install_window_get_width_handler(float (*h)(int64_t)) {
-    _window_get_width = h;
-}
-void _cq_install_window_get_height_handler(float (*h)(int64_t)) {
-    _window_get_height = h;
-}
-void _cq_install_window_get_screen_scale_handler(float (*h)(int64_t)) {
-    _window_get_screen_scale = h;
+void _cq_notify_app_startup() {
+    _cq_api_entry();
 }
 
-void _cq_notify_default_window_created(int64_t window_idx) {
-    
-    _default_window_idx = window_idx;
-    
-    auto window = (cq_window *)calloc(sizeof(cq_window), 1);
-    window->idx = window_idx;
-    set_window_pair(window_idx, window);
-    
-    _cq_default_window_created();
-}
-
-void _cq_notify_window_load(int64_t window_idx) {
-    cq_window *window = window_from_idx(window_idx);
-    if (window == nullptr) {
-        return;
-    }
-    
-    if (window->procedure.load) {
-        window->procedure.load(window);
+void _cq_notify_window_scale(int64_t wid, float scale) {
+    if (cq_window *window = get_window(wid)) {
+        window->scale = scale;
     }
 }
 
-void _cq_notify_window_show(int64_t window_idx) {
-    cq_window *window = window_from_idx(window_idx);
-    if (window == nullptr) {
-        return;
-    }
-    
-    if (window->procedure.show) {
-        window->procedure.show(window);
-    }
-}
-
-void _cq_notify_window_hide(int64_t window_idx) {
-    cq_window *window = window_from_idx(window_idx);
-    if (window == nullptr) {
-        return;
-    }
-    
-    if (window->procedure.hide) {
-        window->procedure.hide(window);
+void _cq_notify_window_origin(int64_t wid, float x, float y) {
+    if (cq_window *window = get_window(wid)) {
+        window->x = x;
+        window->y = y;
+        if (window->loaded) {
+            notify(window->procedure.move, window, x, y);
+        }
     }
 }
 
-void _cq_notify_window_touch_began(int64_t window_idx, float x, float y) {
-    cq_window *window = window_from_idx(window_idx);
-    if (window == nullptr) {
-        return;
-    }
-    
-    if (window->procedure.touch_began) {
-        window->procedure.touch_began(window, x, y);
-    }
-}
-
-void _cq_notify_window_touch_moved(int64_t window_idx, float x, float y) {
-    cq_window *window = window_from_idx(window_idx);
-    if (window == nullptr) {
-        return;
-    }
-    
-    if (window->procedure.touch_moved) {
-        window->procedure.touch_moved(window, x, y);
+void _cq_notify_window_size(int64_t wid, float width, float height) {
+    if (cq_window *window = get_window(wid)) {
+        window->width  = width;
+        window->height = height;
+        if (window->loaded) {
+            notify(window->procedure.resize, window, width, height);
+        }
     }
 }
 
-void _cq_notify_window_touch_ended(int64_t window_idx, float x, float y) {
-    cq_window *window = window_from_idx(window_idx);
-    if (window == nullptr) {
-        return;
+void _cq_notify_window_load(int64_t wid) {
+    if (cq_window *window = get_window(wid)) {
+        if (!window->loaded) {
+            window->loaded = true;
+            notify(window->procedure.load, window);
+        }
     }
-    
-    if (window->procedure.touch_ended) {
-        window->procedure.touch_ended(window, x, y);
+}
+
+void _cq_notify_window_gl_draw(int64_t wid) {
+    if (cq_window *window = get_window(wid)) {
+        if (window->loaded) {
+            notify(window->procedure.gl_draw, window);
+        }
+    }
+}
+
+void _cq_notify_window_appear(int64_t wid) {
+    if (cq_window *window = get_window(wid)) {
+        if (window->loaded && !window->visible) {
+            notify(window->procedure.appear, window);
+            window->visible = true;
+        }
+    }
+}
+
+void _cq_notify_window_disappear(int64_t wid) {
+    if (cq_window *window = get_window(wid)) {
+        if (window->loaded && window->visible) {
+            window->visible = false;
+            notify(window->procedure.disappear, window);
+        }
+    }
+}
+
+void _cq_notify_window_unload(int64_t wid) {
+    if (cq_window *window = get_window(wid)) {
+        if (window->loaded) {
+            notify(window->procedure.unload, window);
+            window->loaded = false;
+        }
+    }
+}
+
+void _cq_notify_window_touch_began(int64_t wid, float x, float y) {
+    if (cq_window *window = get_window(wid)) {
+        if (window->visible && !window->touching) {
+            window->touching = true;
+            notify(window->procedure.touch_began, window, x, y);
+        }
+    }
+}
+
+void _cq_notify_window_touch_moved(int64_t wid, float x, float y) {
+    if (cq_window *window = get_window(wid)) {
+        if (window->touching) {
+            notify(window->procedure.touch_moved, window, x, y);
+        }
+    }
+}
+
+void _cq_notify_window_touch_ended(int64_t wid, float x, float y) {
+    if (cq_window *window = get_window(wid)) {
+        if (window->touching) {
+            notify(window->procedure.touch_ended, window, x, y);
+            window->touching = false;
+        }
     }
 }
