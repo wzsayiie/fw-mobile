@@ -23,11 +23,15 @@
     _cq_notify_window_size  (self.wid, size.width, size.height);
     _cq_notify_window_load  (self.wid);
     
-    NSNotificationCenter *nCenter = NSNotificationCenter.defaultCenter;
-    NSNotificationName fore = UIApplicationWillEnterForegroundNotification;
-    NSNotificationName back = UIApplicationWillEnterForegroundNotification;
-    [nCenter addObserver:self selector:@selector(appWillEnterForeground) name:fore object:nil];
-    [nCenter addObserver:self selector:@selector(appDidEnterBackground)  name:back object:nil];
+    NSNotificationCenter *n = NSNotificationCenter.defaultCenter;
+    [n addObserver:self
+          selector:@selector(applicationWillEnterForeground)
+              name:UIApplicationWillEnterForegroundNotification
+            object:nil];
+    [n addObserver:self
+          selector:@selector(applicationDidEnterBackground)
+              name:UIApplicationDidEnterBackgroundNotification
+            object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -39,14 +43,14 @@
     }
 }
 
-- (void)appWillEnterForeground {
+- (void)applicationWillEnterForeground {
     if (!self.viewVisible) {
         _cq_notify_window_appear(self.wid);
         self.viewVisible = true;
     }
 }
 
-- (void)appDidEnterBackground {
+- (void)applicationDidEnterBackground {
     if (self.viewVisible) {
         self.viewVisible = false;
         _cq_notify_window_disappear(self.wid);

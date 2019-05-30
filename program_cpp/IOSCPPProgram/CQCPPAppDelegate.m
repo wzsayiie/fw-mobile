@@ -7,9 +7,12 @@
 + (CQCPPAppDelegate *)sharedObject {
     return (CQCPPAppDelegate *)UIApplication.sharedApplication.delegate;
 }
-
-static int64_t create_window(void       ) {return [CQCPPAppDelegate.sharedObject createWindow  ];}
-static void    show_window  (int64_t wid) {return [CQCPPAppDelegate.sharedObject showWindow:wid];}
+static int64_t create_window(void) {
+    return [CQCPPAppDelegate.sharedObject createWindow];
+}
+static void show_window(int64_t wid) {
+    return [CQCPPAppDelegate.sharedObject showWindow:wid];
+}
 
 - (BOOL) /* ------ */ application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
