@@ -2,7 +2,8 @@
 #import "cqosapi.h"
 
 @interface CQCPPViewController ()
-@property (nonatomic) BOOL viewVisible;
+@property (nonatomic, readonly ) GLKView *view;
+@property (nonatomic, readwrite) BOOL viewVisible;
 @end
 
 @implementation CQCPPViewController
@@ -11,17 +12,8 @@
     return self.hash;
 }
 
-#pragma mark - life cycle
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = UIColor.whiteColor;
-    CGSize size = self.view.frame.size;
-    
-    _cq_notify_window_scale (self.wid, UIScreen.mainScreen.scale);
-    _cq_notify_window_origin(self.wid, 0, 0);
-    _cq_notify_window_size  (self.wid, size.width, size.height);
-    _cq_notify_window_load  (self.wid);
     
     NSNotificationCenter *n = NSNotificationCenter.defaultCenter;
     [n addObserver:self
@@ -32,6 +24,16 @@
           selector:@selector(applicationDidEnterBackground)
               name:UIApplicationDidEnterBackgroundNotification
             object:nil];
+    
+    //currently opengl 2.0 is supported
+    self.view.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+    [EAGLContext setCurrentContext:self.view.context];
+    
+    CGSize size = self.view.frame.size;
+    _cq_notify_window_scale (self.wid, UIScreen.mainScreen.scale);
+    _cq_notify_window_origin(self.wid, 0, 0);
+    _cq_notify_window_size  (self.wid, size.width, size.height);
+    _cq_notify_window_load  (self.wid);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -57,15 +59,19 @@
     }
 }
 
-#pragma mark - rotation
+- (GLKView *)view {
+    return (GLKView *)super.view;
+}
+
+- (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
+    _cq_notify_window_gl_draw(self.wid);
+}
 
 - (void)viewWillTransitionToSize:(CGSize)size
        withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
     _cq_notify_window_size(self.wid, size.width, size.height);
 }
-
-#pragma mark - touch event
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     CGPoint pt = [touches.anyObject locationInView:self.view];

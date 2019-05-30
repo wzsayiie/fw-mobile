@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B401A56E22A00710001FC49F /* opengl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B401A56D22A00710001FC49F /* opengl.cpp */; };
 		B401E5C8226F3470002F65BF /* Resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B401E5C7226F344B002F65BF /* Resource.bundle */; };
 		B416F18921A2CD630045FDF6 /* Scenes.plist in Resources */ = {isa = PBXBuildFile; fileRef = B416F18821A2CD630045FDF6 /* Scenes.plist */; };
 		B416F18B21A2D4940045FDF6 /* QuickModels.plist in Resources */ = {isa = PBXBuildFile; fileRef = B416F18A21A2D4940045FDF6 /* QuickModels.plist */; };
@@ -93,6 +94,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B401A56C22A00710001FC49F /* opengl.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = opengl.hh; sourceTree = "<group>"; };
+		B401A56D22A00710001FC49F /* opengl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = opengl.cpp; sourceTree = "<group>"; };
 		B41264A7226D897100745ABF /* Resource.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Resource.xcodeproj; path = ../library_ios/Resource.xcodeproj; sourceTree = "<group>"; };
 		B416F18821A2CD630045FDF6 /* Scenes.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Scenes.plist; sourceTree = "<group>"; };
 		B416F18A21A2D4940045FDF6 /* QuickModels.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = QuickModels.plist; sourceTree = "<group>"; };
@@ -602,6 +605,8 @@
 				CE90E68722872A350071D4D3 /* cqviewcontroller.hh */,
 				CE90E68A22872A350071D4D3 /* cqwindow.cpp */,
 				CE90E68B22872A350071D4D3 /* cqwindow.hh */,
+				B401A56D22A00710001FC49F /* opengl.cpp */,
+				B401A56C22A00710001FC49F /* opengl.hh */,
 			);
 			path = sdk;
 			sourceTree = "<group>";
@@ -731,6 +736,7 @@
 				B425212A22842C8E004FA04B /* CQDemoViewController.m in Sources */,
 				CE90E647228727460071D4D3 /* cqluavm.cpp in Sources */,
 				B425211322842B91004FA04B /* CQBus.m in Sources */,
+				B401A56E22A00710001FC49F /* opengl.cpp in Sources */,
 				CE90E64A228727460071D4D3 /* CQLuaAppDelegate.m in Sources */,
 				CE90E678228729CF0071D4D3 /* CQCPPViewController.m in Sources */,
 				B4D3B3922260C15B007D3E4A /* BlankViewController.m in Sources */,

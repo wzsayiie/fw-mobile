@@ -2,6 +2,7 @@
 #include "cqapplication.hh"
 #include "cqosapi.h"
 #include "cqtouchesevent_p.hh"
+#include "opengl.hh"
 
 cq_member(cqWindow) {
     cq_window *window = nullptr;
@@ -74,6 +75,16 @@ static void resize(cq_window *window, float width, float height) {
     self->setFrame(cqRect(0, 0, width, height));
 }
 
+static void gl_draw(cq_window *window) {
+    auto self = (cqWindow *)cq_window_extra(window);
+    if (self == nullptr) {
+        return;
+    }
+    
+    glClearColor(0.6, 0.9, 0.5, 1);
+    glClear(GL_COLOR_BUFFER_BIT);
+}
+
 static void touchBegan(cq_window *window, float x, float y) {
     auto self = (cqWindow *)cq_window_extra(window);
     
@@ -130,6 +141,7 @@ void cqWindow::makeKeyAndVisible() {
     procedure.appear = appear;
     procedure.disappear = disappear;
     procedure.resize = resize;
+    procedure.gl_draw = gl_draw;
     procedure.touch_began = touchBegan;
     procedure.touch_moved = touchMoved;
     procedure.touch_ended = touchEnded;

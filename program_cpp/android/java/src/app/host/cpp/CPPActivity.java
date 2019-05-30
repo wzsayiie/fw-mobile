@@ -2,12 +2,15 @@ package src.app.host.cpp;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.graphics.Rect;
+import android.opengl.GLES20;
+import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.MotionEvent;
-import android.view.View;
+
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
 
 public class CPPActivity extends Activity {
 
@@ -42,16 +45,24 @@ public class CPPActivity extends Activity {
         super.onCreate(savedInstanceState);
         sSharedActivity = this;
 
-        View contentView = new View(this);
-        setContentView(contentView);
-        contentView.addOnLayoutChangeListener(
-            (View view,
-             int newLeft, int newTop, int newRight, int newBottom,
-             int oldLeft, int oldTop, int oldRight, int oldBottom) ->
-        {
-            Rect frame = new Rect(newLeft, newTop, newRight, newBottom);
-            onViewLayoutChange(frame);
+        //currently open-gl 2.0 is supported
+        GLSurfaceView view = new GLSurfaceView(this);
+        view.setEGLContextClientVersion(2);
+        view.setRenderer(new GLSurfaceView.Renderer() {
+            @Override
+            public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
+                onGLViewCreated();
+            }
+            @Override
+            public void onSurfaceChanged(GL10 gl10, int width, int height) {
+                onGLViewResized(width, height);
+            }
+            @Override
+            public void onDrawFrame(GL10 gl10) {
+                onGLViewDraw();
+            }
         });
+        setContentView(view);
 
         installInterfaces();
         notifyAppStartup();
@@ -111,17 +122,29 @@ public class CPPActivity extends Activity {
         }
     }
 
-    protected void onViewLayoutChange(Rect frame) {
+    protected void onGLViewCreated() {
+    }
+
+    protected void onGLViewResized(int width, int height) {
+        GLES20.glViewport(0, 0, width, height);
+
         if (!mAttached) {
             return;
         }
 
-        int widthPixels  = frame.right - frame.left;
-        int heightPixels = frame.bottom - frame.top;
-
-        if (mWidthPixels != widthPixels || mHeightPixels != heightPixels) {
-            notifyWindowSize(getWid(), mWidthPixels / mDensity, mHeightPixels / mDensity);
+        if (mWidthPixels != width || mHeightPixels != height) {
+            mWidthPixels = width;
+            mHeightPixels = height;
+            notifyWindowSize(getWid(), width / mDensity, height / mDensity);
         }
+    }
+
+    public void onGLViewDraw() {
+        if (!mAttached) {
+            return;
+        }
+
+        notifyWindowGLDraw(getWid());
     }
 
     @Override
@@ -153,7 +176,9 @@ public class CPPActivity extends Activity {
     protected native void notifyWindowGLDraw   (long wid);
     protected native void notifyWindowAppear   (long wid);
     protected native void notifyWindowDisappear(long wid);
-    protected native void notifyWindowUnload   (long wid);
+
+    @SuppressWarnings("unused") /* on android 'unload' event is invalid */
+    protected native void notifyWindowUnload(long wid);
 
     protected native void notifyWindowTouchBegan(long wid, float x, float y);
     protected native void notifyWindowTouchMoved(long wid, float x, float y);
