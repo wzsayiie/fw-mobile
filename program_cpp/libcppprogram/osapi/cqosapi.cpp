@@ -113,7 +113,7 @@ template<class F, class... A> void notify(F f, A... a) {
     }
 }
 
-void _cq_notify_app_startup() {
+void _cq_notify_app_launch() {
     _cq_api_entry();
 }
 

@@ -24,7 +24,7 @@ static void show_window(int64_t wid) {
     _cq_install_interfaces(&interfaces);
     
     //entry
-    _cq_notify_app_startup();
+    _cq_notify_app_launch();
     
     return YES;
 }

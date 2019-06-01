@@ -34,10 +34,10 @@ extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_installInter
     _cq_install_interfaces(&interfaces);
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyAppStartup
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyAppLaunch
 /**/(JNIEnv *, jobject)
 {
-    _cq_notify_app_startup();
+    _cq_notify_app_launch();
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindowScale
