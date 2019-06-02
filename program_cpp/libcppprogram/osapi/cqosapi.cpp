@@ -117,45 +117,11 @@ void _cq_notify_app_launch() {
     _cq_api_entry();
 }
 
-void _cq_notify_window_scale(int64_t wid, float scale) {
-    if (cq_window *window = get_window(wid)) {
-        window->scale = scale;
-    }
-}
-
-void _cq_notify_window_origin(int64_t wid, float x, float y) {
-    if (cq_window *window = get_window(wid)) {
-        window->x = x;
-        window->y = y;
-        if (window->loaded) {
-            notify(window->procedure.move, window, x, y);
-        }
-    }
-}
-
-void _cq_notify_window_size(int64_t wid, float width, float height) {
-    if (cq_window *window = get_window(wid)) {
-        window->width  = width;
-        window->height = height;
-        if (window->loaded) {
-            notify(window->procedure.resize, window, width, height);
-        }
-    }
-}
-
 void _cq_notify_window_load(int64_t wid) {
     if (cq_window *window = get_window(wid)) {
         if (!window->loaded) {
             window->loaded = true;
             notify(window->procedure.load, window);
-        }
-    }
-}
-
-void _cq_notify_window_gl_draw(int64_t wid) {
-    if (cq_window *window = get_window(wid)) {
-        if (window->loaded) {
-            notify(window->procedure.gl_draw, window);
         }
     }
 }
@@ -183,6 +149,48 @@ void _cq_notify_window_unload(int64_t wid) {
         if (window->loaded) {
             notify(window->procedure.unload, window);
             window->loaded = false;
+        }
+    }
+}
+
+void _cq_notify_window_scale(int64_t wid, float scale) {
+    if (cq_window *window = get_window(wid)) {
+        window->scale = scale;
+    }
+}
+
+void _cq_notify_window_origin(int64_t wid, float x, float y) {
+    if (cq_window *window = get_window(wid)) {
+        window->x = x;
+        window->y = y;
+        if (window->loaded) {
+            notify(window->procedure.move, window, x, y);
+        }
+    }
+}
+
+void _cq_notify_window_size(int64_t wid, float width, float height) {
+    if (cq_window *window = get_window(wid)) {
+        window->width  = width;
+        window->height = height;
+        if (window->loaded) {
+            notify(window->procedure.resize, window, width, height);
+        }
+    }
+}
+
+void _cq_notify_window_gl_draw(int64_t wid) {
+    if (cq_window *window = get_window(wid)) {
+        if (window->loaded) {
+            notify(window->procedure.gl_draw, window);
+        }
+    }
+}
+
+void _cq_notify_window_update(int64_t wid) {
+    if (cq_window *window = get_window(wid)) {
+        if (window->loaded) {
+            notify(window->procedure.update, window);
         }
     }
 }

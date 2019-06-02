@@ -9,6 +9,7 @@ typedef struct cq_window cq_window;
 // load --> appear <-> disappear --> unload
 //  |         |            |           |
 //  |draw   ->|-- draw   ->|           |
+//  |update ->|-- update ->|           |
 //  |         |-- touch  ->|           |
 //  |         |            |           |
 //  |move   ->|-- move   ->|- move   ->|
@@ -28,6 +29,8 @@ typedef struct cq_procedure {
     void (*move   )(cq_window *window, float x, float y);
     void (*resize )(cq_window *window, float width, float height);
     void (*gl_draw)(cq_window *window);
+    
+    void (*update)(cq_window *window);
     
     void (*touch_began)(cq_window *window, float x, float y);
     void (*touch_moved)(cq_window *window, float x, float y);
@@ -74,19 +77,22 @@ CQ_C_LINK void _cq_notify_app_launch(void);
 // |         |         |            |           |
 // |scale  ->|         |            |           |
 // |         |draw   ->|-- draw   ->|           |
+// |         |update ->|-- update ->|           |
 // |         |         |-- touch  ->|           |
 // |         |         |            |           |
 // |origin ->|origin ->|-- origin ->|- origin ->|
 // |size   ->|size   ->|-- size   ->|- size   ->|
 
-CQ_C_LINK void _cq_notify_window_scale    (int64_t wid, float scale);
-CQ_C_LINK void _cq_notify_window_origin   (int64_t wid, float x, float y);
-CQ_C_LINK void _cq_notify_window_size     (int64_t wid, float width, float height);
 CQ_C_LINK void _cq_notify_window_load     (int64_t wid);
-CQ_C_LINK void _cq_notify_window_gl_draw  (int64_t wid);
 CQ_C_LINK void _cq_notify_window_appear   (int64_t wid);
 CQ_C_LINK void _cq_notify_window_disappear(int64_t wid);
 CQ_C_LINK void _cq_notify_window_unload   (int64_t wid);
+
+CQ_C_LINK void _cq_notify_window_scale  (int64_t wid, float scale);
+CQ_C_LINK void _cq_notify_window_origin (int64_t wid, float x, float y);
+CQ_C_LINK void _cq_notify_window_size   (int64_t wid, float width, float height);
+CQ_C_LINK void _cq_notify_window_gl_draw(int64_t wid);
+CQ_C_LINK void _cq_notify_window_update (int64_t wid);
 
 CQ_C_LINK void _cq_notify_window_touch_began(int64_t wid, float x, float y);
 CQ_C_LINK void _cq_notify_window_touch_moved(int64_t wid, float x, float y);

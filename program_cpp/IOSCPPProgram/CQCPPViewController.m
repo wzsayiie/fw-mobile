@@ -65,6 +65,7 @@
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
     _cq_notify_window_gl_draw(self.wid);
+    _cq_notify_window_update(self.wid);
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size

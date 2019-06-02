@@ -217,22 +217,27 @@ public class CPPActivity extends Activity {
 
         //draw
         notifyWindowGLDraw(sWid);
+
+        //update
+        notifyWindowUpdate(sWid);
     }
 
     protected native void installInterfaces();
 
     protected native void notifyAppLaunch();
 
-    protected native void notifyWindowScale    (long wid, float scale);
-    protected native void notifyWindowOrigin   (long wid, float x, float y);
-    protected native void notifyWindowSize     (long wid, float width, float height);
     protected native void notifyWindowLoad     (long wid);
-    protected native void notifyWindowGLDraw   (long wid);
     protected native void notifyWindowAppear   (long wid);
     protected native void notifyWindowDisappear(long wid);
 
     @SuppressWarnings("unused") /* on android 'unload' event is invalid */
     protected native void notifyWindowUnload(long wid);
+
+    protected native void notifyWindowScale (long wid, float scale);
+    protected native void notifyWindowOrigin(long wid, float x, float y);
+    protected native void notifyWindowSize  (long wid, float width, float height);
+    protected native void notifyWindowGLDraw(long wid);
+    protected native void notifyWindowUpdate(long wid);
 
     protected native void notifyWindowTouchBegan(long wid, float x, float y);
     protected native void notifyWindowTouchMoved(long wid, float x, float y);

@@ -40,34 +40,10 @@ extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyAppLau
     _cq_notify_app_launch();
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindowScale
-/**/(JNIEnv *, jobject, jlong wid, jfloat scale)
-{
-    _cq_notify_window_scale(wid, scale);
-}
-
-extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindowOrigin
-/**/(JNIEnv *, jobject, jlong wid, jfloat x, jfloat y)
-{
-    _cq_notify_window_origin(wid, x, y);
-}
-
-extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindowSize
-/**/(JNIEnv *, jobject, jlong wid, jfloat width, jfloat height)
-{
-    _cq_notify_window_size(wid, width, height);
-}
-
 extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindowLoad
 /**/(JNIEnv *, jobject, jlong wid)
 {
     _cq_notify_window_load(wid);
-}
-
-extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindowGLDraw
-/**/(JNIEnv *, jobject, jlong wid)
-{
-    _cq_notify_window_gl_draw(wid);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindowAppear
@@ -86,6 +62,36 @@ extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindow
 /**/(JNIEnv *, jobject, jlong wid)
 {
     _cq_notify_window_unload(wid);
+}
+
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindowScale
+/**/(JNIEnv *, jobject, jlong wid, jfloat scale)
+{
+    _cq_notify_window_scale(wid, scale);
+}
+
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindowOrigin
+/**/(JNIEnv *, jobject, jlong wid, jfloat x, jfloat y)
+{
+    _cq_notify_window_origin(wid, x, y);
+}
+
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindowSize
+/**/(JNIEnv *, jobject, jlong wid, jfloat width, jfloat height)
+{
+    _cq_notify_window_size(wid, width, height);
+}
+
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindowGLDraw
+/**/(JNIEnv *, jobject, jlong wid)
+{
+    _cq_notify_window_gl_draw(wid);
+}
+
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindowUpdate
+/**/(JNIEnv *, jobject, jlong wid)
+{
+    _cq_notify_window_update(wid);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindowTouchBegan
