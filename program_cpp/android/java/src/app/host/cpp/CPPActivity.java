@@ -50,6 +50,8 @@ public class CPPActivity extends Activity {
 
     //on main thread:
 
+    private GLSurfaceView mContentView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,9 +64,9 @@ public class CPPActivity extends Activity {
         sWid = hashCode();
 
         //currently open-gl 2.0 is supported
-        GLSurfaceView view = new GLSurfaceView(this);
-        view.setEGLContextClientVersion(2);
-        view.setRenderer(new GLSurfaceView.Renderer() {
+        mContentView = new GLSurfaceView(this);
+        mContentView.setEGLContextClientVersion(2);
+        mContentView.setRenderer(new GLSurfaceView.Renderer() {
             @Override
             public void onSurfaceCreated(GL10 gl, EGLConfig eglConfig) {
             }
@@ -77,7 +79,7 @@ public class CPPActivity extends Activity {
                 onGLThreadViewDraw();
             }
         });
-        setContentView(view);
+        setContentView(mContentView);
     }
 
     @Override
@@ -87,6 +89,18 @@ public class CPPActivity extends Activity {
         synchronized (mSharedVisibleLock) {
             mSharedVisible = true;
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mContentView.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mContentView.onPause();
     }
 
     @Override
