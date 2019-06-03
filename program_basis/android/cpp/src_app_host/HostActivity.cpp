@@ -1,11 +1,11 @@
-#include "cqosapi.h"
+#include "cqhostapi.h"
 #include "cqjnihelper.hh"
 #include <jni.h>
 
 static jclass clazz() {
     static jclass clazz = nullptr;
     if (clazz == nullptr) {
-        cqJNIFindClass(&clazz, cqJNIGetEnv(), "src/app/host/cpp/CPPActivity");
+        cqJNIFindClass(&clazz, cqJNIGetEnv(), "src/app/host/HostActivity");
     }
     return clazz;
 }
@@ -25,7 +25,7 @@ static void show_window(int64_t wid) {
     return method.callVoid();
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_installInterfaces
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_HostActivity_installInterfaces
 /**/(JNIEnv *, jobject)
 {
     _cq_interfaces interfaces;
@@ -34,79 +34,79 @@ extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_installInter
     _cq_install_interfaces(&interfaces);
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyAppLaunch
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_HostActivity_notifyAppLaunch
 /**/(JNIEnv *, jobject)
 {
     _cq_notify_app_launch();
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindowLoad
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_HostActivity_notifyWindowLoad
 /**/(JNIEnv *, jobject, jlong wid)
 {
     _cq_notify_window_load(wid);
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindowAppear
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_HostActivity_notifyWindowAppear
 /**/(JNIEnv *, jobject, jlong wid)
 {
     _cq_notify_window_appear(wid);
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindowDisappear
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_HostActivity_notifyWindowDisappear
 /**/(JNIEnv *, jobject, jlong wid)
 {
     _cq_notify_window_disappear(wid);
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindowUnload
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_HostActivity_notifyWindowUnload
 /**/(JNIEnv *, jobject, jlong wid)
 {
     _cq_notify_window_unload(wid);
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindowScale
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_HostActivity_notifyWindowScale
 /**/(JNIEnv *, jobject, jlong wid, jfloat scale)
 {
     _cq_notify_window_scale(wid, scale);
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindowOrigin
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_HostActivity_notifyWindowOrigin
 /**/(JNIEnv *, jobject, jlong wid, jfloat x, jfloat y)
 {
     _cq_notify_window_origin(wid, x, y);
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindowSize
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_HostActivity_notifyWindowSize
 /**/(JNIEnv *, jobject, jlong wid, jfloat width, jfloat height)
 {
     _cq_notify_window_size(wid, width, height);
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindowGLDraw
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_HostActivity_notifyWindowGLDraw
 /**/(JNIEnv *, jobject, jlong wid)
 {
     _cq_notify_window_gl_draw(wid);
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindowUpdate
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_HostActivity_notifyWindowUpdate
 /**/(JNIEnv *, jobject, jlong wid)
 {
     _cq_notify_window_update(wid);
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindowTouchBegan
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_HostActivity_notifyWindowTouchBegan
 /**/(JNIEnv *, jobject, jlong wid, jfloat x, jfloat y)
 {
     _cq_notify_window_touch_began(wid, x, y);
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindowTouchMoved
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_HostActivity_notifyWindowTouchMoved
 /**/(JNIEnv *, jobject, jlong wid, jfloat x, jfloat y)
 {
     _cq_notify_window_touch_moved(wid, x, y);
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_app_host_cpp_CPPActivity_notifyWindowTouchEnded
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_HostActivity_notifyWindowTouchEnded
 /**/(JNIEnv *, jobject, jlong wid, jfloat x, jfloat y)
 {
     _cq_notify_window_touch_ended(wid, x, y);

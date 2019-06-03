@@ -1,17 +1,17 @@
-#import "CQCPPAppDelegate.h"
-#import "CQCPPViewController.h"
-#import "cqosapi.h"
+#import "CQHostAppDelegate.h"
+#import "CQHostViewController.h"
+#import "cqhostapi.h"
 
-@implementation CQCPPAppDelegate
+@implementation CQHostAppDelegate
 
-+ (CQCPPAppDelegate *)sharedObject {
-    return (CQCPPAppDelegate *)UIApplication.sharedApplication.delegate;
++ (CQHostAppDelegate *)sharedObject {
+    return (CQHostAppDelegate *)UIApplication.sharedApplication.delegate;
 }
 static int64_t create_window(void) {
-    return [CQCPPAppDelegate.sharedObject createWindow];
+    return [CQHostAppDelegate.sharedObject createWindow];
 }
 static void show_window(int64_t wid) {
-    return [CQCPPAppDelegate.sharedObject showWindow:wid];
+    return [CQHostAppDelegate.sharedObject showWindow:wid];
 }
 
 - (BOOL) /* ------ */ application:(UIApplication *)application
@@ -36,14 +36,14 @@ static void show_window(int64_t wid) {
         return 0;
     }
     
-    CQCPPViewController *controller = [[CQCPPViewController alloc] init];
+    CQHostViewController *controller = [[CQHostViewController alloc] init];
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     self.window.rootViewController = controller;
     return controller.wid;
 }
 
 - (void)showWindow:(int64_t)wid {
-    if (wid == ((CQCPPViewController *)self.window.rootViewController).wid) {
+    if (wid == ((CQHostViewController *)self.window.rootViewController).wid) {
         [self.window makeKeyAndVisible];
     }
 }

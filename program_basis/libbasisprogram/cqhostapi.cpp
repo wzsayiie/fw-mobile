@@ -1,4 +1,4 @@
-#include "cqosapi.h"
+#include "cqhostapi.h"
 #include "cqcppbasis.hh"
 
 const int ADD = 1;

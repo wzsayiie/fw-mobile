@@ -8,7 +8,7 @@
     <uses-feature android:glEsVersion="0x00020000" android:required="true" />
 
     <application
-        android:name=".host.cpp.CPPApplication"
+        android:name=".host.HostApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".host.cpp.CPPActivity"
+            android:name=".host.HostActivity"
             android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />

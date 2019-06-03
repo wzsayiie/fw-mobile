@@ -1,8 +1,8 @@
 #include "cqwindow.hh"
 #include "cqapplication.hh"
-#include "cqosapi.h"
+#include "cqhostapi.h"
+#include "cqopengl.h"
 #include "cqtouchesevent_p.hh"
-#include "opengl.hh"
 
 cq_member(cqWindow) {
     cq_window *window = nullptr;

@@ -36,5 +36,6 @@ function generate_headers() {
 
 clean_geneated
 generate_headers library
+generate_headers program_basis
 generate_headers program_cpp
 generate_headers program_lua

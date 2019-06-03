@@ -1,4 +1,4 @@
-package src.app.host.cpp;
+package src.app.host;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-public class CPPActivity extends Activity {
+public class HostActivity extends Activity {
 
     static {
         System.loadLibrary("cargo");
@@ -22,7 +22,7 @@ public class CPPActivity extends Activity {
     //constant variables, initializing before gl thread created:
 
     @SuppressLint("StaticFieldLeak")
-    private static CPPActivity sActivity;
+    private static HostActivity sActivity;
 
     private static float sDensity;
     private static long sWid;

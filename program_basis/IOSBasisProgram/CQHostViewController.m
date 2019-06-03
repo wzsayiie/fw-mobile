@@ -1,12 +1,12 @@
-#import "CQCPPViewController.h"
-#import "cqosapi.h"
+#import "CQHostViewController.h"
+#import "cqhostapi.h"
 
-@interface CQCPPViewController ()
+@interface CQHostViewController ()
 @property (nonatomic, readonly ) GLKView *view;
 @property (nonatomic, readwrite) BOOL viewVisible;
 @end
 
-@implementation CQCPPViewController
+@implementation CQHostViewController
 
 - (int64_t)wid {
     return self.hash;

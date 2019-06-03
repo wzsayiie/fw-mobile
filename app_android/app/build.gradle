@@ -50,10 +50,9 @@ android {
 
     sourceSets {
         main {
-//            manifest.srcFile '../../program_cpp/androidresource/AndroidManifest.xml'
-//            manifest.srcFile '../../program_lua/androidresource/AndroidManifest.xml'
+//            manifest.srcFile '../../program_basis/androidresource/AndroidManifest.xml'
 
-            java.srcDirs += '../../program_cpp/android/java'
+            java.srcDirs += '../../program_basis/android/java'
             java.srcDirs += '../../program_lua/android/java'
 
             jniLibs.srcDirs += '../../thirds_android/jniLibs'

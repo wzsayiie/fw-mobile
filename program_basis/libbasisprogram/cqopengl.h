@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cqcppbasis.hh"
+#include "cqcbasis.h"
 
 # if CQ_ON_ANDROID
 #   include <GLES2/gl2.h>

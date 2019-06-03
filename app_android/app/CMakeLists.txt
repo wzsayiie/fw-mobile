@@ -19,6 +19,7 @@ set(lib_name cargo)
 list(APPEND inc_path ../../GENERATED_HEADERS)
 list(APPEND inc_path ../../thirds_android/includes)
 
+list(APPEND src_aims ../../program_basis/*.cpp)
 list(APPEND src_aims ../../program_cpp/*.cpp)
 list(APPEND src_aims ../../program_lua/*.cpp)
 
