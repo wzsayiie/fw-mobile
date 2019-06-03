@@ -113,8 +113,16 @@ template<class F, class... A> void notify(F f, A... a) {
     }
 }
 
+static void (*_entry)() = nullptr;
+
+_cq_set_entry::_cq_set_entry(void (*entry)()) {
+    _entry = entry;
+}
+
 void _cq_notify_app_launch() {
-    _cq_api_entry();
+    if (_entry) {
+        _entry();
+    }
 }
 
 void _cq_notify_window_load(int64_t wid) {

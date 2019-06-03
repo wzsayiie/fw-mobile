@@ -24,6 +24,3 @@ cq_class(cqApplication, cqResponder) {
 };
 
 void cqApplicationMain(cqApplicationDelegateRef delegate);
-
-//developers should implement _cq_sdk_entry(), and call cqApplicationMain in it.
-void _cq_sdk_entry();

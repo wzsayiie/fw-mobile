@@ -76,6 +76,7 @@ because developer need the library possibly on Unity editor.
 Lightweight application framework.
 Developer can use them to build little, portable application.
 
+* program_basis
 * program_cpp
 * program_lua
 

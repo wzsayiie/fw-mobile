@@ -39,18 +39,12 @@ cqResponderRef cqApplication::nextResponder() {
 }
 
 void cqApplicationMain(cqApplicationDelegateRef delegate) {
+    if (delegate == nullptr) {
+        return;
+    }
+    
     auto application = cqApplication::sharedApplication();
     application->setDelegate(delegate);
-}
-
-void _cq_api_entry() {
-    
-    //call cqApplicationMain
-    _cq_sdk_entry();
-    
-    //call applicationDidFinishLaunching
-    auto application = cqApplication::sharedApplication();
-    auto delegate = application->delegate();
     if (delegate != nullptr) {
         delegate->applicationDidFinishLaunching();
     }

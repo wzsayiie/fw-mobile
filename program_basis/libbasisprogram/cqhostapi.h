@@ -98,6 +98,17 @@ CQ_C_LINK void _cq_notify_window_touch_began(int64_t wid, float x, float y);
 CQ_C_LINK void _cq_notify_window_touch_moved(int64_t wid, float x, float y);
 CQ_C_LINK void _cq_notify_window_touch_ended(int64_t wid, float x, float y);
 
-//user need implement this function ->
+#ifdef __cplusplus
 
-CQ_C_LINK void _cq_api_entry(void);
+//use _cq_entry() to set program entry.
+
+struct _cq_set_entry {
+    _cq_set_entry(void (*entry)());
+};
+
+#define _cq_entry(ENTRY)\
+/**/    static void ENTRY();\
+/**/    static _cq_set_entry _cq_entry##ENTRY(ENTRY);\
+/**/    void ENTRY()
+
+#endif
