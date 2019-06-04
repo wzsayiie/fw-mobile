@@ -27,6 +27,12 @@ public class HostActivity extends Activity {
     private static float sDensity;
     private static long sWid;
 
+    @SuppressWarnings("unused") /* the activity can be found dynamically */
+    public static Activity sharedInstance() {
+        //NOTE: this method will be called on non-ui thread.
+        return sActivity;
+    }
+
     //shared variables between main thread and gl thread:
 
     protected static class TouchItem {

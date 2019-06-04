@@ -64,7 +64,7 @@ public class SubsystemManager {
         if (mProxy == null) do {
             L.i("try start subsystem '%s' with default method", subsystemName);
 
-            Activity rootActivity = ContextFinder.get().findActivity();
+            Activity rootActivity = ContextFinder.get().findCurrentActivity();
             if (rootActivity == null) {
                 L.e("not found available activity context");
                 break;

@@ -8,6 +8,12 @@
 #include <set>
 #include <vector>
 
+//std extension:
+
+std::string cqMakeString(const char *value);
+
+//class:
+
 struct cqClassInfo {
     cqClassInfo *const superclass;
     const char *const name;

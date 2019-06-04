@@ -16,37 +16,23 @@ public class ContextFinder {
         return sInstance;
     }
 
-    private Application findFrameworkApp() {
-        return null;
+    private Activity findCustomAppActivity() {
+        try {
+            Class<?> clazz = Class.forName("src.app.host.HostActivity");
+            Method method = clazz.getMethod("sharedInstance");
+            return (Activity) method.invoke(clazz);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
-    private Application findCustomCPPApp() {
+    private Activity findUnity3DAppActivity() {
         return null;
-    }
-
-    private Application findCustomLuaApp() {
-        return null;
-    }
-
-    private Application findUnity3DApp() {
-        return null;
-    }
-
-    public Application findApp() {
-
-        Application target = null;
-
-        target = findFrameworkApp(); if (target != null) { return target; }
-        target = findCustomCPPApp(); if (target != null) { return target; }
-        target = findCustomLuaApp(); if (target != null) { return target; }
-        target = findUnity3DApp  (); if (target != null) { return target; }
-
-        return target;
     }
 
     private Activity findFrameworkAppActivity() {
         try {
-            Class<?> clazz = Class.forName("src.app.utility.data.ActivityDispatcher");
+            Class<?> clazz = Class.forName("src.app.data.CQActivityDispatcher");
             Method method = clazz.getMethod("currentResumedActivity");
             return (Activity) method.invoke(clazz);
         } catch (Exception e) {
@@ -54,27 +40,23 @@ public class ContextFinder {
         }
     }
 
-    private Activity findCustomCPPAppActivity() {
-        return null;
-    }
+    public Activity findCurrentActivity() {
 
-    private Activity findCustomLuaAppActivity() {
-        return null;
-    }
+        Activity target;
 
-    private Activity findUnity3DAppActivity() {
-        return null;
-    }
-
-    public Activity findActivity() {
-
-        Activity target = null;
-
-        target = findFrameworkAppActivity(); if (target != null) { return target; }
-        target = findCustomCPPAppActivity(); if (target != null) { return target; }
-        target = findCustomLuaAppActivity(); if (target != null) { return target; }
+        target = findCustomAppActivity   (); if (target != null) { return target; }
         target = findUnity3DAppActivity  (); if (target != null) { return target; }
+        target = findFrameworkAppActivity(); if (target != null) { return target; }
 
-        return target;
+        return null;
+    }
+
+    public Application findApplication() {
+        Activity activity = findCurrentActivity();
+        if (activity != null) {
+            return activity.getApplication();
+        } else {
+            return null;
+        }
     }
 }

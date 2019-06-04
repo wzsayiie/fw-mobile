@@ -1,5 +1,13 @@
 #include "cqcppbasis.hh"
 
+//std extension:
+
+std::string cqMakeString(const char *value) {
+    return value ? value : "";
+}
+
+//class:
+
 cqClassInfo *_cqObjectRoot::dynamicSuperclass() {
     return nullptr;
 }
