@@ -15,10 +15,6 @@ typedef struct cq_window cq_window;
 //  |move   ->|-- move   ->|- move   ->|
 //  |resize ->|-- resize ->|- resize ->|
 
-//NOTE:
-//all lifecycle callback functions will be called on the same thread,
-//but the thread is not the main thread possibly.
-
 typedef struct cq_procedure {
     
     void (*load     )(cq_window *window);
@@ -56,9 +52,8 @@ CQ_C_LINK float cq_window_width (cq_window *window);
 CQ_C_LINK float cq_window_height(cq_window *window);
 
 //host need call these functions:
-
-//these functions must be called on the same thread,
-//but not necessarily the main thread.
+//
+//NOTE: on android and ios, the functions must be called on the main thread.
 
 typedef struct _cq_interfaces {
     

@@ -1,31 +1,22 @@
 package src.app.host;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.opengl.GLES20;
-import android.opengl.GLSurfaceView;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 
-import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.opengles.GL10;
-
-public class HostActivity extends Activity {
+public class HostActivity extends Activity implements GLView.Renderer {
 
     static {
         System.loadLibrary("cargo");
     }
 
-    //constant variables, initializing before gl thread created:
-
-    @SuppressLint("StaticFieldLeak")
     private static HostActivity sActivity;
-
-    private static float sDensity;
-    private static long sWid;
 
     @SuppressWarnings("unused") /* the activity can be found dynamically */
     public static Activity sharedInstance() {
@@ -33,110 +24,80 @@ public class HostActivity extends Activity {
         return sActivity;
     }
 
-    //shared variables between main thread and gl thread:
-
-    protected static class TouchItem {
-
-        int action;
-        int pixelX;
-        int pixelY;
-
-        TouchItem(int action, int pixelX, int pixelY) {
-            this.action = action;
-            this.pixelX = pixelX;
-            this.pixelY = pixelY;
-        }
-    }
-
-    private final Object mSharedTouchListLock = new Object();
-    private final Object mSharedVisibleLock = new Object();
-
-    private ArrayList<TouchItem> mSharedTouchList;
-    private boolean mSharedVisible;
-
-    //on main thread:
-
-    private GLSurfaceView mContentView;
+    private float   mScreenDensity;
+    private int     mWidthPixels;
+    private int     mHeightPixels;
+    private GLView  mView;
+    private boolean mViewVisible;
+    private long    mWid;
+    private boolean mWindowCreated;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sActivity = this;
 
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-        sActivity = this;
-        sDensity = metrics.density;
-        sWid = hashCode();
+        mScreenDensity = metrics.density;
+        mWid = hashCode();
+        mView = new GLView(this);
+        mView.setRenderer(this);
+        setContentView(mView);
 
-        //currently open-gl 2.0 is supported
-        mContentView = new GLSurfaceView(this);
-        mContentView.setEGLContextClientVersion(2);
-        mContentView.setRenderer(new GLSurfaceView.Renderer() {
+        TimerTask timerTask = new TimerTask() {
             @Override
-            public void onSurfaceCreated(GL10 gl, EGLConfig eglConfig) {
+            public void run() {
+                new Handler(Looper.getMainLooper()).post(() -> update());
             }
-            @Override
-            public void onSurfaceChanged(GL10 gl, int width, int height) {
-                onGLThreadViewResized(width, height);
-            }
-            @Override
-            public void onDrawFrame(GL10 gl10) {
-                onGLThreadViewDraw();
-            }
-        });
-        setContentView(mContentView);
+        };
+        Timer timer = new Timer();
+        timer.schedule(timerTask, 30, 30);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        mViewVisible = true;
 
-        synchronized (mSharedVisibleLock) {
-            mSharedVisible = true;
+        if (mWindowCreated) {
+            notifyWindowAppear(mWid);
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mContentView.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mContentView.onPause();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        mViewVisible = false;
 
-        synchronized (mSharedVisibleLock) {
-            mSharedVisible = false;
+        if (mWindowCreated) {
+            notifyWindowDisappear(mWid);
         }
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
-
-        int a = event.getAction();
-        int x = (int)event.getX();
-        int y = (int)event.getY();
-        TouchItem item = new TouchItem(a, x, y);
-
-        synchronized (mSharedTouchListLock) {
-            if (mSharedTouchList == null) {
-                mSharedTouchList = new ArrayList<>();
-            }
-            mSharedTouchList.add(item);
-        }
-
-        return true;
+    protected void onDestroy() {
+        super.onDestroy();
+        sActivity = null;
     }
 
-    //on open-gl thread:
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (!mWindowCreated) {
+            return true;
+        }
+
+        float x = event.getX() / mScreenDensity;
+        float y = event.getY() / mScreenDensity;
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN  : notifyWindowTouchBegan(mWid, x, y); break;
+            case MotionEvent.ACTION_MOVE  : notifyWindowTouchMoved(mWid, x, y); break;
+            case MotionEvent.ACTION_UP    : notifyWindowTouchEnded(mWid, x, y); break;
+            case MotionEvent.ACTION_CANCEL: notifyWindowTouchEnded(mWid, x, y); break;
+        }
+        return true;
+    }
 
     @SuppressWarnings("unused") /* called by native code */
     protected static long create_window() {
@@ -147,99 +108,63 @@ public class HostActivity extends Activity {
         sActivity.showWindow(wid);
     }
 
-    private boolean mGLAppLaunched;
-    private boolean mGLWindowAttached;
-    private boolean mGLVisible;
-    private int mGLWidthPixels;
-    private int mGLHeightPixels;
-
-    protected void onGLThreadViewResized(int width, int height) {
-        GLES20.glViewport(0, 0, width, height);
-
-        mGLWidthPixels  = width ;
-        mGLHeightPixels = height;
-
-        if (!mGLAppLaunched) {
-            mGLAppLaunched = true;
-            installInterfaces();
-            notifyAppLaunch();
-        } else if (mGLWindowAttached) {
-            notifyWindowSize(sWid, width, height);
-        }
-    }
-
     protected long createWindow() {
 
         //only one window can be created on android
-        if (mGLWindowAttached) {
+        if (mWindowCreated) {
             return 0;
         }
 
-        mGLWindowAttached = true;
-        return sWid;
+        mWindowCreated = true;
+        return mWid;
     }
 
     protected void showWindow(long wid) {
-        if (!mGLWindowAttached || wid != sWid) {
+        if (!mWindowCreated || wid != mWid) {
             return;
         }
 
-        notifyWindowScale (wid, sDensity);
+        float width  = mWidthPixels  / mScreenDensity;
+        float height = mHeightPixels / mScreenDensity;
+
+        notifyWindowScale (wid, mScreenDensity);
         notifyWindowOrigin(wid, 0, 0);
-        notifyWindowSize  (wid, mGLWidthPixels / sDensity, mGLHeightPixels / sDensity);
+        notifyWindowSize  (wid, width, height);
         notifyWindowLoad  (wid);
 
-        synchronized (mSharedVisibleLock) {
-            mGLVisible = mSharedVisible;
-        }
-        if (mGLVisible) {
+        if (mViewVisible) {
             notifyWindowAppear(wid);
         }
     }
 
-    protected void onGLThreadViewDraw() {
-        if (!mGLWindowAttached) {
-            return;
+    public void onGLViewLoad(int width, int height) {
+        mWidthPixels  = width ;
+        mHeightPixels = height;
+
+        installInterfaces();
+        notifyAppLaunch();
+    }
+
+    public void onGLViewResize(int width, int height) {
+        mWidthPixels  = width ;
+        mHeightPixels = height;
+
+        if (mWindowCreated) {
+            notifyWindowSize(mWid, width, height);
         }
+    }
 
-        //visible event
-        boolean currentVisible;
-        synchronized (mSharedVisibleLock) {
-            currentVisible = mSharedVisible;
+    public void onGLViewDraw() {
+        if (mWindowCreated) {
+            notifyWindowGLDraw(mWid);
         }
+    }
 
-        if (!mGLVisible && currentVisible) {
-            notifyWindowAppear(sWid);
-        } else if (mGLVisible && !currentVisible) {
-            notifyWindowDisappear(sWid);
+    public void update() {
+        if (mWindowCreated) {
+            notifyWindowUpdate(mWid);
         }
-        mGLVisible = currentVisible;
-
-        //touch event
-        ArrayList<TouchItem> list;
-        synchronized (mSharedTouchListLock) {
-            list = mSharedTouchList;
-            mSharedTouchList = null;
-        }
-
-        if (list != null) {
-            for (TouchItem item : list) {
-                float x = item.pixelX / sDensity;
-                float y = item.pixelY / sDensity;
-                switch (item.action) {
-                    case MotionEvent.ACTION_DOWN  : notifyWindowTouchBegan(sWid, x, y); break;
-                    case MotionEvent.ACTION_MOVE  : notifyWindowTouchMoved(sWid, x, y); break;
-                    case MotionEvent.ACTION_UP    : notifyWindowTouchEnded(sWid, x, y); break;
-                    case MotionEvent.ACTION_CANCEL: notifyWindowTouchEnded(sWid, x, y); break;
-                }
-            }
-        }
-
-        //draw
-        notifyWindowGLDraw(sWid);
-
-        //update
-        notifyWindowUpdate(sWid);
+        mView.update();
     }
 
     protected native void installInterfaces();
