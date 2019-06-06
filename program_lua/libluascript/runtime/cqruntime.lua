@@ -1,10 +1,6 @@
---/cqruntime.lua/
-
 -- require
-
 setmetatable(_G, {__index = function(tab, key)
-    local succeed = cq_require(key)
-    if succeed then
+    if pcall(require, string.lower(key)) then
         return tab[key]
     else
         return nil
@@ -24,11 +20,11 @@ end
 function CQObject:init()
 end
     
-function cq_extends(super, this)
+function extends(super, this)
     setmetatable(this, {__index = super})
     this.super = super
     return this
 end;
 
--- user need to implement this function
+-- app entry
 entry()

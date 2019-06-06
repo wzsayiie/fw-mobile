@@ -1,6 +1,4 @@
---/l.lua/
-
-L = cq_extends(CQObject, {
+L = extends(CQObject, {
 })
 
 local function stringFormat(format, args)

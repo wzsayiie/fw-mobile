@@ -43,7 +43,7 @@ std::string cqTemporaryDirectory() {
 }
 
 std::string cqAppendPath(const std::string &parent, const std::string &child) {
-    const char *path = cq_append_path(parent.data(), child.data());
+    const char *path = cq_append_path(parent.c_str(), child.c_str());
     return cqMakeString(path);
 }
 
@@ -62,17 +62,17 @@ cqFileManagerRef cqFileManager::get() {
 }
 
 bool cqFileManager::directoryExists(const std::string &path) {
-    return cq_directory_exists(path.data());
+    return cq_directory_exists(path.c_str());
 }
 
 bool cqFileManager::fileExists(const std::string &path) {
-    return cq_file_exists(path.data());
+    return cq_file_exists(path.c_str());
 }
 
 bool cqFileManager::createDirectory(const std::string &path, bool intermediate) {
-    return cq_create_directory(path.data(), intermediate);
+    return cq_create_directory(path.c_str(), intermediate);
 }
 
 void cqFileManager::removePath(const std::string &path) {
-    cq_remove_path(path.data());
+    cq_remove_path(path.c_str());
 }

@@ -16,9 +16,9 @@ cqSubsystemManagerRef cqSubsystemManager::get() {
 }
 
 bool cqSubsystemManager::startSubsystem(const std::string &name) {
-    return cq_subsystem_start(name.data());
+    return cq_subsystem_start(name.c_str());
 }
 
 void cqSubsystemManager::stopSubsystem(const std::string &name) {
-    cq_subsystem_stop(name.data());
+    cq_subsystem_stop(name.c_str());
 }
