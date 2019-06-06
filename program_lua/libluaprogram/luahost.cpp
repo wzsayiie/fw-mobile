@@ -35,8 +35,7 @@ static void gl_draw(cq_window *window) {
 
 extern "C" void _cq_lua_entry() {
     
-    cq_procedure procedure;
-    memset(&procedure, 0, sizeof(procedure));
+    cq_procedure procedure = cq_procedure_zero;
     procedure.load = load;
     procedure.gl_draw = gl_draw;
     

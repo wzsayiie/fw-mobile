@@ -1,28 +1,29 @@
 #include "cqwindow.h"
 #include "cqcppbasis.hh"
 
-const int ADD = 1;
-const int GET = 2;
-
-static cq_window *window_store(int64_t wid, cq_window *window, int intent) {
+static cq_window *window_store(int64_t wid, cq_window *window, char intent) {
     static std::map<int64_t, cq_window *> *store = nullptr;
     if (store == nullptr) {
         store = new std::map<int64_t, cq_window *>;
     }
     
     switch (intent) {
-        case ADD: {
+        case '+' /* add */: {
             if (wid != 0 && window != nullptr) {
                 store->insert(std::make_pair(wid, window));
             }
             return nullptr;
         }
-        case GET: {
+        case '?' /* get */: {
             if (store->find(wid) != store->end()) {
                 return store->at(wid);
             } else {
                 return nullptr;
             }
+        }
+        case '-' /* remove */: {
+            store->erase(wid);
+            return nullptr;
         }
         default: {
             return nullptr;
@@ -30,10 +31,10 @@ static cq_window *window_store(int64_t wid, cq_window *window, int intent) {
     }
 }
 static void add_window(int64_t wid, cq_window *window) {
-    window_store(wid, window, ADD);
+    window_store(wid, window, '+');
 }
 static cq_window *get_window(int64_t wid) {
-    return window_store(wid, nullptr, GET);
+    return window_store(wid, nullptr, '?');
 }
 
 struct cq_window {
@@ -53,6 +54,7 @@ struct cq_window {
     int64_t extra;
 };
 
+extern const cq_procedure cq_procedure_zero = {nullptr};
 static _cq_interfaces _interfaces = {nullptr};
 
 cq_window *cq_create_window() {

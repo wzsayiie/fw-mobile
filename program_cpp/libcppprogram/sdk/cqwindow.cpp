@@ -135,8 +135,7 @@ static void touchEnded(cq_window *window, float x, float y) {
 
 void cqWindow::makeKeyAndVisible() {
     
-    cq_procedure procedure;
-    memset(&procedure, 0, sizeof(procedure));
+    cq_procedure procedure = cq_procedure_zero;
     procedure.load = load;
     procedure.appear = appear;
     procedure.disappear = disappear;

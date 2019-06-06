@@ -34,6 +34,8 @@ typedef struct cq_procedure {
     
 } cq_procedure;
 
+extern const cq_procedure cq_procedure_zero;
+
 CQ_C_LINK cq_window *cq_create_window(void);
 CQ_C_LINK void cq_show_window(cq_window *window);
 
