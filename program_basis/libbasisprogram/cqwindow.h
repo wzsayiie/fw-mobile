@@ -64,8 +64,6 @@ typedef struct _cq_interfaces {
 
 CQ_C_LINK void _cq_install_interfaces(_cq_interfaces *interfaces);
 
-CQ_C_LINK void _cq_notify_app_launch(void);
-
 //window event notifications:
 //
 // |        load --> appear <-> disappear --> unload
@@ -92,18 +90,3 @@ CQ_C_LINK void _cq_notify_window_update (int64_t wid);
 CQ_C_LINK void _cq_notify_window_touch_began(int64_t wid, float x, float y);
 CQ_C_LINK void _cq_notify_window_touch_moved(int64_t wid, float x, float y);
 CQ_C_LINK void _cq_notify_window_touch_ended(int64_t wid, float x, float y);
-
-#ifdef __cplusplus
-
-//use _cq_entry() to set program entry.
-
-struct _cq_set_entry {
-    _cq_set_entry(void (*entry)());
-};
-
-#define _cq_entry(ENTRY)\
-/**/    static void ENTRY();\
-/**/    static _cq_set_entry _cq_entry##ENTRY(ENTRY);\
-/**/    void ENTRY()
-
-#endif

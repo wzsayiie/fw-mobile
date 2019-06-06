@@ -1,5 +1,5 @@
 #include "cqapplication.hh"
-#include "cqhostapi.h"
+#include "cqwindow.h"
 
 cq_member(cqApplicationDelegate) {
 };

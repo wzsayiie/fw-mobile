@@ -142,7 +142,8 @@ public class HostActivity extends Activity implements GLView.Renderer {
         mHeightPixels = height;
 
         installInterfaces();
-        notifyAppLaunch();
+        
+        //NOTE: call entry function here.
     }
 
     public void onGLViewResize(int width, int height) {
@@ -168,8 +169,6 @@ public class HostActivity extends Activity implements GLView.Renderer {
     }
 
     protected native void installInterfaces();
-
-    protected native void notifyAppLaunch();
 
     protected native void notifyWindowLoad     (long wid);
     protected native void notifyWindowAppear   (long wid);

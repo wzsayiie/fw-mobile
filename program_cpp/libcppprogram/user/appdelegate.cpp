@@ -1,6 +1,6 @@
 #include "appdelegate.hh"
 #include "rootviewcontroller.hh"
-#include "cqhostapi.h"
+#include "cqwindow.h"
 
 cq_member(AppDelegate) {
     cqWindowRef window;
@@ -17,7 +17,7 @@ void AppDelegate::applicationDidFinishLaunching() {
     dat->window->makeKeyAndVisible();
 }
 
-//_cq_entry(entry) {
-//    AppDelegateRef delegate = AppDelegate::create();
-//    cqApplicationMain(delegate);
-//}
+extern "C" void _cq_cpp_entry() {
+    AppDelegateRef delegate = AppDelegate::create();
+    cqApplicationMain(delegate);
+}

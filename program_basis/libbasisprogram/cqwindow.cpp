@@ -1,4 +1,4 @@
-#include "cqhostapi.h"
+#include "cqwindow.h"
 #include "cqcppbasis.hh"
 
 const int ADD = 1;
@@ -110,18 +110,6 @@ void _cq_install_interfaces(_cq_interfaces *interfaces) {
 template<class F, class... A> void notify(F f, A... a) {
     if (f != nullptr) {
         f(a...);
-    }
-}
-
-static void (*_entry)() = nullptr;
-
-_cq_set_entry::_cq_set_entry(void (*entry)()) {
-    _entry = entry;
-}
-
-void _cq_notify_app_launch() {
-    if (_entry) {
-        _entry();
     }
 }
 

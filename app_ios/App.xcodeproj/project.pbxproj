@@ -30,11 +30,13 @@
 		B45C1BD021A034C0007CB374 /* ExampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B45C1BCF21A034C0007CB374 /* ExampleViewController.xib */; };
 		B473DC2622A4E72600218901 /* CQHostAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B473DC1E22A4E72600218901 /* CQHostAppDelegate.m */; };
 		B473DC2722A4E72600218901 /* CQHostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B473DC1F22A4E72600218901 /* CQHostViewController.m */; };
-		B473DC2822A4E72600218901 /* cqhostapi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B473DC2322A4E72600218901 /* cqhostapi.cpp */; };
+		B473DC2822A4E72600218901 /* cqwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B473DC2322A4E72600218901 /* cqwindow.cpp */; };
 		B473DC2922A4E72600218901 /* cqopengl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B473DC2522A4E72600218901 /* cqopengl.cpp */; };
 		B473DC2B22A5000B00218901 /* cqluahost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B473DC2A22A5000B00218901 /* cqluahost.cpp */; };
 		B4A4468B228BA74F00B46240 /* cqgeometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A44689228BA74E00B46240 /* cqgeometry.cpp */; };
 		B4B9D32022278D4E00B35E72 /* liblua.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B9D31F22278D4D00B35E72 /* liblua.a */; };
+		B4C1623922A8C01900D9CA70 /* CPPHostAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C1623722A8C01900D9CA70 /* CPPHostAppDelegate.m */; };
+		B4C1623D22A8C02F00D9CA70 /* LuaHostAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C1623C22A8C02F00D9CA70 /* LuaHostAppDelegate.m */; };
 		B4CFD97321C7475000FFF4CF /* IAPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96021C7475000FFF4CF /* IAPViewController.m */; };
 		B4CFD97421C7475000FFF4CF /* ExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96421C7475000FFF4CF /* ExampleViewController.m */; };
 		B4CFD97A21C75AB300FFF4CF /* IAPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4CFD97921C75AB300FFF4CF /* IAPViewController.xib */; };
@@ -134,13 +136,17 @@
 		B473DC1F22A4E72600218901 /* CQHostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQHostViewController.m; sourceTree = "<group>"; };
 		B473DC2022A4E72600218901 /* CQHostAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQHostAppDelegate.h; sourceTree = "<group>"; };
 		B473DC2222A4E72600218901 /* cqopengl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqopengl.h; sourceTree = "<group>"; };
-		B473DC2322A4E72600218901 /* cqhostapi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqhostapi.cpp; sourceTree = "<group>"; };
-		B473DC2422A4E72600218901 /* cqhostapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqhostapi.h; sourceTree = "<group>"; };
+		B473DC2322A4E72600218901 /* cqwindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqwindow.cpp; sourceTree = "<group>"; };
+		B473DC2422A4E72600218901 /* cqwindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqwindow.h; sourceTree = "<group>"; };
 		B473DC2522A4E72600218901 /* cqopengl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqopengl.cpp; sourceTree = "<group>"; };
 		B473DC2A22A5000B00218901 /* cqluahost.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluahost.cpp; sourceTree = "<group>"; };
 		B4A44689228BA74E00B46240 /* cqgeometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqgeometry.cpp; sourceTree = "<group>"; };
 		B4A4468A228BA74F00B46240 /* cqgeometry.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqgeometry.hh; sourceTree = "<group>"; };
 		B4B9D31F22278D4D00B35E72 /* liblua.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblua.a; path = ../thirds_ios/libs/liblua.a; sourceTree = "<group>"; };
+		B4C1623722A8C01900D9CA70 /* CPPHostAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPHostAppDelegate.m; sourceTree = "<group>"; };
+		B4C1623822A8C01900D9CA70 /* CPPHostAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPHostAppDelegate.h; sourceTree = "<group>"; };
+		B4C1623B22A8C02F00D9CA70 /* LuaHostAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaHostAppDelegate.h; sourceTree = "<group>"; };
+		B4C1623C22A8C02F00D9CA70 /* LuaHostAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaHostAppDelegate.m; sourceTree = "<group>"; };
 		B4CFD96021C7475000FFF4CF /* IAPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPViewController.m; sourceTree = "<group>"; };
 		B4CFD96121C7475000FFF4CF /* IAPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPViewController.h; sourceTree = "<group>"; };
 		B4CFD96321C7475000FFF4CF /* ExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleViewController.h; sourceTree = "<group>"; };
@@ -441,10 +447,10 @@
 		B473DC2122A4E72600218901 /* libbasisprogram */ = {
 			isa = PBXGroup;
 			children = (
-				B473DC2322A4E72600218901 /* cqhostapi.cpp */,
-				B473DC2422A4E72600218901 /* cqhostapi.h */,
 				B473DC2522A4E72600218901 /* cqopengl.cpp */,
 				B473DC2222A4E72600218901 /* cqopengl.h */,
+				B473DC2322A4E72600218901 /* cqwindow.cpp */,
+				B473DC2422A4E72600218901 /* cqwindow.h */,
 			);
 			name = libbasisprogram;
 			path = ../program_basis/libbasisprogram;
@@ -453,6 +459,7 @@
 		B4B9431422250FB500CE3C9A /* LuaProgram */ = {
 			isa = PBXGroup;
 			children = (
+				B4C1623A22A8C02F00D9CA70 /* IOSLuaProgram */,
 				CE90E63C228727460071D4D3 /* libluaprogram */,
 			);
 			name = LuaProgram;
@@ -461,9 +468,30 @@
 		B4BC9C9622041E5500CFD84C /* CPPProgam */ = {
 			isa = PBXGroup;
 			children = (
+				B4C1623622A8C01900D9CA70 /* IOSCPPProgram */,
 				CE90E67922872A350071D4D3 /* libcppprogram */,
 			);
 			name = CPPProgam;
+			sourceTree = "<group>";
+		};
+		B4C1623622A8C01900D9CA70 /* IOSCPPProgram */ = {
+			isa = PBXGroup;
+			children = (
+				B4C1623822A8C01900D9CA70 /* CPPHostAppDelegate.h */,
+				B4C1623722A8C01900D9CA70 /* CPPHostAppDelegate.m */,
+			);
+			name = IOSCPPProgram;
+			path = ../program_cpp/IOSCPPProgram;
+			sourceTree = "<group>";
+		};
+		B4C1623A22A8C02F00D9CA70 /* IOSLuaProgram */ = {
+			isa = PBXGroup;
+			children = (
+				B4C1623B22A8C02F00D9CA70 /* LuaHostAppDelegate.h */,
+				B4C1623C22A8C02F00D9CA70 /* LuaHostAppDelegate.m */,
+			);
+			name = IOSLuaProgram;
+			path = ../program_lua/IOSLuaProgram;
 			sourceTree = "<group>";
 		};
 		B4CFD95F21C7475000FFF4CF /* IAPViewController */ = {
@@ -733,14 +761,16 @@
 				CE90E69922872A350071D4D3 /* cqview.cpp in Sources */,
 				B4E7CD0F2224098800122637 /* main.m in Sources */,
 				B473DC2622A4E72600218901 /* CQHostAppDelegate.m in Sources */,
+				B4C1623D22A8C02F00D9CA70 /* LuaHostAppDelegate.m in Sources */,
 				B4A4468B228BA74F00B46240 /* cqgeometry.cpp in Sources */,
 				B425210722842AD3004FA04B /* NSObject+CQ.m in Sources */,
 				B473DC2B22A5000B00218901 /* cqluahost.cpp in Sources */,
+				B4C1623922A8C01900D9CA70 /* CPPHostAppDelegate.m in Sources */,
 				B4CFD97321C7475000FFF4CF /* IAPViewController.m in Sources */,
 				B425210A22842AD3004FA04B /* UIDevice+CQ.m in Sources */,
 				B425212322842BE4004FA04B /* CQSceneNavigator.m in Sources */,
 				CE90E69B22872A350071D4D3 /* cqevent.cpp in Sources */,
-				B473DC2822A4E72600218901 /* cqhostapi.cpp in Sources */,
+				B473DC2822A4E72600218901 /* cqwindow.cpp in Sources */,
 				CE90E69822872A350071D4D3 /* cqresponder.cpp in Sources */,
 				B425210B22842AD3004FA04B /* UIViewController+CQ.m in Sources */,
 				CE90E69C22872A350071D4D3 /* cqapplication.cpp in Sources */,

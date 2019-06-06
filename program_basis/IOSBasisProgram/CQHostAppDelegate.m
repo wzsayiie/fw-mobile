@@ -1,6 +1,6 @@
 #import "CQHostAppDelegate.h"
 #import "CQHostViewController.h"
-#import "cqhostapi.h"
+#import "cqwindow.h"
 
 @implementation CQHostAppDelegate
 
@@ -17,14 +17,13 @@ static void show_window(int64_t wid) {
 - (BOOL) /* ------ */ application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //enable interfaces
-    _cq_interfaces interfaces;
-    interfaces.create_window = create_window;
-    interfaces.show_window = show_window;
+    _cq_interfaces interfaces; {
+        interfaces.create_window = create_window;
+        interfaces.show_window = show_window;
+    }
     _cq_install_interfaces(&interfaces);
     
-    //entry
-    _cq_notify_app_launch();
+    //NOTE: call entry function here.
     
     return YES;
 }

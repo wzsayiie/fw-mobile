@@ -157,7 +157,7 @@ public class GLView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void update() {
-        if (mRenderer != null) {
+        if (mRenderer != null && mEGL != null) {
             mRenderer.onGLViewDraw();
             mEGL.eglSwapBuffers(mEGLDisplay, mEGLSurface);
         }

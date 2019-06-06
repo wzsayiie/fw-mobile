@@ -1,6 +1,5 @@
-#include "cqhostapi.h"
 #include "cqjnihelper.hh"
-#include <jni.h>
+#include "cqwindow.h"
 
 static jclass clazz() {
     static jclass clazz = nullptr;
@@ -32,12 +31,6 @@ extern "C" JNIEXPORT void JNICALL Java_src_app_host_HostActivity_installInterfac
     interfaces.create_window = create_window;
     interfaces.show_window = show_window;
     _cq_install_interfaces(&interfaces);
-}
-
-extern "C" JNIEXPORT void JNICALL Java_src_app_host_HostActivity_notifyAppLaunch
-/**/(JNIEnv *, jobject)
-{
-    _cq_notify_app_launch();
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_app_host_HostActivity_notifyWindowLoad

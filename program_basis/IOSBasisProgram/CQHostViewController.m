@@ -1,5 +1,5 @@
 #import "CQHostViewController.h"
-#import "cqhostapi.h"
+#import "cqwindow.h"
 
 @interface CQHostViewController ()
 @property (nonatomic, readonly ) GLKView *view;

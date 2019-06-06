@@ -1,4 +1,4 @@
-#include "cqhostapi.h"
+#include "cqwindow.h"
 
-//_cq_entry(entry) {
-//}
+extern "C" void _cq_lua_entry() {
+}
