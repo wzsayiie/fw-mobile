@@ -1,6 +1,6 @@
 package src.app.host.lua;
 
-import src.app.host.HostActivity;
+import src.app.host.basis.HostActivity;
 
 public class LuaHostActivity extends HostActivity {
 

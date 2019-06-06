@@ -1,4 +1,4 @@
-package src.app.host;
+package src.app.host.basis;
 
 import android.content.Context;
 import android.opengl.EGL14;

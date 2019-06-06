@@ -1,4 +1,4 @@
-package src.app.host;
+package src.app.host.basis;
 
 import android.app.Activity;
 import android.os.Bundle;

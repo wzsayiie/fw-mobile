@@ -1,6 +1,6 @@
 package src.app.host.cpp;
 
-import src.app.host.HostActivity;
+import src.app.host.basis.HostActivity;
 
 public class CPPHostActivity extends HostActivity {
 
