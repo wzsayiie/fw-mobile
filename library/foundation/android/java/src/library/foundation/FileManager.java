@@ -1,24 +1,25 @@
 package src.library.foundation;
 
-import android.app.Application;
+import android.content.Context;
 
 import java.io.File;
 
+@SuppressWarnings("WeakerAccess") /* this is a library */
 public class FileManager {
 
     public static String documentDirectory() {
-        Application app = ContextFinder.get().findApplication();
-        return app.getFilesDir().getAbsolutePath();
+        Context context = ContextFinder.get().findCurrentActivity();
+        return context.getFilesDir().getAbsolutePath();
     }
 
     public static String cachesDirectory() {
-        Application app = ContextFinder.get().findApplication();
-        return app.getCacheDir().getAbsolutePath();
+        Context context = ContextFinder.get().findCurrentActivity();
+        return context.getCacheDir().getAbsolutePath();
     }
 
     public static String temporaryDirectory() {
-        Application app = ContextFinder.get().findApplication();
-        return app.getCacheDir().getAbsolutePath();
+        Context context = ContextFinder.get().findCurrentActivity();
+        return context.getCacheDir().getAbsolutePath();
     }
 
     public static String appendPath(String parent, String child) {

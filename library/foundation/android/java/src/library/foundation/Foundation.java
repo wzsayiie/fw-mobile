@@ -1,6 +1,6 @@
 package src.library.foundation;
 
-@SuppressWarnings("unused")
+@SuppressWarnings("unused") /* the methods will be called by native */
 public class Foundation {
 
     //log:
