@@ -20,7 +20,7 @@ static int32_t log_error(lua_State *state) {
     
     cq_log_error(file, line, text);
     
-    return cq_lua_push_void(state);
+    return cq_lua_return_void(state);
 }
 
 //file manager:
@@ -28,19 +28,19 @@ static int32_t log_error(lua_State *state) {
 static int32_t document_directory(lua_State *state) {
     const char *directory = cq_document_directory();
     
-    return cq_lua_push_string(state, directory);
+    return cq_lua_return_string(state, directory);
 }
 
 static int32_t caches_directory(lua_State *state) {
     const char *directory = cq_caches_directory();
     
-    return cq_lua_push_string(state, directory);
+    return cq_lua_return_string(state, directory);
 }
 
 static int32_t temporary_directory(lua_State *state) {
     const char *directory = cq_temporary_directory();
     
-    return cq_lua_push_string(state, directory);
+    return cq_lua_return_string(state, directory);
 }
 
 static int32_t append_path(lua_State *state) {
@@ -49,19 +49,19 @@ static int32_t append_path(lua_State *state) {
     
     const char *path = cq_append_path(parent, child);
     
-    return cq_lua_push_string(state, path);
+    return cq_lua_return_string(state, path);
 }
 
 static int32_t directory_exists(lua_State *state) {
     const char *path = cq_lua_check_string(state, 1);
     bool success = cq_directory_exists(path);
-    return cq_lua_push_bool(state, success);
+    return cq_lua_return_bool(state, success);
 }
 
 static int32_t file_exists(lua_State *state) {
     const char *path = cq_lua_check_string(state, 1);
     bool success = cq_file_exists(path);
-    return cq_lua_push_bool(state, success);
+    return cq_lua_return_bool(state, success);
 }
 
 static int32_t create_directory(lua_State *state) {
@@ -70,13 +70,13 @@ static int32_t create_directory(lua_State *state) {
     
     bool success = cq_create_directory(path, intermediate);
     
-    return cq_lua_push_bool(state, success);
+    return cq_lua_return_bool(state, success);
 }
 
 static int32_t remove_path(lua_State *state) {
     const char *path = cq_lua_check_string(state, 1);
     cq_remove_path(path);
-    return cq_lua_push_void(state);
+    return cq_lua_return_void(state);
 }
 
 //register

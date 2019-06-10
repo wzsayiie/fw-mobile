@@ -17,15 +17,15 @@ CQ_C_LINK float   cq_lua_check_float (lua_State *state, int32_t index);
 CQ_C_LINK double  cq_lua_check_double(lua_State *state, int32_t index);
 CQ_C_LINK PCSTR   cq_lua_check_string(lua_State *state, int32_t index);
 
-CQ_C_LINK int32_t cq_lua_push_void  (lua_State *state);
-CQ_C_LINK int32_t cq_lua_push_bool  (lua_State *state, bool    value);
-CQ_C_LINK int32_t cq_lua_push_int8  (lua_State *state, int8_t  value);
-CQ_C_LINK int32_t cq_lua_push_int16 (lua_State *state, int16_t value);
-CQ_C_LINK int32_t cq_lua_push_int32 (lua_State *state, int32_t value);
-CQ_C_LINK int32_t cq_lua_push_int64 (lua_State *state, int64_t value);
-CQ_C_LINK int32_t cq_lua_push_float (lua_State *state, float   value);
-CQ_C_LINK int32_t cq_lua_push_double(lua_State *state, double  value);
-CQ_C_LINK int32_t cq_lua_push_string(lua_State *state, PCSTR   value);
+CQ_C_LINK int32_t cq_lua_return_void  (lua_State *state);
+CQ_C_LINK int32_t cq_lua_return_bool  (lua_State *state, bool    value);
+CQ_C_LINK int32_t cq_lua_return_int8  (lua_State *state, int8_t  value);
+CQ_C_LINK int32_t cq_lua_return_int16 (lua_State *state, int16_t value);
+CQ_C_LINK int32_t cq_lua_return_int32 (lua_State *state, int32_t value);
+CQ_C_LINK int32_t cq_lua_return_int64 (lua_State *state, int64_t value);
+CQ_C_LINK int32_t cq_lua_return_float (lua_State *state, float   value);
+CQ_C_LINK int32_t cq_lua_return_double(lua_State *state, double  value);
+CQ_C_LINK int32_t cq_lua_return_string(lua_State *state, PCSTR   value);
 
 //host need set these handlers ->
 
