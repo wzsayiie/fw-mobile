@@ -95,15 +95,18 @@ void cq_lua_open_vm(const char *directory) {
     do_string("package.cpath = ''");
 
     //register handlers
-    _cq_lua_set_register_func_handler(register_func);
-    _cq_lua_set_do_string_handler    (do_string    );
-    _cq_lua_set_check_integer_handler(check_integer);
-    _cq_lua_set_check_double_handler (check_double );
-    _cq_lua_set_check_string_handler (check_string );
-    _cq_lua_set_push_bool_handler    (push_bool    );
-    _cq_lua_set_push_integer_handler (push_integer );
-    _cq_lua_set_push_double_handler  (push_double  );
-    _cq_lua_set_push_string_handler  (push_string  );
+    _cq_lua_handlers handlers = _cq_lua_handlers_zero; {
+        handlers.register_func = register_func;
+        handlers.do_string     = do_string    ;
+        handlers.check_integer = check_integer;
+        handlers.check_double  = check_double ;
+        handlers.check_string  = check_string ;
+        handlers.push_bool     = push_bool    ;
+        handlers.push_integer  = push_integer ;
+        handlers.push_double   = push_double  ;
+        handlers.push_string   = push_string  ;
+    }
+    _cq_lua_set_handlers(&handlers);
 }
 
 void cq_lua_close_vm() {
@@ -114,14 +117,7 @@ void cq_lua_close_vm() {
     I("lua vm: close");
     
     //disable handlers
-    _cq_lua_set_register_func_handler(nullptr);
-    _cq_lua_set_do_string_handler    (nullptr);
-    _cq_lua_set_check_integer_handler(nullptr);
-    _cq_lua_set_check_double_handler (nullptr);
-    _cq_lua_set_check_string_handler (nullptr);
-    _cq_lua_set_push_integer_handler (nullptr);
-    _cq_lua_set_push_double_handler  (nullptr);
-    _cq_lua_set_push_string_handler  (nullptr);
+    _cq_lua_set_handlers(nullptr);
     
     //delete vm
     lua_close(_state);

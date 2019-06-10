@@ -29,14 +29,22 @@ CQ_C_LINK int32_t cq_lua_push_string(lua_State *state, PCSTR   value);
 
 //host need set these handlers ->
 
-CQ_C_LINK void _cq_lua_set_register_func_handler(void (*h)(const char *, lua_CFunction));
-CQ_C_LINK void _cq_lua_set_do_string_handler    (void (*h)(const char *));
+typedef struct _cq_lua_handlers {
+    
+    void (*register_func)(const char *name, lua_CFunction);
+    void (*do_string    )(const char *code);
+    
+    int64_t (*check_integer)(lua_State *state, int32_t index);
+    double  (*check_double )(lua_State *state, int32_t index);
+    PCSTR   (*check_string )(lua_State *state, int32_t index);
+    
+    void (*push_bool   )(lua_State *state, bool    value);
+    void (*push_integer)(lua_State *state, int64_t value);
+    void (*push_double )(lua_State *state, double  value);
+    void (*push_string )(lua_State *state, PCSTR   value);
+    
+} _cq_lua_handlers;
 
-CQ_C_LINK void _cq_lua_set_check_integer_handler(int64_t (*h)(lua_State *, int32_t));
-CQ_C_LINK void _cq_lua_set_check_double_handler (double  (*h)(lua_State *, int32_t));
-CQ_C_LINK void _cq_lua_set_check_string_handler (PCSTR   (*h)(lua_State *, int32_t));
+extern const _cq_lua_handlers _cq_lua_handlers_zero;
 
-CQ_C_LINK void _cq_lua_set_push_bool_handler   (void (*h)(lua_State *, bool   ));
-CQ_C_LINK void _cq_lua_set_push_integer_handler(void (*h)(lua_State *, int64_t));
-CQ_C_LINK void _cq_lua_set_push_double_handler (void (*h)(lua_State *, double ));
-CQ_C_LINK void _cq_lua_set_push_string_handler (void (*h)(lua_State *, PCSTR  ));
+CQ_C_LINK void _cq_lua_set_handlers(_cq_lua_handlers *handlers);
