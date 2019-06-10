@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B41806AD2269B6CC00C0F6F0 /* CQSubsystemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B41806AB2269B6CC00C0F6F0 /* CQSubsystemViewController.m */; };
-		B42505AE226744B10035F91A /* CQDefaultSubsystemController.m in Sources */ = {isa = PBXBuildFile; fileRef = B42505A1226744B10035F91A /* CQDefaultSubsystemController.m */; };
 		B42505AF226744B10035F91A /* CQSubsystemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B42505A2226744B10035F91A /* CQSubsystemManager.m */; };
 		B42505B0226744B10035F91A /* cqsubsystemarche.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42505A6226744B10035F91A /* cqsubsystemarche.cpp */; };
 		B42505B1226744B10035F91A /* cqlualibsubsystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42505AA226744B10035F91A /* cqlualibsubsystem.cpp */; };
@@ -40,9 +39,7 @@
 /* Begin PBXFileReference section */
 		B41806AB2269B6CC00C0F6F0 /* CQSubsystemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQSubsystemViewController.m; sourceTree = "<group>"; };
 		B41806AC2269B6CC00C0F6F0 /* CQSubsystemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQSubsystemViewController.h; sourceTree = "<group>"; };
-		B425059F226744B10035F91A /* CQDefaultSubsystemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQDefaultSubsystemController.h; sourceTree = "<group>"; };
 		B42505A0226744B10035F91A /* CQSubsystemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQSubsystemManager.h; sourceTree = "<group>"; };
-		B42505A1226744B10035F91A /* CQDefaultSubsystemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQDefaultSubsystemController.m; sourceTree = "<group>"; };
 		B42505A2226744B10035F91A /* CQSubsystemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQSubsystemManager.m; sourceTree = "<group>"; };
 		B42505A5226744B10035F91A /* cqsubsystemarche.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqsubsystemarche.h; sourceTree = "<group>"; };
 		B42505A6226744B10035F91A /* cqsubsystemarche.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqsubsystemarche.cpp; sourceTree = "<group>"; };
@@ -96,8 +93,6 @@
 		B425059E226744B10035F91A /* IOSSubsystem */ = {
 			isa = PBXGroup;
 			children = (
-				B425059F226744B10035F91A /* CQDefaultSubsystemController.h */,
-				B42505A1226744B10035F91A /* CQDefaultSubsystemController.m */,
 				B4A2A2132268723E00D3D800 /* CQSubsystem.h */,
 				B434F98E226EBA2D0081BBAA /* CQSubsystem.m */,
 				B42505A0226744B10035F91A /* CQSubsystemManager.h */,
@@ -331,7 +326,6 @@
 			files = (
 				B42505B2226744B10035F91A /* cqsubsystem.cpp in Sources */,
 				B42505B1226744B10035F91A /* cqlualibsubsystem.cpp in Sources */,
-				B42505AE226744B10035F91A /* CQDefaultSubsystemController.m in Sources */,
 				B439E5932266CCDE00B66285 /* cqfoundation.cpp in Sources */,
 				B42505B0226744B10035F91A /* cqsubsystemarche.cpp in Sources */,
 				B439E57C2266CC7500B66285 /* cqcppbasis.cpp in Sources */,

@@ -15,10 +15,10 @@ cqSubsystemManagerRef cqSubsystemManager::get() {
     return object;
 }
 
-bool cqSubsystemManager::startSubsystem(const std::string &name) {
-    return cq_subsystem_start(name.c_str());
+void cqSubsystemManager::startSubsystem() {
+    cq_subsystem_start();
 }
 
-void cqSubsystemManager::stopSubsystem(const std::string &name) {
-    cq_subsystem_stop(name.c_str());
+void cqSubsystemManager::stopSubsystem() {
+    cq_subsystem_stop();
 }

@@ -9,18 +9,14 @@ static jclass clazz() {
     return clazz;
 }
 
-bool cq_subsystem_start(const char *name) {
+void cq_subsystem_start() {
     static jmethodID methodID = nullptr;
-
     cqJNIStaticMethod method(clazz(), &methodID, "cq_subsystem_start");
-    method.push(name);
-    return method.callBool();
+    method.callVoid();
 }
 
-void cq_subsystem_stop(const char *name) {
+void cq_subsystem_stop() {
     static jmethodID methodID = nullptr;
-
     cqJNIStaticMethod method(clazz(), &methodID, "cq_subsystem_stop");
-    method.push(name);
     method.callVoid();
 }

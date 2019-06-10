@@ -162,6 +162,10 @@ public class HostActivity extends Activity implements GLView.Renderer {
     }
 
     public void update() {
+        if (!mViewVisible) {
+            return;
+        }
+
         if (mWindowCreated) {
             notifyWindowUpdate(mWid);
         }

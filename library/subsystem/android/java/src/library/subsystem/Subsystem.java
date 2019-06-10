@@ -1,12 +1,13 @@
 package src.library.subsystem;
 
+@SuppressWarnings("unused") /* the methods will be called by native */
 public class Subsystem {
 
-    public static boolean cq_system_start(String name) {
-        return SubsystemManager.get().startSubsystem(name);
+    public static void cq_subsystem_start() {
+        SubsystemManager.get().startSubsystem();
     }
 
-    public static void cq_system_stop(String name) {
-        SubsystemManager.get().stopSubsystem(name);
+    public static void cq_subsystem_stop() {
+        SubsystemManager.get().stopSubsystem();
     }
 }

@@ -1,33 +1,31 @@
 #import "CQSubsystemViewController.h"
 #import "CQSubsystemManager.h"
-#import "CQFoundation.h"
 
 @interface CQSubsystemViewController ()
-@property (nonatomic) NSString *subsystemName;
 @end
 
 @implementation CQSubsystemViewController
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    if (self = [super initWithCoder:aDecoder]) {
-        self.subsystemName = [CQSubsystemManager.sharedObject popLastStartedSubsystemName];
-    }
-    return self;
+- (instancetype)init {
+    return [super initWithNibName:@"CQSubsystemViewController" bundle:self.assetsBundle];
 }
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.subsystemName = [CQSubsystemManager.sharedObject popLastStartedSubsystemName];
-    }
-    return self;
+- (NSBundle *)assetsBundle {
+    NSString *bundlePath = [NSBundle.mainBundle pathForResource:@"Resource" ofType:@"bundle"];
+    NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
+    return bundle;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
 
+- (IBAction)handleCloseButtonTouch:(UIButton *)sender {
+    [self removeFromUI];
+}
+
 - (void)removeFromUI {
-    [CQSubsystemManager.sharedObject stopSubsystem:self.subsystemName];
+    [CQSubsystemManager.sharedObject stopSubsystem];
 }
 
 @end

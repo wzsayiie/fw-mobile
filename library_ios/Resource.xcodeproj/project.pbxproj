@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B443BAC7226D908A000D3021 /* CQDefaultSubsystemController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B443BAC5226D908A000D3021 /* CQDefaultSubsystemController.xib */; };
+		B443BAC7226D908A000D3021 /* CQSubsystemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B443BAC5226D908A000D3021 /* CQSubsystemViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B443BAC5226D908A000D3021 /* CQDefaultSubsystemController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CQDefaultSubsystemController.xib; sourceTree = "<group>"; };
+		B443BAC5226D908A000D3021 /* CQSubsystemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CQSubsystemViewController.xib; sourceTree = "<group>"; };
 		B443BAC6226D908A000D3021 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4EB47B6226D87C1008B5E2F /* Resource.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Resource.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -38,7 +38,7 @@
 		B4E72520226D8901008CD949 /* IOSSubsystemResource */ = {
 			isa = PBXGroup;
 			children = (
-				B443BAC5226D908A000D3021 /* CQDefaultSubsystemController.xib */,
+				B443BAC5226D908A000D3021 /* CQSubsystemViewController.xib */,
 				B443BAC6226D908A000D3021 /* Info.plist */,
 			);
 			name = IOSSubsystemResource;
@@ -117,7 +117,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B443BAC7226D908A000D3021 /* CQDefaultSubsystemController.xib in Resources */,
+				B443BAC7226D908A000D3021 /* CQSubsystemViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
