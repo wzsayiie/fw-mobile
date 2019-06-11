@@ -16,46 +16,46 @@ public class Foundation {
     //file manager:
 
     public static String cq_document_directory() {
-        return FileManager.documentDirectory();
+        return CQFileManager.documentDirectory();
     }
 
     public static String cq_caches_directory() {
-        return FileManager.cachesDirectory();
+        return CQFileManager.cachesDirectory();
     }
 
     public static String cq_temporary_directory() {
-        return FileManager.temporaryDirectory();
+        return CQFileManager.temporaryDirectory();
     }
 
     public static String cq_append_path(String parent, String child) {
-        return FileManager.appendPath(parent, child);
+        return CQFileManager.appendPath(parent, child);
     }
 
     public static boolean cq_directory_exists(String path) {
-        return FileManager.get().directoryExists(path);
+        return CQFileManager.get().directoryExists(path);
     }
 
     public static boolean cq_file_exists(String path) {
-        return FileManager.get().fileExists(path);
+        return CQFileManager.get().fileExists(path);
     }
 
     public static boolean cq_create_directory(String path, boolean intermediate) {
-        return FileManager.get().createDirectory(path, intermediate);
+        return CQFileManager.get().createDirectory(path, intermediate);
     }
 
     public static void cq_remove_path(String path) {
-        FileManager.get().removePath(path);
+        CQFileManager.get().removePath(path);
     }
 
     //thread:
 
     public static void cq_thread_run(long task, long data) {
-        Thread.run(() -> threadBody(task, data));
+        CQThread.run(() -> threadBody(task, data));
     }
 
     private static native void threadBody(long task, long data);
 
     public static void cq_thread_sleep(float seconds) {
-        Thread.sleepForSeconds(seconds);
+        CQThread.sleepForSeconds(seconds);
     }
 }

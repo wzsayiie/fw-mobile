@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 
-import src.library.foundation.ContextFinder;
+import src.library.foundation.CQUIContextFinder;
 import src.library.foundation.L;
 
 @SuppressWarnings("WeakerAccess") /* this is a library */
@@ -28,7 +28,7 @@ public class SubsystemManager {
             return;
         }
 
-        Activity rootActivity = ContextFinder.get().findCurrentActivity();
+        Activity rootActivity = CQUIContextFinder.get().findCurrentActivity();
         if (rootActivity == null) {
             L.e("not found current activity context");
             return;

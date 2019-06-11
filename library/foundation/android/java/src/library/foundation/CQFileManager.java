@@ -5,20 +5,20 @@ import android.content.Context;
 import java.io.File;
 
 @SuppressWarnings("WeakerAccess") /* this is a library */
-public class FileManager {
+public class CQFileManager {
 
     public static String documentDirectory() {
-        Context context = ContextFinder.get().findCurrentActivity();
+        Context context = CQAppContextFinder.get().findApp();
         return context.getFilesDir().getAbsolutePath();
     }
 
     public static String cachesDirectory() {
-        Context context = ContextFinder.get().findCurrentActivity();
+        Context context = CQAppContextFinder.get().findApp();
         return context.getCacheDir().getAbsolutePath();
     }
 
     public static String temporaryDirectory() {
-        Context context = ContextFinder.get().findCurrentActivity();
+        Context context = CQAppContextFinder.get().findApp();
         return context.getCacheDir().getAbsolutePath();
     }
 
@@ -34,11 +34,11 @@ public class FileManager {
         }
     }
 
-    private static FileManager sInstance;
+    private static CQFileManager sInstance;
 
-    public static FileManager get() {
+    public static CQFileManager get() {
         if (sInstance == null) {
-            sInstance = new FileManager();
+            sInstance = new CQFileManager();
         }
         return sInstance;
     }

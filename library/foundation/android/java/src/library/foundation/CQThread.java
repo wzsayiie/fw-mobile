@@ -1,11 +1,11 @@
 package src.library.foundation;
 
 @SuppressWarnings("WeakerAccess") /* this is a library */
-public class Thread {
+public class CQThread {
 
     public static void run(Runnable task) {
         if (task != null) {
-            new java.lang.Thread(task).start();
+            new Thread(task).start();
         }
     }
 
@@ -15,7 +15,7 @@ public class Thread {
         }
 
         try {
-            java.lang.Thread.sleep((long) (1000 * seconds));
+            Thread.sleep((long) (1000 * seconds));
         } catch (InterruptedException ignored) {
         }
     }

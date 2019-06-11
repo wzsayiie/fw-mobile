@@ -5,13 +5,15 @@ import android.app.Activity;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-public class ContextFinder {
+//NOTE: CQUIContextFinder only be used on main thread.
 
-    private static ContextFinder sInstance;
+public class CQUIContextFinder {
 
-    public static ContextFinder get() {
+    private static CQUIContextFinder sInstance;
+
+    public static CQUIContextFinder get() {
         if (sInstance == null) {
-            sInstance = new ContextFinder();
+            sInstance = new CQUIContextFinder();
         }
         return sInstance;
     }
