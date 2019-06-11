@@ -106,3 +106,32 @@ void cq_remove_path(const char *path) {
 
     method.callVoid();
 }
+
+//thread:
+
+void cq_thread_run(void (*task)(void *), void *data) {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_thread_run");
+
+    method.push((jlong)task);
+    method.push((jlong)data);
+
+    method.callVoid();
+}
+
+extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_Foundation_threadBody
+/**/(JNIEnv *, jobject, jlong task, jlong data)
+{
+    auto taskFunc = (void (*)(void *))task;
+    auto dataRef = (void *)data;
+    taskFunc(dataRef);
+}
+
+void cq_thread_sleep(float seconds) {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_thread_sleep");
+
+    method.push(seconds);
+
+    method.callVoid();
+}

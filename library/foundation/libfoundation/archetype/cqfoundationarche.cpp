@@ -20,4 +20,8 @@ bool cq_file_exists     (const char *)       {return false;}
 bool cq_create_directory(const char *, bool) {return false;}
 void cq_remove_path     (const char *)       {}
 
+//thread
+void cq_thread_run(void (*)(void *), void *) {}
+void cq_thread_sleep(float) {}
+
 #endif

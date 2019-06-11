@@ -76,3 +76,20 @@ bool cqFileManager::createDirectory(const std::string &path, bool intermediate) 
 void cqFileManager::removePath(const std::string &path) {
     cq_remove_path(path.c_str());
 }
+
+//thread:
+
+static void cqThreadBody(void *data) {
+    auto ref = (std::function<void ()> *)data;
+    (*ref)();
+    delete ref;
+}
+
+void cqThreadRun(std::function<void ()> task) {
+    auto ref = new std::function<void ()>(task);
+    cq_thread_run(cqThreadBody, ref);
+}
+
+void cqThreadSleep(float seconds) {
+    cq_thread_sleep(seconds);
+}

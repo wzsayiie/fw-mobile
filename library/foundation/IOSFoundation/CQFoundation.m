@@ -49,3 +49,15 @@ bool cq_create_directory(const char *path, bool intermediate) {
 void cq_remove_path(const char *path) {
     [CQFileManager.sharedObject removeItemAtPath:@(path)];
 }
+
+//thread:
+
+void cq_thread_run(void (*task)(void *), void *data) {
+    if (task != NULL) {
+        CQThreadRun(^{ task(data); });
+    }
+}
+
+void cq_thread_sleep(float seconds) {
+    CQThreadSleep(seconds);
+}

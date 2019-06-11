@@ -46,4 +46,16 @@ public class Foundation {
     public static void cq_remove_path(String path) {
         FileManager.get().removePath(path);
     }
+
+    //thread:
+
+    public static void cq_thread_run(long task, long data) {
+        Thread.run(() -> threadBody(task, data));
+    }
+
+    private static native void threadBody(long task, long data);
+
+    public static void cq_thread_sleep(float seconds) {
+        Thread.sleepForSeconds(seconds);
+    }
 }

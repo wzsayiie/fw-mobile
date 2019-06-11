@@ -28,3 +28,8 @@ cq_class(cqFileManager, cqObject) {
     virtual bool createDirectory(const std::string &path, bool intermediate);
     virtual void removePath(const std::string &path);
 };
+
+//thread:
+
+void cqThreadRun(std::function<void ()> task);
+void cqThreadSleep(float seconds);

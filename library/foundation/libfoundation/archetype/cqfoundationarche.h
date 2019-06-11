@@ -17,3 +17,8 @@ CQ_C_LINK bool cq_directory_exists(const char *path);
 CQ_C_LINK bool cq_file_exists(const char *path);
 CQ_C_LINK bool cq_create_directory(const char *path, bool intermediate);
 CQ_C_LINK void cq_remove_path(const char *path);
+
+//thread:
+
+CQ_C_LINK void cq_thread_run(void (*task)(void *), void *data);
+CQ_C_LINK void cq_thread_sleep(float seconds);
