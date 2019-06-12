@@ -10,7 +10,6 @@
 		B401E5C8226F3470002F65BF /* Resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B401E5C7226F344B002F65BF /* Resource.bundle */; };
 		B416F18921A2CD630045FDF6 /* Scenes.plist in Resources */ = {isa = PBXBuildFile; fileRef = B416F18821A2CD630045FDF6 /* Scenes.plist */; };
 		B416F18B21A2D4940045FDF6 /* QuickModels.plist in Resources */ = {isa = PBXBuildFile; fileRef = B416F18A21A2D4940045FDF6 /* QuickModels.plist */; };
-		B425210722842AD3004FA04B /* NSObject+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B42520FD22842AD2004FA04B /* NSObject+CQ.m */; };
 		B425210822842AD3004FA04B /* UIView+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B425210222842AD2004FA04B /* UIView+CQ.m */; };
 		B425210922842AD3004FA04B /* NSBundle+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B425210422842AD2004FA04B /* NSBundle+CQ.m */; };
 		B425210A22842AD3004FA04B /* UIDevice+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B425210522842AD2004FA04B /* UIDevice+CQ.m */; };
@@ -97,13 +96,11 @@
 		B41264A7226D897100745ABF /* Resource.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Resource.xcodeproj; path = ../library_ios/Resource.xcodeproj; sourceTree = "<group>"; };
 		B416F18821A2CD630045FDF6 /* Scenes.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Scenes.plist; sourceTree = "<group>"; };
 		B416F18A21A2D4940045FDF6 /* QuickModels.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = QuickModels.plist; sourceTree = "<group>"; };
-		B42520FD22842AD2004FA04B /* NSObject+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CQ.m"; sourceTree = "<group>"; };
 		B42520FE22842AD2004FA04B /* UIView+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CQ.h"; sourceTree = "<group>"; };
 		B42520FF22842AD2004FA04B /* NSBundle+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+CQ.h"; sourceTree = "<group>"; };
 		B425210022842AD2004FA04B /* UIViewController+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CQ.h"; sourceTree = "<group>"; };
 		B425210122842AD2004FA04B /* UIDevice+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+CQ.h"; sourceTree = "<group>"; };
 		B425210222842AD2004FA04B /* UIView+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CQ.m"; sourceTree = "<group>"; };
-		B425210322842AD2004FA04B /* NSObject+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CQ.h"; sourceTree = "<group>"; };
 		B425210422842AD2004FA04B /* NSBundle+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+CQ.m"; sourceTree = "<group>"; };
 		B425210522842AD2004FA04B /* UIDevice+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+CQ.m"; sourceTree = "<group>"; };
 		B425210622842AD2004FA04B /* UIViewController+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CQ.m"; sourceTree = "<group>"; };
@@ -229,8 +226,6 @@
 			children = (
 				B42520FF22842AD2004FA04B /* NSBundle+CQ.h */,
 				B425210422842AD2004FA04B /* NSBundle+CQ.m */,
-				B425210322842AD2004FA04B /* NSObject+CQ.h */,
-				B42520FD22842AD2004FA04B /* NSObject+CQ.m */,
 				B425210122842AD2004FA04B /* UIDevice+CQ.h */,
 				B425210522842AD2004FA04B /* UIDevice+CQ.m */,
 				B42520FE22842AD2004FA04B /* UIView+CQ.h */,
@@ -763,7 +758,6 @@
 				B473DC2622A4E72600218901 /* CQHostAppDelegate.m in Sources */,
 				B4C1623D22A8C02F00D9CA70 /* LuaHostAppDelegate.m in Sources */,
 				B4A4468B228BA74F00B46240 /* cqgeometry.cpp in Sources */,
-				B425210722842AD3004FA04B /* NSObject+CQ.m in Sources */,
 				B473DC2B22A5000B00218901 /* luahost.cpp in Sources */,
 				B4C1623922A8C01900D9CA70 /* CPPHostAppDelegate.m in Sources */,
 				B4CFD97321C7475000FFF4CF /* IAPViewController.m in Sources */,
