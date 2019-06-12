@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cqcbasis.h"
+#include <algorithm>
 #include <functional>
 #include <map>
 #include <memory>
