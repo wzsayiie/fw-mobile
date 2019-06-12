@@ -4,9 +4,10 @@
 
 @implementation CQHostAppDelegate
 
-+ (CQHostAppDelegate *)sharedObject {
-    return (CQHostAppDelegate *)UIApplication.sharedApplication.delegate;
++ (instancetype)sharedObject {
+    cq_shared_object(self);
 }
+
 static int64_t create_window(void) {
     return [CQHostAppDelegate.sharedObject createWindow];
 }

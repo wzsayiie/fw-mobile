@@ -1,4 +1,4 @@
-#import <Foundation/Foundation.h>
+#import "CQBasis.h"
 
 @interface CQSubsystemManager : NSObject
 

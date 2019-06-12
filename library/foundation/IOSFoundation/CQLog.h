@@ -1,4 +1,4 @@
-#import <Foundation/Foundation.h>
+#import "CQBasis.h"
 #import "cqcbasis.h"
 
 CQ_C_LINK void CQLogInfo (NSString *file, int line, NSString *format, ...) NS_FORMAT_FUNCTION(3, 4);

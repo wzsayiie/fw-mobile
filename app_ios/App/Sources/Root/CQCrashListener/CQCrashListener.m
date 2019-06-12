@@ -3,11 +3,7 @@
 @implementation CQCrashListener
 
 + (instancetype)sharedObject {
-    static id object = nil;
-    if (object == nil) {
-        object = [[self alloc] init];
-    }
-    return object;
+    cq_shared_object(self);
 }
 
 - (instancetype)init {

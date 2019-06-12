@@ -21,11 +21,7 @@ NSString *CQAppendPath(NSString *parent, NSString *child) {
 @implementation CQFileManager
 
 + (instancetype)sharedObject {
-    static id object = nil;
-    if (object == nil) {
-        object = [[self alloc] init];
-    }
-    return object;
+    cq_shared_object(self);
 }
 
 - (BOOL)directoryExistsAtPath:(NSString *)path {

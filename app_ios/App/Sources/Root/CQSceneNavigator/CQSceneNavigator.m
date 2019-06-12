@@ -22,11 +22,7 @@ NSString *const CQSceneStyleFloat = @"CQSceneStyleFloat";
 @implementation CQSceneNavigator
 
 + (instancetype)sharedObject {
-    static id object = nil;
-    if (object == nil) {
-        object = [[self alloc] init];
-    }
-    return object;
+    cq_shared_object(self);
 }
 
 - (void)viewDidLoad {

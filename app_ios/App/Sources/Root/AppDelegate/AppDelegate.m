@@ -1,5 +1,4 @@
 #import "AppDelegate.h"
-#import "CQSingletonManager.h"
 #import "CQSceneNavigator.h"
 #import "CQCrashListener.h"
 
@@ -17,7 +16,6 @@
     I(@"}");
     
     [CQCrashListener sharedObject];
-    [CQSingletonManager sharedObject];
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     self.window.rootViewController = CQSceneNavigator.sharedObject;

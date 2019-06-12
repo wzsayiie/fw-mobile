@@ -19,8 +19,6 @@
 		B425212222842BE4004FA04B /* CQCrashListener.m in Sources */ = {isa = PBXBuildFile; fileRef = B425211622842BE4004FA04B /* CQCrashListener.m */; };
 		B425212322842BE4004FA04B /* CQSceneNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = B425211922842BE4004FA04B /* CQSceneNavigator.m */; };
 		B425212422842BE4004FA04B /* UIViewController+CQScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B425211C22842BE4004FA04B /* UIViewController+CQScene.m */; };
-		B425212522842BE4004FA04B /* CQSingletonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B425211F22842BE4004FA04B /* CQSingletonManager.m */; };
-		B425212622842BE4004FA04B /* NSObject+CQSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = B425212022842BE4004FA04B /* NSObject+CQSingleton.m */; };
 		B425212A22842C8E004FA04B /* CQDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B425212922842C8E004FA04B /* CQDemoViewController.m */; };
 		B444D8E321DF6DDF00E5FF54 /* libLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4EC3C6B21DF6D8800E287A4 /* libLibrary.a */; };
 		B45C1BB121A02B19007CB374 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B45C1B7721A02B19007CB374 /* LaunchScreen.storyboard */; };
@@ -115,10 +113,6 @@
 		B425211A22842BE4004FA04B /* UIViewController+CQScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CQScene.h"; sourceTree = "<group>"; };
 		B425211B22842BE4004FA04B /* CQSceneNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQSceneNavigator.h; sourceTree = "<group>"; };
 		B425211C22842BE4004FA04B /* UIViewController+CQScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CQScene.m"; sourceTree = "<group>"; };
-		B425211E22842BE4004FA04B /* NSObject+CQSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CQSingleton.h"; sourceTree = "<group>"; };
-		B425211F22842BE4004FA04B /* CQSingletonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQSingletonManager.m; sourceTree = "<group>"; };
-		B425212022842BE4004FA04B /* NSObject+CQSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CQSingleton.m"; sourceTree = "<group>"; };
-		B425212122842BE4004FA04B /* CQSingletonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQSingletonManager.h; sourceTree = "<group>"; };
 		B425212822842C8E004FA04B /* CQDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQDemoViewController.h; sourceTree = "<group>"; };
 		B425212922842C8E004FA04B /* CQDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQDemoViewController.m; sourceTree = "<group>"; };
 		B45C1B5B21A02562007CB374 /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -274,17 +268,6 @@
 			path = CQSceneNavigator;
 			sourceTree = "<group>";
 		};
-		B425211D22842BE4004FA04B /* CQSingletonManager */ = {
-			isa = PBXGroup;
-			children = (
-				B425212122842BE4004FA04B /* CQSingletonManager.h */,
-				B425211F22842BE4004FA04B /* CQSingletonManager.m */,
-				B425211E22842BE4004FA04B /* NSObject+CQSingleton.h */,
-				B425212022842BE4004FA04B /* NSObject+CQSingleton.m */,
-			);
-			path = CQSingletonManager;
-			sourceTree = "<group>";
-		};
 		B425212722842C8E004FA04B /* CQDemoViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -376,7 +359,6 @@
 				B45C1B8C21A02B19007CB374 /* AppDelegate */,
 				B425211522842BE4004FA04B /* CQCrashListener */,
 				B425211822842BE4004FA04B /* CQSceneNavigator */,
-				B425211D22842BE4004FA04B /* CQSingletonManager */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -771,9 +753,7 @@
 				B425212222842BE4004FA04B /* CQCrashListener.m in Sources */,
 				CE90E69D22872A350071D4D3 /* cqtouch.cpp in Sources */,
 				CE90E69722872A350071D4D3 /* cqtouchesevent.cpp in Sources */,
-				B425212622842BE4004FA04B /* NSObject+CQSingleton.m in Sources */,
 				B425210822842AD3004FA04B /* UIView+CQ.m in Sources */,
-				B425212522842BE4004FA04B /* CQSingletonManager.m in Sources */,
 				B4D3B39A2260C88E007D3E4A /* FloatViewController.m in Sources */,
 				B425212422842BE4004FA04B /* UIViewController+CQScene.m in Sources */,
 			);
