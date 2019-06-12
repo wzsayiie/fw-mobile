@@ -17,8 +17,9 @@ list(APPEND src_aims ../library/BASIS/*.cpp)
 list(APPEND src_aims ../library/foundation/*.cpp)
 list(APPEND src_aims ../library/subsystem/*.cpp)
 
-list(APPEND sys_libs log)
-list(APPEND usr_libs ../thirds_android/jniLibs/${ANDROID_ABI}/liblua.so)
+#list(APPEND sys_libs xx)
+#list(APPEND usr_libs ../xx/xx.so)
+
 ### configutation end
 
 include_directories(${inc_path})
