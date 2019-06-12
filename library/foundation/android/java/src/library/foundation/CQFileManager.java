@@ -36,7 +36,7 @@ public class CQFileManager {
 
     private static CQFileManager sInstance;
 
-    public static CQFileManager get() {
+    public static synchronized CQFileManager get() {
         if (sInstance == null) {
             sInstance = new CQFileManager();
         }

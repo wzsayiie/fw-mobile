@@ -4,8 +4,13 @@ import src.app.data.CQActivityDispatcher;
 
 public class MainAppDelegate extends CQAppDelegate {
 
-    static MainAppDelegate get() {
-        return CQSingletonManager.get().getInstanceOf(MainAppDelegate.class);
+    private static MainAppDelegate sInstance;
+
+    static synchronized MainAppDelegate get() {
+        if (sInstance == null) {
+            sInstance = new MainAppDelegate();
+        }
+        return sInstance;
     }
 
     @Override

@@ -11,7 +11,7 @@ public class CQAppContextFinder {
 
     private static CQAppContextFinder sInstance;
 
-    public static CQAppContextFinder get() {
+    public static synchronized CQAppContextFinder get() {
         if (sInstance == null) {
             sInstance = new CQAppContextFinder();
         }

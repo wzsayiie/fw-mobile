@@ -6,7 +6,7 @@ public class CQCrashListener {
 
     private static CQCrashListener sInstance;
 
-    public static CQCrashListener get() {
+    public static synchronized CQCrashListener get() {
         if (sInstance == null) {
             L.i("init crash listener");
             sInstance = new CQCrashListener();

@@ -2,8 +2,13 @@ package src.app.application;
 
 public class ServiceAppDelegate extends CQAppDelegate {
 
-    static ServiceAppDelegate get() {
-        return CQSingletonManager.get().getInstanceOf(ServiceAppDelegate.class);
+    private static ServiceAppDelegate sInstance;
+
+    static synchronized ServiceAppDelegate get() {
+        if (sInstance == null) {
+            sInstance = new ServiceAppDelegate();
+        }
+        return sInstance;
     }
 
     @Override

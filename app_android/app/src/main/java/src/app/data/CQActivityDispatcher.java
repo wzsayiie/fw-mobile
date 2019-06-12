@@ -7,13 +7,17 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import src.app.application.CQAppDelegate;
-import src.app.application.CQSingletonManager;
 import src.library.foundation.L;
 
 public class CQActivityDispatcher {
 
-    public static CQActivityDispatcher get() {
-        return CQSingletonManager.get().getInstanceOf(CQActivityDispatcher.class);
+    private static CQActivityDispatcher sInstance;
+
+    public static synchronized CQActivityDispatcher get() {
+        if (sInstance == null) {
+            sInstance = new CQActivityDispatcher();
+        }
+        return sInstance;
     }
 
     //subsystems can find current resumed activity dynamically by this method.

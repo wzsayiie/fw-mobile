@@ -13,7 +13,7 @@ public class SubsystemManager {
     @SuppressLint("StaticFieldLeak")
     private static SubsystemManager sInstance;
 
-    public static SubsystemManager get() {
+    public static synchronized SubsystemManager get() {
         if (sInstance == null) {
             sInstance = new SubsystemManager();
         }

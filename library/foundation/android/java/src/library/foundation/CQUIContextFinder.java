@@ -11,7 +11,7 @@ public class CQUIContextFinder {
 
     private static CQUIContextFinder sInstance;
 
-    public static CQUIContextFinder get() {
+    public static synchronized CQUIContextFinder get() {
         if (sInstance == null) {
             sInstance = new CQUIContextFinder();
         }
