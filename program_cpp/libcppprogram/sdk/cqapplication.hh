@@ -13,7 +13,7 @@ cq_class(cqApplicationDelegate, cqResponder) {
 
 cq_class(cqApplication, cqResponder) {
 
-    static cqApplicationRef sharedApplication();
+    static cqApplicationRef get();
     
     cqApplication();
     

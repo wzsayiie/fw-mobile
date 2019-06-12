@@ -54,6 +54,8 @@ cqFileManager::cqFileManager() {
 }
 
 cqFileManagerRef cqFileManager::get() {
+    CQ_SYNCHRONIZE
+    
     static cqFileManagerRef object;
     if (object == nullptr) {
         object = cqFileManager::create();

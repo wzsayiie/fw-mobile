@@ -15,7 +15,9 @@ cq_member(cqApplication) {
     cqApplicationDelegateRef delegate;
 };
 
-cqApplicationRef cqApplication::sharedApplication() {
+cqApplicationRef cqApplication::get() {
+    CQ_SYNCHRONIZE
+    
     static cqApplicationRef object;
     if (object == nullptr) {
         object = cqApplication::create();
@@ -43,8 +45,7 @@ void cqApplicationMain(cqApplicationDelegateRef delegate) {
         return;
     }
     
-    auto application = cqApplication::sharedApplication();
-    application->setDelegate(delegate);
+    cqApplication::get()->setDelegate(delegate);
     if (delegate != nullptr) {
         delegate->applicationDidFinishLaunching();
     }

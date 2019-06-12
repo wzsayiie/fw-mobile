@@ -4,6 +4,7 @@
 #include <functional>
 #include <map>
 #include <memory>
+#include <mutex>
 #include <string>
 #include <set>
 #include <vector>
@@ -11,6 +12,12 @@
 //std extension:
 
 std::string cqMakeString(const char *value);
+
+//thread mutex:
+
+#define CQ_SYNCHRONIZE\
+/**/    static std::mutex __cq_mutex;\
+/**/    std::lock_guard<std::mutex> __cq_guard(__cq_mutex);
 
 //class:
 
@@ -35,7 +42,7 @@ struct _cqObjectRoot {
 #define _cq_dat(CLASS)     CLASS##Dat
 
 #define cq_declare(CLASS)\
-/**/    typedef std::shared_ptr<struct CLASS> _cq_ref(CLASS);\
+/**/    typedef std::shared_ptr<struct CLASS> _cq_ref    (CLASS);\
 /**/    typedef std::weak_ptr  <struct CLASS> _cq_weakref(CLASS);\
 /**/    cqClassInfo *_cqGetClassInfo(struct CLASS *)
 

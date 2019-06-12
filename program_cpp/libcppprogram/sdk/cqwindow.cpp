@@ -48,7 +48,7 @@ static void appear(cq_window *window) {
         return;
     }
     
-    auto delegate = cqApplication::sharedApplication()->delegate();
+    auto delegate = cqApplication::get()->delegate();
     if (delegate != nullptr) {
         delegate->applicationWillEnterForeground();
     }
@@ -60,7 +60,7 @@ static void disappear(cq_window *window) {
         return;
     }
     
-    auto delegate = cqApplication::sharedApplication()->delegate();
+    auto delegate = cqApplication::get()->delegate();
     if (delegate != nullptr) {
         delegate->applicationDidEnterBackground();
     }
@@ -152,7 +152,7 @@ void cqWindow::makeKeyAndVisible() {
 }
 
 cqResponderRef cqWindow::nextResponder() {
-    return cqApplication::sharedApplication();
+    return cqApplication::get();
 }
 
 void cqWindow::setFrame(cqRect frame) {
