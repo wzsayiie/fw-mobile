@@ -11,7 +11,6 @@ endfunction()
 set(lib_name library)
 
 list(APPEND inc_path ../GENERATED_HEADERS)
-list(APPEND inc_path ../thirds_android/includes)
 
 list(APPEND src_aims ../library/BASIS/*.cpp)
 list(APPEND src_aims ../library/foundation/*.cpp)
