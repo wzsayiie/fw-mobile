@@ -17,6 +17,11 @@ sh generate_headers
 origin_dir="$module_dir/build/outputs/aar"
 origin_fil="$module_nam-release.aar"
 
+# NOTE:
+# file 'local.propertes' has a higher priority than the environment variables
+export     ANDROID_HOME="$HOME/Library/Android/sdk"
+export ANDROID_NDK_HOME="$HOME/Library/Android/sdk/ndk-bundle"
+
 # build library
 pushd $projct_dir
 ./gradlew :$module_nam:clean
