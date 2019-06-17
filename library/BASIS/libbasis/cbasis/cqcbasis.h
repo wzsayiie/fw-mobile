@@ -42,17 +42,26 @@ extern const bool cq_on_windows;
 #   define CQ_C_LINK
 # endif
 
+typedef struct _cq_data {
+    void *bytes;    //ends with '\0'
+    int32_t size;   //don't contain '\0' of the end
+} _cq_data;
+
+CQ_C_LINK void _cq_assign_data(_cq_data *data, const void *bytes, int32_t size);
+CQ_C_LINK void _cq_clear_data(_cq_data *data);
+
 typedef const char *PCSTR;
 
-CQ_C_LINK bool cq_string_null_or_emptry(const char *string);
+CQ_C_LINK bool cq_null_or_emptry(const char *string);
 
-//storing a string on current thread,
-//until call of cq_string_store_xx again on same thread.
-CQ_C_LINK const char *cq_string_store_string(const char *value);
-CQ_C_LINK const char *cq_string_store_bytes(const char *bytes, int32_t size);
+//storing bytes on current thread,
+//until call of cq_store_xx again on same thread.
+CQ_C_LINK const char *cq_store_string(const char *value);
+CQ_C_LINK const void *cq_store_bytes(const void *bytes, int32_t size);
 
 //return value ends with '\0'.
-CQ_C_LINK const char *cq_string_get_stored_string(void);
+CQ_C_LINK const char *cq_stored_string(void);
+CQ_C_LINK const void *cq_stored_bytes(void);
 
 //the size do not contain '\0' of the end.
-CQ_C_LINK int32_t cq_string_get_stored_size(void);
+CQ_C_LINK int32_t cq_stored_size(void);

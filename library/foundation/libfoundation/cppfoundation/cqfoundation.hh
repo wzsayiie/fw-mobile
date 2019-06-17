@@ -33,3 +33,14 @@ cq_class(cqFileManager, cqObject) {
 
 void cqThreadRun(std::function<void ()> task);
 void cqThreadSleep(float seconds);
+
+//net:
+
+cq_class(cqURLSession, cqObject) {
+    
+    cqURLSession();
+    
+    static cqURLSessionRef get();
+    
+    virtual std::vector<char> sendSyncGet(const std::string &url, float timeout, int *outError);
+};

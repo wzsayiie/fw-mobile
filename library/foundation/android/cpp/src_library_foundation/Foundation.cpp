@@ -40,7 +40,7 @@ const char *cq_document_directory() {
     cqJNIStaticMethod method(clazz(), &methodID, "cq_document_directory");
 
     std::string ret = method.callString();
-    return cq_string_store_string(ret.data());
+    return cq_store_string(ret.data());
 }
 
 const char *cq_caches_directory() {
@@ -48,7 +48,7 @@ const char *cq_caches_directory() {
     cqJNIStaticMethod method(clazz(), &methodID, "cq_caches_directory");
 
     std::string ret = method.callString();
-    return cq_string_store_string(ret.data());
+    return cq_store_string(ret.data());
 }
 
 const char *cq_temporary_directory() {
@@ -56,7 +56,7 @@ const char *cq_temporary_directory() {
     cqJNIStaticMethod method(clazz(), &methodID, "cq_temporary_directory");
 
     std::string ret = method.callString();
-    return cq_string_store_string(ret.data());
+    return cq_store_string(ret.data());
 }
 
 const char *cq_append_path(const char *parent, const char *child) {
@@ -67,7 +67,7 @@ const char *cq_append_path(const char *parent, const char *child) {
     method.push(child);
 
     std::string ret = method.callString();
-    return cq_string_store_string(ret.data());
+    return cq_store_string(ret.data());
 }
 
 bool cq_directory_exists(const char *path) {
@@ -134,4 +134,18 @@ void cq_thread_sleep(float seconds) {
     method.push(seconds);
 
     method.callVoid();
+}
+
+//net:
+
+int32_t cq_http_get(const char *url, float timeout) {
+    return 0;
+}
+
+void *cq_http_get_bytes() {
+    return nullptr;
+}
+
+int32_t cq_http_get_size() {
+    return 0;
 }

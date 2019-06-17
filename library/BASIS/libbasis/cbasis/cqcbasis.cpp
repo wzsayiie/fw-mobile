@@ -5,36 +5,56 @@ extern const bool cq_on_iphone  = CQ_ON_IPHONE ;
 extern const bool cq_on_osx     = CQ_ON_OSX    ;
 extern const bool cq_on_windows = CQ_ON_WINDOWS;
 
-bool cq_string_null_or_emptry(const char *string) {
+void _cq_assign_data(_cq_data *data, const void *bytes, int32_t size) {
+    if (data == nullptr) {
+        return;
+    }
+    
+    if (bytes != nullptr && size > 0) {
+        data->bytes = (char *)realloc(data->bytes, size + 1);
+        memcpy(data->bytes, bytes, size);
+        ((char *)data->bytes)[size] = '\0';
+        data->size = size;
+    } else {
+        free(data->bytes);
+        data->bytes = nullptr;
+        data->size = 0;
+    }
+}
+
+void _cq_clear_data(_cq_data *data) {
+    if (data != nullptr) {
+        free(data->bytes);
+        data->bytes = nullptr;
+        data->size = 0;
+    }
+}
+
+bool cq_null_or_emptry(const char *string) {
     return string == nullptr || *string == '\0';
 }
 
-static thread_local char *_string_stored_string = nullptr;
-static thread_local int32_t _string_stored_size = 0;
+static thread_local _cq_data _stored = {nullptr, 0};
 
-const char *cq_string_store_string(const char *value) {
+const char *cq_store_string(const char *value) {
     auto size = (int32_t)(value ? strlen(value) : 0);
-    return cq_string_store_bytes(value, size);
+    _cq_assign_data(&_stored, value, size);
+    return (const char *)_stored.bytes;
 }
 
-const char *cq_string_store_bytes(const char *bytes, int32_t size) {
-    if (bytes != nullptr && size > 0) {
-        _string_stored_string = (char *)realloc(_string_stored_string, size + 1);
-        memcpy(_string_stored_string, bytes, size);
-        _string_stored_string[size] = '\0';
-        _string_stored_size = size;
-    } else {
-        free(_string_stored_string);
-        _string_stored_string = nullptr;
-        _string_stored_size = 0;
-    }
-    return _string_stored_string;
+const void *cq_store_bytes(const void *bytes, int32_t size) {
+    _cq_assign_data(&_stored, bytes, size);
+    return _stored.bytes;
 }
 
-const char *cq_string_get_stored_string(void) {
-    return _string_stored_string;
+const char *cq_stored_string() {
+    return (const char *)_stored.bytes;
 }
 
-int32_t cq_string_get_stored_size(void) {
-    return _string_stored_size;
+const void *cq_stored_bytes() {
+    return _stored.bytes;
+}
+
+int32_t cq_stored_size() {
+    return _stored.size;
 }
