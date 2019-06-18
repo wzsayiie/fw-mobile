@@ -1,4 +1,4 @@
-#import "CQBasis.h"
+#import "CQObjcBasis.h"
 
 NSString *CQDocumentDirectory(void);
 NSString *CQCachesDirectory(void);

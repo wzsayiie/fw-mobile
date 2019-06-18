@@ -3,7 +3,7 @@
 #import <UIKit/UIKit.h>
 
 //from Library/BASIS/Basis
-#import "CQBasis.h"
+#import "CQObjcBasis.h"
 
 //from App/Sources/Extension
 #import "NSBundle+CQ.h"

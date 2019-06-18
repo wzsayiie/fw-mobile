@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
+#import "cqcbasis.h"
 
 //it's not supported to associate a weak object to the other object.
 //OBJC_ASSOCIATION_ASSIGN holds wild pointer possibly.
