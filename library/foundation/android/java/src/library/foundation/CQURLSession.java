@@ -11,7 +11,7 @@ import java.net.URL;
 
 import src.library.basis.CQString;
 
-@SuppressWarnings("unused") /* this is a library */
+@SuppressWarnings("WeakerAccess") /* this is a library */
 public class CQURLSession {
 
     private static CQURLSession sInstance;
