@@ -34,7 +34,7 @@ cq_class(cqFileManager, cqObject) {
 void cqThreadRun(std::function<void ()> task);
 void cqThreadSleep(float seconds);
 
-//net:
+//network:
 
 cq_class(cqURLSession, cqObject) {
     
@@ -42,5 +42,8 @@ cq_class(cqURLSession, cqObject) {
     
     static cqURLSessionRef get();
     
+    //NOTE:
+    //android don't allow network operation on main thread.
+    //on android, if the function called on main thread, always failed.
     virtual std::vector<char> sendSyncGet(const std::string &url, float timeout, int *outError);
 };

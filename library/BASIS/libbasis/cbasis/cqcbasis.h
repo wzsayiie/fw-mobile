@@ -50,6 +50,9 @@ typedef struct _cq_data {
 CQ_C_LINK void _cq_assign_data(_cq_data *data, const void *bytes, int32_t size);
 CQ_C_LINK void _cq_clear_data(_cq_data *data);
 
+//NOTE: reserve additional '\0' at the end, but don't set bytes zero.
+CQ_C_LINK void _cq_resize_data(_cq_data *data, int32_t size);
+
 typedef const char *PCSTR;
 
 CQ_C_LINK bool cq_null_or_emptry(const char *string);

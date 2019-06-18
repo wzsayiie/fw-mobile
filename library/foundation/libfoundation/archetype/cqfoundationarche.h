@@ -23,11 +23,11 @@ CQ_C_LINK void cq_remove_path(const char *path);
 CQ_C_LINK void cq_thread_run(void (*task)(void *), void *data);
 CQ_C_LINK void cq_thread_sleep(float seconds);
 
-//net:
+//network:
 
 //suceeded then return 0, else return non-zero.
 CQ_C_LINK int32_t cq_http_get(const char *url, float timeout);
 
 //data of last get request
-CQ_C_LINK void *cq_http_get_bytes(void);
+CQ_C_LINK const void *cq_http_get_bytes(void);
 CQ_C_LINK int32_t cq_http_get_size(void);

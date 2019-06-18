@@ -62,7 +62,7 @@ void cq_thread_sleep(float seconds) {
     CQThreadSleep(seconds);
 }
 
-//net:
+//network:
 
 static _Thread_local _cq_data _http_get = {NULL, 0};
 
@@ -78,7 +78,7 @@ int32_t cq_http_get(const char *url, float timeout) {
     }
 }
 
-void *cq_http_get_bytes(void) {
+const void *cq_http_get_bytes(void) {
     return _http_get.bytes;
 }
 

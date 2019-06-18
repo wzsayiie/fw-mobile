@@ -11,14 +11,10 @@ void _cq_assign_data(_cq_data *data, const void *bytes, int32_t size) {
     }
     
     if (bytes != nullptr && size > 0) {
-        data->bytes = (char *)realloc(data->bytes, size + 1);
+        _cq_resize_data(data, size);
         memcpy(data->bytes, bytes, size);
-        ((char *)data->bytes)[size] = '\0';
-        data->size = size;
     } else {
-        free(data->bytes);
-        data->bytes = nullptr;
-        data->size = 0;
+        _cq_clear_data(data);
     }
 }
 
@@ -27,6 +23,21 @@ void _cq_clear_data(_cq_data *data) {
         free(data->bytes);
         data->bytes = nullptr;
         data->size = 0;
+    }
+}
+
+void _cq_resize_data(_cq_data *data, int32_t size) {
+    if (data == nullptr) {
+        return;
+    }
+    
+    if (size > 0) {
+        data->bytes = (char *)realloc(data->bytes, size + 1);
+        //reserve '\0' on end.
+        ((char *)data->bytes)[size] = '\0';
+        data->size = size;
+    } else {
+        _cq_clear_data(data);
     }
 }
 

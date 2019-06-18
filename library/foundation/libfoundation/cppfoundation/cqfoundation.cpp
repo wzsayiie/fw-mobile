@@ -96,7 +96,7 @@ void cqThreadSleep(float seconds) {
     cq_thread_sleep(seconds);
 }
 
-//net:
+//network:
 
 cq_member(cqURLSession) {
 };
@@ -122,7 +122,7 @@ std::vector<char> cqURLSession::sendSyncGet(const std::string &url, float timeou
     
     std::vector<char> data;
     if (!error) {
-        void *bytes = cq_http_get_bytes();
+        const void *bytes = cq_http_get_bytes();
         int32_t size = cq_http_get_size();
         data.resize(size);
         memcpy(&data[0], bytes, size);

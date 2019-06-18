@@ -4,6 +4,8 @@ import android.content.Context;
 
 import java.io.File;
 
+import src.library.basis.CQString;
+
 @SuppressWarnings("WeakerAccess") /* this is a library */
 public class CQFileManager {
 
@@ -62,7 +64,7 @@ public class CQFileManager {
     }
 
     public boolean createDirectory(String path, boolean intermediate) {
-        if (path == null || path.length() == 0) {
+        if (CQString.isNullOrEmpty(path)) {
             return false;
         }
 
@@ -87,7 +89,7 @@ public class CQFileManager {
     }
 
     public void removePath(String path) {
-        if (path == null || path.length() == 0) {
+        if (CQString.isNullOrEmpty(path)) {
             File file = new File(path);
             removeRecursively(file);
         }

@@ -136,16 +136,42 @@ void cq_thread_sleep(float seconds) {
     method.callVoid();
 }
 
-//net:
+//network:
+
+static thread_local int32_t _http_get_error = 0;
+static thread_local _cq_data _http_get_data = {nullptr, 0};
 
 int32_t cq_http_get(const char *url, float timeout) {
-    return 0;
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_http_get");
+
+    method.push(url);
+    method.push(timeout);
+
+    //httpGetReturn() called in the function.
+    method.callVoid();
+
+    return _http_get_error;
 }
 
-void *cq_http_get_bytes() {
-    return nullptr;
+extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_Foundation_httpGetReturn
+/**/(JNIEnv *env, jobject, jint error, jbyteArray data)
+{
+    _http_get_error = error;
+
+    if (data != nullptr) {
+        jsize size = env->GetArrayLength(data);
+        _cq_resize_data(&_http_get_data, (int32_t)size);
+        env->GetByteArrayRegion(data, 0, size, (jbyte *)_http_get_data.bytes);
+    } else {
+        _cq_clear_data(&_http_get_data);
+    }
+}
+
+const void *cq_http_get_bytes() {
+    return _http_get_data.bytes;
 }
 
 int32_t cq_http_get_size() {
-    return 0;
+    return _http_get_data.size;
 }
