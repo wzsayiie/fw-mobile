@@ -69,11 +69,18 @@ static void do_string(const char *code) {
 
 static int64_t check_integer(lua_State *s, int32_t i) {return luaL_checkinteger(s, i);}
 static double  check_double (lua_State *s, int32_t i) {return luaL_checknumber (s, i);}
-static PCSTR   check_string (lua_State *s, int32_t i) {return luaL_checkstring (s, i);}
-static void    push_bool    (lua_State *s, bool    v) {/* */  lua_pushboolean  (s, v);}
-static void    push_integer (lua_State *s, int64_t v) {/* */  lua_pushinteger  (s, v);}
-static void    push_double  (lua_State *s, double  v) {/* */  lua_pushnumber   (s, v);}
-static void    push_string  (lua_State *s, PCSTR   v) {/* */  lua_pushstring   (s, v);}
+
+static const char *check_string(lua_State *state, int32_t indent) {
+    return luaL_checkstring(state, indent);
+}
+
+static void push_bool   (lua_State *s, bool    v) {lua_pushboolean(s, v);}
+static void push_integer(lua_State *s, int64_t v) {lua_pushinteger(s, v);}
+static void push_double (lua_State *s, double  v) {lua_pushnumber (s, v);}
+
+static void push_string(lua_State *state, const char *value) {
+    lua_pushstring(state, value);
+}
 
 void cq_lua_open_vm(const char *directory) {
     I("lua vm: open");
