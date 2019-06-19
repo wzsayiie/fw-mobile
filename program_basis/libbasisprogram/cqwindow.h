@@ -58,7 +58,6 @@ struct _cq_interfaces {
     
     int64_t (*create_window)(void);
     void    (*show_window  )(int64_t wid);
-    
 };
 
 CQ_C_LINK void _cq_init_interfaces(struct _cq_interfaces *interfaces);
