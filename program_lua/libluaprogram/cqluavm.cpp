@@ -15,7 +15,7 @@ static void register_func(const char *name, int32_t (*func)(lua_State *)) {
         I("lua vm: register function but vm was not initialized");
         return;
     }
-    if (cq_null_or_emptry(name)) {
+    if (cq_string_emptry(name)) {
         I("lua vm: register function but the name is empty");
         return;
     }
@@ -46,7 +46,7 @@ static void do_string(const char *code) {
         I("lua vm: do string but vm was not initialized");
         return;
     }
-    if (cq_null_or_emptry(code)) {
+    if (cq_string_emptry(code)) {
         I("lua vm: do string but the code is emptry");
         return;
     }
@@ -95,7 +95,7 @@ void cq_lua_open_vm(const char *directory) {
     do_string("package.cpath = ''");
 
     //register handlers
-    _cq_lua_handlers handlers = _cq_lua_handlers_zero; {
+    _cq_lua_handlers handlers = {nullptr}; {
         handlers.register_func = register_func;
         handlers.do_string     = do_string    ;
         handlers.check_integer = check_integer;

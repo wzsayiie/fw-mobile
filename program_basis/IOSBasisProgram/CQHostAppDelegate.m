@@ -18,11 +18,11 @@ static void show_window(int64_t wid) {
 - (BOOL) /* ------ */ application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    _cq_interfaces interfaces; {
+    struct _cq_interfaces interfaces = {NULL}; {
         interfaces.create_window = create_window;
         interfaces.show_window = show_window;
     }
-    _cq_install_interfaces(&interfaces);
+    _cq_init_interfaces(&interfaces);
     
     //NOTE: call entry function here.
     

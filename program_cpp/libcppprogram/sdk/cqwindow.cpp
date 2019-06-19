@@ -75,7 +75,7 @@ static void resize(cq_window *window, float width, float height) {
     self->setFrame(cqRect(0, 0, width, height));
 }
 
-static void gl_draw(cq_window *window) {
+static void glpaint(cq_window *window) {
     auto self = (cqWindow *)cq_window_extra(window);
     if (self == nullptr) {
         return;
@@ -85,7 +85,7 @@ static void gl_draw(cq_window *window) {
     glClear(GL_COLOR_BUFFER_BIT);
 }
 
-static void touchBegan(cq_window *window, float x, float y) {
+static void pbegan(cq_window *window, float x, float y) {
     auto self = (cqWindow *)cq_window_extra(window);
     
     std::set<cqTouchRef> touches = {
@@ -104,7 +104,7 @@ static void touchBegan(cq_window *window, float x, float y) {
     self->dat->touchesResponder = view;
 }
 
-static void touchMoved(cq_window *window, float x, float y) {
+static void pmoved(cq_window *window, float x, float y) {
     auto self = (cqWindow *)cq_window_extra(window);
     if (self->dat->touchesResponder == nullptr) {
         return;
@@ -118,7 +118,7 @@ static void touchMoved(cq_window *window, float x, float y) {
     self->dat->touchesResponder->touchesMoved(touches, touchesEvent);
 }
 
-static void touchEnded(cq_window *window, float x, float y) {
+static void pended(cq_window *window, float x, float y) {
     auto self = (cqWindow *)cq_window_extra(window);
     if (self->dat->touchesResponder == nullptr) {
         return;
@@ -135,15 +135,15 @@ static void touchEnded(cq_window *window, float x, float y) {
 
 void cqWindow::makeKeyAndVisible() {
     
-    cq_procedure procedure = cq_procedure_zero;
+    cq_procedure procedure = {nullptr};
     procedure.load = load;
     procedure.appear = appear;
     procedure.disappear = disappear;
     procedure.resize = resize;
-    procedure.gl_draw = gl_draw;
-    procedure.touch_began = touchBegan;
-    procedure.touch_moved = touchMoved;
-    procedure.touch_ended = touchEnded;
+    procedure.glpaint = glpaint;
+    procedure.pbegan = pbegan;
+    procedure.pmoved = pmoved;
+    procedure.pended = pended;
     
     dat->window = cq_create_window();
     cq_set_procedure(dat->window, &procedure);

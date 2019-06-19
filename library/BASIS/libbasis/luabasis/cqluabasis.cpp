@@ -1,7 +1,6 @@
 #include "cqluabasis.h"
 #include "cqcppbasis.hh"
 
-extern const _cq_lua_handlers _cq_lua_handlers_zero = {nullptr};
 static _cq_lua_handlers _h = {nullptr};
 
 template<class F, class... A> auto call(F func, A... args) -> decltype(func(args...)) {
@@ -43,6 +42,6 @@ void _cq_lua_set_handlers(_cq_lua_handlers *handlers) {
     if (handlers != nullptr) {
         _h = *handlers;
     } else {
-        _h = _cq_lua_handlers_zero;
+        memset(&_h, 0, sizeof(_h));
     }
 }

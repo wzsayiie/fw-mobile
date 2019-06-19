@@ -54,7 +54,6 @@ struct cq_window {
     int64_t extra;
 };
 
-extern const cq_procedure cq_procedure_zero = {nullptr};
 static _cq_interfaces _interfaces = {nullptr};
 
 cq_window *cq_create_window() {
@@ -103,7 +102,7 @@ float cq_window_y     (cq_window *w) {return w ? w->y      : 0.f;}
 float cq_window_width (cq_window *w) {return w ? w->width  : 0.f;}
 float cq_window_height(cq_window *w) {return w ? w->height : 0.f;}
 
-void _cq_install_interfaces(_cq_interfaces *interfaces) {
+void _cq_init_interfaces(_cq_interfaces *interfaces) {
     if (interfaces != nullptr) {
         _interfaces = *interfaces;
     }
@@ -115,7 +114,7 @@ template<class F, class... A> void notify(F f, A... a) {
     }
 }
 
-void _cq_notify_window_load(int64_t wid) {
+void _cq_window_load(int64_t wid) {
     if (cq_window *window = get_window(wid)) {
         if (!window->loaded) {
             window->loaded = true;
@@ -124,7 +123,7 @@ void _cq_notify_window_load(int64_t wid) {
     }
 }
 
-void _cq_notify_window_appear(int64_t wid) {
+void _cq_window_appear(int64_t wid) {
     if (cq_window *window = get_window(wid)) {
         if (window->loaded && !window->visible) {
             notify(window->procedure.appear, window);
@@ -133,7 +132,7 @@ void _cq_notify_window_appear(int64_t wid) {
     }
 }
 
-void _cq_notify_window_disappear(int64_t wid) {
+void _cq_window_disappear(int64_t wid) {
     if (cq_window *window = get_window(wid)) {
         if (window->loaded && window->visible) {
             window->visible = false;
@@ -142,7 +141,7 @@ void _cq_notify_window_disappear(int64_t wid) {
     }
 }
 
-void _cq_notify_window_unload(int64_t wid) {
+void _cq_window_unload(int64_t wid) {
     if (cq_window *window = get_window(wid)) {
         if (window->loaded) {
             notify(window->procedure.unload, window);
@@ -151,13 +150,13 @@ void _cq_notify_window_unload(int64_t wid) {
     }
 }
 
-void _cq_notify_window_scale(int64_t wid, float scale) {
+void _cq_window_scale(int64_t wid, float scale) {
     if (cq_window *window = get_window(wid)) {
         window->scale = scale;
     }
 }
 
-void _cq_notify_window_origin(int64_t wid, float x, float y) {
+void _cq_window_origin(int64_t wid, float x, float y) {
     if (cq_window *window = get_window(wid)) {
         window->x = x;
         window->y = y;
@@ -167,7 +166,7 @@ void _cq_notify_window_origin(int64_t wid, float x, float y) {
     }
 }
 
-void _cq_notify_window_size(int64_t wid, float width, float height) {
+void _cq_window_size(int64_t wid, float width, float height) {
     if (cq_window *window = get_window(wid)) {
         window->width  = width;
         window->height = height;
@@ -177,15 +176,15 @@ void _cq_notify_window_size(int64_t wid, float width, float height) {
     }
 }
 
-void _cq_notify_window_gl_draw(int64_t wid) {
+void _cq_window_glpaint(int64_t wid) {
     if (cq_window *window = get_window(wid)) {
         if (window->loaded) {
-            notify(window->procedure.gl_draw, window);
+            notify(window->procedure.glpaint, window);
         }
     }
 }
 
-void _cq_notify_window_update(int64_t wid) {
+void _cq_window_update(int64_t wid) {
     if (cq_window *window = get_window(wid)) {
         if (window->loaded) {
             notify(window->procedure.update, window);
@@ -193,27 +192,27 @@ void _cq_notify_window_update(int64_t wid) {
     }
 }
 
-void _cq_notify_window_touch_began(int64_t wid, float x, float y) {
+void _cq_window_pbegan(int64_t wid, float x, float y) {
     if (cq_window *window = get_window(wid)) {
         if (window->visible && !window->touching) {
             window->touching = true;
-            notify(window->procedure.touch_began, window, x, y);
+            notify(window->procedure.pbegan, window, x, y);
         }
     }
 }
 
-void _cq_notify_window_touch_moved(int64_t wid, float x, float y) {
+void _cq_window_pmoved(int64_t wid, float x, float y) {
     if (cq_window *window = get_window(wid)) {
         if (window->touching) {
-            notify(window->procedure.touch_moved, window, x, y);
+            notify(window->procedure.pmoved, window, x, y);
         }
     }
 }
 
-void _cq_notify_window_touch_ended(int64_t wid, float x, float y) {
+void _cq_window_pended(int64_t wid, float x, float y) {
     if (cq_window *window = get_window(wid)) {
         if (window->touching) {
-            notify(window->procedure.touch_ended, window, x, y);
+            notify(window->procedure.pended, window, x, y);
             window->touching = false;
         }
     }

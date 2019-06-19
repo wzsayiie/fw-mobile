@@ -29,6 +29,8 @@
 #   define CQ_ON_IPHONE  0
 #   define CQ_ON_OSX     0
 #   define CQ_ON_WINDOWS 1
+# else
+#   error "unknown os"
 # endif
 
 extern const bool cq_on_android;
@@ -42,20 +44,20 @@ extern const bool cq_on_windows;
 #   define CQ_C_LINK
 # endif
 
-typedef struct _cq_data {
+struct _cq_data {
     void *bytes;    //ends with '\0'
     int32_t size;   //don't contain '\0' of the end
-} _cq_data;
+};
 
-CQ_C_LINK void _cq_assign_data(_cq_data *data, const void *bytes, int32_t size);
-CQ_C_LINK void _cq_clear_data(_cq_data *data);
+CQ_C_LINK void _cq_assign_data(struct _cq_data *data, const void *bytes, int32_t size);
+CQ_C_LINK void _cq_clear_data(struct _cq_data *data);
 
 //NOTE: reserve additional '\0' at the end, but don't set bytes zero.
-CQ_C_LINK void _cq_resize_data(_cq_data *data, int32_t size);
+CQ_C_LINK void _cq_resize_data(struct _cq_data *data, int32_t size);
 
 typedef const char *PCSTR;
 
-CQ_C_LINK bool cq_null_or_emptry(const char *string);
+CQ_C_LINK bool cq_string_emptry(const char *string);
 
 //storing bytes on current thread,
 //until call of cq_store_xx again on same thread.

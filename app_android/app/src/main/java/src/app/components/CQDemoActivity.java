@@ -75,7 +75,7 @@ public abstract class CQDemoActivity extends Activity {
     }
 
     protected void addAction(String actionText, Runnable action) {
-        if (CQString.isNullOrEmpty(actionText)) {
+        if (CQString.isEmpty(actionText)) {
             return;
         }
 

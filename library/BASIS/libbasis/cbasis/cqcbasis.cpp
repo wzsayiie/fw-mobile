@@ -41,7 +41,7 @@ void _cq_resize_data(_cq_data *data, int32_t size) {
     }
 }
 
-bool cq_null_or_emptry(const char *string) {
+bool cq_string_emptry(const char *string) {
     return string == nullptr || *string == '\0';
 }
 

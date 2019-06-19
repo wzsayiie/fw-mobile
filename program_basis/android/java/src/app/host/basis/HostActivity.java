@@ -62,7 +62,7 @@ public class HostActivity extends Activity implements GLView.Renderer {
         mViewVisible = true;
 
         if (mWindowCreated) {
-            notifyWindowAppear(mWid);
+            windowAppear(mWid);
         }
     }
 
@@ -72,7 +72,7 @@ public class HostActivity extends Activity implements GLView.Renderer {
         mViewVisible = false;
 
         if (mWindowCreated) {
-            notifyWindowDisappear(mWid);
+            windowDisappear(mWid);
         }
     }
 
@@ -91,10 +91,10 @@ public class HostActivity extends Activity implements GLView.Renderer {
         float x = event.getX() / mScreenDensity;
         float y = event.getY() / mScreenDensity;
         switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN  : notifyWindowTouchBegan(mWid, x, y); break;
-            case MotionEvent.ACTION_MOVE  : notifyWindowTouchMoved(mWid, x, y); break;
-            case MotionEvent.ACTION_UP    : notifyWindowTouchEnded(mWid, x, y); break;
-            case MotionEvent.ACTION_CANCEL: notifyWindowTouchEnded(mWid, x, y); break;
+            case MotionEvent.ACTION_DOWN  : windowPBegan(mWid, x, y); break;
+            case MotionEvent.ACTION_MOVE  : windowPMoved(mWid, x, y); break;
+            case MotionEvent.ACTION_UP    : windowPEnded(mWid, x, y); break;
+            case MotionEvent.ACTION_CANCEL: windowPEnded(mWid, x, y); break;
         }
         return true;
     }
@@ -127,13 +127,13 @@ public class HostActivity extends Activity implements GLView.Renderer {
         float width  = mWidthPixels  / mScreenDensity;
         float height = mHeightPixels / mScreenDensity;
 
-        notifyWindowScale (wid, mScreenDensity);
-        notifyWindowOrigin(wid, 0, 0);
-        notifyWindowSize  (wid, width, height);
-        notifyWindowLoad  (wid);
+        windowScale (wid, mScreenDensity);
+        windowOrigin(wid, 0, 0);
+        windowSize  (wid, width, height);
+        windowLoad  (wid);
 
         if (mViewVisible) {
-            notifyWindowAppear(wid);
+            windowAppear(wid);
         }
     }
 
@@ -141,7 +141,7 @@ public class HostActivity extends Activity implements GLView.Renderer {
         mWidthPixels  = width ;
         mHeightPixels = height;
 
-        installInterfaces();
+        initInterfaces();
         
         //NOTE: call entry function here.
     }
@@ -151,13 +151,13 @@ public class HostActivity extends Activity implements GLView.Renderer {
         mHeightPixels = height;
 
         if (mWindowCreated) {
-            notifyWindowSize(mWid, width, height);
+            windowSize(mWid, width, height);
         }
     }
 
     public void onGLViewDraw() {
         if (mWindowCreated) {
-            notifyWindowGLDraw(mWid);
+            windowGLPaint(mWid);
         }
     }
 
@@ -167,27 +167,27 @@ public class HostActivity extends Activity implements GLView.Renderer {
         }
 
         if (mWindowCreated) {
-            notifyWindowUpdate(mWid);
+            windowUpdate(mWid);
         }
         mView.update();
     }
 
-    protected native void installInterfaces();
+    protected native void initInterfaces();
 
-    protected native void notifyWindowLoad     (long wid);
-    protected native void notifyWindowAppear   (long wid);
-    protected native void notifyWindowDisappear(long wid);
+    protected native void windowLoad     (long wid);
+    protected native void windowAppear   (long wid);
+    protected native void windowDisappear(long wid);
 
     @SuppressWarnings("unused") /* on android 'unload' event is invalid */
-    protected native void notifyWindowUnload(long wid);
+    protected native void windowUnload(long wid);
 
-    protected native void notifyWindowScale (long wid, float scale);
-    protected native void notifyWindowOrigin(long wid, float x, float y);
-    protected native void notifyWindowSize  (long wid, float width, float height);
-    protected native void notifyWindowGLDraw(long wid);
-    protected native void notifyWindowUpdate(long wid);
+    protected native void windowScale  (long wid, float scale);
+    protected native void windowOrigin (long wid, float x, float y);
+    protected native void windowSize   (long wid, float width, float height);
+    protected native void windowGLPaint(long wid);
+    protected native void windowUpdate (long wid);
 
-    protected native void notifyWindowTouchBegan(long wid, float x, float y);
-    protected native void notifyWindowTouchMoved(long wid, float x, float y);
-    protected native void notifyWindowTouchEnded(long wid, float x, float y);
+    protected native void windowPBegan(long wid, float x, float y);
+    protected native void windowPMoved(long wid, float x, float y);
+    protected native void windowPEnded(long wid, float x, float y);
 }

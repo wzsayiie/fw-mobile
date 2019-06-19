@@ -64,7 +64,7 @@ public class CQFileManager {
     }
 
     public boolean createDirectory(String path, boolean intermediate) {
-        if (CQString.isNullOrEmpty(path)) {
+        if (CQString.isEmpty(path)) {
             return false;
         }
 
@@ -89,7 +89,7 @@ public class CQFileManager {
     }
 
     public void removePath(String path) {
-        if (CQString.isNullOrEmpty(path)) {
+        if (CQString.isEmpty(path)) {
             File file = new File(path);
             removeRecursively(file);
         }

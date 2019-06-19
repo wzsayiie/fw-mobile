@@ -1,18 +1,10 @@
 #include "cqjnihelper.hh"
 #include "cqwindow.h"
 
-#define CLASS_PATH_STRING "src/app/host/basis/HostActivity"
-#define CLASS_PATH_SYMBOL  src_app_host_basis_HostActivity
-
-#define JM(name) M1(CLASS_PATH_SYMBOL, name)
-#define M1(a, b) M2(a, b)
-#define M2(a, b) extern "C" JNIEXPORT void JNICALL Java##_##a##_##b
-#define JA(... ) (JNIEnv *, jobject, __VA_ARGS__)
-
 static jclass clazz() {
     static jclass clazz = nullptr;
     if (clazz == nullptr) {
-        cqJNIFindClass(&clazz, cqJNIGetEnv(), CLASS_PATH_STRING);
+        cqJNIFindClass(&clazz, cqJNIGetEnv(), "src/app/host/basis/HostActivity");
     }
     return clazz;
 }
@@ -32,26 +24,84 @@ static void show_window(int64_t wid) {
     return method.callVoid();
 }
 
-JM(installInterfaces)(JNIEnv *, jobject) {
-    _cq_interfaces interfaces; {
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_initInterfaces
+    (JNIEnv *, jobject)
+{
+    _cq_interfaces interfaces = {nullptr}; {
         interfaces.create_window = create_window;
         interfaces.show_window = show_window;
     }
-    _cq_install_interfaces(&interfaces);
+    _cq_init_interfaces(&interfaces);
 }
 
-JM(notifyWindowLoad     )JA(jlong i) {_cq_notify_window_load     (i);}
-JM(notifyWindowAppear   )JA(jlong i) {_cq_notify_window_appear   (i);}
-JM(notifyWindowDisappear)JA(jlong i) {_cq_notify_window_disappear(i);}
-JM(notifyWindowUnload   )JA(jlong i) {_cq_notify_window_unload   (i);}
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowLoad
+    (JNIEnv *, jobject, jlong wid)
+{
+    _cq_window_load(wid);
+}
 
-JM(notifyWindowScale )JA(jlong i, jfloat s /* --- */) {_cq_notify_window_scale (i, s   );}
-JM(notifyWindowOrigin)JA(jlong i, jfloat x, jfloat y) {_cq_notify_window_origin(i, x, y);}
-JM(notifyWindowSize  )JA(jlong i, jfloat w, jfloat h) {_cq_notify_window_size  (i, w, h);}
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowAppear
+    (JNIEnv *, jobject, jlong wid)
+{
+    _cq_window_appear(wid);
+}
 
-JM(notifyWindowGLDraw)JA(jlong i) {_cq_notify_window_gl_draw(i);}
-JM(notifyWindowUpdate)JA(jlong i) {_cq_notify_window_update (i);}
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowDisappear
+    (JNIEnv *, jobject, jlong wid)
+{
+    _cq_window_disappear(wid);
+}
 
-JM(notifyWindowTouchBegan)JA(jlong i, jfloat x, jfloat y) {_cq_notify_window_touch_began(i, x, y);}
-JM(notifyWindowTouchMoved)JA(jlong i, jfloat x, jfloat y) {_cq_notify_window_touch_moved(i, x, y);}
-JM(notifyWindowTouchEnded)JA(jlong i, jfloat x, jfloat y) {_cq_notify_window_touch_ended(i, x, y);}
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowUnload
+    (JNIEnv *, jobject, jlong wid)
+{
+    _cq_window_unload(wid);
+}
+
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowScale
+    (JNIEnv *, jobject, jlong wid, jfloat scale)
+{
+    _cq_window_scale(wid, scale);
+}
+
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowOrigin
+    (JNIEnv *, jobject, jlong wid, jfloat x, jfloat y)
+{
+    _cq_window_origin(wid, x, y);
+}
+
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowSize
+    (JNIEnv *, jobject, jlong wid, jfloat width, jfloat height)
+{
+    _cq_window_size(wid, width, height);
+}
+
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowGLPaint
+    (JNIEnv *, jobject, jlong wid)
+{
+    _cq_window_glpaint(wid);
+}
+
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowUpdate
+    (JNIEnv *, jobject, jlong wid)
+{
+    _cq_window_update (wid);
+}
+
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowPBegan
+    (JNIEnv *, jobject, jlong wid, jfloat x, jfloat y)
+{
+    _cq_window_pbegan(wid, x, y);
+}
+
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowPMoved
+    (JNIEnv *, jobject, jlong wid, jfloat x, jfloat y)
+{
+    _cq_window_pmoved(wid, x, y);
+}
+
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowPEnded
+    (JNIEnv *, jobject, jlong wid, jfloat x, jfloat y)
+{
+    _cq_window_pended(wid, x, y);
+}

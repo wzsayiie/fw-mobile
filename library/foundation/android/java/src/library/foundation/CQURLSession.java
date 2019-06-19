@@ -33,7 +33,7 @@ public class CQURLSession {
             outError[0] = 1;
         }
 
-        if (CQString.isNullOrEmpty(urlString) || timeoutSeconds <= 0) {
+        if (CQString.isEmpty(urlString) || timeoutSeconds <= 0) {
             return null;
         }
 

@@ -95,7 +95,7 @@ public class CQActivityDispatcher {
     }
 
     private void startActivityWithAnimation(String animation, String action, Bundle extras) {
-        if (CQString.isNullOrEmpty(action)) {
+        if (CQString.isEmpty(action)) {
             L.e("try start a activity but specified action is empty");
             return;
         }
