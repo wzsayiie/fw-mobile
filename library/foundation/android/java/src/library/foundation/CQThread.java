@@ -1,6 +1,5 @@
 package src.library.foundation;
 
-@SuppressWarnings("WeakerAccess") /* this is a library */
 public class CQThread {
 
     public static void run(Runnable task) {

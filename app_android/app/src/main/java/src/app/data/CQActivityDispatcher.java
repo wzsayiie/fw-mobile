@@ -1,5 +1,6 @@
 package src.app.data;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.content.ActivityNotFoundException;
@@ -12,6 +13,7 @@ import src.library.foundation.L;
 
 public class CQActivityDispatcher {
 
+    @SuppressLint("StaticFieldLeak")
     private static CQActivityDispatcher sInstance;
 
     public static synchronized CQActivityDispatcher get() {
@@ -28,12 +30,12 @@ public class CQActivityDispatcher {
 
     //activity lifecycle
 
-    public CQActivityDispatcher() {
+    private CQActivityDispatcher() {
 
         CQAppDelegate.getApp().registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
 
-            public void onActivitySaveInstanceState(Activity a, Bundle b) { onActSaveInstanceState(a, b); }
-            public void onActivityCreated          (Activity a, Bundle b) { onActCreated(a, b);}
+            public void onActivitySaveInstanceState(Activity a, Bundle b) { onActSaveInstanceState(a); }
+            public void onActivityCreated          (Activity a, Bundle b) { onActCreated(a);}
 
             public void onActivityStarted  (Activity a) { onActStarted  (a); }
             public void onActivityResumed  (Activity a) { onActResumed  (a); }
@@ -45,7 +47,7 @@ public class CQActivityDispatcher {
 
     private Activity mResumedActivity;
 
-    private void onActCreated(Activity activity, Bundle savedInstanceState) {
+    private void onActCreated(Activity activity) {
         L.i("activity '%s' created", L.string(activity));
     }
 
@@ -73,7 +75,7 @@ public class CQActivityDispatcher {
         L.i("activity '%s' stopped", L.string(activity));
     }
 
-    private void onActSaveInstanceState(Activity activity, Bundle outState) {
+    private void onActSaveInstanceState(Activity activity) {
         L.i("activity '%s' saveState", L.string(activity));
     }
 
@@ -121,15 +123,5 @@ public class CQActivityDispatcher {
         } catch (ActivityNotFoundException e) {
             L.e("activity not found: %s", e.toString());
         }
-    }
-
-    //move to background
-
-    public void moveTaskToBackground() {
-        if (mResumedActivity == null) {
-            L.e("there isn't resumed activity currently, app already in background");
-            return;
-        }
-        mResumedActivity.moveTaskToBack(true);
     }
 }

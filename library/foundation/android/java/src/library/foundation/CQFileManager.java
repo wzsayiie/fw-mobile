@@ -6,7 +6,6 @@ import java.io.File;
 
 import src.library.basis.CQString;
 
-@SuppressWarnings("WeakerAccess") /* this is a library */
 public class CQFileManager {
 
     public static String documentDirectory() {

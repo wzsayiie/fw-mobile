@@ -7,7 +7,6 @@ import android.content.Intent;
 import src.library.foundation.CQUIContextFinder;
 import src.library.foundation.L;
 
-@SuppressWarnings("WeakerAccess") /* this is a library */
 public class SubsystemManager {
 
     @SuppressLint("StaticFieldLeak")

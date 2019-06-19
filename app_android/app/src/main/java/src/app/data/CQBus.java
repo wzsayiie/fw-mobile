@@ -8,9 +8,16 @@ import src.library.foundation.L;
 
 public class CQBus {
 
-    //NOTE: these static member designed for thread safe.
+    private static CQBus sInstance;
 
-    public static void runOnMainThread(long delayMilliseconds, Runnable runnable) {
+    public static synchronized CQBus get() {
+        if (sInstance == null) {
+            sInstance = new CQBus();
+        }
+        return sInstance;
+    }
+
+    public void runOnMainThread(long delayMilliseconds, Runnable runnable) {
         if (delayMilliseconds < 0) {
             L.e("post delayed task but delay is '%ld'", delayMilliseconds);
             return;

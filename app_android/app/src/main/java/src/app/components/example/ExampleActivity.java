@@ -5,7 +5,6 @@ import android.widget.ListView;
 
 import src.app.R;
 import src.app.components.CQDemoActivity;
-import src.app.data.CQActivityDispatcher;
 
 public class ExampleActivity extends CQDemoActivity {
 
@@ -30,10 +29,5 @@ public class ExampleActivity extends CQDemoActivity {
     }
 
     protected void onActionBeta() {
-    }
-
-    @Override
-    public void onBackPressed() {
-        CQActivityDispatcher.get().moveTaskToBackground();
     }
 }

@@ -6,7 +6,6 @@ import android.app.Application;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-@SuppressWarnings("WeakerAccess") /* this is a library */
 public class CQAppContextFinder {
 
     private static CQAppContextFinder sInstance;
