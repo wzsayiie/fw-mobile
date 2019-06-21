@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B42A8D3822BCA95D00E42E75 /* L.strings in Resources */ = {isa = PBXBuildFile; fileRef = B42A8D3622BCA95D00E42E75 /* L.strings */; };
 		B443BAC7226D908A000D3021 /* CQSubsystemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B443BAC5226D908A000D3021 /* CQSubsystemViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B42A8D3722BCA95D00E42E75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/L.strings; sourceTree = "<group>"; };
+		B42A8D3922BCA96400E42E75 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/L.strings"; sourceTree = "<group>"; };
 		B443BAC5226D908A000D3021 /* CQSubsystemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CQSubsystemViewController.xib; sourceTree = "<group>"; };
 		B443BAC6226D908A000D3021 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4EB47B6226D87C1008B5E2F /* Resource.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Resource.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -27,6 +30,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B42A8D3522BCA95D00E42E75 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				B42A8D3622BCA95D00E42E75 /* L.strings */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
 		B4E7251F226D88F1008CD949 /* Subsystem */ = {
 			isa = PBXGroup;
 			children = (
@@ -40,6 +51,7 @@
 			children = (
 				B443BAC5226D908A000D3021 /* CQSubsystemViewController.xib */,
 				B443BAC6226D908A000D3021 /* Info.plist */,
+				B42A8D3522BCA95D00E42E75 /* Strings */,
 			);
 			name = IOSSubsystemResource;
 			path = ../library/subsystem/IOSSubsystemResource;
@@ -101,6 +113,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
+				"zh-Hans",
 			);
 			mainGroup = B4EB47AD226D87C1008B5E2F;
 			productRefGroup = B4EB47B7226D87C1008B5E2F /* Products */;
@@ -118,6 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B443BAC7226D908A000D3021 /* CQSubsystemViewController.xib in Resources */,
+				B42A8D3822BCA95D00E42E75 /* L.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +147,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B42A8D3622BCA95D00E42E75 /* L.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B42A8D3722BCA95D00E42E75 /* Base */,
+				B42A8D3922BCA96400E42E75 /* zh-Hans */,
+			);
+			name = L.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B4EB47BA226D87C1008B5E2F /* Debug */ = {

@@ -10,3 +10,7 @@
 }
 
 @end
+
+NSString *L(NSString *name) {
+    return NSLocalizedStringFromTable(name, @"L", nil);
+}
