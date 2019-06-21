@@ -13,13 +13,11 @@ import src.library.basis.CQString;
 
 public class CQURLSession {
 
-    private static CQURLSession sInstance;
-
-    public static synchronized CQURLSession get() {
-        if (sInstance == null) {
-            sInstance = new CQURLSession();
-        }
-        return sInstance;
+    private static class Singleton {
+        static CQURLSession instance = new CQURLSession();
+    }
+    public static CQURLSession get() {
+        return Singleton.instance;
     }
 
     //NOTE:

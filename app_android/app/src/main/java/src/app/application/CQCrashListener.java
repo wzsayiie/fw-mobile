@@ -4,14 +4,15 @@ import src.library.foundation.L;
 
 public class CQCrashListener {
 
-    private static CQCrashListener sInstance;
+    private static class Singleton {
+        static CQCrashListener instance = new CQCrashListener();
+    }
+    public static CQCrashListener get() {
+        return Singleton.instance;
+    }
 
-    public static synchronized CQCrashListener get() {
-        if (sInstance == null) {
-            L.i("init crash listener");
-            sInstance = new CQCrashListener();
-        }
-        return sInstance;
+    private CQCrashListener() {
+        L.i("crash listener initialize");
     }
 
     public boolean lastLaunchCrashed() {

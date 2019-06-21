@@ -35,13 +35,11 @@ public class CQFileManager {
         }
     }
 
-    private static CQFileManager sInstance;
-
-    public static synchronized CQFileManager get() {
-        if (sInstance == null) {
-            sInstance = new CQFileManager();
-        }
-        return sInstance;
+    private static class Singleton {
+        static CQFileManager instance = new CQFileManager();
+    }
+    public static CQFileManager get() {
+        return Singleton.instance;
     }
 
     public boolean directoryExists(String path) {

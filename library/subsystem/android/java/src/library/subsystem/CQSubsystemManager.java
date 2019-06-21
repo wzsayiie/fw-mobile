@@ -9,14 +9,12 @@ import src.library.foundation.L;
 
 public class CQSubsystemManager {
 
-    @SuppressLint("StaticFieldLeak")
-    private static CQSubsystemManager sInstance;
-
-    public static synchronized CQSubsystemManager get() {
-        if (sInstance == null) {
-            sInstance = new CQSubsystemManager();
-        }
-        return sInstance;
+    private static class Singleton {
+        @SuppressLint("StaticFieldLeak")
+        static CQSubsystemManager instance = new CQSubsystemManager();
+    }
+    public static CQSubsystemManager get() {
+        return Singleton.instance;
     }
 
     private Activity mSubsystemActivity;

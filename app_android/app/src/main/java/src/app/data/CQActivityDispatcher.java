@@ -13,14 +13,12 @@ import src.library.foundation.L;
 
 public class CQActivityDispatcher {
 
-    @SuppressLint("StaticFieldLeak")
-    private static CQActivityDispatcher sInstance;
-
-    public static synchronized CQActivityDispatcher get() {
-        if (sInstance == null) {
-            sInstance = new CQActivityDispatcher();
-        }
-        return sInstance;
+    private static class Singleton {
+        @SuppressLint("StaticFieldLeak")
+        static CQActivityDispatcher instance = new CQActivityDispatcher();
+    }
+    public static CQActivityDispatcher get() {
+        return Singleton.instance;
     }
 
     //subsystems can find current resumed activity dynamically by this method.

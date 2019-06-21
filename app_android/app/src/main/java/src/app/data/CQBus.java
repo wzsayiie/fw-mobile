@@ -8,13 +8,11 @@ import src.library.foundation.L;
 
 public class CQBus {
 
-    private static CQBus sInstance;
-
-    public static synchronized CQBus get() {
-        if (sInstance == null) {
-            sInstance = new CQBus();
-        }
-        return sInstance;
+    private static class Singleton {
+        static CQBus instance = new CQBus();
+    }
+    public static CQBus get() {
+        return Singleton.instance;
     }
 
     public void runOnMainThread(long delayMilliseconds, Runnable runnable) {

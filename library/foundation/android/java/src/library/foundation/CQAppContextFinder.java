@@ -8,13 +8,11 @@ import java.lang.reflect.Method;
 
 public class CQAppContextFinder {
 
-    private static CQAppContextFinder sInstance;
-
-    public static synchronized CQAppContextFinder get() {
-        if (sInstance == null) {
-            sInstance = new CQAppContextFinder();
-        }
-        return sInstance;
+    private static class Singleton {
+        static CQAppContextFinder instance = new CQAppContextFinder();
+    }
+    public static CQAppContextFinder get() {
+        return Singleton.instance;
     }
 
     private Application findCustomApp() {

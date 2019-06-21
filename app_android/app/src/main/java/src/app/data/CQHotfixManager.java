@@ -4,13 +4,14 @@ import src.library.foundation.L;
 
 public class CQHotfixManager {
 
-    private static CQHotfixManager sInstance;
+    private static class Singleton {
+        static CQHotfixManager instance = new CQHotfixManager();
+    }
+    public static CQHotfixManager get() {
+        return Singleton.instance;
+    }
 
-    public static synchronized CQHotfixManager get() {
-        if (sInstance == null) {
-            L.i("init hotfix management");
-            sInstance = new CQHotfixManager();
-        }
-        return sInstance;
+    private CQHotfixManager() {
+        L.i("hotfix manager initialize");
     }
 }

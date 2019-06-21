@@ -9,13 +9,11 @@ import java.lang.reflect.Method;
 
 public class CQUIContextFinder {
 
-    private static CQUIContextFinder sInstance;
-
-    public static synchronized CQUIContextFinder get() {
-        if (sInstance == null) {
-            sInstance = new CQUIContextFinder();
-        }
-        return sInstance;
+    private static class Singleton {
+        static CQUIContextFinder instance = new CQUIContextFinder();
+    }
+    public static CQUIContextFinder get() {
+        return Singleton.instance;
     }
 
     private Activity findCustomAppActivity() {
