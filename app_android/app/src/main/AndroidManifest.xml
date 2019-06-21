@@ -46,7 +46,7 @@
         </activity>
 
         <activity
-            android:name="src.library.subsystem.SubsystemActivity"
+            android:name="src.library.subsystem.CQSubsystemActivity"
             android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />

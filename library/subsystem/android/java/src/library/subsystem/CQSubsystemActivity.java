@@ -7,13 +7,13 @@ import android.widget.Button;
 
 import src.library.R;
 
-public class SubsystemActivity extends Activity {
+public class CQSubsystemActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subsystem);
-        SubsystemManager.get().setSubsystemActivityInstance(this);
+        CQSubsystemManager.get().setSubsystemActivityInstance(this);
 
         Button closeButton = findViewById(R.id.close_button);
         closeButton.setOnClickListener((View view) -> onCloseButtonClick());
@@ -24,6 +24,6 @@ public class SubsystemActivity extends Activity {
     }
 
     protected void finishSubsystem() {
-        SubsystemManager.get().stopSubsystem();
+        CQSubsystemManager.get().stopSubsystem();
     }
 }

@@ -4,10 +4,10 @@ package src.library.subsystem;
 public class Subsystem {
 
     public static void cq_subsystem_start() {
-        SubsystemManager.get().startSubsystem();
+        CQSubsystemManager.get().startSubsystem();
     }
 
     public static void cq_subsystem_stop() {
-        SubsystemManager.get().stopSubsystem();
+        CQSubsystemManager.get().stopSubsystem();
     }
 }

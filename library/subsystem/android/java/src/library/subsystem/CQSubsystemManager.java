@@ -7,14 +7,14 @@ import android.content.Intent;
 import src.library.foundation.CQUIContextFinder;
 import src.library.foundation.L;
 
-public class SubsystemManager {
+public class CQSubsystemManager {
 
     @SuppressLint("StaticFieldLeak")
-    private static SubsystemManager sInstance;
+    private static CQSubsystemManager sInstance;
 
-    public static synchronized SubsystemManager get() {
+    public static synchronized CQSubsystemManager get() {
         if (sInstance == null) {
-            sInstance = new SubsystemManager();
+            sInstance = new CQSubsystemManager();
         }
         return sInstance;
     }
@@ -33,7 +33,7 @@ public class SubsystemManager {
             return;
         }
 
-        Intent intent = new Intent(rootActivity, SubsystemActivity.class);
+        Intent intent = new Intent(rootActivity, CQSubsystemActivity.class);
         rootActivity.startActivity(intent);
     }
 
