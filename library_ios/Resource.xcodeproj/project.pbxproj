@@ -41,20 +41,20 @@
 		B4E7251F226D88F1008CD949 /* Subsystem */ = {
 			isa = PBXGroup;
 			children = (
-				B4E72520226D8901008CD949 /* IOSSubsystemResource */,
+				B4E72520226D8901008CD949 /* IOSResources */,
 			);
 			name = Subsystem;
 			sourceTree = "<group>";
 		};
-		B4E72520226D8901008CD949 /* IOSSubsystemResource */ = {
+		B4E72520226D8901008CD949 /* IOSResources */ = {
 			isa = PBXGroup;
 			children = (
 				B443BAC5226D908A000D3021 /* CQSubsystemViewController.xib */,
 				B443BAC6226D908A000D3021 /* Info.plist */,
 				B42A8D3522BCA95D00E42E75 /* Strings */,
 			);
-			name = IOSSubsystemResource;
-			path = ../library/subsystem/IOSSubsystemResource;
+			name = IOSResources;
+			path = ../library/subsystem/IOSResources;
 			sourceTree = "<group>";
 		};
 		B4EB47AD226D87C1008B5E2F = {
@@ -279,7 +279,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/../library/subsystem/IOSSubsystemResource/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/../library/subsystem/IOSResources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = me.wzsayiie.libary.resource;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -295,7 +295,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/../library/subsystem/IOSSubsystemResource/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/../library/subsystem/IOSResources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = me.wzsayiie.libary.resource;
 				PRODUCT_NAME = "$(TARGET_NAME)";

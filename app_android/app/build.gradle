@@ -47,8 +47,8 @@ android {
 
     sourceSets {
         main {
-//            manifest.srcFile '../../program_cpp/androidresource/AndroidManifest.xml'
-//            manifest.srcFile '../../program_lua/androidresource/AndroidManifest.xml'
+//            manifest.srcFile '../../program_cpp/androidres/AndroidManifest.xml'
+//            manifest.srcFile '../../program_lua/androidres/AndroidManifest.xml'
 
             java.srcDirs += '../../program_basis/android/java'
             java.srcDirs += '../../program_cpp/android/java'
