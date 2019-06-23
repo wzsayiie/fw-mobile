@@ -4,7 +4,7 @@
 static jclass clazz() {
     static jclass clazz = nullptr;
     if (clazz == nullptr) {
-        cqJNIFindClass(&clazz, cqJNIGetEnv(), "src/library/foundation/Foundation");
+        cqJNIFindClass(&clazz, cqJNIGetEnv(), "src/library/foundation/BRIDGE");
     }
     return clazz;
 }
@@ -119,7 +119,7 @@ void cq_thread_run(void (*task)(void *), void *data) {
     method.callVoid();
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_Foundation_threadBody
+extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_BRIDGE_threadBody
 /**/(JNIEnv *, jobject, jlong task, jlong data)
 {
     auto taskFunc = (void (*)(void *))task;
@@ -154,7 +154,7 @@ int32_t cq_http_get(const char *url, float timeout) {
     return _http_get_error;
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_Foundation_httpGetReturn
+extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_BRIDGE_httpGetReturn
 /**/(JNIEnv *env, jobject, jint error, jbyteArray data)
 {
     _http_get_error = error;

@@ -12,8 +12,8 @@
 		B42505B0226744B10035F91A /* cqsubsystemarche.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42505A6226744B10035F91A /* cqsubsystemarche.cpp */; };
 		B42505B1226744B10035F91A /* cqlualibsubsystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42505AA226744B10035F91A /* cqlualibsubsystem.cpp */; };
 		B42505B2226744B10035F91A /* cqsubsystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B42505AC226744B10035F91A /* cqsubsystem.cpp */; };
-		B434F98D226EB06F0081BBAA /* CQFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = B434F98C226EB06F0081BBAA /* CQFoundation.m */; };
-		B434F98F226EBA2D0081BBAA /* CQSubsystem.m in Sources */ = {isa = PBXBuildFile; fileRef = B434F98E226EBA2D0081BBAA /* CQSubsystem.m */; };
+		B434F98D226EB06F0081BBAA /* BRIDGE.m in Sources */ = {isa = PBXBuildFile; fileRef = B434F98C226EB06F0081BBAA /* BRIDGE.m */; };
+		B434F98F226EBA2D0081BBAA /* BRIDGE.m in Sources */ = {isa = PBXBuildFile; fileRef = B434F98E226EBA2D0081BBAA /* BRIDGE.m */; };
 		B439E57C2266CC7500B66285 /* cqcppbasis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5702266CC7500B66285 /* cqcppbasis.cpp */; };
 		B439E57E2266CC7500B66285 /* cqluabasis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E5762266CC7500B66285 /* cqluabasis.cpp */; };
 		B439E57F2266CC7500B66285 /* cqcbasis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E57A2266CC7500B66285 /* cqcbasis.cpp */; };
@@ -50,8 +50,8 @@
 		B42505AA226744B10035F91A /* cqlualibsubsystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqlualibsubsystem.cpp; sourceTree = "<group>"; };
 		B42505AC226744B10035F91A /* cqsubsystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqsubsystem.cpp; sourceTree = "<group>"; };
 		B42505AD226744B10035F91A /* cqsubsystem.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqsubsystem.hh; sourceTree = "<group>"; };
-		B434F98C226EB06F0081BBAA /* CQFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQFoundation.m; sourceTree = "<group>"; };
-		B434F98E226EBA2D0081BBAA /* CQSubsystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQSubsystem.m; sourceTree = "<group>"; };
+		B434F98C226EB06F0081BBAA /* BRIDGE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRIDGE.m; sourceTree = "<group>"; };
+		B434F98E226EBA2D0081BBAA /* BRIDGE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRIDGE.m; sourceTree = "<group>"; };
 		B439E5702266CC7500B66285 /* cqcppbasis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqcppbasis.cpp; sourceTree = "<group>"; };
 		B439E5712266CC7500B66285 /* cqcppbasis.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqcppbasis.hh; sourceTree = "<group>"; };
 		B439E5732266CC7500B66285 /* cqluabasis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluabasis.h; sourceTree = "<group>"; };
@@ -102,8 +102,8 @@
 		B425059E226744B10035F91A /* IOSSubsystem */ = {
 			isa = PBXGroup;
 			children = (
+				B434F98E226EBA2D0081BBAA /* BRIDGE.m */,
 				B4A2A2132268723E00D3D800 /* CQSubsystem.h */,
-				B434F98E226EBA2D0081BBAA /* CQSubsystem.m */,
 				B42505A0226744B10035F91A /* CQSubsystemManager.h */,
 				B42505A2226744B10035F91A /* CQSubsystemManager.m */,
 				B41806AC2269B6CC00C0F6F0 /* CQSubsystemViewController.h */,
@@ -210,10 +210,10 @@
 		B439E5802266CCDE00B66285 /* IOSFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				B434F98C226EB06F0081BBAA /* BRIDGE.m */,
 				B473DC3F22A5232A00218901 /* CQFileManager.h */,
 				B473DC3E22A5232A00218901 /* CQFileManager.m */,
 				B439E5812266CCDE00B66285 /* CQFoundation.h */,
-				B434F98C226EB06F0081BBAA /* CQFoundation.m */,
 				B439E5822266CCDE00B66285 /* CQLog.h */,
 				B439E5832266CCDE00B66285 /* CQLog.m */,
 				B4E2EC5122AE694C00577D62 /* CQThread.h */,
@@ -360,10 +360,10 @@
 				B439E5902266CCDE00B66285 /* CQLog.m in Sources */,
 				B473DC4022A5232A00218901 /* CQFileManager.m in Sources */,
 				B41806AD2269B6CC00C0F6F0 /* CQSubsystemViewController.m in Sources */,
-				B434F98F226EBA2D0081BBAA /* CQSubsystem.m in Sources */,
+				B434F98F226EBA2D0081BBAA /* BRIDGE.m in Sources */,
 				B42505AF226744B10035F91A /* CQSubsystemManager.m in Sources */,
 				B439E5912266CCDE00B66285 /* cqfoundationarche.cpp in Sources */,
-				B434F98D226EB06F0081BBAA /* CQFoundation.m in Sources */,
+				B434F98D226EB06F0081BBAA /* BRIDGE.m in Sources */,
 				B439E57E2266CC7500B66285 /* cqluabasis.cpp in Sources */,
 				B48ECB4322B0900C00F7DE77 /* CQObjcBasis.m in Sources */,
 			);

@@ -4,7 +4,7 @@
 static jclass clazz() {
     static jclass clazz = nullptr;
     if (clazz == nullptr) {
-        cqJNIFindClass(&clazz, cqJNIGetEnv(), "src/library/subsystem/Subsystem");
+        cqJNIFindClass(&clazz, cqJNIGetEnv(), "src/library/subsystem/BRIDGE");
     }
     return clazz;
 }
