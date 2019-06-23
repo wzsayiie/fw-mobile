@@ -1,9 +1,9 @@
 #import "CQSubsystemManager.h"
 #import "CQFoundation.h"
-#import "CQSubsystemViewController.h"
+#import "CQSubsystemController.h"
 
 @interface CQSubsystemManager ()
-@property (nonatomic) UIViewController *subsystemViewController;
+@property (nonatomic) UIViewController *subsystemController;
 @end
 
 @implementation CQSubsystemManager
@@ -13,28 +13,28 @@
 }
 
 - (void)startSubsystem {
-    if (self.subsystemViewController != nil) {
+    if (self.subsystemController != nil) {
         I(@"subsystem was already running");
         return;
     }
     
-    self.subsystemViewController = [[CQSubsystemViewController alloc] init];
+    self.subsystemController = [[CQSubsystemController alloc] init];
     
     UIWindow *window = UIApplication.sharedApplication.delegate.window;
     UIViewController *rootViewController = window.rootViewController;
-    [rootViewController presentViewController:self.subsystemViewController
+    [rootViewController presentViewController:self.subsystemController
                                      animated:YES
                                    completion:nil];
 }
 
 - (void)stopSubsystem {
-    if (self.subsystemViewController == nil) {
+    if (self.subsystemController == nil) {
         I(@"there was no any subsystem");
         return;
     }
     
-    [self.subsystemViewController dismissViewControllerAnimated:YES completion:nil];
-    self.subsystemViewController = nil;
+    [self.subsystemController dismissViewControllerAnimated:YES completion:nil];
+    self.subsystemController = nil;
 }
 
 @end

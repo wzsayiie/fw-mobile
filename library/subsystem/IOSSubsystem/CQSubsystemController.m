@@ -1,15 +1,15 @@
-#import "CQSubsystemViewController.h"
+#import "CQSubsystemController.h"
 #import "CQSubsystemManager.h"
 
-@interface CQSubsystemViewController ()
+@interface CQSubsystemController ()
 @property (nonatomic) NSBundle *assetsBundle;
 @property (nonatomic) IBOutlet UIButton *closeButton;
 @end
 
-@implementation CQSubsystemViewController
+@implementation CQSubsystemController
 
 - (instancetype)init {
-    NSString *name = NSStringFromClass(CQSubsystemViewController.class);
+    NSString *name = NSStringFromClass(CQSubsystemController.class);
     return [super initWithNibName:name bundle:self.assetsBundle];
 }
 

@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		B42A8D3822BCA95D00E42E75 /* L.strings in Resources */ = {isa = PBXBuildFile; fileRef = B42A8D3622BCA95D00E42E75 /* L.strings */; };
-		B443BAC7226D908A000D3021 /* CQSubsystemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B443BAC5226D908A000D3021 /* CQSubsystemViewController.xib */; };
+		B443BAC7226D908A000D3021 /* CQSubsystemController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B443BAC5226D908A000D3021 /* CQSubsystemController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B42A8D3722BCA95D00E42E75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/L.strings; sourceTree = "<group>"; };
 		B42A8D3922BCA96400E42E75 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/L.strings"; sourceTree = "<group>"; };
-		B443BAC5226D908A000D3021 /* CQSubsystemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CQSubsystemViewController.xib; sourceTree = "<group>"; };
+		B443BAC5226D908A000D3021 /* CQSubsystemController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CQSubsystemController.xib; sourceTree = "<group>"; };
 		B443BAC6226D908A000D3021 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4EB47B6226D87C1008B5E2F /* Resource.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Resource.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -49,7 +49,7 @@
 		B4E72520226D8901008CD949 /* IOSResources */ = {
 			isa = PBXGroup;
 			children = (
-				B443BAC5226D908A000D3021 /* CQSubsystemViewController.xib */,
+				B443BAC5226D908A000D3021 /* CQSubsystemController.xib */,
 				B443BAC6226D908A000D3021 /* Info.plist */,
 				B42A8D3522BCA95D00E42E75 /* Strings */,
 			);
@@ -131,7 +131,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B443BAC7226D908A000D3021 /* CQSubsystemViewController.xib in Resources */,
+				B443BAC7226D908A000D3021 /* CQSubsystemController.xib in Resources */,
 				B42A8D3822BCA95D00E42E75 /* L.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
