@@ -26,7 +26,7 @@ cqClassInfo *_cqObjectRoot::clazz() {
 
 _cqObjectRoot::~_cqObjectRoot() {
 }
-    
+
 cq_member(cqObject) {
 };
 

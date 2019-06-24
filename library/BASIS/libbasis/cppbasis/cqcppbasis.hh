@@ -101,6 +101,7 @@ public:
         return SUPER::clazz(0);
     }
     
+    //the function implemented by macro cq_member()
     static cqClassInfo *clazz(int);
     
     cqClassInfo *superclass() override {
