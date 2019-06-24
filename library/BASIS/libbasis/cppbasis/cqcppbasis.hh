@@ -27,35 +27,31 @@ struct cqClassInfo {
     const char *const name;
 };
 
-inline cqClassInfo *_cqGetClassInfo(struct _cqObjectRoot *) {
-    return nullptr;
-}
-
 struct _cqObjectRoot {
     std::weak_ptr<_cqObjectRoot> thisWeakRef;
-    virtual cqClassInfo *dynamicSuperclass();
-    virtual cqClassInfo *dynamicClass();
+    static  cqClassInfo *superclass(int);
+    static  cqClassInfo *clazz(int);
+    virtual cqClassInfo *superclass();
+    virtual cqClassInfo *clazz();
     virtual ~_cqObjectRoot();
 };
 
 #define _cq_ref(CLASS)     CLASS##Ref
 #define _cq_weakref(CLASS) CLASS##WeakRef
-#define _cq_dat(CLASS)     CLASS##Dat
 
 #define cq_declare(CLASS)\
 /**/    typedef std::shared_ptr<struct CLASS> _cq_ref    (CLASS);\
-/**/    typedef std::weak_ptr  <struct CLASS> _cq_weakref(CLASS);\
-/**/    cqClassInfo *_cqGetClassInfo(struct CLASS *)
+/**/    typedef std::weak_ptr  <struct CLASS> _cq_weakref(CLASS);
 
 #define cq_member(CLASS)\
-/**/    cqClassInfo *_cqGetClassInfo(struct CLASS *) {\
+/**/    template<> cqClassInfo *CLASS::_Sandwich::clazz(int) {\
 /**/        static cqClassInfo info = {\
-/**/            CLASS::staticSuperclass(),\
+/**/            CLASS::superclass(0),\
 /**/            ""#CLASS\
 /**/        };\
 /**/        return &info;\
 /**/    }\
-/**/    struct _cq_dat(CLASS)
+/**/    template<> struct CLASS::_Sandwich::_Dat
 
 #define cq_class(CLASS, SUPER)\
 /**/    cq_declare(CLASS);\
@@ -63,14 +59,27 @@ struct _cqObjectRoot {
 /**/        CLASS,\
 /**/        _cq_ref(CLASS),\
 /**/        _cq_weakref(CLASS),\
-/**/        struct _cq_dat(CLASS),\
 /**/        SUPER\
 /**/    >
 
-template<class CLASS, class REF, class WEAKREF, class DAT, class SUPER>
+template<class CLASS, class REF, class WEAKREF, class SUPER>
 struct _cqSandWich : SUPER {
 
+private:
+
+    typedef _cqSandWich _Sandwich;
+    struct _Dat;
+
+protected:
+
+    typedef SUPER super;
+
+    _cqSandWich() : dat(std::make_shared<_Dat>()) {
+    }
+
 public:
+    
+    std::shared_ptr<_Dat> dat;
     
     static REF create() {
         auto object = std::make_shared<CLASS>();
@@ -88,29 +97,18 @@ public:
         return std::static_pointer_cast<CLASS>(ref);
     }
     
-    static cqClassInfo *staticSuperclass() {
-        return _cqGetClassInfo((SUPER *)nullptr);
+    static cqClassInfo *superclass(int) {
+        return SUPER::clazz(0);
     }
     
-    static cqClassInfo *staticClass() {
-        return _cqGetClassInfo((CLASS *)nullptr);
+    static cqClassInfo *clazz(int);
+    
+    cqClassInfo *superclass() override {
+        return SUPER::clazz(0);
     }
     
-    cqClassInfo *dynamicSuperclass() override {
-        return _cqGetClassInfo((SUPER *)nullptr);
-    }
-    
-    cqClassInfo *dynamicClass() override {
-        return _cqGetClassInfo((CLASS *)nullptr);
-    }
-    
-    std::shared_ptr<DAT> dat;
-    
-protected:
-    
-    typedef SUPER super;
-    
-    _cqSandWich() : dat(std::make_shared<DAT>()) {
+    cqClassInfo *clazz() override {
+        return CLASS::clazz(0);
     }
 };
 

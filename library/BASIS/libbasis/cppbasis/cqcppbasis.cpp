@@ -8,11 +8,19 @@ std::string cqMakeString(const char *value) {
 
 //class:
 
-cqClassInfo *_cqObjectRoot::dynamicSuperclass() {
+cqClassInfo *_cqObjectRoot::superclass(int) {
     return nullptr;
 }
 
-cqClassInfo *_cqObjectRoot::dynamicClass() {
+cqClassInfo *_cqObjectRoot::clazz(int) {
+    return nullptr;
+}
+
+cqClassInfo *_cqObjectRoot::superclass() {
+    return nullptr;
+}
+
+cqClassInfo *_cqObjectRoot::clazz() {
     return nullptr;
 }
 
@@ -29,7 +37,7 @@ bool cqObject::isKindOfClass(cqClassInfo *info) {
     if (info == nullptr) {
         return false;
     }
-    for (auto it = dynamicClass(); it; it = it->superclass) {
+    for (auto it = clazz(); it; it = it->superclass) {
         if (it == info) {
             return true;
         }
@@ -41,5 +49,5 @@ bool cqObject::isMemberOfClass(cqClassInfo *info) {
     if (info == nullptr) {
         return false;
     }
-    return dynamicClass() == info;
+    return clazz() == info;
 }
