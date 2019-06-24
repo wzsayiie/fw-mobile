@@ -2,7 +2,7 @@
 
 //std extension:
 
-std::string cqMakeString(const char *value) {
+std::string cqString::make(const char *value) {
     return value ? value : "";
 }
 

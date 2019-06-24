@@ -5,7 +5,7 @@
 
 //log:
 
-void cqLogInfo(const char *file, int line, const char *format, ...) {
+void cqLog::info(const char *file, int line, const char *format, ...) {
     char message[256]; {
         va_list args;
         va_start(args, format);
@@ -15,7 +15,7 @@ void cqLogInfo(const char *file, int line, const char *format, ...) {
     cq_log_info(file, line, message);
 }
 
-void cqLogError(const char *file, int line, const char *format, ...) {
+void cqLog::error(const char *file, int line, const char *format, ...) {
     char message[256]; {
         va_list args;
         va_start(args, format);
@@ -27,24 +27,24 @@ void cqLogError(const char *file, int line, const char *format, ...) {
 
 //file manager:
 
-std::string cqDocumentDirectory() {
+std::string cqPath::documentDirectory() {
     const char *directory = cq_document_directory();
-    return cqMakeString(directory);
+    return cqString::make(directory);
 }
 
-std::string cqCachesDirectory() {
+std::string cqPath::cachesDirectory() {
     const char *directory = cq_caches_directory();
-    return cqMakeString(directory);
+    return cqString::make(directory);
 }
 
-std::string cqTemporaryDirectory() {
+std::string cqPath::temporaryDirectory() {
     const char *directory = cq_temporary_directory();
-    return cqMakeString(directory);
+    return cqString::make(directory);
 }
 
-std::string cqAppendPath(const std::string &parent, const std::string &child) {
+std::string cqPath::append(const std::string &parent, const std::string &child) {
     const char *path = cq_append_path(parent.c_str(), child.c_str());
-    return cqMakeString(path);
+    return cqString::make(path);
 }
 
 cq_member(cqFileManager) {
@@ -87,12 +87,12 @@ static void cqThreadBody(void *data) {
     delete ref;
 }
 
-void cqThreadRun(std::function<void ()> task) {
+void cqThread::run(std::function<void ()> task) {
     auto ref = new std::function<void ()>(task);
     cq_thread_run(cqThreadBody, ref);
 }
 
-void cqThreadSleep(float seconds) {
+void cqThread::sleep(float seconds) {
     cq_thread_sleep(seconds);
 }
 

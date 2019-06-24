@@ -4,18 +4,22 @@
 
 //log:
 
-void cqLogInfo (const char *file, int line, const char *format, ...);
-void cqLogError(const char *file, int line, const char *format, ...);
+struct cqLog {
+    static void info (const char *file, int line, const char *format, ...);
+    static void error(const char *file, int line, const char *format, ...);
+};
 
-#define I(...) cqLogInfo (__FILE__, __LINE__, __VA_ARGS__)
-#define E(...) cqLogError(__FILE__, __LINE__, __VA_ARGS__)
+#define I(...) cqLog::info (__FILE__, __LINE__, __VA_ARGS__)
+#define E(...) cqLog::error(__FILE__, __LINE__, __VA_ARGS__)
 
 //file manager:
 
-std::string cqDocumentDirectory();
-std::string cqCachesDirectory();
-std::string cqTemporaryDirectory();
-std::string cqAppendPath(const std::string &parent, const std::string &child);
+struct cqPath {
+    static std::string documentDirectory();
+    static std::string cachesDirectory();
+    static std::string temporaryDirectory();
+    static std::string append(const std::string &parent, const std::string &child);
+};
 
 cq_class(cqFileManager, cqObject) {
     
@@ -31,8 +35,10 @@ cq_class(cqFileManager, cqObject) {
 
 //thread:
 
-void cqThreadRun(std::function<void ()> task);
-void cqThreadSleep(float seconds);
+struct cqThread {
+    static void run(std::function<void ()> task);
+    static void sleep(float seconds);
+};
 
 //network:
 

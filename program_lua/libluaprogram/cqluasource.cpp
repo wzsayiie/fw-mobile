@@ -24,7 +24,7 @@ void cq_lua_update_source(const char *directory) {
     for (auto it = _sources; it[0] && it[1]; it += 2) {
         const char *name = it[0];
         const char *text = it[1];
-        std::string path = cqAppendPath(directory, name);
+        std::string path = cqPath::append(directory, name);
         update(path, name, text);
     }
 }

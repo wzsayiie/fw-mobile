@@ -12,7 +12,9 @@
 
 //std extension:
 
-std::string cqMakeString(const char *value);
+struct cqString {
+    static std::string make(const char *value);
+};
 
 //thread mutex:
 
