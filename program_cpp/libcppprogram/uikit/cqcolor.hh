@@ -2,6 +2,9 @@
 
 #include "cqcppbasis.hh"
 
+#include "CQUIKIT_NS.hh"
+_CQUIKIT_BEGIN_NS
+
 struct cqColor {
     
     float red;
@@ -28,3 +31,5 @@ struct cqColor {
     static const cqColor brownColor;
     static const cqColor clearColor;
 };
+
+_CQUIKIT_END_NS

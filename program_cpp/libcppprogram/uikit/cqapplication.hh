@@ -2,6 +2,9 @@
 
 #include "cqresponder.hh"
 
+#include "CQUIKIT_NS.hh"
+_CQUIKIT_BEGIN_NS
+
 cq_class(cqApplicationDelegate, cqResponder) {
 
     cqApplicationDelegate();
@@ -21,6 +24,8 @@ cq_class(cqApplication, cqResponder) {
     virtual cqApplicationDelegateRef delegate();
     
     cqResponderRef nextResponder() override;
+    
+    static void main(cqApplicationDelegateRef delegate);
 };
 
-void cqApplicationMain(cqApplicationDelegateRef delegate);
+_CQUIKIT_END_NS

@@ -2,6 +2,9 @@
 
 #include "cqviewcontroller.hh"
 
+#include "CQUIKIT_NS.hh"
+_CQUIKIT_BEGIN_NS
+
 cq_class(cqWindow, cqView) {
     
     cqWindow();
@@ -14,3 +17,5 @@ cq_class(cqWindow, cqView) {
     cqResponderRef nextResponder() override;
     void setFrame(cqRect frame) override;
 };
+
+_CQUIKIT_END_NS

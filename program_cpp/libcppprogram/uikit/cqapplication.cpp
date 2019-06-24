@@ -40,7 +40,7 @@ cqResponderRef cqApplication::nextResponder() {
     return dat->delegate;
 }
 
-void cqApplicationMain(cqApplicationDelegateRef delegate) {
+void cqApplication::main(cqApplicationDelegateRef delegate) {
     if (delegate == nullptr) {
         return;
     }

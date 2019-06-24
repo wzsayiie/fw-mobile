@@ -2,6 +2,9 @@
 
 #include "cqcppbasis.hh"
 
+#include "CQUIKIT_NS.hh"
+_CQUIKIT_BEGIN_NS
+
 struct cqPoint {
     
     float x;
@@ -40,3 +43,5 @@ struct cqRect {
 const char *cqStringFromPoint(cqPoint point);
 const char *cqStringFromSize(cqSize size);
 const char *cqStringFromRect(cqRect rect);
+
+_CQUIKIT_END_NS

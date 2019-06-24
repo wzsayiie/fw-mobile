@@ -19,5 +19,5 @@ void AppDelegate::applicationDidFinishLaunching() {
 
 extern "C" void _cq_cpp_entry() {
     AppDelegateRef delegate = AppDelegate::create();
-    cqApplicationMain(delegate);
+    cqApplication::main(delegate);
 }

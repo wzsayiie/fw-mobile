@@ -142,6 +142,7 @@
 		B4C1623822A8C01900D9CA70 /* CPPHostAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPHostAppDelegate.h; sourceTree = "<group>"; };
 		B4C1623B22A8C02F00D9CA70 /* LuaHostAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaHostAppDelegate.h; sourceTree = "<group>"; };
 		B4C1623C22A8C02F00D9CA70 /* LuaHostAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaHostAppDelegate.m; sourceTree = "<group>"; };
+		B4C561E222C0CEC70087C632 /* CQUIKIT_NS.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CQUIKIT_NS.hh; sourceTree = "<group>"; };
 		B4C7448D22BCAE5100483834 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B4C7448F22BCAE5600483834 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		B4CFD96021C7475000FFF4CF /* IAPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPViewController.m; sourceTree = "<group>"; };
@@ -583,7 +584,7 @@
 		CE90E67922872A350071D4D3 /* libcppprogram */ = {
 			isa = PBXGroup;
 			children = (
-				CE90E67F22872A350071D4D3 /* sdk */,
+				CE90E67F22872A350071D4D3 /* uikit */,
 				CE90E67A22872A350071D4D3 /* user */,
 			);
 			name = libcppprogram;
@@ -601,7 +602,7 @@
 			path = user;
 			sourceTree = "<group>";
 		};
-		CE90E67F22872A350071D4D3 /* sdk */ = {
+		CE90E67F22872A350071D4D3 /* uikit */ = {
 			isa = PBXGroup;
 			children = (
 				CE90E68F22872A350071D4D3 /* cqapplication.cpp */,
@@ -618,6 +619,7 @@
 				CE90E68422872A350071D4D3 /* cqtouch.hh */,
 				CE90E68022872A350071D4D3 /* cqtouchesevent_p.hh */,
 				CE90E68322872A350071D4D3 /* cqtouchesevent.cpp */,
+				B4C561E222C0CEC70087C632 /* CQUIKIT_NS.hh */,
 				CE90E68522872A350071D4D3 /* cquikit.hh */,
 				CE90E68822872A350071D4D3 /* cqview.cpp */,
 				CE90E68122872A350071D4D3 /* cqview.hh */,
@@ -626,7 +628,7 @@
 				CE90E68A22872A350071D4D3 /* cqwindow.cpp */,
 				CE90E68B22872A350071D4D3 /* cqwindow.hh */,
 			);
-			path = sdk;
+			path = uikit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

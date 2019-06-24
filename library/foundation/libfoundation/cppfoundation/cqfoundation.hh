@@ -2,6 +2,9 @@
 
 #include "cqcppbasis.hh"
 
+#include "CQFOUNDATION_NS.hh"
+_CQFOUNDATION_BEGIN_NS
+
 //log:
 
 struct cqLog {
@@ -53,3 +56,5 @@ cq_class(cqURLSession, cqObject) {
     //on android, if the function called on main thread, always failed.
     virtual std::vector<char> sendSyncGet(const std::string &url, float timeout, int *outError);
 };
+
+_CQFOUNDATION_END_NS

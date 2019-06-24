@@ -10,6 +10,9 @@
 #include <set>
 #include <vector>
 
+#include "CQCPPBASIS_NS.hh"
+_CQCPPBASIS_BEGIN_NS
+
 //std extension:
 
 struct cqString {
@@ -70,6 +73,8 @@ struct _cqSandWich : SUPER {
 private:
 
     typedef _cqSandWich _Sandwich;
+    
+    //the struct implemented by macro cq_member()
     struct _Dat;
 
 protected:
@@ -127,3 +132,5 @@ cq_class(cqObject, _cqObjectRoot) {
         return std::static_pointer_cast<T>(strongRef());
     }
 };
+
+_CQCPPBASIS_END_NS
