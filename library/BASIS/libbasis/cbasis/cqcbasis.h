@@ -55,7 +55,7 @@ CQ_C_LINK void _cq_clear_data(struct _cq_data *data);
 //NOTE: reserve additional '\0' at the end, but don't set bytes zero.
 CQ_C_LINK void _cq_resize_data(struct _cq_data *data, int32_t size);
 
-CQ_C_LINK bool cq_string_emptry(const char *string);
+CQ_C_LINK bool cq_string_empty(const char *string);
 
 //storing bytes on current thread,
 //until call of cq_store_xx again on same thread.
