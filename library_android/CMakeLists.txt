@@ -13,6 +13,7 @@ set(lib_name library)
 list(APPEND inc_path ../GENERATED_HEADERS)
 
 list(APPEND src_aims ../library/BASIS/*.cpp)
+list(APPEND src_aims ../library/ctool/*.cpp)
 list(APPEND src_aims ../library/foundation/*.cpp)
 list(APPEND src_aims ../library/subsystem/*.cpp)
 
