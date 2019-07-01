@@ -6,7 +6,7 @@
 //log:
 
 void cqLog::info(const char *file, int line, const char *format, ...) {
-    char message[256]; {
+    char message[1024 * 4]; {
         va_list args;
         va_start(args, format);
         vsnprintf(message, sizeof(message), format, args);
@@ -16,7 +16,7 @@ void cqLog::info(const char *file, int line, const char *format, ...) {
 }
 
 void cqLog::error(const char *file, int line, const char *format, ...) {
-    char message[256]; {
+    char message[1024 * 4]; {
         va_list args;
         va_start(args, format);
         vsnprintf(message, sizeof(message), format, args);

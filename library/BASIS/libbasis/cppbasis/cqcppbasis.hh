@@ -8,6 +8,7 @@
 #include <mutex>
 #include <string>
 #include <set>
+#include <sstream>
 #include <vector>
 
 #include "CQCPPBASIS_NS.hh"
