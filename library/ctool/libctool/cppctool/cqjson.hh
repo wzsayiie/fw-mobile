@@ -115,15 +115,15 @@ namespace _cq_json {
         *newline = false;
     }
     
-    void output(ostringstream &b, bool *n, int i, bool    v) {_output(b, n, i, v);}
-    void output(ostringstream &b, bool *n, int i, int8_t  v) {_output(b, n, i, v);}
-    void output(ostringstream &b, bool *n, int i, int16_t v) {_output(b, n, i, v);}
-    void output(ostringstream &b, bool *n, int i, int32_t v) {_output(b, n, i, v);}
-    void output(ostringstream &b, bool *n, int i, int64_t v) {_output(b, n, i, v);}
-    void output(ostringstream &b, bool *n, int i, float   v) {_output(b, n, i, v);}
-    void output(ostringstream &b, bool *n, int i, double  v) {_output(b, n, i, v);}
+    inline void output(ostringstream &b, bool *n, int i, bool    v) {_output(b, n, i, v);}
+    inline void output(ostringstream &b, bool *n, int i, int8_t  v) {_output(b, n, i, v);}
+    inline void output(ostringstream &b, bool *n, int i, int16_t v) {_output(b, n, i, v);}
+    inline void output(ostringstream &b, bool *n, int i, int32_t v) {_output(b, n, i, v);}
+    inline void output(ostringstream &b, bool *n, int i, int64_t v) {_output(b, n, i, v);}
+    inline void output(ostringstream &b, bool *n, int i, float   v) {_output(b, n, i, v);}
+    inline void output(ostringstream &b, bool *n, int i, double  v) {_output(b, n, i, v);}
     
-    void output(ostringstream &buffer, bool *newline, int indent, const string &value) {
+    inline void output(ostringstream &buffer, bool *newline, int indent, const string &value) {
         _output(buffer, newline, indent, value);
     }
     
