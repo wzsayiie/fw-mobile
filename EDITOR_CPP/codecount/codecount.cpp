@@ -32,6 +32,8 @@ void AppendObjcpps(vector<string> *sources) {
     sources->push_back("library/subsystem/IOSSubsystem");
     sources->push_back("library/subsystem/libsubsystem");
     
+    sources->push_back("library/ctool/libctool");
+    
     sources->push_back("program_basis/android/cpp");
     sources->push_back("program_basis/IOSBasisProgram");
     sources->push_back("program_basis/libbasisprogram");
