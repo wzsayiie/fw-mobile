@@ -10,15 +10,15 @@ static const char b64char[] =
 #define char2(b, c) b64char[(((uint8_t)b << 2) | ((uint8_t)c >> 6)) & 0x3F]
 #define char3(c)    b64char[(((uint8_t)c     )                    ) & 0x3F]
 
-std::string cqBase64::fromBytes(const uint8_t *bytes, size_t size) {
+std::string cqBase64::fromBytes(const void *bytes, size_t size) {
     if (bytes == nullptr && size <= 0) {
         return std::string();
     }
     
     std::string base64;
     
-    const uint8_t *cur = bytes;
-    const uint8_t *end = bytes + size;
+    auto cur = (const uint8_t *)bytes;
+    auto end = (const uint8_t *)bytes + size;
     for (; cur + 3 <= end; cur += 3) /* continuous 3 bytes */ {
         
         base64.append(1, char0(cur[0]        ));
