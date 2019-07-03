@@ -1,7 +1,5 @@
 #pragma once
 
-#include "cqfoundation.hh"
-
 #include "cqapplication.hh"
 #include "cqcolor.hh"
 #include "cqevent.hh"
