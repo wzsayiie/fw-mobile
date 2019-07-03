@@ -1,4 +1,6 @@
 #include "rootviewcontroller.hh"
+#include "cqctool.hh"
+#include "cqfoundation.hh"
 
 cq_member(RootViewController) {
 };
