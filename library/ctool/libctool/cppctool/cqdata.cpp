@@ -1,4 +1,6 @@
-#include "cqbase64.hh"
+#include "cqdata.hh"
+
+//base64:
 
 static const char b64char[] =
 "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -10,7 +12,7 @@ static const char b64char[] =
 #define char2(b, c) b64char[(((uint8_t)b << 2) | ((uint8_t)c >> 6)) & 0x3F]
 #define char3(c)    b64char[(((uint8_t)c     )                    ) & 0x3F]
 
-std::string cqBase64::fromBytes(const void *bytes, size_t size) {
+static std::string b64string(const void *bytes, size_t size) {
     if (bytes == nullptr && size <= 0) {
         return std::string();
     }
@@ -55,11 +57,11 @@ static uint8_t b64index(char ch) {
     return 0xff;
 }
 
-static uint8_t synbyte0(uint8_t a, uint8_t b) {return (a << 2) | (b >> 4);}
-static uint8_t synbyte1(uint8_t b, uint8_t c) {return (b << 4) | (c >> 2);}
-static uint8_t synbyte2(uint8_t c, uint8_t d) {return (c << 6) | (d     );}
+static uint8_t syn0(uint8_t a, uint8_t b) {return (a << 2) | (b >> 4);}
+static uint8_t syn1(uint8_t b, uint8_t c) {return (b << 4) | (c >> 2);}
+static uint8_t syn2(uint8_t c, uint8_t d) {return (c << 6) | (d     );}
 
-static bool push(std::vector<uint8_t> *data, char x, char y, decltype(synbyte0) syn) {
+static bool push(std::vector<uint8_t> *data, char x, char y, decltype(syn0) syn) {
     uint8_t xi = b64index(x);
     if (xi >= 64) {
         return false;
@@ -72,11 +74,11 @@ static bool push(std::vector<uint8_t> *data, char x, char y, decltype(synbyte0) 
     return true;
 }
 
-#define push0(v, a, b) push(v, a, b, synbyte0)
-#define push1(v, b, c) push(v, b, c, synbyte1)
-#define push2(v, c, d) push(v, c, d, synbyte2)
+#define push0(v, a, b) push(v, a, b, syn0)
+#define push1(v, b, c) push(v, b, c, syn1)
+#define push2(v, c, d) push(v, c, d, syn2)
 
-std::vector<uint8_t> cqBase64::decode(const std::string &base64) {
+static std::vector<uint8_t> b64decode(const std::string &base64) {
     std::vector<uint8_t> empty;
     std::vector<uint8_t> bytes;
     
@@ -108,4 +110,91 @@ std::vector<uint8_t> cqBase64::decode(const std::string &base64) {
     }
     
     return bytes;
+}
+
+//cqData:
+
+cq_member(cqData) {
+    std::vector<uint8_t> vector;
+};
+
+cqData::cqData() {
+}
+
+cqDataRef cqData::createWithData(cqDataRef that) {
+    cqDataRef object = cqData::create();
+    if (that != nullptr) {
+        object->dat->vector = that->dat->vector;
+    }
+    return object;
+}
+
+cqDataRef cqData::createWithBytes(const void *bytes, size_t size) {
+    cqDataRef object = cqData::create();
+    if (bytes != nullptr && size > 0) {
+        auto ptr = (const uint8_t *)bytes;
+        object->dat->vector.assign(ptr, ptr + size);
+    }
+    return object;
+}
+
+cqDataRef cqData::createWithContentsOfFile(const std::string &path) {
+    cqDataRef object = cqData::create();
+    
+    if (path.empty()) {
+        return object;
+    }
+    
+    FILE *file = fopen(path.c_str(), "rb");
+    if (file == nullptr) {
+        return object;
+    }
+    while (true) {
+        uint8_t buffer[1024];
+        size_t size = fread(buffer, 1, sizeof(buffer), file);
+        object->dat->vector.assign(buffer, buffer + size);
+        if (size < sizeof(buffer)) {
+            break;
+        }
+    }
+    fclose(file);
+    
+    return object;
+}
+
+cqDataRef cqData::createWithBase64EncodedData(const std::string &base64) {
+    cqDataRef object = cqData::create();
+    object->dat->vector = b64decode(base64);
+    return object;
+}
+
+const std::vector<uint8_t> &cqData::data() {
+    return dat->vector;
+}
+
+const void *cqData::bytes() {
+    return dat->vector.data();
+}
+
+size_t cqData::size() {
+    return dat->vector.size();
+}
+
+bool cqData::writeToFile(const std::string &path) {
+    if (path.empty()) {
+        return false;
+    }
+    
+    FILE *file = fopen(path.c_str(), "wb");
+    if (file == nullptr) {
+        return false;
+    }
+    fwrite(dat->vector.data(), 1, dat->vector.size(), file);
+    fclose(file);
+    
+    return true;
+}
+
+std::string cqData::base64EncodedString() {
+    return b64string(dat->vector.data(), dat->vector.size());
 }
