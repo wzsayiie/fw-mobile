@@ -174,7 +174,7 @@
 		B439E56C2266CC4E00B66285 /* BASIS */ = {
 			isa = PBXGroup;
 			children = (
-				B48ECB4022B0900C00F7DE77 /* IOSBasis */,
+				B48ECB4022B0900C00F7DE77 /* ObjcBasis */,
 				B439E56E2266CC7500B66285 /* libbasis */,
 			);
 			name = BASIS;
@@ -285,14 +285,14 @@
 			path = cppfoundation;
 			sourceTree = "<group>";
 		};
-		B48ECB4022B0900C00F7DE77 /* IOSBasis */ = {
+		B48ECB4022B0900C00F7DE77 /* ObjcBasis */ = {
 			isa = PBXGroup;
 			children = (
 				B48ECB4122B0900C00F7DE77 /* CQObjcBasis.h */,
 				B48ECB4222B0900C00F7DE77 /* CQObjcBasis.m */,
 			);
-			name = IOSBasis;
-			path = ../library/BASIS/IOSBasis;
+			name = ObjcBasis;
+			path = ../library/BASIS/ObjcBasis;
 			sourceTree = "<group>";
 		};
 		B4C5026322C1B77C00374C6D /* CTool */ = {
