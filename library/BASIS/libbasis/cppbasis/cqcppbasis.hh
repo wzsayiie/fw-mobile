@@ -20,11 +20,20 @@ struct cqString {
     static std::string make(const char *value);
 };
 
-//thread mutex:
+//synchronization lock:
 
-#define CQ_SYNCHRONIZE\
-/**/    static std::mutex __cq_mutex;\
-/**/    std::lock_guard<std::mutex> __cq_guard(__cq_mutex);
+#define cq_synchronize(CODE)\
+/**/    do {\
+/**/        static std::mutex __cq_mutex;\
+/**/        std::lock_guard<std::mutex> __cq_guard(__cq_mutex);\
+/**/        CODE\
+/**/    } while (0)
+
+#define cq_synchronize_with(MUTEX, CODE)\
+/**/    do {\
+/**/        std::lock_guard<std::mutex> __cq_guard(MUTEX);\
+/**/        CODE\
+/**/    } while (0)
 
 //class:
 

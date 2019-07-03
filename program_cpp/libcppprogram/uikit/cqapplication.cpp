@@ -16,13 +16,13 @@ cq_member(cqApplication) {
 };
 
 cqApplicationRef cqApplication::get() {
-    CQ_SYNCHRONIZE
-    
-    static cqApplicationRef object;
-    if (object == nullptr) {
-        object = cqApplication::create();
-    }
-    return object;
+    cq_synchronize({
+        static cqApplicationRef object;
+        if (object == nullptr) {
+            object = cqApplication::create();
+        }
+        return object;
+    });
 }
 
 cqApplication::cqApplication() {
