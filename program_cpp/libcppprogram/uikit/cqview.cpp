@@ -126,7 +126,7 @@ cqViewRef cqView::hitTest(cqPoint point, cqEventRef event) {
         return nullptr;
     }
 
-    for (auto subview : subviews()) {
+    for (auto &subview : subviews()) {
         cqPoint offset = subview->frame().origin;
         cqPoint touch = {point.x - offset.x, point.y - offset.y};
         auto target = subview->hitTest(touch, event);

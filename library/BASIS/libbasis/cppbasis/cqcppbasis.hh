@@ -22,17 +22,17 @@ struct cqString {
 
 //synchronization lock:
 
-#define cq_synchronize(CODE)\
+#define cq_synchronize(BLOCK)\
 /**/    do {\
 /**/        static std::mutex __cq_mutex;\
 /**/        std::lock_guard<std::mutex> __cq_guard(__cq_mutex);\
-/**/        CODE\
+/**/        BLOCK\
 /**/    } while (0)
 
-#define cq_synchronize_with(MUTEX, CODE)\
+#define cq_synchronize_with(MUTEX, BLOCK)\
 /**/    do {\
 /**/        std::lock_guard<std::mutex> __cq_guard(MUTEX);\
-/**/        CODE\
+/**/        BLOCK\
 /**/    } while (0)
 
 //class:

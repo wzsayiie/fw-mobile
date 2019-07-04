@@ -5,7 +5,7 @@ using namespace std;
 
 static map<string, markcore *> inmarks(void *base, const map<string, size_t> &offsets) {
     map<string, markcore *> marks;
-    for (auto cp : offsets) {
+    for (auto &cp : offsets) {
         marks[cp.first] = (markcore *)((char *)base + cp.second);
     }
     return marks;
@@ -26,7 +26,7 @@ void _cq_json::dict::write(ostringstream &buffer) {
     
     output(buffer, "{");
     size_t count = 0;
-    for (auto it : marks) {
+    for (auto &it : marks) {
         output(buffer, it.first);
         output(buffer, ":");
         it.second->write(buffer);
@@ -51,7 +51,7 @@ void _cq_json::dict::write(ostringstream &buffer, bool *newline, int indent) {
     
     //entries
     size_t count = 0;
-    for (auto it : marks) {
+    for (auto &it : marks) {
         
         output(buffer, newline, indent + 1, it.first);
         output(buffer, ": ");
@@ -75,13 +75,13 @@ void _cq_json::dict::write(ostringstream &buffer, bool *newline, int indent) {
 void _cq_json::dict::clear() {
     //only clear inner marks
     map<string, markcore *> marks = inmarks(this, _inoffsets);
-    for (auto cp : marks) {
+    for (auto &cp : marks) {
         cp.second->clear();
     }
 }
 
 _cq_json::dict::~dict() {
-    for (auto cp : _outmarks) {
+    for (auto &cp : _outmarks) {
         delete cp.second;
     }
 }

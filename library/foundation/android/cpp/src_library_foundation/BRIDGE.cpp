@@ -120,7 +120,7 @@ void cq_thread_run(void (*task)(void *), void *data) {
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_BRIDGE_threadBody
-/**/(JNIEnv *, jobject, jlong task, jlong data)
+    (JNIEnv *, jobject, jlong task, jlong data)
 {
     auto taskFunc = (void (*)(void *))task;
     auto dataRef = (void *)data;
@@ -155,7 +155,7 @@ int32_t cq_http_get(const char *url, float timeout) {
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_BRIDGE_httpGetReturn
-/**/(JNIEnv *env, jobject, jint error, jbyteArray data)
+    (JNIEnv *env, jobject, jint error, jbyteArray data)
 {
     _http_get_error = error;
 
