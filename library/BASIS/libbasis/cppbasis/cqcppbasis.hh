@@ -55,8 +55,8 @@ template<class T> struct cqRef {
 struct cqClassInfo;
 struct _cqObjectRoot {
     cqRef<_cqObjectRoot>::Weak thisWeakRef;
-    static  cqClassInfo *superclass(int);
-    static  cqClassInfo *clazz(int);
+    static  cqClassInfo *getSuperclass();
+    static  cqClassInfo *getClass();
     virtual cqClassInfo *superclass();
     virtual cqClassInfo *clazz();
     virtual ~_cqObjectRoot();
@@ -99,19 +99,19 @@ template<class CLASS, class SUPER> struct _cqSandWich : SUPER {
         return std::static_pointer_cast<CLASS>(ref);
     }
     
-    static cqClassInfo *superclass(int) {
-        return SUPER::clazz(0);
+    static cqClassInfo *getSuperclass() {
+        return SUPER::getClass();
     }
     
     //the function implemented by macro cq_member()
-    static cqClassInfo *clazz(int);
+    static cqClassInfo *getClass();
     
     cqClassInfo *superclass() override {
-        return SUPER::clazz(0);
+        return SUPER::getClass();
     }
     
     cqClassInfo *clazz() override {
-        return CLASS::clazz(0);
+        return CLASS::getClass();
     }
 };
 
@@ -127,7 +127,7 @@ template<class T> cqRef<cqObject>::Strong _cqObjectCreator() {
 }
 template<class T> cqClassInfo *_cqClassInfoGet(const char *name) {
     static cqClassInfo info = {
-        T::superclass(0),
+        T::getSuperclass(),
         name,
         _cqObjectCreator<T>
     };
@@ -139,7 +139,7 @@ template<class T> cqClassInfo *_cqClassInfoGet(const char *name) {
 /**/        : dat(std::make_shared<Dat>())\
 /**/    {\
 /**/    }\
-/**/    template<> cqClassInfo *_cqSandWich<CLASS, CLASS::super>::clazz(int) {\
+/**/    template<> cqClassInfo *_cqSandWich<CLASS, CLASS::super>::getClass() {\
 /**/        return _cqClassInfoGet<CLASS>(""#CLASS);\
 /**/    }\
 /**/    template<> struct _cqSandWich<CLASS, CLASS::super>::Dat

@@ -8,11 +8,11 @@ std::string cqString::make(const char *value) {
 
 //class:
 
-cqClassInfo *_cqObjectRoot::superclass(int) {
+cqClassInfo *_cqObjectRoot::getSuperclass() {
     return nullptr;
 }
 
-cqClassInfo *_cqObjectRoot::clazz(int) {
+cqClassInfo *_cqObjectRoot::getClass() {
     return nullptr;
 }
 
