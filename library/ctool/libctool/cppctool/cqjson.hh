@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cqcppbasis.hh"
+#include <sstream>
 
 #include "CQCTOOL_NS.hh"
 _CQCTOOL_BEGIN_NS

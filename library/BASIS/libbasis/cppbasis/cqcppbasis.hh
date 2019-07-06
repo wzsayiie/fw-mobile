@@ -1,15 +1,17 @@
 #pragma once
 
 #include "cqcbasis.h"
-#include <algorithm>
+
 #include <functional>
 #include <map>
-#include <memory>
-#include <mutex>
-#include <string>
 #include <set>
-#include <sstream>
+#include <string>
 #include <vector>
+
+#include <atomic>
+#include <mutex>
+
+#include <algorithm>
 
 #include "CQCPPBASIS_NS.hh"
 _CQCPPBASIS_BEGIN_NS
