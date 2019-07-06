@@ -18,16 +18,18 @@ cqBusRef cqBus::get() {
     return cqStaticObject<cqBus>();
 }
 
-static void tidy(std::vector<TargetItem> *list) {
-    auto dirty = std::remove_if(list->begin(), list->end(), [](const TargetItem &it) {
-        return it.observer.expired();
-    });
-    list->erase(dirty, list->end());
+static void erase_if(
+    std::vector<TargetItem> *table, std::function<bool (const TargetItem &)> fn)
+{
+    auto dirty = std::remove_if(table->begin(), table->end(), fn);
+    table->erase(dirty, table->end());
 }
 
 static void tidy(std::map<cqBusEventName, std::vector<TargetItem>> *targets) {
     for (auto &entry : *targets) {
-        tidy(&entry.second);
+        erase_if(&entry.second, [](const TargetItem &it) {
+            return it.observer.expired();
+        });
     }
     for (auto it = targets->begin(); it != targets->end(); ) {
         if (it->second.empty()) {
@@ -38,15 +40,16 @@ static void tidy(std::map<cqBusEventName, std::vector<TargetItem>> *targets) {
     }
 }
 
-static void erase(std::vector<TargetItem> *list, cqObjectRef object, cqBusEventName name) {
-    auto dirty = std::remove_if(list->begin(), list->end(), [&](const TargetItem &it) {
+static void erase(
+    std::vector<TargetItem> *table, cqObjectRef object, cqBusEventName name)
+{
+    erase_if(table, [&](const TargetItem &it) {
         if (it.observer.lock() == object) {
             return name == nullptr || it.eventName == name;
         } else {
             return false;
         }
     });
-    list->erase(dirty, list->end());
 }
 
 void cqBus::addObserver(
@@ -93,15 +96,15 @@ void cqBus::post(cqBusEventName eventName, cqObjectRef parameter) {
         return;
     }
     
-    std::vector<TargetItem> targetList;
+    std::vector<TargetItem> targetTable;
     cq_synchronize_with(dat->mutex, {
         tidy(&dat->targets);
         if (dat->targets.find(eventName) != dat->targets.end()) {
-            targetList = dat->targets[eventName];
+            targetTable = dat->targets[eventName];
         }
     });
     
-    for (auto &it : targetList) {
+    for (auto &it : targetTable) {
         if (it.observer.expired()) {
             continue;
         }
