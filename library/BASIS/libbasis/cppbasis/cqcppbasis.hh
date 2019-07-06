@@ -47,23 +47,19 @@ struct cqString {
 
 //class:
 
-struct cqClassInfo {
-    cqClassInfo *const superclass;
-    const char *const name;
+template<class T> struct cqRef {
+    typedef std::shared_ptr<T> Strong;
+    typedef std::weak_ptr<T> Weak;
 };
 
+struct cqClassInfo;
 struct _cqObjectRoot {
-    std::weak_ptr<_cqObjectRoot> thisWeakRef;
+    cqRef<_cqObjectRoot>::Weak thisWeakRef;
     static  cqClassInfo *superclass(int);
     static  cqClassInfo *clazz(int);
     virtual cqClassInfo *superclass();
     virtual cqClassInfo *clazz();
     virtual ~_cqObjectRoot();
-};
-
-template<class T> struct cqRef {
-    typedef std::shared_ptr<T> Strong;
-    typedef std::weak_ptr<T> Weak;
 };
 
 #define cq_declare(CLASS)\
@@ -119,10 +115,21 @@ template<class CLASS, class SUPER> struct _cqSandWich : SUPER {
     }
 };
 
+struct cqObject;
+struct cqClassInfo {
+    cqClassInfo *const superclass;
+    const char *const name;
+    cqRef<cqObject>::Strong (*const create)();
+};
+
+template<class T> cqRef<cqObject>::Strong _cqObjectCreator() {
+    return T::create();
+}
 template<class T> cqClassInfo *_cqClassInfoGet(const char *name) {
     static cqClassInfo info = {
         T::superclass(0),
-        name
+        name,
+        _cqObjectCreator<T>
     };
     return &info;
 }
@@ -148,7 +155,7 @@ cq_class(cqObject, _cqObjectRoot) {
     }
 };
 
-//shared object
+//static object
 
 template<class T, int = 0> typename cqRef<T>::Strong cqStaticObject() {
     cq_synchronize({
