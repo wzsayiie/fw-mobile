@@ -52,13 +52,13 @@ template<class T> struct cqRef {
     typedef std::weak_ptr<T> Weak;
 };
 
-struct cqClassInfo;
+struct cqClass;
 struct _cqObjectRoot {
     cqRef<_cqObjectRoot>::Weak thisWeakRef;
-    static  cqClassInfo *getSuperclass();
-    static  cqClassInfo *getClass();
-    virtual cqClassInfo *superclass();
-    virtual cqClassInfo *clazz();
+    static  cqClass *getSuperclass();
+    static  cqClass *getClass();
+    virtual cqClass *superclass();
+    virtual cqClass *clazz();
     virtual ~_cqObjectRoot();
 };
 
@@ -99,25 +99,25 @@ template<class CLASS, class SUPER> struct _cqSandWich : SUPER {
         return std::static_pointer_cast<CLASS>(ref);
     }
     
-    static cqClassInfo *getSuperclass() {
+    static cqClass *getSuperclass() {
         return SUPER::getClass();
     }
     
     //the function implemented by macro cq_member()
-    static cqClassInfo *getClass();
+    static cqClass *getClass();
     
-    cqClassInfo *superclass() override {
+    cqClass *superclass() override {
         return SUPER::getClass();
     }
     
-    cqClassInfo *clazz() override {
+    cqClass *clazz() override {
         return CLASS::getClass();
     }
 };
 
 struct cqObject;
-struct cqClassInfo {
-    cqClassInfo *const superclass;
+struct cqClass {
+    cqClass *const superclass;
     const char *const name;
     cqRef<cqObject>::Strong (*const create)();
 };
@@ -125,13 +125,13 @@ struct cqClassInfo {
 template<class T> cqRef<cqObject>::Strong _cqObjectCreator() {
     return T::create();
 }
-template<class T> cqClassInfo *_cqClassInfoGet(const char *name) {
-    static cqClassInfo info = {
+template<class T> cqClass *_cqClassGet(const char *name) {
+    static cqClass cls = {
         T::getSuperclass(),
         name,
         _cqObjectCreator<T>
     };
-    return &info;
+    return &cls;
 }
 
 #define cq_member(CLASS)\
@@ -139,15 +139,15 @@ template<class T> cqClassInfo *_cqClassInfoGet(const char *name) {
 /**/        : dat(std::make_shared<Dat>())\
 /**/    {\
 /**/    }\
-/**/    template<> cqClassInfo *_cqSandWich<CLASS, CLASS::super>::getClass() {\
-/**/        return _cqClassInfoGet<CLASS>(""#CLASS);\
+/**/    template<> cqClass *_cqSandWich<CLASS, CLASS::super>::getClass() {\
+/**/        return _cqClassGet<CLASS>(""#CLASS);\
 /**/    }\
 /**/    template<> struct _cqSandWich<CLASS, CLASS::super>::Dat
 
 cq_class(cqObject, _cqObjectRoot) {
     
-    virtual bool isKindOfClass(cqClassInfo *info);
-    virtual bool isMemberOfClass(cqClassInfo *info);
+    virtual bool isKindOfClass(cqClass *cls);
+    virtual bool isMemberOfClass(cqClass *cls);
     
     template<class T>
     auto cast() -> decltype(std::static_pointer_cast<T>(strongRef())) {

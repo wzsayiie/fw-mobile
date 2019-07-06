@@ -8,19 +8,19 @@ std::string cqString::make(const char *value) {
 
 //class:
 
-cqClassInfo *_cqObjectRoot::getSuperclass() {
+cqClass *_cqObjectRoot::getSuperclass() {
     return nullptr;
 }
 
-cqClassInfo *_cqObjectRoot::getClass() {
+cqClass *_cqObjectRoot::getClass() {
     return nullptr;
 }
 
-cqClassInfo *_cqObjectRoot::superclass() {
+cqClass *_cqObjectRoot::superclass() {
     return nullptr;
 }
 
-cqClassInfo *_cqObjectRoot::clazz() {
+cqClass *_cqObjectRoot::clazz() {
     return nullptr;
 }
 
@@ -30,21 +30,21 @@ _cqObjectRoot::~_cqObjectRoot() {
 cq_member(cqObject) {
 };
 
-bool cqObject::isKindOfClass(cqClassInfo *info) {
-    if (info == nullptr) {
+bool cqObject::isKindOfClass(cqClass *cls) {
+    if (cls == nullptr) {
         return false;
     }
     for (auto it = clazz(); it; it = it->superclass) {
-        if (it == info) {
+        if (it == cls) {
             return true;
         }
     }
     return false;
 }
 
-bool cqObject::isMemberOfClass(cqClassInfo *info) {
-    if (info == nullptr) {
+bool cqObject::isMemberOfClass(cqClass *cls) {
+    if (cls == nullptr) {
         return false;
     }
-    return clazz() == info;
+    return clazz() == cls;
 }
