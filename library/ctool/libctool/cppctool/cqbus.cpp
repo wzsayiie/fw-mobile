@@ -15,13 +15,7 @@ cqBus::cqBus() {
 };
 
 cqBusRef cqBus::get() {
-    cq_synchronize({
-        static cqBusRef object;
-        if (object == nullptr) {
-            object = cqBus::create();
-        }
-        return object;
-    });
+    return cqStaticObject<cqBus>();
 }
 
 static void tidy(std::vector<TargetItem> *list) {

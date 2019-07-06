@@ -8,13 +8,7 @@ cqSubsystemManager::cqSubsystemManager() {
 }
 
 cqSubsystemManagerRef cqSubsystemManager::get() {
-    cq_synchronize({
-        static cqSubsystemManagerRef object;
-        if (object == nullptr) {
-            object = cqSubsystemManager::create();
-        }
-        return object;
-    });
+    return cqStaticObject<cqSubsystemManager>();
 }
 
 void cqSubsystemManager::startSubsystem() {

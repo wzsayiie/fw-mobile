@@ -54,13 +54,7 @@ cqFileManager::cqFileManager() {
 }
 
 cqFileManagerRef cqFileManager::get() {
-    cq_synchronize({
-        static cqFileManagerRef object;
-        if (object == nullptr) {
-            object = cqFileManager::create();
-        }
-        return object;
-    });
+    return cqStaticObject<cqFileManager>();
 }
 
 bool cqFileManager::directoryExists(const std::string &path) {
@@ -105,13 +99,7 @@ cqURLSession::cqURLSession() {
 }
 
 cqURLSessionRef cqURLSession::get() {
-    cq_synchronize({
-        static cqURLSessionRef object;
-        if (object == nullptr) {
-            object = cqURLSession::create();
-        }
-        return object;
-    });
+    return cqStaticObject<cqURLSession>();
 }
 
 std::vector<char> cqURLSession::sendSyncGet(const std::string &url, float timeout, int *outError) {

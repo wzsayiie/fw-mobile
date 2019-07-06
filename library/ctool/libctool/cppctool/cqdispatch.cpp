@@ -47,13 +47,7 @@ void cqDispatchQueue::update() {
 //globale queues:
 
 static cqDispatchQueueRef globalQueue() {
-    cq_synchronize({
-        static cqDispatchQueueRef object;
-        if (object == nullptr) {
-            object = cqDispatchQueue::create();
-        }
-        return object;
-    });
+    return cqStaticObject<cqDispatchQueue, __LINE__>();
 }
 
 const int MaxThreadCount = 4;
@@ -91,13 +85,7 @@ void cqDispatch::asyncOnGlobal(std::function<void ()> task) {
 //main queue:
 
 static cqDispatchQueueRef mainQueue() {
-    cq_synchronize({
-        static cqDispatchQueueRef object;
-        if (object == nullptr) {
-            object = cqDispatchQueue::create();
-        }
-        return object;
-    });
+    return cqStaticObject<cqDispatchQueue, __LINE__>();
 }
 
 void cqDispatch::asyncOnMain(std::function<void ()> task) {

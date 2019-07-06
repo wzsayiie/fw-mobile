@@ -146,4 +146,16 @@ cq_class(cqObject, _cqObjectRoot) {
     }
 };
 
+//shared object
+
+template<class T, int = 0> typename cqRef<T>::Strong cqStaticObject() {
+    cq_synchronize({
+        static typename cqRef<T>::Strong object;
+        if (object == nullptr) {
+            object = T::create();
+        }
+        return object;
+    });
+}
+
 _CQCPPBASIS_END_NS
