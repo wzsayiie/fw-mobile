@@ -4,9 +4,6 @@ cq_member(cqViewController) {
     cqViewRef view;
 };
 
-cqViewController::cqViewController() {
-}
-
 void cqViewController::viewDidLoad() {
 }
 

@@ -7,8 +7,6 @@ _CQUIKIT_BEGIN_NS
 
 cq_class(cqWindow, cqView) {
     
-    cqWindow();
-    
     virtual void setRootViewController(cqViewControllerRef controller);
     virtual cqViewControllerRef rootViewController();
     

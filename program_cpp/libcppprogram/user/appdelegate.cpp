@@ -6,9 +6,6 @@ cq_member(AppDelegate) {
     cqWindowRef window;
 };
 
-AppDelegate::AppDelegate() {
-}
-
 void AppDelegate::applicationDidFinishLaunching() {
     auto controller = RootViewController::create();
     

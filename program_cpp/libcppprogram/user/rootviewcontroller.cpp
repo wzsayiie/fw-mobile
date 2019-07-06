@@ -5,9 +5,6 @@
 cq_member(RootViewController) {
 };
 
-RootViewController::RootViewController() {
-}
-
 void RootViewController::viewDidLoad() {
     super::viewDidLoad();
 }

@@ -10,9 +10,6 @@ cq_member(cqWindow) {
     cqViewRef touchesResponder;
 };
 
-cqWindow::cqWindow() {
-}
-
 void cqWindow::setRootViewController(cqViewControllerRef controller) {
     if (dat->rootViewController == controller) {
         return;

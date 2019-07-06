@@ -7,8 +7,6 @@ _CQUIKIT_BEGIN_NS
 
 cq_class(cqViewController, cqResponder) {
     
-    cqViewController();
-    
     virtual void viewDidLoad();
     
     virtual cqViewRef view();

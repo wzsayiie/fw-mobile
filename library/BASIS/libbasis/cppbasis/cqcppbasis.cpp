@@ -30,9 +30,6 @@ _cqObjectRoot::~_cqObjectRoot() {
 cq_member(cqObject) {
 };
 
-cqObject::cqObject() {
-}
-
 bool cqObject::isKindOfClass(cqClassInfo *info) {
     if (info == nullptr) {
         return false;

@@ -6,8 +6,6 @@
 _CQUIKIT_BEGIN_NS
 
 cq_class(cqApplicationDelegate, cqResponder) {
-
-    cqApplicationDelegate();
     
     virtual void applicationDidFinishLaunching ();
     virtual void applicationWillEnterForeground();
@@ -17,8 +15,6 @@ cq_class(cqApplicationDelegate, cqResponder) {
 cq_class(cqApplication, cqResponder) {
 
     static cqApplicationRef get();
-    
-    cqApplication();
     
     virtual void setDelegate(cqApplicationDelegateRef delegate);
     virtual cqApplicationDelegateRef delegate();

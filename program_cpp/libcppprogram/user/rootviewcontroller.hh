@@ -3,8 +3,6 @@
 #include "cquikit.hh"
 
 cq_class(RootViewController, cqViewController) {
-
-    RootViewController();
     
     void viewDidLoad() override;
     

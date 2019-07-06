@@ -11,8 +11,6 @@ enum cqEventType {
 
 cq_class(cqEvent, cqObject) {
     
-    cqEvent();
-    
     virtual cqEventType type();
 };
 

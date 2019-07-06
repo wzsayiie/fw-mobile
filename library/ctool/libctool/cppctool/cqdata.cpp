@@ -118,9 +118,6 @@ cq_member(cqData) {
     std::vector<uint8_t> vector;
 };
 
-cqData::cqData() {
-}
-
 cqDataRef cqData::createWithData(cqDataRef that) {
     cqDataRef object = cqData::create();
     if (that != nullptr) {

@@ -26,8 +26,6 @@ struct cqPath {
 
 cq_class(cqFileManager, cqObject) {
     
-    cqFileManager();
-    
     static cqFileManagerRef get();
     
     virtual bool directoryExists(const std::string &path);
@@ -46,8 +44,6 @@ struct cqThread {
 //network:
 
 cq_class(cqURLSession, cqObject) {
-    
-    cqURLSession();
     
     static cqURLSessionRef get();
     

@@ -18,8 +18,6 @@ cq_class(cqBus, cqObject) {
     
     //a cqBus object can be called on different threads.
     
-    cqBus();
-    
     static cqBusRef get();
     
     //cqBus stores weak reference, call removeObserver() isn't required.

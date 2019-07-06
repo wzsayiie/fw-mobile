@@ -3,9 +3,6 @@
 cq_member(cqResponder) {
 };
 
-cqResponder::cqResponder() {
-}
-
 cqResponderRef cqResponder::nextResponder() {
     return nullptr;
 }

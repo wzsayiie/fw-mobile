@@ -13,9 +13,6 @@ cqTouchRef cqTouch::createWithLocation(cqWindowRef window, cqPoint location) {
     return touch;
 }
 
-cqTouch::cqTouch() {
-}
-
 cqPoint cqTouch::locationInView(cqViewRef view) {
     if (view != nullptr) {
         auto location = dat->locationInWindow;

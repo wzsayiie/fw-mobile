@@ -50,9 +50,6 @@ std::string cqPath::append(const std::string &parent, const std::string &child) 
 cq_member(cqFileManager) {
 };
 
-cqFileManager::cqFileManager() {
-}
-
 cqFileManagerRef cqFileManager::get() {
     return cqStaticObject<cqFileManager>();
 }
@@ -94,9 +91,6 @@ void cqThread::sleep(float seconds) {
 
 cq_member(cqURLSession) {
 };
-
-cqURLSession::cqURLSession() {
-}
 
 cqURLSessionRef cqURLSession::get() {
     return cqStaticObject<cqURLSession>();

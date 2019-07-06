@@ -8,8 +8,6 @@ _CQUIKIT_BEGIN_NS
 
 cq_class(cqResponder, cqObject) {
     
-    cqResponder();
-    
     virtual cqResponderRef nextResponder();
     
     virtual void touchesBegan(const std::set<cqTouchRef> &touches, cqEventRef event);

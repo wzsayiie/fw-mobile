@@ -7,8 +7,6 @@ _CQUIKIT_BEGIN_NS
 
 cq_class(cqTouchesEvent, cqEvent) {
     
-    cqTouchesEvent();
-    
     cqEventType type() override;
 };
 

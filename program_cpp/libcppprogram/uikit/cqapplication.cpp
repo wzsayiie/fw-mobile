@@ -4,9 +4,6 @@
 cq_member(cqApplicationDelegate) {
 };
 
-cqApplicationDelegate::cqApplicationDelegate() {
-}
-
 void cqApplicationDelegate::applicationDidFinishLaunching () {}
 void cqApplicationDelegate::applicationWillEnterForeground() {}
 void cqApplicationDelegate::applicationDidEnterBackground () {}
@@ -17,9 +14,6 @@ cq_member(cqApplication) {
 
 cqApplicationRef cqApplication::get() {
     return cqStaticObject<cqApplication>();
-}
-
-cqApplication::cqApplication() {
 }
 
 void cqApplication::setDelegate(cqApplicationDelegateRef delegate) {

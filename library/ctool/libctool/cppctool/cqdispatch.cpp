@@ -9,9 +9,6 @@ cq_member(cqDispatchQueue) {
     std::mutex tableMutex;
 };
 
-cqDispatchQueue::cqDispatchQueue() {
-}
-
 void cqDispatchQueue::post(std::function<void ()> task) {
     if (task == nullptr) {
         return;

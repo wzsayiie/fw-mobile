@@ -13,8 +13,6 @@ cq_class(cqView, cqResponder) {
     
     static cqViewRef createWithFrame(cqRect frame);
     
-    cqView();
-    
     virtual void setFrame(cqRect frame);
     virtual cqRect frame();
     virtual cqRect bounds();

@@ -7,8 +7,6 @@ _CQSUBSYSTEM_BEGIN_NS
 
 cq_class(cqSubsystemManager, cqObject) {
     
-    cqSubsystemManager();
-    
     static cqSubsystemManagerRef get();
     
     virtual void startSubsystem();

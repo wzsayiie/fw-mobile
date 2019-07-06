@@ -15,9 +15,6 @@ cqViewRef cqView::createWithFrame(cqRect frame) {
     return view;
 }
 
-cqView::cqView() {
-}
-
 void cqView::setFrame(cqRect frame) {
     dat->frame = frame;
 }

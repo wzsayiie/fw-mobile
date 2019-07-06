@@ -4,9 +4,6 @@
 cq_member(cqSubsystemManager) {
 };
 
-cqSubsystemManager::cqSubsystemManager() {
-}
-
 cqSubsystemManagerRef cqSubsystemManager::get() {
     return cqStaticObject<cqSubsystemManager>();
 }

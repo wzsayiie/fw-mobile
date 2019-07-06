@@ -2,15 +2,23 @@
 
 #include "cqcbasis.h"
 
-#include <functional>
+//containers
 #include <map>
 #include <set>
 #include <string>
 #include <vector>
 
+//function
+#include <functional>
+
+//smart pointer
+#include <memory>
+
+//thread mutex
 #include <atomic>
 #include <mutex>
 
+//algorithm
 #include <algorithm>
 
 #include "CQCPPBASIS_NS.hh"
@@ -68,24 +76,16 @@ template<class T> struct cqRef {
 /**/    struct CLASS : _cqSandWich<CLASS, SUPER>
 
 template<class CLASS, class SUPER> struct _cqSandWich : SUPER {
-
-private:
-
-    typedef _cqSandWich _Sandwich;
+    
+    typedef SUPER super;
     
     //the struct implemented by macro cq_member()
-    struct _Dat;
-
-protected:
-
-    typedef SUPER super;
-
-    _cqSandWich() : dat(std::make_shared<_Dat>()) {
-    }
-
-public:
+    struct Dat;
     
-    std::shared_ptr<_Dat> dat;
+    std::shared_ptr<Dat> dat;
+    
+    //the constructor implemented by macro cq_member()
+    _cqSandWich();
     
     static typename cqRef<CLASS>::Strong create() {
         auto object = std::make_shared<CLASS>();
@@ -128,14 +128,16 @@ template<class T> cqClassInfo *_cqClassInfoGet(const char *name) {
 }
 
 #define cq_member(CLASS)\
-/**/    template<> cqClassInfo *CLASS::_Sandwich::clazz(int) {\
+/**/    template<> _cqSandWich<CLASS, CLASS::super>::_cqSandWich()\
+/**/        : dat(std::make_shared<Dat>())\
+/**/    {\
+/**/    }\
+/**/    template<> cqClassInfo *_cqSandWich<CLASS, CLASS::super>::clazz(int) {\
 /**/        return _cqClassInfoGet<CLASS>(""#CLASS);\
 /**/    }\
-/**/    template<> struct CLASS::_Sandwich::_Dat
+/**/    template<> struct _cqSandWich<CLASS, CLASS::super>::Dat
 
 cq_class(cqObject, _cqObjectRoot) {
-    
-    cqObject();
     
     virtual bool isKindOfClass(cqClassInfo *info);
     virtual bool isMemberOfClass(cqClassInfo *info);

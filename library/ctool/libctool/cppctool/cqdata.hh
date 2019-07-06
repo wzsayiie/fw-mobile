@@ -7,8 +7,6 @@ _CQCTOOL_BEGIN_NS
 
 cq_class(cqData, cqObject) {
     
-    cqData();
-    
     static cqDataRef createWithData(cqDataRef that);
     static cqDataRef createWithBytes(const void *bytes, size_t size);
     static cqDataRef createWithContentsOfFile(const std::string &path);

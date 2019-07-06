@@ -11,9 +11,6 @@ cq_member(cqBus) {
     std::mutex mutex;
 };
 
-cqBus::cqBus() {
-};
-
 cqBusRef cqBus::get() {
     return cqStaticObject<cqBus>();
 }
