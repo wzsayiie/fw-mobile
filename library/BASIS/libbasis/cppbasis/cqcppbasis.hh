@@ -53,34 +53,21 @@ struct _cqObjectRoot {
     virtual ~_cqObjectRoot();
 };
 
-#define _cq_ref(CLASS)     CLASS##Ref
-#define _cq_weakref(CLASS) CLASS##WeakRef
+template<class T> struct cqRef {
+    typedef std::shared_ptr<T> Strong;
+    typedef std::weak_ptr<T> Weak;
+};
 
 #define cq_declare(CLASS)\
-/**/    typedef std::shared_ptr<struct CLASS> _cq_ref    (CLASS);\
-/**/    typedef std::weak_ptr  <struct CLASS> _cq_weakref(CLASS);
-
-#define cq_member(CLASS)\
-/**/    template<> cqClassInfo *CLASS::_Sandwich::clazz(int) {\
-/**/        static cqClassInfo info = {\
-/**/            CLASS::superclass(0),\
-/**/            ""#CLASS\
-/**/        };\
-/**/        return &info;\
-/**/    }\
-/**/    template<> struct CLASS::_Sandwich::_Dat
+/**/    struct CLASS;\
+/**/    typedef cqRef<CLASS>::Strong CLASS##Ref;\
+/**/    typedef cqRef<CLASS>::Weak CLASS##WeakRef;
 
 #define cq_class(CLASS, SUPER)\
-/**/    cq_declare(CLASS);\
-/**/    struct CLASS : _cqSandWich<\
-/**/        CLASS,\
-/**/        _cq_ref(CLASS),\
-/**/        _cq_weakref(CLASS),\
-/**/        SUPER\
-/**/    >
+/**/    cq_declare(CLASS)\
+/**/    struct CLASS : _cqSandWich<CLASS, SUPER>
 
-template<class CLASS, class REF, class WEAKREF, class SUPER>
-struct _cqSandWich : SUPER {
+template<class CLASS, class SUPER> struct _cqSandWich : SUPER {
 
 private:
 
@@ -100,18 +87,18 @@ public:
     
     std::shared_ptr<_Dat> dat;
     
-    static REF create() {
+    static typename cqRef<CLASS>::Strong create() {
         auto object = std::make_shared<CLASS>();
         object->thisWeakRef = object;
         return object;
     }
     
-    REF strongRef() const {
+    typename cqRef<CLASS>::Strong strongRef() const {
         auto ref = SUPER::thisWeakRef.lock();
         return std::static_pointer_cast<CLASS>(ref);
     }
     
-    WEAKREF weakRef() const {
+    typename cqRef<CLASS>::Weak weakRef() const {
         auto ref = SUPER::thisWeakRef.lock();
         return std::static_pointer_cast<CLASS>(ref);
     }
@@ -131,6 +118,20 @@ public:
         return CLASS::clazz(0);
     }
 };
+
+template<class T> cqClassInfo *_cqClassInfoGet(const char *name) {
+    static cqClassInfo info = {
+        T::superclass(0),
+        name
+    };
+    return &info;
+}
+
+#define cq_member(CLASS)\
+/**/    template<> cqClassInfo *CLASS::_Sandwich::clazz(int) {\
+/**/        return _cqClassInfoGet<CLASS>(""#CLASS);\
+/**/    }\
+/**/    template<> struct CLASS::_Sandwich::_Dat
 
 cq_class(cqObject, _cqObjectRoot) {
     
