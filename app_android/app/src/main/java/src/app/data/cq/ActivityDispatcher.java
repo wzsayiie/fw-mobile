@@ -1,4 +1,4 @@
-package src.app.data;
+package src.app.data.cq;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -7,17 +7,17 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 
-import src.app.application.CQAppDelegate;
+import src.app.application.cq.AppDelegate;
 import src.library.basis.CQString;
 import src.library.foundation.L;
 
-public class CQActivityDispatcher {
+public class ActivityDispatcher {
 
     private static class Singleton {
         @SuppressLint("StaticFieldLeak")
-        static CQActivityDispatcher instance = new CQActivityDispatcher();
+        static ActivityDispatcher instance = new ActivityDispatcher();
     }
-    public static CQActivityDispatcher get() {
+    public static ActivityDispatcher get() {
         return Singleton.instance;
     }
 
@@ -28,9 +28,9 @@ public class CQActivityDispatcher {
 
     //activity lifecycle
 
-    private CQActivityDispatcher() {
+    private ActivityDispatcher() {
 
-        CQAppDelegate.getApp().registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
+        AppDelegate.getApp().registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
 
             public void onActivitySaveInstanceState(Activity a, Bundle b) { onActSaveInstanceState(a); }
             public void onActivityCreated          (Activity a, Bundle b) { onActCreated(a);}

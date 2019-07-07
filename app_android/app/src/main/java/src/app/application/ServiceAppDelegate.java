@@ -1,6 +1,8 @@
 package src.app.application;
 
-public class ServiceAppDelegate extends CQAppDelegate {
+import src.app.application.cq.AppDelegate;
+
+public class ServiceAppDelegate extends AppDelegate {
 
     private static ServiceAppDelegate sInstance;
 

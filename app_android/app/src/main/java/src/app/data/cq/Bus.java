@@ -1,17 +1,17 @@
-package src.app.data;
+package src.app.data.cq;
 
 import android.os.Handler;
 import android.os.Looper;
 
-import src.app.application.CQAppDelegate;
+import src.app.application.cq.AppDelegate;
 import src.library.foundation.L;
 
-public class CQBus {
+public class Bus {
 
     private static class Singleton {
-        static CQBus instance = new CQBus();
+        static Bus instance = new Bus();
     }
-    public static CQBus get() {
+    public static Bus get() {
         return Singleton.instance;
     }
 
@@ -25,7 +25,7 @@ public class CQBus {
             return;
         }
 
-        Looper looper = CQAppDelegate.getApp().getMainLooper();
+        Looper looper = AppDelegate.getApp().getMainLooper();
         new Handler(looper).postDelayed(runnable, delayMilliseconds);
     }
 }

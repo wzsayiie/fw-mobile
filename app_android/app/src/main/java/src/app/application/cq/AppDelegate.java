@@ -1,10 +1,10 @@
-package src.app.application;
+package src.app.application.cq;
 
 import android.app.Application;
 
 import src.library.foundation.L;
 
-public abstract class CQAppDelegate {
+public abstract class AppDelegate {
 
     private static Application sApp;
 
@@ -16,7 +16,7 @@ public abstract class CQAppDelegate {
         }
     }
 
-    static void initApp(Application app) {
+    public static void initApp(Application app) {
         if (app != null) {
             L.i("init app context");
             storedApp('+', app);
@@ -25,7 +25,7 @@ public abstract class CQAppDelegate {
         }
     }
 
-    void init() {
+    public void init() {
         L.i("init app delegate %s", L.string(this));
         onCreate();
     }

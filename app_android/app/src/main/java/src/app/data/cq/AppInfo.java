@@ -1,4 +1,4 @@
-package src.app.data;
+package src.app.data.cq;
 
 import android.app.ActivityManager;
 import android.app.Application;
@@ -11,13 +11,13 @@ import android.os.Process;
 import android.provider.Settings;
 import android.text.TextUtils;
 
-import src.app.application.CQAppDelegate;
+import src.app.application.cq.AppDelegate;
 import src.library.foundation.L;
 
-public class CQAppInfo {
+public class AppInfo {
 
     public static String getProcessName() {
-        Application app = CQAppDelegate.getApp();
+        Application app = AppDelegate.getApp();
         ActivityManager manager = (ActivityManager) app.getSystemService(Context.ACTIVITY_SERVICE);
         if (manager == null) {
             L.e("activity service did not found");
@@ -35,13 +35,13 @@ public class CQAppInfo {
     }
 
     public static String getPackageName() {
-        return CQAppDelegate.getApp().getPackageName();
+        return AppDelegate.getApp().getPackageName();
     }
 
     public static String getAppVersion() {
         try {
 
-            PackageManager manager = CQAppDelegate.getApp().getPackageManager();
+            PackageManager manager = AppDelegate.getApp().getPackageManager();
             String packageName = getPackageName();
             PackageInfo info = manager.getPackageInfo(packageName, 0);
 
@@ -63,7 +63,7 @@ public class CQAppInfo {
     }
 
     public static String getAndroidID() {
-        ContentResolver resolver = CQAppDelegate.getApp().getContentResolver();
+        ContentResolver resolver = AppDelegate.getApp().getContentResolver();
         return Settings.System.getString(resolver, Settings.Secure.ANDROID_ID);
     }
 

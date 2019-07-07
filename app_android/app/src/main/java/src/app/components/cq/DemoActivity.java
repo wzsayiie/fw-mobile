@@ -1,4 +1,4 @@
-package src.app.components;
+package src.app.components.cq;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import src.library.basis.CQString;
 import src.library.foundation.L;
 
-public abstract class CQDemoActivity extends Activity {
+public abstract class DemoActivity extends Activity {
 
     protected static class DataItem {
 
@@ -114,7 +114,7 @@ public abstract class CQDemoActivity extends Activity {
                 String text = getDataSource().get(position).getText();
 
                 if (convertView == null) {
-                    LayoutInflater inflater = LayoutInflater.from(CQDemoActivity.this);
+                    LayoutInflater inflater = LayoutInflater.from(DemoActivity.this);
                     convertView = inflater.inflate(android.R.layout.simple_list_item_1, null);
                 }
                 TextView textView = convertView.findViewById(android.R.id.text1);

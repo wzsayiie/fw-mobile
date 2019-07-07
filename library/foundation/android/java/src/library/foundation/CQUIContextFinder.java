@@ -38,7 +38,7 @@ public class CQUIContextFinder {
 
     private Activity findFrameworkAppActivity() {
         try {
-            Class<?> clazz = Class.forName("src.app.data.CQActivityDispatcher");
+            Class<?> clazz = Class.forName("src.app.data.cq.ActivityDispatcher");
             Method method = clazz.getMethod("currentResumedActivity");
             return (Activity) method.invoke(clazz);
         } catch (Exception e) {

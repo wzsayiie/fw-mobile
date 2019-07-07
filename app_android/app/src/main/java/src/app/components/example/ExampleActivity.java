@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import src.app.R;
-import src.app.components.CQDemoActivity;
+import src.app.components.cq.DemoActivity;
 
-public class ExampleActivity extends CQDemoActivity {
+public class ExampleActivity extends DemoActivity {
 
     private ListView mListView;
 

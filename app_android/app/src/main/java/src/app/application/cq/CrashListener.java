@@ -1,17 +1,17 @@
-package src.app.application;
+package src.app.application.cq;
 
 import src.library.foundation.L;
 
-public class CQCrashListener {
+public class CrashListener {
 
     private static class Singleton {
-        static CQCrashListener instance = new CQCrashListener();
+        static CrashListener instance = new CrashListener();
     }
-    public static CQCrashListener get() {
+    public static CrashListener get() {
         return Singleton.instance;
     }
 
-    private CQCrashListener() {
+    private CrashListener() {
         L.i("crash listener initialize");
     }
 

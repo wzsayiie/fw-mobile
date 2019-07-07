@@ -1,9 +1,10 @@
 package src.app.application;
 
-import src.app.data.CQActivityDispatcher;
-import src.app.data.CQHotfixManager;
+import src.app.application.cq.AppDelegate;
+import src.app.data.cq.ActivityDispatcher;
+import src.app.data.cq.HotfixManager;
 
-public class MainAppDelegate extends CQAppDelegate {
+public class MainAppDelegate extends AppDelegate {
 
     private static MainAppDelegate sInstance;
 
@@ -16,7 +17,7 @@ public class MainAppDelegate extends CQAppDelegate {
 
     @Override
     public void onCreate() {
-        CQActivityDispatcher.get();
-        CQHotfixManager.get();
+        ActivityDispatcher.get();
+        HotfixManager.get();
     }
 }
