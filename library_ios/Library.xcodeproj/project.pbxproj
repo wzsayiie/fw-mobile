@@ -31,6 +31,7 @@
 		B4C5027222C1B79F00374C6D /* cqjson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4C5026C22C1B79F00374C6D /* cqjson.cpp */; };
 		B4C5027322C1B79F00374C6D /* cqdispatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4C5026D22C1B79F00374C6D /* cqdispatch.cpp */; };
 		B4E2EC5322AE694C00577D62 /* CQThread.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E2EC5222AE694C00577D62 /* CQThread.m */; };
+		CE823F2322D1D5AD008929E2 /* cqdata_base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE823F2222D1D5AC008929E2 /* cqdata_base64.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -99,6 +100,8 @@
 		B4E2EC5122AE694C00577D62 /* CQThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQThread.h; sourceTree = "<group>"; };
 		B4E2EC5222AE694C00577D62 /* CQThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQThread.m; sourceTree = "<group>"; };
 		CE219ADF21DA51FD006A27B6 /* libLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE823F2122D1D5AC008929E2 /* cqdata_base64.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqdata_base64.hh; sourceTree = "<group>"; };
+		CE823F2222D1D5AC008929E2 /* cqdata_base64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqdata_base64.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,6 +336,8 @@
 				B4189E2D22CCDAB20072CFC5 /* cqbus.hh */,
 				B4C5026F22C1B79F00374C6D /* CQCTOOL_NS.hh */,
 				B4C5026A22C1B79F00374C6D /* cqctool.hh */,
+				CE823F2222D1D5AC008929E2 /* cqdata_base64.cpp */,
+				CE823F2122D1D5AC008929E2 /* cqdata_base64.hh */,
 				B4189E2422CB05E70072CFC5 /* cqdata.cpp */,
 				B4189E2322CB05E70072CFC5 /* cqdata.hh */,
 				B4C5026D22C1B79F00374C6D /* cqdispatch.cpp */,
@@ -432,6 +437,7 @@
 				B42505B0226744B10035F91A /* cqsubsystemarche.cpp in Sources */,
 				B439E57C2266CC7500B66285 /* cqcppbasis.cpp in Sources */,
 				B439E5922266CCDE00B66285 /* cqlualibfoundation.cpp in Sources */,
+				CE823F2322D1D5AD008929E2 /* cqdata_base64.cpp in Sources */,
 				B439E57F2266CC7500B66285 /* cqcbasis.cpp in Sources */,
 				B439E5902266CCDE00B66285 /* CQLog.m in Sources */,
 				B473DC4022A5232A00218901 /* CQFileManager.m in Sources */,

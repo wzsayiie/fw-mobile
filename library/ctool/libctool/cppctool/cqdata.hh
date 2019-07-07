@@ -10,7 +10,7 @@ cq_class(cqData, cqObject) {
     static cqDataRef createWithData(cqDataRef that);
     static cqDataRef createWithBytes(const void *bytes, size_t size);
     static cqDataRef createWithContentsOfFile(const std::string &path);
-    static cqDataRef createWithBase64EncodedData(const std::string &base64);
+    static cqDataRef createWithBase64EncodedData(const std::string &encoded);
     
     virtual const std::vector<uint8_t> &data();
     virtual const void *bytes();
