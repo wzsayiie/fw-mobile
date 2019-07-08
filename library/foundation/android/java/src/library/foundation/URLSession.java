@@ -9,14 +9,14 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import src.library.basis.CQString;
+import src.library.basis.StringUtil;
 
-public class CQURLSession {
+public class URLSession {
 
     private static class Singleton {
-        static CQURLSession instance = new CQURLSession();
+        static URLSession instance = new URLSession();
     }
-    public static CQURLSession get() {
+    public static URLSession get() {
         return Singleton.instance;
     }
 
@@ -30,7 +30,7 @@ public class CQURLSession {
             outError[0] = 1;
         }
 
-        if (CQString.isEmpty(urlString) || timeoutSeconds <= 0) {
+        if (StringUtil.isEmpty(urlString) || timeoutSeconds <= 0) {
             return null;
         }
 

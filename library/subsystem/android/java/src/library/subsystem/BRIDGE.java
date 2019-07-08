@@ -4,10 +4,10 @@ package src.library.subsystem;
 public class BRIDGE {
 
     public static void cq_subsystem_start() {
-        CQSubsystemManager.get().startSubsystem();
+        SubsystemManager.get().startSubsystem();
     }
 
     public static void cq_subsystem_stop() {
-        CQSubsystemManager.get().stopSubsystem();
+        SubsystemManager.get().stopSubsystem();
     }
 }

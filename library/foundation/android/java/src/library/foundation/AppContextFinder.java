@@ -6,12 +6,12 @@ import android.app.Application;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-public class CQAppContextFinder {
+public class AppContextFinder {
 
     private static class Singleton {
-        static CQAppContextFinder instance = new CQAppContextFinder();
+        static AppContextFinder instance = new AppContextFinder();
     }
-    public static CQAppContextFinder get() {
+    public static AppContextFinder get() {
         return Singleton.instance;
     }
 

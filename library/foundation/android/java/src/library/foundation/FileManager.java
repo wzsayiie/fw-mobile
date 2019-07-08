@@ -4,22 +4,22 @@ import android.content.Context;
 
 import java.io.File;
 
-import src.library.basis.CQString;
+import src.library.basis.StringUtil;
 
-public class CQFileManager {
+public class FileManager {
 
     public static String documentDirectory() {
-        Context context = CQAppContextFinder.get().findApp();
+        Context context = AppContextFinder.get().findApp();
         return context.getFilesDir().getAbsolutePath();
     }
 
     public static String cachesDirectory() {
-        Context context = CQAppContextFinder.get().findApp();
+        Context context = AppContextFinder.get().findApp();
         return context.getCacheDir().getAbsolutePath();
     }
 
     public static String temporaryDirectory() {
-        Context context = CQAppContextFinder.get().findApp();
+        Context context = AppContextFinder.get().findApp();
         return context.getCacheDir().getAbsolutePath();
     }
 
@@ -36,9 +36,9 @@ public class CQFileManager {
     }
 
     private static class Singleton {
-        static CQFileManager instance = new CQFileManager();
+        static FileManager instance = new FileManager();
     }
-    public static CQFileManager get() {
+    public static FileManager get() {
         return Singleton.instance;
     }
 
@@ -61,7 +61,7 @@ public class CQFileManager {
     }
 
     public boolean createDirectory(String path, boolean intermediate) {
-        if (CQString.isEmpty(path)) {
+        if (StringUtil.isEmpty(path)) {
             return false;
         }
 
@@ -86,7 +86,7 @@ public class CQFileManager {
     }
 
     public void removePath(String path) {
-        if (CQString.isEmpty(path)) {
+        if (StringUtil.isEmpty(path)) {
             File file = new File(path);
             removeRecursively(file);
         }

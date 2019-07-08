@@ -4,16 +4,16 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 
-import src.library.foundation.CQUIContextFinder;
+import src.library.foundation.UIContextFinder;
 import src.library.foundation.L;
 
-public class CQSubsystemManager {
+public class SubsystemManager {
 
     private static class Singleton {
         @SuppressLint("StaticFieldLeak")
-        static CQSubsystemManager instance = new CQSubsystemManager();
+        static SubsystemManager instance = new SubsystemManager();
     }
-    public static CQSubsystemManager get() {
+    public static SubsystemManager get() {
         return Singleton.instance;
     }
 
@@ -25,13 +25,13 @@ public class CQSubsystemManager {
             return;
         }
 
-        Activity rootActivity = CQUIContextFinder.get().findCurrentActivity();
+        Activity rootActivity = UIContextFinder.get().findCurrentActivity();
         if (rootActivity == null) {
             L.e("not found current activity context");
             return;
         }
 
-        Intent intent = new Intent(rootActivity, CQSubsystemActivity.class);
+        Intent intent = new Intent(rootActivity, SubsystemActivity.class);
         rootActivity.startActivity(intent);
     }
 

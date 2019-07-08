@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import src.app.application.cq.AppDelegate;
-import src.library.basis.CQString;
+import src.library.basis.StringUtil;
 import src.library.foundation.L;
 
 public class ActivityDispatcher {
@@ -95,7 +95,7 @@ public class ActivityDispatcher {
     }
 
     private void startActivityWithAnimation(String animation, String action, Bundle extras) {
-        if (CQString.isEmpty(action)) {
+        if (StringUtil.isEmpty(action)) {
             L.e("try start a activity but specified action is empty");
             return;
         }

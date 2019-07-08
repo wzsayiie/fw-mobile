@@ -5,14 +5,14 @@ import android.app.Activity;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-//NOTE: CQUIContextFinder only be used on main thread.
+//NOTE: UIContextFinder only be used on main thread.
 
-public class CQUIContextFinder {
+public class UIContextFinder {
 
     private static class Singleton {
-        static CQUIContextFinder instance = new CQUIContextFinder();
+        static UIContextFinder instance = new UIContextFinder();
     }
-    public static CQUIContextFinder get() {
+    public static UIContextFinder get() {
         return Singleton.instance;
     }
 

@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import src.library.basis.CQString;
+import src.library.basis.StringUtil;
 import src.library.foundation.L;
 
 public abstract class DemoActivity extends Activity {
@@ -75,7 +75,7 @@ public abstract class DemoActivity extends Activity {
     }
 
     protected void addAction(String actionText, Runnable action) {
-        if (CQString.isEmpty(actionText)) {
+        if (StringUtil.isEmpty(actionText)) {
             return;
         }
 

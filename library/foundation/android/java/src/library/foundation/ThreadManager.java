@@ -1,6 +1,6 @@
 package src.library.foundation;
 
-public class CQThread {
+public class ThreadManager {
 
     public static void run(Runnable task) {
         if (task != null) {
