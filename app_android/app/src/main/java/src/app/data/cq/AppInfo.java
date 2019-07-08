@@ -1,17 +1,23 @@
 package src.app.data.cq;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Build;
 import android.os.Process;
 import android.provider.Settings;
 import android.text.TextUtils;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import src.app.application.cq.AppDelegate;
+import src.library.basis.StringUtil;
 import src.library.foundation.L;
 
 public class AppInfo {
@@ -76,5 +82,63 @@ public class AppInfo {
             String abi2 = Build.CPU_ABI2;
             return abi2 != null ? abi1 + "|" + abi2 : abi1;
         }
+    }
+
+    public static Signature getApkSignature() {
+        PackageManager packageManager = AppDelegate.getApp().getPackageManager();
+        String packageName = getPackageName();
+
+        Signature[] signatures;
+        try {
+            if (Build.VERSION.SDK_INT >= 28) {
+                int flag = PackageManager.GET_SIGNING_CERTIFICATES;
+                PackageInfo info = packageManager.getPackageInfo(packageName, flag);
+                signatures = info.signingInfo.getApkContentsSigners();
+            } else {
+                int flag = PackageManager.GET_SIGNATURES;
+                @SuppressLint("PackageManagerGetSignatures")
+                PackageInfo info = packageManager.getPackageInfo(packageName, flag);
+                signatures = info.signatures;
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            L.e("exception on get apk signature: %s", e.toString());
+            return null;
+        }
+        if (signatures == null || signatures.length == 0) {
+            L.e("the apk signature is empty");
+            return null;
+        }
+
+        return signatures[0];
+    }
+
+    public static String getApkSignatureDigest(String algorithm) {
+        if (StringUtil.isEmpty(algorithm)) {
+            L.e("didn't specify algorithm for apk signature digest");
+            return "";
+        }
+
+        byte[] data = null; {
+            Signature signature = getApkSignature();
+            if (signature != null) {
+                data = signature.toByteArray();
+            }
+        }
+        if (data == null) {
+            L.e("apk signature data is empty");
+            return "";
+        }
+
+        MessageDigest digestGenerator;
+        try {
+            digestGenerator = MessageDigest.getInstance(algorithm);
+            digestGenerator.update(data);
+        } catch (NoSuchAlgorithmException e) {
+            L.e("exception on calculate signature digest: %s", e.toString());
+            return "";
+        }
+
+        byte[] digest = digestGenerator.digest();
+        return StringUtil.hexStringFromBytes(digest);
     }
 }

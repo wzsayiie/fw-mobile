@@ -29,6 +29,7 @@ public class App extends Application {
         L.i("  supported abi: %s", AppInfo.getSupportedABIs());
         L.i("  os version   : %s", Build.VERSION.RELEASE);
         L.i("  api level    : %d", Build.VERSION.SDK_INT);
+        L.i("  apk sign sha1: %s", AppInfo.getApkSignatureDigest("SHA1"));
         L.i("  process name : %s", AppInfo.getPackageName());
         L.i("  app version  : %s", AppInfo.getAppVersion());
         L.i("  android id   : %s", AppInfo.getAndroidID());
