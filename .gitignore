@@ -22,9 +22,6 @@
 *_osx/**/export/
 
 # Unity local files
-app_unity/Assets/Plugins/*
-app_unity/Assets/Plugins.meta
-
 app_unity/Library/*
 app_unity/Temp/*
 
