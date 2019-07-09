@@ -1,10 +1,5 @@
 #include "cqcbasis.h"
 
-extern const bool cq_on_android = CQ_ON_ANDROID;
-extern const bool cq_on_iphone  = CQ_ON_IPHONE ;
-extern const bool cq_on_osx     = CQ_ON_OSX    ;
-extern const bool cq_on_windows = CQ_ON_WINDOWS;
-
 void _cq_assign_data(_cq_data *data, const void *bytes, int32_t size) {
     if (data == nullptr) {
         return;

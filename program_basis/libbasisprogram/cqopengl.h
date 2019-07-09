@@ -7,5 +7,5 @@
 # elif CQ_ON_IPHONE
 #   include <OpenGLES/ES2/gl.h>
 # else
-#   error "unexpected os platform"
+#   error "unexpected target"
 # endif

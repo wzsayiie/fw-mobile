@@ -5,13 +5,14 @@ set -e -u
 cd `dirname $0`
 
 ### configuration begin
-dst_dir="app_unity/Assets/Plugins"
-dst_fil="library"
+dst_dir="BUILD"
+dst_fil="osx"
 
 cpp_dir=""
 cpp_dir="$cpp_dir library/BASIS/libbasis"
 cpp_dir="$cpp_dir library/ctool/libctool"
 cpp_dir="$cpp_dir library/foundation/libfoundation"
+cpp_dir="$cpp_dir library/standalone/libstandalone"
 
 obc_dir=""
 obc_dir="$obc_dir library/BASIS/ObjcBasis"
@@ -46,13 +47,12 @@ done
 
 # link
 mak_arg=""
-mak_arg="$mak_arg -dynamiclib"
 mak_arg="$mak_arg $tmp_dir/*.o"
 mak_arg="$mak_arg -framework Foundation"
 mak_arg="$mak_arg -lc++"
 
-rm   -rf $dst_dir/$dst_fil.bundle
-mkdir -p $dst_dir/$dst_fil.bundle/Contents/MacOS
-clang -o $dst_dir/$dst_fil.bundle/Contents/MacOS/$dst_fil $mak_arg
+rm   -rf $dst_dir/$dst_fil
+mkdir -p $dst_dir
+clang -o $dst_dir/$dst_fil $mak_arg
 
 rm -rf $tmp_dir
