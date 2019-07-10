@@ -15,8 +15,8 @@ cpp_dir="$cpp_dir library/foundation/libfoundation"
 cpp_dir="$cpp_dir library/standalone/libstandalone"
 
 obc_dir=""
-obc_dir="$obc_dir library/BASIS/ObjcBasis"
-obc_dir="$obc_dir library/foundation/IOSFoundation"
+obc_dir="$obc_dir library/BASIS/MacBasis"
+obc_dir="$obc_dir library/foundation/MacFoundation"
 
 sh generate_headers
 ### configutation end

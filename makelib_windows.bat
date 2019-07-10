@@ -26,7 +26,7 @@ set source="library/foundation/libfoundation"
 call :compile_std
 if not %error% == 0 (goto end)
 
-set source="library/foundation/WINFoundation"
+set source="library/foundation/windows"
 call :compile_cli
 if not %error% == 0 (goto end)
 

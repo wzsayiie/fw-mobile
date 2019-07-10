@@ -5,28 +5,35 @@
 #include <stdlib.h>
 #include <string.h>
 
+// +-------------+ +-------+
+// |     mac     | |android|
+// | +---+ +---+ | +-------+
+// | |ios| |osx| | +-------+
+// | +---+ +---+ | |windows|
+// +-------------+ +-------+
+
 # ifdef __APPLE__
 #   include <TargetConditionals.h>
 # endif
 
 # if ANDROID
 #   define CQ_ON_ANDROID 1
-#   define CQ_ON_IPHONE  0
+#   define CQ_ON_IOS     0
 #   define CQ_ON_WINDOWS 0
 #   define CQ_ON_OSX     0
-# elif TARGET_OS_IPHONE
+# elif TARGET_OS_IOS
 #   define CQ_ON_ANDROID 0
-#   define CQ_ON_IPHONE  1
+#   define CQ_ON_IOS     1
 #   define CQ_ON_WINDOWS 0
 #   define CQ_ON_OSX     0
 # elif _WIN32
 #   define CQ_ON_ANDROID 0
-#   define CQ_ON_IPHONE  0
+#   define CQ_ON_IOS     0
 #   define CQ_ON_WINDOWS 1
 #   define CQ_ON_OSX     0
 # elif TARGET_OS_OSX
 #   define CQ_ON_ANDROID 0
-#   define CQ_ON_IPHONE  0
+#   define CQ_ON_IOS     0
 #   define CQ_ON_WINDOWS 0
 #   define CQ_ON_OSX     1
 # else
@@ -35,22 +42,22 @@
 
 # if CQ_ON_ANDROID
 #   define CQ_IF_ON_ANDROID(CODE) CODE
-#   define CQ_IF_ON_IPHONE( CODE)
+#   define CQ_IF_ON_IOS(    CODE)
 #   define CQ_IF_ON_WINDOWS(CODE)
 #   define CQ_IF_ON_OSX(    CODE)
-# elif CQ_ON_IPHONE
+# elif CQ_ON_IOS
 #   define CQ_IF_ON_ANDROID(CODE)
-#   define CQ_IF_ON_IPHONE( CODE) CODE
+#   define CQ_IF_ON_IOS(    CODE) CODE
 #   define CQ_IF_ON_WINDOWS(CODE)
 #   define CQ_IF_ON_OSX(    CODE)
 # elif CQ_ON_WINDOWS
 #   define CQ_IF_ON_ANDROID(CODE)
-#   define CQ_IF_ON_IPHONE( CODE)
+#   define CQ_IF_ON_IOS(    CODE)
 #   define CQ_IF_ON_WINDOWS(CODE) CODE
 #   define CQ_IF_ON_OSX(    CODE)
 # elif CQ_ON_OSX
 #   define CQ_IF_ON_ANDROID(CODE)
-#   define CQ_IF_ON_IPHONE( CODE)
+#   define CQ_IF_ON_IOS(    CODE)
 #   define CQ_IF_ON_WINDOWS(CODE)
 #   define CQ_IF_ON_OSX(    CODE) CODE
 # endif

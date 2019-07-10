@@ -182,7 +182,7 @@
 		B439E56C2266CC4E00B66285 /* BASIS */ = {
 			isa = PBXGroup;
 			children = (
-				B48ECB4022B0900C00F7DE77 /* ObjcBasis */,
+				B48ECB4022B0900C00F7DE77 /* MacBasis */,
 				B439E56E2266CC7500B66285 /* libbasis */,
 			);
 			name = BASIS;
@@ -191,7 +191,7 @@
 		B439E56D2266CC5A00B66285 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				B439E5802266CCDE00B66285 /* IOSFoundation */,
+				B439E5802266CCDE00B66285 /* MacFoundation */,
 				B439E5842266CCDE00B66285 /* libfoundation */,
 			);
 			name = Foundation;
@@ -236,7 +236,7 @@
 			path = cbasis;
 			sourceTree = "<group>";
 		};
-		B439E5802266CCDE00B66285 /* IOSFoundation */ = {
+		B439E5802266CCDE00B66285 /* MacFoundation */ = {
 			isa = PBXGroup;
 			children = (
 				B434F98C226EB06F0081BBAA /* BRIDGE.m */,
@@ -250,8 +250,8 @@
 				B4A469CF22B77A3800CFD494 /* CQURLSession.h */,
 				B4A469D022B77A3800CFD494 /* CQURLSession.m */,
 			);
-			name = IOSFoundation;
-			path = ../library/foundation/IOSFoundation;
+			name = MacFoundation;
+			path = ../library/foundation/MacFoundation;
 			sourceTree = "<group>";
 		};
 		B439E5842266CCDE00B66285 /* libfoundation */ = {
@@ -318,14 +318,14 @@
 			path = cppstandalone;
 			sourceTree = "<group>";
 		};
-		B48ECB4022B0900C00F7DE77 /* ObjcBasis */ = {
+		B48ECB4022B0900C00F7DE77 /* MacBasis */ = {
 			isa = PBXGroup;
 			children = (
 				B48ECB4122B0900C00F7DE77 /* CQObjcBasis.h */,
 				B48ECB4222B0900C00F7DE77 /* CQObjcBasis.m */,
 			);
-			name = ObjcBasis;
-			path = ../library/BASIS/ObjcBasis;
+			name = MacBasis;
+			path = ../library/BASIS/MacBasis;
 			sourceTree = "<group>";
 		};
 		B4C5026322C1B77C00374C6D /* CTool */ = {
