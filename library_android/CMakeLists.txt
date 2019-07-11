@@ -12,10 +12,14 @@ set(lib_name library)
 
 list(APPEND inc_path ../GENERATED_HEADERS)
 
-list(APPEND src_aims ../library/BASIS/*.cpp)
-list(APPEND src_aims ../library/ctool/*.cpp)
-list(APPEND src_aims ../library/foundation/*.cpp)
-list(APPEND src_aims ../library/subsystem/*.cpp)
+list(APPEND src_aims ../library/BASIS/libbasis/*.cpp)
+list(APPEND src_aims ../library/ctool/libctool/*.cpp)
+list(APPEND src_aims ../library/foundation/libfoundation/*.cpp)
+list(APPEND src_aims ../library/subsystem/libsubsystem/*.cpp)
+
+list(APPEND src_aims ../library/BASIS/android/cpp/*.cpp)
+list(APPEND src_aims ../library/foundation/android/cpp/*.cpp)
+list(APPEND src_aims ../library/subsystem/android/cpp/*.cpp)
 
 #list(APPEND sys_libs xx)
 #list(APPEND usr_libs ../xx/xx.so)

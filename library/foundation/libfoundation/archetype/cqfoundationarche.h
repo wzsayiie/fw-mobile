@@ -25,7 +25,7 @@ CQ_C_LINK void cq_thread_sleep(float seconds);
 
 //network:
 
-//suceeded then return 0, else return non-zero.
+//succeeded then return 0, else return non-zero.
 CQ_C_LINK int32_t cq_http_get(const char *url, float timeout);
 
 //data of last get request.
@@ -39,7 +39,7 @@ CQ_C_LINK void cq_tcp_disconnect(int64_t handle);
 CQ_C_LINK bool cq_tcp_send_bytes(int64_t handle, const void *bytes, int32_t size);
 
 //if return value
-//  > 0 : receviced data;
+//  > 0 : received data;
 //  = 0 : there was not received data currently;
 //  < 0 : the tcp disconnected.
 CQ_C_LINK int32_t cq_tcp_received_size(int64_t handle);
