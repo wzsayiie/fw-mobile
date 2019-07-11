@@ -28,20 +28,22 @@ mkdir -p $tmp_dir
 
 # compile *.cpp
 for it in `find $cpp_dir -name '*.cpp'`; do
+    echo `basename $it`
     cmd_line="clang"
     cmd_line="$cmd_line -std=c++14"
     cmd_line="$cmd_line -IGENERATED_HEADERS"
     cmd_line="$cmd_line -c $it"
-    cmd_line="$cmd_line -o $tmp_dir/$RANDOM.`basename $it`.o"
+    cmd_line="$cmd_line -o $tmp_dir/`basename $it`.$RANDOM.o"
     $cmd_line
 done
 
 # compile *.m
 for it in `find $obc_dir -name '*.m'`; do
+    echo `basename $it`
     cmd_line="clang"
     cmd_line="$cmd_line -IGENERATED_HEADERS"
     cmd_line="$cmd_line -c $it"
-    cmd_line="$cmd_line -o $tmp_dir/$RANDOM.`basename $it`.o"
+    cmd_line="$cmd_line -o $tmp_dir/`basename $it`.$RANDOM.o"
     $cmd_line
 done
 
