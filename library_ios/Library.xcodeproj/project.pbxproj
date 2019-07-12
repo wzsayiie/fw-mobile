@@ -27,6 +27,8 @@
 		B474FB5722D47B6E004627C6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B474FB5622D47B6E004627C6 /* main.cpp */; };
 		B48ECB4322B0900C00F7DE77 /* CQObjcBasis.m in Sources */ = {isa = PBXBuildFile; fileRef = B48ECB4222B0900C00F7DE77 /* CQObjcBasis.m */; };
 		B4A469D122B77A3800CFD494 /* CQURLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A469D022B77A3800CFD494 /* CQURLSession.m */; };
+		B4AB963622D73FEF00A01060 /* BRIDGE.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AB963522D73FEF00A01060 /* BRIDGE.m */; };
+		B4AB963A22D73FF900A01060 /* cqstandalonearche.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4AB963822D73FF900A01060 /* cqstandalonearche.cpp */; };
 		B4C5027022C1B79F00374C6D /* cqctoolarche.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4C5026722C1B79F00374C6D /* cqctoolarche.cpp */; };
 		B4C5027122C1B79F00374C6D /* BRIDGE.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4C5026B22C1B79F00374C6D /* BRIDGE.cpp */; };
 		B4C5027222C1B79F00374C6D /* cqjson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4C5026C22C1B79F00374C6D /* cqjson.cpp */; };
@@ -87,6 +89,10 @@
 		B4A2A2132268723E00D3D800 /* CQSubsystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQSubsystem.h; sourceTree = "<group>"; };
 		B4A469CF22B77A3800CFD494 /* CQURLSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQURLSession.h; sourceTree = "<group>"; };
 		B4A469D022B77A3800CFD494 /* CQURLSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQURLSession.m; sourceTree = "<group>"; };
+		B4AB963422D73FEF00A01060 /* CQStandalone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQStandalone.h; sourceTree = "<group>"; };
+		B4AB963522D73FEF00A01060 /* BRIDGE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRIDGE.m; sourceTree = "<group>"; };
+		B4AB963822D73FF900A01060 /* cqstandalonearche.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqstandalonearche.cpp; sourceTree = "<group>"; };
+		B4AB963922D73FF900A01060 /* cqstandalonearche.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqstandalonearche.h; sourceTree = "<group>"; };
 		B4C5026622C1B79F00374C6D /* cqctoolarche.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqctoolarche.h; sourceTree = "<group>"; };
 		B4C5026722C1B79F00374C6D /* cqctoolarche.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqctoolarche.cpp; sourceTree = "<group>"; };
 		B4C5026922C1B79F00374C6D /* cqjson.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqjson.hh; sourceTree = "<group>"; };
@@ -296,6 +302,7 @@
 		B474FB5322D47B45004627C6 /* Standalone */ = {
 			isa = PBXGroup;
 			children = (
+				B4AB963322D73FEF00A01060 /* MacStandalone */,
 				B474FB5422D47B6E004627C6 /* libstandalone */,
 			);
 			name = Standalone;
@@ -304,6 +311,7 @@
 		B474FB5422D47B6E004627C6 /* libstandalone */ = {
 			isa = PBXGroup;
 			children = (
+				B4AB963722D73FF900A01060 /* archetype */,
 				B474FB5522D47B6E004627C6 /* cppstandalone */,
 			);
 			name = libstandalone;
@@ -326,6 +334,25 @@
 			);
 			name = MacBasis;
 			path = ../library/BASIS/MacBasis;
+			sourceTree = "<group>";
+		};
+		B4AB963322D73FEF00A01060 /* MacStandalone */ = {
+			isa = PBXGroup;
+			children = (
+				B4AB963522D73FEF00A01060 /* BRIDGE.m */,
+				B4AB963422D73FEF00A01060 /* CQStandalone.h */,
+			);
+			name = MacStandalone;
+			path = ../library/standalone/MacStandalone;
+			sourceTree = "<group>";
+		};
+		B4AB963722D73FF900A01060 /* archetype */ = {
+			isa = PBXGroup;
+			children = (
+				B4AB963822D73FF900A01060 /* cqstandalonearche.cpp */,
+				B4AB963922D73FF900A01060 /* cqstandalonearche.h */,
+			);
+			path = archetype;
 			sourceTree = "<group>";
 		};
 		B4C5026322C1B77C00374C6D /* CTool */ = {
@@ -458,6 +485,7 @@
 				B4A469D122B77A3800CFD494 /* CQURLSession.m in Sources */,
 				B42505B2226744B10035F91A /* cqsubsystem.cpp in Sources */,
 				B4E2EC5322AE694C00577D62 /* CQThread.m in Sources */,
+				B4AB963A22D73FF900A01060 /* cqstandalonearche.cpp in Sources */,
 				B4C5027022C1B79F00374C6D /* cqctoolarche.cpp in Sources */,
 				B42505B1226744B10035F91A /* cqlualibsubsystem.cpp in Sources */,
 				B439E5932266CCDE00B66285 /* cqfoundation.cpp in Sources */,
@@ -474,6 +502,7 @@
 				B434F98F226EBA2D0081BBAA /* BRIDGE.m in Sources */,
 				B42505AF226744B10035F91A /* CQSubsystemManager.m in Sources */,
 				B439E5912266CCDE00B66285 /* cqfoundationarche.cpp in Sources */,
+				B4AB963622D73FEF00A01060 /* BRIDGE.m in Sources */,
 				B4C5027222C1B79F00374C6D /* cqjson.cpp in Sources */,
 				B434F98D226EB06F0081BBAA /* BRIDGE.m in Sources */,
 				B439E57E2266CC7500B66285 /* cqluabasis.cpp in Sources */,

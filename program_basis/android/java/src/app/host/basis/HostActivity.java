@@ -13,6 +13,7 @@ import java.util.TimerTask;
 public class HostActivity extends Activity implements GLView.Renderer {
 
     static {
+        //'cargo' will load implicitly 'library'.
         System.loadLibrary("cargo");
     }
 

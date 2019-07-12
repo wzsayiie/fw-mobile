@@ -17,6 +17,7 @@ cpp_dir="$cpp_dir library/standalone/libstandalone"
 obc_dir=""
 obc_dir="$obc_dir library/BASIS/MacBasis"
 obc_dir="$obc_dir library/foundation/MacFoundation"
+obc_dir="$obc_dir library/standalone/MacStandalone"
 
 sh generate_headers
 ### configutation end

@@ -10,6 +10,10 @@ import src.library.foundation.L;
 
 public class App extends Application {
 
+    static {
+        System.loadLibrary("library");
+    }
+    
     @Override
     public void onCreate() {
         super.onCreate();
