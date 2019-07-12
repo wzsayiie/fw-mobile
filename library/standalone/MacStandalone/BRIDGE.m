@@ -1,6 +1,6 @@
 #import "CQStandalone.h"
 #import "cqstandalonearche.h"
 
-int CQStandaloneMain(int argc, const char **argv) {
-    return cq_standalone_main(argc, argv);
+void CQStandaloneLaunch(int argc, const char **argv) {
+    cq_standalone_launch(argc, argv);
 }

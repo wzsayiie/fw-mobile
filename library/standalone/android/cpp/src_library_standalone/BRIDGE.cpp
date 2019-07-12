@@ -29,14 +29,14 @@ static std::vector<char *> newStringsFrom(JNIEnv *env, jobjectArray args) {
     return store;
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_library_standalone_Standalone_main
+extern "C" JNIEXPORT void JNICALL Java_src_library_standalone_Standalone_launch
     (JNIEnv *env, jclass, jobjectArray args)
 {
     std::vector<char *> store = newStringsFrom(env, args);
 
     auto argc = (int)store.size();
     auto argv = (const char **)store.data();
-    cq_standalone_main(argc, argv);
+    cq_standalone_launch(argc, argv);
 
     for (char *it : store) {
         delete it;
