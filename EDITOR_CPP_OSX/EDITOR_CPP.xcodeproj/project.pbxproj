@@ -15,8 +15,8 @@
 		B4B19644221EB6C7007D4146 /* cclua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B1963D221EB6C7007D4146 /* cclua.cpp */; };
 		B4B19645221EB6C7007D4146 /* cccsharp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B1963E221EB6C7007D4146 /* cccsharp.cpp */; };
 		B4B19646221EB6C7007D4146 /* ccjava.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B1963F221EB6C7007D4146 /* ccjava.cpp */; };
-		CE1DEC8A2229986C0015A49D /* cppdemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE1DEC872229986C0015A49D /* cppdemo.cpp */; };
-		CE1DEC8B2229986C0015A49D /* objcppdemo.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE1DEC892229986C0015A49D /* objcppdemo.mm */; };
+		CE1DEC8A2229986C0015A49D /* cpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE1DEC872229986C0015A49D /* cpp.cpp */; };
+		CE1DEC8B2229986C0015A49D /* objcpp.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE1DEC892229986C0015A49D /* objcpp.mm */; };
 		CE21BEA322085E4B00AED03F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE9522085E4B00AED03F /* main.cpp */; };
 		CE21BEA622085E4B00AED03F /* cqstdex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE9B22085E4B00AED03F /* cqstdex.cpp */; };
 		CE21BEAE2208620300AED03F /* cqfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEAB2208620300AED03F /* cqfile.cpp */; };
@@ -52,8 +52,8 @@
 		B4B1963E221EB6C7007D4146 /* cccsharp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cccsharp.cpp; sourceTree = "<group>"; };
 		B4B1963F221EB6C7007D4146 /* ccjava.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ccjava.cpp; sourceTree = "<group>"; };
 		B4B19640221EB6C7007D4146 /* cctraverser.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cctraverser.hh; sourceTree = "<group>"; };
-		CE1DEC872229986C0015A49D /* cppdemo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cppdemo.cpp; sourceTree = "<group>"; };
-		CE1DEC892229986C0015A49D /* objcppdemo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = objcppdemo.mm; sourceTree = "<group>"; };
+		CE1DEC872229986C0015A49D /* cpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cpp.cpp; sourceTree = "<group>"; };
+		CE1DEC892229986C0015A49D /* objcpp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = objcpp.mm; sourceTree = "<group>"; };
 		CE21BE9522085E4B00AED03F /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		CE21BE9B22085E4B00AED03F /* cqstdex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqstdex.cpp; sourceTree = "<group>"; };
 		CE21BE9C22085E4B00AED03F /* cqstdex.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqstdex.hh; sourceTree = "<group>"; };
@@ -102,30 +102,30 @@
 		B4A1385621E30B98000218AF /* EDITOR_CPP */ = {
 			isa = PBXGroup;
 			children = (
-				B499A30E221E72500060165A /* codecount */,
-				CE1DEC862229986C0015A49D /* cppdemo */,
-				CE1DEC882229986C0015A49D /* objcppdemo */,
-				CE21BE9722085E4B00AED03F /* utility */,
 				CE21BE9522085E4B00AED03F /* main.cpp */,
+				B499A30E221E72500060165A /* codecount */,
+				CE1DEC862229986C0015A49D /* cpp */,
+				CE1DEC882229986C0015A49D /* objcpp */,
+				CE21BE9722085E4B00AED03F /* utility */,
 			);
 			name = EDITOR_CPP;
 			path = ../EDITOR_CPP;
 			sourceTree = "<group>";
 		};
-		CE1DEC862229986C0015A49D /* cppdemo */ = {
+		CE1DEC862229986C0015A49D /* cpp */ = {
 			isa = PBXGroup;
 			children = (
-				CE1DEC872229986C0015A49D /* cppdemo.cpp */,
+				CE1DEC872229986C0015A49D /* cpp.cpp */,
 			);
-			path = cppdemo;
+			path = cpp;
 			sourceTree = "<group>";
 		};
-		CE1DEC882229986C0015A49D /* objcppdemo */ = {
+		CE1DEC882229986C0015A49D /* objcpp */ = {
 			isa = PBXGroup;
 			children = (
-				CE1DEC892229986C0015A49D /* objcppdemo.mm */,
+				CE1DEC892229986C0015A49D /* objcpp.mm */,
 			);
-			path = objcppdemo;
+			path = objcpp;
 			sourceTree = "<group>";
 		};
 		CE21BE9722085E4B00AED03F /* utility */ = {
@@ -227,14 +227,14 @@
 				B4B19645221EB6C7007D4146 /* cccsharp.cpp in Sources */,
 				CE21BEB2220868B900AED03F /* cqlog.cpp in Sources */,
 				CE844339220D5874008D3F79 /* cqutf8.cpp in Sources */,
-				CE1DEC8B2229986C0015A49D /* objcppdemo.mm in Sources */,
+				CE1DEC8B2229986C0015A49D /* objcpp.mm in Sources */,
 				CE21BEAE2208620300AED03F /* cqfile.cpp in Sources */,
 				B4B19644221EB6C7007D4146 /* cclua.cpp in Sources */,
 				CE21BEA322085E4B00AED03F /* main.cpp in Sources */,
 				B4B19641221EB6C7007D4146 /* ccgeneral.cpp in Sources */,
 				B4B19643221EB6C7007D4146 /* ccobjcpp.cpp in Sources */,
 				CE21BEA622085E4B00AED03F /* cqstdex.cpp in Sources */,
-				CE1DEC8A2229986C0015A49D /* cppdemo.cpp in Sources */,
+				CE1DEC8A2229986C0015A49D /* cpp.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

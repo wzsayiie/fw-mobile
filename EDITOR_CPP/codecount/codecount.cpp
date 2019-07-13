@@ -56,8 +56,8 @@ void AppendLuas(vector<string> *sources) {
     sources->push_back("program_lua/libluascript");
 };
 
-bool ccMainEnabled = 0;
-void ccMain() {
+bool codecount_launch = 0;
+void codecount_main() {
     
     vector<string> sources;
     

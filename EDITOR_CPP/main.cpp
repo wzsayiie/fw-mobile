@@ -1,38 +1,37 @@
 #include "utility.hh"
 
-void initialize() {
+static void init() {
 
-    string rootDirectory = "fw-mobile";
-    string filePath = __FILE__;
+    string root = "fw-mobile";
+    string path = __FILE__;
 
-    size_t position = filePath.find(rootDirectory);
-    if (position != string::npos) {
-        string rootPath = filePath.substr(0, position + rootDirectory.size());
-        cqChangeDirectory(rootPath);
-        continue_last.print("work path: %s", rootPath.c_str());
+    size_t pos = path.find(root);
+    if (pos != string::npos) {
+        string dir = path.substr(0, pos + root.size());
+        cqChangeDirectory(dir);
+        continue_last.print("work path: %s", dir.c_str());
     } else {
-        continue_last.print("FAILED to change the path");
+        continue_last.print("failed to change the path");
     }
 }
 
-static void execute();
-
-int main(int argc, char *argv[]) {
-    initialize();
-    execute();
-    space_line(1);
+static void startup() {
+    
+    extern bool codecount_launch;
+    extern bool cpp_launch;
+    extern bool objcpp_launch;
+    
+    void codecount_main();
+    void cpp_main();
+    void objcpp_main();
+    
+    if (codecount_launch) { codecount_main(); }
+    if (cpp_launch      ) { cpp_main      (); }
+    if (objcpp_launch   ) { objcpp_main   (); }
 }
 
-void execute() {
-    
-    extern bool ccMainEnabled;
-    extern bool xxMainEnabled;
-    extern bool mmMainEnabled;
-    void ccMain();
-    void xxMain();
-    void mmMain();
-    
-    if (ccMainEnabled) { ccMain(); }
-    if (xxMainEnabled) { xxMain(); }
-    if (mmMainEnabled) { mmMain(); }
+int main() {
+    init();
+    startup();
+    space_line(1);
 }
