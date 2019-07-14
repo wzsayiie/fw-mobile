@@ -1,5 +1,5 @@
 #pragma once
 
-#include "cqfile.hh"
-#include "cqlog.hh"
-#include "cqutf8.hh"
+#include "file.hh"
+#include "log.hh"
+#include "utf8.hh"

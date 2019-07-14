@@ -8,10 +8,10 @@ static void init() {
     size_t pos = path.find(root);
     if (pos != string::npos) {
         string dir = path.substr(0, pos + root.size());
-        cqChangeDirectory(dir);
-        continue_last.print("work path: %s", dir.c_str());
+        chdir(dir);
+        closeto.log("work path: %s", dir.c_str());
     } else {
-        continue_last.print("failed to change the path");
+        closeto.log("failed to change the path");
     }
 }
 
@@ -33,5 +33,5 @@ static void startup() {
 int main() {
     init();
     startup();
-    space_line(1);
+    medi(1);
 }
