@@ -2,7 +2,8 @@
 
 static bool supported(const string &name) {
     static const vector<string> options = {
-        ".h" , ".hh" , ".cpp", ".m", ".mm",
+        ".h" , ".hh" , ".cpp", ".cli.cc",
+        ".m" , ".mm" ,
         ".cs",".java", ".lua"
     };
     for (auto &it : options) {
