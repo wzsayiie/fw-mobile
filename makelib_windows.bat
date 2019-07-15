@@ -60,7 +60,7 @@ goto end
 
 :compile_cli
 set args=/nologo /clr /std:c++14 /IGENERATED_HEADERS /MD
-for /r %source% %%f in (*.cpp) do (
+for /r %source% %%f in (*.cli.cc) do (
     cl %args% /c %%f /Fo%temporary%\%%~nf.!random!.obj
 )
 goto end
