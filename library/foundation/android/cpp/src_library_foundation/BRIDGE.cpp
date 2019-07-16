@@ -40,7 +40,7 @@ const char *cq_document_directory() {
     cqJNIStaticMethod method(clazz(), &methodID, "cq_document_directory");
 
     std::string ret = method.callString();
-    return cq_store_string(ret.data());
+    return cq_store_u8str(ret.data());
 }
 
 const char *cq_caches_directory() {
@@ -48,7 +48,7 @@ const char *cq_caches_directory() {
     cqJNIStaticMethod method(clazz(), &methodID, "cq_caches_directory");
 
     std::string ret = method.callString();
-    return cq_store_string(ret.data());
+    return cq_store_u8str(ret.data());
 }
 
 const char *cq_temporary_directory() {
@@ -56,7 +56,7 @@ const char *cq_temporary_directory() {
     cqJNIStaticMethod method(clazz(), &methodID, "cq_temporary_directory");
 
     std::string ret = method.callString();
-    return cq_store_string(ret.data());
+    return cq_store_u8str(ret.data());
 }
 
 const char *cq_append_path(const char *parent, const char *child) {
@@ -67,7 +67,7 @@ const char *cq_append_path(const char *parent, const char *child) {
     method.push(child);
 
     std::string ret = method.callString();
-    return cq_store_string(ret.data());
+    return cq_store_u8str(ret.data());
 }
 
 bool cq_directory_exists(const char *path) {
@@ -160,16 +160,16 @@ extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_BRIDGE_httpGetRetu
     _http_get_error = error;
 
     if (data != nullptr) {
-        jsize size = env->GetArrayLength(data);
-        _cq_resize_data(&_http_get_data, (int32_t)size);
-        env->GetByteArrayRegion(data, 0, size, (jbyte *)_http_get_data.bytes);
+        jsize len = env->GetArrayLength(data);
+        _cq_resize_data(&_http_get_data, 1, (int32_t)len);
+        env->GetByteArrayRegion(data, 0, len, (jbyte *)_http_get_data.items);
     } else {
         _cq_clear_data(&_http_get_data);
     }
 }
 
 const void *cq_http_get_bytes() {
-    return _http_get_data.bytes;
+    return _http_get_data.items;
 }
 
 int32_t cq_http_get_size() {

@@ -1,13 +1,16 @@
 #include "cqcbasis.h"
+#include <string>
 
-void _cq_assign_data(_cq_data *data, const void *bytes, int32_t size) {
+//data:
+
+void _cq_assign_data(_cq_data *data, const void *items, int32_t size, int32_t count) {
     if (data == nullptr) {
         return;
     }
     
-    if (bytes != nullptr && size > 0) {
-        _cq_resize_data(data, size);
-        memcpy(data->bytes, bytes, size);
+    if (items != nullptr && size > 0 && count > 0) {
+        _cq_resize_data(data, size, count);
+        memcpy(data->items, items, size * count);
     } else {
         _cq_clear_data(data);
     }
@@ -15,52 +18,62 @@ void _cq_assign_data(_cq_data *data, const void *bytes, int32_t size) {
 
 void _cq_clear_data(_cq_data *data) {
     if (data != nullptr) {
-        free(data->bytes);
-        data->bytes = nullptr;
-        data->size = 0;
+        free(data->items);
+        data->items = nullptr;
+        data->size  = 0;
+        data->count = 0;
     }
 }
 
-void _cq_resize_data(_cq_data *data, int32_t size) {
+void _cq_resize_data(_cq_data *data, int32_t size, int32_t count) {
     if (data == nullptr) {
         return;
     }
     
-    if (size > 0) {
-        data->bytes = (char *)realloc(data->bytes, size + 1);
-        //reserve '\0' on end.
-        ((char *)data->bytes)[size] = '\0';
+    if (size > 0 && count > 0) {
+        data->items = realloc(data->items, size * (count + 1));
+        memcpy((char *)data->items + size * count, "\0\0\0\0\0\0\0\0", size);
         data->size = size;
+        data->count = count;
     } else {
         _cq_clear_data(data);
     }
 }
 
-bool cq_string_empty(const char *string) {
-    return string == nullptr || *string == '\0';
+//string:
+
+bool cq_u8str_empty (const char     *s) {return s == nullptr || *s == '\0';}
+bool cq_u16str_empty(const char16_t *s) {return s == nullptr || *s == '\0';}
+
+template<class T> const T *cq_str(const T *string, char action) {
+    static thread_local _cq_data store = {nullptr, 0, 0};
+    if (action == '=') {
+        int32_t count = 0;
+        if (string != nullptr) {
+            count = (int32_t)std::char_traits<T>::length(string);
+        }
+        _cq_assign_data(&store, string, sizeof(T), count);
+    }
+    return (const T *)store.items;
 }
 
-static thread_local _cq_data _stored = {nullptr, 0};
+const char *cq_store_u8str(const char *s) {return cq_str<char>(s, '=');}
+const char *cq_saved_u8str( /* -- -- */ ) {return cq_str<char>(0, '?');}
 
-const char *cq_store_string(const char *value) {
-    auto size = (int32_t)(value ? strlen(value) : 0);
-    _cq_assign_data(&_stored, value, size);
-    return (const char *)_stored.bytes;
+const char16_t *cq_store_u16str(const char16_t *s) {return cq_str<char16_t>(s, '=');}
+const char16_t *cq_saved_u16str( /* -- -- --- */ ) {return cq_str<char16_t>(0, '?');}
+
+//bytes:
+
+static thread_local _cq_data _saved_bytes = {nullptr, 0, 0};
+
+const void *cq_store_bytes(const void *bytes, int32_t len) {
+    _cq_assign_data(&_saved_bytes, bytes, 1, len);
+    return _saved_bytes.items;
 }
-
-const void *cq_store_bytes(const void *bytes, int32_t size) {
-    _cq_assign_data(&_stored, bytes, size);
-    return _stored.bytes;
+const void *cq_saved_bytes(void) {
+    return _saved_bytes.items;
 }
-
-const char *cq_stored_string() {
-    return (const char *)_stored.bytes;
-}
-
-const void *cq_stored_bytes() {
-    return _stored.bytes;
-}
-
-int32_t cq_stored_size() {
-    return _stored.size;
+int32_t cq_saved_bytes_len(void) {
+    return _saved_bytes.count;
 }

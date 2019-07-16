@@ -15,22 +15,22 @@ void cq_log_error(const char *file, int32_t line, const char *message) {
 
 const char *cq_document_directory(void) {
     NSString *directory = CQDocumentDirectory();
-    return cq_store_string(directory.UTF8String);
+    return cq_store_u8str(directory.UTF8String);
 }
 
 const char *cq_caches_directory(void) {
     NSString *directory = CQCachesDirectory();
-    return cq_store_string(directory.UTF8String);
+    return cq_store_u8str(directory.UTF8String);
 }
 
 const char *cq_temporary_directory(void) {
     NSString *directory = CQTemporaryDirectory();
-    return cq_store_string(directory.UTF8String);
+    return cq_store_u8str(directory.UTF8String);
 }
 
 const char *cq_append_path(const char *parent, const char *child) {
     NSString *path = CQAppendPath(@(parent), @(child));
-    return cq_store_string(path.UTF8String);
+    return cq_store_u8str(path.UTF8String);
 }
 
 bool cq_directory_exists(const char *path) {
@@ -70,16 +70,16 @@ int32_t cq_http_get(const char *url, float timeout) {
     NSError *error = nil;
     NSData *data = [CQURLSession.sharedObject sendSyncGet:@(url) timeout:timeout error:&error];
     if (error == nil) {
-        _cq_assign_data(&_http_get, data.bytes, (int32_t)data.length);
+        _cq_assign_data(&_http_get, data.bytes, 1, (int32_t)data.length);
         return 0;
     } else {
-        _cq_assign_data(&_http_get, NULL, 0);
+        _cq_clear_data(&_http_get);
         return 1;
     }
 }
 
 const void *cq_http_get_bytes(void) {
-    return _http_get.bytes;
+    return _http_get.items;
 }
 
 int32_t cq_http_get_size(void) {

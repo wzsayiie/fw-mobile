@@ -15,7 +15,7 @@ static void register_func(const char *name, int32_t (*func)(lua_State *)) {
         I("lua vm: register function but vm was not initialized");
         return;
     }
-    if (cq_string_empty(name)) {
+    if (cq_u8str_empty(name)) {
         I("lua vm: register function but the name is empty");
         return;
     }
@@ -46,7 +46,7 @@ static void do_string(const char *code) {
         I("lua vm: do string but vm was not initialized");
         return;
     }
-    if (cq_string_empty(code)) {
+    if (cq_u8str_empty(code)) {
         I("lua vm: do string but the code is emptry");
         return;
     }

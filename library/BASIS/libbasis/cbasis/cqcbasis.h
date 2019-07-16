@@ -62,33 +62,44 @@
 #   define CQ_IF_ON_OSX(    CODE) CODE
 # endif
 
+//mac don't provide "uchar.h"
+#ifndef __cplusplus
+typedef uint16_t char16_t;
+#endif
+
 # ifdef __cplusplus
 #   define CQ_C_LINK extern "C"
 # else
 #   define CQ_C_LINK
 # endif
 
+//data:
+
 struct _cq_data {
-    void *bytes;    //ends with '\0'
-    int32_t size;   //don't contain '\0' of the end
+    void   *items;  //ends with '\0' as the last item
+    int32_t size ;  //size of every item
+    int32_t count;  //item count, don't contain the last item('\0')
 };
 
-CQ_C_LINK void _cq_assign_data(struct _cq_data *data, const void *bytes, int32_t size);
+CQ_C_LINK void _cq_assign_data(struct _cq_data *data, const void *items, int32_t size, int32_t count);
 CQ_C_LINK void _cq_clear_data(struct _cq_data *data);
+CQ_C_LINK void _cq_resize_data(struct _cq_data *data, int32_t size, int32_t count);
 
-//NOTE: reserve additional '\0' at the end, but don't set bytes zero.
-CQ_C_LINK void _cq_resize_data(struct _cq_data *data, int32_t size);
+//string:
 
-CQ_C_LINK bool cq_string_empty(const char *string);
+CQ_C_LINK bool cq_u8str_empty(const char *string);
+CQ_C_LINK bool cq_u16str_empty(const char16_t *string);
 
-//storing bytes on current thread,
+//storing values on current thread,
 //until call of cq_store_xx again on same thread.
-CQ_C_LINK const char *cq_store_string(const char *value);
-CQ_C_LINK const void *cq_store_bytes(const void *bytes, int32_t size);
+CQ_C_LINK const char *cq_store_u8str(const char *string);
+CQ_C_LINK const char *cq_saved_u8str(void);
 
-//return value ends with '\0'.
-CQ_C_LINK const char *cq_stored_string(void);
-CQ_C_LINK const void *cq_stored_bytes(void);
+CQ_C_LINK const char16_t *cq_store_u16str(const char16_t *string);
+CQ_C_LINK const char16_t *cq_saved_u16str(void);
 
-//the size do not contain '\0' of the end.
-CQ_C_LINK int32_t cq_stored_size(void);
+//bytes:
+
+CQ_C_LINK const void *cq_store_bytes(const void *bytes, int32_t len);
+CQ_C_LINK const void *cq_saved_bytes(void);
+CQ_C_LINK int32_t cq_saved_bytes_len(void);
