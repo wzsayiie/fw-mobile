@@ -187,7 +187,7 @@ static char32_t u32cfrom16s(const char16_t *ptr, int32_t *count) {
             return 0;
         }
     }
-    //BMP charactor, 2 bytes.
+    //BMP character, 2 bytes.
     else {
         *count = 1;
         return (char32_t)*ptr;
