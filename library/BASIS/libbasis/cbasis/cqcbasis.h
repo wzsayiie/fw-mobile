@@ -103,3 +103,8 @@ CQ_C_LINK const char16_t *cq_saved_u16str(void);
 CQ_C_LINK const void *cq_store_bytes(const void *bytes, int32_t len);
 CQ_C_LINK const void *cq_saved_bytes(void);
 CQ_C_LINK int32_t cq_saved_bytes_len(void);
+
+//unicode:
+
+CQ_C_LINK const char16_t *cq_u16sfrom8s(const char *src);
+CQ_C_LINK const char *cq_u8sfrom16s(const char16_t *src);
