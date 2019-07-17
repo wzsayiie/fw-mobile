@@ -43,6 +43,7 @@ for it in `find $obc_dir -name '*.m'`; do
     echo `basename $it`
     cmd_line="clang"
     cmd_line="$cmd_line -IGENERATED_HEADERS"
+    cmd_line="$cmd_line -fobjc-arc"
     cmd_line="$cmd_line -c $it"
     cmd_line="$cmd_line -o $tmp_dir/`basename $it`.$RANDOM.o"
     $cmd_line

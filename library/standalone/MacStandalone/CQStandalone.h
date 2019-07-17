@@ -1,3 +1,4 @@
 #import "CQObjcBasis.h"
 
-int CQStandaloneMain(int argc, const char **argv);
+void CQStandaloneUpdate(void);
+void CQStandaloneLaunch(int argc, const char **argv);

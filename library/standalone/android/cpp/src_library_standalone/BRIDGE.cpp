@@ -1,6 +1,12 @@
 #include "cqstandalonearche.h"
 #include "cqjnihelper.hh"
 
+extern "C" JNIEXPORT void JNICALL Java_src_library_standalone_Standalone_update
+    (JNIEnv *, jclass)
+{
+    cq_standalone_update();
+}
+
 static std::vector<char *> newStringsFrom(JNIEnv *env, jobjectArray args) {
 
     if (args == nullptr) {

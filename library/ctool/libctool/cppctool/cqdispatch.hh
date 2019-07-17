@@ -19,9 +19,9 @@ cq_class(cqDispatchQueue, cqObject) {
 struct cqDispatch {
     
     static void asyncOnGlobal(std::function<void ()> task);
-
     static void asyncOnMain(std::function<void ()> task);
 
+    static bool mainQueueEmpty();
     static void updateMain();
 };
 

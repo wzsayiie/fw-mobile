@@ -89,6 +89,10 @@ void cqDispatch::asyncOnMain(std::function<void ()> task) {
     mainQueue()->post(task);
 }
 
+bool cqDispatch::mainQueueEmpty() {
+    return mainQueue()->empty();
+}
+
 void cqDispatch::updateMain() {
     mainQueue()->update();
 }
