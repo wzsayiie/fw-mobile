@@ -173,5 +173,5 @@ const void *cq_http_get_bytes() {
 }
 
 int32_t cq_http_get_size() {
-    return _http_get_data.size;
+    return _http_get_data.count;
 }

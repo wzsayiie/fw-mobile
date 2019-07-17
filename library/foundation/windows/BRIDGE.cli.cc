@@ -51,16 +51,16 @@ void cq_thread_sleep(float seconds) {
 
 //network:
 
-static thread_local struct _cq_data _http_get = {NULL, 0};
+static thread_local struct _cq_data _http_get = {NULL, 0, 0};
 
 int32_t cq_http_get(const char *url, float timeout) {
     return 1;
 }
 
 const void *cq_http_get_bytes(void) {
-    return _http_get.bytes;
+    return _http_get.items;
 }
 
 int32_t cq_http_get_size(void) {
-    return _http_get.size;
+    return _http_get.count;
 }
