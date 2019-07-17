@@ -20,10 +20,9 @@ static std::vector<char *> newStringsFrom(JNIEnv *env, jobjectArray args) {
 
         auto javaObject = (jstring)env->GetObjectArrayElement(args, it);
         if (javaObject != nullptr) {
-            auto raw = env->GetStringUTFChars(javaObject, nullptr);
-            string = new char[strlen(raw) + 1];
-            strcpy(string, raw);
-            env->ReleaseStringUTFChars(javaObject, raw);
+            std::string middle = cqJNIU8StringFromJNI(env, javaObject);
+            string = new char[middle.size() + 1];
+            strcpy(string, middle.c_str());
         } else {
             string = new char[1];
             *string = '\0';

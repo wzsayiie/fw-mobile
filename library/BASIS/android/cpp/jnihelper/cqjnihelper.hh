@@ -14,7 +14,10 @@ jclass cqJNIFindClass(jclass *prefer, JNIEnv *env, const char *name);
 //if *prefer != null then return *prefer, else get the methodID and assign *prefer.
 jmethodID cqJNIGetStatic(jmethodID *prefer, JNIEnv *env, jclass clazz, const char *name, const char *signature);
 
-std::string cqJNIFromJString(JNIEnv *env, jstring from);
+std::string cqJNIU8StringFromJNI(JNIEnv *env, jstring src);
+
+//return a local reference.
+jstring cqJNIStringFromU8(JNIEnv *env, const std::string &src);
 
 struct cqJNIStaticMethod {
 
