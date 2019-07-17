@@ -5,24 +5,28 @@
 
 //log:
 
-void cqLog::info(const char *file, int line, const char *format, ...) {
-    char message[1024 * 4]; {
-        va_list args;
-        va_start(args, format);
+static void logging(
+    decltype(cq_log_info) fn, const char *file, int line, const char *format, va_list args)
+{
+    if (format != nullptr) {
+        char message[1024 * 4];
         vsnprintf(message, sizeof(message), format, args);
-        va_end(args);
+        fn(file, line, message);
     }
-    cq_log_info(file, line, message);
+}
+
+void cqLog::info(const char *file, int line, const char *format, ...) {
+    va_list args;
+    va_start(args, format);
+    logging(cq_log_info, file, line, format, args);
+    va_end(args);
 }
 
 void cqLog::error(const char *file, int line, const char *format, ...) {
-    char message[1024 * 4]; {
-        va_list args;
-        va_start(args, format);
-        vsnprintf(message, sizeof(message), format, args);
-        va_end(args);
-    }
-    cq_log_error(file, line, message);
+    va_list args;
+    va_start(args, format);
+    logging(cq_log_error, file, line, format, args);
+    va_end(args);
 }
 
 //file manager:

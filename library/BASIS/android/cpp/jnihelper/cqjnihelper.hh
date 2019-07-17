@@ -17,7 +17,7 @@ jmethodID cqJNIGetStatic(jmethodID *prefer, JNIEnv *env, jclass clazz, const cha
 std::string cqJNIU8StringFromJNI(JNIEnv *env, jstring src);
 
 //return a local reference.
-jstring cqJNIStringFromU8(JNIEnv *env, const std::string &src);
+jstring cqJNIStringFromU8(JNIEnv *env, const char *src);
 
 struct cqJNIStaticMethod {
 

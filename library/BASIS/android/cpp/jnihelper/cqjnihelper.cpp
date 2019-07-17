@@ -107,9 +107,9 @@ std::string cqJNIU8StringFromJNI(JNIEnv *env, jstring src) {
     return dst;
 }
 
-jstring cqJNIStringFromU8(JNIEnv *env, const std::string &src) {
-    if (env != nullptr) {
-        return env->NewStringUTF(src.c_str());
+jstring cqJNIStringFromU8(JNIEnv *env, const char *src) {
+    if (env != nullptr && src != nullptr) {
+        return env->NewStringUTF(src);
     } else {
         return nullptr;
     }
@@ -142,11 +142,7 @@ void cqJNIStaticMethod::push(const char *param) {
     }
 
     jvalue value;
-    if (param != nullptr) {
-        value.l = cqJNIStringFromU8(_env, param);
-    } else {
-        value.l = nullptr;
-    }
+    value.l = cqJNIStringFromU8(_env, param);
 
     _signature.append("Ljava/lang/String;");
     _params.push_back(value);
