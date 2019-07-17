@@ -8,12 +8,12 @@ cd `dirname $0`
 projct_dir="library_ios"
 projct_fil="Resource.xcodeproj"
 target_nam="Resource"
-ultima_dir="app_unity/Assets/Plugins/iOS"
-ultima_fil="Resource.bundle"
+ultima_dir="BUILD"
+ultima_fil="ios.bundle"
 ### configutation end
 
 # clean
-rm -rf $projct_dir/export/$ultima_fil
+rm -rf $projct_dir/export/$target_nam.bundle
 rm -rf $ultima_dir/$ultima_fil
 
 # build
@@ -25,5 +25,5 @@ cmd_line="$cmd_line CONFIGURATION_BUILD_DIR=export"
 $cmd_line
 
 # copy
-mkdir -p                          $ultima_dir
-mv $projct_dir/export/$ultima_fil $ultima_dir
+mkdir -p                                 $ultima_dir
+mv $projct_dir/export/$target_nam.bundle $ultima_dir/$ultima_fil

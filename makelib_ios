@@ -9,8 +9,8 @@ projct_dir="library_ios"
 projct_fil="Library.xcodeproj"
 target_nam="Library"
 archs_list="x86_64 arm64 arm64e"
-ultima_dir="app_unity/Assets/Plugins/iOS"
-ultima_fil="libLibrary.a"
+ultima_dir="BUILD"
+ultima_fil="ios.a"
 
 sh generate_headers
 ### configutation end

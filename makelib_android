@@ -8,8 +8,8 @@ cd `dirname $0`
 projct_dir="app_android"
 module_dir="library_android"
 module_nam="library"
-ultima_dir="app_unity/Assets/Plugins/Android"
-ultima_fil="library.aar"
+ultima_dir="BUILD"
+ultima_fil="android.aar"
 
 sh generate_headers
 ### configutation end
