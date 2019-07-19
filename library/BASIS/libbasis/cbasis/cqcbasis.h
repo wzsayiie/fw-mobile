@@ -93,10 +93,7 @@ CQ_C_LINK bool cq_u16str_empty(const char16_t *string);
 //storing values on current thread,
 //until call of cq_store_xx again on same thread.
 CQ_C_LINK const char *cq_store_u8str(const char *string);
-CQ_C_LINK const char *cq_saved_u8str(void);
-
 CQ_C_LINK const char16_t *cq_store_u16str(const char16_t *string);
-CQ_C_LINK const char16_t *cq_saved_u16str(void);
 
 //bytes:
 
