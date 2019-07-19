@@ -18,23 +18,23 @@ set error=0
 setlocal EnableDelayedExpansion
 
 set source="library/BASIS/libbasis"
-call :compile_std
+call :compile_cpp
 if not %error% == 0 (goto end)
 
 set source="library/ctool/libctool"
-call :compile_std
+call :compile_cpp
 if not %error% == 0 (goto end)
 
 set source="library/foundation/libfoundation"
-call :compile_std
+call :compile_cpp
 if not %error% == 0 (goto end)
 
-set source="library/foundation/windows"
-call :compile_cli
+set source="library/foundation/win32api"
+call :compile_c
 if not %error% == 0 (goto end)
 
 set source="library/standalone/libstandalone"
-call :compile_std
+call :compile_cpp
 if not %error% == 0 (goto end)
 
 ::4 link
@@ -44,23 +44,29 @@ set exe=windows
 if not exist %out% (mkdir %out%)
 if exist %out%\%exe% (del %out%\%exe%)
 
-cl /nologo %temporary%\*.obj /Fe%out%\%exe%
+set cmdln=cl
+set cmdln=%cmdln% /nologo
+set cmdln=%cmdln% /Fe%out%\%exe%
+set cmdln=%cmdln% %temporary%\*.obj
+set cmdln=%cmdln% shell32.lib
+set cmdln=%cmdln% shlwapi.lib
+%cmdln%
 
 rmdir /q /s %temporary%
 
 ::functions
 goto end
 
-:compile_std
+:compile_cpp
 set args=/nologo /EHsc /std:c++14 /IGENERATED_HEADERS /MD
 for /r %source% %%f in (*.cpp) do (
     cl %args% /c %%f /Fo%temporary%\%%~nf.!random!.obj
 )
 goto end
 
-:compile_cli
-set args=/nologo /clr /std:c++14 /IGENERATED_HEADERS /MD
-for /r %source% %%f in (*.cli.cc) do (
+:compile_c
+set args=/nologo /IGENERATED_HEADERS /MD
+for /r %source% %%f in (*.c) do (
     cl %args% /c %%f /Fo%temporary%\%%~nf.!random!.obj
 )
 goto end

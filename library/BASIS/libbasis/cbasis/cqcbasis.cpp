@@ -45,6 +45,20 @@ void _cq_resize_data(_cq_data *data, int32_t size, int32_t count) {
 bool cq_u8str_empty (const char     *s) {return s == nullptr || *s == '\0';}
 bool cq_u16str_empty(const char16_t *s) {return s == nullptr || *s == '\0';}
 
+template<class T> T *cq_copy_str(const T *src) {
+    if (src != nullptr) {
+        size_t len = std::char_traits<T>::length(src);
+        T *dst = (T *)malloc(sizeof(T) * (len + 1));
+        std::char_traits<T>::copy(dst, src, len);
+        dst[len] = '\0';
+        return dst;
+    }
+    return nullptr;
+}
+
+char *cq_copy_u8str(const char *s) {return cq_copy_str<char>(s);}
+char16_t *cq_copy_u16str(const char16_t *s) {return cq_copy_str<char16_t>(s);}
+
 template<class T> const T *cq_store_str(const T *string) {
     static thread_local _cq_data store = {nullptr, 0, 0};
     

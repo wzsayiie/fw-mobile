@@ -14,7 +14,7 @@ CQ_IF_ON_OSX    (int main(int argc, const char **argv))
     cq_standalone_launch(argc, argv);
     while (true) {
         while (!cqDispatch::mainQueueEmpty()) {
-            cqDispatch::updateMain();
+            cq_standalone_update();
         }
         cqThread::sleep(0.1);
     }

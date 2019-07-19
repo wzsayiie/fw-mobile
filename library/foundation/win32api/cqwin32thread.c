@@ -23,7 +23,7 @@ VOID CQRunThread(VOID (*fnTask)(LPVOID), LPVOID lpData)
     }
 }
 
-VOID CQThreadSleep(FLOAT fSeconds)
+VOID CQThreadSleepSeconds(FLOAT fSeconds)
 {
     Sleep((DWORD)(1000 * fSeconds));
 }

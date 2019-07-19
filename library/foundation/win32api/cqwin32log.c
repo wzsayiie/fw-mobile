@@ -4,17 +4,11 @@
 #include <shlwapi.h>
 #include <stdio.h>
 
-VOID CQ_WIN_FN(CQSetLogTextMode)(VOID)
+static VOID CQChangeModeIfNeeded(int nMode)
 {
-    //if the print function does not match the text mode,
-    //a system exception will be stared.
     if (sizeof(TCHAR) == 2)
     {
-        _setmode(_fileno(stdout), _O_WTEXT);
-    }
-    else
-    {
-        _setmode(_fileno(stdout), _O_TEXT);
+        _setmode(_fileno(stdout), nMode);
     }
 }
 
@@ -43,11 +37,16 @@ static VOID CQLog(LPCTSTR pszTag, LPCTSTR pszFile, int nLine, LPCTSTR pszFormat,
     if (!CQ_STR_EMPTY(pszFile) && nLine > 0)
     {
         LPCTSTR pszFileName = PathFindFileName(pszFile);
+
+        CQChangeModeIfNeeded(_O_WTEXT);
         _tprintf(_T("%s %s|%s(%04d)|%s\n"), szHeader, pszTag, pszFileName, nLine, szText);
+        CQChangeModeIfNeeded(_O_TEXT);
     }
     else
     {
+        CQChangeModeIfNeeded(_O_WTEXT);
         _tprintf(_T("%s %s|%s\n"), szHeader, pszTag, szText);
+        CQChangeModeIfNeeded(_O_TEXT);
     }
 }
 

@@ -2,15 +2,6 @@
 
 #include "cqwin32base.h"
 
-CQ_C_LINK VOID CQSetLogTextModeW(VOID);
-CQ_C_LINK VOID CQSetLogTextModeA(VOID);
-
-# ifdef UNICODE
-#   define CQSetLogTextMode CQSetLogTextModeW
-# else
-#   define CQSetLogTextMode CQSetLogTextModeA
-# endif
-
 CQ_C_LINK VOID CQLogInfoW (LPCWSTR pszFile, int nLine, _Printf_format_string_ LPCWSTR pszFormat, ...);
 CQ_C_LINK VOID CQLogErrorW(LPCWSTR pszFile, int nLine, _Printf_format_string_ LPCWSTR pszFormat, ...);
 CQ_C_LINK VOID CQLogInfoA (LPCSTR  pszFile, int nLine, _Printf_format_string_ LPCSTR  pszFormat, ...);
