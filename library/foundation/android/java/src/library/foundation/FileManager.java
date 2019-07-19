@@ -23,18 +23,6 @@ public class FileManager {
         return context.getCacheDir().getAbsolutePath();
     }
 
-    public static String appendPath(String parent, String child) {
-        if (parent != null && child != null) {
-            if (!parent.endsWith("/")) {
-                return String.format("%s/%s", parent, child);
-            } else {
-                return String.format("%s%s", parent, child);
-            }
-        } else {
-            return parent;
-        }
-    }
-
     private static class Singleton {
         static FileManager instance = new FileManager();
     }

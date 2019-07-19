@@ -46,11 +46,6 @@ std::string cqPath::temporaryDirectory() {
     return cqString::make(directory);
 }
 
-std::string cqPath::append(const std::string &parent, const std::string &child) {
-    const char *path = cq_append_path(parent.c_str(), child.c_str());
-    return cqString::make(path);
-}
-
 cq_member(cqFileManager) {
 };
 

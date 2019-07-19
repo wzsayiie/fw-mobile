@@ -12,7 +12,6 @@ CQ_C_LINK void cq_log_error(const char *file, int32_t line, const char *message)
 CQ_C_LINK const char *cq_document_directory(void);
 CQ_C_LINK const char *cq_caches_directory(void);
 CQ_C_LINK const char *cq_temporary_directory(void);
-CQ_C_LINK const char *cq_append_path(const char *parent, const char *child);
 CQ_C_LINK bool cq_directory_exists(const char *path);
 CQ_C_LINK bool cq_file_exists(const char *path);
 CQ_C_LINK bool cq_create_directory(const char *path, bool intermediate);

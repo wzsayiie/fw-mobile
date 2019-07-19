@@ -3,7 +3,6 @@
 NSString *CQDocumentDirectory(void);
 NSString *CQCachesDirectory(void);
 NSString *CQTemporaryDirectory(void);
-NSString *CQAppendPath(NSString *parent, NSString *child);
 
 @interface CQFileManager : NSObject
 

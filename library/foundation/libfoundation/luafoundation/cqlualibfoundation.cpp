@@ -43,15 +43,6 @@ static int32_t temporary_directory(lua_State *state) {
     return cq_lua_return_string(state, directory);
 }
 
-static int32_t append_path(lua_State *state) {
-    const char *parent = cq_lua_check_string(state, 1);
-    const char *child  = cq_lua_check_string(state, 2);
-    
-    const char *path = cq_append_path(parent, child);
-    
-    return cq_lua_return_string(state, path);
-}
-
 static int32_t directory_exists(lua_State *state) {
     const char *path = cq_lua_check_string(state, 1);
     bool success = cq_directory_exists(path);
@@ -89,7 +80,6 @@ void cq_lua_load_lib_foundation() {
     cq_lua_register_func("cq_document_directory" , document_directory );
     cq_lua_register_func("cq_caches_directory"   , caches_directory   );
     cq_lua_register_func("cq_temporary_directory", temporary_directory);
-    cq_lua_register_func("cq_append_path"        , append_path        );
     cq_lua_register_func("cq_directory_exists"   , directory_exists   );
     cq_lua_register_func("cq_file_exists"        , file_exists        );
     cq_lua_register_func("cq_create_directory"   , create_directory   );

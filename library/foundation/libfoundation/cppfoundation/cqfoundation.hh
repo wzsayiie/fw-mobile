@@ -21,7 +21,6 @@ struct cqPath {
     static std::string documentDirectory();
     static std::string cachesDirectory();
     static std::string temporaryDirectory();
-    static std::string append(const std::string &parent, const std::string &child);
 };
 
 cq_class(cqFileManager, cqObject) {

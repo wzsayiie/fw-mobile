@@ -27,10 +27,6 @@ public class BRIDGE {
         return FileManager.temporaryDirectory();
     }
 
-    public static String cq_append_path(String parent, String child) {
-        return FileManager.appendPath(parent, child);
-    }
-
     public static boolean cq_directory_exists(String path) {
         return FileManager.get().directoryExists(path);
     }

@@ -59,17 +59,6 @@ const char *cq_temporary_directory() {
     return cq_store_u8str(ret.data());
 }
 
-const char *cq_append_path(const char *parent, const char *child) {
-    static jmethodID methodID = nullptr;
-    cqJNIStaticMethod method(clazz(), &methodID, "cq_append_path");
-
-    method.push(parent);
-    method.push(child);
-
-    std::string ret = method.callString();
-    return cq_store_u8str(ret.data());
-}
-
 bool cq_directory_exists(const char *path) {
     static jmethodID methodID = nullptr;
     cqJNIStaticMethod method(clazz(), &methodID, "cq_directory_exists");

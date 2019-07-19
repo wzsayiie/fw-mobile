@@ -14,10 +14,6 @@ NSString *CQTemporaryDirectory(void) {
     return NSTemporaryDirectory();
 }
 
-NSString *CQAppendPath(NSString *parent, NSString *child) {
-    return [parent stringByAppendingPathComponent:child];
-}
-
 @implementation CQFileManager
 
 + (instancetype)sharedObject {

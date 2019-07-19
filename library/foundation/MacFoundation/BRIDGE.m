@@ -28,11 +28,6 @@ const char *cq_temporary_directory(void) {
     return cq_store_u8str(directory.UTF8String);
 }
 
-const char *cq_append_path(const char *parent, const char *child) {
-    NSString *path = CQAppendPath(@(parent), @(child));
-    return cq_store_u8str(path.UTF8String);
-}
-
 bool cq_directory_exists(const char *path) {
     return [CQFileManager.sharedObject directoryExistsAtPath:@(path)];
 }
