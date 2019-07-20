@@ -1,6 +1,10 @@
 #include "cqctoolarche.h"
 #include "cqctool.hh"
 
-void cq_try_update_main_queue() {
+bool cq_main_queue_empty() {
+    return cqDispatch::mainQueueEmpty();
+}
+
+void cq_update_main_queue() {
     cqDispatch::updateMain();
 }

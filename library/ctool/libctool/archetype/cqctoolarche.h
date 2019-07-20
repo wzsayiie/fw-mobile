@@ -2,4 +2,5 @@
 
 #include "cqcbasis.h"
 
-CQ_C_LINK void cq_try_update_main_queue(void);
+CQ_C_LINK bool cq_main_queue_empty(void);
+CQ_C_LINK void cq_update_main_queue(void);
