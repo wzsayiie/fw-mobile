@@ -1,3 +1,4 @@
+#include "cqctool.hh"
 #include "cqfoundation.hh"
 #include "cqlualibfoundation.h"
 #include "cqlualibsubsystem.h"
@@ -10,7 +11,7 @@ static void load(cq_window *window) {
     
     //local files
     std::string caches_dir = cqPath::cachesDirectory();
-    std::string lua_dir = caches_dir + "/lua";
+    std::string lua_dir = cqPathString::append(caches_dir, "lua");
     if (!cqFileManager::get()->directoryExists(lua_dir)) {
         cqFileManager::get()->createDirectory(lua_dir, false);
     }

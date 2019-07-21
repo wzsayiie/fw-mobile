@@ -1,4 +1,5 @@
 #include "cqluasource.h"
+#include "cqctool.hh"
 #include "cqfoundation.hh"
 
 static const char *const _sources[] = {
@@ -24,10 +25,7 @@ void cq_lua_update_source(const char *directory) {
     for (auto it = _sources; it[0] && it[1]; it += 2) {
         const char *name = it[0];
         const char *text = it[1];
-        std::string path;
-        path.append(directory);
-        path.append("/");
-        path.append(name);
+        std::string path = cqPathString::append(directory, name);
         update(path, name, text);
     }
 }
