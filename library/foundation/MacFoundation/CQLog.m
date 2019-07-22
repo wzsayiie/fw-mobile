@@ -6,12 +6,7 @@ static void logging(NSString *tag, NSString *file, int line, NSString *format, v
         return;
     }
     
-    //[NSString initWithFormat:arguments:] depends on local text encoding,
-    //use vsnprintf() to splice utf-8 string.
-    char buffer[1024 * 4];
-    vsnprintf(buffer, sizeof(buffer), format.UTF8String, args);
-    NSString *message = [NSString stringWithUTF8String:buffer];
-    
+    NSString *message = [[NSString alloc] initWithFormat:format arguments:args];
     if (file.length > 0 && line > 0) {
         NSLog(@"%@|%@(%04d)|%@", tag, file.lastPathComponent, line, message);
     } else {
