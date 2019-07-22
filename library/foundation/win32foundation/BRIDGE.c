@@ -1,5 +1,5 @@
 ﻿#include "cqfoundationarche.h"
-#include "cqwin32api.h"
+#include "cqwin32foundation.h"
 
 //log:
 

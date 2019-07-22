@@ -29,7 +29,7 @@ set source="library/foundation/libfoundation"
 call :compile_cpp
 if not %error% == 0 (goto end)
 
-set source="library/foundation/win32api"
+set source="library/foundation/win32foundation"
 call :compile_c
 if not %error% == 0 (goto end)
 
