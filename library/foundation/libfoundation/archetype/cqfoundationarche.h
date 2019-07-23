@@ -24,13 +24,13 @@ CQ_C_LINK void cq_thread_sleep(float seconds);
 
 //http(s):
 
-typedef int32_t (*cq_http_body_reader)(void *buffer, int32_t length);
-typedef int32_t (*cq_http_body_writer)(void *buffer, int32_t length);
+typedef int32_t (*cq_http_body_reader)(void *user, void *buffer, int32_t length);
+typedef int32_t (*cq_http_body_writer)(void *user, void *buffer, int32_t length);
 
 CQ_C_LINK void cq_http(const char *method);
 CQ_C_LINK void cq_http_set_field(const char *field, const char *value);
-CQ_C_LINK void cq_http_set_body_reader(cq_http_body_reader *reader);
-CQ_C_LINK void cq_http_set_body_writer(cq_http_body_writer *writer);
+CQ_C_LINK void cq_http_set_body_reader(void *user, cq_http_body_reader *reader);
+CQ_C_LINK void cq_http_set_body_writer(void *user, cq_http_body_writer *writer);
 CQ_C_LINK bool cq_http_resume(float timeoutSeconds);
 
 CQ_C_LINK int32_t cq_http_response_code(void);
