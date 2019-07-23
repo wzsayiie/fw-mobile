@@ -22,24 +22,17 @@ CQ_C_LINK void cq_remove_path(const char *path);
 CQ_C_LINK void cq_thread_run(void (*task)(void *), void *data);
 CQ_C_LINK void cq_thread_sleep(float seconds);
 
-//network:
+//http(s):
 
-//succeeded then return 0, else return non-zero.
-CQ_C_LINK int32_t cq_http_get(const char *url, float timeout);
+typedef int32_t (*cq_http_body_reader)(void *buffer, int32_t length);
+typedef int32_t (*cq_http_body_writer)(void *buffer, int32_t length);
 
-//data of last get request.
-CQ_C_LINK const void *cq_http_get_bytes(void);
-CQ_C_LINK int32_t cq_http_get_size(void);
+CQ_C_LINK void cq_http(const char *method);
+CQ_C_LINK void cq_http_set_field(const char *field, const char *value);
+CQ_C_LINK void cq_http_set_body_reader(cq_http_body_reader *reader);
+CQ_C_LINK void cq_http_set_body_writer(cq_http_body_writer *writer);
+CQ_C_LINK bool cq_http_resume(float timeoutSeconds);
 
-CQ_C_LINK int64_t cq_tcp_connect(const char *host, int16_t port);
-CQ_C_LINK void cq_tcp_disconnect(int64_t handle);
-
-//if return false, the tcp was disconnected.
-CQ_C_LINK bool cq_tcp_send_bytes(int64_t handle, const void *bytes, int32_t size);
-
-//if return value
-//  > 0 : received data;
-//  = 0 : there was not received data currently;
-//  < 0 : the tcp disconnected.
-CQ_C_LINK int32_t cq_tcp_received_size(int64_t handle);
-CQ_C_LINK const void *cq_tcp_received_bytes(int64_t handle);
+CQ_C_LINK int32_t cq_http_response_code(void);
+CQ_C_LINK const char **cq_http_responded_fields(void);
+CQ_C_LINK const char **cq_http_responded_values(void);

@@ -85,28 +85,3 @@ void cqThread::run(std::function<void ()> task) {
 void cqThread::sleep(float seconds) {
     cq_thread_sleep(seconds);
 }
-
-//network:
-
-cq_member(cqURLSession) {
-};
-
-cqURLSessionRef cqURLSession::get() {
-    return cqStaticObject<cqURLSession>();
-}
-
-std::vector<char> cqURLSession::sendSyncGet(const std::string &url, float timeout, int *outError) {
-    int32_t error = cq_http_get(url.c_str(), timeout);
-    if (outError != nullptr) {
-        *outError = error;
-    }
-    
-    std::vector<char> data;
-    if (!error) {
-        const void *bytes = cq_http_get_bytes();
-        int32_t size = cq_http_get_size();
-        data.resize(size);
-        memcpy(&data[0], bytes, size);
-    }
-    return data;
-}

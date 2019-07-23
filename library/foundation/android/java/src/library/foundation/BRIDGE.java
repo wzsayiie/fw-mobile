@@ -54,14 +54,4 @@ public class BRIDGE {
     public static void cq_thread_sleep(float seconds) {
         ThreadManager.sleepForSeconds(seconds);
     }
-
-    //network:
-
-    public static void cq_http_get(String url, float timeout) {
-        int[] error = new int[1];
-        byte[] bytes = URLSession.get().sendSyncGet(url, timeout, error);
-        httpGetReturn(error[0], bytes);
-    }
-
-    public static native void httpGetReturn(int error, byte[] data);
 }

@@ -56,27 +56,3 @@ void cq_thread_run(void (*task)(void *), void *data) {
 void cq_thread_sleep(float seconds) {
     CQThreadSleep(seconds);
 }
-
-//network:
-
-static _Thread_local struct _cq_data _http_get = {NULL, 0};
-
-int32_t cq_http_get(const char *url, float timeout) {
-    NSError *error = nil;
-    NSData *data = [CQURLSession.sharedObject sendSyncGet:@(url) timeout:timeout error:&error];
-    if (error == nil) {
-        _cq_assign_data(&_http_get, data.bytes, 1, (int32_t)data.length);
-        return 0;
-    } else {
-        _cq_clear_data(&_http_get);
-        return 1;
-    }
-}
-
-const void *cq_http_get_bytes(void) {
-    return _http_get.items;
-}
-
-int32_t cq_http_get_size(void) {
-    return _http_get.count;
-}

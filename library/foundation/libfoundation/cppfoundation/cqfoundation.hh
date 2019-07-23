@@ -40,16 +40,4 @@ struct cqThread {
     static void sleep(float seconds);
 };
 
-//network:
-
-cq_class(cqURLSession, cqObject) {
-    
-    static cqURLSessionRef get();
-    
-    //NOTE:
-    //android don't allow network operation on main thread.
-    //on android, if the function called on main thread, always failed.
-    virtual std::vector<char> sendSyncGet(const std::string &url, float timeout, int *outError);
-};
-
 _CQFOUNDATION_END_NS
