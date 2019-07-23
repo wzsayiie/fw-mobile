@@ -8,7 +8,7 @@ struct cq_window;
 //
 // load --> appear <-> disappear --> unload
 //  |         |            |           |
-//  |draw   ->|-- draw   ->|           |
+//  |paint  ->|-- paint  ->|           |
 //  |update ->|-- update ->|           |
 //  |         |-- touch  ->|           |
 //  |         |            |           |
@@ -67,7 +67,7 @@ CQ_C_LINK void _cq_init_interfaces(struct _cq_interfaces *interfaces);
 // |        load --> appear <-> disappear --> unload
 // |         |         |            |           |
 // |scale  ->|         |            |           |
-// |         |draw   ->|-- draw   ->|           |
+// |         |paint  ->|-- paint  ->|           |
 // |         |update ->|-- update ->|           |
 // |         |         |-- touch  ->|           |
 // |         |         |            |           |

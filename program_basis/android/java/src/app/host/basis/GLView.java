@@ -16,7 +16,7 @@ public class GLView extends SurfaceView implements SurfaceHolder.Callback {
     public interface Renderer {
         void onGLViewLoad(int width, int height);
         void onGLViewResize(int width, int height);
-        void onGLViewDraw();
+        void onGLViewPaint();
     }
 
     //currently open-gl 2.0 is supported
@@ -158,7 +158,7 @@ public class GLView extends SurfaceView implements SurfaceHolder.Callback {
 
     public void update() {
         if (mRenderer != null && mEGL != null) {
-            mRenderer.onGLViewDraw();
+            mRenderer.onGLViewPaint();
             mEGL.eglSwapBuffers(mEGLDisplay, mEGLSurface);
         }
     }

@@ -24,8 +24,8 @@ static void show_window(int64_t wid) {
     return method.callVoid();
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_initInterfaces
-    (JNIEnv *, jobject)
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_installInterfaces
+    (JNIEnv *, jclass)
 {
     _cq_interfaces interfaces = {nullptr}; {
         interfaces.create_window = create_window;
@@ -35,73 +35,73 @@ extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_initInter
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowLoad
-    (JNIEnv *, jobject, jlong wid)
+    (JNIEnv *, jclass, jlong wid)
 {
     _cq_window_load(wid);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowAppear
-    (JNIEnv *, jobject, jlong wid)
+    (JNIEnv *, jclass, jlong wid)
 {
     _cq_window_appear(wid);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowDisappear
-    (JNIEnv *, jobject, jlong wid)
+    (JNIEnv *, jclass, jlong wid)
 {
     _cq_window_disappear(wid);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowUnload
-    (JNIEnv *, jobject, jlong wid)
+    (JNIEnv *, jclass, jlong wid)
 {
     _cq_window_unload(wid);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowScale
-    (JNIEnv *, jobject, jlong wid, jfloat scale)
+    (JNIEnv *, jclass, jlong wid, jfloat scale)
 {
     _cq_window_scale(wid, scale);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowOrigin
-    (JNIEnv *, jobject, jlong wid, jfloat x, jfloat y)
+    (JNIEnv *, jclass, jlong wid, jfloat x, jfloat y)
 {
     _cq_window_origin(wid, x, y);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowSize
-    (JNIEnv *, jobject, jlong wid, jfloat width, jfloat height)
+    (JNIEnv *, jclass, jlong wid, jfloat width, jfloat height)
 {
     _cq_window_size(wid, width, height);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowGLPaint
-    (JNIEnv *, jobject, jlong wid)
+    (JNIEnv *, jclass, jlong wid)
 {
     _cq_window_glpaint(wid);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowUpdate
-    (JNIEnv *, jobject, jlong wid)
+    (JNIEnv *, jclass, jlong wid)
 {
     _cq_window_update (wid);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowPBegan
-    (JNIEnv *, jobject, jlong wid, jfloat x, jfloat y)
+    (JNIEnv *, jclass, jlong wid, jfloat x, jfloat y)
 {
     _cq_window_pbegan(wid, x, y);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowPMoved
-    (JNIEnv *, jobject, jlong wid, jfloat x, jfloat y)
+    (JNIEnv *, jclass, jlong wid, jfloat x, jfloat y)
 {
     _cq_window_pmoved(wid, x, y);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowPEnded
-    (JNIEnv *, jobject, jlong wid, jfloat x, jfloat y)
+    (JNIEnv *, jclass, jlong wid, jfloat x, jfloat y)
 {
     _cq_window_pended(wid, x, y);
 }

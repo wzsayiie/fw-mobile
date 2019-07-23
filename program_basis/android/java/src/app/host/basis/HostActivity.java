@@ -19,30 +19,20 @@ public class HostActivity extends Activity implements GLView.Renderer {
 
     private static HostActivity sActivity;
 
+    private GLView mView;
+    private Timer mTimer;
+
     @SuppressWarnings("unused") /* the activity can be found dynamically */
     public static Activity sharedInstance() {
         //NOTE: this method will be called on non-ui thread.
         return sActivity;
     }
 
-    private float   mScreenDensity;
-    private int     mWidthPixels;
-    private int     mHeightPixels;
-    private GLView  mView;
-    private boolean mViewVisible;
-    private long    mWid;
-    private boolean mWindowCreated;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sActivity = this;
 
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-        mScreenDensity = metrics.density;
-        mWid = hashCode();
         mView = new GLView(this);
         mView.setRenderer(this);
         setContentView(mView);
@@ -50,145 +40,198 @@ public class HostActivity extends Activity implements GLView.Renderer {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                new Handler(Looper.getMainLooper()).post(() -> update());
+                new Handler(Looper.getMainLooper()).post(() -> {
+                    setWindowUpdateIfNeeded();
+                    mView.update();
+                });
             }
         };
-        Timer timer = new Timer();
-        timer.schedule(timerTask, 30, 30);
+        mTimer = new Timer();
+        mTimer.schedule(timerTask, 30, 30);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        mViewVisible = true;
-
-        if (mWindowCreated) {
-            windowAppear(mWid);
-        }
+        setWindowAppearIfNeeded();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mViewVisible = false;
-
-        if (mWindowCreated) {
-            windowDisappear(mWid);
-        }
+        setWindowDisappearIfNeeded();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
+        mTimer.cancel();
         sActivity = null;
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if (!mWindowCreated) {
-            return true;
-        }
+    public boolean onTouchEvent(MotionEvent e) {
+        setWindowTouchEventIfNeeded(e.getAction(), (int)e.getX(), (int)e.getY());
+        return true;
+    }
 
-        float x = event.getX() / mScreenDensity;
-        float y = event.getY() / mScreenDensity;
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN  : windowPBegan(mWid, x, y); break;
-            case MotionEvent.ACTION_MOVE  : windowPMoved(mWid, x, y); break;
-            case MotionEvent.ACTION_UP    : windowPEnded(mWid, x, y); break;
-            case MotionEvent.ACTION_CANCEL: windowPEnded(mWid, x, y); break;
+    public void onGLViewLoad(int width, int height) {
+        if (initializeIfNeeded(this, width, height)) {
+            invokeEntry();
         }
+    }
+
+    protected void invokeEntry() {
+        //NOTE: call entry function here.
+    }
+
+    public void onGLViewResize(int width, int height) {
+        setWindowSizeIfNeeded(width, height);
+    }
+
+    public void onGLViewPaint() {
+        setWindowGLPaintIfNeeded();
+    }
+
+    //store values as static date.
+    //if app entries to background, the activity will be release possibly.
+    private static boolean sInitialized;
+    private static float   sScreenDensity;
+    private static int     sWidthPixels;
+    private static int     sHeightPixels;
+    private static boolean sWantVisible;
+    private static boolean sVisible;
+    private static long    sWid;
+
+    protected static boolean initializeIfNeeded(Activity activity, int widthPixels, int heightPixels) {
+        if (sInitialized) {
+            return false;
+        }
+        sInitialized = true;
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        sWidthPixels = widthPixels;
+        sHeightPixels = heightPixels;
+        sScreenDensity = metrics.density;
+
+        installInterfaces();
+
         return true;
     }
 
     @SuppressWarnings("unused") /* called by native code */
     protected static long create_window() {
-        return sActivity.createWindow();
-    }
-    @SuppressWarnings("unused") /* called by native code */
-    protected static void show_window(long wid) {
-        sActivity.showWindow(wid);
-    }
-
-    protected long createWindow() {
 
         //only one window can be created on android
-        if (mWindowCreated) {
+        if (sWid != 0) {
             return 0;
         }
 
-        mWindowCreated = true;
-        return mWid;
+        sWid = 1;
+        return sWid;
     }
 
-    protected void showWindow(long wid) {
-        if (!mWindowCreated || wid != mWid) {
+    @SuppressWarnings("unused") /* called by native code */
+    protected static void show_window(long wid) {
+        if (wid != sWid) {
             return;
         }
 
-        float width  = mWidthPixels  / mScreenDensity;
-        float height = mHeightPixels / mScreenDensity;
+        float width  = sWidthPixels  / sScreenDensity;
+        float height = sHeightPixels / sScreenDensity;
 
-        windowScale (wid, mScreenDensity);
+        windowScale (wid, sScreenDensity);
         windowOrigin(wid, 0, 0);
         windowSize  (wid, width, height);
         windowLoad  (wid);
 
-        if (mViewVisible) {
+        if (sWantVisible) {
+            sVisible = true;
             windowAppear(wid);
         }
     }
 
-    public void onGLViewLoad(int width, int height) {
-        mWidthPixels  = width ;
-        mHeightPixels = height;
+    private static void setWindowSizeIfNeeded(int width, int height) {
+        sWidthPixels  = width ;
+        sHeightPixels = height;
 
-        initInterfaces();
-        
-        //NOTE: call entry function here.
-    }
-
-    public void onGLViewResize(int width, int height) {
-        mWidthPixels  = width ;
-        mHeightPixels = height;
-
-        if (mWindowCreated) {
-            windowSize(mWid, width, height);
+        if (sWid != 0) {
+            float w = sWidthPixels  / sScreenDensity;
+            float h = sHeightPixels / sScreenDensity;
+            windowSize(sWid, w, h);
         }
     }
 
-    public void onGLViewDraw() {
-        if (mWindowCreated) {
-            windowGLPaint(mWid);
+    protected static void setWindowAppearIfNeeded() {
+        sWantVisible = true;
+
+        if (sWid != 0 && !sVisible) {
+            sVisible = true;
+            windowAppear(sWid);
         }
     }
 
-    public void update() {
-        if (!mViewVisible) {
+    private static void setWindowDisappearIfNeeded() {
+        sWantVisible = false;
+
+        if (sWid != 0 && sVisible) {
+            sVisible = false;
+            windowDisappear(sWid);
+        }
+    }
+
+    private static void setWindowTouchEventIfNeeded(int action, int xPixels, int yPixels) {
+        if (sWid == 0 || !sVisible) {
             return;
         }
 
-        if (mWindowCreated) {
-            windowUpdate(mWid);
+        float x = xPixels / sScreenDensity;
+        float y = yPixels / sScreenDensity;
+        switch (action) {
+            case MotionEvent.ACTION_DOWN  : windowPBegan(sWid, x, y); break;
+            case MotionEvent.ACTION_MOVE  : windowPMoved(sWid, x, y); break;
+            case MotionEvent.ACTION_UP    : windowPEnded(sWid, x, y); break;
+            case MotionEvent.ACTION_CANCEL: windowPEnded(sWid, x, y); break;
         }
-        mView.update();
     }
 
-    protected native void initInterfaces();
+    private static void setWindowUpdateIfNeeded() {
+        if (sWid == 0) {
+            return;
+        }
 
-    protected native void windowLoad     (long wid);
-    protected native void windowAppear   (long wid);
-    protected native void windowDisappear(long wid);
+        windowUpdate(sWid);
+    }
+
+    private static void setWindowGLPaintIfNeeded() {
+        if (sWid == 0) {
+            return;
+        }
+
+        //only paint window when it's visible, that's different with windowUpdate().
+        if (sVisible) {
+            windowGLPaint(sWid);
+        }
+    }
+
+    protected static native void installInterfaces();
+
+    protected static native void windowLoad     (long wid);
+    protected static native void windowAppear   (long wid);
+    protected static native void windowDisappear(long wid);
 
     @SuppressWarnings("unused") /* on android 'unload' event is invalid */
-    protected native void windowUnload(long wid);
+    protected static native void windowUnload(long wid);
 
-    protected native void windowScale  (long wid, float scale);
-    protected native void windowOrigin (long wid, float x, float y);
-    protected native void windowSize   (long wid, float width, float height);
-    protected native void windowGLPaint(long wid);
-    protected native void windowUpdate (long wid);
+    protected static native void windowScale  (long wid, float scale);
+    protected static native void windowOrigin (long wid, float x, float y);
+    protected static native void windowSize   (long wid, float width, float height);
+    protected static native void windowGLPaint(long wid);
+    protected static native void windowUpdate (long wid);
 
-    protected native void windowPBegan(long wid, float x, float y);
-    protected native void windowPMoved(long wid, float x, float y);
-    protected native void windowPEnded(long wid, float x, float y);
+    protected static native void windowPBegan(long wid, float x, float y);
+    protected static native void windowPMoved(long wid, float x, float y);
+    protected static native void windowPEnded(long wid, float x, float y);
 }
