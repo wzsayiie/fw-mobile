@@ -176,18 +176,18 @@ void _cq_window_size(int64_t wid, float width, float height) {
     }
 }
 
-void _cq_window_glpaint(int64_t wid) {
-    if (cq_window *window = get_window(wid)) {
-        if (window->loaded) {
-            notify(window->procedure.glpaint, window);
-        }
-    }
-}
-
 void _cq_window_update(int64_t wid) {
     if (cq_window *window = get_window(wid)) {
         if (window->loaded) {
             notify(window->procedure.update, window);
+        }
+    }
+}
+
+void _cq_window_glpaint(int64_t wid) {
+    if (cq_window *window = get_window(wid)) {
+        if (window->loaded) {
+            notify(window->procedure.glpaint, window);
         }
     }
 }

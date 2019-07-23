@@ -40,10 +40,8 @@ public class HostActivity extends Activity implements GLView.Renderer {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                new Handler(Looper.getMainLooper()).post(() -> {
-                    setWindowUpdateIfNeeded();
-                    mView.update();
-                });
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(HostActivity.this::timeout);
             }
         };
         mTimer = new Timer();
@@ -88,6 +86,12 @@ public class HostActivity extends Activity implements GLView.Renderer {
 
     public void onGLViewResize(int width, int height) {
         setWindowSizeIfNeeded(width, height);
+    }
+
+    protected void timeout() {
+        //NOTE: update data above all, after paint ui.
+        setWindowUpdateIfNeeded();
+        mView.update();
     }
 
     public void onGLViewPaint() {
@@ -228,8 +232,8 @@ public class HostActivity extends Activity implements GLView.Renderer {
     protected static native void windowScale  (long wid, float scale);
     protected static native void windowOrigin (long wid, float x, float y);
     protected static native void windowSize   (long wid, float width, float height);
-    protected static native void windowGLPaint(long wid);
     protected static native void windowUpdate (long wid);
+    protected static native void windowGLPaint(long wid);
 
     protected static native void windowPBegan(long wid, float x, float y);
     protected static native void windowPMoved(long wid, float x, float y);

@@ -76,16 +76,16 @@ extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowSiz
     _cq_window_size(wid, width, height);
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowGLPaint
-    (JNIEnv *, jclass, jlong wid)
-{
-    _cq_window_glpaint(wid);
-}
-
 extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowUpdate
     (JNIEnv *, jclass, jlong wid)
 {
     _cq_window_update (wid);
+}
+
+extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowGLPaint
+    (JNIEnv *, jclass, jlong wid)
+{
+    _cq_window_glpaint(wid);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_app_host_basis_HostActivity_windowPBegan

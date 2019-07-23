@@ -8,8 +8,8 @@ struct cq_window;
 //
 // load --> appear <-> disappear --> unload
 //  |         |            |           |
-//  |paint  ->|-- paint  ->|           |
 //  |update ->|-- update ->|           |
+//  |paint  ->|-- paint  ->|           |
 //  |         |-- touch  ->|           |
 //  |         |            |           |
 //  |move   ->|-- move   ->|- move   ->|
@@ -24,9 +24,8 @@ struct cq_procedure {
     
     void (*move   )(struct cq_window *window, float x, float y);
     void (*resize )(struct cq_window *window, float width, float height);
+    void (*update )(struct cq_window *window);
     void (*glpaint)(struct cq_window *window);
-    
-    void (*update)(struct cq_window *window);
     
     void (*pbegan)(struct cq_window *window, float x, float y);
     void (*pmoved)(struct cq_window *window, float x, float y);
@@ -67,8 +66,8 @@ CQ_C_LINK void _cq_init_interfaces(struct _cq_interfaces *interfaces);
 // |        load --> appear <-> disappear --> unload
 // |         |         |            |           |
 // |scale  ->|         |            |           |
-// |         |paint  ->|-- paint  ->|           |
 // |         |update ->|-- update ->|           |
+// |         |paint  ->|-- paint  ->|           |
 // |         |         |-- touch  ->|           |
 // |         |         |            |           |
 // |origin ->|origin ->|-- origin ->|- origin ->|
@@ -82,8 +81,8 @@ CQ_C_LINK void _cq_window_unload   (int64_t wid);
 CQ_C_LINK void _cq_window_scale  (int64_t wid, float scale);
 CQ_C_LINK void _cq_window_origin (int64_t wid, float x, float y);
 CQ_C_LINK void _cq_window_size   (int64_t wid, float width, float height);
-CQ_C_LINK void _cq_window_glpaint(int64_t wid);
 CQ_C_LINK void _cq_window_update (int64_t wid);
+CQ_C_LINK void _cq_window_glpaint(int64_t wid);
 
 CQ_C_LINK void _cq_window_pbegan(int64_t wid, float x, float y);
 CQ_C_LINK void _cq_window_pmoved(int64_t wid, float x, float y);
