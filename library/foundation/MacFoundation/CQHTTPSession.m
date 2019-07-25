@@ -67,15 +67,19 @@
 
 @implementation CQHTTPSession
 
-- (void)setURLQueryField:(NSString *)filed value:(NSString *)value {
-    if (filed.length == 0 || value.length == 0) {
+- (void)setURLQueryField:(NSString *)field value:(NSString *)value {
+    if (field.length == 0 || value.length == 0) {
         return;
     }
+    
+    NSMutableCharacterSet *set = [NSMutableCharacterSet alphanumericCharacterSet];
+    NSString *escapedField = [field stringByAddingPercentEncodingWithAllowedCharacters:set];
+    NSString *escapedValue = [value stringByAddingPercentEncodingWithAllowedCharacters:set];
     
     if (self.URLQuery == nil) {
         self.URLQuery = [NSMutableDictionary dictionary];
     }
-    self.URLQuery[filed] = value;
+    self.URLQuery[escapedField] = escapedValue;
 }
 
 - (void)setRequestHeaderField:(NSString *)field value:(NSString *)value {

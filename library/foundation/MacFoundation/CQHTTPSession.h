@@ -20,7 +20,8 @@ typedef BOOL (^CQHTTPResponseBodyWriter)(CQHTTPSession *session, const void *byt
 @property (nonatomic) NSString *method;
 @property (nonatomic) NSString *URLString;
 
-- (void)setURLQueryField:(NSString *)filed value:(NSString *)value;
+//CQHTTPSession will perform the percent escape on its own.
+- (void)setURLQueryField:(NSString *)field value:(NSString *)value;
 - (void)setRequestHeaderField:(NSString *)field value:(NSString *)value;
 
 //if set $requestBodyReader, the session will use it to get request body,
