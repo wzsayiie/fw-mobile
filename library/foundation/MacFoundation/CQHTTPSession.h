@@ -30,6 +30,7 @@ typedef BOOL (^CQHTTPResponseBodyWriter)(CQHTTPSession *session, const void *byt
 
 - (void)syncResume;
 
+@property (nonatomic, readonly) NSError *error;
 @property (nonatomic, readonly) NSInteger responseCode;
 @property (nonatomic, readonly) NSDictionary<NSString *, NSString *> *responseHeader;
 

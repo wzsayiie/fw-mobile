@@ -58,6 +58,7 @@
 
 @property (nonatomic) dispatch_semaphore_t semaphore;
 
+@property (nonatomic) NSError *error;
 @property (nonatomic) NSInteger responseCode;
 @property (nonatomic) NSDictionary<NSString *, NSString *> *responseHeader;
 @property (nonatomic) NSData *responseBodyData;
@@ -91,6 +92,7 @@
 - (void)syncResume {
     
     //reset:
+    self.error = nil;
     self.responseCode = 0;
     self.responseHeader = nil;
     self.responseBodyData = nil;
@@ -193,8 +195,10 @@
                     task:(NSURLSessionTask *)task
     didCompleteWithError:(NSError *)error
 {
-    dispatch_semaphore_signal(self.semaphore);
+    self.error = error;
     [session finishTasksAndInvalidate];
+    
+    dispatch_semaphore_signal(self.semaphore);
 }
 
 @end
