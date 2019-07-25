@@ -108,11 +108,12 @@
         request.timeoutInterval = self.timeoutSeconds;
     }
     
-    //request method:
-    if (self.method.length == 0) {
-        self.method = @"GET";
+    //request method ("GET" is default):
+    if (self.method.length > 0) {
+        request.HTTPMethod = self.method.uppercaseString;
+    } else {
+        request.HTTPMethod = @"GET";
     }
-    request.HTTPMethod = self.method.uppercaseString;
     
     //request url:
     NSMutableString *queryString = [NSMutableString string]; {
