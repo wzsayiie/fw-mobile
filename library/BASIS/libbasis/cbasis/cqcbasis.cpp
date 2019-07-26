@@ -73,19 +73,29 @@ template<class T> const T *cq_store_str(const T *string) {
 const char *cq_store_u8str(const char *s) {return cq_store_str<char>(s);}
 const char16_t *cq_store_u16str(const char16_t *s) {return cq_store_str<char16_t>(s);}
 
-//bytes:
+//malloc pool:
 
-static thread_local _cq_data _saved_bytes = {nullptr, 0, 0};
+void **_cq_push_u16str(struct _cq_malloc_pool *pool) {
+    auto src = (char16_t *)pool->slots[pool->insert];
+    pool->slots[pool->insert] = cq_copy_u16str(src);
+    return &pool->slots[(pool->insert)++];
+}
 
-const void *cq_store_bytes(const void *bytes, int32_t len) {
-    _cq_assign_data(&_saved_bytes, bytes, 1, len);
-    return _saved_bytes.items;
+void **_cq_push_u8str(struct _cq_malloc_pool *pool) {
+    auto src = (char *)pool->slots[pool->insert];
+    pool->slots[pool->insert] = cq_copy_u8str(src);
+    return &pool->slots[(pool->insert)++];
 }
-const void *cq_saved_bytes(void) {
-    return _saved_bytes.items;
+
+void **_cq_push_array(struct _cq_malloc_pool *pool, size_t size, size_t count) {
+    pool->slots[pool->insert] = malloc(size * count);
+    return &pool->slots[(pool->insert)++];
 }
-int32_t cq_saved_bytes_len(void) {
-    return _saved_bytes.count;
+
+void _cq_free_pool(struct _cq_malloc_pool *pool) {
+    for (size_t it = 0; it < pool->insert; ++it) {
+        free(pool->slots[it]);
+    }
 }
 
 //unicode:

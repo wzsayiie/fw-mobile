@@ -11,7 +11,7 @@ static VOID CQLogW(LPCWSTR pszFile, int nLine, LPCWSTR pszTag, LPCWSTR pszText)
         SYSTEMTIME tmNow;
         GetSystemTime(&tmNow);
         DWORD dwThreadId = GetCurrentThreadId();
-        swprintf_s(szHeader, CQ_ARRAY_LEN(szHeader),
+        swprintf_s(szHeader, cq_array_count(szHeader),
             L"%hd-%02hd-%02hd %02hd:%02hd:%02hd.%03hd [%ld]",
             tmNow.wYear, tmNow.wMonth, tmNow.wDay,
             tmNow.wHour, tmNow.wMinute, tmNow.wSecond, tmNow.wMilliseconds,
@@ -20,7 +20,7 @@ static VOID CQLogW(LPCWSTR pszFile, int nLine, LPCWSTR pszTag, LPCWSTR pszText)
     }
 
     _setmode(_fileno(stdout), _O_WTEXT);
-    if (!CQ_STR_EMPTY_W(pszFile) && nLine > 0)
+    if (!cq_wstr_empty(pszFile) && nLine > 0)
     {
         LPCWSTR pszFileName = PathFindFileName(pszFile);
         wprintf(L"%s %s|%s(%04d)|%s\n", szHeader, pszTag, pszFileName, nLine, pszText);
@@ -34,13 +34,13 @@ static VOID CQLogW(LPCWSTR pszFile, int nLine, LPCWSTR pszTag, LPCWSTR pszText)
 
 static VOID CQLogvW(LPCWSTR pszFile, int nLine, LPCWSTR pszTag, LPCWSTR pszFormat, va_list lpArgs)
 {
-    if (CQ_STR_EMPTY_W(pszFormat))
+    if (cq_wstr_empty(pszFormat))
     {
         return;
     }
 
     WCHAR szText[1024 * 4];
-    vswprintf_s(szText, CQ_ARRAY_LEN(szText), pszFormat, lpArgs);
+    vswprintf_s(szText, cq_array_count(szText), pszFormat, lpArgs);
     CQLogW(pszFile, nLine, pszTag, szText);
 }
 
@@ -62,21 +62,24 @@ VOID CQLogErrorW(LPCWSTR pszFile, int nLine, _Printf_format_string_ LPCWSTR pszF
 
 static VOID CQLogvA(LPCSTR pszFile, int nLine, LPCSTR pszTag, LPCSTR pszFormat, va_list lpArgs)
 {
-    if (CQ_STR_EMPTY(pszFormat))
+    if (cq_str_empty(pszFormat))
     {
         return;
     }
 
     CHAR szText[1024 * 4];
-    vsprintf_s(szText, CQ_ARRAY_LEN(szText), pszFormat, lpArgs);
+    vsprintf_s(szText, cq_array_count(szText), pszFormat, lpArgs);
 
-    LPWSTR a = CQWideStringCopyMBS(pszFile);
-    LPWSTR b = CQWideStringCopyMBS(pszTag);
-    LPWSTR c = CQWideStringCopyMBS(szText);
-    CQLogW(a, nLine, b, c);
-    free(a);
-    free(b);
-    free(c);
+    cq_malloc_pool
+    {
+        LPCWSTR a = cq_push_wstr CQWideStringFromMBS(pszFile);
+        int     b = nLine;
+        LPCWSTR c = cq_push_wstr CQWideStringFromMBS(pszTag);
+        LPCWSTR d = cq_push_wstr CQWideStringFromMBS(szText);
+
+        CQLogW(a, b, c, d);
+    }
+    cq_free_pool();
 }
 
 VOID CQLogInfoA(LPCSTR pszFile, int nLine, _Printf_format_string_ LPCSTR pszFormat, ...)

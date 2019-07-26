@@ -1,35 +1,43 @@
 ﻿#include "cqwin32base.h"
 
-LPWSTR CQWideStringCopyMBS(LPCSTR pszMBS)
+LPCWSTR CQWideStringFromMBS(LPCSTR pszMBS)
 {
-    if (CQ_STR_EMPTY_W(pszMBS))
+    if (cq_str_empty(pszMBS))
     {
         return NULL;
     }
 
-    int nMBS = (int)strlen(pszMBS);
-    int nWS = MultiByteToWideChar(CP_ACP, 0, pszMBS, nMBS, NULL, 0);
+    cq_malloc_pool
+    {
+        int nMBS = (int)strlen(pszMBS);
+        int nWS = MultiByteToWideChar(CP_ACP, 0, pszMBS, nMBS, NULL, 0);
 
-    LPWSTR pszWS = malloc(((size_t)nWS + 1) * sizeof(WCHAR));
-    MultiByteToWideChar(CP_ACP, 0, pszMBS, nMBS, pszWS, nWS);
-    pszWS[nWS] = L'\0';
+        LPWSTR pszWS = cq_push_array(sizeof(WCHAR), nWS + 1);
+        MultiByteToWideChar(CP_ACP, 0, pszMBS, nMBS, pszWS, nWS);
+        pszWS[nWS] = L'\0';
 
-    return pszWS;
+        return cq_store_wstr(pszWS);
+    }
+    cq_free_pool();
 }
 
-LPSTR CQMBStringCopyWS(LPCWSTR pszWS)
+LPCSTR CQMBStringFormWS(LPCWSTR pszWS)
 {
-    if (CQ_STR_EMPTY_W(pszWS))
+    if (cq_wstr_empty(pszWS))
     {
         return NULL;
     }
 
-    int nWS = (int)wcslen(pszWS);
-    int nMBS = WideCharToMultiByte(CP_ACP, 0, pszWS, nWS, NULL, 0, NULL, NULL);
+    cq_malloc_pool
+    {
+        int nWS = (int)wcslen(pszWS);
+        int nMBS = WideCharToMultiByte(CP_ACP, 0, pszWS, nWS, NULL, 0, NULL, NULL);
 
-    LPSTR pszMBS = malloc(((size_t)nMBS + 1) * sizeof(CHAR));
-    WideCharToMultiByte(CP_ACP, 0, pszWS, nWS, pszMBS, nMBS, NULL, NULL);
-    pszMBS[nMBS] = '\0';
+        LPSTR pszMBS = cq_push_array(sizeof(CHAR), nMBS + 1);
+        WideCharToMultiByte(CP_ACP, 0, pszWS, nWS, pszMBS, nMBS, NULL, NULL);
+        pszMBS[nMBS] = '\0';
 
-    return pszMBS;
+        return cq_store_str(pszMBS);
+    }
+    cq_free_pool();
 }

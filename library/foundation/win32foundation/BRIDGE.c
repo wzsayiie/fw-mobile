@@ -5,73 +5,74 @@
 
 void cq_log_info(const char *file, int32_t line, const char *message)
 {
-    LPWSTR pszFile = CQ_COPY_STR_W(cq_u16sfrom8s(file));
-    LPWSTR pszMessage = CQ_COPY_STR_W(cq_u16sfrom8s(message));
-    CQLogInfoW(pszFile, line, pszMessage);
-    free(pszFile);
-    free(pszMessage);
+    cq_malloc_pool
+    {
+        LPCWSTR a = cq_push_wstr cq_wsfrom8s(file);
+        int     b = line;
+        LPCWSTR c = cq_push_wstr cq_wsfrom8s(message);
+
+        CQLogInfoW(a, b, c);
+    }
+    cq_free_pool();
 }
 
 void cq_log_error(const char *file, int32_t line, const char *message)
 {
-    LPWSTR pszFile = CQ_COPY_STR_W(cq_u16sfrom8s(file));
-    LPWSTR pszMessage = CQ_COPY_STR_W(cq_u16sfrom8s(message));
-    CQLogErrorW(pszFile, line, pszMessage);
-    free(pszFile);
-    free(pszMessage);
+    cq_malloc_pool
+    {
+        LPCWSTR a = cq_push_wstr cq_wsfrom8s(file);
+        int     b = line;
+        LPCWSTR c = cq_push_wstr cq_wsfrom8s(message);
+
+        CQLogErrorW(a, b, c);
+    }
+    cq_free_pool();
 }
 
 //file management:
 
 const char *cq_document_directory(void)
 {
-    LPCWSTR a = CQDocumentDirectoryW();
-    LPWSTR b = CQ_COPY_STR_W(a);
-    const char *c = cq_u8sfrom16s(b);
-    free(b);
-    return c;
+    LPCWSTR z = CQDocumentDirectoryW();
+    return cq_u8sfromws(z);
 }
 
 const char *cq_caches_directory(void)
 {
-    LPCWSTR a = CQCachesDirectoryW();
-    LPWSTR b = CQ_COPY_STR_W(a);
-    const char *c = cq_u8sfrom16s(b);
-    free(b);
-    return c;
+    LPCWSTR z = CQCachesDirectoryW();
+    return cq_u8sfromws(z);
 }
 
 const char *cq_temporary_directory(void)
 {
-    LPCWSTR a = CQTemporaryDirectoryW();
-    LPWSTR b = CQ_COPY_STR_W(a);
-    const char *c = cq_u8sfrom16s(b);
-    free(b);
-    return c;
+    LPCWSTR z = CQTemporaryDirectoryW();
+    return cq_u8sfromws(z);
 }
 
 bool cq_directory_exists(const char *path)
 {
-    LPCWSTR pszPath = cq_u16sfrom8s(path);
-    return CQDirectoryExistsW(pszPath);
+    LPCWSTR a = cq_wsfrom8s(path);
+    return CQDirectoryExistsW(a);
 }
 
 bool cq_file_exists(const char *path)
 {
-    LPCWSTR pszPath = cq_u16sfrom8s(path);
-    return CQFileExistsW(pszPath);
+    LPCWSTR a = cq_wsfrom8s(path);
+    return CQFileExistsW(a);
 }
 
 bool cq_create_directory(const char *path, bool intermediate)
 {
-    LPCWSTR pszPath = cq_u16sfrom8s(path);
-    return CQCreateDirectoryW(pszPath, intermediate);
+    LPCWSTR a = cq_wsfrom8s(path);
+    BOOL    b = intermediate;
+
+    return CQCreateDirectoryW(a, b);
 }
 
 void cq_remove_path(const char *path)
 {
-    LPCWSTR pszPath = cq_u16sfrom8s(path);
-    CQRemovePathW(pszPath);
+    LPCWSTR a = cq_wsfrom8s(path);
+    CQRemovePathW(a);
 }
 
 //thread:
