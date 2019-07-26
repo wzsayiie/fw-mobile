@@ -1,7 +1,9 @@
 ﻿#include "cqwin32base.h"
 
-LPWSTR CQWideStringCopyFromMBS(LPCSTR pszMBS) {
-    if (CQ_STR_EMPTY_W(pszMBS)) {
+LPWSTR CQWideStringCopyMBS(LPCSTR pszMBS)
+{
+    if (CQ_STR_EMPTY_W(pszMBS))
+    {
         return NULL;
     }
 
@@ -15,8 +17,10 @@ LPWSTR CQWideStringCopyFromMBS(LPCSTR pszMBS) {
     return pszWS;
 }
 
-LPSTR CQMultiByteStringCopyFromWS(LPCWSTR pszWS) {
-    if (CQ_STR_EMPTY_W(pszWS)) {
+LPSTR CQMBStringCopyWS(LPCWSTR pszWS)
+{
+    if (CQ_STR_EMPTY_W(pszWS))
+    {
         return NULL;
     }
 

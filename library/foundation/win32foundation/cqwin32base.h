@@ -36,5 +36,5 @@
 #define CQ_ARRAY_LEN(ARR) (sizeof(ARR) / sizeof(*ARR))
 
 //NOTE: the release need to free().
-CQ_C_LINK LPWSTR CQWideStringCopyFromMBS(LPCSTR pszMBS);
-CQ_C_LINK LPSTR CQMultiByteStringCopyFromWS(LPCWSTR pszWS);
+CQ_C_LINK LPWSTR CQWideStringCopyMBS(LPCSTR pszMBS);
+CQ_C_LINK LPSTR CQMBStringCopyWS(LPCWSTR pszWS);

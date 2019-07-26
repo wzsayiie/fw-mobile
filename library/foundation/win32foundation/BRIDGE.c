@@ -3,7 +3,8 @@
 
 //log:
 
-void cq_log_info(const char *file, int32_t line, const char *message) {
+void cq_log_info(const char *file, int32_t line, const char *message)
+{
     LPWSTR pszFile = CQ_COPY_STR_W(cq_u16sfrom8s(file));
     LPWSTR pszMessage = CQ_COPY_STR_W(cq_u16sfrom8s(message));
     CQLogInfoW(pszFile, line, pszMessage);
@@ -11,7 +12,8 @@ void cq_log_info(const char *file, int32_t line, const char *message) {
     free(pszMessage);
 }
 
-void cq_log_error(const char *file, int32_t line, const char *message) {
+void cq_log_error(const char *file, int32_t line, const char *message)
+{
     LPWSTR pszFile = CQ_COPY_STR_W(cq_u16sfrom8s(file));
     LPWSTR pszMessage = CQ_COPY_STR_W(cq_u16sfrom8s(message));
     CQLogErrorW(pszFile, line, pszMessage);
@@ -21,50 +23,65 @@ void cq_log_error(const char *file, int32_t line, const char *message) {
 
 //file management:
 
-const char *cq_document_directory(void) {
+const char *cq_document_directory(void)
+{
     LPCWSTR a = CQDocumentDirectoryW();
-    LPCWSTR b = CQ_STORE_STR_W(a);
-    return cq_u8sfrom16s(b);
+    LPWSTR b = CQ_COPY_STR_W(a);
+    const char *c = cq_u8sfrom16s(b);
+    free(b);
+    return c;
 }
 
-const char *cq_caches_directory(void) {
+const char *cq_caches_directory(void)
+{
     LPCWSTR a = CQCachesDirectoryW();
-    LPCWSTR b = CQ_STORE_STR_W(a);
-    return cq_u8sfrom16s(b);
+    LPWSTR b = CQ_COPY_STR_W(a);
+    const char *c = cq_u8sfrom16s(b);
+    free(b);
+    return c;
 }
 
-const char *cq_temporary_directory(void) {
+const char *cq_temporary_directory(void)
+{
     LPCWSTR a = CQTemporaryDirectoryW();
-    LPCWSTR b = CQ_STORE_STR_W(a);
-    return cq_u8sfrom16s(b);
+    LPWSTR b = CQ_COPY_STR_W(a);
+    const char *c = cq_u8sfrom16s(b);
+    free(b);
+    return c;
 }
 
-bool cq_directory_exists(const char *path) {
+bool cq_directory_exists(const char *path)
+{
     LPCWSTR pszPath = cq_u16sfrom8s(path);
     return CQDirectoryExistsW(pszPath);
 }
 
-bool cq_file_exists(const char *path) {
+bool cq_file_exists(const char *path)
+{
     LPCWSTR pszPath = cq_u16sfrom8s(path);
     return CQFileExistsW(pszPath);
 }
 
-bool cq_create_directory(const char *path, bool intermediate) {
+bool cq_create_directory(const char *path, bool intermediate)
+{
     LPCWSTR pszPath = cq_u16sfrom8s(path);
     return CQCreateDirectoryW(pszPath, intermediate);
 }
 
-void cq_remove_path(const char *path) {
+void cq_remove_path(const char *path)
+{
     LPCWSTR pszPath = cq_u16sfrom8s(path);
     CQRemovePathW(pszPath);
 }
 
 //thread:
 
-void cq_thread_run(void (*task)(void *), void *data) {
+void cq_thread_run(void (*task)(void *), void *data)
+{
     CQRunThread(task, data);
 }
 
-void cq_thread_sleep(float seconds) {
+void cq_thread_sleep(float seconds)
+{
     CQThreadSleepSeconds(seconds);
 }

@@ -7,13 +7,16 @@ CQ_C_LINK VOID CQLogErrorW(LPCWSTR pszFile, int nLine, _Printf_format_string_ LP
 CQ_C_LINK VOID CQLogInfoA (LPCSTR  pszFile, int nLine, _Printf_format_string_ LPCSTR  pszFormat, ...);
 CQ_C_LINK VOID CQLogErrorA(LPCSTR  pszFile, int nLine, _Printf_format_string_ LPCSTR  pszFormat, ...);
 
-# ifdef UNICODE
-#   define CQLogInfo  CQLogInfoW
-#   define CQLogError CQLogErrorW
-# else
-#   define CQLogInfo  CQLogInfoA
-#   define CQLogError CQLogErrorA
-# endif
+#define LINFO_W( ...) CQLogInfoW (L"" __FILE__, __LINE__, L"" __VA_ARGS__)
+#define LERROR_W(...) CQLogErrorW(L"" __FILE__, __LINE__, L"" __VA_ARGS__)
 
-#define INF(...) CQLogInfo (_T(__FILE__), __LINE__, __VA_ARGS__)
-#define ERR(...) CQLogError(_T(__FILE__), __LINE__, __VA_ARGS__)
+#define LINFO_A( ...) CQLogInfoA (__FILE__, __LINE__, __VA_ARGS__)
+#define LERROR_A(...) CQLogErrorA(__FILE__, __LINE__, __VA_ARGS__)
+
+# ifdef UNICODE
+#   define LINFO  LINFO_W
+#   define LERROR LERROR_W
+# else
+#   define LINFO  LINFO_A
+#   define LERROR LERROR_A
+# endif

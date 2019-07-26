@@ -1,42 +1,67 @@
 ﻿#include "cqwin32file.h"
 #include <shlobj.h>
 
-LPCTSTR CQ_WIN_FN(CQDocumentDirectory)(VOID)
+LPCWSTR CQDocumentDirectoryW(VOID)
 {
-    TCHAR pszPath[MAX_PATH];
-    if (SHGetFolderPath(NULL, CSIDL_PERSONAL, NULL, SHGFP_TYPE_CURRENT, pszPath) == S_OK)
+    WCHAR pszPath[MAX_PATH];
+    if (SHGetFolderPathW(NULL, CSIDL_PERSONAL, NULL, SHGFP_TYPE_CURRENT, pszPath) == S_OK)
     {
-        return CQ_STORE_STR(pszPath);
+        return CQ_STORE_STR_W(pszPath);
     }
     else
     {
-        return CQ_STORE_STR(NULL);
+        return CQ_STORE_STR_W(NULL);
     }
 }
 
-LPCTSTR CQ_WIN_FN(CQCachesDirectory)(VOID)
+LPCSTR CQDocumentDirectoryA(VOID)
 {
-    TCHAR pszPath[MAX_PATH];
-    if (GetTempPath(CQ_ARRAY_LEN(pszPath), pszPath) > 0)
+    LPCWSTR x = CQDocumentDirectoryW();
+    LPSTR   y = CQMBStringCopyWS(x);
+    LPCSTR  z = CQ_STORE_STR_A(y);
+
+    free(y);
+    return z;
+}
+
+LPCWSTR CQCachesDirectoryW(VOID)
+{
+    WCHAR pszPath[MAX_PATH];
+    if (GetTempPathW(CQ_ARRAY_LEN(pszPath), pszPath) > 0)
     {
-        return CQ_STORE_STR(pszPath);
+        return CQ_STORE_STR_W(pszPath);
     }
     else
     {
-        return CQ_STORE_STR(NULL);
+        return CQ_STORE_STR_W(NULL);
     }
 }
 
-LPCTSTR CQ_WIN_FN(CQTemporaryDirectory)(VOID)
+LPCSTR CQCachesDirectoryA(VOID)
 {
-    return CQCachesDirectory();
+    LPCWSTR x = CQCachesDirectoryW();
+    LPSTR   y = CQMBStringCopyWS(x);
+    LPCSTR  z = CQ_STORE_STR_A(y);
+
+    free(y);
+    return z;
 }
 
-static BOOL CQDiskItemExists(LPCTSTR pszPath, BOOL* bDirectory)
+LPCWSTR CQTemporaryDirectoryW(VOID)
 {
-    if (!CQ_STR_EMPTY(pszPath))
+    return CQCachesDirectoryW();
+}
+
+LPCSTR CQTemporaryDirectoryA(VOID)
+{
+    return CQCachesDirectoryA();
+}
+
+static BOOL CQDiskItemExistsW(LPCWSTR pszPath, BOOL* bDirectory)
+{
+    if (!CQ_STR_EMPTY_W(pszPath))
     {
-        DWORD dwAttributes = GetFileAttributes(pszPath);
+        DWORD dwAttributes = GetFileAttributesW(pszPath);
         if (dwAttributes != INVALID_FILE_ATTRIBUTES)
         {
             *bDirectory = (dwAttributes & FILE_ATTRIBUTE_DIRECTORY);
@@ -54,23 +79,41 @@ static BOOL CQDiskItemExists(LPCTSTR pszPath, BOOL* bDirectory)
     }
 }
 
-BOOL CQ_WIN_FN(CQDirectoryExists)(LPCTSTR pszPath)
+BOOL CQDirectoryExistsW(LPCWSTR pszPath)
 {
     BOOL bDirectory = FALSE;
-    BOOL bExists = CQDiskItemExists(pszPath, &bDirectory);
+    BOOL bExists = CQDiskItemExistsW(pszPath, &bDirectory);
     return bExists && bDirectory;
 }
 
-BOOL CQ_WIN_FN(CQFileExists)(LPCTSTR pszPath)
+BOOL CQDirectoryExistsA(LPCSTR pszPath)
+{
+    LPWSTR a = CQWideStringCopyMBS(pszPath);
+    BOOL   x = CQDirectoryExistsW(a);
+
+    free(a);
+    return x;
+}
+
+BOOL CQFileExistsW(LPCWSTR pszPath)
 {
     BOOL bDirectory = FALSE;
-    BOOL bExists = CQDiskItemExists(pszPath, &bDirectory);
+    BOOL bExists = CQDiskItemExistsW(pszPath, &bDirectory);
     return bExists && !bDirectory;
 }
 
-BOOL CQ_WIN_FN(CQCreateDirectory)(LPCTSTR pszPath, BOOL bIntermediate)
+BOOL CQFileExistsA(LPCSTR pszPath)
 {
-    if (CQ_STR_EMPTY(pszPath))
+    LPWSTR a = CQWideStringCopyMBS(pszPath);
+    BOOL   x = CQFileExistsW(a);
+
+    free(a);
+    return x;
+}
+
+BOOL CQCreateDirectoryW(LPCWSTR pszPath, BOOL bIntermediate)
+{
+    if (CQ_STR_EMPTY_W(pszPath))
     {
         return FALSE;
     }
@@ -78,38 +121,61 @@ BOOL CQ_WIN_FN(CQCreateDirectory)(LPCTSTR pszPath, BOOL bIntermediate)
     if (bIntermediate)
     {
         //SHCreateDirectory() isn't support relative path.
-        if (pszPath[1] != _T(':'))
+        if (pszPath[1] != L':')
         {
-            TCHAR pszAllPath[MAX_PATH];
-            GetCurrentDirectory(CQ_ARRAY_LEN(pszAllPath), pszAllPath);
-            _tcscat_s(pszAllPath, CQ_ARRAY_LEN(pszAllPath), _T("\\"));
-            _tcscat_s(pszAllPath, CQ_ARRAY_LEN(pszAllPath), pszPath);
-            return SHCreateDirectoryEx(NULL, pszAllPath, NULL) == ERROR_SUCCESS;
+            WCHAR pszAllPath[MAX_PATH];
+            GetCurrentDirectoryW(CQ_ARRAY_LEN(pszAllPath), pszAllPath);
+            wcscat_s(pszAllPath, CQ_ARRAY_LEN(pszAllPath), L"\\");
+            wcscat_s(pszAllPath, CQ_ARRAY_LEN(pszAllPath), pszPath);
+            return SHCreateDirectoryExW(NULL, pszAllPath, NULL) == ERROR_SUCCESS;
         }
         else
         {
-            return SHCreateDirectoryEx(NULL, pszPath, NULL) == ERROR_SUCCESS;
+            return SHCreateDirectoryExW(NULL, pszPath, NULL) == ERROR_SUCCESS;
         }
     }
     else
     {
-        return CreateDirectory(pszPath, NULL);
+        return CreateDirectoryW(pszPath, NULL);
     }
 }
 
-VOID CQ_WIN_FN(CQRemovePath)(LPCTSTR pszPath)
+BOOL CQCreateDirectoryA(LPCSTR pszPath, BOOL bIntermediate)
 {
-    if (CQ_STR_EMPTY(pszPath))
+    LPWSTR a = CQWideStringCopyMBS(pszPath);
+    BOOL x = CQCreateDirectoryW(a, bIntermediate);
+
+    free(a);
+    return x;
+}
+
+VOID CQRemovePathW(LPCWSTR pszPath)
+{
+    if (CQ_STR_EMPTY_W(pszPath))
     {
         return;
     }
 
-    SHFILEOPSTRUCT stOperation;
+    //SHFILEOPSTRUCT.pFrom need double null terminating.
+    size_t nPath = wcslen(pszPath);
+    LPWSTR pszFromPath = malloc((nPath + 2) * sizeof(WCHAR));
+    wcscpy(pszFromPath, pszPath);
+    pszFromPath[nPath + 1] = L'\0';
+
+    SHFILEOPSTRUCTW stOperation;
     memset(&stOperation, 0, sizeof(stOperation));
-    stOperation.fFlags = FOF_ALLOWUNDO | FOF_NOCONFIRMATION;
-    stOperation.pFrom = pszPath;
+    stOperation.pFrom = pszFromPath;
     stOperation.pTo = NULL;
     stOperation.wFunc = FO_DELETE;
-
+    stOperation.fFlags = FOF_ALLOWUNDO | FOF_NOCONFIRMATION;
     SHFileOperation(&stOperation);
+
+    free(pszFromPath);
+}
+
+VOID CQRemovePathA(LPCSTR pszPath)
+{
+    LPWSTR a = CQWideStringCopyMBS(pszPath);
+    CQRemovePathW(a);
+    free(a);
 }
