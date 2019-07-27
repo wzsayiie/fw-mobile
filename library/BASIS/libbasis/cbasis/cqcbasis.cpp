@@ -86,50 +86,65 @@ static pools_t *get_pools() {
     return pools;
 }
 
-void _cq_alloc_pool(void *) {
+bool cq_push_auto_pool() {
     pools_t *pools = get_pools();
     pools->push_back(pools_t::value_type());
+    return true;
 }
 
-void _cq_free_pool(void *) {
+bool cq_pop_auto_pool() {
     auto pools = get_pools();
-    if (pools->size() > 0) {
-        auto &current = pools->back();
-        for (void *ptr : current) {
-            free(ptr);
-        }
-        pools->pop_back();
+    if (pools->empty()) {
+        return false;
     }
-}
-
-char16_t *cq_alloc_u16str(const char16_t *string) {
-    auto pools = get_pools();
-    if (pools->size() > 0 && string != nullptr) {
-        char16_t *copy = cq_copy_u16str(string);
-        pools->back().push_back(copy);
-        return copy;
+    
+    auto &current = pools->back();
+    for (void *ptr : current) {
+        free(ptr);
     }
-    return nullptr;
+    pools->pop_back();
+    return false;
 }
 
-char *cq_alloc_u8str(const char *string) {
+void *cq_auto(void *ptr) {
     auto pools = get_pools();
-    if (pools->size() > 0 && string != nullptr) {
-        char *copy = cq_copy_u8str(string);
-        pools->back().push_back(copy);
-        return copy;
-    }
-    return nullptr;
-}
-
-void *cq_alloc_array(size_t size, size_t count) {
-    auto pools = get_pools();
-    if (pools->size() > 0 && size > 0 && count > 0) {
-        void *ptr = malloc(size * count);
+    if (!pools->empty()) {
         pools->back().push_back(ptr);
-        return ptr;
     }
-    return nullptr;
+    return ptr;
+}
+
+char *cq_auto_u8str(const char *string) {
+    auto pools = get_pools();
+    if (pools->empty() || string == nullptr) {
+        return nullptr;
+    }
+    
+    char *copy = cq_copy_u8str(string);
+    pools->back().push_back(copy);
+    return copy;
+}
+
+char16_t *cq_auto_u16str(const char16_t *string) {
+    auto pools = get_pools();
+    if (pools->empty() || string == nullptr) {
+        return nullptr;
+    }
+    
+    char16_t *copy = cq_copy_u16str(string);
+    pools->back().push_back(copy);
+    return copy;
+}
+
+void *cq_auto_array(size_t size, size_t count) {
+    auto pools = get_pools();
+    if (pools->empty() && size == 0 && count == 0) {
+        return nullptr;
+    }
+    
+    void *ptr = malloc(size * count);
+    pools->back().push_back(ptr);
+    return ptr;
 }
 
 //unicode:
