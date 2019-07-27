@@ -103,37 +103,24 @@ CQ_C_LINK char16_t *cq_copy_u16str(const char16_t *string);
 CQ_C_LINK const char *cq_store_u8str(const char *string);
 CQ_C_LINK const char16_t *cq_store_u16str(const char16_t *string);
 
-//malloc pool:
+//alloc pool:
 
-struct _cq_malloc_pool {
-    void *slots[64];
-    int insert;
-};
-
-CQ_C_LINK void _cq_free_pool(struct _cq_malloc_pool *pool);
-
-CQ_C_LINK void **_cq_push_u16str(struct _cq_malloc_pool *pool);
-CQ_C_LINK void **_cq_push_u8str(struct _cq_malloc_pool *pool);
-CQ_C_LINK void **_cq_push_array(struct _cq_malloc_pool *pool, size_t size, size_t count);
-
-#ifndef __cplusplus
+CQ_C_LINK void _cq_alloc_pool(void *unused);
+CQ_C_LINK void _cq_free_pool(void *unused);
 
 # if defined(__clang__)
-#   define cq_malloc_pool __attribute((cleanup(_cq_free_pool))) struct _cq_malloc_pool __p = {NULL};
+#   define cq_alloc_pool  __attribute((cleanup(_cq_free_pool))) int _unused; _cq_alloc_pool(&_unused);
 #   define cq_free_pool()
 # elif defined(_MSC_VER)
-#   define cq_malloc_pool struct _cq_malloc_pool __p = {NULL}; __try
-#   define cq_free_pool() __finally {_cq_free_pool(&__p);}
+#   define cq_alloc_pool  _cq_alloc_pool(NULL); __try
+#   define cq_free_pool() __finally {_cq_free_pool(NULL);}
 # else
-#   error "malloc pool is not supported for current compiler"
+#   error "alloc pool is not supported for current compiler"
 # endif
 
-#define cq_push_u16str *_cq_push_u16str(&__p) = __p.slots[__p.insert] = (void *)
-#define cq_push_u8str  *_cq_push_u8str (&__p) = __p.slots[__p.insert] = (void *)
-
-#define cq_push_array(size, count) *_cq_push_array(&__p, size, count)
-
-#endif
+CQ_C_LINK char16_t *cq_alloc_u16str(const char16_t *string);
+CQ_C_LINK char *cq_alloc_u8str(const char *string);
+CQ_C_LINK void *cq_alloc_array(size_t size, size_t count);
 
 //unicode:
 

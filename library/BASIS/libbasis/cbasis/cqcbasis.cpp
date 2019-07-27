@@ -1,5 +1,6 @@
 #include "cqcbasis.h"
 #include <string>
+#include <vector>
 
 //data:
 
@@ -73,29 +74,62 @@ template<class T> const T *cq_store_str(const T *string) {
 const char *cq_store_u8str(const char *s) {return cq_store_str<char>(s);}
 const char16_t *cq_store_u16str(const char16_t *s) {return cq_store_str<char16_t>(s);}
 
-//malloc pool:
+//alloc pool:
 
-void **_cq_push_u16str(struct _cq_malloc_pool *pool) {
-    auto src = (char16_t *)pool->slots[pool->insert];
-    pool->slots[pool->insert] = cq_copy_u16str(src);
-    return &pool->slots[(pool->insert)++];
-}
+typedef std::vector<std::vector<void *>> pools_t;
 
-void **_cq_push_u8str(struct _cq_malloc_pool *pool) {
-    auto src = (char *)pool->slots[pool->insert];
-    pool->slots[pool->insert] = cq_copy_u8str(src);
-    return &pool->slots[(pool->insert)++];
-}
-
-void **_cq_push_array(struct _cq_malloc_pool *pool, size_t size, size_t count) {
-    pool->slots[pool->insert] = malloc(size * count);
-    return &pool->slots[(pool->insert)++];
-}
-
-void _cq_free_pool(struct _cq_malloc_pool *pool) {
-    for (size_t it = 0; it < pool->insert; ++it) {
-        free(pool->slots[it]);
+static pools_t *get_pools() {
+    static thread_local pools_t *pools = nullptr;
+    if (pools == nullptr) {
+        pools = new pools_t;
     }
+    return pools;
+}
+
+void _cq_alloc_pool(void *) {
+    pools_t *pools = get_pools();
+    pools->push_back(pools_t::value_type());
+}
+
+void _cq_free_pool(void *) {
+    auto pools = get_pools();
+    if (pools->size() > 0) {
+        auto &current = pools->back();
+        for (void *ptr : current) {
+            free(ptr);
+        }
+        pools->pop_back();
+    }
+}
+
+char16_t *cq_alloc_u16str(const char16_t *string) {
+    auto pools = get_pools();
+    if (pools->size() > 0 && string != nullptr) {
+        char16_t *copy = cq_copy_u16str(string);
+        pools->back().push_back(copy);
+        return copy;
+    }
+    return nullptr;
+}
+
+char *cq_alloc_u8str(const char *string) {
+    auto pools = get_pools();
+    if (pools->size() > 0 && string != nullptr) {
+        char *copy = cq_copy_u8str(string);
+        pools->back().push_back(copy);
+        return copy;
+    }
+    return nullptr;
+}
+
+void *cq_alloc_array(size_t size, size_t count) {
+    auto pools = get_pools();
+    if (pools->size() > 0 && size > 0 && count > 0) {
+        void *ptr = malloc(size * count);
+        pools->back().push_back(ptr);
+        return ptr;
+    }
+    return nullptr;
 }
 
 //unicode:
