@@ -4,7 +4,9 @@
 LPCWSTR CQDocumentDirectoryW(VOID)
 {
     WCHAR pszPath[MAX_PATH];
-    if (SHGetFolderPathW(NULL, CSIDL_PERSONAL, NULL, SHGFP_TYPE_CURRENT, pszPath) == S_OK)
+    HRESULT retResult = SHGetFolderPathW(NULL, CSIDL_PERSONAL, NULL, SHGFP_TYPE_CURRENT, pszPath);
+    
+    if (retResult == S_OK)
     {
         return cq_store_wstr(pszPath);
     }
@@ -16,18 +18,16 @@ LPCWSTR CQDocumentDirectoryW(VOID)
 
 LPCSTR CQDocumentDirectoryA(VOID)
 {
-    cq_malloc_pool
-    {
-        LPCWSTR z = CQDocumentDirectoryW();
-        return CQMBStringFormWS(z);
-    }
-    cq_free_pool();
+    LPCWSTR pszPathW = CQDocumentDirectoryW();
+    return CQMBStringFormWS(pszPathW);
 }
 
 LPCWSTR CQCachesDirectoryW(VOID)
 {
     WCHAR pszPath[MAX_PATH];
-    if (GetTempPathW(cq_array_count(pszPath), pszPath) > 0)
+    DWORD dwLength = GetTempPathW(cq_array_count(pszPath), pszPath);
+
+    if (dwLength > 0)
     {
         return cq_store_wstr(pszPath);
     }
@@ -39,12 +39,8 @@ LPCWSTR CQCachesDirectoryW(VOID)
 
 LPCSTR CQCachesDirectoryA(VOID)
 {
-    cq_malloc_pool
-    {
-        LPCWSTR z = CQCachesDirectoryW();
-        return CQMBStringFormWS(z);
-    }
-    cq_free_pool();
+    LPCWSTR pszPathW = CQCachesDirectoryW();
+    return CQMBStringFormWS(pszPathW);
 }
 
 LPCWSTR CQTemporaryDirectoryW(VOID)
@@ -57,7 +53,7 @@ LPCSTR CQTemporaryDirectoryA(VOID)
     return CQCachesDirectoryA();
 }
 
-static BOOL CQDiskItemExistsW(LPCWSTR pszPath, BOOL* bDirectory)
+static BOOL CQDiskItemExistsW(LPCWSTR pszPath, BOOL *bDirectory)
 {
     if (!cq_wstr_empty(pszPath))
     {
@@ -88,8 +84,8 @@ BOOL CQDirectoryExistsW(LPCWSTR pszPath)
 
 BOOL CQDirectoryExistsA(LPCSTR pszPath)
 {
-    LPCWSTR a = CQWideStringFromMBS(pszPath);
-    return CQDirectoryExistsW(a);
+    LPCWSTR pszPathW = CQWideStringFromMBS(pszPath);
+    return CQDirectoryExistsW(pszPathW);
 }
 
 BOOL CQFileExistsW(LPCWSTR pszPath)
@@ -101,8 +97,8 @@ BOOL CQFileExistsW(LPCWSTR pszPath)
 
 BOOL CQFileExistsA(LPCSTR pszPath)
 {
-    LPCWSTR a = CQWideStringFromMBS(pszPath);
-    return CQFileExistsW(a);
+    LPCWSTR pszPathW = CQWideStringFromMBS(pszPath);
+    return CQFileExistsW(pszPathW);
 }
 
 BOOL CQCreateDirectoryW(LPCWSTR pszPath, BOOL bIntermediate)
@@ -121,11 +117,14 @@ BOOL CQCreateDirectoryW(LPCWSTR pszPath, BOOL bIntermediate)
             GetCurrentDirectoryW(cq_array_count(pszAllPath), pszAllPath);
             wcscat_s(pszAllPath, cq_array_count(pszAllPath), L"\\");
             wcscat_s(pszAllPath, cq_array_count(pszAllPath), pszPath);
-            return SHCreateDirectoryExW(NULL, pszAllPath, NULL) == ERROR_SUCCESS;
+
+            int nError = SHCreateDirectoryExW(NULL, pszAllPath, NULL);
+            return nError == ERROR_SUCCESS;
         }
         else
         {
-            return SHCreateDirectoryExW(NULL, pszPath, NULL) == ERROR_SUCCESS;
+            int nError = SHCreateDirectoryExW(NULL, pszPath, NULL);
+            return nError == ERROR_SUCCESS;
         }
     }
     else
@@ -136,10 +135,8 @@ BOOL CQCreateDirectoryW(LPCWSTR pszPath, BOOL bIntermediate)
 
 BOOL CQCreateDirectoryA(LPCSTR pszPath, BOOL bIntermediate)
 {
-    LPCWSTR a = CQWideStringFromMBS(pszPath);
-    BOOL    b = bIntermediate;
-
-    return CQCreateDirectoryW(a, b);
+    LPCWSTR pszPathW = CQWideStringFromMBS(pszPath);
+    return CQCreateDirectoryW(pszPathW, bIntermediate);
 }
 
 VOID CQRemovePathW(LPCWSTR pszPath)
@@ -149,19 +146,19 @@ VOID CQRemovePathW(LPCWSTR pszPath)
         return;
     }
 
-    cq_malloc_pool
+    cq_alloc_pool
     {
         //SHFILEOPSTRUCT.pFrom need double null terminating.
         size_t nPath = wcslen(pszPath);
-        LPWSTR pszFromPath = cq_push_array(sizeof(WCHAR), nPath + 2);
+        LPWSTR pszFromPath = cq_alloc_array(sizeof(WCHAR), nPath + 2);
         wcscpy(pszFromPath, pszPath);
         pszFromPath[nPath + 1] = L'\0';
 
         SHFILEOPSTRUCTW stOperation;
         memset(&stOperation, 0, sizeof(stOperation));
+        stOperation.wFunc = FO_DELETE;
         stOperation.pFrom = pszFromPath;
         stOperation.pTo = NULL;
-        stOperation.wFunc = FO_DELETE;
         stOperation.fFlags = FOF_ALLOWUNDO | FOF_NOCONFIRMATION;
         SHFileOperation(&stOperation);
     }
@@ -170,6 +167,6 @@ VOID CQRemovePathW(LPCWSTR pszPath)
 
 VOID CQRemovePathA(LPCSTR pszPath)
 {
-    LPCWSTR a = CQWideStringFromMBS(pszPath);
-    CQRemovePathW(a);
+    LPCWSTR pszPathW = CQWideStringFromMBS(pszPath);
+    CQRemovePathW(pszPathW);
 }

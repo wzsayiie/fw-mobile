@@ -32,6 +32,8 @@ static VOID CQLogW(LPCWSTR pszFile, int nLine, LPCWSTR pszTag, LPCWSTR pszText)
     _setmode(_fileno(stdout), _O_TEXT);
 }
 
+//wide character version:
+
 static VOID CQLogvW(LPCWSTR pszFile, int nLine, LPCWSTR pszTag, LPCWSTR pszFormat, va_list lpArgs)
 {
     if (cq_wstr_empty(pszFormat))
@@ -60,6 +62,8 @@ VOID CQLogErrorW(LPCWSTR pszFile, int nLine, _Printf_format_string_ LPCWSTR pszF
     va_end(lpArgs);
 }
 
+//narrow character version:
+
 static VOID CQLogvA(LPCSTR pszFile, int nLine, LPCSTR pszTag, LPCSTR pszFormat, va_list lpArgs)
 {
     if (cq_str_empty(pszFormat))
@@ -70,14 +74,13 @@ static VOID CQLogvA(LPCSTR pszFile, int nLine, LPCSTR pszTag, LPCSTR pszFormat, 
     CHAR szText[1024 * 4];
     vsprintf_s(szText, cq_array_count(szText), pszFormat, lpArgs);
 
-    cq_malloc_pool
+    cq_alloc_pool
     {
-        LPCWSTR a = cq_push_wstr CQWideStringFromMBS(pszFile);
-        int     b = nLine;
-        LPCWSTR c = cq_push_wstr CQWideStringFromMBS(pszTag);
-        LPCWSTR d = cq_push_wstr CQWideStringFromMBS(szText);
+        LPCWSTR pszFileW = cq_alloc_wstr(CQWideStringFromMBS(pszFile));
+        LPCWSTR pszTagW  = cq_alloc_wstr(CQWideStringFromMBS(pszTag));
+        LPCWSTR pszTextW = cq_alloc_wstr(CQWideStringFromMBS(szText));
 
-        CQLogW(a, b, c, d);
+        CQLogW(pszFileW, nLine, pszTagW, pszTextW);
     }
     cq_free_pool();
 }

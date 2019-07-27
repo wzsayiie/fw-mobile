@@ -5,26 +5,24 @@
 
 void cq_log_info(const char *file, int32_t line, const char *message)
 {
-    cq_malloc_pool
+    cq_alloc_pool
     {
-        LPCWSTR a = cq_push_wstr cq_wsfrom8s(file);
-        int     b = line;
-        LPCWSTR c = cq_push_wstr cq_wsfrom8s(message);
+        LPCWSTR pszFile = cq_alloc_wstr(cq_wsfrom8s(file));
+        LPCWSTR pszMessage = cq_alloc_wstr(cq_wsfrom8s(message));
 
-        CQLogInfoW(a, b, c);
+        CQLogInfoW(pszFile, line, pszMessage);
     }
     cq_free_pool();
 }
 
 void cq_log_error(const char *file, int32_t line, const char *message)
 {
-    cq_malloc_pool
+    cq_alloc_pool
     {
-        LPCWSTR a = cq_push_wstr cq_wsfrom8s(file);
-        int     b = line;
-        LPCWSTR c = cq_push_wstr cq_wsfrom8s(message);
+        LPCWSTR pszFile = cq_alloc_wstr(cq_wsfrom8s(file));
+        LPCWSTR pszMessage = cq_alloc_wstr(cq_wsfrom8s(message));
 
-        CQLogErrorW(a, b, c);
+        CQLogErrorW(pszFile, line, pszMessage);
     }
     cq_free_pool();
 }
@@ -33,46 +31,44 @@ void cq_log_error(const char *file, int32_t line, const char *message)
 
 const char *cq_document_directory(void)
 {
-    LPCWSTR z = CQDocumentDirectoryW();
-    return cq_u8sfromws(z);
+    LPCWSTR pszPath = CQDocumentDirectoryW();
+    return cq_u8sfromws(pszPath);
 }
 
 const char *cq_caches_directory(void)
 {
-    LPCWSTR z = CQCachesDirectoryW();
-    return cq_u8sfromws(z);
+    LPCWSTR pszPath = CQCachesDirectoryW();
+    return cq_u8sfromws(pszPath);
 }
 
 const char *cq_temporary_directory(void)
 {
-    LPCWSTR z = CQTemporaryDirectoryW();
-    return cq_u8sfromws(z);
+    LPCWSTR pszPath = CQTemporaryDirectoryW();
+    return cq_u8sfromws(pszPath);
 }
 
 bool cq_directory_exists(const char *path)
 {
-    LPCWSTR a = cq_wsfrom8s(path);
-    return CQDirectoryExistsW(a);
+    LPCWSTR pszPath = cq_wsfrom8s(path);
+    return CQDirectoryExistsW(pszPath);
 }
 
 bool cq_file_exists(const char *path)
 {
-    LPCWSTR a = cq_wsfrom8s(path);
-    return CQFileExistsW(a);
+    LPCWSTR pszPath = cq_wsfrom8s(path);
+    return CQFileExistsW(pszPath);
 }
 
 bool cq_create_directory(const char *path, bool intermediate)
 {
-    LPCWSTR a = cq_wsfrom8s(path);
-    BOOL    b = intermediate;
-
-    return CQCreateDirectoryW(a, b);
+    LPCWSTR pszPath = cq_wsfrom8s(path);
+    return CQCreateDirectoryW(pszPath, intermediate);
 }
 
 void cq_remove_path(const char *path)
 {
-    LPCWSTR a = cq_wsfrom8s(path);
-    CQRemovePathW(a);
+    LPCWSTR pszPath = cq_wsfrom8s(path);
+    CQRemovePathW(pszPath);
 }
 
 //thread:

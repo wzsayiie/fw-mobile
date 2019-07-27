@@ -20,8 +20,8 @@
 #define cq_copy_str   cq_copy_u8str
 #define cq_store_wstr cq_store_u16str
 #define cq_store_str  cq_store_u8str
-#define cq_push_wstr  cq_push_u16str
-#define cq_push_str   cq_push_u8str
+#define cq_alloc_wstr cq_alloc_u16str
+#define cq_alloc_str  cq_alloc_u8str
 #define cq_wsfrom8s   cq_u16sfrom8s
 #define cq_u8sfromws  cq_u8sfrom16s
 
@@ -29,12 +29,12 @@
 #   define cq_tstr_empty cq_wstr_empty
 #   define cq_copy_tstr  cq_copy_wstr
 #   define cq_store_tstr cq_store_wstr
-#   define cq_push_tstr  cq_push_wstr
+#   define cq_alloc_tstr cq_alloc_wstr
 # else
 #   define cq_tstr_empty cq_str_empty
 #   define cq_copy_tstr  cq_copy_str
 #   define cq_store_tstr cq_store_str
-#   define cq_push_tstr  cq_push_str
+#   define cq_alloc_tstr cq_alloc_str
 # endif
 
 CQ_C_LINK LPCWSTR CQWideStringFromMBS(LPCSTR pszMBS);
