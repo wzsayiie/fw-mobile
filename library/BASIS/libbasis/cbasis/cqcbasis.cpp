@@ -74,7 +74,7 @@ template<class T> const T *cq_store_str(const T *string) {
 const char *cq_store_u8str(const char *s) {return cq_store_str<char>(s);}
 const char16_t *cq_store_u16str(const char16_t *s) {return cq_store_str<char16_t>(s);}
 
-//alloc pool:
+//auto free pool:
 
 typedef std::vector<std::vector<void *>> pools_t;
 

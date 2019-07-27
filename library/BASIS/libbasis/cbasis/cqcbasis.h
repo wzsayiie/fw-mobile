@@ -103,7 +103,7 @@ CQ_C_LINK char16_t *cq_copy_u16str(const char16_t *string);
 CQ_C_LINK const char *cq_store_u8str(const char *string);
 CQ_C_LINK const char16_t *cq_store_u16str(const char16_t *string);
 
-//alloc pool:
+//auto free pool:
 
 #define cq_auto_pool for (bool __r = cq_push_auto_pool(); __r; __r = cq_pop_auto_pool())
 
