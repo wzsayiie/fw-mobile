@@ -1,91 +1,61 @@
 #include "codecount.hh"
 
-void push_cpp(vector<string> *dirs) {
-    //editor
-    dirs->push_back("EDITOR_CPP");
-    
-    //library
-    dirs->push_back("library/BASIS/android/cpp");
-    dirs->push_back("library/BASIS/libbasis");
-    
-    dirs->push_back("library/ctool/libctool");
-    
-    dirs->push_back("library/foundation/android/cpp");
-    dirs->push_back("library/foundation/libfoundation");
-    
-    dirs->push_back("library/standalone/android/cpp");
-    dirs->push_back("library/standalone/libstandalone");
-    
-    dirs->push_back("library/subsystem/android/cpp");
-    dirs->push_back("library/subsystem/libsubsystem");
-    
-    //program
-    dirs->push_back("program_basis/android/cpp");
-    dirs->push_back("program_basis/libbasisprogram");
-    
-    dirs->push_back("program_cpp/android/cpp");
-    dirs->push_back("program_cpp/libcppprogram");
-    
-    dirs->push_back("program_lua/android/cpp");
-    dirs->push_back("program_lua/libluaprogram");
-}
-
-void push_cppcli(vector<string> *dirs) {
-    dirs->push_back("library/foundation/windows");
-}
-
-void push_csharp(vector<string> *dirs) {
-    dirs->push_back("app_unity/Assets/Scripts");
-    dirs->push_back("EDITOR_CS");
-};
-
-void push_java(vector<string> *dirs) {
-    //app
-    dirs->push_back("app_android/app/src/main/java");
-    
-    //library
-    dirs->push_back("library/BASIS/android/java");
-    dirs->push_back("library/foundation/android/java");
-    dirs->push_back("library/standalone/android/java");
-    dirs->push_back("library/subsystem/android/java");
-    
-    //program
-    dirs->push_back("program_basis/android/java");
-    dirs->push_back("program_cpp/android/java");
-    dirs->push_back("program_lua/android/java");
-}
-
-void push_lua(vector<string> *dirs) {
-    dirs->push_back("program_lua/libluascript");
-};
-
-void push_objc(vector<string> *dirs) {
-    //app
-    dirs->push_back("app_ios/App/Sources");
-    
-    //library
-    dirs->push_back("library/BASIS/MacBasis");
-    dirs->push_back("library/foundation/MacFoundation");
-    dirs->push_back("library/standalone/MacStandalone");
-    dirs->push_back("library/subsystem/IOSSubsystem");
-    
-    //program
-    dirs->push_back("program_basis/IOSBasisProgram");
-    dirs->push_back("program_cpp/IOSCPPProgram");
-    dirs->push_back("program_lua/IOSLuaProgram");
-}
+#define  S_CPP(x) x
+#define   S_CS(x) x
+#define S_JAVA(x) x
+#define  S_JNI(x) x
+#define  S_LUA(x) x
+#define S_OBJC(x) x
 
 bool codecount_launch = 0;
 void codecount_main() {
     
     vector<string> dirs;
     
-//    push_cpp   (&dirs);
-//    push_cppcli(&dirs);
-//    push_csharp(&dirs);
-//    push_java  (&dirs);
-//    push_lua   (&dirs);
-//    push_objc  (&dirs);
+    S_JAVA(dirs.push_back("app_android/app/src/main/java"));
+    S_OBJC(dirs.push_back("app_ios/App/Sources"));
+    S_CS  (dirs.push_back("app_unity/Assets/Scripts"));
+
+    S_CPP (dirs.push_back("EDITOR_CPP"));
+    S_CS  (dirs.push_back("EDITOR_CS"));
+    
+    S_JNI (dirs.push_back("library/BASIS/android/cpp"));
+    S_JAVA(dirs.push_back("library/BASIS/android/java"));
+    S_CPP (dirs.push_back("library/BASIS/libbasis"));
+    S_OBJC(dirs.push_back("library/BASIS/MacBasis"));
+    
+    S_CPP (dirs.push_back("library/ctool/libctool"));
+    
+    S_JNI (dirs.push_back("library/foundation/android/cpp"));
+    S_JAVA(dirs.push_back("library/foundation/android/java"));
+    S_CPP (dirs.push_back("library/foundation/libfoundation"));
+    S_OBJC(dirs.push_back("library/foundation/MacFoundation"));
+    S_CPP (dirs.push_back("library/foundation/win32foundation"));
+    
+    S_JNI (dirs.push_back("library/standalone/android/cpp"));
+    S_JAVA(dirs.push_back("library/standalone/android/java"));
+    S_CPP (dirs.push_back("library/standalone/libstandalone"));
+    S_OBJC(dirs.push_back("library/standalone/MacStandalone"));
+
+    S_JNI (dirs.push_back("library/subsystem/android/cpp"));
+    S_JAVA(dirs.push_back("library/subsystem/android/java"));
+    S_OBJC(dirs.push_back("library/subsystem/IOSSubsystem"));
+    S_CPP (dirs.push_back("library/subsystem/libsubsystem"));
+
+    S_JNI (dirs.push_back("program_basis/android/cpp"));
+    S_JAVA(dirs.push_back("program_basis/android/java"));
+    S_OBJC(dirs.push_back("program_basis/IOSBasisProgram"));
+    S_CPP (dirs.push_back("program_basis/libbasisprogram"));
+
+    S_JNI (dirs.push_back("program_cpp/android/cpp"));
+    S_JAVA(dirs.push_back("program_cpp/android/java"));
+    S_OBJC(dirs.push_back("program_cpp/IOSCPPProgram"));
+    S_CPP (dirs.push_back("program_cpp/libcppprogram"));
+
+    S_JNI (dirs.push_back("program_lua/android/cpp"));
+    S_JAVA(dirs.push_back("program_lua/android/java"));
+    S_OBJC(dirs.push_back("program_lua/IOSLuaProgram"));
+    S_CPP (dirs.push_back("program_lua/libluaprogram"));
     
     codecount(dirs);
 }
