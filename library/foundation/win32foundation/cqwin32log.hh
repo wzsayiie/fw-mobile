@@ -1,11 +1,11 @@
 ﻿#pragma once
 
-#include "cqwin32base.h"
+#include "cqwin32base.hh"
 
-CQ_C_LINK VOID CQLogInfoW (LPCWSTR pszFile, int nLine, _Printf_format_string_ LPCWSTR pszFormat, ...);
-CQ_C_LINK VOID CQLogErrorW(LPCWSTR pszFile, int nLine, _Printf_format_string_ LPCWSTR pszFormat, ...);
-CQ_C_LINK VOID CQLogInfoA (LPCSTR  pszFile, int nLine, _Printf_format_string_ LPCSTR  pszFormat, ...);
-CQ_C_LINK VOID CQLogErrorA(LPCSTR  pszFile, int nLine, _Printf_format_string_ LPCSTR  pszFormat, ...);
+VOID CQLogInfoW (CONST WCHAR *pszFile, int nLine, _Printf_format_string_ CONST WCHAR *pszFormat, ...);
+VOID CQLogErrorW(CONST WCHAR *pszFile, int nLine, _Printf_format_string_ CONST WCHAR *pszFormat, ...);
+VOID CQLogInfoA (CONST CHAR  *pszFile, int nLine, _Printf_format_string_ CONST CHAR  *pszFormat, ...);
+VOID CQLogErrorA(CONST CHAR  *pszFile, int nLine, _Printf_format_string_ CONST CHAR  *pszFormat, ...);
 
 #define LINFO_W( ...) CQLogInfoW (L"" __FILE__, __LINE__, L"" __VA_ARGS__)
 #define LERROR_W(...) CQLogErrorW(L"" __FILE__, __LINE__, L"" __VA_ARGS__)

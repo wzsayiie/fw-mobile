@@ -1,13 +1,13 @@
 ﻿#pragma once
 
-#include "cqwin32base.h"
+#include "cqwin32base.hh"
 
-CQ_C_LINK LPCWSTR CQDocumentDirectoryW(VOID);
-CQ_C_LINK LPCSTR  CQDocumentDirectoryA(VOID);
-CQ_C_LINK LPCWSTR CQCachesDirectoryW(VOID);
-CQ_C_LINK LPCSTR  CQCachesDirectoryA(VOID);
-CQ_C_LINK LPCWSTR CQTemporaryDirectoryW(VOID);
-CQ_C_LINK LPCSTR  CQTemporaryDirectoryA(VOID);
+CQWSTR CQDocumentDirectoryW();
+CQSTR  CQDocumentDirectoryA();
+CQWSTR CQCachesDirectoryW();
+CQSTR  CQCachesDirectoryA();
+CQWSTR CQTemporaryDirectoryW();
+CQSTR  CQTemporaryDirectoryA();
 
 # ifdef UNICODE
 #   define CQDocumentDirectory  CQDocumentDirectoryW
@@ -19,14 +19,14 @@ CQ_C_LINK LPCSTR  CQTemporaryDirectoryA(VOID);
 #   define CQTemporaryDirectory CQTemporaryDirectoryA
 # endif
 
-CQ_C_LINK BOOL CQDirectoryExistsW(LPCWSTR pszPath);
-CQ_C_LINK BOOL CQDirectoryExistsA(LPCSTR  pszPath);
-CQ_C_LINK BOOL CQFileExistsW(LPCWSTR pszPath);
-CQ_C_LINK BOOL CQFileExistsA(LPCSTR  pszPath);
-CQ_C_LINK BOOL CQCreateDirectoryW(LPCWSTR pszPath, BOOL bIntermediate);
-CQ_C_LINK BOOL CQCreateDirectoryA(LPCSTR  pszPath, BOOL bIntermediate);
-CQ_C_LINK VOID CQRemovePathW(LPCWSTR pszPath);
-CQ_C_LINK VOID CQRemovePathA(LPCSTR  pszPath);
+BOOL CQDirectoryExistsW(CONST CQWSTR &szPath);
+BOOL CQDirectoryExistsA(CONST CQSTR  &szPath);
+BOOL CQFileExistsW(CONST CQWSTR &szPath);
+BOOL CQFileExistsA(CONST CQSTR  &szPath);
+BOOL CQCreateDirectoryW(CONST CQWSTR &szPath, BOOL bIntermediate);
+BOOL CQCreateDirectoryA(CONST CQSTR  &szPath, BOOL bIntermediate);
+VOID CQRemovePathW(CONST CQWSTR &szPath);
+VOID CQRemovePathA(CONST CQSTR  &szPath);
 
 # ifdef UNICODE
 #   define CQDirectoryExists CQDirectoryExistsW
