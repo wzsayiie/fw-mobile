@@ -146,11 +146,11 @@ VOID CQRemovePathW(LPCWSTR pszPath)
         return;
     }
 
-    cq_alloc_pool
+    cq_auto_pool
     {
         //SHFILEOPSTRUCT.pFrom need double null terminating.
         size_t nPath = wcslen(pszPath);
-        LPWSTR pszFromPath = cq_alloc_array(sizeof(WCHAR), nPath + 2);
+        LPWSTR pszFromPath = cq_auto_array(sizeof(WCHAR), nPath + 2);
         wcscpy(pszFromPath, pszPath);
         pszFromPath[nPath + 1] = L'\0';
 
@@ -162,7 +162,6 @@ VOID CQRemovePathW(LPCWSTR pszPath)
         stOperation.fFlags = FOF_ALLOWUNDO | FOF_NOCONFIRMATION;
         SHFileOperation(&stOperation);
     }
-    cq_free_pool();
 }
 
 VOID CQRemovePathA(LPCSTR pszPath)

@@ -5,26 +5,24 @@
 
 void cq_log_info(const char *file, int32_t line, const char *message)
 {
-    cq_alloc_pool
+    cq_auto_pool
     {
-        LPCWSTR pszFile = cq_alloc_wstr(cq_wsfrom8s(file));
-        LPCWSTR pszMessage = cq_alloc_wstr(cq_wsfrom8s(message));
+        LPCWSTR pszFile = cq_auto_wstr(cq_wsfrom8s(file));
+        LPCWSTR pszMessage = cq_auto_wstr(cq_wsfrom8s(message));
 
         CQLogInfoW(pszFile, line, pszMessage);
     }
-    cq_free_pool();
 }
 
 void cq_log_error(const char *file, int32_t line, const char *message)
 {
-    cq_alloc_pool
+    cq_auto_pool
     {
-        LPCWSTR pszFile = cq_alloc_wstr(cq_wsfrom8s(file));
-        LPCWSTR pszMessage = cq_alloc_wstr(cq_wsfrom8s(message));
+        LPCWSTR pszFile = cq_auto_wstr(cq_wsfrom8s(file));
+        LPCWSTR pszMessage = cq_auto_wstr(cq_wsfrom8s(message));
 
         CQLogErrorW(pszFile, line, pszMessage);
     }
-    cq_free_pool();
 }
 
 //file management:

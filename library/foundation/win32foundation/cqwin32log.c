@@ -74,15 +74,14 @@ static VOID CQLogvA(LPCSTR pszFile, int nLine, LPCSTR pszTag, LPCSTR pszFormat, 
     CHAR szText[1024 * 4];
     vsprintf_s(szText, cq_array_count(szText), pszFormat, lpArgs);
 
-    cq_alloc_pool
+    cq_auto_pool
     {
-        LPCWSTR pszFileW = cq_alloc_wstr(CQWideStringFromMBS(pszFile));
-        LPCWSTR pszTagW  = cq_alloc_wstr(CQWideStringFromMBS(pszTag));
-        LPCWSTR pszTextW = cq_alloc_wstr(CQWideStringFromMBS(szText));
+        LPCWSTR pszFileW = cq_auto_wstr(CQWideStringFromMBS(pszFile));
+        LPCWSTR pszTagW  = cq_auto_wstr(CQWideStringFromMBS(pszTag));
+        LPCWSTR pszTextW = cq_auto_wstr(CQWideStringFromMBS(szText));
 
         CQLogW(pszFileW, nLine, pszTagW, pszTextW);
     }
-    cq_free_pool();
 }
 
 VOID CQLogInfoA(LPCSTR pszFile, int nLine, _Printf_format_string_ LPCSTR pszFormat, ...)
