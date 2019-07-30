@@ -24,6 +24,11 @@
 #include "CQCPPBASIS_NS.hh"
 _CQCPPBASIS_BEGIN_NS
 
+//syntactic sugar from cbasis:
+
+inline const char16_t *cq_u16sfrom8s(const std::string    &s) {return ::cq_u16sfrom8s(s.c_str());}
+inline const char     *cq_u8sfrom16s(const std::u16string &s) {return ::cq_u8sfrom16s(s.c_str());}
+
 //std extension:
 
 struct cqString {
