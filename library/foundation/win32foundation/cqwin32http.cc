@@ -10,12 +10,12 @@ struct CQHTTP {
     CQMAP<CQWSTR, CQWSTR> mpUrlQuery;
     CQMAP<CQWSTR, CQWSTR> mpRequestHeader;
     CQVEC<BYTE> arRequestBody;
-    BOOL bRequestBodyEnd;
+    BOOL bRequestBodyEnd = FALSE;
 
-    int nResponseCode;
+    int nResponseCode = 0;
     CQMAP<CQWSTR, CQWSTR> mpResponseHeader;
     CQVEC<BYTE> arResponseBody;
-    BOOL bTransferCompleted;
+    BOOL bTransferCompleted = FALSE;
 };
 
 CQHTTP *CQHttpOpen()

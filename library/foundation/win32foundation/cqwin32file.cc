@@ -133,10 +133,10 @@ BOOL CQCreateDirectoryA(CONST CQSTR &szPath, BOOL bIntermediate)
 VOID CQRemovePathW(CONST CQWSTR &szPath)
 {
     //SHFILEOPSTRUCT.pFrom need double null terminating.
-    int nPathSize = (int)szPath.size();
-    CQVEC<WCHAR> szFromPathes(nPathSize + 2);
+    size_t zPathSize = szPath.size();
+    CQVEC<WCHAR> szFromPathes(zPathSize + 2);
     wcscpy(szFromPathes.data(), szPath.c_str());
-    szFromPathes[nPathSize + 1] = L'\0';
+    szFromPathes[zPathSize + 1] = L'\0';
 
     SHFILEOPSTRUCTW stOperation;
     memset(&stOperation, 0, sizeof(stOperation));

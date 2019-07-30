@@ -12,7 +12,7 @@ VOID CQLogW(CONST WCHAR *pszTag, CONST WCHAR *pszFile, int nLine, CONST WCHAR *p
     WCHAR szMessage[dwMessage];
     vswprintf_s(szMessage, dwMessage, pszFormat, lpArgs);
 
-    _setmode(_fileno(stdout), _O_WTEXT);
+    int _unused = _setmode(_fileno(stdout), _O_WTEXT);
     if (!CQWStr::Empty(pszFile) && nLine > 0)
     {
         LPCWSTR pszFileName = PathFindFileNameW(pszFile);
@@ -22,7 +22,7 @@ VOID CQLogW(CONST WCHAR *pszTag, CONST WCHAR *pszFile, int nLine, CONST WCHAR *p
     {
         wprintf(L"%s|%s\n", pszTag, szMessage);
     }
-    _setmode(_fileno(stdout), _O_TEXT);
+    _unused = _setmode(_fileno(stdout), _O_TEXT);
 }
 
 VOID CQLogInfoW(CONST WCHAR *pszFile, int nLine, _Printf_format_string_ CONST WCHAR *pszFormat, ...)
