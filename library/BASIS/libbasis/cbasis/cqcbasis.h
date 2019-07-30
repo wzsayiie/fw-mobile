@@ -103,21 +103,6 @@ CQ_C_LINK char16_t *cq_copy_u16str(const char16_t *string);
 CQ_C_LINK const char *cq_store_u8str(const char *string);
 CQ_C_LINK const char16_t *cq_store_u16str(const char16_t *string);
 
-//auto free pool:
-
-#define cq_auto_pool for (bool __r = cq_push_auto_pool(); __r; __r = cq_pop_auto_pool())
-
-//always return true.
-CQ_C_LINK bool cq_push_auto_pool(void);
-//always return false.
-CQ_C_LINK bool cq_pop_auto_pool(void);
-
-CQ_C_LINK void *cq_auto(void *ptr);
-
-CQ_C_LINK char *cq_auto_u8str(const char *string);
-CQ_C_LINK char16_t *cq_auto_u16str(const char16_t *string);
-CQ_C_LINK void *cq_auto_array(size_t size, size_t count);
-
 //unicode:
 
 CQ_C_LINK const char16_t *cq_u16sfrom8s(const char *src);
