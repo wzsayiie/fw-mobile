@@ -95,8 +95,6 @@ CQ_C_LINK char *cq_copy_u8str(const char *string);
 CQ_C_LINK char16_t *cq_copy_u16str(const char16_t *string);
 
 //storing values on current thread, until call of cq_store_xx again on same thread.
-//NOTE: the return value will not be NULL.
-//so in c++, user can use "std::basic_string<xx> s = cq_store_xx(xx)".
 CQ_C_LINK const char *cq_store_u8str(const char *string);
 CQ_C_LINK const char16_t *cq_store_u16str(const char16_t *string);
 

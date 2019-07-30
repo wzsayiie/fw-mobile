@@ -68,13 +68,7 @@ template<class T> const T *cq_store_str(const T *string) {
         count = (int32_t)std::char_traits<T>::length(string);
     }
     _cq_assign_data(&store, string, sizeof(T), count);
-    
-    //can not return NULL.
-    if (store.items != nullptr) {
-        return (const T *)store.items;
-    } else {
-        return (const T *)"\0\0\0\0\0\0\0\0";
-    }
+    return (const T *)store.items;
 }
 
 const char     *cq_store_u8str (const char     *s) {return cq_store_str<char    >(s);}
