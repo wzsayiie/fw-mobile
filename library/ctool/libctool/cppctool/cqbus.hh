@@ -8,7 +8,7 @@ _CQCTOOL_BEGIN_NS
 typedef const char *cqBusEventName;
 
 struct cqBusEvent {
-    cqBusEventName name;
+    cqBusEventName name = nullptr;
     cqObjectRef parameter;
 };
 

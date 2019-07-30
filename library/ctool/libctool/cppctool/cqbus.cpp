@@ -1,9 +1,9 @@
 #include "cqbus.hh"
 
 struct TargetItem {
-    cqBusEventName eventName;
     cqObjectWeakRef observer;
-    cqBusConsumer consumer;
+    cqBusEventName eventName = nullptr;
+    cqBusConsumer consumer = nullptr;
 };
 
 cq_member(cqBus) {
@@ -63,8 +63,8 @@ void cqBus::addObserver(
     }
     
     TargetItem targetItem;
-    targetItem.eventName = eventName;
     targetItem.observer = observer;
+    targetItem.eventName = eventName;
     targetItem.consumer = consumer;
     
     cq_synchronize_with(dat->mutex, {
