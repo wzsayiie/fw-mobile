@@ -4,7 +4,7 @@
 static jclass clazz() {
     static jclass clazz = nullptr;
     if (clazz == nullptr) {
-        cqJNIFindClass(&clazz, cqJNIGetEnv(), "src/library/foundation/BRIDGE");
+        cqJNIFindClass(&clazz, cqJNIGetEnv(), "src/library/foundation/PORT");
     }
     return clazz;
 }
@@ -108,7 +108,7 @@ void cq_thread_run(void (*task)(void *), void *data) {
     method.callVoid();
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_BRIDGE_threadBody
+extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_PORT_threadBody
     (JNIEnv *, jclass, jlong task, jlong data)
 {
     auto taskFunc = (void (*)(void *))task;

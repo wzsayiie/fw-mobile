@@ -1,7 +1,7 @@
 #include "cqstandalonearche.h"
 #include "cqjnihelper.hh"
 
-extern "C" JNIEXPORT void JNICALL Java_src_library_standalone_Standalone_update
+extern "C" JNIEXPORT void JNICALL Java_src_library_standalone_PORT_cqStandaloneUpdate
     (JNIEnv *, jclass)
 {
     cq_standalone_update();
@@ -34,7 +34,7 @@ static std::vector<char *> newStringsFrom(JNIEnv *env, jobjectArray args) {
     return store;
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_library_standalone_Standalone_launch
+extern "C" JNIEXPORT void JNICALL Java_src_library_standalone_PORT_cqStandaloneLaunch
     (JNIEnv *env, jclass, jobjectArray args)
 {
     std::vector<char *> store = newStringsFrom(env, args);

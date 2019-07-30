@@ -1,7 +1,7 @@
 package src.library.foundation;
 
 @SuppressWarnings("unused") /* the methods will be called by native */
-public class BRIDGE {
+public class PORT {
 
     //log:
 

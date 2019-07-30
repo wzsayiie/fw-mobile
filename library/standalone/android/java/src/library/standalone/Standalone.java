@@ -2,6 +2,11 @@ package src.library.standalone;
 
 public class Standalone {
 
-    public static native void update();
-    public static native void launch(String[] args);
+    public static void update() {
+        PORT.cqStandaloneUpdate();
+    }
+
+    public static void launch(String[] args) {
+        PORT.cqStandaloneLaunch(args);
+    }
 }
