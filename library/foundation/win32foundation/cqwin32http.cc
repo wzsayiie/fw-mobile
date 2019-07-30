@@ -31,7 +31,7 @@ VOID CQHttpSetMethodW(CQHTTP *lpHttp, CONST CQWSTR &szMethod)
 
 VOID CQHttpSetMethodA(CQHTTP *lpHttp, CONST CQSTR &szMethod)
 {
-    CQWSTR szMethodW = cq_wsfrommbs(szMethod.c_str());
+    CQWSTR szMethodW = CQWString::FromStr(szMethod);
     CQHttpSetUrlStringW(lpHttp, szMethodW);
 }
 
@@ -45,7 +45,7 @@ VOID CQHttpSetUrlStringW(CQHTTP *lpHttp, CONST CQWSTR &szUrlString)
 
 VOID CQHttpSetUrlStringA(CQHTTP *lpHttp, CONST CQSTR &szUrlString)
 {
-    CQWSTR szUrlStringW = cq_wsfrommbs(szUrlString.c_str());
+    CQWSTR szUrlStringW = CQWString::FromStr(szUrlString);
     CQHttpSetUrlStringW(lpHttp, szUrlStringW);
 }
 
@@ -59,8 +59,8 @@ VOID CQHttpSetUrlQueryW(CQHTTP *lpHttp, CONST CQWSTR &szField, CONST CQWSTR &szV
 
 VOID CQHttpSetUrlQueryA(CQHTTP *lpHttp, CONST CQSTR &szField, CONST CQSTR &szValue)
 {
-    CQWSTR szFieldW = cq_wsfrommbs(szField.c_str());
-    CQWSTR szValueW = cq_wsfrommbs(szValue.c_str());
+    CQWSTR szFieldW = CQWString::FromStr(szField);
+    CQWSTR szValueW = CQWString::FromStr(szValue);
     CQHttpSetUrlQueryW(lpHttp, szFieldW, szValueW);
 }
 
@@ -74,8 +74,8 @@ VOID CQHttpSetRequestHeaderW(CQHTTP *lpHttp, CONST CQWSTR &szField, CONST CQWSTR
 
 VOID CQHttpSetRequestHeaderA(CQHTTP *lpHttp, CONST CQSTR &szField, CONST CQSTR &szValue)
 {
-    CQWSTR szFieldW = cq_wsfrommbs(szField.c_str());
-    CQWSTR szValueW = cq_wsfrommbs(szValue.c_str());
+    CQWSTR szFieldW = CQWString::FromStr(szField);
+    CQWSTR szValueW = CQWString::FromStr(szValue);
     CQHttpSetRequestHeaderW(lpHttp, szFieldW, szValueW);
 }
 
@@ -122,8 +122,8 @@ VOID CQHttpGetResponseHeaderA(CQHTTP *lpHttp, CQMAP<CQSTR, CQSTR> *lpHeader)
     lpHeader->clear();
     for (auto &cp : mpHeaderW)
     {
-        CQSTR szField = cq_mbsfromws(cp.first.c_str());
-        CQSTR szValue = cq_mbsfromws(cp.second.c_str());
+        CQSTR szField = CQString::From(cp.first);
+        CQSTR szValue = CQString::From(cp.second);
         (*lpHeader)[szField] = szValue;
     }
 }

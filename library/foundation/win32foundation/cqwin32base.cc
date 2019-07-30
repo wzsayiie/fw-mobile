@@ -1,35 +1,91 @@
 ﻿#include "cqwin32base.hh"
 
-LPCWSTR cq_wsfrommbs(LPCSTR mbs)
+CQWSTR CQWString::Make(CONST WCHAR *lpWStr)
 {
-    if (cq_str_empty(mbs))
+    return lpWStr ? lpWStr : L"";
+}
+
+BOOL CQWString::Empty(CONST WCHAR *lpWStr)
+{
+    return lpWStr == NULL || *lpWStr == L'\0';
+}
+
+CQWSTR CQWString::FromStr(CONST CHAR *pszStr)
+{
+    if (pszStr != NULL)
+    {
+        int nStr = (int)strlen(pszStr);
+        int nWStr = MultiByteToWideChar(CP_ACP, 0, pszStr, nStr, NULL, 0);
+
+        CQVEC<WCHAR> szWStr((size_t)nWStr + 1);
+        MultiByteToWideChar(CP_ACP, 0, pszStr, nStr, szWStr.data(), nWStr);
+        szWStr[nWStr] = L'\0';
+
+        return szWStr.data();
+    }
+    else
     {
         return L"";
     }
-
-    int mbscnt = (int)strlen(mbs);
-    int wscnt = MultiByteToWideChar(CP_ACP, 0, mbs, mbscnt, NULL, 0);
-
-    std::vector<wchar_t> ws(wscnt + 1);
-    MultiByteToWideChar(CP_ACP, 0, mbs, mbscnt, ws.data(), wscnt);
-    ws[wscnt] = L'\0';
-
-    return cq_store_wstr(ws.data());
 }
 
-LPCSTR cq_mbsfromws(LPCWSTR ws)
+CQWSTR CQWString::FromStr(CONST CQSTR &szStr)
 {
-    if (cq_wstr_empty(ws))
+    return FromStr(szStr.c_str());
+}
+
+CQWSTR CQWString::FromU8S(const char *pszStr)
+{
+    const char16_t *u16s = cq_u16sfrom8s(pszStr);
+    return CQWString::Make((CONST WCHAR *)u16s);
+}
+
+CQWSTR CQWString::FromU8S(const std::string &szStr)
+{
+    return FromU8S(szStr.c_str());
+}
+
+CQSTR CQString::Make(CONST CHAR *pszStr)
+{
+    return pszStr ? pszStr : "";
+}
+
+BOOL CQString::Empty(CONST CHAR *pszStr)
+{
+    return pszStr == NULL || *pszStr == '\0';
+}
+
+CQSTR CQString::From(CONST WCHAR *pszWStr)
+{
+    if (pszWStr != NULL)
+    {
+        int nWStr = (int)wcslen(pszWStr);
+        int nStr = WideCharToMultiByte(CP_ACP, 0, pszWStr, nWStr, NULL, 0, NULL, NULL);
+
+        CQVEC<CHAR> szStr((size_t)nStr + 1);
+        WideCharToMultiByte(CP_ACP, 0, pszWStr, nWStr, szStr.data(), nStr, NULL, NULL);
+        szStr[nStr] = '\0';
+    
+        return szStr.data();
+    }
+    else
     {
         return "";
     }
+}
 
-    int wscnt = (int)wcslen(ws);
-    int mbscnt = WideCharToMultiByte(CP_ACP, 0, ws, wscnt, NULL, 0, NULL, NULL);
+CQSTR CQString::From(CONST CQWSTR &szWStr)
+{
+    return From(szWStr.c_str());
+}
 
-    std::vector<char> mbs(mbscnt + 1);
-    WideCharToMultiByte(CP_ACP, 0, ws, wscnt, mbs.data(), mbscnt, NULL, NULL);
-    mbs[mbscnt] = '\0';
+std::string CQU8String::From(CONST WCHAR *pszWStr)
+{
+    const char *u8s = cq_u8sfrom16s((const char16_t *)pszWStr);
+    return cqString::make(u8s);
+}
 
-    return cq_store_str(mbs.data());
+std::string CQU8String::From(CONST CQWSTR &szWStr)
+{
+    return From(szWStr.c_str());
 }

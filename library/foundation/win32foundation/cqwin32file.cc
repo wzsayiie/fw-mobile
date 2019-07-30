@@ -19,7 +19,7 @@ CQWSTR CQDocumentDirectoryW()
 CQSTR CQDocumentDirectoryA()
 {
     CQWSTR szPath = CQDocumentDirectoryW();
-    return cq_mbsfromws(szPath.c_str());
+    return CQString::From(szPath);
 }
 
 CQWSTR CQCachesDirectoryW()
@@ -40,7 +40,7 @@ CQWSTR CQCachesDirectoryW()
 CQSTR CQCachesDirectoryA()
 {
     CQWSTR szPath = CQCachesDirectoryW();
-    return cq_mbsfromws(szPath.c_str());
+    return CQString::From(szPath);
 }
 
 CQWSTR CQTemporaryDirectoryW()
@@ -77,8 +77,8 @@ BOOL CQDirectoryExistsW(CONST CQWSTR &szPath)
 
 BOOL CQDirectoryExistsA(CONST CQSTR &szPath)
 {
-    CQWSTR pszPathW = cq_wsfrommbs(szPath.c_str());
-    return CQDirectoryExistsW(pszPathW);
+    CQWSTR szPathW = CQWString::FromStr(szPath);
+    return CQDirectoryExistsW(szPathW);
 }
 
 BOOL CQFileExistsW(CONST CQWSTR &szPath)
@@ -90,7 +90,7 @@ BOOL CQFileExistsW(CONST CQWSTR &szPath)
 
 BOOL CQFileExistsA(CONST CQSTR &szPath)
 {
-    LPCWSTR szPathW = cq_wsfrommbs(szPath.c_str());
+    CQWSTR szPathW = CQWString::FromStr(szPath);
     return CQFileExistsW(szPathW);
 }
 
@@ -124,7 +124,7 @@ BOOL CQCreateDirectoryW(CONST CQWSTR &szPath, BOOL bIntermediate)
 
 BOOL CQCreateDirectoryA(CONST CQSTR &szPath, BOOL bIntermediate)
 {
-    CQWSTR szPathW = cq_wsfrommbs(szPath.c_str());
+    CQWSTR szPathW = CQWString::FromStr(szPath);
     return CQCreateDirectoryW(szPathW, bIntermediate);
 }
 
@@ -147,6 +147,6 @@ VOID CQRemovePathW(CONST CQWSTR &szPath)
 
 VOID CQRemovePathA(CONST CQSTR &szPath)
 {
-    CQWSTR szPathW = cq_wsfrommbs(szPath.c_str());
+    CQWSTR szPathW = CQWString::FromStr(szPath);
     CQRemovePathW(szPathW);
 }
