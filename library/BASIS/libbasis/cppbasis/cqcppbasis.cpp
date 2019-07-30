@@ -6,6 +6,10 @@ std::string cqString::make(const char *value) {
     return value ? value : "";
 }
 
+bool cqString::empty(const char *value) {
+    return value == nullptr || *value == '\0';
+}
+
 //class:
 
 cqClass *_cqObjectRoot::getSuperclass() {

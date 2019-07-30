@@ -15,17 +15,17 @@ void cq_log_error(const char *file, int32_t line, const char *message) {
 
 const char *cq_document_directory(void) {
     NSString *directory = CQDocumentDirectory();
-    return cq_store_u8str(directory.UTF8String);
+    return cq_store_str(directory.UTF8String);
 }
 
 const char *cq_caches_directory(void) {
     NSString *directory = CQCachesDirectory();
-    return cq_store_u8str(directory.UTF8String);
+    return cq_store_str(directory.UTF8String);
 }
 
 const char *cq_temporary_directory(void) {
     NSString *directory = CQTemporaryDirectory();
-    return cq_store_u8str(directory.UTF8String);
+    return cq_store_str(directory.UTF8String);
 }
 
 bool cq_directory_exists(const char *path) {

@@ -87,18 +87,18 @@ CQ_C_LINK void _cq_resize_data(struct _cq_data *data, size_t size, size_t count)
 
 //string:
 
-CQ_C_LINK bool cq_u8str_empty(const char *string);
+CQ_C_LINK bool cq_str_empty(const char *string);
 CQ_C_LINK bool cq_u16str_empty(const char16_t *string);
 
 //the return value needed to free().
-CQ_C_LINK char *cq_copy_u8str(const char *string);
+CQ_C_LINK char *cq_copy_str(const char *string);
 CQ_C_LINK char16_t *cq_copy_u16str(const char16_t *string);
 
 //storing values on current thread, until call of cq_store_xx again on same thread.
-CQ_C_LINK const char *cq_store_u8str(const char *string);
+CQ_C_LINK const char *cq_store_str(const char *string);
 CQ_C_LINK const char16_t *cq_store_u16str(const char16_t *string);
 
 //unicode:
 
-CQ_C_LINK const char16_t *cq_u16sfrom8s(const char *src);
-CQ_C_LINK const char *cq_u8sfrom16s(const char16_t *src);
+CQ_C_LINK const char16_t *cq_u16s_from8s(const char *src);
+CQ_C_LINK const char *cq_u8s_from16s(const char16_t *src);

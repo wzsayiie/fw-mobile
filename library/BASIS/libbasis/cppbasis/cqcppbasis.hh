@@ -28,6 +28,7 @@ _CQCPPBASIS_BEGIN_NS
 
 struct cqString {
     static std::string make(const char *value);
+    static bool empty(const char *value);
 };
 
 //synchronization lock:

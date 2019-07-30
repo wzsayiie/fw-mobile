@@ -43,7 +43,7 @@ void _cq_resize_data(_cq_data *data, size_t size, size_t count) {
 
 //string:
 
-bool cq_u8str_empty (const char     *s) {return s == nullptr || *s == '\0';}
+bool cq_str_empty   (const char     *s) {return s == nullptr || *s == '\0';}
 bool cq_u16str_empty(const char16_t *s) {return s == nullptr || *s == '\0';}
 
 template<class T> T *cq_copy_str(const T *src) {
@@ -57,7 +57,7 @@ template<class T> T *cq_copy_str(const T *src) {
     return nullptr;
 }
 
-char     *cq_copy_u8str (const char     *s) {return cq_copy_str<char    >(s);}
+char     *cq_copy_str   (const char     *s) {return cq_copy_str<char    >(s);}
 char16_t *cq_copy_u16str(const char16_t *s) {return cq_copy_str<char16_t>(s);}
 
 template<class T> const T *cq_store_str(const T *string) {
@@ -71,12 +71,12 @@ template<class T> const T *cq_store_str(const T *string) {
     return (const T *)store.items;
 }
 
-const char     *cq_store_u8str (const char     *s) {return cq_store_str<char    >(s);}
+const char     *cq_store_str   (const char     *s) {return cq_store_str<char    >(s);}
 const char16_t *cq_store_u16str(const char16_t *s) {return cq_store_str<char16_t>(s);}
 
 //unicode:
 
-static char32_t u32cfrom8s(const char *ptr, size_t *count) {
+static char32_t u32c_from8s(const char *ptr, size_t *count) {
     char32_t ch = 0;
 
     //utf-8 first byte:
@@ -112,7 +112,7 @@ struct u16encoded {
     char16_t item[4];
 };
 
-static u16encoded u16efrom32c(char32_t src) {
+static u16encoded u16e_from32c(char32_t src) {
     u16encoded dst;
     memset(&dst, 0, sizeof(dst));
     
@@ -137,7 +137,7 @@ static u16encoded u16efrom32c(char32_t src) {
     return dst;
 }
 
-const char16_t *cq_u16sfrom8s(const char *src) {
+const char16_t *cq_u16s_from8s(const char *src) {
     if (src == nullptr) {
         return cq_store_u16str(nullptr);
     }
@@ -145,10 +145,10 @@ const char16_t *cq_u16sfrom8s(const char *src) {
     std::u16string dst;
     while (true) {
         size_t count = 0;
-        char32_t point = u32cfrom8s(src, &count);
+        char32_t point = u32c_from8s(src, &count);
         if (count > 0) {
             if (point != '\0') {
-                dst.append(u16efrom32c(point).item);
+                dst.append(u16e_from32c(point).item);
                 src += count;
             } else {
                 //string end
@@ -163,7 +163,7 @@ const char16_t *cq_u16sfrom8s(const char *src) {
     return cq_store_u16str(dst.c_str());
 }
 
-static char32_t u32cfrom16s(const char16_t *ptr, size_t *count) {
+static char32_t u32c_from16s(const char16_t *ptr, size_t *count) {
     
     //utf-16 surrogate pair (4 bytes):
     //
@@ -194,7 +194,7 @@ struct u8encoded {
     char item[8];
 };
 
-static u8encoded u8efrom32c(char32_t src) {
+static u8encoded u8e_from32c(char32_t src) {
     u8encoded dst;
     memset(&dst, 0, sizeof(dst));
     
@@ -228,18 +228,18 @@ static u8encoded u8efrom32c(char32_t src) {
     return dst;
 }
 
-const char *cq_u8sfrom16s(const char16_t *src) {
+const char *cq_u8s_from16s(const char16_t *src) {
     if (src == nullptr) {
-        return cq_store_u8str(nullptr);
+        return cq_store_str(nullptr);
     }
     
     std::string dst;
     while (true) {
         size_t count = 0;
-        char32_t point = u32cfrom16s(src, &count);
+        char32_t point = u32c_from16s(src, &count);
         if (count > 0) {
             if (point != '\0') {
-                dst.append(u8efrom32c(point).item);
+                dst.append(u8e_from32c(point).item);
                 src += count;
             } else {
                 //string end
@@ -251,5 +251,5 @@ const char *cq_u8sfrom16s(const char16_t *src) {
             break;
         }
     }
-    return cq_store_u8str(dst.c_str());
+    return cq_store_str(dst.c_str());
 }
