@@ -24,19 +24,19 @@ void cq_log_error(const char *file, int32_t line, const char *message)
 const char *cq_document_directory(void)
 {
     std::string szPath = CQU8Str::From(CQDocumentDirectoryW());
-    return cq_store_u8str(szPath.c_str());
+    return cq_store_str(szPath.c_str());
 }
 
 const char *cq_caches_directory(void)
 {
     std::string szPath = CQU8Str::From(CQCachesDirectoryW());
-    return cq_store_u8str(szPath.c_str());
+    return cq_store_str(szPath.c_str());
 }
 
 const char *cq_temporary_directory(void)
 {
     std::string szPath = CQU8Str::From(CQTemporaryDirectoryW());
-    return cq_store_u8str(szPath.c_str());
+    return cq_store_str(szPath.c_str());
 }
 
 bool cq_directory_exists(const char *path)

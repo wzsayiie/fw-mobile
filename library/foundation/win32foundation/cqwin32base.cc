@@ -38,7 +38,7 @@ CQWSTR CQWStr::FromStr(CONST CQSTR &szStr)
 
 CQWSTR CQWStr::FromU8S(const char *pszStr)
 {
-    const char16_t *u16s = cq_u16sfrom8s(pszStr);
+    const char16_t *u16s = cq_u16s_from8s(pszStr);
     return CQWStr::Make((CONST WCHAR *)u16s);
 }
 
@@ -83,7 +83,7 @@ CQSTR CQStr::From(CONST CQWSTR &szWStr)
 
 std::string CQU8Str::From(CONST WCHAR *pszWStr)
 {
-    const char *u8s = cq_u8sfrom16s((const char16_t *)pszWStr);
+    const char *u8s = cq_u8s_from16s((const char16_t *)pszWStr);
     return cqString::make(u8s);
 }
 
