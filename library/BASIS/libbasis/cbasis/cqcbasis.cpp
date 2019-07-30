@@ -57,7 +57,7 @@ template<class T> T *cq_copy_str(const T *src) {
     return nullptr;
 }
 
-char *cq_copy_u8str(const char *s) {return cq_copy_str<char>(s);}
+char     *cq_copy_u8str (const char     *s) {return cq_copy_str<char    >(s);}
 char16_t *cq_copy_u16str(const char16_t *s) {return cq_copy_str<char16_t>(s);}
 
 template<class T> const T *cq_store_str(const T *string) {
@@ -68,7 +68,13 @@ template<class T> const T *cq_store_str(const T *string) {
         count = (int32_t)std::char_traits<T>::length(string);
     }
     _cq_assign_data(&store, string, sizeof(T), count);
-    return (const T *)store.items;
+    
+    //can not return NULL.
+    if (store.items != nullptr) {
+        return (const T *)store.items;
+    } else {
+        return (const T *)"\0\0\0\0\0\0\0\0";
+    }
 }
 
 const char     *cq_store_u8str (const char     *s) {return cq_store_str<char    >(s);}
@@ -139,7 +145,7 @@ static u16encoded u16efrom32c(char32_t src) {
 
 const char16_t *cq_u16sfrom8s(const char *src) {
     if (src == nullptr) {
-        return nullptr;
+        return cq_store_u16str(nullptr);
     }
     
     std::u16string dst;
@@ -230,7 +236,7 @@ static u8encoded u8efrom32c(char32_t src) {
 
 const char *cq_u8sfrom16s(const char16_t *src) {
     if (src == nullptr) {
-        return nullptr;
+        return cq_store_u8str(nullptr);
     }
     
     std::string dst;
