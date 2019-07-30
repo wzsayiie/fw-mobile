@@ -10,6 +10,9 @@
 #include <tchar.h>
 #include <windows.h>
 
+#include "CQWIN32FOUNDATION_NS.hh"
+_CQWIN32FOUNDATION_BEGIN_NS
+
 template<class T> using CQFUNC = std::function<T>;
 
 template<class K, class V> using CQMAP = std::map<K, V>;
@@ -26,7 +29,7 @@ typedef CQWSTR CQTSTR;
 typedef CQSTR CQTSTR;
 #endif
 
-struct CQWString {
+struct CQWStr {
     static CQWSTR Make(CONST WCHAR *lpWStr);
     static BOOL Empty(CONST WCHAR *lpWStr);
 
@@ -39,7 +42,7 @@ struct CQWString {
     static CQWSTR FromU8S(const std::string &szStr);
 };
 
-struct CQString {
+struct CQStr {
     static CQSTR Make(CONST CHAR *pszStr);
     static BOOL Empty(CONST CHAR *pszStr);
 
@@ -48,8 +51,10 @@ struct CQString {
     static CQSTR From(CONST CQWSTR &szWStr);
 };
 
-struct CQU8String {
+struct CQU8Str {
     //utf-8 string from wide character string.
     static std::string From(CONST WCHAR *pszWStr);
     static std::string From(CONST CQWSTR &szWStr);
 };
+
+_CQWIN32FOUNDATION_END_NS

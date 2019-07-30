@@ -2,6 +2,9 @@
 
 #include "cqwin32base.hh"
 
+#include "CQWIN32FOUNDATION_NS.hh"
+_CQWIN32FOUNDATION_BEGIN_NS
+
 VOID CQLogInfoW (CONST WCHAR *pszFile, int nLine, _Printf_format_string_ CONST WCHAR *pszFormat, ...);
 VOID CQLogErrorW(CONST WCHAR *pszFile, int nLine, _Printf_format_string_ CONST WCHAR *pszFormat, ...);
 VOID CQLogInfoA (CONST CHAR  *pszFile, int nLine, _Printf_format_string_ CONST CHAR  *pszFormat, ...);
@@ -20,3 +23,5 @@ VOID CQLogErrorA(CONST CHAR  *pszFile, int nLine, _Printf_format_string_ CONST C
 #   define LINFO  LINFO_A
 #   define LERROR LERROR_A
 # endif
+
+_CQWIN32FOUNDATION_END_NS

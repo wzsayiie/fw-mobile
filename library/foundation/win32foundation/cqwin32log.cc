@@ -4,6 +4,8 @@
 #include <shlwapi.h>
 #include <stdio.h>
 
+_CQWIN32FOUNDATION_BEGIN_NS
+
 VOID CQLogW(CONST WCHAR *pszTag, CONST WCHAR *pszFile, int nLine, CONST WCHAR *pszFormat, va_list lpArgs)
 {
     CONST DWORD dwMessage = 1024 * 4;
@@ -11,7 +13,7 @@ VOID CQLogW(CONST WCHAR *pszTag, CONST WCHAR *pszFile, int nLine, CONST WCHAR *p
     vswprintf_s(szMessage, dwMessage, pszFormat, lpArgs);
 
     _setmode(_fileno(stdout), _O_WTEXT);
-    if (!CQWString::Empty(pszFile) && nLine > 0)
+    if (!CQWStr::Empty(pszFile) && nLine > 0)
     {
         LPCWSTR pszFileName = PathFindFileNameW(pszFile);
         wprintf(L"%s|%s(%04d)|%s\n", pszTag, pszFileName, nLine, szMessage);
@@ -45,7 +47,7 @@ VOID CQLogA(CONST CHAR *pszTag, CONST CHAR *pszFile, int nLine, CONST CHAR *pszF
     CHAR szMessage[dwMessage];
     vsprintf_s(szMessage, dwMessage, pszFormat, lpArgs);
 
-    if (!CQString::Empty(pszFile) && nLine > 0)
+    if (!CQStr::Empty(pszFile) && nLine > 0)
     {
         LPCSTR pszFileName = PathFindFileNameA(pszFile);
         printf("%s|%s(%04d)|%s\n", pszTag, pszFileName, nLine, szMessage);
@@ -71,3 +73,5 @@ VOID CQLogErrorA(CONST CHAR *pszFile, int nLine, _Printf_format_string_ CONST CH
     CQLogA("E", pszFile, nLine, pszFormat, lpArgs);
     va_end(lpArgs);
 }
+
+_CQWIN32FOUNDATION_END_NS

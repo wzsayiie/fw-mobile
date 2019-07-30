@@ -2,6 +2,9 @@
 
 #include "cqwin32base.hh"
 
+#include "CQWIN32FOUNDATION_NS.hh"
+_CQWIN32FOUNDATION_BEGIN_NS
+
 CQWSTR CQDocumentDirectoryW();
 CQSTR  CQDocumentDirectoryA();
 CQWSTR CQCachesDirectoryW();
@@ -39,3 +42,5 @@ VOID CQRemovePathA(CONST CQSTR  &szPath);
 #   define CQCreateDirectory CQCreateDirectoryA
 #   define CQRemovePath      CQRemovePathA
 # endif
+
+_CQWIN32FOUNDATION_END_NS

@@ -1,6 +1,8 @@
 ﻿#include "cqwin32file.hh"
 #include <shlobj.h>
 
+_CQWIN32FOUNDATION_BEGIN_NS
+
 CQWSTR CQDocumentDirectoryW()
 {
     WCHAR szPath[MAX_PATH];
@@ -19,7 +21,7 @@ CQWSTR CQDocumentDirectoryW()
 CQSTR CQDocumentDirectoryA()
 {
     CQWSTR szPath = CQDocumentDirectoryW();
-    return CQString::From(szPath);
+    return CQStr::From(szPath);
 }
 
 CQWSTR CQCachesDirectoryW()
@@ -40,7 +42,7 @@ CQWSTR CQCachesDirectoryW()
 CQSTR CQCachesDirectoryA()
 {
     CQWSTR szPath = CQCachesDirectoryW();
-    return CQString::From(szPath);
+    return CQStr::From(szPath);
 }
 
 CQWSTR CQTemporaryDirectoryW()
@@ -77,7 +79,7 @@ BOOL CQDirectoryExistsW(CONST CQWSTR &szPath)
 
 BOOL CQDirectoryExistsA(CONST CQSTR &szPath)
 {
-    CQWSTR szPathW = CQWString::FromStr(szPath);
+    CQWSTR szPathW = CQWStr::FromStr(szPath);
     return CQDirectoryExistsW(szPathW);
 }
 
@@ -90,7 +92,7 @@ BOOL CQFileExistsW(CONST CQWSTR &szPath)
 
 BOOL CQFileExistsA(CONST CQSTR &szPath)
 {
-    CQWSTR szPathW = CQWString::FromStr(szPath);
+    CQWSTR szPathW = CQWStr::FromStr(szPath);
     return CQFileExistsW(szPathW);
 }
 
@@ -124,7 +126,7 @@ BOOL CQCreateDirectoryW(CONST CQWSTR &szPath, BOOL bIntermediate)
 
 BOOL CQCreateDirectoryA(CONST CQSTR &szPath, BOOL bIntermediate)
 {
-    CQWSTR szPathW = CQWString::FromStr(szPath);
+    CQWSTR szPathW = CQWStr::FromStr(szPath);
     return CQCreateDirectoryW(szPathW, bIntermediate);
 }
 
@@ -147,6 +149,8 @@ VOID CQRemovePathW(CONST CQWSTR &szPath)
 
 VOID CQRemovePathA(CONST CQSTR &szPath)
 {
-    CQWSTR szPathW = CQWString::FromStr(szPath);
+    CQWSTR szPathW = CQWStr::FromStr(szPath);
     CQRemovePathW(szPathW);
 }
+
+_CQWIN32FOUNDATION_END_NS

@@ -2,6 +2,9 @@
 
 #include "cqwin32base.hh"
 
+#include "CQWIN32FOUNDATION_NS.hh"
+_CQWIN32FOUNDATION_BEGIN_NS
+
 struct CQHTTP;
 
 CQHTTP *CQHttpOpen();
@@ -49,3 +52,5 @@ VOID CQHttpClose(CQHTTP *lpHttp);
 #   define CQHttpSetRequestHeader  CQHttpSetRequestHeaderA
 #   define CQHttpGetResponseHeader CQHttpGetResponseHeaderA
 # endif
+
+_CQWIN32FOUNDATION_END_NS

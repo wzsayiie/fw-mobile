@@ -1,5 +1,7 @@
 ﻿#include "cqwin32thread.hh"
 
+_CQWIN32FOUNDATION_BEGIN_NS
+
 static DWORD WINAPI CQThreadProcedure(LPVOID lpVoid)
 {
     auto lpTask = (CQFUNC<VOID ()> *)lpVoid;
@@ -22,3 +24,5 @@ VOID CQThreadSleepSeconds(FLOAT fSeconds)
 {
     Sleep((DWORD)(1000 * fSeconds));
 }
+
+_CQWIN32FOUNDATION_END_NS

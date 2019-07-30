@@ -1,16 +1,18 @@
 ﻿#include "cqwin32base.hh"
 
-CQWSTR CQWString::Make(CONST WCHAR *lpWStr)
+_CQWIN32FOUNDATION_BEGIN_NS
+
+CQWSTR CQWStr::Make(CONST WCHAR *lpWStr)
 {
     return lpWStr ? lpWStr : L"";
 }
 
-BOOL CQWString::Empty(CONST WCHAR *lpWStr)
+BOOL CQWStr::Empty(CONST WCHAR *lpWStr)
 {
     return lpWStr == NULL || *lpWStr == L'\0';
 }
 
-CQWSTR CQWString::FromStr(CONST CHAR *pszStr)
+CQWSTR CQWStr::FromStr(CONST CHAR *pszStr)
 {
     if (pszStr != NULL)
     {
@@ -29,33 +31,33 @@ CQWSTR CQWString::FromStr(CONST CHAR *pszStr)
     }
 }
 
-CQWSTR CQWString::FromStr(CONST CQSTR &szStr)
+CQWSTR CQWStr::FromStr(CONST CQSTR &szStr)
 {
     return FromStr(szStr.c_str());
 }
 
-CQWSTR CQWString::FromU8S(const char *pszStr)
+CQWSTR CQWStr::FromU8S(const char *pszStr)
 {
     const char16_t *u16s = cq_u16sfrom8s(pszStr);
-    return CQWString::Make((CONST WCHAR *)u16s);
+    return CQWStr::Make((CONST WCHAR *)u16s);
 }
 
-CQWSTR CQWString::FromU8S(const std::string &szStr)
+CQWSTR CQWStr::FromU8S(const std::string &szStr)
 {
     return FromU8S(szStr.c_str());
 }
 
-CQSTR CQString::Make(CONST CHAR *pszStr)
+CQSTR CQStr::Make(CONST CHAR *pszStr)
 {
     return pszStr ? pszStr : "";
 }
 
-BOOL CQString::Empty(CONST CHAR *pszStr)
+BOOL CQStr::Empty(CONST CHAR *pszStr)
 {
     return pszStr == NULL || *pszStr == '\0';
 }
 
-CQSTR CQString::From(CONST WCHAR *pszWStr)
+CQSTR CQStr::From(CONST WCHAR *pszWStr)
 {
     if (pszWStr != NULL)
     {
@@ -74,18 +76,20 @@ CQSTR CQString::From(CONST WCHAR *pszWStr)
     }
 }
 
-CQSTR CQString::From(CONST CQWSTR &szWStr)
+CQSTR CQStr::From(CONST CQWSTR &szWStr)
 {
     return From(szWStr.c_str());
 }
 
-std::string CQU8String::From(CONST WCHAR *pszWStr)
+std::string CQU8Str::From(CONST WCHAR *pszWStr)
 {
     const char *u8s = cq_u8sfrom16s((const char16_t *)pszWStr);
     return cqString::make(u8s);
 }
 
-std::string CQU8String::From(CONST CQWSTR &szWStr)
+std::string CQU8Str::From(CONST CQWSTR &szWStr)
 {
     return From(szWStr.c_str());
 }
+
+_CQWIN32FOUNDATION_END_NS

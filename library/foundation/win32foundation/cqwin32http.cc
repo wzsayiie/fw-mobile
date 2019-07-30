@@ -1,6 +1,8 @@
 ﻿#include "cqwin32http.hh"
 #include <winhttp.h>
 
+_CQWIN32FOUNDATION_BEGIN_NS
+
 struct CQHTTP {
 
     CQWSTR szMethod;
@@ -31,7 +33,7 @@ VOID CQHttpSetMethodW(CQHTTP *lpHttp, CONST CQWSTR &szMethod)
 
 VOID CQHttpSetMethodA(CQHTTP *lpHttp, CONST CQSTR &szMethod)
 {
-    CQWSTR szMethodW = CQWString::FromStr(szMethod);
+    CQWSTR szMethodW = CQWStr::FromStr(szMethod);
     CQHttpSetUrlStringW(lpHttp, szMethodW);
 }
 
@@ -45,7 +47,7 @@ VOID CQHttpSetUrlStringW(CQHTTP *lpHttp, CONST CQWSTR &szUrlString)
 
 VOID CQHttpSetUrlStringA(CQHTTP *lpHttp, CONST CQSTR &szUrlString)
 {
-    CQWSTR szUrlStringW = CQWString::FromStr(szUrlString);
+    CQWSTR szUrlStringW = CQWStr::FromStr(szUrlString);
     CQHttpSetUrlStringW(lpHttp, szUrlStringW);
 }
 
@@ -59,8 +61,8 @@ VOID CQHttpSetUrlQueryW(CQHTTP *lpHttp, CONST CQWSTR &szField, CONST CQWSTR &szV
 
 VOID CQHttpSetUrlQueryA(CQHTTP *lpHttp, CONST CQSTR &szField, CONST CQSTR &szValue)
 {
-    CQWSTR szFieldW = CQWString::FromStr(szField);
-    CQWSTR szValueW = CQWString::FromStr(szValue);
+    CQWSTR szFieldW = CQWStr::FromStr(szField);
+    CQWSTR szValueW = CQWStr::FromStr(szValue);
     CQHttpSetUrlQueryW(lpHttp, szFieldW, szValueW);
 }
 
@@ -74,8 +76,8 @@ VOID CQHttpSetRequestHeaderW(CQHTTP *lpHttp, CONST CQWSTR &szField, CONST CQWSTR
 
 VOID CQHttpSetRequestHeaderA(CQHTTP *lpHttp, CONST CQSTR &szField, CONST CQSTR &szValue)
 {
-    CQWSTR szFieldW = CQWString::FromStr(szField);
-    CQWSTR szValueW = CQWString::FromStr(szValue);
+    CQWSTR szFieldW = CQWStr::FromStr(szField);
+    CQWSTR szValueW = CQWStr::FromStr(szValue);
     CQHttpSetRequestHeaderW(lpHttp, szFieldW, szValueW);
 }
 
@@ -122,8 +124,8 @@ VOID CQHttpGetResponseHeaderA(CQHTTP *lpHttp, CQMAP<CQSTR, CQSTR> *lpHeader)
     lpHeader->clear();
     for (auto &cp : mpHeaderW)
     {
-        CQSTR szField = CQString::From(cp.first);
-        CQSTR szValue = CQString::From(cp.second);
+        CQSTR szField = CQStr::From(cp.first);
+        CQSTR szValue = CQStr::From(cp.second);
         (*lpHeader)[szField] = szValue;
     }
 }
@@ -144,3 +146,5 @@ VOID CQHttpClose(CQHTTP *lpHttp)
         delete lpHttp;
     }
 }
+
+_CQWIN32FOUNDATION_END_NS
