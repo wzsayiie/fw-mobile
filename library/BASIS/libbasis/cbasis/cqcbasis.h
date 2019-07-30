@@ -73,10 +73,6 @@ typedef uint16_t char16_t;
 #   define CQ_C_LINK
 # endif
 
-//macro:
-
-#define cq_array_count(arr) (sizeof(arr) / sizeof(*arr))
-
 //data:
 
 struct _cq_data {
