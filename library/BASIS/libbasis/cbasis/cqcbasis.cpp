@@ -4,7 +4,7 @@
 
 //data:
 
-void _cq_assign_data(_cq_data *data, const void *items, int32_t size, int32_t count) {
+void _cq_assign_data(_cq_data *data, const void *items, size_t size, size_t count) {
     if (data == nullptr) {
         return;
     }
@@ -26,7 +26,7 @@ void _cq_clear_data(_cq_data *data) {
     }
 }
 
-void _cq_resize_data(_cq_data *data, int32_t size, int32_t count) {
+void _cq_resize_data(_cq_data *data, size_t size, size_t count) {
     if (data == nullptr) {
         return;
     }
@@ -63,9 +63,9 @@ char16_t *cq_copy_u16str(const char16_t *s) {return cq_copy_str<char16_t>(s);}
 template<class T> const T *cq_store_str(const T *string) {
     static thread_local _cq_data store = {nullptr, 0, 0};
     
-    int32_t count = 0;
+    size_t count = 0;
     if (string != nullptr) {
-        count = (int32_t)std::char_traits<T>::length(string);
+        count = std::char_traits<T>::length(string);
     }
     _cq_assign_data(&store, string, sizeof(T), count);
     return (const T *)store.items;
@@ -76,7 +76,7 @@ const char16_t *cq_store_u16str(const char16_t *s) {return cq_store_str<char16_t
 
 //unicode:
 
-static char32_t u32cfrom8s(const char *ptr, int32_t *count) {
+static char32_t u32cfrom8s(const char *ptr, size_t *count) {
     char32_t ch = 0;
 
     //utf-8 first byte:
@@ -144,7 +144,7 @@ const char16_t *cq_u16sfrom8s(const char *src) {
     
     std::u16string dst;
     while (true) {
-        int32_t count = 0;
+        size_t count = 0;
         char32_t point = u32cfrom8s(src, &count);
         if (count > 0) {
             if (point != '\0') {
@@ -163,7 +163,7 @@ const char16_t *cq_u16sfrom8s(const char *src) {
     return cq_store_u16str(dst.c_str());
 }
 
-static char32_t u32cfrom16s(const char16_t *ptr, int32_t *count) {
+static char32_t u32cfrom16s(const char16_t *ptr, size_t *count) {
     
     //utf-16 surrogate pair (4 bytes):
     //
@@ -235,7 +235,7 @@ const char *cq_u8sfrom16s(const char16_t *src) {
     
     std::string dst;
     while (true) {
-        int32_t count = 0;
+        size_t count = 0;
         char32_t point = u32cfrom16s(src, &count);
         if (count > 0) {
             if (point != '\0') {

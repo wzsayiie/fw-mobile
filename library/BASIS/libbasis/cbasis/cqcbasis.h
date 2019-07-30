@@ -76,14 +76,14 @@ typedef uint16_t char16_t;
 //data:
 
 struct _cq_data {
-    void   *items;  //ends with '\0' as the last item
-    int32_t size ;  //size of every item
-    int32_t count;  //item count, don't contain the last item('\0')
+    void  *items;   //ends with '\0' as the last item
+    size_t size ;   //size of every item
+    size_t count;   //item count, don't contain the last item('\0')
 };
 
-CQ_C_LINK void _cq_assign_data(struct _cq_data *data, const void *items, int32_t size, int32_t count);
+CQ_C_LINK void _cq_assign_data(struct _cq_data *data, const void *items, size_t size, size_t count);
 CQ_C_LINK void _cq_clear_data(struct _cq_data *data);
-CQ_C_LINK void _cq_resize_data(struct _cq_data *data, int32_t size, int32_t count);
+CQ_C_LINK void _cq_resize_data(struct _cq_data *data, size_t size, size_t count);
 
 //string:
 
