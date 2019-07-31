@@ -18,23 +18,23 @@ set error=0
 setlocal EnableDelayedExpansion
 
 set source="library/BASIS/libbasis"
-call :compile_cpp
+call :compile
 if not %error% == 0 (goto end)
 
 set source="library/ctool/libctool"
-call :compile_cpp
+call :compile
 if not %error% == 0 (goto end)
 
 set source="library/foundation/libfoundation"
-call :compile_cpp
+call :compile
 if not %error% == 0 (goto end)
 
 set source="library/foundation/win32foundation"
-call :compile_c
+call :compile
 if not %error% == 0 (goto end)
 
 set source="library/standalone/libstandalone"
-call :compile_cpp
+call :compile
 if not %error% == 0 (goto end)
 
 ::4 link
@@ -57,16 +57,9 @@ rmdir /q /s %temporary%
 ::functions
 goto end
 
-:compile_cpp
+:compile
 set args=/nologo /EHsc /std:c++14 /IGENERATED_HEADERS /MD
-for /r %source% %%f in (*.cpp) do (
-    cl %args% /c %%f /Fo%temporary%\%%~nf.!random!.obj
-)
-goto end
-
-:compile_c
-set args=/nologo /IGENERATED_HEADERS /MD
-for /r %source% %%f in (*.c) do (
+for /r %source% %%f in (*.cpp, *.cc) do (
     cl %args% /c %%f /Fo%temporary%\%%~nf.!random!.obj
 )
 goto end

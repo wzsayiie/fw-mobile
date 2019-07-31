@@ -144,7 +144,7 @@ VOID CQRemovePathW(CONST CQWSTR &szPath)
     stOperation.pFrom = szFromPathes.data();
     stOperation.pTo = NULL;
     stOperation.fFlags = FOF_ALLOWUNDO | FOF_NOCONFIRMATION;
-    SHFileOperation(&stOperation);
+    SHFileOperationW(&stOperation);
 }
 
 VOID CQRemovePathA(CONST CQSTR &szPath)
