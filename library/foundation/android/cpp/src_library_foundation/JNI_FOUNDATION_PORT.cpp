@@ -40,7 +40,7 @@ const char *cq_document_directory() {
     cqJNIStaticMethod method(clazz(), &methodID, "cq_document_directory");
 
     std::string ret = method.callString();
-    return cq_store_u8str(ret.data());
+    return cq_store_str(ret.data());
 }
 
 const char *cq_caches_directory() {
@@ -48,7 +48,7 @@ const char *cq_caches_directory() {
     cqJNIStaticMethod method(clazz(), &methodID, "cq_caches_directory");
 
     std::string ret = method.callString();
-    return cq_store_u8str(ret.data());
+    return cq_store_str(ret.data());
 }
 
 const char *cq_temporary_directory() {
@@ -56,7 +56,7 @@ const char *cq_temporary_directory() {
     cqJNIStaticMethod method(clazz(), &methodID, "cq_temporary_directory");
 
     std::string ret = method.callString();
-    return cq_store_u8str(ret.data());
+    return cq_store_str(ret.data());
 }
 
 bool cq_directory_exists(const char *path) {
