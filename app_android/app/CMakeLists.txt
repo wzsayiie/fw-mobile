@@ -19,9 +19,9 @@ set(lib_name cargo)
 list(APPEND inc_path ../../GENERATED_HEADERS)
 list(APPEND inc_path ../../thirds_android/includes)
 
-list(APPEND src_aims ../../program_basis/*.cpp)
-list(APPEND src_aims ../../program_cpp/*.cpp)
-list(APPEND src_aims ../../program_lua/*.cpp)
+list(APPEND src_aims ../../program_basis/*.c[xp][xp])
+list(APPEND src_aims ../../program_cpp/*.c[xp][xp])
+list(APPEND src_aims ../../program_lua/*.c[xp][xp])
 
 list(APPEND sys_libs log)
 list(APPEND sys_libs GLESv2)
