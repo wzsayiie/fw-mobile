@@ -88,7 +88,7 @@ const char16_t *cq_store_u16str(const char16_t *s) {return cq_store_str<char16_t
 
 //unicode:
 
-static char32_t u32c_from8s(const char *ptr, size_t *count) {
+static char32_t u32c_from8s(const _char8_t *ptr, size_t *count) {
     char32_t ch = 0;
 
     //utf-8 first byte:
@@ -108,7 +108,7 @@ static char32_t u32c_from8s(const char *ptr, size_t *count) {
     }
     
     //followed bytes: 10xx'xxxx
-    for (const char *it = ptr + 1; it < ptr + *count; ++it) {
+    for (const _char8_t *it = ptr + 1; it < ptr + *count; ++it) {
         if ((*it & 0b11'00'0000) != 0b10'00'0000) {
             *count = 0;
             return 0;
@@ -149,7 +149,7 @@ static u16encoded u16e_from32c(char32_t src) {
     return dst;
 }
 
-const char16_t *cq_u16s_from8s(const char *src) {
+const char16_t *cq_u16s_from8s(const _char8_t *src) {
     if (src == nullptr) {
         return cq_store_u16str(nullptr);
     }
@@ -203,7 +203,7 @@ static char32_t u32c_from16s(const char16_t *ptr, size_t *count) {
 }
 
 struct u8encoded {
-    char item[8];
+    _char8_t item[8];
 };
 
 static u8encoded u8e_from32c(char32_t src) {
@@ -213,7 +213,7 @@ static u8encoded u8e_from32c(char32_t src) {
     if (src <= 0x7f) {
         
         //up to 7 bit, occupy 1 byte.
-        dst.item[0] = (char)src;
+        dst.item[0] = (_char8_t)src;
         
     } else if (src <= 0x7ff) {
         
@@ -240,7 +240,7 @@ static u8encoded u8e_from32c(char32_t src) {
     return dst;
 }
 
-const char *cq_u8s_from16s(const char16_t *src) {
+const _char8_t *cq_u8s_from16s(const char16_t *src) {
     if (src == nullptr) {
         return cq_store_str(nullptr);
     }

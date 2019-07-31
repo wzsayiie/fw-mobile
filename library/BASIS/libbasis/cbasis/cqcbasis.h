@@ -100,5 +100,14 @@ CQ_C_LINK const char16_t *cq_store_u16str(const char16_t *string);
 
 //unicode:
 
-CQ_C_LINK const char16_t *cq_u16s_from8s(const char *src);
-CQ_C_LINK const char *cq_u8s_from16s(const char16_t *src);
+//char8_t is a new type since c++20.
+//this typedef wants that char and _char8_t is same type, to avoid type conversion.
+//
+//NOTE:
+//char8_t form c++20 is unsigned. whether char is signed or unsigned is configurable.
+//CLANG use argument '-funsigned-char' to specify char unsigned;
+//MS CL use argument '/J' to specify char unsigned.
+typedef char _char8_t;
+
+CQ_C_LINK const char16_t *cq_u16s_from8s(const _char8_t *src);
+CQ_C_LINK const _char8_t *cq_u8s_from16s(const char16_t *src);
