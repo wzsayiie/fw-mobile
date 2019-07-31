@@ -1,4 +1,5 @@
 #include "cqcbasis.h"
+#include <cassert>
 #include <string>
 #include <vector>
 
@@ -32,7 +33,13 @@ void _cq_resize_data(_cq_data *data, size_t size, size_t count) {
     }
     
     if (size > 0 && count > 0) {
-        data->items = realloc(data->items, size * (count + 1));
+        {
+            //think that realloc() always successful. the use of assert() is just to
+            //suppress a warning on visual c++ default configuration.
+            void *items = realloc(data->items, size * (count + 1));
+            assert(items != nullptr);
+            data->items = items;
+        }
         memcpy((char *)data->items + size * count, "\0\0\0\0\0\0\0\0", size);
         data->size = size;
         data->count = count;
@@ -50,6 +57,11 @@ template<class T> T *cq_copy_str(const T *src) {
     if (src != nullptr) {
         size_t len = std::char_traits<T>::length(src);
         T *dst = (T *)malloc(sizeof(T) * (len + 1));
+        
+        //think that malloc() always successful. the use of assert() is just to
+        //suppress a warning on visual c++ default configuration.
+        assert(dst != nullptr);
+        
         std::char_traits<T>::copy(dst, src, len);
         dst[len] = '\0';
         return dst;
