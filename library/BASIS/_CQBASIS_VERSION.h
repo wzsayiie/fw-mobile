@@ -1,6 +1,6 @@
 #pragma once
 
-#define _CQBASIS_VERSION 0x100000
+#define _CQBASIS_VERSION 0x010000
 
 # ifdef __cplusplus
 #   define _CQBASIS_BEGIN_VERSION_NS      _CQBASIS_BEGIN_VERSION_NS_1(_CQBASIS_VERSION)

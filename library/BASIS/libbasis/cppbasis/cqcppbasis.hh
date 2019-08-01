@@ -21,8 +21,8 @@
 //algorithm
 #include <algorithm>
 
-#include "CQCPPBASIS_NS.hh"
-_CQCPPBASIS_BEGIN_NS
+#include "_CQBASIS_VERSION.h"
+_CQBASIS_BEGIN_VERSION_NS
 
 //std extension:
 
@@ -168,4 +168,4 @@ template<class T, int = 0> typename cqRef<T>::Strong cqStaticObject() {
     });
 }
 
-_CQCPPBASIS_END_NS
+_CQBASIS_END_VERSION_NS
