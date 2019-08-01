@@ -390,13 +390,13 @@
 		B4C5026822C1B79F00374C6D /* cppctool */ = {
 			isa = PBXGroup;
 			children = (
+				CE823F2222D1D5AC008929E2 /* cqbase64.cpp */,
+				CE823F2122D1D5AC008929E2 /* cqbase64.hh */,
 				B4189E2E22CCDAB20072CFC5 /* cqbus.cpp */,
 				B4189E2D22CCDAB20072CFC5 /* cqbus.hh */,
 				B4C5026B22C1B79F00374C6D /* CQCTOOL_PORT.cpp */,
 				B4C5026A22C1B79F00374C6D /* cqctool.hh */,
 				B4954B4122F2C08400B66C0F /* cqctoolbase.hh */,
-				CE823F2222D1D5AC008929E2 /* cqbase64.cpp */,
-				CE823F2122D1D5AC008929E2 /* cqbase64.hh */,
 				B4189E2422CB05E70072CFC5 /* cqdata.cpp */,
 				B4189E2322CB05E70072CFC5 /* cqdata.hh */,
 				B4C5026D22C1B79F00374C6D /* cqdispatch.cpp */,
