@@ -37,6 +37,7 @@ developer can use them to edit source files and project files.
 * EDITOR_CPP/
 * EDITOR_CPP_OSX/
 * EDITOR_CPP_WINDOWS/
+* EDITOR_CS/
 * EDITOR_CS_OSX/
 * EDITOR_CS_WINDOWS/
 
@@ -66,7 +67,7 @@ and copy them to *app_unity/Assets/Plugins*.
 * makelib_ios.bat
 * makelib_ios_res
 * makelib_osx
-* makelib_windows.bat
+* makelib_win32.bat
 
 *NOTE*: macOS and Windows build scripts are provided,
 because developer need the library possibly on Unity editor.
