@@ -2,8 +2,8 @@
 
 #include "cqcppbasis.hh"
 
-#include "CQFOUNDATION_NS.hh"
-_CQFOUNDATION_BEGIN_NS
+#include "_CQFOUNDATION_VERSION.h"
+_CQFOUNDATION_BEGIN_VERSION_NS
 
 //log:
 
@@ -40,4 +40,4 @@ struct cqThread {
     static void sleep(float seconds);
 };
 
-_CQFOUNDATION_END_NS
+_CQFOUNDATION_END_VERSION_NS
