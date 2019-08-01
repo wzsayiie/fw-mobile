@@ -3,8 +3,7 @@
 #include "cqresponder.hh"
 #include "cqgeometry.hh"
 
-#include "CQUIKIT_NS.hh"
-_CQUIKIT_BEGIN_NS
+_CQUIKIT_BEGIN_VERSION_NS
 
 cq_declare(cqViewController);
 cq_declare(cqWindow);
@@ -35,4 +34,4 @@ cq_class(cqView, cqResponder) {
     cqResponderRef nextResponder() override;
 };
 
-_CQUIKIT_END_NS
+_CQUIKIT_END_VERSION_NS

@@ -1,10 +1,8 @@
 #pragma once
 
-#include "cqcppbasis.hh"
 #include "cqgeometry.hh"
 
-#include "CQUIKIT_NS.hh"
-_CQUIKIT_BEGIN_NS
+_CQUIKIT_BEGIN_VERSION_NS
 
 cq_declare(cqView);
 cq_declare(cqWindow);
@@ -16,4 +14,4 @@ cq_class(cqTouch, cqObject) {
     virtual cqPoint locationInView(cqViewRef view);
 };
 
-_CQUIKIT_END_NS
+_CQUIKIT_END_VERSION_NS

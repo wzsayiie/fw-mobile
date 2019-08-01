@@ -3,8 +3,7 @@
 #include "cqevent.hh"
 #include "cqtouch.hh"
 
-#include "CQUIKIT_NS.hh"
-_CQUIKIT_BEGIN_NS
+_CQUIKIT_BEGIN_VERSION_NS
 
 cq_class(cqResponder, cqObject) {
     
@@ -15,4 +14,4 @@ cq_class(cqResponder, cqObject) {
     virtual void touchesEnded(const std::set<cqTouchRef> &touches, cqEventRef event);
 };
 
-_CQUIKIT_END_NS
+_CQUIKIT_END_VERSION_NS

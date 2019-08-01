@@ -1,0 +1,10 @@
+#pragma once
+
+#define _CQSUBSYSTEM_VERSION 0x100000
+
+# ifdef __cplusplus
+#   define _CQSUBSYSTEM_BEGIN_VERSION_NS      _CQSUBSYSTEM_BEGIN_VERSION_NS_1(_CQSUBSYSTEM_VERSION)
+#   define _CQSUBSYSTEM_BEGIN_VERSION_NS_1(X) _CQSUBSYSTEM_BEGIN_VERSION_NS_2(X)
+#   define _CQSUBSYSTEM_BEGIN_VERSION_NS_2(X) inline namespace cq_subsystem_##X {
+#   define _CQSUBSYSTEM_END_VERSION_NS        }
+# endif

@@ -2,8 +2,7 @@
 
 #include "cqviewcontroller.hh"
 
-#include "CQUIKIT_NS.hh"
-_CQUIKIT_BEGIN_NS
+_CQUIKIT_BEGIN_VERSION_NS
 
 cq_class(cqWindow, cqView) {
     
@@ -16,4 +15,4 @@ cq_class(cqWindow, cqView) {
     void setFrame(cqRect frame) override;
 };
 
-_CQUIKIT_END_NS
+_CQUIKIT_END_VERSION_NS

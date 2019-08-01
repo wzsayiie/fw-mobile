@@ -2,12 +2,11 @@
 
 #include "cqevent.hh"
 
-#include "CQUIKIT_NS.hh"
-_CQUIKIT_BEGIN_NS
+_CQUIKIT_BEGIN_VERSION_NS
 
 cq_class(cqTouchesEvent, cqEvent) {
     
     cqEventType type() override;
 };
 
-_CQUIKIT_END_NS
+_CQUIKIT_END_VERSION_NS

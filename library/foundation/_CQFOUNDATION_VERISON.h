@@ -1,0 +1,10 @@
+#pragma once
+
+#define _CQFOUNDATION_VERSION 0x100000
+
+# ifdef __cplusplus
+#   define _CQFOUNDATION_BEGIN_VERSION_NS      _CQFOUNDATION_BEGIN_VERSION_NS_1(_CQFOUNDATION_VERSION)
+#   define _CQFOUNDATION_BEGIN_VERSION_NS_1(X) _CQFOUNDATION_BEGIN_VERSION_NS_2(X)
+#   define _CQFOUNDATION_BEGIN_VERSION_NS_2(X) inline namespace cq_foundation_##X {
+#   define _CQFOUNDATION_END_VERSION_NS        }
+# endif

@@ -135,6 +135,8 @@
 		B473DC2422A4E72600218901 /* cqwindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqwindow.h; sourceTree = "<group>"; };
 		B473DC2522A4E72600218901 /* cqopengl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqopengl.cpp; sourceTree = "<group>"; };
 		B473DC2A22A5000B00218901 /* luahost.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = luahost.cpp; sourceTree = "<group>"; };
+		B4954B3D22F2B16E00B66C0F /* cquikitbase.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cquikitbase.hh; sourceTree = "<group>"; };
+		B4954B3E22F2B1A200B66C0F /* _CQUIKIT_VERSION.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _CQUIKIT_VERSION.h; path = ../program_cpp/_CQUIKIT_VERSION.h; sourceTree = "<group>"; };
 		B4A44689228BA74E00B46240 /* cqgeometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqgeometry.cpp; sourceTree = "<group>"; };
 		B4A4468A228BA74F00B46240 /* cqgeometry.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqgeometry.hh; sourceTree = "<group>"; };
 		B4B9D31F22278D4D00B35E72 /* liblua.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblua.a; path = ../thirds_ios/libs/liblua.a; sourceTree = "<group>"; };
@@ -142,7 +144,6 @@
 		B4C1623822A8C01900D9CA70 /* CPPHostAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPHostAppDelegate.h; sourceTree = "<group>"; };
 		B4C1623B22A8C02F00D9CA70 /* LuaHostAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaHostAppDelegate.h; sourceTree = "<group>"; };
 		B4C1623C22A8C02F00D9CA70 /* LuaHostAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaHostAppDelegate.m; sourceTree = "<group>"; };
-		B4C561E222C0CEC70087C632 /* CQUIKIT_NS.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CQUIKIT_NS.hh; sourceTree = "<group>"; };
 		B4C7448D22BCAE5100483834 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B4C7448F22BCAE5600483834 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		B4CFD96021C7475000FFF4CF /* IAPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPViewController.m; sourceTree = "<group>"; };
@@ -462,6 +463,7 @@
 		B4BC9C9622041E5500CFD84C /* CPPProgam */ = {
 			isa = PBXGroup;
 			children = (
+				B4954B3E22F2B1A200B66C0F /* _CQUIKIT_VERSION.h */,
 				B4C1623622A8C01900D9CA70 /* IOSCPPProgram */,
 				CE90E67922872A350071D4D3 /* libcppprogram */,
 			);
@@ -619,8 +621,8 @@
 				CE90E68422872A350071D4D3 /* cqtouch.hh */,
 				CE90E68022872A350071D4D3 /* cqtouchesevent_p.hh */,
 				CE90E68322872A350071D4D3 /* cqtouchesevent.cpp */,
-				B4C561E222C0CEC70087C632 /* CQUIKIT_NS.hh */,
 				CE90E68522872A350071D4D3 /* cquikit.hh */,
+				B4954B3D22F2B16E00B66C0F /* cquikitbase.hh */,
 				CE90E68822872A350071D4D3 /* cqview.cpp */,
 				CE90E68122872A350071D4D3 /* cqview.hh */,
 				CE90E68222872A350071D4D3 /* cqviewcontroller.cpp */,
