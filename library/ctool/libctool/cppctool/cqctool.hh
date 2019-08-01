@@ -1,5 +1,6 @@
 #pragma once
 
+#include "cqbase64.hh"
 #include "cqbus.hh"
 #include "cqdata.hh"
 #include "cqdispatch.hh"
