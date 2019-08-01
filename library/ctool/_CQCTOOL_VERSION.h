@@ -1,10 +1,14 @@
 #pragma once
 
-#define _CQCTOOL_VERSION 0x010000
+#include "_CQBASIS_VERSION.h"
 
-# ifdef __cplusplus
-#   define _CQCTOOL_BEGIN_VERSION_NS      _CQCTOOL_BEGIN_VERSION_NS_1(_CQCTOOL_VERSION)
-#   define _CQCTOOL_BEGIN_VERSION_NS_1(X) _CQCTOOL_BEGIN_VERSION_NS_2(X)
-#   define _CQCTOOL_BEGIN_VERSION_NS_2(X) inline namespace cq_ctool_##X {
-#   define _CQCTOOL_END_VERSION_NS        }
-# endif
+//can define the version number by command line argument
+#ifndef _CQCTOOL_VERSION
+#define _CQCTOOL_VERSION 1
+#endif
+
+#ifdef __cplusplus
+#define _CQCTOOL_VERSION_NS       _CQ_MACRO_SPLICE(cqctool_, _CQCTOOL_VERSION)
+#define _CQCTOOL_BEGIN_VERSION_NS inline namespace _CQCTOOL_VERSION_NS {
+#define _CQCTOOL_END_VERSION_NS   }
+#endif

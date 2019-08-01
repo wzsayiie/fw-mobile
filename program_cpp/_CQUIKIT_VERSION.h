@@ -1,10 +1,14 @@
 #pragma once
 
-#define _CQUIKIT_VERSION 0x010000
+#include "_CQBASIS_VERSION.h"
 
-# ifdef __cplusplus
-#   define _CQUIKIT_BEGIN_VERSION_NS      _CQUIKIT_BEGIN_VERSION_NS_1(_CQUIKIT_VERSION)
-#   define _CQUIKIT_BEGIN_VERSION_NS_1(X) _CQUIKIT_BEGIN_VERSION_NS_2(X)
-#   define _CQUIKIT_BEGIN_VERSION_NS_2(X) inline namespace cq_uikit_##X {
-#   define _CQUIKIT_END_VERSION_NS        }
-# endif
+//can define the version number by command line argument
+#ifndef _CQUIKIT_VERSION
+#define _CQUIKIT_VERSION 1
+#endif
+
+#ifdef __cplusplus
+#define _CQUIKIT_VERSION_NS       _CQ_MACRO_SPLICE(cquikit_, _CQUIKIT_VERSION)
+#define _CQUIKIT_BEGIN_VERSION_NS inline namespace _CQUIKIT_VERSION_NS {
+#define _CQUIKIT_END_VERSION_NS   }
+#endif

@@ -1,10 +1,14 @@
 #pragma once
 
-#define _CQSUBSYSTEM_VERSION 0x010000
+#include "_CQBASIS_VERSION.h"
 
-# ifdef __cplusplus
-#   define _CQSUBSYSTEM_BEGIN_VERSION_NS      _CQSUBSYSTEM_BEGIN_VERSION_NS_1(_CQSUBSYSTEM_VERSION)
-#   define _CQSUBSYSTEM_BEGIN_VERSION_NS_1(X) _CQSUBSYSTEM_BEGIN_VERSION_NS_2(X)
-#   define _CQSUBSYSTEM_BEGIN_VERSION_NS_2(X) inline namespace cq_subsystem_##X {
-#   define _CQSUBSYSTEM_END_VERSION_NS        }
-# endif
+//can define the version number by command line argument
+#ifndef _CQSUBSYSTEM_VERSION
+#define _CQSUBSYSTEM_VERSION 1
+#endif
+
+#ifdef __cplusplus
+#define _CQSUBSYSTEM_VERSION_NS       _CQ_MACRO_SPLICE(cqsubsystem_, _CQSUBSYSTEM_VERSION)
+#define _CQSUBSYSTEM_BEGIN_VERSION_NS inline namespace _CQSUBSYSTEM_VERSION_NS {
+#define _CQSUBSYSTEM_END_VERSION_NS   }
+#endif

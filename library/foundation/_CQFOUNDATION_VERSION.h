@@ -1,10 +1,14 @@
 #pragma once
 
-#define _CQFOUNDATION_VERSION 0x010000
+#include "_CQBASIS_VERSION.h"
 
-# ifdef __cplusplus
-#   define _CQFOUNDATION_BEGIN_VERSION_NS      _CQFOUNDATION_BEGIN_VERSION_NS_1(_CQFOUNDATION_VERSION)
-#   define _CQFOUNDATION_BEGIN_VERSION_NS_1(X) _CQFOUNDATION_BEGIN_VERSION_NS_2(X)
-#   define _CQFOUNDATION_BEGIN_VERSION_NS_2(X) inline namespace cq_foundation_##X {
-#   define _CQFOUNDATION_END_VERSION_NS        }
-# endif
+//can define the version number by command line argument
+#ifndef _CQFOUNDATION_VERSION
+#define _CQFOUNDATION_VERSION 1
+#endif
+
+#ifdef __cplusplus
+#define _CQFOUNDATION_VERSION_NS       _CQ_MACRO_SPLICE(cqfoundation_, _CQFOUNDATION_VERSION)
+#define _CQFOUNDATION_BEGIN_VERSION_NS inline namespace _CQFOUNDATION_VERSION_NS {
+#define _CQFOUNDATION_END_VERSION_NS   }
+#endif
