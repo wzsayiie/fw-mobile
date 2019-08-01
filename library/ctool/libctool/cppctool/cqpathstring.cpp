@@ -90,7 +90,7 @@ std::string cqPathString::fileName(const std::string &path) {
     return std::string(dirEnd);
 }
 
-std::string cqPathString::fileNameWithoutExtention(const std::string &path) {
+std::string cqPathString::fileNameWithoutExtension(const std::string &path) {
     auto begin = path.c_str();
     auto end = TruncateUntil(begin, begin + path.size(), isNotSeparator);
     

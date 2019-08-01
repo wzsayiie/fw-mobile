@@ -10,7 +10,7 @@ struct cqPathString {
     
     static std::string localeDirectory(const std::string &path);
     static std::string fileName(const std::string &path);
-    static std::string fileNameWithoutExtention(const std::string &path);
+    static std::string fileNameWithoutExtension(const std::string &path);
     static std::string extensionName(const std::string &path);
 };
 
