@@ -1,4 +1,4 @@
-#include "cqdata_base64.hh"
+#include "cqbase64.hh"
 
 static const char b64char[] =
 "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
