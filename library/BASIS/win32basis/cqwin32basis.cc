@@ -1,18 +1,18 @@
-﻿#include "cqwin32base.hh"
+﻿#include "cqwin32basis.hh"
 
-_CQWIN32FOUNDATION_BEGIN_NS
+_CQBASIS_BEGIN_VERSION_NS
 
-CQWSTR CQWStr::Make(CONST WCHAR *lpWStr)
+CQWSTR CQWStr_Make(CONST WCHAR *lpWStr)
 {
     return lpWStr ? lpWStr : L"";
 }
 
-BOOL CQWStr::Empty(CONST WCHAR *lpWStr)
+BOOL CQWStr_Empty(CONST WCHAR *lpWStr)
 {
     return lpWStr == NULL || *lpWStr == L'\0';
 }
 
-CQWSTR CQWStr::FromStr(CONST CHAR *pszStr)
+CQWSTR CQWStr_FromStr(CONST CHAR *pszStr)
 {
     if (pszStr != NULL)
     {
@@ -31,33 +31,33 @@ CQWSTR CQWStr::FromStr(CONST CHAR *pszStr)
     }
 }
 
-CQWSTR CQWStr::FromStr(CONST CQSTR &szStr)
+CQWSTR CQWStr_FromStr(CONST CQSTR &szStr)
 {
-    return FromStr(szStr.c_str());
+    return CQWStr_FromStr(szStr.c_str());
 }
 
-CQWSTR CQWStr::FromU8S(const char *pszStr)
+CQWSTR CQWStr_FromU8S(const char *pszStr)
 {
     const char16_t *u16s = cq_u16s_from8s(pszStr);
-    return CQWStr::Make((CONST WCHAR *)u16s);
+    return CQWStr_Make((CONST WCHAR *)u16s);
 }
 
-CQWSTR CQWStr::FromU8S(const std::string &szStr)
+CQWSTR CQWStr_FromU8S(const std::string &szStr)
 {
-    return FromU8S(szStr.c_str());
+    return CQWStr_FromU8S(szStr.c_str());
 }
 
-CQSTR CQStr::Make(CONST CHAR *pszStr)
+CQSTR CQStr_Make(CONST CHAR *pszStr)
 {
     return pszStr ? pszStr : "";
 }
 
-BOOL CQStr::Empty(CONST CHAR *pszStr)
+BOOL CQStr_Empty(CONST CHAR *pszStr)
 {
     return pszStr == NULL || *pszStr == '\0';
 }
 
-CQSTR CQStr::From(CONST WCHAR *pszWStr)
+CQSTR CQStr_From(CONST WCHAR *pszWStr)
 {
     if (pszWStr != NULL)
     {
@@ -76,20 +76,20 @@ CQSTR CQStr::From(CONST WCHAR *pszWStr)
     }
 }
 
-CQSTR CQStr::From(CONST CQWSTR &szWStr)
+CQSTR CQStr_From(CONST CQWSTR &szWStr)
 {
-    return From(szWStr.c_str());
+    return CQStr_From(szWStr.c_str());
 }
 
-std::string CQU8Str::From(CONST WCHAR *pszWStr)
+std::string CQU8Str_From(CONST WCHAR *pszWStr)
 {
     const char *u8s = cq_u8s_from16s((const char16_t *)pszWStr);
     return cqString::make(u8s);
 }
 
-std::string CQU8Str::From(CONST CQWSTR &szWStr)
+std::string CQU8Str_From(CONST CQWSTR &szWStr)
 {
-    return From(szWStr.c_str());
+    return CQU8Str_From(szWStr.c_str());
 }
 
-_CQWIN32FOUNDATION_END_NS
+_CQBASIS_END_VERSION_NS

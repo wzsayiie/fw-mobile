@@ -1,6 +1,6 @@
 ﻿#include "cqwin32thread.hh"
 
-_CQWIN32FOUNDATION_BEGIN_NS
+_CQFOUNDATION_BEGIN_VERSION_NS
 
 static DWORD WINAPI CQThreadProcedure(LPVOID lpVoid)
 {
@@ -25,4 +25,4 @@ VOID CQThreadSleepSeconds(FLOAT fSeconds)
     Sleep((DWORD)(1000 * fSeconds));
 }
 
-_CQWIN32FOUNDATION_END_NS
+_CQFOUNDATION_END_VERSION_NS

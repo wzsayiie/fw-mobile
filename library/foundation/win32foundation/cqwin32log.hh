@@ -1,9 +1,8 @@
 ﻿#pragma once
 
-#include "cqwin32base.hh"
+#include "cqwin32foundationbase.hh"
 
-#include "CQWIN32FOUNDATION_NS.hh"
-_CQWIN32FOUNDATION_BEGIN_NS
+_CQFOUNDATION_BEGIN_VERSION_NS
 
 VOID CQLogInfoW (CONST WCHAR *pszFile, int nLine, _Printf_format_string_ CONST WCHAR *pszFormat, ...);
 VOID CQLogErrorW(CONST WCHAR *pszFile, int nLine, _Printf_format_string_ CONST WCHAR *pszFormat, ...);
@@ -24,4 +23,4 @@ VOID CQLogErrorA(CONST CHAR  *pszFile, int nLine, _Printf_format_string_ CONST C
 #   define LERROR LERROR_A
 # endif
 
-_CQWIN32FOUNDATION_END_NS
+_CQFOUNDATION_END_VERSION_NS
