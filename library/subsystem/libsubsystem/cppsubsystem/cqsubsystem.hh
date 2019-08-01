@@ -2,8 +2,8 @@
 
 #include "cqcppbasis.hh"
 
-#include "CQSUBSYSTEM_NS.hh"
-_CQSUBSYSTEM_BEGIN_NS
+#include "_CQSUBSYSTEM_VERSION.h"
+_CQSUBSYSTEM_BEGIN_VERSION_NS
 
 cq_class(cqSubsystemManager, cqObject) {
     
@@ -13,4 +13,4 @@ cq_class(cqSubsystemManager, cqObject) {
     virtual void stopSubsystem();
 };
 
-_CQSUBSYSTEM_END_NS
+_CQSUBSYSTEM_END_VERSION_NS
