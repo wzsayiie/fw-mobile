@@ -1,10 +1,9 @@
 #pragma once
 
-#include "cqcppbasis.hh"
+#include "cqctoolbase.hh"
 #include <sstream>
 
-#include "CQCTOOL_NS.hh"
-_CQCTOOL_BEGIN_NS
+_CQCTOOL_BEGIN_VERSION_NS
 
 //
 //usage:
@@ -226,4 +225,4 @@ struct cqJson : _cq_json::dict {
 /**/    _cq_json::mark<T>(this, N, (size_t)&(((decltype(this))0)->_CQ_JSON_NAME));\
 /**/    T
 
-_CQCTOOL_END_NS
+_CQCTOOL_END_VERSION_NS

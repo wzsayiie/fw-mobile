@@ -1,9 +1,8 @@
 #pragma once
 
-#include "cqcppbasis.hh"
+#include "cqctoolbase.hh"
 
-#include "CQCTOOL_NS.hh"
-_CQCTOOL_BEGIN_NS
+_CQCTOOL_BEGIN_VERSION_NS
 
 struct cqPathString {
     
@@ -15,4 +14,4 @@ struct cqPathString {
     static std::string extensionName(const std::string &path);
 };
 
-_CQCTOOL_END_NS
+_CQCTOOL_END_VERSION_NS

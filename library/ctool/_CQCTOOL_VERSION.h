@@ -1,6 +1,6 @@
 #pragma once
 
-#define _CQCTOOL_VERSION 0x100000
+#define _CQCTOOL_VERSION 0x010000
 
 # ifdef __cplusplus
 #   define _CQCTOOL_BEGIN_VERSION_NS      _CQCTOOL_BEGIN_VERSION_NS_1(_CQCTOOL_VERSION)

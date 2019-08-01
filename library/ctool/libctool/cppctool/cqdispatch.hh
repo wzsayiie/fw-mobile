@@ -1,9 +1,8 @@
 #pragma once
 
-#include "cqcppbasis.hh"
+#include "cqctoolbase.hh"
 
-#include "CQCTOOL_NS.hh"
-_CQCTOOL_BEGIN_NS
+_CQCTOOL_BEGIN_VERSION_NS
 
 cq_class(cqDispatchQueue, cqObject) {
     
@@ -25,4 +24,4 @@ struct cqDispatch {
     static void updateMain();
 };
 
-_CQCTOOL_END_NS
+_CQCTOOL_END_VERSION_NS

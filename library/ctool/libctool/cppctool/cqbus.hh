@@ -1,9 +1,8 @@
 #pragma once
 
-#include "cqcppbasis.hh"
+#include "cqctoolbase.hh"
 
-#include "CQCTOOL_NS.hh"
-_CQCTOOL_BEGIN_NS
+_CQCTOOL_BEGIN_VERSION_NS
 
 typedef const char *cqBusEventName;
 
@@ -30,4 +29,4 @@ cq_class(cqBus, cqObject) {
     virtual void post(cqBusEventName eventName, cqObjectRef parameter);
 };
 
-_CQCTOOL_END_NS
+_CQCTOOL_END_VERSION_NS
