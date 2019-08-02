@@ -175,6 +175,14 @@ public class HttpSession {
 
     protected void writeRequestBody(OutputStream stream) throws IOException {
 
+        //unresolved problem:
+        //
+        //how to judge that OutputStream is not writable ?
+        //
+        //if the network speed is slow but data need to be transmitted is very large,
+        //the data can only be cached in memory.
+        //continuously write will cause a OutOfMemoryException.
+
         if (mRequestBodyReader != null) {
 
             byte[] buffer = new byte[1024 * 8];
