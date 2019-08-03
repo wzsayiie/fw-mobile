@@ -32,7 +32,7 @@ public class HttpSession {
     }
 
     private float mTimeoutSeconds;
-    
+
     private String mMethod;
     private String mURLString;
     private HashMap<String, String> mURLQuery;
