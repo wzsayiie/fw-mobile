@@ -31,8 +31,9 @@ public class HttpSession {
         boolean write(HttpSession session, byte[] data);
     }
 
+    private float mTimeoutSeconds;
+    
     private String mMethod;
-
     private String mURLString;
     private HashMap<String, String> mURLQuery;
     private HashMap<String, String> mRequestHeader;
@@ -43,8 +44,6 @@ public class HttpSession {
     private HashMap<String, String> mResponseHeader;
     private ResponseBodyWriter mResponseBodyWriter;
     private byte[] mResponseBodyData;
-
-    private float mTimeoutSeconds;
 
     public void setMethod(String method) {
         mMethod = method;
