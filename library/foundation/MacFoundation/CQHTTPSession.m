@@ -20,8 +20,14 @@
 }
 
 - (NSInteger)read:(uint8_t *)buffer maxLength:(NSUInteger)bufferLength {
-    if (self.session.requestBodyReader != NULL) {
-        NSInteger readLength = self.session.requestBodyReader(self.session, buffer, bufferLength);
+    if ([self.session.delegate respondsToSelector:
+        @selector(HTTPSession:requestBodyFromBuffer:bufferLength:)])
+    {
+        NSInteger readLength =
+        [self.session.delegate HTTPSession:self.session
+                     requestBodyFromBuffer:buffer
+                              bufferLength:bufferLength];
+        
         if (readLength >= 0) {
             self.status = NSStreamStatusReading;
             return readLength;
@@ -30,7 +36,9 @@
             self.status = NSStreamStatusAtEnd;
             return 0;
         }
-    } else {
+    }
+    else
+    {
         self.status = NSStreamStatusAtEnd;
         return 0;
     }
@@ -133,10 +141,14 @@
     [request setAllHTTPHeaderFields:self.requestHeader];
     
     //request body:
-    if (self.requestBodyReader != NULL) {
+    if ([self.delegate respondsToSelector:
+        @selector(HTTPSession:requestBodyFromBuffer:bufferLength:)])
+    {
         self.requestBodyStream = [[CQHTTPSessionBodyInputStream alloc] init];
         self.requestBodyStream.session = self;
-    } else {
+    }
+    else
+    {
         request.HTTPBody = self.requestBodyData;
     }
     
@@ -179,9 +191,9 @@
         self.responseHeader = response.allHeaderFields;
     }
     
-    if (self.responseBodyWriter != NULL) {
+    if ([self.delegate respondsToSelector:@selector(HTTPSession:responseBodyData:)]) {
         
-        BOOL finishAndContinue = self.responseBodyWriter(self, data.bytes, data.length);
+        BOOL finishAndContinue = [self.delegate HTTPSession:self responseBodyData:data];
         if (!finishAndContinue) {
             [session invalidateAndCancel];
         }
