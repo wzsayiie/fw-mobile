@@ -1,9 +1,9 @@
 #import "CQObjcBasis.h"
 
-//WARNING: Don't use CQHTTPSession on main thread, which will result in a deadlock.
+//WARNING: don't use CQHTTPSession on main thread, which will result in a deadlock.
 //
 //CQHTTPSession internally uses the NSURLSession, NSURLSession relies on the main RunLoop event.
-//In order to implement synchronous network access, CQHTTPSession uses a signal lock,
+//in order to implement synchronous network access, CQHTTPSession uses a signal lock,
 //that will suspend the current RunLoop.
 
 @class CQHTTPSession;
