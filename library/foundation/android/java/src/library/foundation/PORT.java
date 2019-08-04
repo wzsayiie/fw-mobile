@@ -13,7 +13,7 @@ public class PORT {
         L.e("%s", message);
     }
 
-    //file manager:
+    //file access:
 
     public static String cq_document_directory() {
         return FileManager.documentDirectory();

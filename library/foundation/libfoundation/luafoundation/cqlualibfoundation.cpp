@@ -23,7 +23,7 @@ static int32_t log_error(lua_State *state) {
     return cq_lua_return_void(state);
 }
 
-//file manager:
+//file access:
 
 static int32_t document_directory(lua_State *state) {
     const char *directory = cq_document_directory();

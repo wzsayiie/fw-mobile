@@ -15,7 +15,7 @@ struct cqLog {
 #define I(...) cqLog::info (__FILE__, __LINE__, __VA_ARGS__)
 #define E(...) cqLog::error(__FILE__, __LINE__, __VA_ARGS__)
 
-//file manager:
+//file access:
 
 struct cqPath {
     static std::string documentDirectory();

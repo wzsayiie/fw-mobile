@@ -7,7 +7,7 @@
 CQ_C_LINK void cq_log_info (const char *file, int32_t line, const char *message);
 CQ_C_LINK void cq_log_error(const char *file, int32_t line, const char *message);
 
-//file manager:
+//file access:
 
 CQ_C_LINK const char *cq_document_directory(void);
 CQ_C_LINK const char *cq_caches_directory(void);

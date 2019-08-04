@@ -29,7 +29,7 @@ void cqLog::error(const char *file, int line, const char *format, ...) {
     va_end(args);
 }
 
-//file manager:
+//file access:
 
 std::string cqPath::documentDirectory() {
     const char *directory = cq_document_directory();

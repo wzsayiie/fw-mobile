@@ -11,7 +11,7 @@ void cq_log_error(const char *file, int32_t line, const char *message) {
     CQLogError(@(file), line, @"%s", message);
 }
 
-//file manager:
+//file access:
 
 const char *cq_document_directory(void) {
     NSString *directory = CQDocumentDirectory();

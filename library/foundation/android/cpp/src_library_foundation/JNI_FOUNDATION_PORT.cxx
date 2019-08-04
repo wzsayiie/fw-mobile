@@ -33,7 +33,7 @@ void cq_log_error(const char *file, int32_t line, const char *message) {
     method.callVoid();
 }
 
-//file manager:
+//file access:
 
 const char *cq_document_directory() {
     static jmethodID methodID = nullptr;
