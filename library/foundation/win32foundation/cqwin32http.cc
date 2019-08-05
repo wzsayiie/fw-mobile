@@ -5,7 +5,7 @@ _CQFOUNDATION_BEGIN_VERSION_NS
 
 struct CQHTTP {
 
-    FLOAT fTimeoutSeconds;
+    FLOAT fTimeoutSeconds = 0;
     CQWSTR szMethod;
     CQWSTR szUrlString;
     CQMAP<CQWSTR, CQWSTR> mpUrlQuery;
