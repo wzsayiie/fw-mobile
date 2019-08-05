@@ -85,3 +85,143 @@ void cqThread::run(std::function<void ()> task) {
 void cqThread::sleep(float seconds) {
     cq_thread_sleep(seconds);
 }
+
+//http(s):
+
+cq_member(cqHTTPSession) {
+    
+    cq_http *http;
+    
+    cqHTTPSession::RequestBodyReader requestBodyReader;
+    std::vector<uint8_t> requestBodyData;
+    size_t requestBodyDataCursor;
+    
+    int responseCode;
+    std::map<std::string, std::string> responseHeader;
+    cqHTTPSession::ResponseBodyWriter responseBodyWriter;
+    std::vector<uint8_t> responseBodyData;
+    
+    std::string error;
+};
+
+cqHTTPSession::cqHTTPSession() {
+    dat->http = cq_http_create();
+}
+
+cqHTTPSession::~cqHTTPSession() {
+    cq_http_destroy(dat->http);
+}
+
+void cqHTTPSession::setTimeout(float seconds) {
+    cq_http_timeout(dat->http, seconds);
+}
+
+void cqHTTPSession::setMethod(const std::string &method) {
+    cq_http_send_method(dat->http, method.c_str());
+}
+
+void cqHTTPSession::setURLString(const std::string &urlString) {
+    cq_http_send_url(dat->http, urlString.c_str());
+}
+
+void cqHTTPSession::setURLQuery(const std::string &field, const std::string &value) {
+    cq_http_send_query(dat->http, field.c_str(), value.c_str());
+}
+
+void cqHTTPSession::setRequestHeader(const std::string &field, const std::string &value) {
+    cq_http_send_header(dat->http, field.c_str(), value.c_str());
+}
+
+void cqHTTPSession::setRequestBodyReader(RequestBodyReader reader) {
+    dat->requestBodyReader = reader;
+}
+
+void cqHTTPSession::setRequestBodyData(const std::vector<uint8_t> &data) {
+    dat->requestBodyData = data;
+    dat->requestBodyDataCursor = 0;
+}
+
+static int32_t cqHTTPSession_OnReadRequestBody(void *user, void *buffer, int32_t length) {
+    auto session = (cqHTTPSession *)user;
+    
+    if (session->dat->requestBodyReader != nullptr) {
+        return session->dat->requestBodyReader(buffer, length);
+    }
+    
+    std::vector<uint8_t> &data = session->dat->requestBodyData;
+    size_t &cursor = session->dat->requestBodyDataCursor;
+    if (cursor < data.size()) {
+        if (length > (int32_t)(data.size() - cursor)) {
+            length = (int32_t)(data.size() - cursor);
+        }
+        memcpy(buffer, data.data() + cursor, length);
+        cursor += length;
+        return length;
+    } else {
+        return -1;
+    }
+}
+
+static void cqHTTPSession_OnWriteResponseCode(void *user, int32_t code) {
+    auto session = (cqHTTPSession *)user;
+    
+    session->dat->responseCode = code;
+}
+
+static void cqHTTPSession_OnWriteResponseHeader(void *user, const char *field, const char *value) {
+    auto session = (cqHTTPSession *)user;
+    
+    if (!cq_str_empty(field) && !cq_str_empty(value)) {
+        session->dat->responseHeader[field] = value;
+    }
+}
+
+static bool cqHTTPSession_OnWriteResponseBody(void *user, const void *data, int32_t length) {
+    auto session = (cqHTTPSession *)user;
+    
+    if (session->dat->responseBodyWriter != nullptr) {
+        return session->dat->responseBodyWriter(data, length);
+    } else {
+        std::vector<uint8_t> &body = session->dat->responseBodyData;
+        body.insert(body.end(), (uint8_t *)data, (uint8_t *)data + length);
+        return true;
+    }
+}
+
+void cqHTTPSession::syncResume() {
+    
+    //reset:
+    cq_http_send_body_from(dat->http, cqHTTPSession_OnReadRequestBody    );
+    cq_http_recv_code_to  (dat->http, cqHTTPSession_OnWriteResponseCode  );
+    cq_http_recv_header_to(dat->http, cqHTTPSession_OnWriteResponseHeader);
+    cq_http_recv_body_to  (dat->http, cqHTTPSession_OnWriteResponseBody  );
+    
+    dat->responseCode = 0;
+    dat->responseHeader.clear();
+    dat->responseBodyData.clear();
+    dat->error.clear();
+    
+    //resume:
+    cq_http_sync(dat->http, this);
+    dat->error = cqString::make(cq_http_error(dat->http));
+}
+
+const std::string &cqHTTPSession::error() {
+    return dat->error;
+}
+
+int cqHTTPSession::responseCode() {
+    return dat->responseCode;
+}
+
+std::map<std::string, std::string> cqHTTPSession::responseHeader() {
+    return dat->responseHeader;
+}
+
+void cqHTTPSession::setResponseBodyWriter(ResponseBodyWriter writer) {
+    dat->responseBodyWriter = writer;
+}
+
+std::vector<uint8_t> cqHTTPSession::responseBodyData() {
+    return dat->responseBodyData;
+}

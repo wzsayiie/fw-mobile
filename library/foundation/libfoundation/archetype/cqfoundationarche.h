@@ -24,24 +24,26 @@ CQ_C_LINK void cq_thread_sleep(float seconds);
 
 //http(s):
 
-typedef int32_t (*cq_http_body_reader)(void *user, void *buffer, int32_t length);
-typedef int32_t (*cq_http_body_writer)(void *user, const void *data, int32_t length);
+typedef int32_t (*cq_http_body_reader  )(void *user, void *buffer, int32_t length);
+typedef void    (*cq_http_code_writer  )(void *user, int32_t code);
+typedef void    (*cq_http_header_writer)(void *user, const char *field, const char *value);
+typedef bool    (*cq_http_body_writer  )(void *user, const void *data, int32_t length);
 
 struct cq_http;
 
 CQ_C_LINK struct cq_http *cq_http_create(void);
 CQ_C_LINK void cq_http_destroy(struct cq_http *http);
 
-CQ_C_LINK void cq_http_method(struct cq_http *http, const char *method);
-CQ_C_LINK void cq_http_url(struct cq_http *http, const char *url);
-CQ_C_LINK void cq_http_query(struct cq_http *http, const char *field, const char *value);
-CQ_C_LINK void cq_http_header(struct cq_http *http, const char *field, const char *value);
-CQ_C_LINK void cq_http_body(struct cq_http *http, void *user, cq_http_body_reader *reader);
+CQ_C_LINK void cq_http_timeout    (struct cq_http *http, float seconds);
+CQ_C_LINK void cq_http_send_method(struct cq_http *http, const char *method);
+CQ_C_LINK void cq_http_send_url   (struct cq_http *http, const char *url);
+CQ_C_LINK void cq_http_send_query (struct cq_http *http, const char *field, const char *value);
+CQ_C_LINK void cq_http_send_header(struct cq_http *http, const char *field, const char *value);
 
-CQ_C_LINK void cq_http_sync(float timeoutSeconds);
+CQ_C_LINK void cq_http_send_body_from(struct cq_http *http, cq_http_body_reader   reader);
+CQ_C_LINK void cq_http_recv_code_to  (struct cq_http *http, cq_http_code_writer   writer);
+CQ_C_LINK void cq_http_recv_header_to(struct cq_http *http, cq_http_header_writer writer);
+CQ_C_LINK void cq_http_recv_body_to  (struct cq_http *http, cq_http_body_writer   writer);
 
-CQ_C_LINK int32_t cq_http_resp_code(struct cq_http *http);
-CQ_C_LINK const char **cq_http_resp_header(struct cq_http *http);
-CQ_C_LINK void cq_http_resp_body(struct cq_http *http, void *user, cq_http_body_writer *writer);
-
-CQ_C_LINK void cq_http_timeout(struct cq_http *http, float seconds);
+CQ_C_LINK void cq_http_sync(struct cq_http *http, void *user);
+CQ_C_LINK const char *cq_http_error(struct cq_http *http);

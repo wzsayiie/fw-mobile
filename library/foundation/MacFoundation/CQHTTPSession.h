@@ -24,7 +24,7 @@
 
 @interface CQHTTPSession : NSObject
 
-@property (nonatomic) id<CQHTTPSessionDelegate> delegate;
+@property (nonatomic, weak) id<CQHTTPSessionDelegate> delegate;
 
 @property (nonatomic) NSTimeInterval timeoutSeconds;
 @property (nonatomic) NSString *method;

@@ -133,8 +133,12 @@
         }
     }
     NSMutableString *URLString = [NSMutableString string];
-    [URLString appendString:self.URLString];
-    [URLString appendString:queryString];
+    if (self.URLString.length > 0) {
+        [URLString appendString:self.URLString];
+    }
+    if (queryString.length > 0) {
+        [URLString appendString:queryString];
+    }
     request.URL = [NSURL URLWithString:URLString];
     
     //request header:

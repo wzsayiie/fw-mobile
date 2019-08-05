@@ -124,3 +124,178 @@ void cq_thread_sleep(float seconds) {
 
     method.callVoid();
 }
+
+//http(s):
+
+cq_http *cq_http_create() {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_http_create");
+
+    return (cq_http *)method.callInt64();
+}
+
+void cq_http_destroy(cq_http *http) {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_http_destroy");
+
+    method.push((jlong)http);
+
+    method.callVoid();
+}
+
+void cq_http_timeout(cq_http *http, float seconds) {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_http_timeout");
+
+    method.push((jlong)http);
+    method.push(seconds);
+
+    method.callVoid();
+}
+
+void cq_http_send_method(cq_http *http, const char *httpMethod) {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_http_send_method");
+
+    method.push((jlong)http);
+    method.push(httpMethod);
+
+    method.callVoid();
+}
+
+void cq_http_send_url(cq_http *http, const char *url) {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_http_send_url");
+
+    method.push((jlong)http);
+    method.push(url);
+
+    method.callVoid();
+}
+
+void cq_http_send_query(cq_http *http, const char *field, const char *value) {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_http_send_query");
+
+    method.push((jlong)http);
+    method.push(field);
+    method.push(value);
+
+    method.callVoid();
+}
+
+void cq_http_send_header(cq_http *http, const char *field, const char *value) {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_http_send_header");
+
+    method.push((jlong)http);
+    method.push(field);
+    method.push(value);
+
+    method.callVoid();
+}
+
+void cq_http_send_body_from(cq_http *http, cq_http_body_reader reader) {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_http_send_body_from");
+
+    method.push((jlong)http);
+    method.push((jlong)reader);
+
+    method.callVoid();
+}
+
+void cq_http_recv_code_to(cq_http *http, cq_http_code_writer writer) {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_http_recv_code_to");
+
+    method.push((jlong)http);
+    method.push((jlong)writer);
+
+    method.callVoid();
+}
+
+void cq_http_recv_header_to(cq_http *http, cq_http_header_writer writer) {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_http_recv_header_to");
+
+    method.push((jlong)http);
+    method.push((jlong)writer);
+
+    method.callVoid();
+}
+
+void cq_http_recv_body_to(cq_http *http, cq_http_body_writer writer) {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_http_recv_body_to");
+
+    method.push((jlong)http);
+    method.push((jlong)writer);
+
+    method.callVoid();
+}
+
+void cq_http_sync(cq_http *http, void *user) {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_http_sync");
+
+    method.push((jlong)http);
+    method.push((jlong)user);
+
+    method.callVoid();
+}
+
+const char *cq_http_error(cq_http *http) {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_http_error");
+
+    method.push((jlong)http);
+
+    return cq_store_str(method.callString().c_str());
+}
+
+extern "C" JNIEXPORT jint JNICALL Java_src_library_foundation_PORT_httpReadRequestBody
+    (JNIEnv *env, jclass, jlong reader, jlong userData, jbyteArray buffer)
+{
+    auto func = (cq_http_body_reader)reader;
+
+    jsize len = env->GetArrayLength(buffer);
+    std::vector<jbyte> data((size_t)len);
+
+    int32_t readLen = func((void *)userData, data.data(), len);
+    if (readLen > 0) {
+        env->SetByteArrayRegion(buffer, 0, readLen, data.data());
+    }
+    return readLen;
+}
+
+extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_PORT_httpWriteResponseCode
+    (JNIEnv *, jclass, jlong writer, jlong userData, jint responseCode)
+{
+    auto func = (cq_http_code_writer)writer;
+    func((void *)userData, (int32_t)responseCode);
+}
+
+extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_PORT_httpWriteResponseHeader
+    (JNIEnv *env, jclass, jlong writer, jlong userData, jstring field, jstring value)
+{
+    auto func = (cq_http_header_writer)writer;
+    std::string f = cqJNIU8StringFromJNI(env, field);
+    std::string v = cqJNIU8StringFromJNI(env, value);
+
+    func((void *)userData, f.c_str(), v.c_str());
+}
+
+extern "C" JNIEXPORT jboolean JNICALL Java_src_library_foundation_PORT_httpWriteResponseBody
+    (JNIEnv *env, jclass, jlong writer, jlong userData, jbyteArray data)
+{
+    auto func = (cq_http_body_writer)writer;
+    jbyte *dataPtr = env->GetByteArrayElements(data, nullptr);
+    jsize dataSize = env->GetArrayLength(data);
+
+    auto ret = (jboolean)func((void *)userData, dataPtr, (int32_t)dataSize);
+
+    env->ReleaseByteArrayElements(data, dataPtr, JNI_ABORT);
+
+    return ret;
+}
