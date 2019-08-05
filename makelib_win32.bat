@@ -17,23 +17,19 @@ set error=0
 ::make sure values of !random! are different every time.
 setlocal EnableDelayedExpansion
 
-set source="library/BASIS/libbasis"
+set source="library/BASIS"
 call :compile
 if not %error% == 0 (goto end)
 
-set source="library/ctool/libctool"
+set source="library/ctool"
 call :compile
 if not %error% == 0 (goto end)
 
-set source="library/foundation/libfoundation"
+set source="library/foundation"
 call :compile
 if not %error% == 0 (goto end)
 
-set source="library/foundation/win32foundation"
-call :compile
-if not %error% == 0 (goto end)
-
-set source="library/standalone/libstandalone"
+set source="library/standalone"
 call :compile
 if not %error% == 0 (goto end)
 

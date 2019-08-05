@@ -151,7 +151,7 @@ void cq_http_send_header(cq_http *http, const char *field, const char *value)
     {
         CQWSTR szField = CQWStr_FromU8S(field);
         CQWSTR szValue = CQWStr_FromU8S(value);
-        CQHttpSetRequestHeader(http->lpSession, szField, szValue);
+        CQHttpSetRequestHeaderW(http->lpSession, szField, szValue);
     }
 }
 
