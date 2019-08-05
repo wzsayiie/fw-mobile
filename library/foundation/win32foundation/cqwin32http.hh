@@ -6,7 +6,10 @@ _CQFOUNDATION_BEGIN_VERSION_NS
 
 struct CQHTTP;
 
-CQHTTP *CQHttpOpen();
+CQHTTP *CQHttpCreate();
+VOID CQHttpDestroy(CQHTTP *lpHttp);
+
+VOID CQHttpSetTimeout(CQHTTP *lpHttp, FLOAT fSeconds);
 
 VOID CQHttpSetMethodW(CQHTTP *lpHttp, CONST CQWSTR &szMethod);
 VOID CQHttpSetMethodA(CQHTTP *lpHttp, CONST CQSTR  &szMethod);
@@ -21,34 +24,43 @@ VOID CQHttpSetUrlQueryA(CQHTTP *lpHttp, CONST CQSTR  &szField, CONST CQSTR  &szV
 VOID CQHttpSetRequestHeaderW(CQHTTP *lpHttp, CONST CQWSTR &szField, CONST CQWSTR &szValue);
 VOID CQHttpSetRequestHeaderA(CQHTTP *lpHttp, CONST CQSTR  &szField, CONST CQSTR  &szValue);
 
-//write request body. bEnd specifies write data finished or not.
-//NOTE: this function could be call both before and after CQHttpConnect().
-VOID CQHttpSetRequestBody(CQHTTP *lpHttp, BYTE *lpBytes, int nSize, BOOL bEnd);
+typedef CQFUNC<int (BYTE *lpBuffer, int nLength)> CQHttpRequestBodyReader;
 
-//if connect failed, return FASLE.
-//NOTE: even fails, also need call CQHttpClose() to clean.
-BOOL CQHttpConnect(CQHTTP *lpHttp);
+//if set a RequestBodyReader, the session will use it to get request body,
+//else the request body from value set by CQHttpSetRequestBodyData().
+VOID CQHttpSetRequestBodyReader(CQHTTP *lpHttp, CQHttpRequestBodyReader fnReader);
+VOID CQHttpSetRequestBodyData(CQHTTP *lpHttp, CONST CQVEC<BYTE> &vcData);
+
+VOID CQHttpSyncResume(CQHTTP *lpHttp);
+
+CQWSTR CQHttpErrorW(CQHTTP *lpHttp);
+CQSTR  CQHttpErrorA(CQHTTP *lpHttp);
 
 int CQHttpGetResponseCode(CQHTTP *lpHttp);
 
-VOID CQHttpGetResponseHeaderW(CQHTTP *lpHttp, CQMAP<CQWSTR, CQWSTR> *lpHeader);
-VOID CQHttpGetResponseHeaderA(CQHTTP *lpHttp, CQMAP<CQSTR , CQSTR > *lpHeader);
+CQMAP<CQWSTR, CQWSTR> CQHttpGetResponseHeaderW(CQHTTP *lpHttp);
+CQMAP<CQSTR , CQSTR > CQHttpGetResponseHeaderA(CQHTTP *lpHttp);
 
-VOID CQHttpGetResponseBody(CQHTTP *lpHttp, CQVEC<BYTE> *lpBody, BOOL *bCompleted);
+typedef CQFUNC<BOOL (CONST BYTE *lpBytes, int nLength)> CQHttpResponseBodyWriter;
 
-VOID CQHttpClose(CQHTTP *lpHttp);
+//if set a ResponseBodyWriter, the session will use it to write response body,
+//else the response body stored into internal data, which can be get by CQHttpGetResponseBodyData().
+VOID CQhttpSetResponseBodyWriter(CQHTTP *lpHttp, CQHttpResponseBodyWriter fnWriter);
+CQVEC<BYTE> CQHttpGetResponseBodyData(CQHTTP *lpHttp);
 
 # ifdef UNICODE
 #   define CQHttpSetMethod         CQHttpSetMethodW
 #   define CQHttpSetUrlString      CQHttpSetUrlStringW
 #   define CQHttpSetUrlQuery       CQHttpSetUrlQueryW
 #   define CQHttpSetRequestHeader  CQHttpSetRequestHeaderW
+#   define CQHttpError             CQHttpErrorW
 #   define CQHttpGetResponseHeader CQHttpGetResponseHeaderW
 # else
 #   define CQHttpSetMethod         CQHttpSetMethodA
 #   define CQHttpSetUrlString      CQHttpSetUrlStringA
 #   define CQHttpSetUrlQuery       CQHttpSetUrlQueryA
 #   define CQHttpSetRequestHeader  CQHttpSetRequestHeaderA
+#   define CQHttpError             CQHttpErrorA
 #   define CQHttpGetResponseHeader CQHttpGetResponseHeaderA
 # endif
 

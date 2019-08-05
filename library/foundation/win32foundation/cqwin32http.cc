@@ -5,22 +5,40 @@ _CQFOUNDATION_BEGIN_VERSION_NS
 
 struct CQHTTP {
 
+    FLOAT fTimeoutSeconds;
     CQWSTR szMethod;
     CQWSTR szUrlString;
     CQMAP<CQWSTR, CQWSTR> mpUrlQuery;
     CQMAP<CQWSTR, CQWSTR> mpRequestHeader;
-    CQVEC<BYTE> arRequestBody;
-    BOOL bRequestBodyEnd = FALSE;
+    CQHttpRequestBodyReader fnRequestBodyReader;
+    CQVEC<BYTE> vcRequestBodyData;
 
+    CQWSTR szError;
     int nResponseCode = 0;
     CQMAP<CQWSTR, CQWSTR> mpResponseHeader;
-    CQVEC<BYTE> arResponseBody;
-    BOOL bTransferCompleted = FALSE;
+    CQHttpResponseBodyWriter fnResponseBodyWriter;
+    CQVEC<BYTE> vcResponseBodyData;
 };
 
-CQHTTP *CQHttpOpen()
+CQHTTP *CQHttpCreate()
 {
     return new CQHTTP;
+}
+
+VOID CQHttpDestroy(CQHTTP *lpHttp)
+{
+    if (lpHttp != NULL)
+    {
+        delete lpHttp;
+    }
+}
+
+VOID CQHttpSetTimeout(CQHTTP *lpHttp, FLOAT fSeconds)
+{
+    if (lpHttp != NULL)
+    {
+        lpHttp->fTimeoutSeconds = fSeconds;
+    }
 }
 
 VOID CQHttpSetMethodW(CQHTTP *lpHttp, CONST CQWSTR &szMethod)
@@ -81,19 +99,43 @@ VOID CQHttpSetRequestHeaderA(CQHTTP *lpHttp, CONST CQSTR &szField, CONST CQSTR &
     CQHttpSetRequestHeaderW(lpHttp, szFieldW, szValueW);
 }
 
-VOID CQHttpSetRequestBody(CQHTTP *lpHttp, BYTE *lpBytes, int nSize, BOOL bEnd)
+VOID CQHttpSetRequestBodyReader(CQHTTP *lpHttp, CQHttpRequestBodyReader fnReader)
 {
-    if (lpHttp != NULL && lpBytes != NULL && nSize > 0 && !lpHttp->bRequestBodyEnd)
+    if (lpHttp != NULL)
     {
-        CQVEC<BYTE> *arBody = &lpHttp->arRequestBody;
-        arBody->insert(arBody->end(), lpBytes, lpBytes + nSize);
-        lpHttp->bRequestBodyEnd = bEnd;
+        lpHttp->fnRequestBodyReader = fnReader;
     }
 }
 
-BOOL CQHttpConnect(CQHTTP *lpHttp)
+VOID CQHttpSetRequestBodyData(CQHTTP *lpHttp, CONST CQVEC<BYTE> &vcData)
 {
-    return FALSE;
+    if (lpHttp != NULL)
+    {
+        lpHttp->vcRequestBodyData = vcData;
+    }
+}
+
+VOID CQHttpSyncResume(CQHTTP *lpHttp)
+{
+    //todo
+}
+
+CQWSTR CQHttpErrorW(CQHTTP *lpHttp)
+{
+    if (lpHttp != NULL)
+    {
+        return lpHttp->szError;
+    }
+    else
+    {
+        return CQWSTR();
+    }
+}
+
+CQSTR CQHttpErrorA(CQHTTP *lpHttp)
+{
+    CQWSTR szErrorW = CQHttpErrorW(lpHttp);
+    return CQStr_From(szErrorW);
 }
 
 int CQHttpGetResponseCode(CQHTTP *lpHttp)
@@ -108,42 +150,49 @@ int CQHttpGetResponseCode(CQHTTP *lpHttp)
     }
 }
 
-VOID CQHttpGetResponseHeaderW(CQHTTP *lpHttp, CQMAP<CQWSTR, CQWSTR> *lpHeader)
+CQMAP<CQWSTR, CQWSTR> CQHttpGetResponseHeaderW(CQHTTP *lpHttp)
 {
-    if (lpHttp != NULL && lpHeader != NULL)
+    if (lpHttp != NULL)
     {
-        *lpHeader = lpHttp->mpResponseHeader;
+        return lpHttp->mpResponseHeader;
+    }
+    else
+    {
+        return CQMAP<CQWSTR, CQWSTR>();
     }
 }
 
-VOID CQHttpGetResponseHeaderA(CQHTTP *lpHttp, CQMAP<CQSTR, CQSTR> *lpHeader)
+CQMAP<CQSTR, CQSTR> CQHttpGetResponseHeaderA(CQHTTP *lpHttp)
 {
-    CQMAP<CQWSTR, CQWSTR> mpHeaderW;
-    CQHttpGetResponseHeaderW(lpHttp, &mpHeaderW);
+    CQMAP<CQWSTR, CQWSTR> mpHeaderW = CQHttpGetResponseHeaderW(lpHttp);
 
-    lpHeader->clear();
+    CQMAP<CQSTR, CQSTR> mpHeaderA;
     for (auto &cp : mpHeaderW)
     {
         CQSTR szField = CQStr_From(cp.first);
         CQSTR szValue = CQStr_From(cp.second);
-        (*lpHeader)[szField] = szValue;
+        mpHeaderA[szField] = szValue;
     }
+    return mpHeaderA;
 }
 
-VOID CQHttpGetResponseBody(CQHTTP *lpHttp, CQVEC<BYTE> *lpBody, BOOL *bCompleted)
-{
-    if (lpHttp != NULL && lpBody != NULL && bCompleted != NULL)
-    {
-        lpBody->swap(lpHttp->arResponseBody);
-        *bCompleted = lpHttp->bTransferCompleted;
-    }
-}
-
-VOID CQHttpClose(CQHTTP *lpHttp)
+VOID CQhttpSetResponseBodyWriter(CQHTTP *lpHttp, CQHttpResponseBodyWriter writer)
 {
     if (lpHttp != NULL)
     {
-        delete lpHttp;
+        lpHttp->fnResponseBodyWriter = writer;
+    }
+}
+
+CQVEC<BYTE> CQHttpGetResponseBodyData(CQHTTP *lpHttp)
+{
+    if (lpHttp != NULL)
+    {
+        return lpHttp->vcResponseBodyData;
+    }
+    else
+    {
+        return CQVEC<BYTE>();
     }
 }
 
