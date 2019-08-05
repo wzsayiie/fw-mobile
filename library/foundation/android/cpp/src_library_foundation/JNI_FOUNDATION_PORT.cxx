@@ -290,12 +290,12 @@ extern "C" JNIEXPORT jboolean JNICALL Java_src_library_foundation_PORT_httpWrite
     (JNIEnv *env, jclass, jlong writer, jlong userData, jbyteArray data)
 {
     auto func = (cq_http_body_writer)writer;
-    jbyte *dataPtr = env->GetByteArrayElements(data, nullptr);
-    jsize dataSize = env->GetArrayLength(data);
+    jbyte *bytes = env->GetByteArrayElements(data, nullptr);
+    jsize length = env->GetArrayLength(data);
 
-    auto ret = (jboolean)func((void *)userData, dataPtr, (int32_t)dataSize);
+    auto ret = (jboolean)func((void *)userData, bytes, (int32_t)length);
 
-    env->ReleaseByteArrayElements(data, dataPtr, JNI_ABORT);
+    env->ReleaseByteArrayElements(data, bytes, JNI_ABORT);
 
     return ret;
 }

@@ -27,7 +27,7 @@ CQ_C_LINK void cq_thread_sleep(float seconds);
 typedef int32_t (*cq_http_body_reader  )(void *user, void *buffer, int32_t length);
 typedef void    (*cq_http_code_writer  )(void *user, int32_t code);
 typedef void    (*cq_http_header_writer)(void *user, const char *field, const char *value);
-typedef bool    (*cq_http_body_writer  )(void *user, const void *data, int32_t length);
+typedef bool    (*cq_http_body_writer  )(void *user, const void *bytes, int32_t length);
 
 struct cq_http;
 

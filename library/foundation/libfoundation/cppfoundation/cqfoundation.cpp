@@ -176,14 +176,14 @@ static void cqHTTPSession_OnWriteResponseHeader(void *user, const char *field, c
     }
 }
 
-static bool cqHTTPSession_OnWriteResponseBody(void *user, const void *data, int32_t length) {
+static bool cqHTTPSession_OnWriteResponseBody(void *user, const void *bytes, int32_t length) {
     auto session = (cqHTTPSession *)user;
     
     if (session->dat->responseBodyWriter != nullptr) {
-        return session->dat->responseBodyWriter(data, length);
+        return session->dat->responseBodyWriter(bytes, length);
     } else {
         std::vector<uint8_t> &body = session->dat->responseBodyData;
-        body.insert(body.end(), (uint8_t *)data, (uint8_t *)data + length);
+        body.insert(body.end(), (uint8_t *)bytes, (uint8_t *)bytes + length);
         return true;
     }
 }
