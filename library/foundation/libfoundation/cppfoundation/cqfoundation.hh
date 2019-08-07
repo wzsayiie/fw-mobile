@@ -18,8 +18,8 @@ struct cqLog {
     static void info (const char *file, int line, const char *format, ...) __printflike(3, 4);
     static void error(const char *file, int line, const char *format, ...) __printflike(3, 4);
 #else
-    static void info (const char *file, int line, _Print_format_string_ const char *format, ...);
-    static void error(const char *file, int line, _Print_format_string_ const char *format, ...);
+    static void info (const char *file, int line, _Printf_format_string_ const char *format, ...);
+    static void error(const char *file, int line, _Printf_format_string_ const char *format, ...);
 #endif
 };
 
