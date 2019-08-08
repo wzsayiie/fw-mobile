@@ -64,7 +64,7 @@ const char *_last_socket_error_n() {
         ret.append("WSAGetLastError:");
         ret.append(std::to_string(nCode));
         
-        //NOTE: in english to avoid wide characters.
+        //NOTE: in english to avoid multi-byte characters.
         DWORD dwLanguageId = MAKELANGID(LANG_ENGLISH, SUBLANG_DEFAULT);
         LPSTR pszMessage = NULL;
         FormatMessageA(
