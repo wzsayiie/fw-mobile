@@ -4,6 +4,7 @@
 
 # if CQ_ON_WINDOWS
 #   include <winsock2.h>
+#   include <ws2tcpip.h>
 # else
 #   include <netinet/in.h>
 #   include <sys/socket.h>
