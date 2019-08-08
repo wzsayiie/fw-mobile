@@ -6,3 +6,4 @@
 #include "cqdispatch.hh"
 #include "cqjson.hh"
 #include "cqpathstring.hh"
+#include "cqsocket.hh"
