@@ -70,12 +70,12 @@ in6_addr cq_inet6_addr(const std::string &str);
 std::string cq_inet_str (in_addr  addr);
 std::string cq_inet6_str(in6_addr addr);
 
-cq_sock cq_open_tcp_sock ();
+cq_sock cq_open_tcp_sock4();
 cq_sock cq_open_tcp_sock6();
-cq_sock cq_open_udp_sock ();
+cq_sock cq_open_udp_sock4();
 cq_sock cq_open_udp_sock6();
 
-void close_sock(cq_sock sock);
+void cq_close_sock(cq_sock sock);
 
 const char *cq_sock_error();
 

@@ -44,21 +44,21 @@ std::string cq_inet6_str(in6_addr addr) {
 }
 
 static cq_sock open_sock(int af, int sock, int ipproto) {
-    int raws = socket(af, sock, ipproto);
-    if (raws != -1) {
-        return (cq_sock)(intptr_t)raws;
+    int raw = socket(af, sock, ipproto);
+    if (raw != -1) {
+        return (cq_sock)(intptr_t)raw;
     } else {
         return nullptr;
     }
 }
 
-cq_sock cq_open_tcp_sock () { return open_sock(AF_INET , SOCK_STREAM, IPPROTO_TCP); }
+cq_sock cq_open_tcp_sock4() { return open_sock(AF_INET , SOCK_STREAM, IPPROTO_TCP); }
 cq_sock cq_open_tcp_sock6() { return open_sock(AF_INET6, SOCK_STREAM, IPPROTO_TCP); }
-cq_sock cq_open_udp_sock () { return open_sock(AF_INET , SOCK_DGRAM , IPPROTO_UDP); }
+cq_sock cq_open_udp_sock4() { return open_sock(AF_INET , SOCK_DGRAM , IPPROTO_UDP); }
 cq_sock cq_open_udp_sock6() { return open_sock(AF_INET6, SOCK_DGRAM , IPPROTO_UDP); }
 
 void cq_close_sock(cq_sock sock) {
-    close(*(int *)sock);
+    close(*(int *)&sock);
 }
 
 const char *cq_sock_error() {
@@ -76,23 +76,21 @@ const char *cq_sock_error() {
 }
 
 bool cq_bind_sock(cq_sock sock, cq_sockaddr_in local) {
-    auto raws = *(int *)&sock;
-    auto code = bind(raws, local.addr(), local.ulen());
+    int raw = *(int *)&sock;
+    int code = bind(raw, local.addr(), local.ulen());
     return code == 0;
 }
 
 int cq_sock_sendto(cq_sock sock, cq_sockaddr_in remote, const void *dat, int datlen) {
-    auto raws = *(int *)&sock;
-    auto sendlen = (int)sendto(raws, dat, datlen, 0, remote.addr(), remote.ulen());
-    return sendlen;
+    int raw = *(int *)&sock;
+    return (int)sendto(raw, dat, datlen, 0, remote.addr(), remote.ulen());
 }
 
 int cq_sock_recvfrom(cq_sock sock, cq_sockaddr_in *remote, void *buf, int buflen) {
     if (remote != nullptr) {
-        auto raws = *(int *)&sock;
-        auto alen = (socklen_t)remote->ulen();
-        auto code = (int)recvfrom(raws, buf, buflen, 0, remote->addr(), &alen);
-        return code;
+        int raw = *(int *)&sock;
+        socklen_t addrlen = remote->ulen();
+        return (int)recvfrom(raw, buf, buflen, 0, remote->addr(), &addrlen);
     } else {
         return 0;
     }
