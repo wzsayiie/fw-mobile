@@ -44,9 +44,9 @@ std::string cq_inet6_str(in6_addr addr) {
 }
 
 static cq_sock open_sock(int af, int sock, int ipproto) {
-    int rawsock = socket(af, sock, ipproto);
-    if (rawsock != -1) {
-        return (cq_sock)(intptr_t)rawsock;
+    int raws = socket(af, sock, ipproto);
+    if (raws != -1) {
+        return (cq_sock)(intptr_t)raws;
     } else {
         return nullptr;
     }
@@ -76,41 +76,26 @@ const char *cq_sock_error() {
 }
 
 bool cq_bind_sock(cq_sock sock, cq_sockaddr_in local) {
-    auto rawsock = *(int *)&sock;
-    auto retcode = bind(rawsock, local.addr(), local.ulen());
-    return retcode == 0;
-}
-
-bool cq_bind_sock(cq_sock sock, cq_sockaddr_in6 local) {
-    auto rawsock = *(int *)&sock;
-    auto retcode = bind(rawsock, local.addr(), local.ulen());
-    return retcode == 0;
+    auto raws = *(int *)&sock;
+    auto code = bind(raws, local.addr(), local.ulen());
+    return code == 0;
 }
 
 int cq_sock_sendto(cq_sock sock, cq_sockaddr_in remote, const void *dat, int datlen) {
-    auto rawsock = *(int *)&sock;
-    auto sendlen = (int)sendto(rawsock, dat, datlen, 0, remote.addr(), remote.ulen());
-    return sendlen;
-}
-
-int cq_sock_sendto(cq_sock sock, cq_sockaddr_in6 remote, const void *dat, int datlen) {
-    auto rawsock = *(int *)&sock;
-    auto sendlen = (int)sendto(rawsock, dat, datlen, 0, remote.addr(), remote.ulen());
+    auto raws = *(int *)&sock;
+    auto sendlen = (int)sendto(raws, dat, datlen, 0, remote.addr(), remote.ulen());
     return sendlen;
 }
 
 int cq_sock_recvfrom(cq_sock sock, cq_sockaddr_in *remote, void *buf, int buflen) {
-    auto rawsock = *(int *)&sock;
-    auto addrlen = (socklen_t)remote->ulen();
-    auto retcode = (int)recvfrom(rawsock, buf, buflen, 0, remote->addr(), &addrlen);
-    return retcode;
-}
-
-int cq_sock_recvfrom(cq_sock sock, cq_sockaddr_in6 *remote, void *buf, int buflen) {
-    auto rawsock = *(int *)&sock;
-    auto addrlen = (socklen_t)remote->ulen();
-    auto retcode = (int)recvfrom(rawsock, buf, buflen, 0, remote->addr(), &addrlen);
-    return retcode;
+    if (remote != nullptr) {
+        auto raws = *(int *)&sock;
+        auto alen = (socklen_t)remote->ulen();
+        auto code = (int)recvfrom(raws, buf, buflen, 0, remote->addr(), &alen);
+        return code;
+    } else {
+        return 0;
+    }
 }
 
 _CQCTOOL_END_VERSION_NS

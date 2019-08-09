@@ -4,102 +4,109 @@ _CQCTOOL_BEGIN_VERSION_NS
 
 //sockaddr_in:
 
-cq_sockaddr_in::cq_sockaddr_in() {
-    reset(nullptr, 0);
-}
-
-cq_sockaddr_in::cq_sockaddr_in(const char *host, uint16_t port) {
-    reset(host, port);
-}
-
-cq_sockaddr_in::cq_sockaddr_in(const std::string &host, uint16_t port) {
-    reset(host, port);
-}
-
-void cq_sockaddr_in::reset(const char *host, uint16_t port) {
-    memset(&value, 0, sizeof(value));
-    
-    value.sin_family = AF_INET;
-    value.sin_addr = cq_inet_addr(host);
-    value.sin_port = htons(port);
-}
-
-void cq_sockaddr_in::reset(const std::string &host, uint16_t port) {
-    reset(host.c_str(), 0);
-}
-
-std::string cq_sockaddr_in::host() const {
-    return cq_inet_str(value.sin_addr);
-}
-
-uint16_t cq_sockaddr_in::port() const {
-    return value.sin_port;
-}
-
-sockaddr_in *cq_sockaddr_in::addr_in() {
-    return (sockaddr_in *)&value;
+cq_sockaddr_in::cq_sockaddr_in(size_t len) {
+    memset(_dat, 0, sizeof(_dat));
+    _len = (int)len;
 }
 
 sockaddr *cq_sockaddr_in::addr() {
-    return (sockaddr *)&value;
+    return (sockaddr *)_dat;
 }
 
-uint32_t cq_sockaddr_in::ulen() const {
-    return (uint32_t)sizeof(value);
+uint32_t cq_sockaddr_in::ulen() {
+    return (uint32_t)_len;
 }
 
-int32_t cq_sockaddr_in::slen() const {
-    return (int32_t)sizeof(value);
+int32_t cq_sockaddr_in::slen() {
+    return (int32_t)_len;
+}
+
+//sockaddr_in4:
+
+cq_sockaddr_in4::cq_sockaddr_in4()
+    : cq_sockaddr_in(sizeof(sockaddr_in))
+{
+    reset(nullptr, 0);
+}
+
+cq_sockaddr_in4::cq_sockaddr_in4(const char *host, uint16_t port)
+    : cq_sockaddr_in(sizeof(sockaddr_in))
+{
+    reset(host, port);
+}
+
+cq_sockaddr_in4::cq_sockaddr_in4(const std::string &host, uint16_t port)
+     : cq_sockaddr_in(sizeof(sockaddr_in))
+{
+    reset(host, port);
+}
+
+void cq_sockaddr_in4::reset(const char *host, uint16_t port) {
+    sockaddr_in *addr = addr_in4();
+    
+    addr->sin_family = AF_INET;
+    addr->sin_addr = cq_inet_addr(host);
+    addr->sin_port = htons(port);
+}
+
+void cq_sockaddr_in4::reset(const std::string &host, uint16_t port) {
+    reset(host.c_str(), 0);
+}
+
+std::string cq_sockaddr_in4::host() {
+    return cq_inet_str(addr_in4()->sin_addr);
+}
+
+uint16_t cq_sockaddr_in4::port() {
+    return addr_in4()->sin_port;
+}
+
+sockaddr_in *cq_sockaddr_in4::addr_in4() {
+    return (sockaddr_in *)_dat;
 }
 
 //sockaddr_in6:
 
-cq_sockaddr_in6::cq_sockaddr_in6() {
+cq_sockaddr_in6::cq_sockaddr_in6()
+    : cq_sockaddr_in(sizeof(sockaddr_in6))
+{
     reset(nullptr, 0);
 }
 
-cq_sockaddr_in6::cq_sockaddr_in6(const char *host, uint16_t port) {
+cq_sockaddr_in6::cq_sockaddr_in6(const char *host, uint16_t port)
+    : cq_sockaddr_in(sizeof(sockaddr_in6))
+{
     reset(host, port);
 }
 
-cq_sockaddr_in6::cq_sockaddr_in6(const std::string &host, uint16_t port) {
+cq_sockaddr_in6::cq_sockaddr_in6(const std::string &host, uint16_t port)
+    : cq_sockaddr_in(sizeof(sockaddr_in6))
+{
     reset(host, port);
 }
 
 void cq_sockaddr_in6::reset(const char *host, uint16_t port) {
-    memset(&value, 0, sizeof(value));
+    sockaddr_in6 *addr = addr_in6();
     
-    value.sin6_family = AF_INET6;
-    value.sin6_addr = cq_inet6_addr(host);
-    value.sin6_port = htons(port);
+    addr->sin6_family = AF_INET6;
+    addr->sin6_addr = cq_inet6_addr(host);
+    addr->sin6_port = htons(port);
 }
 
 void cq_sockaddr_in6::reset(const std::string &host, uint16_t port) {
     reset(host.c_str(), port);
 }
 
-std::string cq_sockaddr_in6::host() const {
-    return cq_inet6_str(value.sin6_addr);
+std::string cq_sockaddr_in6::host() {
+    return cq_inet6_str(addr_in6()->sin6_addr);
 }
 
-uint16_t cq_sockaddr_in6::port() const {
-    return value.sin6_port;
+uint16_t cq_sockaddr_in6::port() {
+    return addr_in6()->sin6_port;
 }
 
 sockaddr_in6 *cq_sockaddr_in6::addr_in6() {
-    return (sockaddr_in6 *)&value;
-}
-
-sockaddr *cq_sockaddr_in6::addr() {
-    return (sockaddr *)&value;
-}
-
-uint32_t cq_sockaddr_in6::ulen() const {
-    return (uint32_t)sizeof(value);
-}
-
-int32_t cq_sockaddr_in6::slen() const {
-    return (int32_t)sizeof(value);
+    return (sockaddr_in6 *)_dat;
 }
 
 _CQCTOOL_END_VERSION_NS
