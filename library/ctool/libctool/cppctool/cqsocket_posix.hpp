@@ -42,9 +42,9 @@ std::string cq_inet6_str(in6_addr addr) {
 }
 
 static cq_sock open_sock(int af, int sock, int ipproto) {
-    int s = socket(af, sock, ipproto);
-    if (s != -1) {
-        return (cq_sock)(intptr_t)s;
+    int rawsock = socket(af, sock, ipproto);
+    if (rawsock != -1) {
+        return (cq_sock)(intptr_t)rawsock;
     } else {
         return nullptr;
     }

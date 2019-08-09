@@ -3,8 +3,8 @@
 #include "cqctoolbase.hh"
 
 # if CQ_ON_WINDOWS
-#   include <ws2def.h>
-#   include <ws2ipdef.h>
+#   include <winsock2>
+#   include <ws2tcpip.h>
 # else
 #   include <netinet/in.h>
 # endif
