@@ -20,9 +20,7 @@ protected:
 public:
     
     sockaddr *addr();
-    
-    uint32_t ulen();
-    int32_t slen();
+    int len();
     
 protected:
     

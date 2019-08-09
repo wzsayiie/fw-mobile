@@ -13,12 +13,8 @@ sockaddr *cq_sockaddr_in::addr() {
     return (sockaddr *)_dat;
 }
 
-uint32_t cq_sockaddr_in::ulen() {
-    return (uint32_t)_len;
-}
-
-int32_t cq_sockaddr_in::slen() {
-    return (int32_t)_len;
+int cq_sockaddr_in::len() {
+    return _len;
 }
 
 //sockaddr_in4:

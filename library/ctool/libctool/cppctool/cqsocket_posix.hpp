@@ -77,19 +77,19 @@ const char *cq_sock_error() {
 
 bool cq_bind_sock(cq_sock sock, cq_sockaddr_in local) {
     int raw = *(int *)&sock;
-    int code = bind(raw, local.addr(), local.ulen());
+    int code = bind(raw, local.addr(), (socklen_t)local.len());
     return code == 0;
 }
 
 int cq_sock_sendto(cq_sock sock, cq_sockaddr_in remote, const void *dat, int datlen) {
     int raw = *(int *)&sock;
-    return (int)sendto(raw, dat, (size_t)datlen, 0, remote.addr(), remote.ulen());
+    return (int)sendto(raw, dat, (size_t)datlen, 0, remote.addr(), (socklen_t)remote.len());
 }
 
 int cq_sock_recvfrom(cq_sock sock, cq_sockaddr_in *remote, void *buf, int buflen) {
     if (remote != nullptr) {
         int raw = *(int *)&sock;
-        socklen_t addrlen = remote->ulen();
+        socklen_t addrlen = (socklen_t)remote->len();
         return (int)recvfrom(raw, buf, (size_t)buflen, 0, remote->addr(), &addrlen);
     } else {
         return 0;
