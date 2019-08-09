@@ -102,10 +102,10 @@ int32_t cq_sockaddr_in6::slen() const {
     return (int32_t)sizeof(value);
 }
 
+_CQCTOOL_END_VERSION_NS
+
 # if CQ_ON_WINDOWS
 #   include "cqsocket_win.hpp"
 # else
 #   include "cqsocket_posix.hpp"
 # endif
-
-_CQCTOOL_END_VERSION_NS

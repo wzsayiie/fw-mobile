@@ -1,6 +1,8 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 
+_CQCTOOL_BEGIN_VERSION_NS
+
 in_addr cq_inet_addr(const char *str) {
     in_addr addr;
     memset(&addr, 0, sizeof(addr));
@@ -110,3 +112,5 @@ int cq_sock_recvfrom(cq_sock sock, cq_sockaddr_in6 *remote, void *buf, int bufle
     auto retcode = (int)recvfrom(rawsock, buf, buflen, 0, remote->addr(), &addrlen);
     return retcode;
 }
+
+_CQCTOOL_END_VERSION_NS
