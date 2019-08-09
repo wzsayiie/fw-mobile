@@ -3,71 +3,82 @@
 #include "cqctoolbase.hh"
 
 # if CQ_ON_WINDOWS
-#   include <winsock2.h>
-#   include <ws2tcpip.h>
+#   include <ws2def.h>
+#   include <ws2ipdef>
 # else
 #   include <netinet/in.h>
-#   include <sys/socket.h>
 # endif
 
 _CQCTOOL_BEGIN_VERSION_NS
 
-# if !CQ_ON_WINDOWS
-#   define SOCKET         int
-#   define INVALID_SOCKET INT_MAX
-#   define SOCKET_ERROR   (-1)
-# endif
+typedef struct _CQ_ST_SOCK *cq_sock;
 
-struct sockaddr_in_n {
+struct cq_sockaddr_in {
     
-    sockaddr_in_n();
-    sockaddr_in_n(const char *host, uint16_t port);
-    sockaddr_in_n(const std::string &host, uint16_t port);
+    cq_sockaddr_in();
+    cq_sockaddr_in(const char *host, uint16_t port);
+    cq_sockaddr_in(const std::string &host, uint16_t port);
     
     void reset(const char *host, uint16_t port);
     void reset(const std::string &host, uint16_t port);
     
     std::string host() const;
     uint16_t port() const;
-    size_t size() const;
     
     sockaddr_in *addr_in();
     sockaddr *addr();
     
+    uint32_t ulen() const;
+    int32_t  slen() const;
+    
     sockaddr_in value;
 };
 
-struct sockaddr_in6_n {
+struct cq_sockaddr_in6 {
     
-    sockaddr_in6_n();
-    sockaddr_in6_n(const char *host, uint16_t port);
-    sockaddr_in6_n(const std::string &host, uint16_t port);
+    cq_sockaddr_in6();
+    cq_sockaddr_in6(const char *host, uint16_t port);
+    cq_sockaddr_in6(const std::string &host, uint16_t port);
     
     void reset(const char *host, uint16_t port);
     void reset(const std::string &host, uint16_t port);
     
     std::string host() const;
     uint16_t port() const;
-    size_t size() const;
     
     sockaddr_in6 *addr_in6();
     sockaddr *addr();
     
+    uint32_t ulen() const;
+    int32_t  slen() const;
+    
     sockaddr_in6 value;
 };
 
-in_addr  inet_addr_n (const char *str);
-in6_addr inet6_addr_n(const char *str);
-in_addr  inet_addr_n (const std::string &str);
-in6_addr inet6_addr_n(const std::string &str);
+in_addr  cq_inet_addr (const char *str);
+in6_addr cq_inet6_addr(const char *str);
+in_addr  cq_inet_addr (const std::string &str);
+in6_addr cq_inet6_addr(const std::string &str);
 
-std::string inet_str_n (in_addr  addr);
-std::string inet6_str_n(in6_addr addr);
+std::string cq_inet_str (in_addr  addr);
+std::string cq_inet6_str(in6_addr addr);
 
-SOCKET socket_n(int af, int sock, int ipproto);
-void close_n(SOCKET s);
+cq_sock cq_open_tcp_sock ();
+cq_sock cq_open_tcp_sock6();
+cq_sock cq_open_udp_sock ();
+cq_sock cq_open_udp_sock6();
 
-const char *    _last_socket_error_n();
-#define errno_n _last_socket_error_n()
+void close_sock(cq_sock sock);
+
+const char *cq_sock_error();
+
+bool cq_bind_sock(cq_sock sock, cq_sockaddr_in  local);
+bool cq_bind_sock(cq_sock sock, cq_sockaddr_in6 local);
+
+int cq_sock_sendto(cq_sock sock, cq_sockaddr_in  remote, const void *dat, int datlen);
+int cq_sock_sendto(cq_sock sock, cq_sockaddr_in6 remote, const void *dat, int datlen);
+
+int cq_sock_recvfrom(cq_sock sock, cq_sockaddr_in  *remote, void *buf, int buflen);
+int cq_sock_recvfrom(cq_sock sock, cq_sockaddr_in6 *remote, void *buf, int buflen);
 
 _CQCTOOL_END_VERSION_NS

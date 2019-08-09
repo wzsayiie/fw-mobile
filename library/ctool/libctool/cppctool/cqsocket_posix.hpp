@@ -1,7 +1,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 
-in_addr inet_addr_n(const char *str) {
+in_addr cq_inet_addr(const char *str) {
     in_addr addr;
     memset(&addr, 0, sizeof(addr));
     
@@ -11,7 +11,7 @@ in_addr inet_addr_n(const char *str) {
     return addr;
 }
 
-in6_addr inet6_addr_n(const char *str) {
+in6_addr cq_inet6_addr(const char *str) {
     in6_addr addr;
     memset(&addr, 0, sizeof(addr));
     
@@ -21,40 +21,45 @@ in6_addr inet6_addr_n(const char *str) {
     return addr;
 }
 
-in_addr inet_addr_n(const std::string &str) {
-    return inet_addr_n(str.c_str());
+in_addr cq_inet_addr(const std::string &str) {
+    return cq_inet_addr(str.c_str());
 }
 
-in6_addr inet6_addr_n(const std::string &str) {
-    return inet6_addr_n(str.c_str());
+in6_addr cq_inet6_addr(const std::string &str) {
+    return cq_inet6_addr(str.c_str());
 }
 
-std::string inet_str_n(in_addr addr) {
+std::string cq_inet_str(in_addr addr) {
     char str[INET_ADDRSTRLEN] = {0};
     inet_ntop(AF_INET, &addr, str, sizeof(str));
     return str;
 }
 
-std::string inet6_str_n(in6_addr addr) {
+std::string cq_inet6_str(in6_addr addr) {
     char str[INET6_ADDRSTRLEN] = {0};
     inet_ntop(AF_INET6, &addr, str, sizeof(str));
     return str;
 }
 
-SOCKET socket_n(int af, int sock, int ipproto) {
-    SOCKET s = socket(af, sock, ipproto);
-    if (s == -1) {
-        return INVALID_SOCKET;
+static cq_sock open_sock(int af, int sock, int ipproto) {
+    int s = socket(af, sock, ipproto);
+    if (s != -1) {
+        return (cq_sock)(intptr_t)s;
     } else {
-        return s;
+        return nullptr;
     }
 }
 
-void close_n(SOCKET s) {
-    close(s);
+cq_sock cq_open_tcp_sock () { return open_sock(AF_INET , SOCK_STREAM, IPPROTO_TCP); }
+cq_sock cq_open_tcp_sock6() { return open_sock(AF_INET6, SOCK_STREAM, IPPROTO_TCP); }
+cq_sock cq_open_udp_sock () { return open_sock(AF_INET , SOCK_DGRAM , IPPROTO_UDP); }
+cq_sock cq_open_udp_sock6() { return open_sock(AF_INET6, SOCK_DGRAM , IPPROTO_UDP); }
+
+void cq_close_sock(cq_sock sock) {
+    close(*(int *)sock);
 }
 
-const char *_last_socket_error_n() {
+const char *cq_sock_error() {
     std::string ret;
     
     int code = errno;
@@ -66,4 +71,42 @@ const char *_last_socket_error_n() {
     }
     
     return cq_store_str(ret.c_str());
+}
+
+bool cq_bind_sock(cq_sock sock, cq_sockaddr_in local) {
+    auto rawsock = *(int *)&sock;
+    auto retcode = bind(rawsock, local.addr(), local.ulen());
+    return retcode == 0;
+}
+
+bool cq_bind_sock(cq_sock sock, cq_sockaddr_in6 local) {
+    auto rawsock = *(int *)&sock;
+    auto retcode = bind(rawsock, local.addr(), local.ulen());
+    return retcode == 0;
+}
+
+int cq_sock_sendto(cq_sock sock, cq_sockaddr_in remote, const void *dat, int datlen) {
+    auto rawsock = *(int *)&sock;
+    auto sendlen = (int)sendto(rawsock, dat, datlen, 0, remote.addr(), remote.ulen());
+    return sendlen;
+}
+
+int cq_sock_sendto(cq_sock sock, cq_sockaddr_in6 remote, const void *dat, int datlen) {
+    auto rawsock = *(int *)&sock;
+    auto sendlen = (int)sendto(rawsock, dat, datlen, 0, remote.addr(), remote.ulen());
+    return sendlen;
+}
+
+int cq_sock_recvfrom(cq_sock sock, cq_sockaddr_in *remote, void *buf, int buflen) {
+    auto rawsock = *(int *)&sock;
+    auto addrlen = (socklen_t)remote->ulen();
+    auto retcode = (int)recvfrom(rawsock, buf, buflen, 0, remote->addr(), &addrlen);
+    return retcode;
+}
+
+int cq_sock_recvfrom(cq_sock sock, cq_sockaddr_in6 *remote, void *buf, int buflen) {
+    auto rawsock = *(int *)&sock;
+    auto addrlen = (socklen_t)remote->ulen();
+    auto retcode = (int)recvfrom(rawsock, buf, buflen, 0, remote->addr(), &addrlen);
+    return retcode;
 }
