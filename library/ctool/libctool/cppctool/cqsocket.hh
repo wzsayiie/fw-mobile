@@ -77,15 +77,15 @@ void _close(_socket_t so);
 
 bool _bind(_socket_t localso, _sockaddr localaddr);
 
-int _sendto(_socket_t localso, _sockaddr endaddr, const void *dat, int datlen);
-int _recvfrom(_socket_t localso, _sockaddr *endaddr, void *buf, int buflen);
-
 bool _listen(_socket_t localso);
 _socket_t _accept(_socket_t localso, _sockaddr *endaddr);
 bool _connect(_socket_t localso, _sockaddr endaddr);
 
 int _send(_socket_t endso, const void *dat, int datlen);
 int _recv(_socket_t endso, void *buf, int buflen);
+
+int _sendto(_socket_t localso, _sockaddr endaddr, const void *dat, int datlen);
+int _recvfrom(_socket_t localso, _sockaddr *endaddr, void *buf, int buflen);
 
 const char *_error(_socket_t);
 
