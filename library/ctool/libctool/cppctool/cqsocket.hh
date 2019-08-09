@@ -11,15 +11,15 @@
 
 _CQCTOOL_BEGIN_VERSION_NS
 
-struct cq_sockaddr_in {
+struct _sockaddr {
     
 protected:
     
-    cq_sockaddr_in(size_t len);
+    _sockaddr(size_t len);
     
 public:
     
-    sockaddr *addr();
+    sockaddr *raw();
     int len();
     
 protected:
@@ -28,26 +28,11 @@ protected:
     int  _len;
 };
 
-struct cq_sockaddr_in4 : cq_sockaddr_in {
+struct _sockaddr_in : _sockaddr {
     
-    cq_sockaddr_in4();
-    cq_sockaddr_in4(const char *host, uint16_t port);
-    cq_sockaddr_in4(const std::string &host, uint16_t port);
-    
-    void reset(const char *host, uint16_t port);
-    void reset(const std::string &host, uint16_t port);
-    
-    std::string host();
-    uint16_t port();
-    
-    sockaddr_in *addr_in4();
-};
-
-struct cq_sockaddr_in6 : cq_sockaddr_in {
-    
-    cq_sockaddr_in6();
-    cq_sockaddr_in6(const char *host, uint16_t port);
-    cq_sockaddr_in6(const std::string &host, uint16_t port);
+    _sockaddr_in();
+    _sockaddr_in(const char *host, uint16_t port);
+    _sockaddr_in(const std::string &host, uint16_t port);
     
     void reset(const char *host, uint16_t port);
     void reset(const std::string &host, uint16_t port);
@@ -55,31 +40,53 @@ struct cq_sockaddr_in6 : cq_sockaddr_in {
     std::string host();
     uint16_t port();
     
-    sockaddr_in6 *addr_in6();
+    sockaddr_in *raw();
 };
 
-in_addr  cq_inet4_addr(const char *str);
-in6_addr cq_inet6_addr(const char *str);
-in_addr  cq_inet4_addr(const std::string &str);
-in6_addr cq_inet6_addr(const std::string &str);
+struct _sockaddr_in6 : _sockaddr {
+    
+    _sockaddr_in6();
+    _sockaddr_in6(const char *host, uint16_t port);
+    _sockaddr_in6(const std::string &host, uint16_t port);
+    
+    void reset(const char *host, uint16_t port);
+    void reset(const std::string &host, uint16_t port);
+    
+    std::string host();
+    uint16_t port();
+    
+    sockaddr_in6 *raw();
+};
 
-std::string cq_inet4_str(in_addr  addr);
-std::string cq_inet6_str(in6_addr addr);
+in_addr  _inet_addr (const char *str);
+in6_addr _inet6_addr(const char *str);
+in_addr  _inet_addr (const std::string &str);
+in6_addr _inet6_addr(const std::string &str);
 
-typedef struct _CQ_ST_SOCK *cq_sock;
+std::string _inet_str (in_addr  addr);
+std::string _inet6_str(in6_addr addr);
 
-cq_sock cq_open_tcp_sock4();
-cq_sock cq_open_tcp_sock6();
-cq_sock cq_open_udp_sock4();
-cq_sock cq_open_udp_sock6();
+typedef struct _CQ_SOCKET_T *_socket_t;
 
-void cq_close_sock(cq_sock sock);
+_socket_t _tcp_socket ();
+_socket_t _tcp_socket6();
+_socket_t _udp_socket ();
+_socket_t _udp_socket6();
 
-const char *cq_sock_error();
+void _close(_socket_t so);
 
-bool cq_bind_sock(cq_sock sock, cq_sockaddr_in local);
+bool _bind(_socket_t localso, _sockaddr localaddr);
 
-int cq_sock_sendto(cq_sock sock, cq_sockaddr_in remote, const void *dat, int datlen);
-int cq_sock_recvfrom(cq_sock sock, cq_sockaddr_in *remote, void *buf, int buflen);
+int _sendto(_socket_t localso, _sockaddr endaddr, const void *dat, int datlen);
+int _recvfrom(_socket_t localso, _sockaddr *endaddr, void *buf, int buflen);
+
+bool _listen(_socket_t localso);
+_socket_t _accept(_socket_t localso, _sockaddr *endaddr);
+bool _connect(_socket_t localso, _sockaddr endaddr);
+
+int _send(_socket_t endso, const void *dat, int datlen);
+int _recv(_socket_t endso, void *buf, int buflen);
+
+const char *_error(_socket_t);
 
 _CQCTOOL_END_VERSION_NS
