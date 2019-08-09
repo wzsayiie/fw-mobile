@@ -4,8 +4,10 @@
 
 # ifdef __GNUC__
 #   include <sys/cdefs.h>
+#   define _Printf_format_string_
 # else
 #   include <sal.h>
+#   define __printflike(format, args)
 # endif
 
 #include "_CQFOUNDATION_VERSION.h"
@@ -14,13 +16,12 @@ _CQFOUNDATION_BEGIN_VERSION_NS
 //log:
 
 struct cqLog {
-#ifdef __GNUC__
-    static void info (const char *file, int line, const char *format, ...) __printflike(3, 4);
-    static void error(const char *file, int line, const char *format, ...) __printflike(3, 4);
-#else
-    static void info (const char *file, int line, _Printf_format_string_ const char *format, ...);
-    static void error(const char *file, int line, _Printf_format_string_ const char *format, ...);
-#endif
+    
+    static void info(const char *file, int line,
+        _Printf_format_string_ const char *format, ...) __printflike(3, 4);
+    
+    static void error(const char *file, int line,
+        _Printf_format_string_ const char *format, ...) __printflike(3, 4);
 };
 
 #define I(...) cqLog::info (__FILE__, __LINE__, __VA_ARGS__)

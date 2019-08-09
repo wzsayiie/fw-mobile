@@ -15,14 +15,14 @@ static void logging(
     }
 }
 
-void cqLog::info(const char *file, int line, const char *format, ...) {
+void cqLog::info(const char *file, int line, _Printf_format_string_ const char *format, ...) {
     va_list args;
     va_start(args, format);
     logging(cq_log_info, file, line, format, args);
     va_end(args);
 }
 
-void cqLog::error(const char *file, int line, const char *format, ...) {
+void cqLog::error(const char *file, int line, _Printf_format_string_ const char *format, ...) {
     va_list args;
     va_start(args, format);
     logging(cq_log_error, file, line, format, args);
@@ -90,13 +90,13 @@ void cqThread::sleep(float seconds) {
 
 cq_member(cqHTTPSession) {
     
-    cq_http *http;
+    cq_http *http = nullptr;
     
     cqHTTPSession::RequestBodyReader requestBodyReader;
     std::vector<uint8_t> requestBodyData;
-    size_t requestBodyDataCursor;
+    size_t requestBodyDataCursor = 0;
     
-    int responseCode;
+    int responseCode = 0;
     std::map<std::string, std::string> responseHeader;
     cqHTTPSession::ResponseBodyWriter responseBodyWriter;
     std::vector<uint8_t> responseBodyData;
