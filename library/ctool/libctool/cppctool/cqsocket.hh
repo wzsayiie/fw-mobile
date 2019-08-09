@@ -11,8 +11,6 @@
 
 _CQCTOOL_BEGIN_VERSION_NS
 
-typedef struct _CQ_ST_SOCK *cq_sock;
-
 struct cq_sockaddr_in {
     
 protected:
@@ -62,13 +60,15 @@ struct cq_sockaddr_in6 : cq_sockaddr_in {
     sockaddr_in6 *addr_in6();
 };
 
-in_addr  cq_inet_addr (const char *str);
+in_addr  cq_inet4_addr(const char *str);
 in6_addr cq_inet6_addr(const char *str);
-in_addr  cq_inet_addr (const std::string &str);
+in_addr  cq_inet4_addr(const std::string &str);
 in6_addr cq_inet6_addr(const std::string &str);
 
-std::string cq_inet_str (in_addr  addr);
+std::string cq_inet4_str(in_addr  addr);
 std::string cq_inet6_str(in6_addr addr);
+
+typedef struct _CQ_ST_SOCK *cq_sock;
 
 cq_sock cq_open_tcp_sock4();
 cq_sock cq_open_tcp_sock6();

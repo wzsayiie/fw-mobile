@@ -3,7 +3,7 @@
 
 _CQCTOOL_BEGIN_VERSION_NS
 
-in_addr cq_inet_addr(const char *str) {
+in_addr cq_inet4_addr(const char *str) {
     in_addr addr;
     memset(&addr, 0, sizeof(addr));
     
@@ -23,15 +23,15 @@ in6_addr cq_inet6_addr(const char *str) {
     return addr;
 }
 
-in_addr cq_inet_addr(const std::string &str) {
-    return cq_inet_addr(str.c_str());
+in_addr cq_inet4_addr(const std::string &str) {
+    return cq_inet4_addr(str.c_str());
 }
 
 in6_addr cq_inet6_addr(const std::string &str) {
     return cq_inet6_addr(str.c_str());
 }
 
-std::string cq_inet_str(in_addr addr) {
+std::string cq_inet4_str(in_addr addr) {
     char str[INET_ADDRSTRLEN] = {0};
     inet_ntop(AF_INET, &addr, str, sizeof(str));
     return str;

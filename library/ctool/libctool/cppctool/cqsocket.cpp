@@ -45,7 +45,7 @@ void cq_sockaddr_in4::reset(const char *host, uint16_t port) {
     sockaddr_in *addr = addr_in4();
     
     addr->sin_family = AF_INET;
-    addr->sin_addr = cq_inet_addr(host);
+    addr->sin_addr = cq_inet4_addr(host);
     addr->sin_port = htons(port);
 }
 
@@ -54,11 +54,11 @@ void cq_sockaddr_in4::reset(const std::string &host, uint16_t port) {
 }
 
 std::string cq_sockaddr_in4::host() {
-    return cq_inet_str(addr_in4()->sin_addr);
+    return cq_inet4_str(addr_in4()->sin_addr);
 }
 
 uint16_t cq_sockaddr_in4::port() {
-    return addr_in4()->sin_port;
+    return ntohs(addr_in4()->sin_port);
 }
 
 sockaddr_in *cq_sockaddr_in4::addr_in4() {
@@ -102,7 +102,7 @@ std::string cq_sockaddr_in6::host() {
 }
 
 uint16_t cq_sockaddr_in6::port() {
-    return addr_in6()->sin6_port;
+    return ntohs(addr_in6()->sin6_port);
 }
 
 sockaddr_in6 *cq_sockaddr_in6::addr_in6() {
