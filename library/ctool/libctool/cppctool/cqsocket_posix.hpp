@@ -69,17 +69,6 @@ bool _bind(_socket_t localso, _sockaddr localaddr) {
     return code == 0;
 }
 
-int _sendto(_socket_t localso, _sockaddr endaddr, const void *dat, int datlen) {
-    return (int)sendto(raw(localso), dat, (size_t)datlen, 0, endaddr.raw(), (socklen_t)endaddr.len());
-}
-
-int _recvfrom(_socket_t localso, _sockaddr *endaddr, void *buf, int buflen) {
-    sockaddr *addr = endaddr ? endaddr->raw() : nullptr;
-    socklen_t size = endaddr ? endaddr->len() : 0;
-    
-    return (int)recvfrom(raw(localso), buf, (size_t)buflen, 0, addr, &size);
-}
-
 bool _listen(_socket_t localso) {
     int code = listen(raw(localso), SOMAXCONN);
     return code == 0;
@@ -102,8 +91,19 @@ int _send(_socket_t endso, const void *dat, int datlen) {
     return (int)send(raw(endso), dat, (size_t)datlen, 0);
 }
 
-int _recvfrom(_socket_t endso, void *buf, int buflen) {
+int _recv(_socket_t endso, void *buf, int buflen) {
     return (int)recv(raw(endso), buf, (size_t)buflen, 0);
+}
+
+int _sendto(_socket_t localso, _sockaddr endaddr, const void *dat, int datlen) {
+    return (int)sendto(raw(localso), dat, (size_t)datlen, 0, endaddr.raw(), (socklen_t)endaddr.len());
+}
+
+int _recvfrom(_socket_t localso, _sockaddr *endaddr, void *buf, int buflen) {
+    sockaddr *addr = endaddr ? endaddr->raw() : nullptr;
+    socklen_t size = endaddr ? endaddr->len() : 0;
+    
+    return (int)recvfrom(raw(localso), buf, (size_t)buflen, 0, addr, &size);
 }
 
 const char *_error(_socket_t) {
