@@ -83,14 +83,14 @@ bool cq_bind_sock(cq_sock sock, cq_sockaddr_in local) {
 
 int cq_sock_sendto(cq_sock sock, cq_sockaddr_in remote, const void *dat, int datlen) {
     int raw = *(int *)&sock;
-    return (int)sendto(raw, dat, datlen, 0, remote.addr(), remote.ulen());
+    return (int)sendto(raw, dat, (size_t)datlen, 0, remote.addr(), remote.ulen());
 }
 
 int cq_sock_recvfrom(cq_sock sock, cq_sockaddr_in *remote, void *buf, int buflen) {
     if (remote != nullptr) {
         int raw = *(int *)&sock;
         socklen_t addrlen = remote->ulen();
-        return (int)recvfrom(raw, buf, buflen, 0, remote->addr(), &addrlen);
+        return (int)recvfrom(raw, buf, (size_t)buflen, 0, remote->addr(), &addrlen);
     } else {
         return 0;
     }
