@@ -61,10 +61,10 @@ static _socket_t _socket(int af, int sock, int ipproto) {
     }
 }
 
-_socket_t _tcp_sock () { return _socket(AF_INET , SOCK_STREAM, IPPROTO_TCP); }
-_socket_t _tcp_sock6() { return _socket(AF_INET6, SOCK_STREAM, IPPROTO_TCP); }
-_socket_t _udp_sock () { return _socket(AF_INET , SOCK_DGRAM , IPPROTO_UDP); }
-_socket_t _udp_sock6() { return _socket(AF_INET6, SOCK_DGRAM , IPPROTO_UDP); }
+_socket_t _tcp_socket () { return _socket(AF_INET , SOCK_STREAM, IPPROTO_TCP); }
+_socket_t _tcp_socket6() { return _socket(AF_INET6, SOCK_STREAM, IPPROTO_TCP); }
+_socket_t _udp_socket () { return _socket(AF_INET , SOCK_DGRAM , IPPROTO_UDP); }
+_socket_t _udp_socket6() { return _socket(AF_INET6, SOCK_DGRAM , IPPROTO_UDP); }
 
 void _close(_socket_t so) {
     closesocket(raw(so));
@@ -93,12 +93,12 @@ bool _connect(_socket_t localso, _sockaddr endaddr) {
     return code == 0;
 }
 
-int _send(_socket_t endso, const void *dat, int datlen) {
-    return send(raw(endso), (const char *)dat, datlen, 0);
+int _send(_socket_t so, const void *dat, int datlen) {
+    return send(raw(so), (const char *)dat, datlen, 0);
 }
 
-int _recv(_socket_t endso, void *buf, int buflen) {
-    return recv(raw(endso), (char *)buf, buflen, 0);
+int _recv(_socket_t so, void *buf, int buflen) {
+    return recv(raw(so), (char *)buf, buflen, 0);
 }
 
 int _sendto(_socket_t localso, _sockaddr endaddr, const void *dat, int datlen) {
@@ -112,7 +112,7 @@ int _recvfrom(_socket_t localso, _sockaddr *endaddr, void *buf, int buflen) {
     return recvfrom(raw(localso), (char *)buf, buflen, 0, addr, &addrlen);
 }
 
-const char *_error(_socket_t) {
+const char *_sockerr() {
 
     int code = WSAGetLastError();
     if (code == 0) {

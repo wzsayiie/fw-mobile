@@ -30,6 +30,8 @@ protected:
 
 struct _sockaddr_in : _sockaddr {
     
+    //if set $host to nullptr or "", means INADDR_ANY.
+    
     _sockaddr_in();
     _sockaddr_in(const char *host, uint16_t port);
     _sockaddr_in(const std::string &host, uint16_t port);
@@ -44,6 +46,8 @@ struct _sockaddr_in : _sockaddr {
 };
 
 struct _sockaddr_in6 : _sockaddr {
+    
+    //if set $host to nullptr or "", means INADDR_ANY.
     
     _sockaddr_in6();
     _sockaddr_in6(const char *host, uint16_t port);
@@ -68,25 +72,44 @@ std::string _inet6_str(in6_addr addr);
 
 typedef struct _CQ_SOCKET_T *_socket_t;
 
-_socket_t _tcp_socket ();
-_socket_t _tcp_socket6();
-_socket_t _udp_socket ();
-_socket_t _udp_socket6();
+//if create successful, return the socket;
+//else return nullptr.
+_socket_t _tcp_socket (); //socket(AF_INET , SOCK_STREAM, IPPROTO_TCP)
+_socket_t _tcp_socket6(); //socket(AF_INET6, SOCK_STREAM, IPPROTO_TCP)
+_socket_t _udp_socket (); //socket(AF_INET , SOCK_DGRAM , IPPROTO_UDP)
+_socket_t _udp_socket6(); //socket(AF_INET6, SOCK_DGRAM , IPPROTO_UDP)
 
 void _close(_socket_t so);
 
+//if successful return true, else return false.
 bool _bind(_socket_t localso, _sockaddr localaddr);
 
+//if successful return true, else return false.
 bool _listen(_socket_t localso);
+
+//if return nullptr, meams $localso is already invalid, developer should close it.
 _socket_t _accept(_socket_t localso, _sockaddr *endaddr);
+
+//if successful return true, else return false.
 bool _connect(_socket_t localso, _sockaddr endaddr);
 
-int _send(_socket_t endso, const void *dat, int datlen);
-int _recv(_socket_t endso, void *buf, int buflen);
+//number of bytes of sent data.
+//if return -1, means $so is already invalid, developer should close it.
+int _send(_socket_t so, const void *dat, int datlen);
 
+//number of bytes of received data.
+//if return -1, means $so is already invalid, developer should close it.
+int _recv(_socket_t so, void *buf, int buflen);
+
+//number of bytes of sent data.
+//if return -1, means $localso is already invalid, developer should close it.
 int _sendto(_socket_t localso, _sockaddr endaddr, const void *dat, int datlen);
+
+//number of bytes of received data.
+//if return -1, means $localso is already invalid, developer should close it.
 int _recvfrom(_socket_t localso, _sockaddr *endaddr, void *buf, int buflen);
 
-const char *_error(_socket_t);
+//the last error message, equivalent to errno or WSAGetLastError().
+const char *_sockerr();
 
 _CQCTOOL_END_VERSION_NS

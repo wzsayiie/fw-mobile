@@ -48,17 +48,22 @@ static int raw(_socket_t so) {return *(int *)&so;}
 
 static _socket_t _socket(int af, int sock, int ipproto) {
     int so = socket(af, sock, ipproto);
-    if (so != -1) {
-        return pkg(so);
-    } else {
+    if (so == -1) {
         return nullptr;
     }
+    
+    //if the tcp disconnected by the other peer, don't emit SIGPIPE.
+    if (ipproto == IPPROTO_TCP) {
+        int yes = 1;
+        setsockopt(so, SOL_SOCKET, SO_NOSIGPIPE, &yes, sizeof(yes));
+    }
+    return pkg(so);
 }
 
-_socket_t _tcp_sock () { return _socket(AF_INET , SOCK_STREAM, IPPROTO_TCP); }
-_socket_t _tcp_sock6() { return _socket(AF_INET6, SOCK_STREAM, IPPROTO_TCP); }
-_socket_t _udp_sock () { return _socket(AF_INET , SOCK_DGRAM , IPPROTO_UDP); }
-_socket_t _udp_sock6() { return _socket(AF_INET6, SOCK_DGRAM , IPPROTO_UDP); }
+_socket_t _tcp_socket () { return _socket(AF_INET , SOCK_STREAM, IPPROTO_TCP); }
+_socket_t _tcp_socket6() { return _socket(AF_INET6, SOCK_STREAM, IPPROTO_TCP); }
+_socket_t _udp_socket () { return _socket(AF_INET , SOCK_DGRAM , IPPROTO_UDP); }
+_socket_t _udp_socket6() { return _socket(AF_INET6, SOCK_DGRAM , IPPROTO_UDP); }
 
 void _close(_socket_t so) {
     close(raw(so));
@@ -75,10 +80,10 @@ bool _listen(_socket_t localso) {
 }
 
 _socket_t _accept(_socket_t localso, _sockaddr *endaddr) {
-    sockaddr *addr = endaddr ? endaddr->raw() : nullptr;
-    socklen_t size = endaddr ? endaddr->len() : 0;
+    sockaddr *addr    = endaddr ? endaddr->raw() : nullptr;
+    socklen_t addrlen = endaddr ? endaddr->len() : 0;
     
-    int endso = accept(raw(localso), addr, &size);
+    int endso = accept(raw(localso), addr, &addrlen);
     return pkg(endso);
 }
 
@@ -87,12 +92,12 @@ bool _connect(_socket_t localso, _sockaddr endaddr) {
     return code == 0;
 }
 
-int _send(_socket_t endso, const void *dat, int datlen) {
-    return (int)send(raw(endso), dat, (size_t)datlen, 0);
+int _send(_socket_t so, const void *dat, int datlen) {
+    return (int)send(raw(so), dat, (size_t)datlen, 0);
 }
 
-int _recv(_socket_t endso, void *buf, int buflen) {
-    return (int)recv(raw(endso), buf, (size_t)buflen, 0);
+int _recv(_socket_t so, void *buf, int buflen) {
+    return (int)recv(raw(so), buf, (size_t)buflen, 0);
 }
 
 int _sendto(_socket_t localso, _sockaddr endaddr, const void *dat, int datlen) {
@@ -100,13 +105,13 @@ int _sendto(_socket_t localso, _sockaddr endaddr, const void *dat, int datlen) {
 }
 
 int _recvfrom(_socket_t localso, _sockaddr *endaddr, void *buf, int buflen) {
-    sockaddr *addr = endaddr ? endaddr->raw() : nullptr;
-    socklen_t size = endaddr ? endaddr->len() : 0;
+    sockaddr *addr    = endaddr ? endaddr->raw() : nullptr;
+    socklen_t addrlen = endaddr ? endaddr->len() : 0;
     
-    return (int)recvfrom(raw(localso), buf, (size_t)buflen, 0, addr, &size);
+    return (int)recvfrom(raw(localso), buf, (size_t)buflen, 0, addr, &addrlen);
 }
 
-const char *_error(_socket_t) {
+const char *_sockerr() {
     std::string msg;
     
     int code = errno;
