@@ -2,8 +2,8 @@
 #import <StoreKit/StoreKit.h>
 
 @interface IAPViewController () <SKProductsRequestDelegate, SKPaymentTransactionObserver>
-@property (nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic) NSArray<SKProduct *> *productList;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, copy) NSArray<SKProduct *> *productList;
 @end
 
 @implementation IAPViewController

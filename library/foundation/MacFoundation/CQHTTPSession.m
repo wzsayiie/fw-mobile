@@ -66,10 +66,10 @@
 
 @property (nonatomic) dispatch_semaphore_t semaphore;
 
-@property (nonatomic) NSError *error;
-@property (nonatomic) NSInteger responseCode;
-@property (nonatomic) NSDictionary<NSString *, NSString *> *responseHeader;
-@property (nonatomic) NSData *responseBodyData;
+@property (nonatomic, strong) NSError *error;
+@property (nonatomic, assign) NSInteger responseCode;
+@property (nonatomic, copy  ) NSDictionary<NSString *, NSString *> *responseHeader;
+@property (nonatomic, strong) NSData *responseBodyData;
 
 @end
 

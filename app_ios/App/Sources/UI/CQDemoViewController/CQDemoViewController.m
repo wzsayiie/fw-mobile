@@ -1,7 +1,7 @@
 #import "CQDemoViewController.h"
 
 @interface CQDemoViewControllerDataRow : NSObject
-@property (nonatomic) NSString *text;
+@property (nonatomic, copy) NSString *text;
 @property (nonatomic) NSValue *action;
 @end
 

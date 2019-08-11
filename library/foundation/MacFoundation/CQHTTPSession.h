@@ -27,8 +27,8 @@
 @property (nonatomic, weak) id<CQHTTPSessionDelegate> delegate;
 
 @property (nonatomic) NSTimeInterval timeoutSeconds;
-@property (nonatomic) NSString *method;
-@property (nonatomic) NSString *URLString;
+@property (nonatomic, copy) NSString *method;
+@property (nonatomic, copy) NSString *URLString;
 
 //CQHTTPSession will perform the percent escape on its own.
 - (void)setURLQueryField:(NSString *)field value:(NSString *)value;
