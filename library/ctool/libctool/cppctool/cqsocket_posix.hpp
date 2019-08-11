@@ -53,10 +53,12 @@ static _socket_t _socket(int af, int sock, int ipproto) {
     }
     
     //if the tcp disconnected by the other peer, don't emit SIGPIPE.
+#if CQ_ON_IOS || CQ_ON_OSX
     if (ipproto == IPPROTO_TCP) {
         int yes = 1;
         setsockopt(so, SOL_SOCKET, SO_NOSIGPIPE, &yes, sizeof(yes));
     }
+#endif
     return pkg(so);
 }
 
