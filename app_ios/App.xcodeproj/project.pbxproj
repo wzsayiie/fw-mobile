@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		B401E5C8226F3470002F65BF /* Resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B401E5C7226F344B002F65BF /* Resource.bundle */; };
 		B416F18921A2CD630045FDF6 /* Scenes.plist in Resources */ = {isa = PBXBuildFile; fileRef = B416F18821A2CD630045FDF6 /* Scenes.plist */; };
-		B416F18B21A2D4940045FDF6 /* QuickModels.plist in Resources */ = {isa = PBXBuildFile; fileRef = B416F18A21A2D4940045FDF6 /* QuickModels.plist */; };
 		B425210822842AD3004FA04B /* UIView+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B425210222842AD2004FA04B /* UIView+CQ.m */; };
 		B425210922842AD3004FA04B /* NSBundle+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B425210422842AD2004FA04B /* NSBundle+CQ.m */; };
 		B425210A22842AD3004FA04B /* UIDevice+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B425210522842AD2004FA04B /* UIDevice+CQ.m */; };
@@ -95,7 +94,6 @@
 /* Begin PBXFileReference section */
 		B41264A7226D897100745ABF /* Resource.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Resource.xcodeproj; path = ../library_ios/Resource.xcodeproj; sourceTree = "<group>"; };
 		B416F18821A2CD630045FDF6 /* Scenes.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Scenes.plist; sourceTree = "<group>"; };
-		B416F18A21A2D4940045FDF6 /* QuickModels.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = QuickModels.plist; sourceTree = "<group>"; };
 		B42520FE22842AD2004FA04B /* UIView+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CQ.h"; sourceTree = "<group>"; };
 		B42520FF22842AD2004FA04B /* NSBundle+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+CQ.h"; sourceTree = "<group>"; };
 		B425210022842AD2004FA04B /* UIViewController+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CQ.h"; sourceTree = "<group>"; };
@@ -217,7 +215,6 @@
 		B416F18721A2CCE50045FDF6 /* Root */ = {
 			isa = PBXGroup;
 			children = (
-				B416F18A21A2D4940045FDF6 /* QuickModels.plist */,
 				B416F18821A2CD630045FDF6 /* Scenes.plist */,
 			);
 			path = Root;
@@ -724,7 +721,6 @@
 				B45C1BB221A02B19007CB374 /* Assets.xcassets in Resources */,
 				B45C1BD021A034C0007CB374 /* ExampleViewController.xib in Resources */,
 				B45C1BB121A02B19007CB374 /* LaunchScreen.storyboard in Resources */,
-				B416F18B21A2D4940045FDF6 /* QuickModels.plist in Resources */,
 				B4549AB722BCA2FE00781D3C /* L.strings in Resources */,
 				B416F18921A2CD630045FDF6 /* Scenes.plist in Resources */,
 				B4CFD97A21C75AB300FFF4CF /* IAPViewController.xib in Resources */,
