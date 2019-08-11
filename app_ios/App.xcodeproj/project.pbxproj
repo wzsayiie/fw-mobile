@@ -58,6 +58,7 @@
 		CE90E69B22872A350071D4D3 /* cqevent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E68E22872A350071D4D3 /* cqevent.cpp */; };
 		CE90E69C22872A350071D4D3 /* cqapplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E68F22872A350071D4D3 /* cqapplication.cpp */; };
 		CE90E69D22872A350071D4D3 /* cqtouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E69022872A350071D4D3 /* cqtouch.cpp */; };
+		CEEB261C2300655C001FD8D6 /* CQNetStatusListener.m in Sources */ = {isa = PBXBuildFile; fileRef = CEEB261B2300655C001FD8D6 /* CQNetStatusListener.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -188,6 +189,8 @@
 		CE90E68E22872A350071D4D3 /* cqevent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqevent.cpp; sourceTree = "<group>"; };
 		CE90E68F22872A350071D4D3 /* cqapplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqapplication.cpp; sourceTree = "<group>"; };
 		CE90E69022872A350071D4D3 /* cqtouch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqtouch.cpp; sourceTree = "<group>"; };
+		CEEB261A2300655C001FD8D6 /* CQNetStatusListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQNetStatusListener.h; sourceTree = "<group>"; };
+		CEEB261B2300655C001FD8D6 /* CQNetStatusListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQNetStatusListener.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -392,6 +395,7 @@
 			children = (
 				B425210D22842B90004FA04B /* CQBus */,
 				B425211022842B90004FA04B /* CQHotfixManager */,
+				CEEB26192300655C001FD8D6 /* CQNetStatusListener */,
 				B4DCD87921F17DAE0090BFBB /* UserInfo */,
 			);
 			path = Data;
@@ -630,6 +634,15 @@
 			path = uikit;
 			sourceTree = "<group>";
 		};
+		CEEB26192300655C001FD8D6 /* CQNetStatusListener */ = {
+			isa = PBXGroup;
+			children = (
+				CEEB261A2300655C001FD8D6 /* CQNetStatusListener.h */,
+				CEEB261B2300655C001FD8D6 /* CQNetStatusListener.m */,
+			);
+			path = CQNetStatusListener;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -741,6 +754,7 @@
 				B4CFD97421C7475000FFF4CF /* ExampleViewController.m in Sources */,
 				B425210922842AD3004FA04B /* NSBundle+CQ.m in Sources */,
 				B4EF08B6228D8D9A0089AA4C /* cqcolor.cpp in Sources */,
+				CEEB261C2300655C001FD8D6 /* CQNetStatusListener.m in Sources */,
 				CE90E69522872A350071D4D3 /* rootviewcontroller.cpp in Sources */,
 				CE90E69622872A350071D4D3 /* cqviewcontroller.cpp in Sources */,
 				CE90E69A22872A350071D4D3 /* cqwindow.cpp in Sources */,
