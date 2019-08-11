@@ -82,8 +82,8 @@ bool _listen(_socket_t localso) {
 }
 
 _socket_t _accept(_socket_t localso, _sockaddr *endaddr) {
-    sockaddr *addr    = endaddr ? endaddr->raw() : nullptr;
-    socklen_t addrlen = endaddr ? endaddr->len() : 0;
+    sockaddr *addr = endaddr ? endaddr->raw() : nullptr;
+    socklen_t addrlen = endaddr ? (socklen_t)endaddr->len() : 0;
     
     int endso = accept(raw(localso), addr, &addrlen);
     return pkg(endso);
@@ -107,8 +107,8 @@ int _sendto(_socket_t localso, _sockaddr endaddr, const void *dat, int datlen) {
 }
 
 int _recvfrom(_socket_t localso, _sockaddr *endaddr, void *buf, int buflen) {
-    sockaddr *addr    = endaddr ? endaddr->raw() : nullptr;
-    socklen_t addrlen = endaddr ? endaddr->len() : 0;
+    sockaddr *addr = endaddr ? endaddr->raw() : nullptr;
+    socklen_t addrlen = endaddr ? (socklen_t)endaddr->len() : 0;
     
     return (int)recvfrom(raw(localso), buf, (size_t)buflen, 0, addr, &addrlen);
 }
