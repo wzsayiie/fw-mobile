@@ -37,7 +37,9 @@ static NSString *const CQDemoViewControllerCellID = @"Cell";
         return;
     }
     
-    [tableView registerClass:UITableViewCell.class forCellReuseIdentifier:CQDemoViewControllerCellID];
+    [tableView registerClass:UITableViewCell.class
+      forCellReuseIdentifier:CQDemoViewControllerCellID];
+    
     tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     tableView.dataSource = self;
     tableView.delegate = self;
@@ -68,8 +70,12 @@ static NSString *const CQDemoViewControllerCellID = @"Cell";
     return self.dataSource.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CQDemoViewControllerCellID];
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell =
+    [tableView dequeueReusableCellWithIdentifier:CQDemoViewControllerCellID];
+    
     cell.textLabel.text = self.dataSource[indexPath.row].text;
     return cell;
 }
