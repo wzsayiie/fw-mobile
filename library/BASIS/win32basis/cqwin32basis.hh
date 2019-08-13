@@ -29,6 +29,15 @@ typedef CQWSTR CQTSTR;
 typedef CQSTR CQTSTR;
 #endif
 
+CQWSTR CQGetLastErrorW();
+CQSTR  CQGetLastErrorA();
+
+# ifdef UNICODE
+#   define CQGetLastError CQGetLastErrorW
+# else
+#   define CQGetLastError CQGetLastErrorA
+# endif
+
 CQWSTR CQWStr_Make(CONST WCHAR *lpWStr);
 BOOL   CQWStr_Empty(CONST WCHAR *lpWStr);
 CQWSTR CQWStr_FromStr(CONST CHAR *pszStr);

@@ -2,6 +2,46 @@
 
 _CQBASIS_BEGIN_VERSION_NS
 
+CQWSTR CQGetLastErrorW()
+{
+    DWORD dwCode = GetLastError();
+    if (dwCode == 0)
+    {
+        return L"";
+    }
+
+    CQWSTR szMessage;
+    szMessage.append(L"GetLastError:");
+    szMessage.append(std::to_wstring(dwCode));
+        
+    //NOTE: in english to avoid multi-byte characters.
+    DWORD dwLang = MAKELANGID(LANG_ENGLISH, SUBLANG_DEFAULT);
+    LPWSTR lpText = NULL;
+    FormatMessageW(
+        FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
+        NULL,
+        dwCode,
+        dwLang,
+        (LPWSTR)&lpText,
+        0,
+        NULL);
+
+    if (lpText != NULL)
+    {
+        szMessage.append(L", ");
+        szMessage.append(lpText);
+        LocalFree(lpText);
+    }
+
+    return szMessage;
+}
+
+CQSTR CQGetLastErrorA()
+{
+    CQWSTR szMessage = CQGetLastErrorW();
+    return CQStr_From(szMessage);
+}
+
 CQWSTR CQWStr_Make(CONST WCHAR *lpWStr)
 {
     return lpWStr ? lpWStr : L"";
