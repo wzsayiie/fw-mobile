@@ -8,20 +8,21 @@ _CQFOUNDATION_BEGIN_VERSION_NS
 
 VOID CQLogW(CONST WCHAR *pszTag, CONST WCHAR *pszFile, int nLine, CONST WCHAR *pszFormat, va_list lpArgs)
 {
-    CONST DWORD dwMessage = 1024 * 4;
-    WCHAR szMessage[dwMessage];
-    vswprintf_s(szMessage, dwMessage, pszFormat, lpArgs);
-
     int _ignored = _setmode(_fileno(stdout), _O_WTEXT);
+
     if (!CQWStr_Empty(pszFile) && nLine > 0)
     {
         LPCWSTR pszFileName = PathFindFileNameW(pszFile);
-        wprintf(L"%s|%s(%04d)|%s\n", pszTag, pszFileName, nLine, szMessage);
+        wprintf(L"%s|%s(%04d)|", pszTag, pszFileName, nLine);
     }
     else
     {
-        wprintf(L"%s|%s\n", pszTag, szMessage);
+        wprintf(L"%s|", pszTag);
     }
+
+    vwprintf(pszFormat, lpArgs);
+    wprintf(L"\n");
+
     _ignored = _setmode(_fileno(stdout), _O_TEXT);
 }
 
