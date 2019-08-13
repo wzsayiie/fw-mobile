@@ -46,6 +46,7 @@ set cmdln=%cmdln% /Fe%out%\%exe%
 set cmdln=%cmdln% %temporary%\*.obj
 set cmdln=%cmdln% shell32.lib
 set cmdln=%cmdln% shlwapi.lib
+set cmdln=%cmdln% winhttp.lib
 set cmdln=%cmdln% ws2_32.lib
 %cmdln%
 
