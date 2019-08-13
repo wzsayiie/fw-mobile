@@ -135,7 +135,7 @@ const char *_sockerr() {
         0,
         NULL);
 
-    if (!cq_str_empty(text)) {
+    if (text != nullptr) {
         msg.append(", ");
         msg.append(text);
         LocalFree(text);
