@@ -1,8 +1,8 @@
-package src.app.application;
+package src.app.bootstrap;
 
-import src.app.application.cq.AppDelegate;
-import src.app.data.cq.ActivityDispatcher;
-import src.app.data.cq.HotfixManager;
+import src.app.boot.AppDelegate;
+import src.app.mod.ActivityDispatcher;
+import src.app.mod.HotfixManager;
 
 public class MainAppDelegate extends AppDelegate {
 

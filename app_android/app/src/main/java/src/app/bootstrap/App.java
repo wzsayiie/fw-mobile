@@ -1,11 +1,11 @@
-package src.app.application;
+package src.app.bootstrap;
 
 import android.app.Application;
 import android.os.Build;
 
-import src.app.application.cq.AppDelegate;
-import src.app.application.cq.CrashListener;
-import src.app.data.cq.AppInfo;
+import src.app.boot.AppDelegate;
+import src.app.boot.CrashListener;
+import src.app.mod.AppInfo;
 import src.library.foundation.L;
 
 public class App extends Application {

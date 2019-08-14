@@ -1,4 +1,4 @@
-package src.app.data.cq;
+package src.app.mod;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
@@ -16,7 +16,7 @@ import android.text.TextUtils;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import src.app.application.cq.AppDelegate;
+import src.app.boot.AppDelegate;
 import src.library.basis.StringUtil;
 import src.library.foundation.L;
 

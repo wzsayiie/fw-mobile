@@ -1,6 +1,6 @@
-package src.app.application;
+package src.app.bootstrap;
 
-import src.app.application.cq.AppDelegate;
+import src.app.boot.AppDelegate;
 
 public class ServiceAppDelegate extends AppDelegate {
 

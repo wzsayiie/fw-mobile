@@ -1,4 +1,4 @@
-package src.app.data.cq;
+package src.app.mod;
 
 import src.library.foundation.L;
 

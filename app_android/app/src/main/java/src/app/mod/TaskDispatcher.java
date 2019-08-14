@@ -1,4 +1,4 @@
-package src.app.data.cq;
+package src.app.mod;
 
 import android.os.Handler;
 import android.os.HandlerThread;

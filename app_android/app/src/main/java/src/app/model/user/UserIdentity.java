@@ -1,4 +1,4 @@
-package src.app.data.user;
+package src.app.model.user;
 
 public class UserIdentity {
 

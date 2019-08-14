@@ -1,4 +1,4 @@
-package src.app.data.cq;
+package src.app.mod;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -7,7 +7,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 
-import src.app.application.cq.AppDelegate;
+import src.app.boot.AppDelegate;
 import src.library.basis.StringUtil;
 import src.library.foundation.L;
 

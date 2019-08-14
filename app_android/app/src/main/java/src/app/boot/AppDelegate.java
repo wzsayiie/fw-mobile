@@ -1,4 +1,4 @@
-package src.app.application.cq;
+package src.app.boot;
 
 import android.app.Application;
 

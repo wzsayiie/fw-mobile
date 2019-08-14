@@ -1,4 +1,4 @@
-package src.app.components.cq;
+package src.app.com;
 
 import android.app.Activity;
 import android.view.LayoutInflater;

@@ -39,7 +39,7 @@ public class AppContextFinder {
 
     private Application findFrameworkApp() {
         try {
-            Class<?> clazz = Class.forName("src.app.application.cq.AppDelegate");
+            Class<?> clazz = Class.forName("src.app.boot.AppDelegate");
             Method method = clazz.getMethod("getApp");
             return (Application) method.invoke(clazz);
         } catch (Exception e) {
