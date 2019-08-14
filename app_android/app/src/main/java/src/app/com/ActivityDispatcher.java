@@ -7,7 +7,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 
-import src.app.boot.AppDelegate;
+import src.app.boot.AppWrapper;
 import src.library.basis.StringUtil;
 import src.library.foundation.L;
 
@@ -30,7 +30,7 @@ public class ActivityDispatcher {
 
     private ActivityDispatcher() {
 
-        AppDelegate.getApp().registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
+        AppWrapper.getApp().registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
 
             public void onActivitySaveInstanceState(Activity a, Bundle b) { onActSaveInstanceState(a); }
             public void onActivityCreated          (Activity a, Bundle b) { onActCreated(a);}

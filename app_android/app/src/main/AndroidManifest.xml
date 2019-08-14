@@ -19,7 +19,7 @@
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
 
         <activity
-            android:name=".components.blank.BlankActivity"
+            android:name=".components.activities.blank.BlankActivity"
             android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
@@ -28,7 +28,7 @@
         </activity>
 
         <activity
-            android:name=".components.example.ExampleActivity"
+            android:name=".components.activities.example.ExampleActivity"
             android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -37,7 +37,7 @@
         </activity>
 
         <activity
-            android:name=".components.floating.FloatingActivity"
+            android:name=".components.activities.floating.FloatingActivity"
             android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />

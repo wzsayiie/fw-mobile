@@ -4,7 +4,7 @@ import android.app.Application;
 
 import src.library.foundation.L;
 
-public abstract class AppDelegate {
+public abstract class AppWrapper {
 
     private static Application sApp;
 
@@ -16,7 +16,7 @@ public abstract class AppDelegate {
         }
     }
 
-    public static void initApp(Application app) {
+    public static void assignApp(Application app) {
         if (app != null) {
             L.i("init app context");
             storedApp('+', app);
@@ -25,17 +25,10 @@ public abstract class AppDelegate {
         }
     }
 
-    public void init() {
-        L.i("init app delegate %s", L.string(this));
-        onCreate();
-    }
-
-    protected abstract void onCreate();
-
     public static Application getApp() {
         Application app = storedApp('?', null);
         if (app == null) {
-            L.e("app context didn't set");
+            L.e("app context didn't assign");
         }
         return app;
     }

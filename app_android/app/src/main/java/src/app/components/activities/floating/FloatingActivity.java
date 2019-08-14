@@ -1,15 +1,15 @@
-package src.app.components.blank;
+package src.app.components.activities.floating;
 
 import android.app.Activity;
 import android.os.Bundle;
 
 import src.app.R;
 
-public class BlankActivity extends Activity {
+public class FloatingActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_blank);
+        setContentView(R.layout.activity_floating);
     }
 }

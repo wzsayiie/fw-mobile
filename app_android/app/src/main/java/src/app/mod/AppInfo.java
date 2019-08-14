@@ -16,14 +16,14 @@ import android.text.TextUtils;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import src.app.boot.AppDelegate;
+import src.app.boot.AppWrapper;
 import src.library.basis.StringUtil;
 import src.library.foundation.L;
 
 public class AppInfo {
 
     public static String getProcessName() {
-        Application app = AppDelegate.getApp();
+        Application app = AppWrapper.getApp();
         ActivityManager manager = (ActivityManager) app.getSystemService(Context.ACTIVITY_SERVICE);
         if (manager == null) {
             L.e("activity service did not found");
@@ -41,13 +41,13 @@ public class AppInfo {
     }
 
     public static String getPackageName() {
-        return AppDelegate.getApp().getPackageName();
+        return AppWrapper.getApp().getPackageName();
     }
 
     public static String getAppVersion() {
         try {
 
-            PackageManager manager = AppDelegate.getApp().getPackageManager();
+            PackageManager manager = AppWrapper.getApp().getPackageManager();
             String packageName = getPackageName();
             PackageInfo info = manager.getPackageInfo(packageName, 0);
 
@@ -69,7 +69,7 @@ public class AppInfo {
     }
 
     public static String getAndroidID() {
-        ContentResolver resolver = AppDelegate.getApp().getContentResolver();
+        ContentResolver resolver = AppWrapper.getApp().getContentResolver();
         return Settings.System.getString(resolver, Settings.Secure.ANDROID_ID);
     }
 
@@ -85,7 +85,7 @@ public class AppInfo {
     }
 
     public static Signature getApkSignature() {
-        PackageManager packageManager = AppDelegate.getApp().getPackageManager();
+        PackageManager packageManager = AppWrapper.getApp().getPackageManager();
         String packageName = getPackageName();
 
         Signature[] signatures;

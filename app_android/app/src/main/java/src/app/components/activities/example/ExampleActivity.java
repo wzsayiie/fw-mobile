@@ -1,4 +1,4 @@
-package src.app.components.example;
+package src.app.components.activities.example;
 
 import android.os.Bundle;
 import android.widget.ListView;
