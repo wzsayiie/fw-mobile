@@ -4,7 +4,6 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 
-import src.app.application.cq.AppDelegate;
 import src.library.foundation.L;
 
 public class TaskDispatcher {
@@ -22,7 +21,7 @@ public class TaskDispatcher {
             return;
         }
 
-        Looper looper = AppDelegate.getApp().getMainLooper();
+        Looper looper = Looper.getMainLooper();
         new Handler(looper).post(task);
     }
 
