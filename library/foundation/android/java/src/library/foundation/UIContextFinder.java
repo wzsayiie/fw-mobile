@@ -38,7 +38,7 @@ public class UIContextFinder {
 
     private Activity findFrameworkAppActivity() {
         try {
-            Class<?> clazz = Class.forName("src.app.data.cq.ActivityDispatcher");
+            Class<?> clazz = Class.forName("src.app.com.ActivityDispatcher");
             Method method = clazz.getMethod("currentResumedActivity");
             return (Activity) method.invoke(clazz);
         } catch (Exception e) {

@@ -1,7 +1,7 @@
 package src.app.bootstrap;
 
 import src.app.boot.AppDelegate;
-import src.app.mod.ActivityDispatcher;
+import src.app.com.ActivityDispatcher;
 import src.app.mod.HotfixManager;
 
 public class MainAppDelegate extends AppDelegate {
