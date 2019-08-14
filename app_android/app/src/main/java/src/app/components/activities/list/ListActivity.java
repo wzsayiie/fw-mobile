@@ -1,12 +1,11 @@
-package src.app.components.activities.example;
+package src.app.components.activities.list;
 
 import android.os.Bundle;
 import android.widget.ListView;
 
 import src.app.R;
-import src.app.com.DemoActivity;
 
-public class ExampleActivity extends DemoActivity {
+public class ListActivity extends ListBaseActivity {
 
     private ListView mListView;
 
@@ -18,7 +17,7 @@ public class ExampleActivity extends DemoActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_example);
+        setContentView(R.layout.activity_list);
         mListView = findViewById(R.id.list_view);
 
         addAction("Alpha", this::onActionAlpha);

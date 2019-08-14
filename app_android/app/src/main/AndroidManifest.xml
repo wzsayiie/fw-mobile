@@ -28,20 +28,20 @@
         </activity>
 
         <activity
-            android:name=".components.activities.example.ExampleActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden">
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-
-        <activity
             android:name=".components.activities.floating.FloatingActivity"
             android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
                 <action android:name="apps.floating" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".components.activities.list.ListActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 
