@@ -54,7 +54,7 @@ public class AppInfo {
             String versionName = info.versionName;
 
             long versionCode;
-            if (Build.VERSION.SDK_INT >= 28) {
+            if (Build.VERSION.SDK_INT >= AndroidVersion.P_9_API_28) {
                 versionCode = info.getLongVersionCode();
             } else {
                 versionCode = info.versionCode;
@@ -74,7 +74,7 @@ public class AppInfo {
     }
 
     public static String getSupportedABIs() {
-        if (Build.VERSION.SDK_INT >= 21) {
+        if (Build.VERSION.SDK_INT >= AndroidVersion.LOLLIPOP_5_API_21) {
             String[] values = Build.SUPPORTED_ABIS;
             return TextUtils.join("|", values);
         } else {
@@ -90,7 +90,7 @@ public class AppInfo {
 
         Signature[] signatures;
         try {
-            if (Build.VERSION.SDK_INT >= 28) {
+            if (Build.VERSION.SDK_INT >= AndroidVersion.P_9_API_28) {
                 int flag = PackageManager.GET_SIGNING_CERTIFICATES;
                 PackageInfo info = packageManager.getPackageInfo(packageName, flag);
                 signatures = info.signingInfo.getApkContentsSigners();

@@ -7,6 +7,7 @@ import android.content.ServiceConnection;
 import android.os.Build;
 
 import src.app.boot.AppWrapper;
+import src.app.mod.AndroidVersion;
 import src.library.foundation.L;
 
 public class ServiceHelper {
@@ -29,8 +30,8 @@ public class ServiceHelper {
         Intent intent = new Intent(app, clazz);
 
         ComponentName component;
-        if (Build.VERSION.SDK_INT >= 26) {
-            //since Android 8.0 (api 26), background service is not allowed.
+        if (Build.VERSION.SDK_INT >= AndroidVersion.O_8_API_26) {
+            //background service is not allowed.
             component = app.startForegroundService(intent);
         } else {
             component = app.startService(intent);

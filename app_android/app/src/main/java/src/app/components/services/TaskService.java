@@ -12,6 +12,7 @@ import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 
 import src.app.boot.AppWrapper;
+import src.app.mod.AndroidVersion;
 import src.library.foundation.L;
 
 public class TaskService extends Service {
@@ -82,8 +83,8 @@ public class TaskService extends Service {
         Application app = AppWrapper.getApp();
         NotificationManager manager = (NotificationManager) app.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        //since Android 8.0 (api 26), channel is necessary.
-        if (Build.VERSION.SDK_INT >= 26) {
+        //since Android 8.0 channel is necessary.
+        if (Build.VERSION.SDK_INT >= AndroidVersion.O_8_API_26) {
             NotificationChannel channel = new NotificationChannel(
                 "channel_id", "channel_name", NotificationManager.IMPORTANCE_DEFAULT
             );
