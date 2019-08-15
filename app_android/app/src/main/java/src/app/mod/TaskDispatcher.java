@@ -15,14 +15,14 @@ public class TaskDispatcher {
         return Singleton.instance;
     }
 
-    public void runOnMainThread(Runnable task) {
+    public void runOnMainThread(long delayMillis, Runnable task) {
         if (task == null) {
             L.e("try posy a null task to main thread");
             return;
         }
 
         Looper looper = Looper.getMainLooper();
-        new Handler(looper).post(task);
+        new Handler(looper).postDelayed(task, delayMillis);
     }
 
     private final int WORK_THREAD_NUMBER = 4;
