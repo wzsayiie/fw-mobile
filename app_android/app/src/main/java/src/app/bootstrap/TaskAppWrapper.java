@@ -1,6 +1,7 @@
 package src.app.bootstrap;
 
 import src.app.boot.AppWrapper;
+import src.app.mod.AppInfo;
 import src.library.foundation.L;
 
 public class TaskAppWrapper extends AppWrapper {
@@ -13,6 +14,8 @@ public class TaskAppWrapper extends AppWrapper {
     }
 
     private TaskAppWrapper() {
-        L.i("task app initialize");
+        L.i("task app {");
+        L.i("  process name: %s", AppInfo.getProcessName());
+        L.i("}");
     }
 }

@@ -17,12 +17,13 @@ public abstract class AppWrapper {
     }
 
     public static void assignApp(Application app) {
-        if (app != null) {
-            L.i("init app context");
-            storedApp('+', app);
-        } else {
-            L.e("try set null app context");
+        if (app == null) {
+            L.e("try assign a null global app context");
+            return;
         }
+
+        L.i("assign global app context");
+        storedApp('+', app);
     }
 
     public static Application getApp() {
