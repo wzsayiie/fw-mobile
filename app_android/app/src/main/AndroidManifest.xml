@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -53,6 +54,9 @@
                 <action android:name="libs.subsystem" />
             </intent-filter>
         </activity>
+
+        <service android:name=".components.services.TaskService" android:process=":task">
+        </service>
 
     </application>
 
