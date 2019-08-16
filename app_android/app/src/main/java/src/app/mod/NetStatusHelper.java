@@ -1,11 +1,11 @@
 package src.app.mod;
 
-public class NetStatusListener {
+public class NetStatusHelper {
 
     private static class Singleton {
-        static NetStatusListener instance = new NetStatusListener();
+        static NetStatusHelper instance = new NetStatusHelper();
     }
-    public static NetStatusListener get() {
+    public static NetStatusHelper get() {
         return Singleton.instance;
     }
 

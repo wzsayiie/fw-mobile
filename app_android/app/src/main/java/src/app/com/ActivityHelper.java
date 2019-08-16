@@ -11,13 +11,13 @@ import src.app.boot.AppWrapper;
 import src.library.basis.StringUtil;
 import src.library.foundation.L;
 
-public class ActivityDispatcher {
+public class ActivityHelper {
 
     private static class Singleton {
         @SuppressLint("StaticFieldLeak")
-        static ActivityDispatcher instance = new ActivityDispatcher();
+        static ActivityHelper instance = new ActivityHelper();
     }
-    public static ActivityDispatcher get() {
+    public static ActivityHelper get() {
         return Singleton.instance;
     }
 
@@ -28,7 +28,7 @@ public class ActivityDispatcher {
 
     //activity lifecycle
 
-    private ActivityDispatcher() {
+    private ActivityHelper() {
 
         AppWrapper.getApp().registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
 

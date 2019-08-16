@@ -2,16 +2,16 @@ package src.app.mod;
 
 import src.library.foundation.L;
 
-public class HotfixManager {
+public class HotfixHelper {
 
     private static class Singleton {
-        static HotfixManager instance = new HotfixManager();
+        static HotfixHelper instance = new HotfixHelper();
     }
-    public static HotfixManager get() {
+    public static HotfixHelper get() {
         return Singleton.instance;
     }
 
-    private HotfixManager() {
+    private HotfixHelper() {
         L.i("hotfix manager initialize");
     }
 }

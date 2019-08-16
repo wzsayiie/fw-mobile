@@ -4,9 +4,9 @@ import android.os.Build;
 
 import src.app.boot.AppWrapper;
 import src.app.boot.CrashListener;
-import src.app.com.ActivityDispatcher;
+import src.app.com.ActivityHelper;
 import src.app.mod.AppInfo;
-import src.app.mod.HotfixManager;
+import src.app.mod.HotfixHelper;
 import src.library.foundation.L;
 
 public class MainAppWrapper extends AppWrapper {
@@ -32,7 +32,7 @@ public class MainAppWrapper extends AppWrapper {
         L.i("}");
 
         CrashListener.get();
-        HotfixManager.get();
-        ActivityDispatcher.get();
+        HotfixHelper.get();
+        ActivityHelper.get();
     }
 }

@@ -6,12 +6,12 @@ import android.os.Looper;
 
 import src.library.foundation.L;
 
-public class TaskDispatcher {
+public class TaskHelper {
 
     private static class Singleton {
-        static TaskDispatcher instance = new TaskDispatcher();
+        static TaskHelper instance = new TaskHelper();
     }
-    public static TaskDispatcher get() {
+    public static TaskHelper get() {
         return Singleton.instance;
     }
 
