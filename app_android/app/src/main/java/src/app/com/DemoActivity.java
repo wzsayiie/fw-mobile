@@ -1,4 +1,4 @@
-package src.app.components.activities.list;
+package src.app.com;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import src.library.basis.StringUtil;
 import src.library.foundation.L;
 
-public abstract class ListBaseActivity extends Activity {
+public abstract class DemoActivity extends Activity {
 
     protected static class DataItem {
 
@@ -114,7 +114,7 @@ public abstract class ListBaseActivity extends Activity {
                 String text = getDataSource().get(position).getText();
 
                 if (convertView == null) {
-                    LayoutInflater inflater = LayoutInflater.from(ListBaseActivity.this);
+                    LayoutInflater inflater = LayoutInflater.from(DemoActivity.this);
                     convertView = inflater.inflate(android.R.layout.simple_list_item_1, null);
                 }
                 TextView textView = convertView.findViewById(android.R.id.text1);

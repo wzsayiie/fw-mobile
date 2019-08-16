@@ -1,11 +1,12 @@
-package src.app.components.activities.list;
+package src.app.components.activities.daily;
 
 import android.os.Bundle;
 import android.widget.ListView;
 
 import src.app.R;
+import src.app.com.DemoActivity;
 
-public class ListActivity extends ListBaseActivity {
+public class DailyDemoActivity extends DemoActivity {
 
     private ListView mListView;
 
