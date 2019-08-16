@@ -1,4 +1,4 @@
-package src.app.com;
+package src.app.mod;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

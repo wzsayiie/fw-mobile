@@ -5,7 +5,7 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.RemoteException;
 
-import src.app.com.ServiceHelper;
+import src.app.mod.ServiceAssist;
 import src.library.foundation.L;
 
 public class WorkClient implements ServiceConnection {
@@ -24,8 +24,8 @@ public class WorkClient implements ServiceConnection {
         }
 
         L.i("connect work service");
-        ServiceHelper.get().startServiceIfNeeded(WorkService.class);
-        ServiceHelper.get().bindService(WorkService.class, this);
+        ServiceAssist.startServiceIfNeeded(WorkService.class);
+        ServiceAssist.bindService(WorkService.class, this);
     }
 
     public void disconnectService() {
@@ -35,8 +35,8 @@ public class WorkClient implements ServiceConnection {
         }
 
         L.i("disconnect work service");
-        ServiceHelper.get().unbindService(this);
-        ServiceHelper.get().stopService(WorkService.class);
+        ServiceAssist.unbindService(this);
+        ServiceAssist.stopService(WorkService.class);
     }
 
     @Override

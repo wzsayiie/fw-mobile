@@ -1,4 +1,4 @@
-package src.app.com;
+package src.app.mod;
 
 import android.app.Application;
 import android.content.ComponentName;
@@ -7,19 +7,11 @@ import android.content.ServiceConnection;
 import android.os.Build;
 
 import src.app.boot.AppWrapper;
-import src.app.mod.AndroidVersion;
 import src.library.foundation.L;
 
-public class ServiceHelper {
+public class ServiceAssist {
 
-    private static class Singleton {
-        static ServiceHelper instance = new ServiceHelper();
-    }
-    public static ServiceHelper get() {
-        return ServiceHelper.Singleton.instance;
-    }
-
-    public void startServiceIfNeeded(Class<?> clazz) {
+    public static void startServiceIfNeeded(Class<?> clazz) {
         if (clazz == null) {
             L.e("try start service but the class is null");
             return;
@@ -43,7 +35,7 @@ public class ServiceHelper {
         }
     }
 
-    public void bindService(Class<?> clazz, ServiceConnection connection) {
+    public static void bindService(Class<?> clazz, ServiceConnection connection) {
         if (clazz == null) {
             L.e("try start service but the class is null");
             return;
@@ -58,7 +50,7 @@ public class ServiceHelper {
         app.bindService(intent, connection, 0);
     }
 
-    public void unbindService(ServiceConnection connection) {
+    public static void unbindService(ServiceConnection connection) {
         if (connection == null) {
             L.e("try unbind a service with a null connection");
             return;
@@ -68,7 +60,7 @@ public class ServiceHelper {
         app.unbindService(connection);
     }
 
-    public void stopService(Class<?> clazz) {
+    public static void stopService(Class<?> clazz) {
         if (clazz == null) {
             L.e("try stop service but the class is null");
             return;

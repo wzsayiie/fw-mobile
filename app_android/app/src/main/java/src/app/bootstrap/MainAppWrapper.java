@@ -4,7 +4,7 @@ import android.os.Build;
 
 import src.app.boot.AppWrapper;
 import src.app.boot.CrashListener;
-import src.app.com.ActivityHelper;
+import src.app.mod.ActivityHelper;
 import src.app.mod.AppInfo;
 import src.app.mod.HotfixHelper;
 import src.library.foundation.L;
