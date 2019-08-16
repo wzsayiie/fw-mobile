@@ -15,14 +15,12 @@ import src.app.boot.AppWrapper;
 import src.app.mod.AndroidVersion;
 import src.library.foundation.L;
 
-public class TaskService extends Service {
-
-    private ITaskServiceAdapter mIAdapter;
+public class WorkService extends Service {
 
     @Override
     public void onCreate() {
         super.onCreate();
-        L.i("task service onCreate");
+        L.i("work service onCreate");
 
         //since Android 8.0 (api 26), service must display a notification
         //let users known it exists.
@@ -32,7 +30,7 @@ public class TaskService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
-        L.i("task service onStartCommand");
+        L.i("work service onStartCommand");
 
         //if this service exist abnormally, doest not restart automatically.
         return START_NOT_STICKY;
@@ -40,48 +38,40 @@ public class TaskService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        L.i("task service onBind");
+        L.i("work service onBind");
 
-        //if there are multiple remote contexts bind to this service,
-        //consider that keeping implementation of stub.
-        return new ITaskService.Stub() {
-            @Override
-            public void setCallbackAdapter(ITaskServiceAdapter adapter) {
-                TaskService.this.setCallbackAdapter(adapter);
-            }
-            @Override
-            public void makeTask() {
-                TaskService.this.makeTask();
-            }
-        };
-    }
-
-    @Override
-    public void onRebind(Intent intent) {
-        super.onRebind(intent);
-        L.i("task service onRebind");
+        return mServicePort;
     }
 
     @Override
     public boolean onUnbind(Intent intent) {
         boolean callRebindOnNext = super.onUnbind(intent);
-        L.i("task service onUnbind");
+        L.i("work service onUnbind");
 
-        mIAdapter = null;
+        //reset client instance.
+        mClientPort = null;
 
         return callRebindOnNext;
     }
 
     @Override
+    public void onRebind(Intent intent) {
+        super.onRebind(intent);
+        L.i("work service onRebind");
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
-        L.i("task service onDestroy");
+        L.i("work service onDestroy");
     }
 
     protected void startForegroundNotification() {
 
         Application app = AppWrapper.getApp();
-        NotificationManager manager = (NotificationManager) app.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager manager = (NotificationManager) app.getSystemService(
+            Context.NOTIFICATION_SERVICE
+        );
 
         //since Android 8.0 channel is necessary.
         if (Build.VERSION.SDK_INT >= AndroidVersion.O_8_API_26) {
@@ -94,29 +84,26 @@ public class TaskService extends Service {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(app, "channel_id");
         builder.setSmallIcon(android.R.drawable.stat_notify_chat);
         builder.setContentTitle("Task");
-        builder.setContentText("Task notification from task service");
+        builder.setContentText("Task notification from work service");
 
         Notification notification = builder.build();
         startForeground(1, notification);
     }
 
-    //interfaces need to implement:
+    private IWorkClientPort mClientPort;
+    private IWorkServicePort.Stub mServicePort = new IWorkServicePort.Stub() {
 
-    protected void setCallbackAdapter(ITaskServiceAdapter adapter) {
-        if (adapter == null) {
-            L.i("set null adapter interface");
+        @Override
+        public void setClientPort(IWorkClientPort client) {
+            mClientPort = client;
         }
 
-        mIAdapter = adapter;
-    }
-
-    protected void makeTask() {
-        L.i("makeTask");
-
-        try {
-            mIAdapter.onMakeTaskFinished();
-        } catch (Exception e) {
-            L.e("%s", e.toString());
+        @Override
+        public void makeAlpha() {
         }
-    }
+
+        @Override
+        public void makeBeta() {
+        }
+    };
 }

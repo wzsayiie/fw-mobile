@@ -19,11 +19,10 @@ public class ServiceHelper {
         return ServiceHelper.Singleton.instance;
     }
 
-    //NOTE: if the service was already running, return true.
-    public boolean startServiceIfNeeded(Class<?> clazz) {
+    public void startServiceIfNeeded(Class<?> clazz) {
         if (clazz == null) {
             L.e("try start service but the class is null");
-            return false;
+            return;
         }
 
         Application app = AppWrapper.getApp();
@@ -39,10 +38,8 @@ public class ServiceHelper {
 
         if (component != null) {
             L.i("start the service '%s' successful", clazz.getName());
-            return true;
         } else {
             L.e("start the service '%s' failed", clazz.getName());
-            return false;
         }
     }
 

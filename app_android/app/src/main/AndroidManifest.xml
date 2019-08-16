@@ -55,7 +55,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".components.services.TaskService" android:process=":task">
+        <service android:name=".components.services.WorkService" android:process=":task">
         </service>
 
     </application>
