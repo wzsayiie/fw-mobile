@@ -14,9 +14,9 @@
 	</dict>
 	<dict>
 		<key>Address</key>
-		<string>apps://example</string>
+		<string>apps://daily</string>
 		<key>Controller</key>
-		<string>ExampleViewController</string>
+		<string>DailyDemoController</string>
 		<key>Style</key>
 		<string>Stack</string>
 		<key>Launch</key>

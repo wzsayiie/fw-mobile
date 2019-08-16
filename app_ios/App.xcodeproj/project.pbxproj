@@ -23,7 +23,7 @@
 		B45C1BB121A02B19007CB374 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B45C1B7721A02B19007CB374 /* LaunchScreen.storyboard */; };
 		B45C1BB221A02B19007CB374 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B45C1B7821A02B19007CB374 /* Assets.xcassets */; };
 		B45C1BB821A02B19007CB374 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1B8E21A02B19007CB374 /* AppDelegate.m */; };
-		B45C1BD021A034C0007CB374 /* ExampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B45C1BCF21A034C0007CB374 /* ExampleViewController.xib */; };
+		B45C1BD021A034C0007CB374 /* DailyDemoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B45C1BCF21A034C0007CB374 /* DailyDemoController.xib */; };
 		B473DC2622A4E72600218901 /* CQHostAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B473DC1E22A4E72600218901 /* CQHostAppDelegate.m */; };
 		B473DC2722A4E72600218901 /* CQHostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B473DC1F22A4E72600218901 /* CQHostViewController.m */; };
 		B473DC2822A4E72600218901 /* cqwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B473DC2322A4E72600218901 /* cqwindow.cpp */; };
@@ -37,7 +37,7 @@
 		B4C1623D22A8C02F00D9CA70 /* LuaHostAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C1623C22A8C02F00D9CA70 /* LuaHostAppDelegate.m */; };
 		B4C7448E22BCAE5100483834 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4C7448C22BCAE5100483834 /* InfoPlist.strings */; };
 		B4CFD97321C7475000FFF4CF /* IAPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96021C7475000FFF4CF /* IAPViewController.m */; };
-		B4CFD97421C7475000FFF4CF /* ExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96421C7475000FFF4CF /* ExampleViewController.m */; };
+		B4CFD97421C7475000FFF4CF /* DailyDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96421C7475000FFF4CF /* DailyDemoController.m */; };
 		B4CFD97A21C75AB300FFF4CF /* IAPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4CFD97921C75AB300FFF4CF /* IAPViewController.xib */; };
 		B4D3B3922260C15B007D3E4A /* BlankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D3B3902260C15B007D3E4A /* BlankViewController.m */; };
 		B4D3B3952260C21D007D3E4A /* BlankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D3B3942260C21D007D3E4A /* BlankViewController.xib */; };
@@ -123,7 +123,7 @@
 		B45C1B7821A02B19007CB374 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B45C1B8D21A02B19007CB374 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B45C1B8E21A02B19007CB374 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B45C1BCF21A034C0007CB374 /* ExampleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExampleViewController.xib; sourceTree = "<group>"; };
+		B45C1BCF21A034C0007CB374 /* DailyDemoController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyDemoController.xib; sourceTree = "<group>"; };
 		B473DC1D22A4E72600218901 /* CQHostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQHostViewController.h; sourceTree = "<group>"; };
 		B473DC1E22A4E72600218901 /* CQHostAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQHostAppDelegate.m; sourceTree = "<group>"; };
 		B473DC1F22A4E72600218901 /* CQHostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQHostViewController.m; sourceTree = "<group>"; };
@@ -150,8 +150,8 @@
 		B4C7448F22BCAE5600483834 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		B4CFD96021C7475000FFF4CF /* IAPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPViewController.m; sourceTree = "<group>"; };
 		B4CFD96121C7475000FFF4CF /* IAPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPViewController.h; sourceTree = "<group>"; };
-		B4CFD96321C7475000FFF4CF /* ExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleViewController.h; sourceTree = "<group>"; };
-		B4CFD96421C7475000FFF4CF /* ExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleViewController.m; sourceTree = "<group>"; };
+		B4CFD96321C7475000FFF4CF /* DailyDemoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyDemoController.h; sourceTree = "<group>"; };
+		B4CFD96421C7475000FFF4CF /* DailyDemoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyDemoController.m; sourceTree = "<group>"; };
 		B4CFD97921C75AB300FFF4CF /* IAPViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IAPViewController.xib; sourceTree = "<group>"; };
 		B4D3B3902260C15B007D3E4A /* BlankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlankViewController.m; sourceTree = "<group>"; };
 		B4D3B3912260C15B007D3E4A /* BlankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlankViewController.h; sourceTree = "<group>"; };
@@ -362,7 +362,7 @@
 			children = (
 				B4D3B38F2260C15B007D3E4A /* BlankViewController */,
 				B425212722842C8E004FA04B /* CQDemoViewController */,
-				B4CFD96221C7475000FFF4CF /* ExampleViewController */,
+				B4CFD96221C7475000FFF4CF /* DailyDemoController */,
 				B4D3B3972260C88E007D3E4A /* FloatViewController */,
 				B4CFD95F21C7475000FFF4CF /* IAPViewController */,
 			);
@@ -402,18 +402,18 @@
 			isa = PBXGroup;
 			children = (
 				B4D3B3932260C209007D3E4A /* BlankViewController */,
-				B45C1BCE21A0349B007CB374 /* ExampleViewController */,
+				B45C1BCE21A0349B007CB374 /* DailyDemoController */,
 				B4CFD97821C75A0600FFF4CF /* IAPViewController */,
 			);
 			path = UI;
 			sourceTree = "<group>";
 		};
-		B45C1BCE21A0349B007CB374 /* ExampleViewController */ = {
+		B45C1BCE21A0349B007CB374 /* DailyDemoController */ = {
 			isa = PBXGroup;
 			children = (
-				B45C1BCF21A034C0007CB374 /* ExampleViewController.xib */,
+				B45C1BCF21A034C0007CB374 /* DailyDemoController.xib */,
 			);
-			path = ExampleViewController;
+			path = DailyDemoController;
 			sourceTree = "<group>";
 		};
 		B473DC1B22A4E6C500218901 /* BasisProgram */ = {
@@ -497,13 +497,13 @@
 			path = IAPViewController;
 			sourceTree = "<group>";
 		};
-		B4CFD96221C7475000FFF4CF /* ExampleViewController */ = {
+		B4CFD96221C7475000FFF4CF /* DailyDemoController */ = {
 			isa = PBXGroup;
 			children = (
-				B4CFD96321C7475000FFF4CF /* ExampleViewController.h */,
-				B4CFD96421C7475000FFF4CF /* ExampleViewController.m */,
+				B4CFD96321C7475000FFF4CF /* DailyDemoController.h */,
+				B4CFD96421C7475000FFF4CF /* DailyDemoController.m */,
 			);
-			path = ExampleViewController;
+			path = DailyDemoController;
 			sourceTree = "<group>";
 		};
 		B4CFD97821C75A0600FFF4CF /* IAPViewController */ = {
@@ -729,7 +729,7 @@
 			files = (
 				B401E5C8226F3470002F65BF /* Resource.bundle in Resources */,
 				B45C1BB221A02B19007CB374 /* Assets.xcassets in Resources */,
-				B45C1BD021A034C0007CB374 /* ExampleViewController.xib in Resources */,
+				B45C1BD021A034C0007CB374 /* DailyDemoController.xib in Resources */,
 				B45C1BB121A02B19007CB374 /* LaunchScreen.storyboard in Resources */,
 				B4549AB722BCA2FE00781D3C /* L.strings in Resources */,
 				B416F18921A2CD630045FDF6 /* Scenes.plist in Resources */,
@@ -748,7 +748,7 @@
 			files = (
 				CE90E649228727460071D4D3 /* cqluasource.cpp in Sources */,
 				B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */,
-				B4CFD97421C7475000FFF4CF /* ExampleViewController.m in Sources */,
+				B4CFD97421C7475000FFF4CF /* DailyDemoController.m in Sources */,
 				B425210922842AD3004FA04B /* NSBundle+CQ.m in Sources */,
 				B4EF08B6228D8D9A0089AA4C /* cqcolor.cpp in Sources */,
 				CEEB261C2300655C001FD8D6 /* CQNetStatusListener.m in Sources */,
