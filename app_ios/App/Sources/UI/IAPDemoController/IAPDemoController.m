@@ -1,12 +1,12 @@
-#import "IAPViewController.h"
+#import "IAPDemoController.h"
 #import <StoreKit/StoreKit.h>
 
-@interface IAPViewController () <SKProductsRequestDelegate, SKPaymentTransactionObserver>
+@interface IAPDemoController () <SKProductsRequestDelegate, SKPaymentTransactionObserver>
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, copy) NSArray<SKProduct *> *productList;
 @end
 
-@implementation IAPViewController
+@implementation IAPDemoController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

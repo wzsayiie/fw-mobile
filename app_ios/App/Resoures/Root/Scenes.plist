@@ -26,7 +26,7 @@
 		<key>Address</key>
 		<string>apps://iap</string>
 		<key>Controller</key>
-		<string>IAPViewController</string>
+		<string>IAPDemoController</string>
 		<key>Style</key>
 		<string>Stack</string>
 		<key>Launch</key>

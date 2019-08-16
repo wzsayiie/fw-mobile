@@ -36,9 +36,9 @@
 		B4C1623922A8C01900D9CA70 /* CPPHostAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C1623722A8C01900D9CA70 /* CPPHostAppDelegate.m */; };
 		B4C1623D22A8C02F00D9CA70 /* LuaHostAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C1623C22A8C02F00D9CA70 /* LuaHostAppDelegate.m */; };
 		B4C7448E22BCAE5100483834 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4C7448C22BCAE5100483834 /* InfoPlist.strings */; };
-		B4CFD97321C7475000FFF4CF /* IAPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96021C7475000FFF4CF /* IAPViewController.m */; };
+		B4CFD97321C7475000FFF4CF /* IAPDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96021C7475000FFF4CF /* IAPDemoController.m */; };
 		B4CFD97421C7475000FFF4CF /* DailyDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96421C7475000FFF4CF /* DailyDemoController.m */; };
-		B4CFD97A21C75AB300FFF4CF /* IAPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4CFD97921C75AB300FFF4CF /* IAPViewController.xib */; };
+		B4CFD97A21C75AB300FFF4CF /* IAPDemoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4CFD97921C75AB300FFF4CF /* IAPDemoController.xib */; };
 		B4D3B3922260C15B007D3E4A /* BlankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D3B3902260C15B007D3E4A /* BlankViewController.m */; };
 		B4D3B3952260C21D007D3E4A /* BlankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D3B3942260C21D007D3E4A /* BlankViewController.xib */; };
 		B4D3B39A2260C88E007D3E4A /* FloatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D3B3982260C88E007D3E4A /* FloatViewController.m */; };
@@ -148,11 +148,11 @@
 		B4C1623C22A8C02F00D9CA70 /* LuaHostAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaHostAppDelegate.m; sourceTree = "<group>"; };
 		B4C7448D22BCAE5100483834 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B4C7448F22BCAE5600483834 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		B4CFD96021C7475000FFF4CF /* IAPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPViewController.m; sourceTree = "<group>"; };
-		B4CFD96121C7475000FFF4CF /* IAPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPViewController.h; sourceTree = "<group>"; };
+		B4CFD96021C7475000FFF4CF /* IAPDemoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPDemoController.m; sourceTree = "<group>"; };
+		B4CFD96121C7475000FFF4CF /* IAPDemoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPDemoController.h; sourceTree = "<group>"; };
 		B4CFD96321C7475000FFF4CF /* DailyDemoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyDemoController.h; sourceTree = "<group>"; };
 		B4CFD96421C7475000FFF4CF /* DailyDemoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyDemoController.m; sourceTree = "<group>"; };
-		B4CFD97921C75AB300FFF4CF /* IAPViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IAPViewController.xib; sourceTree = "<group>"; };
+		B4CFD97921C75AB300FFF4CF /* IAPDemoController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IAPDemoController.xib; sourceTree = "<group>"; };
 		B4D3B3902260C15B007D3E4A /* BlankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlankViewController.m; sourceTree = "<group>"; };
 		B4D3B3912260C15B007D3E4A /* BlankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlankViewController.h; sourceTree = "<group>"; };
 		B4D3B3942260C21D007D3E4A /* BlankViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlankViewController.xib; sourceTree = "<group>"; };
@@ -364,7 +364,7 @@
 				B425212722842C8E004FA04B /* CQDemoViewController */,
 				B4CFD96221C7475000FFF4CF /* DailyDemoController */,
 				B4D3B3972260C88E007D3E4A /* FloatViewController */,
-				B4CFD95F21C7475000FFF4CF /* IAPViewController */,
+				B4CFD95F21C7475000FFF4CF /* IAPDemoController */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -403,7 +403,7 @@
 			children = (
 				B4D3B3932260C209007D3E4A /* BlankViewController */,
 				B45C1BCE21A0349B007CB374 /* DailyDemoController */,
-				B4CFD97821C75A0600FFF4CF /* IAPViewController */,
+				B4CFD97821C75A0600FFF4CF /* IAPDemoController */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -488,13 +488,13 @@
 			path = ../program_lua/IOSLuaProgram;
 			sourceTree = "<group>";
 		};
-		B4CFD95F21C7475000FFF4CF /* IAPViewController */ = {
+		B4CFD95F21C7475000FFF4CF /* IAPDemoController */ = {
 			isa = PBXGroup;
 			children = (
-				B4CFD96121C7475000FFF4CF /* IAPViewController.h */,
-				B4CFD96021C7475000FFF4CF /* IAPViewController.m */,
+				B4CFD96121C7475000FFF4CF /* IAPDemoController.h */,
+				B4CFD96021C7475000FFF4CF /* IAPDemoController.m */,
 			);
-			path = IAPViewController;
+			path = IAPDemoController;
 			sourceTree = "<group>";
 		};
 		B4CFD96221C7475000FFF4CF /* DailyDemoController */ = {
@@ -506,12 +506,12 @@
 			path = DailyDemoController;
 			sourceTree = "<group>";
 		};
-		B4CFD97821C75A0600FFF4CF /* IAPViewController */ = {
+		B4CFD97821C75A0600FFF4CF /* IAPDemoController */ = {
 			isa = PBXGroup;
 			children = (
-				B4CFD97921C75AB300FFF4CF /* IAPViewController.xib */,
+				B4CFD97921C75AB300FFF4CF /* IAPDemoController.xib */,
 			);
-			path = IAPViewController;
+			path = IAPDemoController;
 			sourceTree = "<group>";
 		};
 		B4D3B38F2260C15B007D3E4A /* BlankViewController */ = {
@@ -733,7 +733,7 @@
 				B45C1BB121A02B19007CB374 /* LaunchScreen.storyboard in Resources */,
 				B4549AB722BCA2FE00781D3C /* L.strings in Resources */,
 				B416F18921A2CD630045FDF6 /* Scenes.plist in Resources */,
-				B4CFD97A21C75AB300FFF4CF /* IAPViewController.xib in Resources */,
+				B4CFD97A21C75AB300FFF4CF /* IAPDemoController.xib in Resources */,
 				B4D3B3952260C21D007D3E4A /* BlankViewController.xib in Resources */,
 				B4C7448E22BCAE5100483834 /* InfoPlist.strings in Resources */,
 			);
@@ -773,7 +773,7 @@
 				B4A4468B228BA74F00B46240 /* cqgeometry.cpp in Sources */,
 				B473DC2B22A5000B00218901 /* luahost.cpp in Sources */,
 				B4C1623922A8C01900D9CA70 /* CPPHostAppDelegate.m in Sources */,
-				B4CFD97321C7475000FFF4CF /* IAPViewController.m in Sources */,
+				B4CFD97321C7475000FFF4CF /* IAPDemoController.m in Sources */,
 				B425210A22842AD3004FA04B /* UIDevice+CQ.m in Sources */,
 				B425212322842BE4004FA04B /* CQSceneNavigator.m in Sources */,
 				CE90E69B22872A350071D4D3 /* cqevent.cpp in Sources */,
