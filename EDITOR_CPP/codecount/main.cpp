@@ -1,61 +1,108 @@
 #include "codecount.hh"
 
-#define  S_CPP(x) x
-#define   S_CS(x) x
-#define S_JAVA(x) x
-#define  S_JNI(x) x
-#define  S_LUA(x) x
-#define S_OBJC(x) x
+bool _CPP  = false;
+bool _CS   = false;
+bool _JAVA = false;
+bool _JNI  = false;
+bool _LUA  = false;
+bool _OBJC = false;
+
+const vector<string> &dirs(bool push, const char *item) {
+    static vector<string> vec;
+    if (push && item != nullptr) {
+        vec.push_back(item);
+    }
+    return vec;
+}
+
+void app_android() { dirs(_JAVA, "app_android/app/src/main/java"); }
+void app_ios    () { dirs(_OBJC, "app_ios/App/Sources"          ); }
+void app_unity  () { dirs(_CS  , "app_unity/Assets/Scripts"     ); }
+
+void EDITOR_CPP() { dirs(_CPP, "EDITOR_CPP"); }
+void EDITOR_CS () { dirs(_CS , "EDITOR_CS" ); }
+
+void library_BASIS() {
+    dirs(_JNI , "library/BASIS/android/cpp" );
+    dirs(_JAVA, "library/BASIS/android/java");
+    dirs(_CPP , "library/BASIS/libbasis"    );
+    dirs(_OBJC, "library/BASIS/MacBasis"    );
+}
+
+void library_ctool() {
+    dirs(_CPP, "library/ctool/libctool");
+}
+
+void library_foundation() {
+    dirs(_JNI , "library/foundation/android/cpp"    );
+    dirs(_JAVA, "library/foundation/android/java"   );
+    dirs(_CPP , "library/foundation/libfoundation"  );
+    dirs(_OBJC, "library/foundation/MacFoundation"  );
+    dirs(_CPP , "library/foundation/win32foundation");
+}
+
+void library_standalone() {
+    dirs(_JNI , "library/standalone/android/cpp"  );
+    dirs(_JAVA, "library/standalone/android/java" );
+    dirs(_CPP , "library/standalone/libstandalone");
+    dirs(_OBJC, "library/standalone/MacStandalone");
+}
+
+void library_subsystem() {
+    dirs(_JNI , "library/subsystem/android/cpp" );
+    dirs(_JAVA, "library/subsystem/android/java");
+    dirs(_OBJC, "library/subsystem/IOSSubsystem");
+    dirs(_CPP , "library/subsystem/libsubsystem");
+}
+
+void program_basis() {
+    dirs(_JNI , "program_basis/android/cpp"    );
+    dirs(_JAVA, "program_basis/android/java"   );
+    dirs(_OBJC, "program_basis/IOSBasisProgram");
+    dirs(_CPP , "program_basis/libbasisprogram");
+}
+
+void program_cpp() {
+    dirs(_JNI , "program_cpp/android/cpp"  );
+    dirs(_JAVA, "program_cpp/android/java" );
+    dirs(_OBJC, "program_cpp/IOSCPPProgram");
+    dirs(_CPP , "program_cpp/libcppprogram");
+}
+
+void program_lua() {
+    dirs(_JNI , "program_lua/android/cpp"  );
+    dirs(_JAVA, "program_lua/android/java" );
+    dirs(_OBJC, "program_lua/IOSLuaProgram");
+    dirs(_CPP , "program_lua/libluaprogram");
+    dirs(_LUA , "program_lua/libluascript" );
+}
 
 bool codecount_launch = 0;
 void codecount_main() {
     
-    vector<string> dirs;
+    _CPP  = true;
+    _CS   = true;
+    _JAVA = true;
+    _JNI  = true;
+    _LUA  = true;
+    _OBJC = true;
     
-    S_JAVA(dirs.push_back("app_android/app/src/main/java"));
-    S_OBJC(dirs.push_back("app_ios/App/Sources"));
-    S_CS  (dirs.push_back("app_unity/Assets/Scripts"));
+    app_android();
+    app_ios();
+    app_unity();
 
-    S_CPP (dirs.push_back("EDITOR_CPP"));
-    S_CS  (dirs.push_back("EDITOR_CS"));
+    EDITOR_CPP();
+    EDITOR_CS ();
     
-    S_JNI (dirs.push_back("library/BASIS/android/cpp"));
-    S_JAVA(dirs.push_back("library/BASIS/android/java"));
-    S_CPP (dirs.push_back("library/BASIS/libbasis"));
-    S_OBJC(dirs.push_back("library/BASIS/MacBasis"));
+    library_BASIS();
+    library_ctool();
+    library_foundation();
+    library_standalone();
+    library_subsystem();
     
-    S_CPP (dirs.push_back("library/ctool/libctool"));
+    program_basis();
+    program_cpp();
+    program_lua();
     
-    S_JNI (dirs.push_back("library/foundation/android/cpp"));
-    S_JAVA(dirs.push_back("library/foundation/android/java"));
-    S_CPP (dirs.push_back("library/foundation/libfoundation"));
-    S_OBJC(dirs.push_back("library/foundation/MacFoundation"));
-    S_CPP (dirs.push_back("library/foundation/win32foundation"));
-    
-    S_JNI (dirs.push_back("library/standalone/android/cpp"));
-    S_JAVA(dirs.push_back("library/standalone/android/java"));
-    S_CPP (dirs.push_back("library/standalone/libstandalone"));
-    S_OBJC(dirs.push_back("library/standalone/MacStandalone"));
-
-    S_JNI (dirs.push_back("library/subsystem/android/cpp"));
-    S_JAVA(dirs.push_back("library/subsystem/android/java"));
-    S_OBJC(dirs.push_back("library/subsystem/IOSSubsystem"));
-    S_CPP (dirs.push_back("library/subsystem/libsubsystem"));
-
-    S_JNI (dirs.push_back("program_basis/android/cpp"));
-    S_JAVA(dirs.push_back("program_basis/android/java"));
-    S_OBJC(dirs.push_back("program_basis/IOSBasisProgram"));
-    S_CPP (dirs.push_back("program_basis/libbasisprogram"));
-
-    S_JNI (dirs.push_back("program_cpp/android/cpp"));
-    S_JAVA(dirs.push_back("program_cpp/android/java"));
-    S_OBJC(dirs.push_back("program_cpp/IOSCPPProgram"));
-    S_CPP (dirs.push_back("program_cpp/libcppprogram"));
-
-    S_JNI (dirs.push_back("program_lua/android/cpp"));
-    S_JAVA(dirs.push_back("program_lua/android/java"));
-    S_OBJC(dirs.push_back("program_lua/IOSLuaProgram"));
-    S_CPP (dirs.push_back("program_lua/libluaprogram"));
-    
-    codecount(dirs);
+    codecount(dirs(false, nullptr));
 }
