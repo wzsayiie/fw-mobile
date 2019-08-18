@@ -37,3 +37,6 @@ id CQGetProperty(id object, const void *key);
 /**/        });\
 /**/        return object;\
 /**/    } while (0)
+
+#define cq_declare_s(string) extern NSString *const string
+#define cq_define_s(string) NSString *const string = @""#string
