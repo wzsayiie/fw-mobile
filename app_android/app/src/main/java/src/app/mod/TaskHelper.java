@@ -25,6 +25,16 @@ public class TaskHelper {
         new Handler(looper).postDelayed(task, delayMillis);
     }
 
+    public void runOnCurrentTread(long delayMillis, Runnable task) {
+        if (task == null) {
+            L.e("try posy a null task to current looper");
+            return;
+        }
+
+        Looper looper = Looper.myLooper();
+        new Handler(looper).postDelayed(task, delayMillis);
+    }
+
     private final int WORK_THREAD_NUMBER = 4;
     private HandlerThread[] mWorkThreads;
 
@@ -41,9 +51,9 @@ public class TaskHelper {
         }
     }
 
-    public void run(Runnable task) {
+    public void runOnAnyThread(Runnable task) {
         if (task == null) {
-            L.e("try post a null task to work thread");
+            L.e("try post a null task to any work thread");
             return;
         }
 
