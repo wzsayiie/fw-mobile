@@ -20,6 +20,12 @@
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
 
         <activity
+            android:name=".com.PermissionRequestActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" >
+        </activity>
+
+        <activity
             android:name=".components.activities.blank.BlankActivity"
             android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
