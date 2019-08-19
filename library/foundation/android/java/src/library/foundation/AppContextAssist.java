@@ -6,16 +6,9 @@ import android.app.Application;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-public class AppContextFinder {
+public class AppContextAssist {
 
-    private static class Singleton {
-        static AppContextFinder instance = new AppContextFinder();
-    }
-    public static AppContextFinder get() {
-        return Singleton.instance;
-    }
-
-    private Application findCustomApp() {
+    private static Application getCustomApp() {
         try {
             Class<?> clazz = Class.forName("src.app.host.basis.HostActivity");
             Method method = clazz.getMethod("sharedInstance");
@@ -26,7 +19,7 @@ public class AppContextFinder {
         }
     }
 
-    private Application findUnity3DApp() {
+    private static Application getUnityApp() {
         try {
             Class clazz = Class.forName("com.unity3d.player.UnityPlayer");
             Field field = clazz.getField("currentActivity");
@@ -37,9 +30,9 @@ public class AppContextFinder {
         }
     }
 
-    private Application findFrameworkApp() {
+    private static Application getFWApp() {
         try {
-            Class<?> clazz = Class.forName("src.app.boot.AppDelegate");
+            Class<?> clazz = Class.forName("src.app.boot.AppWrapper");
             Method method = clazz.getMethod("getApp");
             return (Application) method.invoke(clazz);
         } catch (Exception e) {
@@ -47,13 +40,13 @@ public class AppContextFinder {
         }
     }
 
-    public Application findApp() {
+    public static Application getApp() {
 
         Application target;
 
-        target = findCustomApp   (); if (target != null) { return target; }
-        target = findUnity3DApp  (); if (target != null) { return target; }
-        target = findFrameworkApp(); if (target != null) { return target; }
+        target = getCustomApp(); if (target != null) { return target; }
+        target = getUnityApp (); if (target != null) { return target; }
+        target = getFWApp    (); if (target != null) { return target; }
 
         return null;
     }

@@ -4,8 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 
-import src.library.foundation.UIContextFinder;
 import src.library.foundation.L;
+import src.library.foundation.UIContextAssist;
 
 public class SubsystemManager {
 
@@ -25,7 +25,7 @@ public class SubsystemManager {
             return;
         }
 
-        Activity rootActivity = UIContextFinder.get().findCurrentActivity();
+        Activity rootActivity = UIContextAssist.currentActivity();
         if (rootActivity == null) {
             L.e("not found current activity context");
             return;

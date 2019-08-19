@@ -5,18 +5,11 @@ import android.app.Activity;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-//NOTE: UIContextFinder only be used on main thread.
+//NOTE: UIContextAssist only be used on main thread.
 
-public class UIContextFinder {
+public class UIContextAssist {
 
-    private static class Singleton {
-        static UIContextFinder instance = new UIContextFinder();
-    }
-    public static UIContextFinder get() {
-        return Singleton.instance;
-    }
-
-    private Activity findCustomAppActivity() {
+    private static Activity currentCustomActivity() {
         try {
             Class<?> clazz = Class.forName("src.app.host.basis.HostActivity");
             Method method = clazz.getMethod("sharedInstance");
@@ -26,7 +19,7 @@ public class UIContextFinder {
         }
     }
 
-    private Activity findUnity3DAppActivity() {
+    private static Activity currentUnityActivity() {
         try {
             Class clazz = Class.forName("com.unity3d.player.UnityPlayer");
             Field field = clazz.getField("currentActivity");
@@ -36,9 +29,9 @@ public class UIContextFinder {
         }
     }
 
-    private Activity findFrameworkAppActivity() {
+    private static Activity currentFWActivity() {
         try {
-            Class<?> clazz = Class.forName("src.app.com.ActivityDispatcher");
+            Class<?> clazz = Class.forName("src.app.mod.ActivityHelper");
             Method method = clazz.getMethod("currentResumedActivity");
             return (Activity) method.invoke(clazz);
         } catch (Exception e) {
@@ -46,17 +39,15 @@ public class UIContextFinder {
         }
     }
 
-    public Activity findCurrentActivity() {
+    public static Activity currentActivity() {
 
         Activity target;
 
-        //NOTE:
-        //call findFrameworkAppActivity() at the last,
-        //it will create some extra objects.
+        //NOTE: call currentFWActivity() at the last, it will create some extra objects.
 
-        target = findCustomAppActivity   (); if (target != null) { return target; }
-        target = findUnity3DAppActivity  (); if (target != null) { return target; }
-        target = findFrameworkAppActivity(); if (target != null) { return target; }
+        target = currentCustomActivity(); if (target != null) { return target; }
+        target = currentUnityActivity (); if (target != null) { return target; }
+        target = currentFWActivity    (); if (target != null) { return target; }
 
         return null;
     }

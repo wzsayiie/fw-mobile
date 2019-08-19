@@ -5,7 +5,6 @@ import android.util.LongSparseArray;
 import java.io.IOException;
 import java.util.Map;
 
-@SuppressWarnings("unused") /* the methods will be called by native */
 public class PORT {
 
     //log:
@@ -21,43 +20,43 @@ public class PORT {
     //file access:
 
     public static String cq_document_directory() {
-        return FileManager.documentDirectory();
+        return FileAssist.documentDirectory();
     }
 
     public static String cq_caches_directory() {
-        return FileManager.cachesDirectory();
+        return FileAssist.cachesDirectory();
     }
 
     public static String cq_temporary_directory() {
-        return FileManager.temporaryDirectory();
+        return FileAssist.temporaryDirectory();
     }
 
     public static boolean cq_directory_exists(String path) {
-        return FileManager.get().directoryExists(path);
+        return FileAssist.directoryExists(path);
     }
 
     public static boolean cq_file_exists(String path) {
-        return FileManager.get().fileExists(path);
+        return FileAssist.fileExists(path);
     }
 
     public static boolean cq_create_directory(String path, boolean intermediate) {
-        return FileManager.get().createDirectory(path, intermediate);
+        return FileAssist.createDirectory(path, intermediate);
     }
 
     public static void cq_remove_path(String path) {
-        FileManager.get().removePath(path);
+        FileAssist.removePath(path);
     }
 
     //thread:
 
     public static void cq_thread_run(long task, long data) {
-        ThreadManager.run(() -> threadBody(task, data));
+        ThreadAssist.run(() -> threadBody(task, data));
     }
 
     private static native void threadBody(long task, long data);
 
     public static void cq_thread_sleep(float seconds) {
-        ThreadManager.sleepForSeconds(seconds);
+        ThreadAssist.sleepForSeconds(seconds);
     }
     
     //http:

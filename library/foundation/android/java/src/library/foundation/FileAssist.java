@@ -1,37 +1,37 @@
 package src.library.foundation;
 
-import android.content.Context;
+import android.app.Application;
 
 import java.io.File;
 
 import src.library.basis.StringUtil;
 
-public class FileManager {
+public class FileAssist {
 
     public static String documentDirectory() {
-        Context context = AppContextFinder.get().findApp();
-        return context.getFilesDir().getAbsolutePath();
+        Application app = AppContextAssist.getApp();
+        if (app != null) {
+            return app.getFilesDir().getAbsolutePath();
+        } else {
+            return null;
+        }
     }
 
     public static String cachesDirectory() {
-        Context context = AppContextFinder.get().findApp();
-        return context.getCacheDir().getAbsolutePath();
+        Application app = AppContextAssist.getApp();
+        if (app != null) {
+            return app.getCacheDir().getAbsolutePath();
+        } else {
+            return null;
+        }
     }
 
     public static String temporaryDirectory() {
-        Context context = AppContextFinder.get().findApp();
-        return context.getCacheDir().getAbsolutePath();
+        return cachesDirectory();
     }
 
-    private static class Singleton {
-        static FileManager instance = new FileManager();
-    }
-    public static FileManager get() {
-        return Singleton.instance;
-    }
-
-    public boolean directoryExists(String path) {
-        if (path != null && path.length() > 0) {
+    public static boolean directoryExists(String path) {
+        if (!StringUtil.isEmpty(path)) {
             File file = new File(path);
             return file.exists() && file.isDirectory();
         } else {
@@ -39,8 +39,8 @@ public class FileManager {
         }
     }
 
-    public boolean fileExists(String path) {
-        if (path != null && path.length() > 0) {
+    public static boolean fileExists(String path) {
+        if (!StringUtil.isEmpty(path)) {
             File file = new File(path);
             return file.exists() && !file.isDirectory();
         } else {
@@ -48,7 +48,7 @@ public class FileManager {
         }
     }
 
-    public boolean createDirectory(String path, boolean intermediate) {
+    public static boolean createDirectory(String path, boolean intermediate) {
         if (StringUtil.isEmpty(path)) {
             return false;
         }
@@ -61,19 +61,18 @@ public class FileManager {
         }
     }
 
-    private void removeRecursively(File file) {
+    private static void removeRecursively(File file) {
         if (file.isDirectory()) {
             for (File item : file.listFiles()) {
                 removeRecursively(item);
             }
-        }
-        if (file.isFile()) {
+        } else if (file.isFile()) {
             @SuppressWarnings("unused")
             boolean d = file.delete();
         }
     }
 
-    public void removePath(String path) {
+    public static void removePath(String path) {
         if (StringUtil.isEmpty(path)) {
             File file = new File(path);
             removeRecursively(file);
