@@ -6,18 +6,14 @@ _CQFOUNDATION_BEGIN_VERSION_NS
 
 CQWSTR CQDocumentDirectoryW();
 CQSTR  CQDocumentDirectoryA();
-CQWSTR CQCachesDirectoryW();
-CQSTR  CQCachesDirectoryA();
 CQWSTR CQTemporaryDirectoryW();
 CQSTR  CQTemporaryDirectoryA();
 
 # ifdef UNICODE
 #   define CQDocumentDirectory  CQDocumentDirectoryW
-#   define CQCachesDirectory    CQCachesDirectoryW
 #   define CQTemporaryDirectory CQTemporaryDirectoryW
 # else
 #   define CQDocumentDirectory  CQDocumentDirectoryA
-#   define CQCachesDirectory    CQCachesDirectoryA
 #   define CQTemporaryDirectory CQTemporaryDirectoryA
 # endif
 

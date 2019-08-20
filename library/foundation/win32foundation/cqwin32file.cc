@@ -24,7 +24,7 @@ CQSTR CQDocumentDirectoryA()
     return CQStr_From(szPath);
 }
 
-CQWSTR CQCachesDirectoryW()
+CQWSTR CQTemporaryDirectoryW()
 {
     WCHAR szPath[MAX_PATH];
     DWORD dwLength = GetTempPathW(MAX_PATH, szPath);
@@ -39,20 +39,10 @@ CQWSTR CQCachesDirectoryW()
     }
 }
 
-CQSTR CQCachesDirectoryA()
-{
-    CQWSTR szPath = CQCachesDirectoryW();
-    return CQStr_From(szPath);
-}
-
-CQWSTR CQTemporaryDirectoryW()
-{
-    return CQCachesDirectoryW();
-}
-
 CQSTR CQTemporaryDirectoryA()
 {
-    return CQCachesDirectoryA();
+    CQWSTR szPath = CQTemporaryDirectoryW();
+    return CQStr_From(szPath);
 }
 
 static BOOL CQDiskItemExistsW(CONST CQWSTR &szPath, BOOL *bDirectory)

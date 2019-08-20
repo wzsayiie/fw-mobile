@@ -29,7 +29,7 @@ const char *cq_document_directory(void)
 
 const char *cq_caches_directory(void)
 {
-    std::string szPath = CQU8Str_From(CQCachesDirectoryW());
+    std::string szPath = CQU8Str_From(CQTemporaryDirectoryW());
     return cq_store_str(szPath.c_str());
 }
 
