@@ -12,7 +12,7 @@ import src.library.basis.StringUtil;
 
 public class FileAssist {
 
-    public static String documentDirectory() {
+    public static String filesDir() {
         Application app = AppContextAssist.getApp();
         if (app != null) {
             return app.getFilesDir().getAbsolutePath();
@@ -21,17 +21,13 @@ public class FileAssist {
         }
     }
 
-    public static String cachesDirectory() {
+    public static String cacheDir() {
         Application app = AppContextAssist.getApp();
         if (app != null) {
             return app.getCacheDir().getAbsolutePath();
         } else {
             return null;
         }
-    }
-
-    public static String temporaryDirectory() {
-        return cachesDirectory();
     }
 
     public static boolean directoryExists(String path) {

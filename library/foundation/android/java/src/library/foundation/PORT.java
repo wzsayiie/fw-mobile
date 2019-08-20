@@ -20,15 +20,15 @@ public class PORT {
     //file access:
 
     public static String cq_document_directory() {
-        return FileAssist.documentDirectory();
+        return FileAssist.filesDir();
     }
 
     public static String cq_caches_directory() {
-        return FileAssist.cachesDirectory();
+        return FileAssist.cacheDir();
     }
 
     public static String cq_temporary_directory() {
-        return FileAssist.temporaryDirectory();
+        return FileAssist.cacheDir();
     }
 
     public static boolean cq_directory_exists(String path) {
