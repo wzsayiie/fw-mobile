@@ -10,11 +10,11 @@ public class PORT {
     //log:
 
     public static void cq_log_info(String file, int line, String message) {
-        L.i("%s", message);
+        L.info(file, line, message);
     }
 
     public static void cq_log_error(String file, int line, String message) {
-        L.e("%s", message);
+        L.error(file, line, message);
     }
 
     //file access:

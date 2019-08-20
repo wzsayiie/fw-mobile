@@ -2,14 +2,60 @@ package src.library.foundation;
 
 import android.util.Log;
 
+import src.library.basis.StringUtil;
+
 public class L {
 
+    public static void info(String file, int line, String message) {
+        if (StringUtil.isEmpty(file)) {
+            return;
+        }
+        if (line <= 0) {
+            return;
+        }
+        if (StringUtil.isEmpty(message)) {
+            return;
+        }
+
+        //get file name from path.
+        file = file.substring(file.lastIndexOf("/") + 1);
+
+        Object[] args = new Object[]{file, line, message};
+        Log.i("zzz", formalize("%s|%04d|%s", args));
+    }
+
+    public static void error(String file, int line, String message) {
+        if (StringUtil.isEmpty(file)) {
+            return;
+        }
+        if (line <= 0) {
+            return;
+        }
+        if (StringUtil.isEmpty(message)) {
+            return;
+        }
+
+        //get file name from path.
+        file = file.substring(file.lastIndexOf("/") + 1);
+
+        Object[] args = new Object[]{file, line, message};
+        Log.i("zzz", formalize("%s|%04d|%s", args));
+    }
+
     public static void i(String format, Object... args) {
-        Log.i("zzz", formalize(format, args));
+        StackTraceElement frame = Thread.currentThread().getStackTrace()[3];
+        String file = frame.getFileName();
+        int line = frame.getLineNumber();
+
+        L.info(file, line, formalize(format, args));
     }
 
     public static void e(String format, Object... args) {
-        Log.e("zzz", formalize(format, args));
+        StackTraceElement frame = Thread.currentThread().getStackTrace()[3];
+        String file = frame.getFileName();
+        int line = frame.getLineNumber();
+
+        L.error(file, line, formalize(format, args));
     }
 
     public static String string(Object object) {
