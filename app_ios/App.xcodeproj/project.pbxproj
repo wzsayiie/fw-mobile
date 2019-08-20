@@ -318,9 +318,9 @@
 			isa = PBXGroup;
 			children = (
 				B4E7CD0E2224098800122637 /* main.m */,
+				B45C1B7921A02B19007CB374 /* Classes */,
 				B45C1B7421A02B19007CB374 /* Properties */,
 				B45C1B7621A02B19007CB374 /* Resoures */,
-				B45C1B7921A02B19007CB374 /* Sources */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -345,7 +345,7 @@
 			path = Resoures;
 			sourceTree = "<group>";
 		};
-		B45C1B7921A02B19007CB374 /* Sources */ = {
+		B45C1B7921A02B19007CB374 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				B425210C22842B05004FA04B /* Prefix.pch */,
@@ -354,7 +354,7 @@
 				B45C1B8B21A02B19007CB374 /* Root */,
 				B45C1B7A21A02B19007CB374 /* UI */,
 			);
-			path = Sources;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		B45C1B7A21A02B19007CB374 /* UI */ = {
@@ -949,7 +949,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C7Z95JWD4Y;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/App/Sources/Prefix.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/App/Classes/Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../GENERATED_HEADERS",
 					"$(SRCROOT)/../thirds_ios/includes",
@@ -975,7 +975,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C7Z95JWD4Y;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/App/Sources/Prefix.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/App/Classes/Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/../GENERATED_HEADERS",
 					"$(SRCROOT)/../thirds_ios/includes",
