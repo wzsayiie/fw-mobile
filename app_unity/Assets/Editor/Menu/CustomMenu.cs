@@ -1,6 +1,6 @@
 using UnityEditor;
 
-public static class Menu
+public static class CustomMenu
 {
     [MenuItem("CUSTOM/Multi/Alpha")]
     static void OnAlpha()
