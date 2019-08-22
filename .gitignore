@@ -2,6 +2,7 @@
 .DS_Store
 
 # Android Studio local files
+*_android/**/.cxx/
 *_android/**/.externalNativeBuild/
 *_android/**/.gradle/
 *_android/**/.idea/
