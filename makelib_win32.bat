@@ -1,6 +1,6 @@
 @echo off
 
-cd /d %~dp0
+pushd %~dp0
 
 ::1 generate headers
 call generate_headers.bat
@@ -63,3 +63,5 @@ for /r %source% %%f in (*.cpp, *.cc) do (
 goto end
 
 :end
+
+popd

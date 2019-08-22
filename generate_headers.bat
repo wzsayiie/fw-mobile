@@ -1,6 +1,6 @@
 @echo off
 
-cd /d %~dp0
+pushd %~dp0
 
 ::This batch will traverse headers and create new homonymic headers reference former.
 ::It will avoid developer adding vast header search paths tediously.
@@ -43,3 +43,5 @@ for /r %source% %%f in (*.h*) do (
 )
 
 :end
+
+popd
