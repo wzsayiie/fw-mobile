@@ -11,7 +11,9 @@
 //from App/Sources/Extension
 #import "CQGCD.h"
 #import "NSBundle+CQ.h"
+#import "NSMutableDictionary+CQ.h"
 #import "NSNotificationCenter+CQ.h"
+#import "NSString+CQ.h"
 #import "UIDevice+CQ.h"
 #import "UIView+CQ.h"
 #import "UIViewController+CQ.h"

@@ -8,3 +8,5 @@
 + (void)removeObserver:(NSObject *)observer;
 
 @end
+
+@compatibility_alias NOTIF NSNotificationCenter;

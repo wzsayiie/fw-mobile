@@ -24,8 +24,9 @@
         E(@"add observer '%@', but try bind a empty selector", className);
         return;
     }
-    if (name.length) {
+    if (name.length == 0) {
         E(@"add observer '%@', but don't specify corresponding event", className);
+        return;
     }
     
     I(@"add observer '%@:%ld' for '%@'", className, (long)observer.hash, name);

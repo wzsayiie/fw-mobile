@@ -24,6 +24,8 @@
 		B45C1BB221A02B19007CB374 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B45C1B7821A02B19007CB374 /* Assets.xcassets */; };
 		B45C1BB821A02B19007CB374 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1B8E21A02B19007CB374 /* AppDelegate.m */; };
 		B45C1BD021A034C0007CB374 /* DailyDemoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B45C1BCF21A034C0007CB374 /* DailyDemoController.xib */; };
+		B467ECE1231000100045E2DC /* NSString+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B467ECE0231000100045E2DC /* NSString+CQ.m */; };
+		B467ECE423100B090045E2DC /* NSMutableDictionary+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B467ECE323100B090045E2DC /* NSMutableDictionary+CQ.m */; };
 		B473DC2622A4E72600218901 /* CQHostAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B473DC1E22A4E72600218901 /* CQHostAppDelegate.m */; };
 		B473DC2722A4E72600218901 /* CQHostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B473DC1F22A4E72600218901 /* CQHostViewController.m */; };
 		B473DC2822A4E72600218901 /* cqwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B473DC2322A4E72600218901 /* cqwindow.cpp */; };
@@ -124,6 +126,10 @@
 		B45C1B8D21A02B19007CB374 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B45C1B8E21A02B19007CB374 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B45C1BCF21A034C0007CB374 /* DailyDemoController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyDemoController.xib; sourceTree = "<group>"; };
+		B467ECDF231000100045E2DC /* NSString+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CQ.h"; sourceTree = "<group>"; };
+		B467ECE0231000100045E2DC /* NSString+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CQ.m"; sourceTree = "<group>"; };
+		B467ECE223100B090045E2DC /* NSMutableDictionary+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+CQ.h"; sourceTree = "<group>"; };
+		B467ECE323100B090045E2DC /* NSMutableDictionary+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+CQ.m"; sourceTree = "<group>"; };
 		B473DC1D22A4E72600218901 /* CQHostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQHostViewController.h; sourceTree = "<group>"; };
 		B473DC1E22A4E72600218901 /* CQHostAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQHostAppDelegate.m; sourceTree = "<group>"; };
 		B473DC1F22A4E72600218901 /* CQHostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQHostViewController.m; sourceTree = "<group>"; };
@@ -233,8 +239,12 @@
 				B475C166230100A200ED7BD3 /* CQGCD.m */,
 				B42520FF22842AD2004FA04B /* NSBundle+CQ.h */,
 				B425210422842AD2004FA04B /* NSBundle+CQ.m */,
+				B467ECE223100B090045E2DC /* NSMutableDictionary+CQ.h */,
+				B467ECE323100B090045E2DC /* NSMutableDictionary+CQ.m */,
 				B475C168230100A300ED7BD3 /* NSNotificationCenter+CQ.h */,
 				B475C165230100A200ED7BD3 /* NSNotificationCenter+CQ.m */,
+				B467ECDF231000100045E2DC /* NSString+CQ.h */,
+				B467ECE0231000100045E2DC /* NSString+CQ.m */,
 				B425210122842AD2004FA04B /* UIDevice+CQ.h */,
 				B425210522842AD2004FA04B /* UIDevice+CQ.m */,
 				B42520FE22842AD2004FA04B /* UIView+CQ.h */,
@@ -747,9 +757,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE90E649228727460071D4D3 /* cqluasource.cpp in Sources */,
+				B467ECE1231000100045E2DC /* NSString+CQ.m in Sources */,
 				B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */,
 				B4CFD97421C7475000FFF4CF /* DailyDemoController.m in Sources */,
 				B425210922842AD3004FA04B /* NSBundle+CQ.m in Sources */,
+				B467ECE423100B090045E2DC /* NSMutableDictionary+CQ.m in Sources */,
 				B4EF08B6228D8D9A0089AA4C /* cqcolor.cpp in Sources */,
 				CEEB261C2300655C001FD8D6 /* CQNetStatusListener.m in Sources */,
 				B475C16A230100A300ED7BD3 /* CQGCD.m in Sources */,
