@@ -14,6 +14,7 @@ typedef NS_ENUM(NSInteger, CQNetStatus) {
     CQNetStatusWWAN,
     CQNetStatusWiFi,
 };
+NSString *CQStringFromNetStatus(CQNetStatus status);
 
 @interface CQNetStatusListener : NSObject
 

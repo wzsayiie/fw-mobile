@@ -12,6 +12,17 @@ cq_define_s(CQNotif_NetStatusChanged_Str_WiFiIPv4);
 cq_define_s(CQNotif_NetStatusChanged_Str_WWANIPv6LinkLocal);
 cq_define_s(CQNotif_NetStatusChanged_Str_WiFiIPv6LinkLocal);
 
+NSString *CQStringFromNetStatus(CQNetStatus status) {
+    switch (status) {
+        case CQNetStatusNone: return @"CQNetStatusNone";
+        case CQNetStatusWWAN: return @"CQNetStatusWWAN";
+        case CQNetStatusWiFi: return @"CQNetStatusWiFi";
+        default: {
+            return [NSString stringWithFormat:@"Wrong CQNetStatus:%d", (int)status];
+        }
+    }
+}
+
 @interface CQNetStatusListener()
 @property (nonatomic, assign) SCNetworkReachabilityRef reachability;
 @property (nonatomic, assign) CQNetStatus preferredNetStatus;
@@ -48,6 +59,14 @@ cq_define_s(CQNotif_NetStatusChanged_Str_WiFiIPv6LinkLocal);
     //get current status.
     [self resetPreferredNetStatus:0];
     [self resetIPString];
+    
+    I(@"net status listener startup {");
+    I(@"  preferred status: %@", CQStringFromNetStatus(self.preferredNetStatus));
+    I(@"  WWAN IPv4: %@", self.WWANIPv4);
+    I(@"  WiFi IPv4: %@", self.WiFiIPv4);
+    I(@"  WWAN IPv6 link-local: %@", self.WWANIPv6LinkLocal);
+    I(@"  WiFi IPv6 link-local: %@", self.WiFiIPv6LinkLocal);
+    I(@"}");
     
     //set listener.
     SCNetworkReachabilityContext context = {0, (__bridge void *)self, NULL, NULL, NULL};

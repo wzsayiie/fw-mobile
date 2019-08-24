@@ -2,6 +2,7 @@
 #import "CQSceneNavigator.h"
 #import "CQCrashListener.h"
 #import "CQHotfixManager.h"
+#import "CQNetStatusListener.h"
 
 @implementation AppDelegate
 
@@ -18,6 +19,7 @@
     
     [CQCrashListener sharedObject];
     [CQHotfixManager sharedObject];
+    [CQNetStatusListener sharedObject];
     
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     self.window.rootViewController = CQSceneNavigator.sharedObject;
