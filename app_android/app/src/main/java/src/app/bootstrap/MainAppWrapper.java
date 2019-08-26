@@ -7,6 +7,7 @@ import src.app.boot.CrashListener;
 import src.app.mod.ActivityHelper;
 import src.app.mod.AppInfo;
 import src.app.mod.HotfixHelper;
+import src.app.mod.NetStatusHelper;
 import src.library.foundation.L;
 
 public class MainAppWrapper extends AppWrapper {
@@ -34,5 +35,6 @@ public class MainAppWrapper extends AppWrapper {
         CrashListener.get();
         HotfixHelper.get();
         ActivityHelper.get();
+        NetStatusHelper.get();
     }
 }

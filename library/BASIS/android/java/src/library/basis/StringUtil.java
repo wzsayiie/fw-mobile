@@ -6,6 +6,14 @@ public class StringUtil {
         return string == null || string.isEmpty();
     }
 
+    public static boolean isEqual(String a, String b) {
+        if (a != null) {
+            return a.equals(b);
+        } else {
+            return b == null;
+        }
+    }
+
     public static String hexStringFromBytes(byte[] bytes) {
         if (bytes == null || bytes.length == 0) {
             return "";
