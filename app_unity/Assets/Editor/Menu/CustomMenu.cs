@@ -3,17 +3,17 @@ using UnityEditor;
 public static class CustomMenu
 {
     [MenuItem("CUSTOM/Multi/Alpha")]
-    static void OnAlpha()
+    private static void OnAlpha()
     {
     }
 
     [MenuItem("CUSTOM/Multi/Beta")]
-    static void OnBeta()
+    private static void OnBeta()
     {
     }
 
     [MenuItem("CUSTOM/Gamma")]
-    static void OnGamma()
+    private static void OnGamma()
     {
     }
 }

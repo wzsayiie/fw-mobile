@@ -5,14 +5,14 @@ public class GameRoot : MonoBehaviour
     public static GameObject    GameObject { get; private set; }
     public static MonoBehaviour Behaviour  { get; private set; }
 
-    void Awake()
+    private void Awake()
     {
         DontDestroyOnLoad(gameObject);
         GameObject = gameObject;
         Behaviour = this;
     }
 
-    void Start()
+    private void Start()
     {
     }
 }

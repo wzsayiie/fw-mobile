@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WorldSceneRoot : MonoBehaviour
 {
-    void Start()
+    private void Start()
     {
     }
 }
