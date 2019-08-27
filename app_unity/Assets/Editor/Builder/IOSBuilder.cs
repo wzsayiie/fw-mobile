@@ -4,27 +4,26 @@ using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEditor.iOS.Xcode;
 
-class IOSBuilder
+public static class IOSBuilder
 {
-    //configuration begin
-    const string AppPackageID = ""; // bundle id
-    const string TeamIdentity = ""; // team id
-    const string SignIdentity = ""; // command "security find-identity" to find
-    const string Provisioning = ""; // name of provision profile exported in xcode
-    const string ExportMethod = ""; // "ad-hoc", "app-store", "development" or "enterprise"
-    const string AllowBitcode = ""; // "true" or "false"
-    const string ProductsName = "unity";
+    ///configuration begin
+    private const string AppPackageID = ""; // bundle id
+    private const string TeamIdentity = ""; // team id
+    private const string SignIdentity = ""; // command "security find-identity" to find
+    private const string Provisioning = ""; // name of provision profile exported in xcode
+    private const string ExportMethod = ""; // "ad-hoc", "app-store", "development" or "enterprise"
+    private const string AllowBitcode = ""; // "true" or "false"
 
-    static string[] Scenes
-    {
-        get
-        {
-            return new string[] { "Assets/Scenes/LaunchScene.unity" };
-        }
-    }
-    //configuration end
+    private const string ProductDPath = "../BUILD";
+    private const string ProductsName = "unity";
 
-    static void Build()
+    private static readonly string[] Scenes = {
+        "Assets/Scene/LaunchScene.unity",
+        "Assets/Scene/WorldScene.unity"
+    };
+    ///configuration end
+
+    public static void Build()
     {
         if (AppPackageID.Length == 0)
         {
@@ -36,7 +35,7 @@ class IOSBuilder
     }
 
     [PostProcessBuild]
-    static void ExportIPA(BuildTarget buildTarget, string projectDirectory)
+    private static void ExportIPA(BuildTarget buildTarget, string projectDirectory)
     {
         if (buildTarget != BuildTarget.iOS) return;
 
@@ -53,7 +52,7 @@ class IOSBuilder
         MoveProducts(projectDirectory);
     }
 
-    static void GenerateXcodeProject()
+    private static void GenerateXcodeProject()
     {
         string directory = "XCODEBUILD";
         if (Directory.Exists(directory))
@@ -65,7 +64,7 @@ class IOSBuilder
         BuildPipeline.BuildPlayer(Scenes, directory, BuildTarget.iOS, BuildOptions.None);
     }
 
-    static void EditProjectSettings(string directory)
+    private static void EditProjectSettings(string directory)
     {
         var file = directory + "/Unity-iPhone.xcodeproj/project.pbxproj";
         var settings = new PBXProject();
@@ -81,7 +80,7 @@ class IOSBuilder
         settings.WriteToFile(file);
     }
 
-    static void WriteExportOptions(string directory)
+    private static void WriteExportOptions(string directory)
     {
         string options = "";
         options +=/**/"<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
@@ -110,7 +109,7 @@ class IOSBuilder
         File.WriteAllText(directory + "/ExportOptions.plist", options);
     }
 
-    static void ExportIPA(string directory)
+    private static void ExportIPA(string directory)
     {
         string scriptPath = directory + "/Export.sh";
 
@@ -149,32 +148,28 @@ class IOSBuilder
         process.Close();
     }
 
-    static void MoveProducts(string fromDir)
+    private static void MoveProducts(string fromDir)
     {
-        string toDir = "../BUILD";
-        string toSymbol = toDir + "/" + ProductsName + ".dSYM";
-        string toAppIPA = toDir + "/" + ProductsName + ".ipa";
+        string toXCArch = ProductDPath + "/" + ProductsName + ".xcarchive";
+        string toAppIPA = ProductDPath + "/" + ProductsName + ".ipa";
 
-        if (!Directory.Exists(toDir))
+        if (!Directory.Exists(ProductDPath))
         {
-            Directory.CreateDirectory(toDir);
+            Directory.CreateDirectory(ProductDPath);
         }
-        if (Directory.Exists(toSymbol))
+        if (Directory.Exists(toXCArch))
         {
-            Directory.Delete(toSymbol, true);
+            Directory.Delete(toXCArch, true);
         }
         if (File.Exists(toAppIPA))
         {
             File.Delete(toAppIPA);
         }
 
-        int nameStart = AppPackageID.LastIndexOf('.') + 1;
-        string name = AppPackageID.Substring(nameStart);
-
-        string fromSymbol = fromDir + "/Unity-iPhone.xcarchive/dSYMs/" + name + ".app.dSYM";
+        string fromXCArch = fromDir + "/Unity-iPhone.xcarchive";
         string fromAppIPA = fromDir + "/Export/Unity-iPhone.ipa";
 
-        Directory.Move(fromSymbol, toSymbol);
+        Directory.Move(fromXCArch, toXCArch);
         File.Move(fromAppIPA, toAppIPA);
     }
 }
