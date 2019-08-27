@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class LaunchSceneRoot : MonoBehaviour
 {
-    private void Start()
+    private void Awake()
     {
     }
 }

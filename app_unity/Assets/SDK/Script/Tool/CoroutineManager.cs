@@ -11,6 +11,6 @@ public static class CoroutineManager
             return null;
         }
 
-        return GameRoot.Behaviour.StartCoroutine(routine);
+        return SDKRoot.Instance.StartCoroutine(routine);
     }
 }
