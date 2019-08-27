@@ -98,11 +98,11 @@ function export_ipa() {
 
 function move_outputs() {
     rm   -rf $outputs_dir/$outputs_nam.ipa
-    rm   -rf $outputs_dir/$outputs_nam.dSym
+    rm   -rf $outputs_dir/$outputs_nam.xcarchive
     mkdir -p $outputs_dir
 
-    mv $project_dir/build/$scheme_name.ipa                                   $outputs_dir/$outputs_nam.ipa
-    mv $project_dir/build/$scheme_name.xcarchive/dSYMs/$scheme_name.app.dSYM $outputs_dir/$outputs_nam.dSym
+    mv $project_dir/build/$scheme_name.ipa       $outputs_dir/$outputs_nam.ipa
+    mv $project_dir/build/$scheme_name.xcarchive $outputs_dir/$outputs_nam.xcarchive
 }
 
 clean_cache
