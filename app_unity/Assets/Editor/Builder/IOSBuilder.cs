@@ -6,7 +6,7 @@ using UnityEditor.iOS.Xcode;
 
 public static class IOSBuilder
 {
-    ///configuration begin
+    //configuration begin
     private const string AppPackageID = ""; // bundle id
     private const string TeamIdentity = ""; // team id
     private const string SignIdentity = ""; // command "security find-identity" to find
@@ -21,7 +21,7 @@ public static class IOSBuilder
         "Assets/Scene/LaunchScene.unity",
         "Assets/Scene/WorldScene.unity"
     };
-    ///configuration end
+    //configuration end
 
     public static void Build()
     {

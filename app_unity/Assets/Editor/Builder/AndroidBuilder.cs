@@ -4,7 +4,7 @@ using UnityEditor;
 
 public static class AndroidBuilder
 {
-    ///configuration begin
+    //configuration begin
     private const string AppPackageID = "domain.corp.store.flavor.name";
 
     private const string KeystoreFile = "MobileKeystore/Android/master.jks";
@@ -19,7 +19,7 @@ public static class AndroidBuilder
         "Assets/Scene/LaunchScene.unity",
         "Assets/Scene/WorldScene.unity"
     };
-    ///configuration end
+    //configuration end
 
     public static void Build()
     {

@@ -48,6 +48,14 @@ It will avoid developer adding vast header search paths tediously.
 * generate_headers
 * generate_headers.bat
 
+**Unity Package Export Scripts**
+
+These scripts will export the generic part of *app_unity/Assets*
+to **unitypackage** to *BUILD/*.
+
+* export_unity_pkg
+* export_unity_pkg.bat
+
 **Portable Library:**
 
 The corss-platform source,
