@@ -4,11 +4,11 @@ using UnityEditor;
 public static class SDKExporter
 {
     //configuration begin
-    private static readonly string[] ExportFiles = {
-        "Assets/SDK"
+    static readonly string[] ExportFiles = {
+        Path.Combine("Assets", "SDK")
     };
-    private const string ExportDirectory = "../BUILD";
-    private const string PackageFileName = "sdk.unitypackage";
+    static readonly string ExportDirectory = Path.Combine("..", "BUILD");
+    static readonly string PackageFileName = "sdk.unitypackage";
     //configuration end
 
     public static void Export()
@@ -18,7 +18,7 @@ public static class SDKExporter
             Directory.CreateDirectory(ExportDirectory);
         }
 
-        string packagePath = ExportDirectory + "/" + PackageFileName;
+        string packagePath = Path.Combine(ExportDirectory, PackageFileName);
         if (File.Exists(packagePath))
         {
             File.Delete(packagePath);

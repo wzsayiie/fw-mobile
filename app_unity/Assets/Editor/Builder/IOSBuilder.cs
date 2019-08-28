@@ -7,19 +7,19 @@ using UnityEditor.iOS.Xcode;
 public static class IOSBuilder
 {
     //configuration begin
-    private const string AppPackageID = ""; // bundle id
-    private const string TeamIdentity = ""; // team id
-    private const string SignIdentity = ""; // command "security find-identity" to find
-    private const string Provisioning = ""; // name of provision profile exported in xcode
-    private const string ExportMethod = ""; // "ad-hoc", "app-store", "development" or "enterprise"
-    private const string AllowBitcode = ""; // "true" or "false"
+    static readonly string AppPackageID = ""; // bundle id
+    static readonly string TeamIdentity = ""; // team id
+    static readonly string SignIdentity = ""; // command "security find-identity" to find
+    static readonly string Provisioning = ""; // name of provision profile exported in xcode
+    static readonly string ExportMethod = ""; // "ad-hoc", "app-store", "development" or "enterprise"
+    static readonly string AllowBitcode = ""; // "true" or "false"
 
-    private const string ProductDPath = "../BUILD";
-    private const string ProductsName = "unity";
+    static readonly string ProductDPath = Path.Combine("..", "BUILD");
+    static readonly string ProductsName = "unity";
 
-    private static readonly string[] Scenes = {
-        "Assets/Scene/LaunchScene.unity",
-        "Assets/Scene/WorldScene.unity"
+    static readonly string[] Scenes = {
+        Path.Combine("Assets", "Scene", "LaunchScene.unity"),
+        Path.Combine("Assets", "Scene", "WorldScene.unity")
     };
     //configuration end
 
@@ -66,7 +66,7 @@ public static class IOSBuilder
 
     private static void EditProjectSettings(string directory)
     {
-        var file = directory + "/Unity-iPhone.xcodeproj/project.pbxproj";
+        var file = Path.Combine(directory, "Unity-iPhone.xcodeproj", "project.pbxproj");
         var settings = new PBXProject();
         settings.ReadFromFile(file);
 
@@ -106,12 +106,13 @@ public static class IOSBuilder
         options = options.Replace("$(provision)", Provisioning);
         options = options.Replace("$(bitcode)"  , AllowBitcode);
 
-        File.WriteAllText(directory + "/ExportOptions.plist", options);
+        string plistFilePath = Path.Combine(directory, "ExportOptions.plist");
+        File.WriteAllText(plistFilePath, options);
     }
 
     private static void ExportIPA(string directory)
     {
-        string scriptPath = directory + "/Export.sh";
+        string scriptPath = Path.Combine(directory, "Export.sh");
 
         string script = "";
         script +=/**/"#!/bin/bash";
@@ -150,8 +151,8 @@ public static class IOSBuilder
 
     private static void MoveProducts(string fromDir)
     {
-        string toXCArch = ProductDPath + "/" + ProductsName + ".xcarchive";
-        string toAppIPA = ProductDPath + "/" + ProductsName + ".ipa";
+        string toXCArch = Path.Combine(ProductDPath, ProductsName) + ".xcarchive";
+        string toAppIPA = Path.Combine(ProductDPath, ProductsName) + ".ipa";
 
         if (!Directory.Exists(ProductDPath))
         {
@@ -166,8 +167,8 @@ public static class IOSBuilder
             File.Delete(toAppIPA);
         }
 
-        string fromXCArch = fromDir + "/Unity-iPhone.xcarchive";
-        string fromAppIPA = fromDir + "/Export/Unity-iPhone.ipa";
+        string fromXCArch = Path.Combine(fromDir, "Unity-iPhone.xcarchive");
+        string fromAppIPA = Path.Combine(fromDir, "Export", "Unity-iPhone.ipa");
 
         Directory.Move(fromXCArch, toXCArch);
         File.Move(fromAppIPA, toAppIPA);

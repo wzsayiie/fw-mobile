@@ -5,19 +5,19 @@ using UnityEditor;
 public static class AndroidBuilder
 {
     //configuration begin
-    private const string AppPackageID = "domain.corp.store.flavor.name";
+    static readonly string AppPackageID = "domain.corp.store.flavor.name";
 
-    private const string KeystoreFile = "MobileKeystore/Android/master.jks";
-    private const string KeystorePass = "master";
-    private const string KeyaliasName = "master";
-    private const string KeyaliasPass = "master";
+    static readonly string KeystoreFile = Path.Combine("MobileKeystore", "Android", "master.jks");
+    static readonly string KeystorePass = "master";
+    static readonly string KeyaliasName = "master";
+    static readonly string KeyaliasPass = "master";
 
-    private const string ExportAKPDir = "../BUILD";
-    private const string BuiltAPKName = "unity.apk";
+    static readonly string ExportAKPDir = Path.Combine("..", "BUILD");
+    static readonly string BuiltAPKName = "unity.apk";
 
-    private static readonly string[] Scenes = {
-        "Assets/Scene/LaunchScene.unity",
-        "Assets/Scene/WorldScene.unity"
+    static readonly string[] Scenes = {
+        Path.Combine("Assets", "Scene", "LaunchScene.unity"),
+        Path.Combine("Assets", "Scene", "WorldScene.unity")
     };
     //configuration end
 
@@ -40,7 +40,7 @@ public static class AndroidBuilder
         }
 
         //move apk.
-        string toAPK = ExportAKPDir + "/" + BuiltAPKName;
+        string toAPK = Path.Combine(ExportAKPDir, BuiltAPKName);
         if (File.Exists(toAPK))
         {
             File.Delete(toAPK);
@@ -60,7 +60,7 @@ public static class AndroidBuilder
         {
             if (it.EndsWith(symbolsSuffix, StringComparison.OrdinalIgnoreCase))
             {
-                File.Move(it, ExportAKPDir + "/" + Path.GetFileName(it));
+                File.Move(it, Path.Combine(ExportAKPDir, Path.GetFileName(it)));
             }
         }
     }
