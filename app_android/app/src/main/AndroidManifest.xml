@@ -52,15 +52,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name="src.library.subsystem.SubsystemActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden">
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-                <action android:name="libs.subsystem" />
-            </intent-filter>
-        </activity>
-
         <service android:name=".components.services.WorkService" android:process=":task">
         </service>
 
