@@ -2,7 +2,7 @@
 
 #include "cqgeometry.hh"
 
-_CQUIKIT_BEGIN_VERSION_NS
+_CQCOCOA_BEGIN_VERSION_NS
 
 cq_declare(cqView);
 cq_declare(cqWindow);
@@ -14,4 +14,4 @@ cq_class(cqTouch, cqObject) {
     virtual cqPoint locationInView(cqViewRef view);
 };
 
-_CQUIKIT_END_VERSION_NS
+_CQCOCOA_END_VERSION_NS

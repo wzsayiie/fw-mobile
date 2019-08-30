@@ -3,7 +3,7 @@
 #include "cqcolor.hh"
 #include "cqgeometry.hh"
 
-_CQUIKIT_BEGIN_VERSION_NS
+_CQCOCOA_BEGIN_VERSION_NS
 
 cq_declare(cqWindow);
 
@@ -26,4 +26,4 @@ struct cqGraphics {
     static void popContext();
 };
 
-_CQUIKIT_END_VERSION_NS
+_CQCOCOA_END_VERSION_NS

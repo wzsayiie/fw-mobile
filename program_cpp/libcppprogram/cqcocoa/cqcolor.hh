@@ -1,8 +1,8 @@
 #pragma once
 
-#include "cquikitbase.hh"
+#include "cqcocoabase.hh"
 
-_CQUIKIT_BEGIN_VERSION_NS
+_CQCOCOA_BEGIN_VERSION_NS
 
 struct cqColor {
     
@@ -32,4 +32,4 @@ struct cqColor {
     static const cqColor ClearColor;
 };
 
-_CQUIKIT_END_VERSION_NS
+_CQCOCOA_END_VERSION_NS

@@ -2,7 +2,7 @@
 
 #include "cqview.hh"
 
-_CQUIKIT_BEGIN_VERSION_NS
+_CQCOCOA_BEGIN_VERSION_NS
 
 cq_class(cqViewController, cqResponder) {
     
@@ -14,4 +14,4 @@ cq_class(cqViewController, cqResponder) {
     cqResponderRef nextResponder() override;
 };
 
-_CQUIKIT_END_VERSION_NS
+_CQCOCOA_END_VERSION_NS

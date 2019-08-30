@@ -4,7 +4,7 @@
 #include "cqgeometry.hh"
 #include "cqresponder.hh"
 
-_CQUIKIT_BEGIN_VERSION_NS
+_CQCOCOA_BEGIN_VERSION_NS
 
 cq_declare(cqViewController);
 cq_declare(cqWindow);
@@ -46,4 +46,4 @@ cq_class(cqView, cqResponder) {
     virtual bool pointInside(cqPoint point, cqEventRef event);
 };
 
-_CQUIKIT_END_VERSION_NS
+_CQCOCOA_END_VERSION_NS

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "cquikitbase.hh"
+#include "cqcocoabase.hh"
 
-_CQUIKIT_BEGIN_VERSION_NS
+_CQCOCOA_BEGIN_VERSION_NS
 
 struct cqPoint {
     
@@ -43,4 +43,4 @@ const char *cqStringFromPoint(cqPoint point);
 const char *cqStringFromSize(cqSize size);
 const char *cqStringFromRect(cqRect rect);
 
-_CQUIKIT_END_VERSION_NS
+_CQCOCOA_END_VERSION_NS

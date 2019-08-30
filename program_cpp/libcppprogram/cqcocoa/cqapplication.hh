@@ -2,7 +2,7 @@
 
 #include "cqresponder.hh"
 
-_CQUIKIT_BEGIN_VERSION_NS
+_CQCOCOA_BEGIN_VERSION_NS
 
 cq_class(cqApplicationDelegate, cqResponder) {
     
@@ -23,4 +23,4 @@ cq_class(cqApplication, cqResponder) {
     static void main(cqApplicationDelegateRef delegate);
 };
 
-_CQUIKIT_END_VERSION_NS
+_CQCOCOA_END_VERSION_NS

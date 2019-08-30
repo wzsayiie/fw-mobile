@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cquikit.hh"
+#include "cqcocoa.hh"
 
 cq_class(RootViewController, cqViewController) {
     

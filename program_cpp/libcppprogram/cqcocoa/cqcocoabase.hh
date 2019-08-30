@@ -1,4 +1,4 @@
 #pragma one
 
 #include "cqcppbasis.hh"
-#include "_CQUIKIT_VERSION.h"
+#include "_CQCOCOA_VERSION.h"
