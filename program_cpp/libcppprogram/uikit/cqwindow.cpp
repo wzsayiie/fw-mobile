@@ -1,11 +1,12 @@
 #include "cqwindow.hh"
 #include "cqapplication.hh"
-#include "cqopengl.h"
+#include "cqgraphics.hh"
 #include "cqtouchesevent_p.hh"
 #include "cqwindow.h"
 
 cq_member(cqWindow) {
     cq_window *window = nullptr;
+    
     cqViewControllerRef rootViewController;
     cqViewRef touchesResponder;
 };
@@ -28,22 +29,18 @@ cqViewControllerRef cqWindow::rootViewController() {
 
 static void load(cq_window *window) {
     auto self = (cqWindow *)cq_window_extra(window);
-    if (self == nullptr) {
-        return;
-    }
     
     cqRect rect; {
         rect.size.width  = cq_window_width (window);
         rect.size.height = cq_window_height(window);
     }
     self->setFrame(rect);
+    
+    cqGraphics::startupGraphicsProgram(self->strongRef());
 }
 
 static void appear(cq_window *window) {
-    auto self = (cqWindow *)cq_window_extra(window);
-    if (self == nullptr) {
-        return;
-    }
+    //auto self = (cqWindow *)cq_window_extra(window);
     
     auto delegate = cqApplication::get()->delegate();
     if (delegate != nullptr) {
@@ -52,10 +49,7 @@ static void appear(cq_window *window) {
 }
 
 static void disappear(cq_window *window) {
-    auto self = (cqWindow *)cq_window_extra(window);
-    if (self == nullptr) {
-        return;
-    }
+    //auto self = (cqWindow *)cq_window_extra(window);
     
     auto delegate = cqApplication::get()->delegate();
     if (delegate != nullptr) {
@@ -65,21 +59,18 @@ static void disappear(cq_window *window) {
 
 static void resize(cq_window *window, float width, float height) {
     auto self = (cqWindow *)cq_window_extra(window);
-    if (self == nullptr) {
-        return;
-    }
     
     self->setFrame(cqRect(0, 0, width, height));
 }
 
 static void glpaint(cq_window *window) {
     auto self = (cqWindow *)cq_window_extra(window);
-    if (self == nullptr) {
-        return;
-    }
     
-    glClearColor(0.6, 0.9, 0.5, 1);
-    glClear(GL_COLOR_BUFFER_BIT);
+    cqGraphics::prepareDraw();
+    
+    cqGraphics::pushContext(cqContext(0, 0));
+    self->drawSelfAndSubviews();
+    cqGraphics::popContext();
 }
 
 static void pbegan(cq_window *window, float x, float y) {

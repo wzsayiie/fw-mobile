@@ -1,5 +1,7 @@
 #include "cqcbasis.h"
 #include <cassert>
+#include <cfloat>
+#include <cmath>
 #include <string>
 #include <vector>
 
@@ -46,6 +48,16 @@ void _cq_resize_data(_cq_data *data, size_t size, size_t count) {
     } else {
         _cq_clear_data(data);
     }
+}
+
+//float number comparision
+
+bool cq_flt_equal(float a, float b) {
+    return fabsf(a - b) < FLT_EPSILON;
+}
+
+bool cq_dbl_equal(double a, double b) {
+    return fabs(a - b) < DBL_EPSILON;
 }
 
 //string:

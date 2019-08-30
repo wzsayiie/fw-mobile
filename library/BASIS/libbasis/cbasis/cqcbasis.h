@@ -89,6 +89,11 @@ CQ_C_LINK void _cq_assign_data(struct _cq_data *data, const void *items, size_t 
 CQ_C_LINK void _cq_clear_data(struct _cq_data *data);
 CQ_C_LINK void _cq_resize_data(struct _cq_data *data, size_t size, size_t count);
 
+//float number comparision
+
+CQ_C_LINK bool cq_flt_equal(float  a, float  b);
+CQ_C_LINK bool cq_dbl_equal(double a, double b);
+
 //string:
 
 CQ_C_LINK bool cq_str_empty(const char *string);
