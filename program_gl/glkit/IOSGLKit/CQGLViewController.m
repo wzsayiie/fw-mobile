@@ -64,9 +64,9 @@
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
-    //NOTE: put update() before glpaint(). update data above all, after paint ui.
+    //NOTE: put update() before gldraw(). update data above all, after draw ui.
     _cq_window_update(self.wid);
-    _cq_window_glpaint(self.wid);
+    _cq_window_gldraw(self.wid);
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size

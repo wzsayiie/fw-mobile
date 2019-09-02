@@ -63,7 +63,7 @@ static void resize(cq_window *window, float width, float height) {
     self->setFrame(cqRect(0, 0, width, height));
 }
 
-static void glpaint(cq_window *window) {
+static void gldraw(cq_window *window) {
     auto self = (cqWindow *)cq_window_extra(window);
     
     cqGraphics::prepareDraw();
@@ -128,7 +128,7 @@ void cqWindow::makeKeyAndVisible() {
     procedure.appear = appear;
     procedure.disappear = disappear;
     procedure.resize = resize;
-    procedure.glpaint = glpaint;
+    procedure.gldraw = gldraw;
     procedure.pbegan = pbegan;
     procedure.pmoved = pmoved;
     procedure.pended = pended;

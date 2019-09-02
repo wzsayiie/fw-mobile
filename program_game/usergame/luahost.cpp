@@ -29,7 +29,7 @@ static void load(cq_window *window) {
     cq_lua_do_string("require 'cqruntime'");
 }
 
-static void glpaint(cq_window *window) {
+static void gldraw(cq_window *window) {
     glClearColor(0.5, 0.6, 0.9, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
 }
@@ -38,7 +38,7 @@ extern "C" void _cq_lua_entry() {
     
     cq_procedure procedure = {nullptr};
     procedure.load = load;
-    procedure.glpaint = glpaint;
+    procedure.gldraw = gldraw;
     
     cq_window *window = cq_create_window();
     cq_set_procedure(window, &procedure);
