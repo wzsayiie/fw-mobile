@@ -10,7 +10,7 @@ public class AppContextAssist {
 
     private static Application getCustomApp() {
         try {
-            Class<?> clazz = Class.forName("src.app.host.basis.HostActivity");
+            Class<?> clazz = Class.forName("src.library.glkit.GLActivity");
             Method method = clazz.getMethod("sharedInstance");
             Activity activity = (Activity) method.invoke(clazz);
             return activity.getApplication();

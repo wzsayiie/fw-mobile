@@ -85,9 +85,9 @@ because developer need the library possibly on Unity editor.
 Lightweight application framework.
 Developer can use them to build little, portable application.
 
-* program_basis
-* program_cpp
-* program_lua
+* program_app
+* program_game
+* program_gl
 
 **External Libraries from Thirds:**
 

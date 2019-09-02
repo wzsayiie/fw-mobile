@@ -7,12 +7,6 @@ import src.library.basis.StringUtil;
 public class L {
 
     public static void info(String file, int line, String message) {
-        if (StringUtil.isEmpty(file)) {
-            return;
-        }
-        if (line <= 0) {
-            return;
-        }
         if (StringUtil.isEmpty(message)) {
             return;
         }
@@ -25,12 +19,6 @@ public class L {
     }
 
     public static void error(String file, int line, String message) {
-        if (StringUtil.isEmpty(file)) {
-            return;
-        }
-        if (line <= 0) {
-            return;
-        }
         if (StringUtil.isEmpty(message)) {
             return;
         }

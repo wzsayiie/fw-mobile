@@ -16,15 +16,15 @@ set source="library"
 call :generate
 if not %error% == 0 (goto end)
 
-set source="program_basis"
+set source="program_app"
 call :generate
 if not %error% == 0 (goto end)
 
-set source="program_cpp"
+set source="program_game"
 call :generate
 if not %error% == 0 (goto end)
 
-set source="program_lua"
+set source="program_gl"
 call :generate
 if not %error% == 0 (goto end)
 

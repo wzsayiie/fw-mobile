@@ -18,9 +18,31 @@
 		B425212322842BE4004FA04B /* CQSceneNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = B425211922842BE4004FA04B /* CQSceneNavigator.m */; };
 		B425212422842BE4004FA04B /* UIViewController+CQScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B425211C22842BE4004FA04B /* UIViewController+CQScene.m */; };
 		B425212A22842C8E004FA04B /* CQDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B425212922842C8E004FA04B /* CQDemoViewController.m */; };
-		B43C7A872317C79C008353A4 /* cqgraphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B43C7A852317C79C008353A4 /* cqgraphics.cpp */; };
-		B43C7A8A23191481008353A4 /* cqlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B43C7A8823191480008353A4 /* cqlayer.cpp */; };
-		B43C7A8D231916EA008353A4 /* cqcontext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B43C7A8B231916EA008353A4 /* cqcontext.cpp */; };
+		B441152C231CB7EE00053BD7 /* cqwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4411525231CB7EE00053BD7 /* cqwindow.cpp */; };
+		B441152D231CB7EE00053BD7 /* cqopengl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4411526231CB7EE00053BD7 /* cqopengl.cpp */; };
+		B441152E231CB7EE00053BD7 /* CQGLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4411529231CB7EE00053BD7 /* CQGLViewController.m */; };
+		B441152F231CB7EE00053BD7 /* CQGLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B441152A231CB7EE00053BD7 /* CQGLAppDelegate.m */; };
+		B4411552231CB83D00053BD7 /* AppAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4411532231CB83D00053BD7 /* AppAppDelegate.m */; };
+		B4411553231CB83D00053BD7 /* cqgeometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4411539231CB83D00053BD7 /* cqgeometry.cpp */; };
+		B4411554231CB83D00053BD7 /* cqviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B441153B231CB83D00053BD7 /* cqviewcontroller.cpp */; };
+		B4411555231CB83D00053BD7 /* cqresponder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B441153E231CB83D00053BD7 /* cqresponder.cpp */; };
+		B4411556231CB83D00053BD7 /* cqview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4411540231CB83D00053BD7 /* cqview.cpp */; };
+		B4411557231CB83D00053BD7 /* cqcontext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4411542231CB83D00053BD7 /* cqcontext.cpp */; };
+		B4411558231CB83D00053BD7 /* cqlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4411543231CB83D00053BD7 /* cqlayer.cpp */; };
+		B4411559231CB83D00053BD7 /* cqwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4411544231CB83D00053BD7 /* cqwindow.cpp */; };
+		B441155A231CB83D00053BD7 /* cqcolor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4411545231CB83D00053BD7 /* cqcolor.cpp */; };
+		B441155B231CB83D00053BD7 /* cqgraphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4411548231CB83D00053BD7 /* cqgraphics.cpp */; };
+		B441155C231CB83D00053BD7 /* cqevent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B441154D231CB83D00053BD7 /* cqevent.cpp */; };
+		B441155D231CB83D00053BD7 /* cqapplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B441154E231CB83D00053BD7 /* cqapplication.cpp */; };
+		B441155E231CB83D00053BD7 /* cqtouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B441154F231CB83D00053BD7 /* cqtouch.cpp */; };
+		B441155F231CB83D00053BD7 /* cqtouchesevent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4411550231CB83D00053BD7 /* cqtouchesevent.cpp */; };
+		B4411569231CB89C00053BD7 /* GameAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4411567231CB89C00053BD7 /* GameAppDelegate.m */; };
+		B4411578231CBF6A00053BD7 /* appdelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4411574231CBF6A00053BD7 /* appdelegate.cpp */; };
+		B4411579231CBF6A00053BD7 /* rootviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4411575231CBF6A00053BD7 /* rootviewcontroller.cpp */; };
+		B4411580231CBF9200053BD7 /* luahost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B441157B231CBF9200053BD7 /* luahost.cpp */; };
+		B4411581231CBF9200053BD7 /* cqluavm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B441157C231CBF9200053BD7 /* cqluavm.cpp */; };
+		B4411582231CBF9200053BD7 /* cqluasource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B441157E231CBF9200053BD7 /* cqluasource.cpp */; };
+		B4411586231CBFD100053BD7 /* cqappkitarche.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4411584231CBFD100053BD7 /* cqappkitarche.cpp */; };
 		B444D8E321DF6DDF00E5FF54 /* libLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4EC3C6B21DF6D8800E287A4 /* libLibrary.a */; };
 		B4549AB722BCA2FE00781D3C /* L.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4549AB522BCA2FE00781D3C /* L.strings */; };
 		B45C1BB121A02B19007CB374 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B45C1B7721A02B19007CB374 /* LaunchScreen.storyboard */; };
@@ -29,17 +51,9 @@
 		B45C1BD021A034C0007CB374 /* DailyDemoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B45C1BCF21A034C0007CB374 /* DailyDemoController.xib */; };
 		B467ECE1231000100045E2DC /* NSString+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B467ECE0231000100045E2DC /* NSString+CQ.m */; };
 		B467ECE423100B090045E2DC /* NSMutableDictionary+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B467ECE323100B090045E2DC /* NSMutableDictionary+CQ.m */; };
-		B473DC2622A4E72600218901 /* CQHostAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B473DC1E22A4E72600218901 /* CQHostAppDelegate.m */; };
-		B473DC2722A4E72600218901 /* CQHostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B473DC1F22A4E72600218901 /* CQHostViewController.m */; };
-		B473DC2822A4E72600218901 /* cqwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B473DC2322A4E72600218901 /* cqwindow.cpp */; };
-		B473DC2922A4E72600218901 /* cqopengl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B473DC2522A4E72600218901 /* cqopengl.cpp */; };
-		B473DC2B22A5000B00218901 /* luahost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B473DC2A22A5000B00218901 /* luahost.cpp */; };
 		B475C169230100A300ED7BD3 /* NSNotificationCenter+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B475C165230100A200ED7BD3 /* NSNotificationCenter+CQ.m */; };
 		B475C16A230100A300ED7BD3 /* CQGCD.m in Sources */ = {isa = PBXBuildFile; fileRef = B475C166230100A200ED7BD3 /* CQGCD.m */; };
-		B4A4468B228BA74F00B46240 /* cqgeometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4A44689228BA74E00B46240 /* cqgeometry.cpp */; };
 		B4B9D32022278D4E00B35E72 /* liblua.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B9D31F22278D4D00B35E72 /* liblua.a */; };
-		B4C1623922A8C01900D9CA70 /* CPPHostAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C1623722A8C01900D9CA70 /* CPPHostAppDelegate.m */; };
-		B4C1623D22A8C02F00D9CA70 /* LuaHostAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C1623C22A8C02F00D9CA70 /* LuaHostAppDelegate.m */; };
 		B4C7448E22BCAE5100483834 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4C7448C22BCAE5100483834 /* InfoPlist.strings */; };
 		B4CFD97321C7475000FFF4CF /* IAPDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96021C7475000FFF4CF /* IAPDemoController.m */; };
 		B4CFD97421C7475000FFF4CF /* DailyDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96421C7475000FFF4CF /* DailyDemoController.m */; };
@@ -50,20 +64,7 @@
 		B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DCD87B21F17DAE0090BFBB /* UserIdentity.m */; };
 		B4DCD87F21F17DAE0090BFBB /* UserSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DCD87C21F17DAE0090BFBB /* UserSetting.m */; };
 		B4E7CD0F2224098800122637 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E7CD0E2224098800122637 /* main.m */; };
-		B4EF08B6228D8D9A0089AA4C /* cqcolor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4EF08B5228D8D9A0089AA4C /* cqcolor.cpp */; };
 		B4FCC39821F0912700D152DF /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FCC39721F0912700D152DF /* libc++.tbd */; };
-		CE90E647228727460071D4D3 /* cqluavm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E63D228727460071D4D3 /* cqluavm.cpp */; };
-		CE90E649228727460071D4D3 /* cqluasource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E641228727460071D4D3 /* cqluasource.cpp */; };
-		CE90E69422872A350071D4D3 /* appdelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E67C22872A350071D4D3 /* appdelegate.cpp */; };
-		CE90E69522872A350071D4D3 /* rootviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E67E22872A350071D4D3 /* rootviewcontroller.cpp */; };
-		CE90E69622872A350071D4D3 /* cqviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E68222872A350071D4D3 /* cqviewcontroller.cpp */; };
-		CE90E69722872A350071D4D3 /* cqtouchesevent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E68322872A350071D4D3 /* cqtouchesevent.cpp */; };
-		CE90E69822872A350071D4D3 /* cqresponder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E68622872A350071D4D3 /* cqresponder.cpp */; };
-		CE90E69922872A350071D4D3 /* cqview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E68822872A350071D4D3 /* cqview.cpp */; };
-		CE90E69A22872A350071D4D3 /* cqwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E68A22872A350071D4D3 /* cqwindow.cpp */; };
-		CE90E69B22872A350071D4D3 /* cqevent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E68E22872A350071D4D3 /* cqevent.cpp */; };
-		CE90E69C22872A350071D4D3 /* cqapplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E68F22872A350071D4D3 /* cqapplication.cpp */; };
-		CE90E69D22872A350071D4D3 /* cqtouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE90E69022872A350071D4D3 /* cqtouch.cpp */; };
 		CEEB261C2300655C001FD8D6 /* CQNetStatusListener.m in Sources */ = {isa = PBXBuildFile; fileRef = CEEB261B2300655C001FD8D6 /* CQNetStatusListener.m */; };
 /* End PBXBuildFile section */
 
@@ -120,12 +121,58 @@
 		B425211C22842BE4004FA04B /* UIViewController+CQScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CQScene.m"; sourceTree = "<group>"; };
 		B425212822842C8E004FA04B /* CQDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQDemoViewController.h; sourceTree = "<group>"; };
 		B425212922842C8E004FA04B /* CQDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQDemoViewController.m; sourceTree = "<group>"; };
-		B43C7A852317C79C008353A4 /* cqgraphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqgraphics.cpp; sourceTree = "<group>"; };
-		B43C7A862317C79C008353A4 /* cqgraphics.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqgraphics.hh; sourceTree = "<group>"; };
-		B43C7A8823191480008353A4 /* cqlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqlayer.cpp; sourceTree = "<group>"; };
-		B43C7A8923191480008353A4 /* cqlayer.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqlayer.hh; sourceTree = "<group>"; };
-		B43C7A8B231916EA008353A4 /* cqcontext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqcontext.cpp; sourceTree = "<group>"; };
-		B43C7A8C231916EA008353A4 /* cqcontext.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqcontext.hh; sourceTree = "<group>"; };
+		B4411523231CB7EE00053BD7 /* cqopengl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqopengl.h; sourceTree = "<group>"; };
+		B4411524231CB7EE00053BD7 /* cqwindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqwindow.h; sourceTree = "<group>"; };
+		B4411525231CB7EE00053BD7 /* cqwindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqwindow.cpp; sourceTree = "<group>"; };
+		B4411526231CB7EE00053BD7 /* cqopengl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqopengl.cpp; sourceTree = "<group>"; };
+		B4411528231CB7EE00053BD7 /* CQGLAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQGLAppDelegate.h; sourceTree = "<group>"; };
+		B4411529231CB7EE00053BD7 /* CQGLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQGLViewController.m; sourceTree = "<group>"; };
+		B441152A231CB7EE00053BD7 /* CQGLAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQGLAppDelegate.m; sourceTree = "<group>"; };
+		B441152B231CB7EE00053BD7 /* CQGLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQGLViewController.h; sourceTree = "<group>"; };
+		B4411531231CB83D00053BD7 /* AppAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppAppDelegate.h; sourceTree = "<group>"; };
+		B4411532231CB83D00053BD7 /* AppAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppAppDelegate.m; sourceTree = "<group>"; };
+		B4411535231CB83D00053BD7 /* cqtouchesevent_p.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqtouchesevent_p.hh; sourceTree = "<group>"; };
+		B4411536231CB83D00053BD7 /* cqgeometry.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqgeometry.hh; sourceTree = "<group>"; };
+		B4411537231CB83D00053BD7 /* cqappkit.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqappkit.hh; sourceTree = "<group>"; };
+		B4411538231CB83D00053BD7 /* cqview.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqview.hh; sourceTree = "<group>"; };
+		B4411539231CB83D00053BD7 /* cqgeometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqgeometry.cpp; sourceTree = "<group>"; };
+		B441153A231CB83D00053BD7 /* cqcontext.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqcontext.hh; sourceTree = "<group>"; };
+		B441153B231CB83D00053BD7 /* cqviewcontroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqviewcontroller.cpp; sourceTree = "<group>"; };
+		B441153C231CB83D00053BD7 /* cqlayer.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqlayer.hh; sourceTree = "<group>"; };
+		B441153D231CB83D00053BD7 /* cqtouch.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqtouch.hh; sourceTree = "<group>"; };
+		B441153E231CB83D00053BD7 /* cqresponder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqresponder.cpp; sourceTree = "<group>"; };
+		B441153F231CB83D00053BD7 /* cqviewcontroller.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqviewcontroller.hh; sourceTree = "<group>"; };
+		B4411540231CB83D00053BD7 /* cqview.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqview.cpp; sourceTree = "<group>"; };
+		B4411541231CB83D00053BD7 /* cqresponder.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqresponder.hh; sourceTree = "<group>"; };
+		B4411542231CB83D00053BD7 /* cqcontext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqcontext.cpp; sourceTree = "<group>"; };
+		B4411543231CB83D00053BD7 /* cqlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqlayer.cpp; sourceTree = "<group>"; };
+		B4411544231CB83D00053BD7 /* cqwindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqwindow.cpp; sourceTree = "<group>"; };
+		B4411545231CB83D00053BD7 /* cqcolor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqcolor.cpp; sourceTree = "<group>"; };
+		B4411546231CB83D00053BD7 /* cqwindow.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqwindow.hh; sourceTree = "<group>"; };
+		B4411547231CB83D00053BD7 /* cqevent.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqevent.hh; sourceTree = "<group>"; };
+		B4411548231CB83D00053BD7 /* cqgraphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqgraphics.cpp; sourceTree = "<group>"; };
+		B4411549231CB83D00053BD7 /* cqgraphics.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqgraphics.hh; sourceTree = "<group>"; };
+		B441154A231CB83D00053BD7 /* cqcolor.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqcolor.hh; sourceTree = "<group>"; };
+		B441154B231CB83D00053BD7 /* cqapplication.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqapplication.hh; sourceTree = "<group>"; };
+		B441154C231CB83D00053BD7 /* cqappkitbase.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqappkitbase.hh; sourceTree = "<group>"; };
+		B441154D231CB83D00053BD7 /* cqevent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqevent.cpp; sourceTree = "<group>"; };
+		B441154E231CB83D00053BD7 /* cqapplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqapplication.cpp; sourceTree = "<group>"; };
+		B441154F231CB83D00053BD7 /* cqtouch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqtouch.cpp; sourceTree = "<group>"; };
+		B4411550231CB83D00053BD7 /* cqtouchesevent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqtouchesevent.cpp; sourceTree = "<group>"; };
+		B4411551231CB83D00053BD7 /* _CQAPPKIT_VERSION.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _CQAPPKIT_VERSION.h; path = ../program_app/appkit/_CQAPPKIT_VERSION.h; sourceTree = "<group>"; };
+		B4411567231CB89C00053BD7 /* GameAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameAppDelegate.m; sourceTree = "<group>"; };
+		B4411568231CB89C00053BD7 /* GameAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAppDelegate.h; sourceTree = "<group>"; };
+		B4411574231CBF6A00053BD7 /* appdelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = appdelegate.cpp; path = ../program_app/userapp/appdelegate.cpp; sourceTree = "<group>"; };
+		B4411575231CBF6A00053BD7 /* rootviewcontroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = rootviewcontroller.cpp; path = ../program_app/userapp/rootviewcontroller.cpp; sourceTree = "<group>"; };
+		B4411576231CBF6A00053BD7 /* rootviewcontroller.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = rootviewcontroller.hh; path = ../program_app/userapp/rootviewcontroller.hh; sourceTree = "<group>"; };
+		B4411577231CBF6A00053BD7 /* appdelegate.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = appdelegate.hh; path = ../program_app/userapp/appdelegate.hh; sourceTree = "<group>"; };
+		B441157B231CBF9200053BD7 /* luahost.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = luahost.cpp; path = ../program_game/usergame/luahost.cpp; sourceTree = "<group>"; };
+		B441157C231CBF9200053BD7 /* cqluavm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cqluavm.cpp; path = ../program_game/usergame/cqluavm.cpp; sourceTree = "<group>"; };
+		B441157D231CBF9200053BD7 /* cqluavm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cqluavm.h; path = ../program_game/usergame/cqluavm.h; sourceTree = "<group>"; };
+		B441157E231CBF9200053BD7 /* cqluasource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cqluasource.cpp; path = ../program_game/usergame/cqluasource.cpp; sourceTree = "<group>"; };
+		B441157F231CBF9200053BD7 /* cqluasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cqluasource.h; path = ../program_game/usergame/cqluasource.h; sourceTree = "<group>"; };
+		B4411584231CBFD100053BD7 /* cqappkitarche.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqappkitarche.cpp; sourceTree = "<group>"; };
+		B4411585231CBFD100053BD7 /* cqappkitarche.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqappkitarche.h; sourceTree = "<group>"; };
 		B4549AB622BCA2FE00781D3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/L.strings; sourceTree = "<group>"; };
 		B4549AB822BCA30F00781D3C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/L.strings"; sourceTree = "<group>"; };
 		B45C1B5B21A02562007CB374 /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,28 +186,11 @@
 		B467ECE0231000100045E2DC /* NSString+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CQ.m"; sourceTree = "<group>"; };
 		B467ECE223100B090045E2DC /* NSMutableDictionary+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+CQ.h"; sourceTree = "<group>"; };
 		B467ECE323100B090045E2DC /* NSMutableDictionary+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+CQ.m"; sourceTree = "<group>"; };
-		B473DC1D22A4E72600218901 /* CQHostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQHostViewController.h; sourceTree = "<group>"; };
-		B473DC1E22A4E72600218901 /* CQHostAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQHostAppDelegate.m; sourceTree = "<group>"; };
-		B473DC1F22A4E72600218901 /* CQHostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQHostViewController.m; sourceTree = "<group>"; };
-		B473DC2022A4E72600218901 /* CQHostAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQHostAppDelegate.h; sourceTree = "<group>"; };
-		B473DC2222A4E72600218901 /* cqopengl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqopengl.h; sourceTree = "<group>"; };
-		B473DC2322A4E72600218901 /* cqwindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqwindow.cpp; sourceTree = "<group>"; };
-		B473DC2422A4E72600218901 /* cqwindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqwindow.h; sourceTree = "<group>"; };
-		B473DC2522A4E72600218901 /* cqopengl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqopengl.cpp; sourceTree = "<group>"; };
-		B473DC2A22A5000B00218901 /* luahost.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = luahost.cpp; sourceTree = "<group>"; };
 		B475C165230100A200ED7BD3 /* NSNotificationCenter+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+CQ.m"; sourceTree = "<group>"; };
 		B475C166230100A200ED7BD3 /* CQGCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQGCD.m; sourceTree = "<group>"; };
 		B475C167230100A200ED7BD3 /* CQGCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQGCD.h; sourceTree = "<group>"; };
 		B475C168230100A300ED7BD3 /* NSNotificationCenter+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+CQ.h"; sourceTree = "<group>"; };
-		B4954B3D22F2B16E00B66C0F /* cqcocoabase.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqcocoabase.hh; sourceTree = "<group>"; };
-		B4954B3E22F2B1A200B66C0F /* _CQCOCOA_VERSION.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _CQCOCOA_VERSION.h; path = ../program_cpp/_CQCOCOA_VERSION.h; sourceTree = "<group>"; };
-		B4A44689228BA74E00B46240 /* cqgeometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqgeometry.cpp; sourceTree = "<group>"; };
-		B4A4468A228BA74F00B46240 /* cqgeometry.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqgeometry.hh; sourceTree = "<group>"; };
 		B4B9D31F22278D4D00B35E72 /* liblua.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblua.a; path = ../thirds_ios/libs/liblua.a; sourceTree = "<group>"; };
-		B4C1623722A8C01900D9CA70 /* CPPHostAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPHostAppDelegate.m; sourceTree = "<group>"; };
-		B4C1623822A8C01900D9CA70 /* CPPHostAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPHostAppDelegate.h; sourceTree = "<group>"; };
-		B4C1623B22A8C02F00D9CA70 /* LuaHostAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaHostAppDelegate.h; sourceTree = "<group>"; };
-		B4C1623C22A8C02F00D9CA70 /* LuaHostAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaHostAppDelegate.m; sourceTree = "<group>"; };
 		B4C7448D22BCAE5100483834 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B4C7448F22BCAE5600483834 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		B4CFD96021C7475000FFF4CF /* IAPDemoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPDemoController.m; sourceTree = "<group>"; };
@@ -179,34 +209,7 @@
 		B4DCD87D21F17DAE0090BFBB /* UserIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserIdentity.h; sourceTree = "<group>"; };
 		B4E7CD0E2224098800122637 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B4EC3C6621DF6D8800E287A4 /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../library_ios/Library.xcodeproj; sourceTree = "<group>"; };
-		B4EF08B4228D8D9A0089AA4C /* cqcolor.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqcolor.hh; sourceTree = "<group>"; };
-		B4EF08B5228D8D9A0089AA4C /* cqcolor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqcolor.cpp; sourceTree = "<group>"; };
 		B4FCC39721F0912700D152DF /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		CE90E63D228727460071D4D3 /* cqluavm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluavm.cpp; sourceTree = "<group>"; };
-		CE90E63E228727460071D4D3 /* cqluavm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluavm.h; sourceTree = "<group>"; };
-		CE90E640228727460071D4D3 /* cqluasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqluasource.h; sourceTree = "<group>"; };
-		CE90E641228727460071D4D3 /* cqluasource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqluasource.cpp; sourceTree = "<group>"; };
-		CE90E67B22872A350071D4D3 /* rootviewcontroller.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rootviewcontroller.hh; sourceTree = "<group>"; };
-		CE90E67C22872A350071D4D3 /* appdelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = appdelegate.cpp; sourceTree = "<group>"; };
-		CE90E67D22872A350071D4D3 /* appdelegate.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = appdelegate.hh; sourceTree = "<group>"; };
-		CE90E67E22872A350071D4D3 /* rootviewcontroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rootviewcontroller.cpp; sourceTree = "<group>"; };
-		CE90E68022872A350071D4D3 /* cqtouchesevent_p.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqtouchesevent_p.hh; sourceTree = "<group>"; };
-		CE90E68122872A350071D4D3 /* cqview.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqview.hh; sourceTree = "<group>"; };
-		CE90E68222872A350071D4D3 /* cqviewcontroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqviewcontroller.cpp; sourceTree = "<group>"; };
-		CE90E68322872A350071D4D3 /* cqtouchesevent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqtouchesevent.cpp; sourceTree = "<group>"; };
-		CE90E68422872A350071D4D3 /* cqtouch.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqtouch.hh; sourceTree = "<group>"; };
-		CE90E68522872A350071D4D3 /* cqcocoa.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqcocoa.hh; sourceTree = "<group>"; };
-		CE90E68622872A350071D4D3 /* cqresponder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqresponder.cpp; sourceTree = "<group>"; };
-		CE90E68722872A350071D4D3 /* cqviewcontroller.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqviewcontroller.hh; sourceTree = "<group>"; };
-		CE90E68822872A350071D4D3 /* cqview.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqview.cpp; sourceTree = "<group>"; };
-		CE90E68922872A350071D4D3 /* cqresponder.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqresponder.hh; sourceTree = "<group>"; };
-		CE90E68A22872A350071D4D3 /* cqwindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqwindow.cpp; sourceTree = "<group>"; };
-		CE90E68B22872A350071D4D3 /* cqwindow.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqwindow.hh; sourceTree = "<group>"; };
-		CE90E68C22872A350071D4D3 /* cqevent.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqevent.hh; sourceTree = "<group>"; };
-		CE90E68D22872A350071D4D3 /* cqapplication.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqapplication.hh; sourceTree = "<group>"; };
-		CE90E68E22872A350071D4D3 /* cqevent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqevent.cpp; sourceTree = "<group>"; };
-		CE90E68F22872A350071D4D3 /* cqapplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqapplication.cpp; sourceTree = "<group>"; };
-		CE90E69022872A350071D4D3 /* cqtouch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqtouch.cpp; sourceTree = "<group>"; };
 		CEEB261A2300655C001FD8D6 /* CQNetStatusListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQNetStatusListener.h; sourceTree = "<group>"; };
 		CEEB261B2300655C001FD8D6 /* CQNetStatusListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQNetStatusListener.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -302,6 +305,154 @@
 			path = CQDemoViewController;
 			sourceTree = "<group>";
 		};
+		B441151D231CB5F100053BD7 /* AppKit */ = {
+			isa = PBXGroup;
+			children = (
+				B4411551231CB83D00053BD7 /* _CQAPPKIT_VERSION.h */,
+				B4411530231CB83D00053BD7 /* IOSAppKit */,
+				B4411533231CB83D00053BD7 /* libapppkit */,
+			);
+			name = AppKit;
+			sourceTree = "<group>";
+		};
+		B4411520231CB61B00053BD7 /* GameKit */ = {
+			isa = PBXGroup;
+			children = (
+				B4411566231CB89C00053BD7 /* IOSGameKit */,
+			);
+			name = GameKit;
+			sourceTree = "<group>";
+		};
+		B4411521231CB7C500053BD7 /* GLKit */ = {
+			isa = PBXGroup;
+			children = (
+				B4411527231CB7EE00053BD7 /* IOSGLKit */,
+				B4411522231CB7EE00053BD7 /* libglkit */,
+			);
+			name = GLKit;
+			sourceTree = "<group>";
+		};
+		B4411522231CB7EE00053BD7 /* libglkit */ = {
+			isa = PBXGroup;
+			children = (
+				B4411526231CB7EE00053BD7 /* cqopengl.cpp */,
+				B4411523231CB7EE00053BD7 /* cqopengl.h */,
+				B4411525231CB7EE00053BD7 /* cqwindow.cpp */,
+				B4411524231CB7EE00053BD7 /* cqwindow.h */,
+			);
+			name = libglkit;
+			path = ../program_gl/glkit/libglkit;
+			sourceTree = "<group>";
+		};
+		B4411527231CB7EE00053BD7 /* IOSGLKit */ = {
+			isa = PBXGroup;
+			children = (
+				B4411528231CB7EE00053BD7 /* CQGLAppDelegate.h */,
+				B441152A231CB7EE00053BD7 /* CQGLAppDelegate.m */,
+				B441152B231CB7EE00053BD7 /* CQGLViewController.h */,
+				B4411529231CB7EE00053BD7 /* CQGLViewController.m */,
+			);
+			name = IOSGLKit;
+			path = ../program_gl/glkit/IOSGLKit;
+			sourceTree = "<group>";
+		};
+		B4411530231CB83D00053BD7 /* IOSAppKit */ = {
+			isa = PBXGroup;
+			children = (
+				B4411531231CB83D00053BD7 /* AppAppDelegate.h */,
+				B4411532231CB83D00053BD7 /* AppAppDelegate.m */,
+			);
+			name = IOSAppKit;
+			path = ../program_app/appkit/IOSAppKit;
+			sourceTree = "<group>";
+		};
+		B4411533231CB83D00053BD7 /* libapppkit */ = {
+			isa = PBXGroup;
+			children = (
+				B4411583231CBFD100053BD7 /* archetype */,
+				B4411534231CB83D00053BD7 /* cppappkit */,
+			);
+			name = libapppkit;
+			path = ../program_app/appkit/libapppkit;
+			sourceTree = "<group>";
+		};
+		B4411534231CB83D00053BD7 /* cppappkit */ = {
+			isa = PBXGroup;
+			children = (
+				B4411537231CB83D00053BD7 /* cqappkit.hh */,
+				B441154C231CB83D00053BD7 /* cqappkitbase.hh */,
+				B441154E231CB83D00053BD7 /* cqapplication.cpp */,
+				B441154B231CB83D00053BD7 /* cqapplication.hh */,
+				B4411545231CB83D00053BD7 /* cqcolor.cpp */,
+				B441154A231CB83D00053BD7 /* cqcolor.hh */,
+				B4411542231CB83D00053BD7 /* cqcontext.cpp */,
+				B441153A231CB83D00053BD7 /* cqcontext.hh */,
+				B441154D231CB83D00053BD7 /* cqevent.cpp */,
+				B4411547231CB83D00053BD7 /* cqevent.hh */,
+				B4411539231CB83D00053BD7 /* cqgeometry.cpp */,
+				B4411536231CB83D00053BD7 /* cqgeometry.hh */,
+				B4411548231CB83D00053BD7 /* cqgraphics.cpp */,
+				B4411549231CB83D00053BD7 /* cqgraphics.hh */,
+				B4411543231CB83D00053BD7 /* cqlayer.cpp */,
+				B441153C231CB83D00053BD7 /* cqlayer.hh */,
+				B441153E231CB83D00053BD7 /* cqresponder.cpp */,
+				B4411541231CB83D00053BD7 /* cqresponder.hh */,
+				B441154F231CB83D00053BD7 /* cqtouch.cpp */,
+				B441153D231CB83D00053BD7 /* cqtouch.hh */,
+				B4411535231CB83D00053BD7 /* cqtouchesevent_p.hh */,
+				B4411550231CB83D00053BD7 /* cqtouchesevent.cpp */,
+				B4411540231CB83D00053BD7 /* cqview.cpp */,
+				B4411538231CB83D00053BD7 /* cqview.hh */,
+				B441153B231CB83D00053BD7 /* cqviewcontroller.cpp */,
+				B441153F231CB83D00053BD7 /* cqviewcontroller.hh */,
+				B4411544231CB83D00053BD7 /* cqwindow.cpp */,
+				B4411546231CB83D00053BD7 /* cqwindow.hh */,
+			);
+			path = cppappkit;
+			sourceTree = "<group>";
+		};
+		B4411566231CB89C00053BD7 /* IOSGameKit */ = {
+			isa = PBXGroup;
+			children = (
+				B4411568231CB89C00053BD7 /* GameAppDelegate.h */,
+				B4411567231CB89C00053BD7 /* GameAppDelegate.m */,
+			);
+			name = IOSGameKit;
+			path = ../program_game/gamekit/IOSGameKit;
+			sourceTree = "<group>";
+		};
+		B4411573231CBF5600053BD7 /* UserApp */ = {
+			isa = PBXGroup;
+			children = (
+				B4411574231CBF6A00053BD7 /* appdelegate.cpp */,
+				B4411577231CBF6A00053BD7 /* appdelegate.hh */,
+				B4411575231CBF6A00053BD7 /* rootviewcontroller.cpp */,
+				B4411576231CBF6A00053BD7 /* rootviewcontroller.hh */,
+			);
+			name = UserApp;
+			sourceTree = "<group>";
+		};
+		B441157A231CBF7900053BD7 /* UserGame */ = {
+			isa = PBXGroup;
+			children = (
+				B441157E231CBF9200053BD7 /* cqluasource.cpp */,
+				B441157F231CBF9200053BD7 /* cqluasource.h */,
+				B441157C231CBF9200053BD7 /* cqluavm.cpp */,
+				B441157D231CBF9200053BD7 /* cqluavm.h */,
+				B441157B231CBF9200053BD7 /* luahost.cpp */,
+			);
+			name = UserGame;
+			sourceTree = "<group>";
+		};
+		B4411583231CBFD100053BD7 /* archetype */ = {
+			isa = PBXGroup;
+			children = (
+				B4411584231CBFD100053BD7 /* cqappkitarche.cpp */,
+				B4411585231CBFD100053BD7 /* cqappkitarche.h */,
+			);
+			path = archetype;
+			sourceTree = "<group>";
+		};
 		B4549AB422BCA2FE00781D3C /* Strings */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,9 +466,9 @@
 			isa = PBXGroup;
 			children = (
 				B45C1B5D21A02562007CB374 /* App */,
-				B473DC1B22A4E6C500218901 /* BasisProgram */,
-				B4BC9C9622041E5500CFD84C /* CPPProgam */,
-				B4B9431422250FB500CE3C9A /* LuaProgram */,
+				B4BC9C9622041E5500CFD84C /* AppProgram */,
+				B4B9431422250FB500CE3C9A /* GameProgram */,
+				B473DC1B22A4E6C500218901 /* GLProgram */,
 				B4FCC39621F0912700D152DF /* Frameworks */,
 				B45C1B5C21A02562007CB374 /* Products */,
 				B4EC3C6621DF6D8800E287A4 /* Library.xcodeproj */,
@@ -435,76 +586,30 @@
 			path = DailyDemoController;
 			sourceTree = "<group>";
 		};
-		B473DC1B22A4E6C500218901 /* BasisProgram */ = {
+		B473DC1B22A4E6C500218901 /* GLProgram */ = {
 			isa = PBXGroup;
 			children = (
-				B473DC1C22A4E72600218901 /* IOSBasisProgram */,
-				B473DC2122A4E72600218901 /* libbasisprogram */,
+				B4411521231CB7C500053BD7 /* GLKit */,
 			);
-			name = BasisProgram;
+			name = GLProgram;
 			sourceTree = "<group>";
 		};
-		B473DC1C22A4E72600218901 /* IOSBasisProgram */ = {
+		B4B9431422250FB500CE3C9A /* GameProgram */ = {
 			isa = PBXGroup;
 			children = (
-				B473DC2022A4E72600218901 /* CQHostAppDelegate.h */,
-				B473DC1E22A4E72600218901 /* CQHostAppDelegate.m */,
-				B473DC1D22A4E72600218901 /* CQHostViewController.h */,
-				B473DC1F22A4E72600218901 /* CQHostViewController.m */,
+				B4411520231CB61B00053BD7 /* GameKit */,
+				B441157A231CBF7900053BD7 /* UserGame */,
 			);
-			name = IOSBasisProgram;
-			path = ../program_basis/IOSBasisProgram;
+			name = GameProgram;
 			sourceTree = "<group>";
 		};
-		B473DC2122A4E72600218901 /* libbasisprogram */ = {
+		B4BC9C9622041E5500CFD84C /* AppProgram */ = {
 			isa = PBXGroup;
 			children = (
-				B473DC2522A4E72600218901 /* cqopengl.cpp */,
-				B473DC2222A4E72600218901 /* cqopengl.h */,
-				B473DC2322A4E72600218901 /* cqwindow.cpp */,
-				B473DC2422A4E72600218901 /* cqwindow.h */,
+				B441151D231CB5F100053BD7 /* AppKit */,
+				B4411573231CBF5600053BD7 /* UserApp */,
 			);
-			name = libbasisprogram;
-			path = ../program_basis/libbasisprogram;
-			sourceTree = "<group>";
-		};
-		B4B9431422250FB500CE3C9A /* LuaProgram */ = {
-			isa = PBXGroup;
-			children = (
-				B4C1623A22A8C02F00D9CA70 /* IOSLuaProgram */,
-				CE90E63C228727460071D4D3 /* libluaprogram */,
-			);
-			name = LuaProgram;
-			sourceTree = "<group>";
-		};
-		B4BC9C9622041E5500CFD84C /* CPPProgam */ = {
-			isa = PBXGroup;
-			children = (
-				B4954B3E22F2B1A200B66C0F /* _CQCOCOA_VERSION.h */,
-				B4C1623622A8C01900D9CA70 /* IOSCPPProgram */,
-				CE90E67922872A350071D4D3 /* libcppprogram */,
-			);
-			name = CPPProgam;
-			sourceTree = "<group>";
-		};
-		B4C1623622A8C01900D9CA70 /* IOSCPPProgram */ = {
-			isa = PBXGroup;
-			children = (
-				B4C1623822A8C01900D9CA70 /* CPPHostAppDelegate.h */,
-				B4C1623722A8C01900D9CA70 /* CPPHostAppDelegate.m */,
-			);
-			name = IOSCPPProgram;
-			path = ../program_cpp/IOSCPPProgram;
-			sourceTree = "<group>";
-		};
-		B4C1623A22A8C02F00D9CA70 /* IOSLuaProgram */ = {
-			isa = PBXGroup;
-			children = (
-				B4C1623B22A8C02F00D9CA70 /* LuaHostAppDelegate.h */,
-				B4C1623C22A8C02F00D9CA70 /* LuaHostAppDelegate.m */,
-			);
-			name = IOSLuaProgram;
-			path = ../program_lua/IOSLuaProgram;
+			name = AppProgram;
 			sourceTree = "<group>";
 		};
 		B4CFD95F21C7475000FFF4CF /* IAPDemoController */ = {
@@ -585,75 +690,6 @@
 				B4B9D31F22278D4D00B35E72 /* liblua.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		CE90E63C228727460071D4D3 /* libluaprogram */ = {
-			isa = PBXGroup;
-			children = (
-				CE90E641228727460071D4D3 /* cqluasource.cpp */,
-				CE90E640228727460071D4D3 /* cqluasource.h */,
-				CE90E63D228727460071D4D3 /* cqluavm.cpp */,
-				CE90E63E228727460071D4D3 /* cqluavm.h */,
-				B473DC2A22A5000B00218901 /* luahost.cpp */,
-			);
-			name = libluaprogram;
-			path = ../program_lua/libluaprogram;
-			sourceTree = "<group>";
-		};
-		CE90E67922872A350071D4D3 /* libcppprogram */ = {
-			isa = PBXGroup;
-			children = (
-				CE90E67F22872A350071D4D3 /* cqcocoa */,
-				CE90E67A22872A350071D4D3 /* user */,
-			);
-			name = libcppprogram;
-			path = ../program_cpp/libcppprogram;
-			sourceTree = "<group>";
-		};
-		CE90E67A22872A350071D4D3 /* user */ = {
-			isa = PBXGroup;
-			children = (
-				CE90E67C22872A350071D4D3 /* appdelegate.cpp */,
-				CE90E67D22872A350071D4D3 /* appdelegate.hh */,
-				CE90E67E22872A350071D4D3 /* rootviewcontroller.cpp */,
-				CE90E67B22872A350071D4D3 /* rootviewcontroller.hh */,
-			);
-			path = user;
-			sourceTree = "<group>";
-		};
-		CE90E67F22872A350071D4D3 /* cqcocoa */ = {
-			isa = PBXGroup;
-			children = (
-				CE90E68F22872A350071D4D3 /* cqapplication.cpp */,
-				CE90E68D22872A350071D4D3 /* cqapplication.hh */,
-				CE90E68522872A350071D4D3 /* cqcocoa.hh */,
-				B4954B3D22F2B16E00B66C0F /* cqcocoabase.hh */,
-				B4EF08B5228D8D9A0089AA4C /* cqcolor.cpp */,
-				B4EF08B4228D8D9A0089AA4C /* cqcolor.hh */,
-				B43C7A8B231916EA008353A4 /* cqcontext.cpp */,
-				B43C7A8C231916EA008353A4 /* cqcontext.hh */,
-				CE90E68E22872A350071D4D3 /* cqevent.cpp */,
-				CE90E68C22872A350071D4D3 /* cqevent.hh */,
-				B4A44689228BA74E00B46240 /* cqgeometry.cpp */,
-				B4A4468A228BA74F00B46240 /* cqgeometry.hh */,
-				B43C7A852317C79C008353A4 /* cqgraphics.cpp */,
-				B43C7A862317C79C008353A4 /* cqgraphics.hh */,
-				B43C7A8823191480008353A4 /* cqlayer.cpp */,
-				B43C7A8923191480008353A4 /* cqlayer.hh */,
-				CE90E68622872A350071D4D3 /* cqresponder.cpp */,
-				CE90E68922872A350071D4D3 /* cqresponder.hh */,
-				CE90E69022872A350071D4D3 /* cqtouch.cpp */,
-				CE90E68422872A350071D4D3 /* cqtouch.hh */,
-				CE90E68022872A350071D4D3 /* cqtouchesevent_p.hh */,
-				CE90E68322872A350071D4D3 /* cqtouchesevent.cpp */,
-				CE90E68822872A350071D4D3 /* cqview.cpp */,
-				CE90E68122872A350071D4D3 /* cqview.hh */,
-				CE90E68222872A350071D4D3 /* cqviewcontroller.cpp */,
-				CE90E68722872A350071D4D3 /* cqviewcontroller.hh */,
-				CE90E68A22872A350071D4D3 /* cqwindow.cpp */,
-				CE90E68B22872A350071D4D3 /* cqwindow.hh */,
-			);
-			path = cqcocoa;
 			sourceTree = "<group>";
 		};
 		CEEB26192300655C001FD8D6 /* CQNetStatusListener */ = {
@@ -771,52 +807,53 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE90E649228727460071D4D3 /* cqluasource.cpp in Sources */,
 				B467ECE1231000100045E2DC /* NSString+CQ.m in Sources */,
+				B4411556231CB83D00053BD7 /* cqview.cpp in Sources */,
 				B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */,
+				B4411559231CB83D00053BD7 /* cqwindow.cpp in Sources */,
 				B4CFD97421C7475000FFF4CF /* DailyDemoController.m in Sources */,
+				B4411558231CB83D00053BD7 /* cqlayer.cpp in Sources */,
+				B4411569231CB89C00053BD7 /* GameAppDelegate.m in Sources */,
 				B425210922842AD3004FA04B /* NSBundle+CQ.m in Sources */,
+				B441155C231CB83D00053BD7 /* cqevent.cpp in Sources */,
+				B4411582231CBF9200053BD7 /* cqluasource.cpp in Sources */,
 				B467ECE423100B090045E2DC /* NSMutableDictionary+CQ.m in Sources */,
-				B4EF08B6228D8D9A0089AA4C /* cqcolor.cpp in Sources */,
 				CEEB261C2300655C001FD8D6 /* CQNetStatusListener.m in Sources */,
+				B4411555231CB83D00053BD7 /* cqresponder.cpp in Sources */,
+				B4411578231CBF6A00053BD7 /* appdelegate.cpp in Sources */,
+				B441152D231CB7EE00053BD7 /* cqopengl.cpp in Sources */,
 				B475C16A230100A300ED7BD3 /* CQGCD.m in Sources */,
-				CE90E69522872A350071D4D3 /* rootviewcontroller.cpp in Sources */,
-				CE90E69622872A350071D4D3 /* cqviewcontroller.cpp in Sources */,
-				CE90E69A22872A350071D4D3 /* cqwindow.cpp in Sources */,
 				B425211422842B91004FA04B /* CQHotfixManager.m in Sources */,
+				B4411580231CBF9200053BD7 /* luahost.cpp in Sources */,
+				B4411581231CBF9200053BD7 /* cqluavm.cpp in Sources */,
+				B4411554231CB83D00053BD7 /* cqviewcontroller.cpp in Sources */,
 				B425212A22842C8E004FA04B /* CQDemoViewController.m in Sources */,
-				CE90E647228727460071D4D3 /* cqluavm.cpp in Sources */,
-				B473DC2922A4E72600218901 /* cqopengl.cpp in Sources */,
-				B473DC2722A4E72600218901 /* CQHostViewController.m in Sources */,
 				B4D3B3922260C15B007D3E4A /* BlankViewController.m in Sources */,
+				B441152C231CB7EE00053BD7 /* cqwindow.cpp in Sources */,
+				B441155D231CB83D00053BD7 /* cqapplication.cpp in Sources */,
 				B45C1BB821A02B19007CB374 /* AppDelegate.m in Sources */,
-				CE90E69422872A350071D4D3 /* appdelegate.cpp in Sources */,
+				B4411552231CB83D00053BD7 /* AppAppDelegate.m in Sources */,
 				B475C169230100A300ED7BD3 /* NSNotificationCenter+CQ.m in Sources */,
 				B4DCD87F21F17DAE0090BFBB /* UserSetting.m in Sources */,
-				CE90E69922872A350071D4D3 /* cqview.cpp in Sources */,
-				B43C7A872317C79C008353A4 /* cqgraphics.cpp in Sources */,
 				B4E7CD0F2224098800122637 /* main.m in Sources */,
-				B473DC2622A4E72600218901 /* CQHostAppDelegate.m in Sources */,
-				B4C1623D22A8C02F00D9CA70 /* LuaHostAppDelegate.m in Sources */,
-				B4A4468B228BA74F00B46240 /* cqgeometry.cpp in Sources */,
-				B473DC2B22A5000B00218901 /* luahost.cpp in Sources */,
-				B4C1623922A8C01900D9CA70 /* CPPHostAppDelegate.m in Sources */,
+				B441155A231CB83D00053BD7 /* cqcolor.cpp in Sources */,
 				B4CFD97321C7475000FFF4CF /* IAPDemoController.m in Sources */,
-				B43C7A8D231916EA008353A4 /* cqcontext.cpp in Sources */,
+				B441155B231CB83D00053BD7 /* cqgraphics.cpp in Sources */,
+				B441152F231CB7EE00053BD7 /* CQGLAppDelegate.m in Sources */,
+				B441155F231CB83D00053BD7 /* cqtouchesevent.cpp in Sources */,
 				B425210A22842AD3004FA04B /* UIDevice+CQ.m in Sources */,
+				B4411557231CB83D00053BD7 /* cqcontext.cpp in Sources */,
 				B425212322842BE4004FA04B /* CQSceneNavigator.m in Sources */,
-				CE90E69B22872A350071D4D3 /* cqevent.cpp in Sources */,
-				B473DC2822A4E72600218901 /* cqwindow.cpp in Sources */,
-				CE90E69822872A350071D4D3 /* cqresponder.cpp in Sources */,
 				B425210B22842AD3004FA04B /* UIViewController+CQ.m in Sources */,
-				B43C7A8A23191481008353A4 /* cqlayer.cpp in Sources */,
-				CE90E69C22872A350071D4D3 /* cqapplication.cpp in Sources */,
 				B425212222842BE4004FA04B /* CQCrashListener.m in Sources */,
-				CE90E69D22872A350071D4D3 /* cqtouch.cpp in Sources */,
-				CE90E69722872A350071D4D3 /* cqtouchesevent.cpp in Sources */,
+				B4411553231CB83D00053BD7 /* cqgeometry.cpp in Sources */,
+				B441155E231CB83D00053BD7 /* cqtouch.cpp in Sources */,
+				B4411586231CBFD100053BD7 /* cqappkitarche.cpp in Sources */,
 				B425210822842AD3004FA04B /* UIView+CQ.m in Sources */,
+				B441152E231CB7EE00053BD7 /* CQGLViewController.m in Sources */,
 				B4D3B39A2260C88E007D3E4A /* FloatViewController.m in Sources */,
 				B425212422842BE4004FA04B /* UIViewController+CQScene.m in Sources */,
+				B4411579231CBF6A00053BD7 /* rootviewcontroller.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

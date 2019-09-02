@@ -47,12 +47,12 @@ android {
 
     sourceSets {
         main {
-//            manifest.srcFile '../../program_cpp/androidres/AndroidManifest.xml'
-//            manifest.srcFile '../../program_lua/androidres/AndroidManifest.xml'
+//            manifest.srcFile '../../program_app/appkit/androidres/AndroidManifest.xml'
+//            manifest.srcFile '../../program_game/gamekit/androidres/AndroidManifest.xml'
 
-            java.srcDirs += '../../program_basis/android/java'
-            java.srcDirs += '../../program_cpp/android/java'
-            java.srcDirs += '../../program_lua/android/java'
+            java.srcDirs += '../../program_app/appkit/android/java'
+            java.srcDirs += '../../program_game/gamekit/android/java'
+            java.srcDirs += '../../program_gl/glkit/android/java'
 
             jniLibs.srcDirs += '../../thirds_android/jniLibs'
         }

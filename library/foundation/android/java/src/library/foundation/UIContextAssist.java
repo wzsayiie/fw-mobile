@@ -11,7 +11,7 @@ public class UIContextAssist {
 
     private static Activity currentCustomActivity() {
         try {
-            Class<?> clazz = Class.forName("src.app.host.basis.HostActivity");
+            Class<?> clazz = Class.forName("src.library.glkit.GLActivity");
             Method method = clazz.getMethod("sharedInstance");
             return (Activity) method.invoke(clazz);
         } catch (Exception e) {
