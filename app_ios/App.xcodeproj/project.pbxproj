@@ -318,7 +318,7 @@
 			children = (
 				B4411551231CB83D00053BD7 /* _CQAPPKIT_VERSION.h */,
 				B4411530231CB83D00053BD7 /* IOSAppKit */,
-				B4411533231CB83D00053BD7 /* libapppkit */,
+				B4411533231CB83D00053BD7 /* libappkit */,
 			);
 			name = AppKit;
 			sourceTree = "<group>";
@@ -375,14 +375,14 @@
 			path = ../program_app/appkit/IOSAppKit;
 			sourceTree = "<group>";
 		};
-		B4411533231CB83D00053BD7 /* libapppkit */ = {
+		B4411533231CB83D00053BD7 /* libappkit */ = {
 			isa = PBXGroup;
 			children = (
 				B4411583231CBFD100053BD7 /* archetype */,
 				B4411534231CB83D00053BD7 /* cppappkit */,
 			);
-			name = libapppkit;
-			path = ../program_app/appkit/libapppkit;
+			name = libappkit;
+			path = ../program_app/appkit/libappkit;
 			sourceTree = "<group>";
 		};
 		B4411534231CB83D00053BD7 /* cppappkit */ = {
