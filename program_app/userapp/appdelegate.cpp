@@ -1,7 +1,6 @@
 #include "appdelegate.hh"
 #include "cqctool.hh"
 #include "cqfoundation.hh"
-#include "cqwindow.h"
 #include "rootviewcontroller.hh"
 
 cq_member(AppDelegate) {

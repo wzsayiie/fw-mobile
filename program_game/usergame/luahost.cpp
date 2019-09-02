@@ -5,9 +5,9 @@
 #include "cqluasource.h"
 #include "cqluavm.h"
 #include "cqopengl.h"
-#include "cqwindow.h"
+#include "cqwnd.h"
 
-static void load(cq_window *window) {
+static void load(cq_wnd *wnd) {
     
     //local files
     std::string caches_dir = cqPath::cachesDirectory();
@@ -29,18 +29,18 @@ static void load(cq_window *window) {
     cq_lua_do_string("require 'cqruntime'");
 }
 
-static void gldraw(cq_window *window) {
+static void gldraw(cq_wnd *wnd) {
     glClearColor(0.5, 0.6, 0.9, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
 }
 
 extern "C" void _cq_lua_entry() {
     
-    cq_procedure procedure = {nullptr};
-    procedure.load = load;
-    procedure.gldraw = gldraw;
+    cq_wndproc proc = {nullptr};
+    proc.load = load;
+    proc.gldraw = gldraw;
     
-    cq_window *window = cq_create_window();
-    cq_set_procedure(window, &procedure);
-    cq_show_window(window);
+    cq_wnd *wnd = cq_new_wnd();
+    cq_set_wndproc(wnd, &proc);
+    cq_show_wnd(wnd);
 }

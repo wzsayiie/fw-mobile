@@ -120,13 +120,13 @@ public class GLActivity extends Activity implements GLView.Renderer {
         sHeightPixels = heightPixels;
         sScreenDensity = metrics.density;
 
-        installInterfaces();
+        initWindowPort();
 
         return true;
     }
 
     @SuppressWarnings("unused") /* called by native code */
-    protected static long create_window() {
+    protected static long createWindow() {
 
         //only one window can be created on android
         if (sWid != 0) {
@@ -138,7 +138,7 @@ public class GLActivity extends Activity implements GLView.Renderer {
     }
 
     @SuppressWarnings("unused") /* called by native code */
-    protected static void show_window(long wid) {
+    protected static void showWindow(long wid) {
         if (wid != sWid) {
             return;
         }
@@ -216,11 +216,11 @@ public class GLActivity extends Activity implements GLView.Renderer {
 
         //only paint window when it's visible, that's different with windowUpdate().
         if (sVisible) {
-            windowGLPaint(sWid);
+            windowGLDraw(sWid);
         }
     }
 
-    protected static native void installInterfaces();
+    protected static native void initWindowPort();
 
     protected static native void windowLoad     (long wid);
     protected static native void windowAppear   (long wid);
@@ -229,11 +229,11 @@ public class GLActivity extends Activity implements GLView.Renderer {
     @SuppressWarnings("unused") /* on android 'unload' event is invalid */
     protected static native void windowUnload(long wid);
 
-    protected static native void windowScale  (long wid, float scale);
-    protected static native void windowOrigin (long wid, float x, float y);
-    protected static native void windowSize   (long wid, float width, float height);
-    protected static native void windowUpdate (long wid);
-    protected static native void windowGLPaint(long wid);
+    protected static native void windowScale (long wid, float scale);
+    protected static native void windowOrigin(long wid, float x, float y);
+    protected static native void windowSize  (long wid, float width, float height);
+    protected static native void windowUpdate(long wid);
+    protected static native void windowGLDraw(long wid);
 
     protected static native void windowPBegan(long wid, float x, float y);
     protected static native void windowPMoved(long wid, float x, float y);

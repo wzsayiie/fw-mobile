@@ -40,7 +40,7 @@
 		B4411580231CBF9200053BD7 /* luahost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B441157B231CBF9200053BD7 /* luahost.cpp */; };
 		B4411586231CBFD100053BD7 /* cqappkitarche.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4411584231CBFD100053BD7 /* cqappkitarche.cpp */; };
 		B4411590231D0B5700053BD7 /* cqglkitarche.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4411589231D0B5700053BD7 /* cqglkitarche.cpp */; };
-		B4411591231D0B5700053BD7 /* cqwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B441158E231D0B5700053BD7 /* cqwindow.cpp */; };
+		B4411591231D0B5700053BD7 /* cqwnd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B441158E231D0B5700053BD7 /* cqwnd.cpp */; };
 		B4411592231D0B5700053BD7 /* cqopengl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B441158F231D0B5700053BD7 /* cqopengl.cpp */; };
 		B441159D231D0DC100053BD7 /* cqgamekitarche.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4411596231D0DC100053BD7 /* cqgamekitarche.cpp */; };
 		B441159E231D0DC100053BD7 /* cqluavm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4411599231D0DC100053BD7 /* cqluavm.cpp */; };
@@ -171,8 +171,8 @@
 		B4411589231D0B5700053BD7 /* cqglkitarche.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqglkitarche.cpp; sourceTree = "<group>"; };
 		B441158A231D0B5700053BD7 /* cqglkitarche.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqglkitarche.h; sourceTree = "<group>"; };
 		B441158C231D0B5700053BD7 /* cqopengl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqopengl.h; sourceTree = "<group>"; };
-		B441158D231D0B5700053BD7 /* cqwindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqwindow.h; sourceTree = "<group>"; };
-		B441158E231D0B5700053BD7 /* cqwindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqwindow.cpp; sourceTree = "<group>"; };
+		B441158D231D0B5700053BD7 /* cqwnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqwnd.h; sourceTree = "<group>"; };
+		B441158E231D0B5700053BD7 /* cqwnd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqwnd.cpp; sourceTree = "<group>"; };
 		B441158F231D0B5700053BD7 /* cqopengl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqopengl.cpp; sourceTree = "<group>"; };
 		B4411593231D0CB300053BD7 /* _CQGAMEKIT_VERSION.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _CQGAMEKIT_VERSION.h; path = ../program_game/gamekit/_CQGAMEKIT_VERSION.h; sourceTree = "<group>"; };
 		B4411596231D0DC100053BD7 /* cqgamekitarche.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqgamekitarche.cpp; sourceTree = "<group>"; };
@@ -472,8 +472,8 @@
 			children = (
 				B441158F231D0B5700053BD7 /* cqopengl.cpp */,
 				B441158C231D0B5700053BD7 /* cqopengl.h */,
-				B441158E231D0B5700053BD7 /* cqwindow.cpp */,
-				B441158D231D0B5700053BD7 /* cqwindow.h */,
+				B441158E231D0B5700053BD7 /* cqwnd.cpp */,
+				B441158D231D0B5700053BD7 /* cqwnd.h */,
 			);
 			path = cglkit;
 			sourceTree = "<group>";
@@ -896,7 +896,7 @@
 				B441155B231CB83D00053BD7 /* cqgraphics.cpp in Sources */,
 				B441152F231CB7EE00053BD7 /* CQGLAppDelegate.m in Sources */,
 				B441155F231CB83D00053BD7 /* cqtouchesevent.cpp in Sources */,
-				B4411591231D0B5700053BD7 /* cqwindow.cpp in Sources */,
+				B4411591231D0B5700053BD7 /* cqwnd.cpp in Sources */,
 				B425210A22842AD3004FA04B /* UIDevice+CQ.m in Sources */,
 				B4411557231CB83D00053BD7 /* cqcontext.cpp in Sources */,
 				B425212322842BE4004FA04B /* CQSceneNavigator.m in Sources */,

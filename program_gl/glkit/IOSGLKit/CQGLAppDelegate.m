@@ -1,6 +1,6 @@
 #import "CQGLAppDelegate.h"
 #import "CQGLViewController.h"
-#import "cqwindow.h"
+#import "cqwnd.h"
 
 @implementation CQHostAppDelegate
 
@@ -8,21 +8,21 @@
     cq_shared_object(self);
 }
 
-static int64_t create_window(void) {
+static int64_t new_wnd(void) {
     return [CQHostAppDelegate.sharedObject createWindow];
 }
-static void show_window(int64_t wid) {
+static void show_wnd(int64_t wid) {
     return [CQHostAppDelegate.sharedObject showWindow:wid];
 }
 
 - (BOOL) /* ------ */ application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    struct _cq_interfaces interfaces = {NULL}; {
-        interfaces.create_window = create_window;
-        interfaces.show_window = show_window;
+    struct _cq_wndport port = {NULL}; {
+        port.new_wnd  = new_wnd;
+        port.show_wnd = show_wnd;
     }
-    _cq_init_interfaces(&interfaces);
+    _cq_init_wndport(&port);
     
     //NOTE: call entry function here.
     

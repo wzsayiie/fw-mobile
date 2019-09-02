@@ -1,5 +1,5 @@
 #include "cqjnihelper.hh"
-#include "cqwindow.h"
+#include "cqwnd.h"
 
 static jclass clazz() {
     static jclass clazz = nullptr;
@@ -9,99 +9,99 @@ static jclass clazz() {
     return clazz;
 }
 
-static int64_t create_window() {
+static int64_t new_wnd() {
     static jmethodID methodID = nullptr;
 
-    cqJNIStaticMethod method(clazz(), &methodID, "create_window");
+    cqJNIStaticMethod method(clazz(), &methodID, "createWindow");
     return method.callInt64();
 }
 
-static void show_window(int64_t wid) {
+static void show_wnd(int64_t wid) {
     static jmethodID methodID = nullptr;
 
-    cqJNIStaticMethod method(clazz(), &methodID, "show_window");
+    cqJNIStaticMethod method(clazz(), &methodID, "showWindow");
     method.push(wid);
     return method.callVoid();
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_library_glkit_GLActivity_installInterfaces
+extern "C" JNIEXPORT void JNICALL Java_src_library_glkit_GLActivity_initWindowPort
     (JNIEnv *, jclass)
 {
-    _cq_interfaces interfaces = {nullptr}; {
-        interfaces.create_window = create_window;
-        interfaces.show_window = show_window;
+    _cq_wndport port = {nullptr}; {
+        port.new_wnd = new_wnd;
+        port.show_wnd = show_wnd;
     }
-    _cq_init_interfaces(&interfaces);
+    _cq_init_wndport(&port);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_glkit_GLActivity_windowLoad
     (JNIEnv *, jclass, jlong wid)
 {
-    _cq_window_load(wid);
+    _cq_wnd_load(wid);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_glkit_GLActivity_windowAppear
     (JNIEnv *, jclass, jlong wid)
 {
-    _cq_window_appear(wid);
+    _cq_wnd_appear(wid);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_glkit_GLActivity_windowDisappear
     (JNIEnv *, jclass, jlong wid)
 {
-    _cq_window_disappear(wid);
+    _cq_wnd_disappear(wid);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_glkit_GLActivity_windowUnload
     (JNIEnv *, jclass, jlong wid)
 {
-    _cq_window_unload(wid);
+    _cq_wnd_unload(wid);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_glkit_GLActivity_windowScale
     (JNIEnv *, jclass, jlong wid, jfloat scale)
 {
-    _cq_window_scale(wid, scale);
+    _cq_wnd_scale(wid, scale);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_glkit_GLActivity_windowOrigin
     (JNIEnv *, jclass, jlong wid, jfloat x, jfloat y)
 {
-    _cq_window_origin(wid, x, y);
+    _cq_wnd_origin(wid, x, y);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_glkit_GLActivity_windowSize
     (JNIEnv *, jclass, jlong wid, jfloat width, jfloat height)
 {
-    _cq_window_size(wid, width, height);
+    _cq_wnd_size(wid, width, height);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_glkit_GLActivity_windowUpdate
     (JNIEnv *, jclass, jlong wid)
 {
-    _cq_window_update (wid);
+    _cq_wnd_update (wid);
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_library_glkit_GLActivity_windowGLPaint
+extern "C" JNIEXPORT void JNICALL Java_src_library_glkit_GLActivity_windowGLDraw
     (JNIEnv *, jclass, jlong wid)
 {
-    _cq_window_glpaint(wid);
+    _cq_wnd_gldraw(wid);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_glkit_GLActivity_windowPBegan
     (JNIEnv *, jclass, jlong wid, jfloat x, jfloat y)
 {
-    _cq_window_pbegan(wid, x, y);
+    _cq_wnd_pbegan(wid, x, y);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_glkit_GLActivity_windowPMoved
     (JNIEnv *, jclass, jlong wid, jfloat x, jfloat y)
 {
-    _cq_window_pmoved(wid, x, y);
+    _cq_wnd_pmoved(wid, x, y);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_glkit_GLActivity_windowPEnded
     (JNIEnv *, jclass, jlong wid, jfloat x, jfloat y)
 {
-    _cq_window_pended(wid, x, y);
+    _cq_wnd_pended(wid, x, y);
 }
