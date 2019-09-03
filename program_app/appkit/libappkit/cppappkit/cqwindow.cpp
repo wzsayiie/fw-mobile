@@ -5,7 +5,7 @@
 #include "cqwnd.h"
 
 cq_member(cqWindow) {
-    cq_wnd *nativeWindow = nullptr;
+    cq_wnd *wnd = nullptr;
     
     cqViewControllerRef rootViewController;
     cqViewRef touchesResponder;
@@ -27,20 +27,20 @@ cqViewControllerRef cqWindow::rootViewController() {
     return dat->rootViewController;
 }
 
-static void load(cq_wnd *window) {
-    auto self = (cqWindow *)cq_wnd_extra(window);
+static void load(cq_wnd *wnd) {
+    auto self = (cqWindow *)cq_wnd_extra(wnd);
     
     cqRect rect; {
-        rect.size.width  = cq_wnd_width (window);
-        rect.size.height = cq_wnd_height(window);
+        rect.size.width  = cq_wnd_width (wnd);
+        rect.size.height = cq_wnd_height(wnd);
     }
     self->setFrame(rect);
     
     cqGraphics::startupGraphicsProgram(self->strongRef());
 }
 
-static void appear(cq_wnd *window) {
-    //auto self = (cqWindow *)cq_wnd_extra(window);
+static void appear(cq_wnd *wnd) {
+    //auto self = (cqWindow *)cq_wnd_extra(wnd);
     
     auto delegate = cqApplication::get()->delegate();
     if (delegate != nullptr) {
@@ -48,8 +48,8 @@ static void appear(cq_wnd *window) {
     }
 }
 
-static void disappear(cq_wnd *window) {
-    //auto self = (cqWindow *)cq_wnd_extra(window);
+static void disappear(cq_wnd *wnd) {
+    //auto self = (cqWindow *)cq_wnd_extra(wnd);
     
     auto delegate = cqApplication::get()->delegate();
     if (delegate != nullptr) {
@@ -57,14 +57,14 @@ static void disappear(cq_wnd *window) {
     }
 }
 
-static void resize(cq_wnd *window, float width, float height) {
-    auto self = (cqWindow *)cq_wnd_extra(window);
+static void resize(cq_wnd *wnd, float width, float height) {
+    auto self = (cqWindow *)cq_wnd_extra(wnd);
     
     self->setFrame(cqRect(0, 0, width, height));
 }
 
-static void gldraw(cq_wnd *window) {
-    auto self = (cqWindow *)cq_wnd_extra(window);
+static void gldraw(cq_wnd *wnd) {
+    auto self = (cqWindow *)cq_wnd_extra(wnd);
     
     cqGraphics::prepareDraw();
     
@@ -73,8 +73,8 @@ static void gldraw(cq_wnd *window) {
     cqGraphics::popContext();
 }
 
-static void pbegan(cq_wnd *window, float x, float y) {
-    auto self = (cqWindow *)cq_wnd_extra(window);
+static void pbegan(cq_wnd *wnd, float x, float y) {
+    auto self = (cqWindow *)cq_wnd_extra(wnd);
     
     std::set<cqTouchRef> touches = {
         cqTouch::createWithLocation(self->strongRef(), cqPoint(x, y))
@@ -92,8 +92,8 @@ static void pbegan(cq_wnd *window, float x, float y) {
     self->dat->touchesResponder = view;
 }
 
-static void pmoved(cq_wnd *window, float x, float y) {
-    auto self = (cqWindow *)cq_wnd_extra(window);
+static void pmoved(cq_wnd *wnd, float x, float y) {
+    auto self = (cqWindow *)cq_wnd_extra(wnd);
     if (self->dat->touchesResponder == nullptr) {
         return;
     }
@@ -106,8 +106,8 @@ static void pmoved(cq_wnd *window, float x, float y) {
     self->dat->touchesResponder->touchesMoved(touches, touchesEvent);
 }
 
-static void pended(cq_wnd *window, float x, float y) {
-    auto self = (cqWindow *)cq_wnd_extra(window);
+static void pended(cq_wnd *wnd, float x, float y) {
+    auto self = (cqWindow *)cq_wnd_extra(wnd);
     if (self->dat->touchesResponder == nullptr) {
         return;
     }
@@ -133,10 +133,10 @@ void cqWindow::makeKeyAndVisible() {
     proc.pmoved = pmoved;
     proc.pended = pended;
     
-    dat->nativeWindow = cq_new_wnd();
-    cq_set_wndproc(dat->nativeWindow, &proc);
-    cq_set_wnd_extra(dat->nativeWindow, (int64_t)this);
-    cq_show_wnd(dat->nativeWindow);
+    dat->wnd = cq_new_wnd();
+    cq_set_wndproc(dat->wnd, &proc);
+    cq_set_wnd_extra(dat->wnd, (int64_t)this);
+    cq_show_wnd(dat->wnd);
 }
 
 cqResponderRef cqWindow::nextResponder() {
