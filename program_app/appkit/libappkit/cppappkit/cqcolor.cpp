@@ -1,21 +1,39 @@
 #include "cqcolor.hh"
 
-cqColor::cqColor() /* ........................... */ : red(1), green(1), blue(1), alpha(1) {}
-cqColor::cqColor(float r, float g, float b) /* .. */ : red(r), green(g), blue(b), alpha(1) {}
-cqColor::cqColor(float r, float g, float b, float a) : red(r), green(g), blue(b), alpha(a) {}
+cqColor cqColor::iRGBA(uint8_t r, uint8_t g, uint8_t b, uint8_t a) {
+    cqColor color;
+    
+    color.red   = r / 255.f;
+    color.green = g / 255.f;
+    color.blue  = b / 255.f;
+    color.alpha = a / 255.f;
+    
+    return color;
+}
 
-const cqColor cqColor::BlackColor    (0.0, 0.0, 0.0);
-const cqColor cqColor::DarkGrayColor (0.3, 0.3, 0.3);
-const cqColor cqColor::LightGrayColor(0.6, 0.6, 0.6);
-const cqColor cqColor::WhiteColor    (1.0, 1.0, 1.0);
-const cqColor cqColor::GrayColor     (0.5, 0.5, 0.5);
-const cqColor cqColor::RedColor      (1.0, 0.4, 0.4);
-const cqColor cqColor::GreenColor    (0.6, 0.8, 0.4);
-const cqColor cqColor::BlueColor     (0.0, 0.4, 0.8);
-const cqColor cqColor::CyanColor     (0.6, 0.8, 0.8);
-const cqColor cqColor::YellowColor   (1.0, 1.0, 0.7);
-const cqColor cqColor::MagentaColor  (0.8, 0.0, 0.6);
-const cqColor cqColor::OrangeColor   (1.0, 0.8, 0.0);
-const cqColor cqColor::PurpleColor   (0.5, 0.0, 0.5);
-const cqColor cqColor::BrownColor    (0.6, 0.4, 0.2);
-const cqColor cqColor::ClearColor    (0.0, 0.0, 0.0, 0.0);
+cqColor cqColor::fRGBA(float r, float g, float b, float a) {
+    cqColor color;
+    
+    color.red   = r;
+    color.green = g;
+    color.blue  = b;
+    color.alpha = a;
+    
+    return color;
+}
+
+const cqColor cqColor::BlackColor     = cqColor::fRGBA(0.0f, 0.0f, 0.0f, 1.f);
+const cqColor cqColor::DarkGrayColor  = cqColor::fRGBA(0.3f, 0.3f, 0.3f, 1.f);
+const cqColor cqColor::LightGrayColor = cqColor::fRGBA(0.6f, 0.6f, 0.6f, 1.f);
+const cqColor cqColor::WhiteColor     = cqColor::fRGBA(1.0f, 1.0f, 1.0f, 1.f);
+const cqColor cqColor::GrayColor      = cqColor::fRGBA(0.5f, 0.5f, 0.5f, 1.f);
+const cqColor cqColor::RedColor       = cqColor::fRGBA(1.0f, 0.4f, 0.4f, 1.f);
+const cqColor cqColor::GreenColor     = cqColor::fRGBA(0.6f, 0.8f, 0.4f, 1.f);
+const cqColor cqColor::BlueColor      = cqColor::fRGBA(0.0f, 0.4f, 0.8f, 1.f);
+const cqColor cqColor::CyanColor      = cqColor::fRGBA(0.6f, 0.8f, 0.8f, 1.f);
+const cqColor cqColor::YellowColor    = cqColor::fRGBA(1.0f, 1.0f, 0.7f, 1.f);
+const cqColor cqColor::MagentaColor   = cqColor::fRGBA(0.8f, 0.0f, 0.6f, 1.f);
+const cqColor cqColor::OrangeColor    = cqColor::fRGBA(1.0f, 0.8f, 0.0f, 1.f);
+const cqColor cqColor::PurpleColor    = cqColor::fRGBA(0.5f, 0.0f, 0.5f, 1.f);
+const cqColor cqColor::BrownColor     = cqColor::fRGBA(0.6f, 0.4f, 0.2f, 1.f);
+const cqColor cqColor::ClearColor     = cqColor::fRGBA(0.0f, 0.0f, 0.0f, 0.f);
