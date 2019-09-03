@@ -7,13 +7,13 @@ _CQAPPKIT_BEGIN_VERSION_NS
 struct cqColor {
     
     float red;
-    float blue;
     float green;
+    float blue;
     float alpha;
     
     cqColor();
-    cqColor(float red, float blue, float green);
-    cqColor(float red, float blue, float green, float alpha);
+    cqColor(float red, float green, float blue);
+    cqColor(float red, float green, float blue, float alpha);
     
     static const cqColor BlackColor;
     static const cqColor DarkGrayColor;
