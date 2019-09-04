@@ -12,7 +12,7 @@ call program_lua\libluascript\generate_lua.bat
 ::: configutation end
 
 :: NOTE:
-:: file 'local.propertes' has a higher priority than the environment variables
+:: file 'local.properties' has a higher priority than the environment variables
 set     ANDROID_HOME=%USERPROFILE%\AppData\Local\Android\Sdk
 set ANDROID_NDK_HOME=%USERPROFILE%\AppData\Local\Android\Sdk\ndk-bundle
 
