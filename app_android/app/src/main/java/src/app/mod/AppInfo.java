@@ -18,8 +18,10 @@ import java.security.NoSuchAlgorithmException;
 
 import src.app.boot.AppWrapper;
 import src.library.basis.StringUtil;
+import src.library.basis.W;
 import src.library.foundation.L;
 
+@SuppressWarnings({W.APP_OMIT_0, W.APP_OMIT_1, W.APP_OMIT_2, W.APP_OMIT_3})
 public class AppInfo {
 
     public static String getProcessName() {

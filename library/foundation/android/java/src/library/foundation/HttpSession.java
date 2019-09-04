@@ -14,11 +14,13 @@ import java.util.List;
 import java.util.Map;
 
 import src.library.basis.StringUtil;
+import src.library.basis.W;
 
 //WARNING:
 //don't use HttpSession on main thread, which will result in a system exception.
 //android prohibits any network access on the main thread.
 
+@SuppressWarnings({W.LIB_OMIT_0, W.LIB_OMIT_1, W.LIB_OMIT_2, W.LIB_OMIT_3})
 public class HttpSession {
 
     public interface RequestBodyReader {
@@ -155,11 +157,9 @@ public class HttpSession {
         }
 
         //"GET" method don't contain body, also android api don't allow this behaviour.
-        if (connection.getRequestMethod().equals("GET")) {
-            canWriteRequestBody[0] = false;
-        } else {
-            canWriteRequestBody[0] = true;
-        }
+        boolean httpGET = connection.getRequestMethod().equals("GET");
+        canWriteRequestBody[0] = !httpGET;
+
         connection.setDoOutput(canWriteRequestBody[0]);
         connection.setDoInput(true);
 

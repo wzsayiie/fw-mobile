@@ -3,7 +3,9 @@ package src.library.foundation;
 import android.util.Log;
 
 import src.library.basis.StringUtil;
+import src.library.basis.W;
 
+@SuppressWarnings({W.LIB_OMIT_0, W.LIB_OMIT_1, W.LIB_OMIT_2, W.LIB_OMIT_3})
 public class L {
 
     public static void info(String file, int line, String message) {

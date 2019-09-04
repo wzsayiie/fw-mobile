@@ -4,7 +4,9 @@ import android.app.Application;
 
 import src.app.boot.AppWrapper;
 import src.app.mod.AppInfo;
+import src.library.basis.W;
 
+@SuppressWarnings({W.APP_OMIT_0, W.APP_OMIT_1, W.APP_OMIT_2, W.APP_OMIT_3})
 public class App extends Application {
 
     static {
@@ -22,9 +24,9 @@ public class App extends Application {
         String packageName = AppInfo.getPackageName();
         String processName = AppInfo.getProcessName();
         if (packageName.equals(processName)) {
-            MainAppWrapper.get();
+            Object ignored = MainAppWrapper.get();
         } else {
-            TaskAppWrapper.get();
+            Object ignored = TaskAppWrapper.get();
         }
     }
 }

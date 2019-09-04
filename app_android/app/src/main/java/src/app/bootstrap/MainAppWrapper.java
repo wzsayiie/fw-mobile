@@ -8,8 +8,10 @@ import src.app.mod.ActivityHelper;
 import src.app.mod.AppInfo;
 import src.app.mod.HotfixHelper;
 import src.app.mod.NetStatusHelper;
+import src.library.basis.W;
 import src.library.foundation.L;
 
+@SuppressWarnings({W.APP_OMIT_0, W.APP_OMIT_1, W.APP_OMIT_2, W.APP_OMIT_3})
 public class MainAppWrapper extends AppWrapper {
 
     private static class Singleton {
@@ -32,9 +34,9 @@ public class MainAppWrapper extends AppWrapper {
         L.i("  android id   : %s", AppInfo.getAndroidID());
         L.i("}");
 
-        CrashListener.get();
-        HotfixHelper.get();
-        ActivityHelper.get();
-        NetStatusHelper.get();
+        Object ignored_0 = CrashListener.get();
+        Object ignored_1 = HotfixHelper.get();
+        Object ignored_2 = ActivityHelper.get();
+        Object ignored_3 = NetStatusHelper.get();
     }
 }

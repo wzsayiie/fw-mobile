@@ -10,6 +10,9 @@ import android.view.MotionEvent;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import src.library.basis.W;
+
+@SuppressWarnings({W.LIB_OMIT_0, W.LIB_OMIT_1, W.LIB_OMIT_2, W.LIB_OMIT_3})
 public class GLActivity extends Activity implements GLView.Renderer {
 
     static {
@@ -22,7 +25,7 @@ public class GLActivity extends Activity implements GLView.Renderer {
     private GLView mView;
     private Timer mTimer;
 
-    @SuppressWarnings("unused") /* the activity can be found dynamically */
+    /* the activity can be found dynamically */
     public static Activity sharedInstance() {
         //NOTE: this method will be called on non-ui thread.
         return sActivity;
@@ -125,7 +128,7 @@ public class GLActivity extends Activity implements GLView.Renderer {
         return true;
     }
 
-    @SuppressWarnings("unused") /* called by native code */
+    /* called by native code */
     protected static long createWindow() {
 
         //only one window can be created on android
@@ -137,7 +140,7 @@ public class GLActivity extends Activity implements GLView.Renderer {
         return sWid;
     }
 
-    @SuppressWarnings("unused") /* called by native code */
+    /* called by native code */
     protected static void showWindow(long wid) {
         if (wid != sWid) {
             return;
@@ -196,7 +199,7 @@ public class GLActivity extends Activity implements GLView.Renderer {
         switch (action) {
             case MotionEvent.ACTION_DOWN  : windowPBegan(sWid, x, y); break;
             case MotionEvent.ACTION_MOVE  : windowPMoved(sWid, x, y); break;
-            case MotionEvent.ACTION_UP    : windowPEnded(sWid, x, y); break;
+            case MotionEvent.ACTION_UP    : /* same with CANCEL */
             case MotionEvent.ACTION_CANCEL: windowPEnded(sWid, x, y); break;
         }
     }
@@ -226,7 +229,7 @@ public class GLActivity extends Activity implements GLView.Renderer {
     protected static native void windowAppear   (long wid);
     protected static native void windowDisappear(long wid);
 
-    @SuppressWarnings("unused") /* on android 'unload' event is invalid */
+    /* on android 'unload' event is invalid */
     protected static native void windowUnload(long wid);
 
     protected static native void windowScale (long wid, float scale);

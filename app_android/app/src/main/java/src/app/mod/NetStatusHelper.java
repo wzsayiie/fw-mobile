@@ -22,8 +22,10 @@ import java.util.List;
 
 import src.app.boot.AppWrapper;
 import src.library.basis.StringUtil;
+import src.library.basis.W;
 import src.library.foundation.L;
 
+@SuppressWarnings({W.APP_OMIT_0, W.APP_OMIT_1, W.APP_OMIT_2, W.APP_OMIT_3})
 public class NetStatusHelper {
 
     private static class Singleton {
@@ -139,8 +141,8 @@ public class NetStatusHelper {
         resetIPString();
 
         if (netStatus != mNetStatus
-         || !StringUtil.isEqual(ipv4, mIPv4)
-         || !StringUtil.isEqual(ipv6LinkLocal, mIPv6LinkLocal))
+         || StringUtil.isNotEqual(ipv4, mIPv4)
+         || StringUtil.isNotEqual(ipv6LinkLocal, mIPv6LinkLocal))
         {
             L.i("net status changed {");
             L.i("  status: %s", StringFromNetStatus(mNetStatus));

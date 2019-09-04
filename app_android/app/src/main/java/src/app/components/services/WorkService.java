@@ -13,8 +13,10 @@ import android.support.v4.app.NotificationCompat;
 
 import src.app.boot.AppWrapper;
 import src.app.mod.AndroidVersion;
+import src.library.basis.W;
 import src.library.foundation.L;
 
+@SuppressWarnings({W.APP_OMIT_0, W.APP_OMIT_1, W.APP_OMIT_2, W.APP_OMIT_3})
 public class WorkService extends Service {
 
     @Override

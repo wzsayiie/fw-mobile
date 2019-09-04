@@ -6,8 +6,10 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 
 import src.app.boot.AppWrapper;
+import src.library.basis.W;
 import src.library.foundation.L;
 
+@SuppressWarnings({W.APP_OMIT_0, W.APP_OMIT_1, W.APP_OMIT_2, W.APP_OMIT_3})
 public class BroadcastAssist {
 
     public static BroadcastReceiver register(IntentFilter filter, BroadcastReceiver receiver) {

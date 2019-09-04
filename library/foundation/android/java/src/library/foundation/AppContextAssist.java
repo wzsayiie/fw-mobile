@@ -6,6 +6,9 @@ import android.app.Application;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import src.library.basis.W;
+
+@SuppressWarnings({W.LIB_OMIT_0, W.LIB_OMIT_1, W.LIB_OMIT_2, W.LIB_OMIT_3})
 public class AppContextAssist {
 
     private static Application getCustomApp() {
@@ -44,10 +47,16 @@ public class AppContextAssist {
 
         Application target;
 
-        target = getCustomApp(); if (target != null) { return target; }
-        target = getUnityApp (); if (target != null) { return target; }
-        target = getFWApp    (); if (target != null) { return target; }
+        target = getCustomApp();
+        if (target != null) {
+            return target;
+        }
 
-        return null;
+        target = getUnityApp();
+        if (target != null) {
+            return target;
+        }
+
+        return getFWApp();
     }
 }

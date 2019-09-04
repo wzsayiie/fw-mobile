@@ -11,6 +11,9 @@ import javax.microedition.khronos.egl.EGLContext;
 import javax.microedition.khronos.egl.EGLDisplay;
 import javax.microedition.khronos.egl.EGLSurface;
 
+import src.library.basis.W;
+
+@SuppressWarnings({W.LIB_OMIT_0, W.LIB_OMIT_1, W.LIB_OMIT_2, W.LIB_OMIT_3})
 public class GLView extends SurfaceView implements SurfaceHolder.Callback {
 
     public interface Renderer {

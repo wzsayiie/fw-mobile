@@ -4,9 +4,11 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 
+import src.library.basis.W;
 import src.library.foundation.L;
 import src.library.foundation.UIContextAssist;
 
+@SuppressWarnings({W.LIB_OMIT_0, W.LIB_OMIT_1, W.LIB_OMIT_2, W.LIB_OMIT_3})
 public class SubsystemManager {
 
     private static class Singleton {

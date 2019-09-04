@@ -1,5 +1,6 @@
 package src.library.basis;
 
+@SuppressWarnings({W.LIB_OMIT_0, W.LIB_OMIT_1, W.LIB_OMIT_2, W.LIB_OMIT_3})
 public class StringUtil {
 
     public static boolean isEmpty(String string) {
@@ -12,6 +13,11 @@ public class StringUtil {
         } else {
             return b == null;
         }
+    }
+
+    public static boolean isNotEqual(String a, String b) {
+        boolean equal = isEqual(a, b);
+        return !equal;
     }
 
     public static String hexStringFromBytes(byte[] bytes) {
