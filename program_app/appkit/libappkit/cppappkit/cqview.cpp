@@ -105,6 +105,9 @@ void cqView::addSubview(cqViewRef subview) {
     if (subview == nullptr) {
         return;
     }
+    if (subview.get() == this) {
+        return;
+    }
     
     subview->removeFromSuperview();
     subview->dat->superview = weakRef();

@@ -25,8 +25,8 @@
               name:UIApplicationDidEnterBackgroundNotification
             object:nil];
     
-    //currently opengl 2.0 is supported
-    self.view.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+    //currently opengl 3.0 is supported
+    self.view.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES3];
     [EAGLContext setCurrentContext:self.view.context];
     
     CGSize size = self.view.frame.size;

@@ -24,7 +24,7 @@ list(APPEND src_aims ../../program_game/*.c[xp][xp])
 list(APPEND src_aims ../../program_gl/*.c[xp][xp])
 
 list(APPEND sys_libs log)
-list(APPEND sys_libs GLESv2)
+list(APPEND sys_libs GLESv3)
 list(APPEND usr_libs ../../thirds_android/jniLibs/${ANDROID_ABI}/liblua.so)
 list(APPEND usr_libs ../../library_android/${built_jni_subpath}/liblibrary.so)
 ### configutation end

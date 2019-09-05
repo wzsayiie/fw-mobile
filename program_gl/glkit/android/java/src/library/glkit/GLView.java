@@ -22,9 +22,10 @@ public class GLView extends SurfaceView implements SurfaceHolder.Callback {
         void onGLViewPaint();
     }
 
-    //currently open-gl 2.0 is supported
     private static final int GL_ES_VERSION = EGL14.EGL_OPENGL_ES2_BIT;
-    private static final int EGL_VERSION = 2;
+
+    //currently open-gl 3.0 is supported
+    private static final int GL_VERSION = 3;
 
     private Renderer mRenderer;
     private boolean  mAttached;
@@ -104,7 +105,8 @@ public class GLView extends SurfaceView implements SurfaceHolder.Callback {
 
     protected EGLContext createEGLContext(EGL10 egl, EGLDisplay display, EGLConfig config) {
         int[] attributes = {
-            0x3098 /* EGL_CONTEXT_CLIENT_VERSION */, EGL_VERSION,
+            0x3098 /* EGL_CONTEXT_CLIENT_VERSION */,
+            GL_VERSION,
             EGL10.EGL_NONE
         };
         return egl.eglCreateContext(display, config, EGL10.EGL_NO_CONTEXT, attributes);
