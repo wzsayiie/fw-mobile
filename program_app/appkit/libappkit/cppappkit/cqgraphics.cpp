@@ -62,16 +62,16 @@ void cqGraphics::startupGraphicsProgram(cqWindowRef window) {
     
     //compile shaders.
     GLuint vertexShader = compileShader(GL_VERTEX_SHADER,
-        "attribute vec4 vPosition;"
+        "attribute vec3 position;"
         "void main() {"
-        "    gl_Position = vPosition;"
+        "    gl_Position = vec4(position, 1.0);"
         "}"
     );
     GLuint fragmentShader = compileShader(GL_FRAGMENT_SHADER,
         "precision mediump float;"
-        "uniform vec4 vColor;"
+        "uniform vec4 color;"
         "void main() {"
-        "    gl_FragColor = vColor;"
+        "    gl_FragColor = color;"
         "}"
     );
     
@@ -81,12 +81,14 @@ void cqGraphics::startupGraphicsProgram(cqWindowRef window) {
     glAttachShader(sGLProgram, vertexShader);
     glAttachShader(sGLProgram, fragmentShader);
     glLinkProgram(sGLProgram);
+    glDeleteShader(vertexShader);
+    glDeleteShader(fragmentShader);
     
     glUseProgram(sGLProgram);
     
     //gl parematers
-    sGLVarPosition = glGetAttribLocation(sGLProgram, "vPosition");
-    sGLVarColor = glGetUniformLocation(sGLProgram, "vColor");
+    sGLVarPosition = glGetAttribLocation(sGLProgram, "position");
+    sGLVarColor = glGetUniformLocation(sGLProgram, "color");
 }
 
 void cqGraphics::prepareDraw() {
