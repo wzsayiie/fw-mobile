@@ -44,6 +44,15 @@
         </activity>
 
         <activity
+            android:name=".components.activities.document.DocumentActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="apps.document" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".components.activities.floating.FloatingActivity"
             android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
