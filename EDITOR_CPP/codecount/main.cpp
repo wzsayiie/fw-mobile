@@ -15,9 +15,19 @@ const vector<string> &dirs(bool push, const char *item) {
     return vec;
 }
 
-void app_android() { dirs(_JAVA, "app_android/app/src/main/java"); }
-void app_ios    () { dirs(_OBJC, "app_ios/App/Classes"          ); }
-void app_unity  () { dirs(_CS  , "app_unity/Assets/Script"      ); }
+void app_android() {
+    dirs(_JAVA, "app_android/app/src/main/java");
+}
+
+void app_ios() {
+    dirs(_OBJC, "app_ios/App/Classes");
+}
+
+void app_unity() {
+    dirs(_CS, "app_unity/Assets/Editor");
+    dirs(_CS, "app_unity/Assets/Script");
+    dirs(_CS, "app_unity/Assets/SDK/Script");
+}
 
 void EDITOR_CPP() { dirs(_CPP, "EDITOR_CPP"); }
 void EDITOR_CS () { dirs(_CS , "EDITOR_CS" ); }
