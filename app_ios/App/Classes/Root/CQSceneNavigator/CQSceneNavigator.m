@@ -13,10 +13,10 @@ NSString *const CQSceneStyleFloat = @"CQSceneStyleFloat";
 
 #pragma mark - Navigator
 
-@interface CQSceneNavigator () <UINavigationControllerDelegate>
+@interface CQSceneNavigator () <UINavigationControllerDelegate, UIGestureRecognizerDelegate>
 @property (nonatomic, copy  ) NSArray<CQSceneConfigurationItem *> *configuration;
-@property (nonatomic, strong) UINavigationController *navigationController;
-@property (nonatomic, weak  ) UIViewController *cachedTopController;
+@property (nonatomic, strong) UINavigationController *stackNavigationController;
+@property (nonatomic, weak  ) UIViewController *stackTopController;
 @end
 
 @implementation CQSceneNavigator
@@ -33,10 +33,11 @@ NSString *const CQSceneStyleFloat = @"CQSceneStyleFloat";
     //UI
     self.view.backgroundColor = UIColor.whiteColor;
     
-    self.navigationController = [[UINavigationController alloc] init];
-    self.navigationController.view.backgroundColor = UIColor.whiteColor;
-    self.navigationController.delegate = self;
-    [self addFillingSubviewWithController:self.navigationController];
+    self.stackNavigationController = [[UINavigationController alloc] init];
+    self.stackNavigationController.view.backgroundColor = UIColor.whiteColor;
+    self.stackNavigationController.delegate = self;
+    self.stackNavigationController.interactivePopGestureRecognizer.delegate = self;
+    [self addFillingSubviewWithController:self.stackNavigationController];
     
     //load configuration
     self.configuration = [self loadConfiguration];
@@ -119,7 +120,7 @@ NSString *const CQSceneStyleFloat = @"CQSceneStyleFloat";
         
         I(@"push scene '%@'", newAddress);
         controller.edgesForExtendedLayout = UIRectEdgeNone;
-        [self.navigationController pushViewController:controller animated:YES];
+        [self.stackNavigationController pushViewController:controller animated:YES];
         
     } else if (configurationItem.style == CQSceneStyleFloat) {
         
@@ -132,10 +133,10 @@ NSString *const CQSceneStyleFloat = @"CQSceneStyleFloat";
     CQSceneConfigurationItem *configurationItem = viewController.sceneData.configuration;
     if (configurationItem.style == CQSceneStyleStack) {
         
-        if (viewController == self.navigationController.topViewController) {
+        if (viewController == self.stackNavigationController.topViewController) {
             //clean work will execute in the navigation controller's delegate method.
             //there only pop it.
-            [self.navigationController popViewControllerAnimated:YES];
+            [self.stackNavigationController popViewControllerAnimated:YES];
         } else {
             E(@"try pop a controller but it is't top controller");
         }
@@ -161,18 +162,39 @@ NSString *const CQSceneStyleFloat = @"CQSceneStyleFloat";
     }
 }
 
-- (void)navigationController:(UINavigationController *)navigationController
-       didShowViewController:(UIViewController *)viewController
+- (void)navigationController:(UINavigationController *)stackNavigationController
+      willShowViewController:(UIViewController *)newStackTopController
                     animated:(BOOL)animated
 {
-    //old top controller
-    if (self.cachedTopController != nil) {
+    if (self.stackTopController == newStackTopController) {
+        return;
+    }
+    
+    //NOTE: set $animal to YES.
+    //
+    //for interactive pop gesture, if user does not pop the topest controller finally,
+    //when the topest controller returns to nomral,
+    //app will be not receive "didShowViewController" callback.
+    //
+    //set $animal to YES, the status of the navigation bar is not reset immediately.
+    [self adjustNavigationBarForController:newStackTopController animated:YES];
+}
+
+- (void)navigationController:(UINavigationController *)stackNavigationController
+       didShowViewController:(UIViewController *)newStackTopController
+                    animated:(BOOL)animated
+{
+    if (self.stackTopController == newStackTopController) {
+        return;
+    }
+    
+    //old top controller:
+    if (self.stackTopController != nil) {
         
-        //if cached top controller isn't included by the stack,
-        //consider that it was popped.
-        NSArray *stackControllers = self.navigationController.childViewControllers;
-        if (![stackControllers containsObject:self.cachedTopController]) {
-            CQSceneDataItem *dataItem = self.cachedTopController.sceneData;
+        //if stack top controller isn't included by the stack, consider that it was popped.
+        NSArray *stackControllers = self.stackNavigationController.childViewControllers;
+        if (![stackControllers containsObject:self.stackTopController]) {
+            CQSceneDataItem *dataItem = self.stackTopController.sceneData;
             if (dataItem.response != nil) {
                 I(@"scene '%@' reponds result %@", dataItem.address, dataItem.result);
                 dataItem.response(dataItem.result);
@@ -181,8 +203,26 @@ NSString *const CQSceneStyleFloat = @"CQSceneStyleFloat";
         }
     }
     
-    //new top controller
-    self.cachedTopController = viewController;
+    //new top controller:
+    self.stackTopController = newStackTopController;
+    [self adjustNavigationBarForController:newStackTopController animated:NO];
+}
+
+- (void)adjustNavigationBarForController:(UIViewController *)controller animated:(BOOL)animated {
+    
+    BOOL wantNavigable = controller.sceneData.configuration.navigable;
+    BOOL currentNavigable = !self.stackNavigationController.navigationBar.hidden;
+    
+    if (wantNavigable && !currentNavigable) {
+        [self.stackNavigationController setNavigationBarHidden:NO animated:animated];
+    } else if (!wantNavigable && currentNavigable) {
+        [self.stackNavigationController setNavigationBarHidden:YES animated:animated];
+    }
+}
+
+//interactive pop gesture is always available.
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    return self.stackNavigationController.childViewControllers.count >= 1;
 }
 
 - (NSArray<CQSceneConfigurationItem *> *)loadConfiguration {
@@ -206,17 +246,33 @@ NSString *const CQSceneStyleFloat = @"CQSceneStyleFloat";
     for (NSDictionary *scene in sceneList) {
         CQSceneConfigurationItem *item = [[CQSceneConfigurationItem alloc] init];
         
-        item.address = scene[@"Address"];
-        item.controller = scene[@"Controller"];
+        NSString *string = nil;
+        NSNumber *number = nil;
         
-        NSString *style = scene[@"Style"];
-        if ([style isEqualToString:@"Stack"]) {
-            item.style = CQSceneStyleStack;
-        } else if ([style isEqualToString:@"Float"]) {
-            item.style = CQSceneStyleFloat;
+        //address:
+        if ((string = scene[@"address"]) != nil) {
+            item.address = string;
         }
-        
-        item.launch = ((NSNumber *)scene[@"Launch"]).boolValue;
+        //controller:
+        if ((string = scene[@"controller"]) != nil) {
+            item.controller = string;
+        }
+        //style:
+        if ((string = scene[@"style"]) != nil) {
+            if /**/ ([string isEqualToString:@"stack"]) {item.style = CQSceneStyleStack;}
+            else if ([string isEqualToString:@"float"]) {item.style = CQSceneStyleFloat;}
+            else /* ................................ */ {item.style = nil              ;}
+        }
+        //navigable:
+        if ((number = scene[@"navigable"]) != nil) {
+            item.navigable = number.boolValue;
+        } else {
+            item.navigable = YES; //default.
+        }
+        //number:
+        if ((number = scene[@"launch"]) != nil) {
+            item.launch = number.boolValue;
+        }
         
         [itemList addObject:item];
     }

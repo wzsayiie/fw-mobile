@@ -3,54 +3,48 @@
 <plist version="1.0">
 <array>
 	<dict>
-		<key>Address</key>
+		<key>address</key>
 		<string>apps://blank</string>
-		<key>Controller</key>
+		<key>controller</key>
 		<string>BlankViewController</string>
-		<key>Style</key>
-		<string>Stack</string>
-		<key>Launch</key>
-		<false/>
+		<key>style</key>
+		<string>stack</string>
 	</dict>
 	<dict>
-		<key>Address</key>
+		<key>address</key>
 		<string>apps://daily</string>
-		<key>Controller</key>
+		<key>controller</key>
 		<string>DailyDemoController</string>
-		<key>Style</key>
-		<string>Stack</string>
-		<key>Launch</key>
+		<key>style</key>
+		<string>stack</string>
+		<key>launch</key>
 		<true/>
 	</dict>
 	<dict>
-		<key>Address</key>
+		<key>address</key>
 		<string>apps://doc</string>
-		<key>Controller</key>
+		<key>controller</key>
 		<string>DocViewController</string>
-		<key>Style</key>
-		<string>Stack</string>
-		<key>Launch</key>
-		<string>NO</string>
+		<key>style</key>
+		<string>stack</string>
+		<key>navigable</key>
+		<false/>
 	</dict>
 	<dict>
-		<key>Address</key>
+		<key>address</key>
 		<string>flot://float</string>
-		<key>Controller</key>
+		<key>controller</key>
 		<string>FloatViewController</string>
-		<key>Style</key>
-		<string>Float</string>
-		<key>Launch</key>
-		<false/>
+		<key>style</key>
+		<string>float</string>
 	</dict>
 	<dict>
-		<key>Address</key>
+		<key>address</key>
 		<string>apps://iap</string>
-		<key>Controller</key>
+		<key>controller</key>
 		<string>IAPDemoController</string>
-		<key>Style</key>
-		<string>Stack</string>
-		<key>Launch</key>
-		<false/>
+		<key>style</key>
+		<string>stack</string>
 	</dict>
 </array>
 </plist>

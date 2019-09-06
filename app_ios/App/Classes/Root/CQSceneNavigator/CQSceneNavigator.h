@@ -6,10 +6,11 @@ extern NSString *const CQSceneStyleStack;
 extern NSString *const CQSceneStyleFloat;
 
 @interface CQSceneConfigurationItem : NSObject
-@property (nonatomic, copy  ) NSString *address;
-@property (nonatomic, copy  ) NSString *controller;
-@property (nonatomic, copy  ) NSString *style;
-@property (nonatomic, assign) BOOL      launch;
+@property (nonatomic, copy) NSString *address;
+@property (nonatomic, copy) NSString *controller;
+@property (nonatomic, copy) NSString *style;
+@property (nonatomic) BOOL navigable; //default YES.
+@property (nonatomic) BOOL launch;    //default NO.
 @end
 
 #pragma mark - Data Item
