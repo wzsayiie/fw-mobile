@@ -15,12 +15,12 @@ static void async(float delayInSeconds, dispatch_queue_t queue, dispatch_block_t
     }
 }
 
-void _dispatch_async(float delayInSeconds, dispatch_block_t block) {
+void cq_dispatch_async(float delayInSeconds, dispatch_block_t block) {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     async(delayInSeconds, queue, block);
 }
 
-void _dispatch_async_on_main(float delayInSeconds, dispatch_block_t block) {
+void cq_dispatch_on_main(float delayInSeconds, dispatch_block_t block) {
     dispatch_queue_t queue = dispatch_get_main_queue();
     async(delayInSeconds, queue, block);
 }

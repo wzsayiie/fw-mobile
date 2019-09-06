@@ -17,6 +17,8 @@
         return;
     }
     
+    subview.translatesAutoresizingMaskIntoConstraints = NO;
+    
     [self addSubview:subview];
     NSLayoutConstraint *a = [self constraint:subview align:NSLayoutAttributeTop   ];
     NSLayoutConstraint *b = [self constraint:subview align:NSLayoutAttributeBottom];

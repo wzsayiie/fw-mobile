@@ -24,13 +24,13 @@
 	</dict>
 	<dict>
 		<key>Address</key>
-		<string>apps://iap</string>
+		<string>apps://doc</string>
 		<key>Controller</key>
-		<string>IAPDemoController</string>
+		<string>DocViewController</string>
 		<key>Style</key>
 		<string>Stack</string>
 		<key>Launch</key>
-		<false/>
+		<string>NO</string>
 	</dict>
 	<dict>
 		<key>Address</key>
@@ -39,6 +39,16 @@
 		<string>FloatViewController</string>
 		<key>Style</key>
 		<string>Float</string>
+		<key>Launch</key>
+		<false/>
+	</dict>
+	<dict>
+		<key>Address</key>
+		<string>apps://iap</string>
+		<key>Controller</key>
+		<string>IAPDemoController</string>
+		<key>Style</key>
+		<string>Stack</string>
 		<key>Launch</key>
 		<false/>
 	</dict>
