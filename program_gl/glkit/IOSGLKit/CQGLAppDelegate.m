@@ -2,17 +2,17 @@
 #import "CQGLViewController.h"
 #import "cqwnd.h"
 
-@implementation CQHostAppDelegate
+@implementation CQGLAppDelegate
 
 + (instancetype)sharedObject {
     cq_shared_object(self);
 }
 
 static int64_t new_wnd(void) {
-    return [CQHostAppDelegate.sharedObject createWindow];
+    return [CQGLAppDelegate.sharedObject createWindow];
 }
 static void show_wnd(int64_t wid) {
-    return [CQHostAppDelegate.sharedObject showWindow:wid];
+    return [CQGLAppDelegate.sharedObject showWindow:wid];
 }
 
 - (BOOL) /* ------ */ application:(UIApplication *)application

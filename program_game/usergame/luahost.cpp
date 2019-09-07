@@ -34,7 +34,7 @@ static void gldraw(cq_wnd *wnd) {
     glClear(GL_COLOR_BUFFER_BIT);
 }
 
-extern "C" void _cq_lua_entry() {
+extern "C" void _cq_game_entry() {
     
     cq_wndproc proc = {nullptr};
     proc.load = load;

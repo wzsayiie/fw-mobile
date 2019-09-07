@@ -1,4 +1,4 @@
 #import "CQGLAppDelegate.h"
 
-@interface AppAppDelegate : CQHostAppDelegate
+@interface AppAppDelegate : CQGLAppDelegate
 @end

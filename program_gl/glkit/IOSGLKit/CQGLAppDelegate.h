@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
-@interface CQHostAppDelegate : UIResponder <UIApplicationDelegate>
+@interface CQGLAppDelegate : UIResponder <UIApplicationDelegate>
 
 + (instancetype)sharedObject;
 

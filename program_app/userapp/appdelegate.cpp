@@ -21,7 +21,7 @@ void AppDelegate::applicationWillEnterForeground() {
 void AppDelegate::applicationDidEnterBackground() {
 }
 
-extern "C" void _cq_cpp_entry() {
+extern "C" void _cq_app_entry() {
     AppDelegateRef delegate = AppDelegate::create();
     cqApplication::main(delegate);
 }
