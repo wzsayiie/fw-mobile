@@ -1,6 +1,6 @@
-#include "cqgamekit.hh"
+#include "csgamekit.hh"
 
-cq_class(GameRoot, cqBehaviour) {
+cq_class(GameRoot, csBehaviour) {
     
     void awake() override;
 };

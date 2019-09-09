@@ -1,9 +1,10 @@
-#include "cqscenemanager.hh"
+#include "csscenemanager.hh"
+#include "csapplication.hh"
 
-static std::map<std::string, cqSceneRef> sAllScenes;
-static cqSceneRef sActiveScene;
+static std::map<std::string, csSceneRef> sAllScenes;
+static csSceneRef sActiveScene;
 
-cqSceneRef cqSceneManager::createScene(const std::string &name) {
+csSceneRef csSceneManager::createScene(const std::string &name) {
     if (name.empty()) {
         return nullptr;
     }
@@ -11,14 +12,16 @@ cqSceneRef cqSceneManager::createScene(const std::string &name) {
         return nullptr;
     }
     
-    cqSceneRef scene = cqScene::create();
+    csApplication::initializeIfNeeded();
+    
+    csSceneRef scene = csScene::create();
     scene->setName(name);
     
     sAllScenes[name] = scene;
     return scene;
 }
 
-void cqSceneManager::loadScene(const std::string &name) {
+void csSceneManager::loadScene(const std::string &name) {
     if (name.empty()) {
         return;
     }
@@ -29,6 +32,6 @@ void cqSceneManager::loadScene(const std::string &name) {
     sActiveScene = sAllScenes[name];
 }
 
-cqSceneRef cqSceneManager::getActiveScene() {
+csSceneRef csSceneManager::getActiveScene() {
     return sActiveScene;
 }

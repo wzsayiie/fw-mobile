@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cqgamekit.hh"
+#include "csgamekit.hh"
 
 struct LuaSource {
     static void update(const std::string &directory);

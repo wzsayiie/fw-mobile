@@ -1,5 +1,5 @@
-#include "cqluavm.h"
-#include "cqfoundation.hh"
+#include "csluavm.hh"
+#include "cqluabasis.h"
 #include "lua.hpp"
 
 # if CQ_ON_WINDOWS
@@ -8,23 +8,26 @@
 #   include <unistd.h>
 # endif
 
-static lua_State *_state = nullptr;
+# if CQ_ON_ANDROID
+#   include <android/log.h>
+# else
+#   include <cstdio>
+# endif
+
+static lua_State *sLuaState = nullptr;
 
 static void register_func(const char *name, int32_t (*func)(lua_State *)) {
-    if (_state == nullptr) {
-        I("lua vm: register function but vm was not initialized");
+    if (sLuaState == nullptr) {
         return;
     }
     if (cq_str_empty(name)) {
-        I("lua vm: register function but the name is empty");
         return;
     }
     if (func == nullptr) {
-        I("lua vm: register function but the c pointer is empty");
         return;
     }
     
-    lua_register(_state, name, func);
+    lua_register(sLuaState, name, func);
 }
 
 static int traceback(lua_State *state) {
@@ -36,35 +39,41 @@ static int traceback(lua_State *state) {
     lua_call(state, 2, 1);
     const char *info = lua_tostring(state, -1);
     
-    E("lua vm: runtime error:\n%s", info);
+#if CQ_ON_ANDROID
+    __android_log_print(ANDROID_LOG_ERROR, "lua", "lua vm: runtime error:\n%s", info);
+#else
+    fprintf(stderr, "lua vm: runtime error:\n%s", info);
+#endif
     
     return 1;
 }
 
 static void do_string(const char *code) {
-    if (_state == nullptr) {
-        I("lua vm: do string but vm was not initialized");
+    if (sLuaState == nullptr) {
         return;
     }
     if (cq_str_empty(code)) {
-        I("lua vm: do string but the code is emptry");
         return;
     }
     
     //trackback function
-    lua_pushcfunction(_state, traceback);
+    lua_pushcfunction(sLuaState, traceback);
     
     //load
-    int error = luaL_loadstring(_state, code);
+    int error = luaL_loadstring(sLuaState, code);
     if (error) {
-        const char *info = lua_tostring(_state, -1);
-        E("lua vm: syntax error:\n%s", info);
+        const char *info = lua_tostring(sLuaState, -1);
+#if CQ_ON_ANDROID
+        __android_log_print(ANDROID_LOG_ERROR, "lua", "lua vm: syntax error:\n%s", info);
+#else
+        fprintf(stderr, "lua vm: syntax error:\n%s", info);
+#endif
         return;
     }
     
     //execute
-    int traceback = lua_gettop(_state) - 1;
-    lua_pcall(_state, 0, 0, traceback);
+    int traceback = lua_gettop(sLuaState) - 1;
+    lua_pcall(sLuaState, 0, 0, traceback);
 }
 
 static int64_t check_integer(lua_State *s, int32_t i) {return luaL_checkinteger(s, i);}
@@ -82,25 +91,27 @@ static void push_string(lua_State *state, const char *value) {
     lua_pushstring(state, value);
 }
 
-void cq_lua_open_vm(const char *directory) {
-    I("lua vm: open");
+void csLuaVM::open(const std::string &directory) {
+    if (directory.empty()) {
+        return;
+    }
     
-    cq_lua_close_vm();
+    csLuaVM::close();
     
     //new vm
-    _state = luaL_newstate();
-    luaL_openlibs(_state);
+    sLuaState = luaL_newstate();
+    luaL_openlibs(sLuaState);
     
     //change work directory. otherwise,
     //the file name specified by runtime error message is very long.
-  #if CQ_ON_WINDOWS
-    SetCurrentDirectoryA(directory);
-  #else
-    chdir(directory);
-  #endif
+#if CQ_ON_WINDOWS
+    SetCurrentDirectoryA(directory.c_str());
+#else
+    chdir(directory.c_str());
+#endif
     do_string("package.path  = '?.lua'");
     do_string("package.cpath = ''");
-
+    
     //register handlers
     _cq_lua_handlers handlers = {nullptr}; {
         handlers.register_func = register_func;
@@ -116,17 +127,15 @@ void cq_lua_open_vm(const char *directory) {
     _cq_lua_set_handlers(&handlers);
 }
 
-void cq_lua_close_vm() {
-    if (_state == nullptr) {
+void csLuaVM::close() {
+    if (sLuaState == nullptr) {
         return;
     }
-    
-    I("lua vm: close");
     
     //disable handlers
     _cq_lua_set_handlers(nullptr);
     
     //delete vm
-    lua_close(_state);
-    _state = nullptr;
+    lua_close(sLuaState);
+    sLuaState = nullptr;
 }

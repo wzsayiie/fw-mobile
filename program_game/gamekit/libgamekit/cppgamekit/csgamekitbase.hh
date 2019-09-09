@@ -1,4 +1,4 @@
 #pragma one
 
 #include "cqcppbasis.hh"
-#include "_CQGAMEKIT_VERSION.h"
+#include "_CSGAMEKIT_VERSION.h"

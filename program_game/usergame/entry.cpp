@@ -1,10 +1,10 @@
 #include "gameroot.hh"
 
-extern "C" void _cq_game_entry() {
+extern "C" void _cs_game_entry() {
     
-    cqSceneManager::createScene("LaunchScene");
-    cqSceneManager::loadScene("LaunchScene");
+    csSceneManager::createScene("LaunchScene");
+    csSceneManager::loadScene("LaunchScene");
     
-    cqGameObjectRef gameRootObject = cqGameObject::createGameObject();
+    csGameObjectRef gameRootObject = csGameObject::createGameObject();
     gameRootObject->addComponent(GameRoot::create());
 }
