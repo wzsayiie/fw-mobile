@@ -33,3 +33,6 @@ static void startupLuaVM() {
 void GameRoot::awake() {
     startupLuaVM();
 }
+
+void GameRoot::start() {
+}
