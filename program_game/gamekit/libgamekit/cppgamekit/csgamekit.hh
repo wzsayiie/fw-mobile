@@ -7,4 +7,3 @@
 #include "csbaseobject.hh"
 #include "csluavm.hh"
 #include "csscene.hh"
-#include "csscenemanager.hh"

@@ -79,7 +79,6 @@
 		CE299D282323F15B00B5FC98 /* csscene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE299D222323F15B00B5FC98 /* csscene.cpp */; };
 		CE299D292323F15B00B5FC98 /* csgameobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE299D242323F15B00B5FC98 /* csgameobject.cpp */; };
 		CE299D322323F47200B5FC98 /* csluavm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE299D2F2323F47200B5FC98 /* csluavm.cpp */; };
-		CE299D352323F95100B5FC98 /* csscenemanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE299D332323F95100B5FC98 /* csscenemanager.cpp */; };
 		CE299D3A2323FA7E00B5FC98 /* gameroot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE299D362323FA7E00B5FC98 /* gameroot.cpp */; };
 		CE299D3B2323FA7E00B5FC98 /* entry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE299D372323FA7E00B5FC98 /* entry.cpp */; };
 		CE299D402324055600B5FC98 /* cscomponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE299D3C2324055600B5FC98 /* cscomponent.cpp */; };
@@ -258,8 +257,6 @@
 		CE299D2C2323F1B500B5FC98 /* csgamekit.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csgamekit.hh; sourceTree = "<group>"; };
 		CE299D2F2323F47200B5FC98 /* csluavm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csluavm.cpp; sourceTree = "<group>"; };
 		CE299D302323F47200B5FC98 /* csluavm.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csluavm.hh; sourceTree = "<group>"; };
-		CE299D332323F95100B5FC98 /* csscenemanager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csscenemanager.cpp; sourceTree = "<group>"; };
-		CE299D342323F95100B5FC98 /* csscenemanager.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csscenemanager.hh; sourceTree = "<group>"; };
 		CE299D362323FA7E00B5FC98 /* gameroot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gameroot.cpp; path = ../program_game/usergame/gameroot.cpp; sourceTree = "<group>"; };
 		CE299D372323FA7E00B5FC98 /* entry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = entry.cpp; path = ../program_game/usergame/entry.cpp; sourceTree = "<group>"; };
 		CE299D392323FA7E00B5FC98 /* gameroot.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = gameroot.hh; path = ../program_game/usergame/gameroot.hh; sourceTree = "<group>"; };
@@ -852,8 +849,6 @@
 				CE299D302323F47200B5FC98 /* csluavm.hh */,
 				CE299D222323F15B00B5FC98 /* csscene.cpp */,
 				CE299D272323F15B00B5FC98 /* csscene.hh */,
-				CE299D332323F95100B5FC98 /* csscenemanager.cpp */,
-				CE299D342323F95100B5FC98 /* csscenemanager.hh */,
 			);
 			path = cppgamekit;
 			sourceTree = "<group>";
@@ -1028,7 +1023,6 @@
 				B4411557231CB83D00053BD7 /* cqcontext.cpp in Sources */,
 				B425212322842BE4004FA04B /* CQSceneNavigator.m in Sources */,
 				B4411590231D0B5700053BD7 /* cqglkitarche.cpp in Sources */,
-				CE299D352323F95100B5FC98 /* csscenemanager.cpp in Sources */,
 				B425210B22842AD3004FA04B /* UIViewController+CQ.m in Sources */,
 				B425212222842BE4004FA04B /* CQCrashListener.m in Sources */,
 				B443108B2321FBED00FA6720 /* TitlebarViewController.m in Sources */,

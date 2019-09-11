@@ -96,7 +96,7 @@ void cqBus::post(cqBusEventName eventName, cqObjectRef parameter) {
     std::vector<TargetItem> targetTable;
     cq_synchronize_with(dat->mutex, {
         tidy(&dat->targets);
-        if (dat->targets.find(eventName) != dat->targets.end()) {
+        if (cqMap::contains(dat->targets, eventName)) {
             targetTable = dat->targets[eventName];
         }
     });

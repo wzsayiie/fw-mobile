@@ -31,6 +31,15 @@ struct cqString {
     static bool empty(const char *value);
 };
 
+struct cqMap {
+    template<class M, class K> static bool contains(const M &m, const K &k) {
+        return m.find(k) != m.end();
+    }
+    template<class M, class K> static bool dontContain(const M &m, const K &k) {
+        return m.find(k) == m.end();
+    }
+};
+
 //synchronization lock:
 
 #define cq_synchronize(BLOCK)\
