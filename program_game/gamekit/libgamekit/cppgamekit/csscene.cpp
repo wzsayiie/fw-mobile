@@ -15,11 +15,11 @@ std::string csScene::name() {
     return dat->name;
 }
 
-const std::vector<csGameObjectRef> &csScene::rootGameObject() {
-    if (this == csSceneManager::getActiveScene().get()) {
-        return csSceneManager::activeSceneVirtualRoot()->children();
+const std::map<void *, csGameObjectRef> &csScene::rootGameObjects() {
+    if (this == csSceneManager::activeScene().get()) {
+        return csSceneManager::rootGameObjects(false);
     } else {
-        static std::vector<csGameObjectRef> empty;
+        static std::map<void *, csGameObjectRef> empty;
         return empty;
     }
 }

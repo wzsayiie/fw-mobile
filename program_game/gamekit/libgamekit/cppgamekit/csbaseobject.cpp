@@ -4,26 +4,25 @@
 cq_member(csBaseObject) {
 };
 
-void csBaseObject::dontDetachOnLoad(csBaseObjectRef object) {
+void csBaseObject::dontDestroyOnLoad(csBaseObjectRef object) {
     if (object == nullptr) {
         return;
     }
     
-    csGameObjectRef gameObject;
-    
     if (object->isKindOfClass(csComponent::getClass())) {
+        
         auto componentObject = cqObject::cast<csComponent>(object);
-        gameObject = componentObject->gameObject();
+        auto gameObject = componentObject->gameObject();
+        csSceneManager::destroy(gameObject);
+        
     } else if (object->isKindOfClass(csGameObject::getClass())) {
-        gameObject = cqObject::cast<csGameObject>(object);
-    }
-    
-    if (gameObject != nullptr) {
-        gameObject->setParent(csSceneManager::globalVirtualRoot());
+        
+        auto gameObject = cqObject::cast<csGameObject>(object);
+        csSceneManager::destroy(gameObject);
     }
 }
 
-void csBaseObject::detach(csBaseObjectRef object) {
+void csBaseObject::destroy(csBaseObjectRef object) {
     if (object == nullptr) {
         return;
     }
@@ -39,6 +38,6 @@ void csBaseObject::detach(csBaseObjectRef object) {
     } else if (object->isKindOfClass(csGameObject::getClass())) {
         
         auto gameObject = cqObject::cast<csGameObject>(object);
-        gameObject->setParent(nullptr);
+        csSceneManager::destroy(gameObject);
     }
 }

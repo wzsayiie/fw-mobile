@@ -11,15 +11,7 @@ cq_member(csGameObject) {
 };
 
 csGameObjectRef csGameObject::createWithName(const std::string &name) {
-    csGameObjectRef object = csGameObject::create();
-    
-    object->setName(name);
-    //NOTE: transform component is default.
-    object->addComponent(csTransform::getClass());
-    //NOTE: attach to active scene.
-    object->setParent(csSceneManager::activeSceneVirtualRoot());
-    
-    return object;
+    return csSceneManager::createGameObject(name);
 }
 
 //properties:
@@ -65,6 +57,13 @@ const std::vector<csGameObjectRef> &csGameObject::children() {
     return dat->children;
 }
 
+void csGameObject::detachChildren() {
+    for (auto &it : dat->children) {
+        it->dat->parent.reset();
+    }
+    dat->children.clear();
+}
+
 //components:
 
 void csGameObject::addComponent(cqClass *clazz) {
@@ -78,13 +77,22 @@ void csGameObject::addComponent(cqClass *clazz) {
     csComponentRef component = cqObject::cast<csComponent>(clazz->create());
     component->resetGameObjectIfNeeded(strongRef());
     dat->components[clazz] = component;
+    
+    //component initialization.
+    component->awake();
+    component->start();
 }
 
 void csGameObject::removeComponent(cqClass *clazz) {
     if (clazz == nullptr) {
         return;
     }
+    if (cqMap::dontContain(dat->components, clazz)) {
+        return;
+    }
     
+    csComponentRef component = dat->components[clazz];
+    component->onDestroy();
     dat->components.erase(clazz);
 }
 
@@ -102,4 +110,24 @@ csComponentRef csGameObject::getComponent(cqClass *clazz) {
 
 csTransformRef csGameObject::transform() {
     return getComponent<csTransform>();
+}
+
+void csGameObject::update() {
+    
+    //NOTE: it's possibly to destroy component in update(),
+    //keep the traversed container unchanged.
+    std::map<cqClass *, csComponentRef> components = dat->components;
+    for (auto &cp : components) {
+        cp.second->update();
+    }
+}
+
+void csGameObject::onDestroy() {
+    for (auto &cp : dat->components) {
+        cp.second->onDestroy();
+    }
+}
+
+csGameObject::~csGameObject() {
+    puts("~csGameObject");
 }

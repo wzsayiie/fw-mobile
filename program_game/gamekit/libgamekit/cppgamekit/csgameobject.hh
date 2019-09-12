@@ -18,6 +18,7 @@ cq_class(csGameObject, csBaseObject) {
     virtual void setParent(csGameObjectRef parent);
     virtual csGameObjectRef parent();
     virtual const std::vector<csGameObjectRef> &children();
+    virtual void detachChildren();
     
     //components:
     virtual void addComponent(cqClass *clazz);
@@ -30,6 +31,12 @@ cq_class(csGameObject, csBaseObject) {
     }
     
     virtual csTransformRef transform();
+    
+    //life cycle:
+    virtual void update();
+    virtual void onDestroy();
+    
+    ~csGameObject();
 };
 
 _CSGAMEKIT_END_VERSION_NS

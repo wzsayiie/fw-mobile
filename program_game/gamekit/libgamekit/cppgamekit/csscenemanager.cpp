@@ -7,14 +7,31 @@
 static std::map<std::string, csSceneRef> sAllScenes;
 static csSceneRef sActiveScene;
 
-static csGameObjectRef sActiveSceneVirtualRoot;
-static csGameObjectRef sGlobalVirtualRoot;
+static std::map<void *, csGameObjectRef> sActiveObjects;
+static std::map<void *, csGameObjectRef> sGlobalObjects;
 
 static cq_wnd *sWnd = NULL;
 
 //wnd:
 
 static void load(cq_wnd *wnd) {
+}
+
+static void update(cq_wnd *wnd) {
+    
+    //NOTE: it's possibly to destroy game object in update(),
+    //keep the traversed container unchanged.
+    std::map<void *, csGameObjectRef> gameObjects;
+    
+    gameObjects = sActiveObjects;
+    for (auto &cp : gameObjects) {
+        cp.second->update();
+    }
+    
+    gameObjects = sGlobalObjects;
+    for (auto &cp : gameObjects) {
+        cp.second->update();
+    }
 }
 
 static void gldraw(cq_wnd *wnd) {
@@ -29,6 +46,7 @@ static void initializeWndIfNeeded() {
     
     cq_wndproc proc = {nullptr};
     proc.load = load;
+    proc.update = update;
     proc.gldraw = gldraw;
     
     sWnd = cq_new_wnd();
@@ -64,20 +82,55 @@ void csSceneManager::loadScene(const std::string &name) {
     sActiveScene = sAllScenes[name];
 }
 
-csSceneRef csSceneManager::getActiveScene() {
+csSceneRef csSceneManager::activeScene() {
     return sActiveScene;
 }
 
-csGameObjectRef csSceneManager::activeSceneVirtualRoot() {
-    if (sActiveSceneVirtualRoot == nullptr) {
-        sActiveSceneVirtualRoot = csGameObject::create();
-    }
-    return sActiveSceneVirtualRoot;
+csGameObjectRef csSceneManager::createGameObject(const std::string &name) {
+    csGameObjectRef gameObject = csGameObject::create();
+    sActiveObjects[gameObject.get()] = gameObject;
+    
+    gameObject->setName(name);
+    //NOTE: transform component is default.
+    gameObject->addComponent(csTransform::getClass());
+    
+    return gameObject;
 }
 
-csGameObjectRef csSceneManager::globalVirtualRoot() {
-    if (sGlobalVirtualRoot == nullptr) {
-        sGlobalVirtualRoot = csGameObject::create();
+void csSceneManager::dontDestoryOnLoad(csGameObjectRef gameObject) {
+    if (gameObject == nullptr) {
+        return;
     }
-    return sGlobalVirtualRoot;
+    
+    void *key = gameObject.get();
+    if (cqMap::contains(sActiveObjects, key)) {
+        sActiveObjects.erase(key);
+    }
+    if (cqMap::dontContain(sGlobalObjects, key)) {
+        sGlobalObjects[key] = gameObject;
+    }
+}
+
+void csSceneManager::destroy(csGameObjectRef gameObject) {
+    if (gameObject == nullptr) {
+        return;
+    }
+    
+    void *key = gameObject.get();
+    if (cqMap::contains(sActiveObjects, key)) {
+        sActiveObjects[key]->onDestroy();
+        sActiveObjects.erase(key);
+    }
+    if (cqMap::contains(sGlobalObjects, key)) {
+        sGlobalObjects[key]->onDestroy();
+        sGlobalObjects.erase(key);
+    }
+}
+
+const std::map<void *, csGameObjectRef> &csSceneManager::rootGameObjects(bool global) {
+    if (global) {
+        return sGlobalObjects;
+    } else {
+        return sActiveObjects;
+    }
 }

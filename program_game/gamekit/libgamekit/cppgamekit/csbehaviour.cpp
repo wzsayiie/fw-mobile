@@ -2,15 +2,3 @@
 
 cq_member(csBehaviour) {
 };
-
-void csBehaviour::awake() {
-}
-
-void csBehaviour::start() {
-}
-
-void csBehaviour::update() {
-}
-
-void csBehaviour::onDestroy() {
-}

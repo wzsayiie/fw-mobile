@@ -6,13 +6,8 @@ _CSGAMEKIT_BEGIN_VERSION_NS
 
 cq_class(csBaseObject, cqObject) {
     
-    //when a new scene loaded, do not detach $object from game object tree.
-    //$object should be a csGameObject or csComponent.
-    static void dontDetachOnLoad(csBaseObjectRef object);
-    
-    //detach $object from game object tree.
-    //$object should be a csGameObject or csComponent.
-    static void detach(csBaseObjectRef object);
+    static void dontDestroyOnLoad(csBaseObjectRef object);
+    static void destroy(csBaseObjectRef object);
 };
 
 _CSGAMEKIT_END_VERSION_NS
