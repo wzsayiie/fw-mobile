@@ -87,7 +87,7 @@ cqWindowRef cqView::window() {
     }
     
     if (it->isKindOfClass(cqWindow::getClass())) {
-        return it->cast<cqWindow>();
+        return cqObject::cast<cqWindow>(it);
     } else {
         return nullptr;
     }
@@ -152,7 +152,7 @@ static cqWindowRef offsetOnWindow(cqViewRef self, cqPoint *offset) {
     }
     
     if (view->isKindOfClass(cqWindow::getClass())) {
-        return view->cast<cqWindow>();
+        return cqObject::cast<cqWindow>(view);
     } else {
         return nullptr;
     }

@@ -75,6 +75,8 @@
 		B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DCD87B21F17DAE0090BFBB /* UserIdentity.m */; };
 		B4DCD87F21F17DAE0090BFBB /* UserSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DCD87C21F17DAE0090BFBB /* UserSetting.m */; };
 		B4E7CD0F2224098800122637 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E7CD0E2224098800122637 /* main.m */; };
+		B4F7AE1C2329DF9500E675A8 /* cstransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4F7AE1B2329DF9500E675A8 /* cstransform.cpp */; };
+		B4F7AE1F232A0CE500E675A8 /* csscenemanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4F7AE1D232A0CE400E675A8 /* csscenemanager.cpp */; };
 		B4FCC39821F0912700D152DF /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FCC39721F0912700D152DF /* libc++.tbd */; };
 		CE299D282323F15B00B5FC98 /* csscene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE299D222323F15B00B5FC98 /* csscene.cpp */; };
 		CE299D292323F15B00B5FC98 /* csgameobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE299D242323F15B00B5FC98 /* csgameobject.cpp */; };
@@ -248,6 +250,10 @@
 		B4DCD87D21F17DAE0090BFBB /* UserIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserIdentity.h; sourceTree = "<group>"; };
 		B4E7CD0E2224098800122637 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B4EC3C6621DF6D8800E287A4 /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../library_ios/Library.xcodeproj; sourceTree = "<group>"; };
+		B4F7AE1A2329DF9500E675A8 /* cstransform.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cstransform.hh; sourceTree = "<group>"; };
+		B4F7AE1B2329DF9500E675A8 /* cstransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cstransform.cpp; sourceTree = "<group>"; };
+		B4F7AE1D232A0CE400E675A8 /* csscenemanager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csscenemanager.cpp; sourceTree = "<group>"; };
+		B4F7AE1E232A0CE500E675A8 /* csscenemanager.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csscenemanager.hh; sourceTree = "<group>"; };
 		B4FCC39721F0912700D152DF /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		CE299D222323F15B00B5FC98 /* csscene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csscene.cpp; sourceTree = "<group>"; };
 		CE299D242323F15B00B5FC98 /* csgameobject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csgameobject.cpp; sourceTree = "<group>"; };
@@ -849,6 +855,10 @@
 				CE299D302323F47200B5FC98 /* csluavm.hh */,
 				CE299D222323F15B00B5FC98 /* csscene.cpp */,
 				CE299D272323F15B00B5FC98 /* csscene.hh */,
+				B4F7AE1D232A0CE400E675A8 /* csscenemanager.cpp */,
+				B4F7AE1E232A0CE500E675A8 /* csscenemanager.hh */,
+				B4F7AE1B2329DF9500E675A8 /* cstransform.cpp */,
+				B4F7AE1A2329DF9500E675A8 /* cstransform.hh */,
 			);
 			path = cppgamekit;
 			sourceTree = "<group>";
@@ -1024,9 +1034,11 @@
 				B425212322842BE4004FA04B /* CQSceneNavigator.m in Sources */,
 				B4411590231D0B5700053BD7 /* cqglkitarche.cpp in Sources */,
 				B425210B22842AD3004FA04B /* UIViewController+CQ.m in Sources */,
+				B4F7AE1C2329DF9500E675A8 /* cstransform.cpp in Sources */,
 				B425212222842BE4004FA04B /* CQCrashListener.m in Sources */,
 				B443108B2321FBED00FA6720 /* TitlebarViewController.m in Sources */,
 				B4411553231CB83D00053BD7 /* cqgeometry.cpp in Sources */,
+				B4F7AE1F232A0CE500E675A8 /* csscenemanager.cpp in Sources */,
 				CE299D412324055600B5FC98 /* csbehaviour.cpp in Sources */,
 				B441155E231CB83D00053BD7 /* cqtouch.cpp in Sources */,
 				B4411586231CBFD100053BD7 /* cqappkitarche.cpp in Sources */,

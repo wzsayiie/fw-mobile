@@ -5,10 +5,26 @@ cq_member(csComponent) {
     csGameObjectWeakRef gameObject;
 };
 
-void csComponent::setGameObject(csGameObjectRef gameObject) {
-    dat->gameObject = gameObject;
+void csComponent::resetGameObjectIfNeeded(csGameObjectRef gameObject) {
+    if (dat->gameObject.lock() == nullptr) {
+        dat->gameObject = gameObject;
+    }
 }
 
 csGameObjectRef csComponent::gameObject() {
     return dat->gameObject.lock();
+}
+
+csComponentRef csComponent::getComponent(cqClass *clazz) {
+    csGameObjectRef object = gameObject();
+    
+    if (object != nullptr) {
+        return object->getComponent(clazz);
+    } else {
+        return nullptr;
+    }
+}
+
+csTransformRef csComponent::transform() {
+    return getComponent<csTransform>();
 }

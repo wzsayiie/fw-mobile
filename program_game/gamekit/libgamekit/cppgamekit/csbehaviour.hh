@@ -11,6 +11,8 @@ cq_class(csBehaviour, csComponent) {
     virtual void start();
     
     virtual void update();
+    
+    virtual void onDestroy();
 };
 
 _CSGAMEKIT_END_VERSION_NS

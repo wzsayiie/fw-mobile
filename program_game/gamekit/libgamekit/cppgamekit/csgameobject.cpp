@@ -1,4 +1,5 @@
 #include "csgameobject.hh"
+#include "csscenemanager.hh"
 
 cq_member(csGameObject) {
     std::string name;
@@ -13,8 +14,10 @@ csGameObjectRef csGameObject::createWithName(const std::string &name) {
     csGameObjectRef object = csGameObject::create();
     
     object->setName(name);
-    
-    //TODO: add to active scene.
+    //NOTE: transform component is default.
+    object->addComponent(csTransform::getClass());
+    //NOTE: attach to active scene.
+    object->setParent(csSceneManager::activeSceneVirtualRoot());
     
     return object;
 }
@@ -54,6 +57,10 @@ void csGameObject::setParent(csGameObjectRef parent) {
     }
 }
 
+csGameObjectRef csGameObject::parent() {
+    return dat->parent.lock();
+}
+
 const std::vector<csGameObjectRef> &csGameObject::children() {
     return dat->children;
 }
@@ -68,16 +75,13 @@ void csGameObject::addComponent(cqClass *clazz) {
         return;
     }
     
-    csComponentRef component = clazz->create()->cast<csComponent>();
-    component->setGameObject(strongRef());
+    csComponentRef component = cqObject::cast<csComponent>(clazz->create());
+    component->resetGameObjectIfNeeded(strongRef());
     dat->components[clazz] = component;
 }
 
 void csGameObject::removeComponent(cqClass *clazz) {
     if (clazz == nullptr) {
-        return;
-    }
-    if (cqMap::dontContain(dat->components, clazz)) {
         return;
     }
     
@@ -94,4 +98,8 @@ csComponentRef csGameObject::getComponent(cqClass *clazz) {
     } else {
         return nullptr;
     }
+}
+
+csTransformRef csGameObject::transform() {
+    return getComponent<csTransform>();
 }

@@ -11,3 +11,6 @@ void csBehaviour::start() {
 
 void csBehaviour::update() {
 }
+
+void csBehaviour::onDestroy() {
+}
