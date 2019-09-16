@@ -7,3 +7,4 @@
 #include "cqjson.hh"
 #include "cqpathstring.hh"
 #include "cqsocket.hh"
+#include "cqvalue.hh"
