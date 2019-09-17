@@ -1,6 +1,13 @@
 #include "csgameobject.hh"
 #include "csscenemanager.hh"
 
+//global data:
+
+static std::map<void *, csGameObjectRef> sActiveRoots;
+static std::map<void *, csGameObjectRef> sGlobalRoots;
+
+//game object:
+
 cq_member(csGameObject) {
     std::string name;
     
@@ -10,8 +17,81 @@ cq_member(csGameObject) {
     std::map<cqClass *, csComponentRef> components;
 };
 
+//create and destroy:
+
+const std::map<void *, csGameObjectRef> &csGameObject::activeRoots() {
+    return sActiveRoots;
+}
+
+const std::map<void *, csGameObjectRef> &csGameObject::globalRoots() {
+    return sGlobalRoots;
+}
+
 csGameObjectRef csGameObject::createWithName(const std::string &name) {
-    return csSceneManager::createGameObject(name);
+    
+    //create new game object:
+    csGameObjectRef gameObject = csGameObject::create();
+    gameObject->setName(name);
+    gameObject->addComponent(csTransform::getClass());
+    
+    //add to active scene:
+    void *key = gameObject.get();
+    sActiveRoots[key] = gameObject;
+    
+    return gameObject;
+}
+
+void csGameObject::dontDestoryOnLoad(csGameObjectRef gameObject) {
+    if (gameObject == nullptr) {
+        return;
+    }
+    
+    //NOTE: only root game object can be keep after load other scene.
+    if (gameObject->parent() != nullptr) {
+        return;
+    }
+    
+    void *key = gameObject.get();
+    sActiveRoots.erase(key);
+    sGlobalRoots[key] = gameObject;
+}
+
+void csGameObject::destroyActiveRoots() {
+    std::map<void *, csGameObjectRef> gameObjects = sActiveRoots;
+    for (auto &cp : gameObjects) {
+        cp.second->onDestroy();
+    }
+    sActiveRoots.clear();
+}
+
+void csGameObject::destroy(csGameObjectRef gameObject) {
+    if (gameObject == nullptr) {
+        return;
+    }
+    
+    gameObject->onDestroy();
+    
+    void *key = gameObject.get();
+    if (cqMap::contains(sActiveRoots, key)) {
+        
+        //remove from active roots.
+        sActiveRoots.erase(key);
+        
+    } else if (cqMap::contains(sGlobalRoots, key)) {
+        
+        //remove from global roots.
+        sGlobalRoots.erase(key);
+        
+    } else {
+        
+        //remove from parent.
+        //NOTE: don't use setParent(null), it will move the game object to active roots.
+        csGameObjectRef parent = gameObject->parent();
+        auto brothers = parent->dat->children;
+        std::remove_if(brothers.begin(), brothers.end(), [=](csGameObjectRef it) {
+            return it.get() == key;
+        });
+    }
 }
 
 //properties:
@@ -33,7 +113,7 @@ void csGameObject::setParent(csGameObjectRef parent) {
         return;
     }
     
-    //remove from old parent.
+    //remove from old parent:
     if (oldParent != nullptr) {
         auto brothers = oldParent->dat->children;
         std::remove_if(brothers.begin(), brothers.end(), [=](csGameObjectRef it) {
@@ -42,10 +122,12 @@ void csGameObject::setParent(csGameObjectRef parent) {
         dat->parent.reset();
     }
     
-    //add to new parent.
+    //add to new parent or roots:
     if (parent != nullptr) {
         parent->dat->children.push_back(strongRef());
         dat->parent = parent;
+    } else {
+        sActiveRoots[this] = strongRef();
     }
 }
 
@@ -58,7 +140,9 @@ const std::vector<csGameObjectRef> &csGameObject::children() {
 }
 
 void csGameObject::detachChildren() {
+    //move children to active roots.
     for (auto &it : dat->children) {
+        sActiveRoots[it.get()] = it;
         it->dat->parent.reset();
     }
     dat->children.clear();
@@ -123,11 +207,16 @@ void csGameObject::update() {
 }
 
 void csGameObject::onDestroy() {
-    for (auto &cp : dat->components) {
+    
+    //call children:
+    std::vector<csGameObjectRef> children = dat->children;
+    for (auto &it : children) {
+        it->onDestroy();
+    }
+    
+    //call own components:
+    std::map<cqClass *, csComponentRef> components = dat->components;
+    for (auto &cp : components) {
         cp.second->onDestroy();
     }
-}
-
-csGameObject::~csGameObject() {
-    puts("~csGameObject");
 }

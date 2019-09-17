@@ -1,5 +1,5 @@
 #include "csbaseobject.hh"
-#include "csscenemanager.hh"
+#include "csgameobject.hh"
 
 cq_member(csBaseObject) {
 };
@@ -11,14 +11,14 @@ void csBaseObject::dontDestroyOnLoad(csBaseObjectRef object) {
     
     if (object->isKindOfClass(csComponent::getClass())) {
         
-        auto componentObject = cqObject::cast<csComponent>(object);
-        auto gameObject = componentObject->gameObject();
-        csSceneManager::destroy(gameObject);
+        auto component = cqObject::cast<csComponent>(object);
+        auto gameObject = component->gameObject();
+        csGameObject::dontDestoryOnLoad(gameObject);
         
     } else if (object->isKindOfClass(csGameObject::getClass())) {
         
         auto gameObject = cqObject::cast<csGameObject>(object);
-        csSceneManager::destroy(gameObject);
+        csGameObject::dontDestoryOnLoad(gameObject);
     }
 }
 
@@ -29,8 +29,8 @@ void csBaseObject::destroy(csBaseObjectRef object) {
     
     if (object->isKindOfClass(csComponent::getClass())) {
         
-        auto componentObject = cqObject::cast<csComponent>(object);
-        auto gameObject = componentObject->gameObject();
+        auto component = cqObject::cast<csComponent>(object);
+        auto gameObject = component->gameObject();
         if (gameObject != nullptr) {
             gameObject->removeComponent(object->clazz());
         }
@@ -38,6 +38,6 @@ void csBaseObject::destroy(csBaseObjectRef object) {
     } else if (object->isKindOfClass(csGameObject::getClass())) {
         
         auto gameObject = cqObject::cast<csGameObject>(object);
-        csSceneManager::destroy(gameObject);
+        csGameObject::destroy(gameObject);
     }
 }

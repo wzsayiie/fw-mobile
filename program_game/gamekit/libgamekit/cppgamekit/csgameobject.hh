@@ -6,9 +6,16 @@ _CSGAMEKIT_BEGIN_VERSION_NS
 
 cq_class(csGameObject, csBaseObject) {
     
-    //NOTE: new object will be added default components,
-    //and attached to current active scene.
+    //create and destroy:
+    static const std::map<void *, csGameObjectRef> &activeRoots();
+    static const std::map<void *, csGameObjectRef> &globalRoots();
+    
+    //NOTE: new game object will be attached default components, and add to active scene.
     static csGameObjectRef createWithName(const std::string &name);
+    
+    static void dontDestoryOnLoad(csGameObjectRef gameObject);
+    static void destroyActiveRoots();
+    static void destroy(csGameObjectRef gameObject);
     
     //properites:
     virtual void setName(const std::string &name);
@@ -35,8 +42,6 @@ cq_class(csGameObject, csBaseObject) {
     //life cycle:
     virtual void update();
     virtual void onDestroy();
-    
-    ~csGameObject();
 };
 
 _CSGAMEKIT_END_VERSION_NS

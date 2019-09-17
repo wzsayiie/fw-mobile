@@ -1,4 +1,5 @@
 #include "csscene.hh"
+#include "csgameobject.hh"
 #include "csscenemanager.hh"
 
 cq_member(csScene) {
@@ -17,9 +18,9 @@ std::string csScene::name() {
 
 const std::map<void *, csGameObjectRef> &csScene::rootGameObjects() {
     if (this == csSceneManager::activeScene().get()) {
-        return csSceneManager::rootGameObjects(false);
+        return csGameObject::activeRoots();
     } else {
-        static std::map<void *, csGameObjectRef> empty;
+        static thread_local std::map<void *, csGameObjectRef> empty;
         return empty;
     }
 }
