@@ -6,5 +6,5 @@ extern "C" void _cs_game_entry() {
     csSceneManager::loadScene("LaunchScene");
     
     csGameObjectRef gameRootObject = csGameObject::createWithName("GameRoot");
-    gameRootObject->addComponent(GameRoot::getClass());
+    gameRootObject->addComponent(GameRoot::clazz());
 }

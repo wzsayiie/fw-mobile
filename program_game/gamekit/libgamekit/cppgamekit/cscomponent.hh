@@ -19,7 +19,7 @@ cq_class(csComponent, csBaseObject) {
     
     template<class T>
     auto getComponent() -> decltype(cqObject::cast<T>(getComponent(nullptr))) {
-        return cqObject::cast<T>(getComponent(T::getClass()));
+        return cqObject::cast<T>(getComponent(T::clazz()));
     }
     
     virtual csTransformRef transform();

@@ -9,13 +9,13 @@ void csBaseObject::dontDestroyOnLoad(csBaseObjectRef object) {
         return;
     }
     
-    if (object->isKindOfClass(csComponent::getClass())) {
+    if (object->isKindOfClass(csComponent::clazz())) {
         
         auto component = cqObject::cast<csComponent>(object);
         auto gameObject = component->gameObject();
         csGameObject::dontDestoryOnLoad(gameObject);
         
-    } else if (object->isKindOfClass(csGameObject::getClass())) {
+    } else if (object->isKindOfClass(csGameObject::clazz())) {
         
         auto gameObject = cqObject::cast<csGameObject>(object);
         csGameObject::dontDestoryOnLoad(gameObject);
@@ -27,15 +27,15 @@ void csBaseObject::destroy(csBaseObjectRef object) {
         return;
     }
     
-    if (object->isKindOfClass(csComponent::getClass())) {
+    if (object->isKindOfClass(csComponent::clazz())) {
         
         auto component = cqObject::cast<csComponent>(object);
         auto gameObject = component->gameObject();
         if (gameObject != nullptr) {
-            gameObject->removeComponent(object->clazz());
+            gameObject->removeComponent(object->dynamicClass());
         }
         
-    } else if (object->isKindOfClass(csGameObject::getClass())) {
+    } else if (object->isKindOfClass(csGameObject::clazz())) {
         
         auto gameObject = cqObject::cast<csGameObject>(object);
         csGameObject::destroy(gameObject);

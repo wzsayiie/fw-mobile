@@ -12,23 +12,23 @@ bool cqString::empty(const char *value) {
 
 //class:
 
-cqClass *_cqObjectRoot::getSuperclass() {
+cqClass *_cqBaseObject::superclass() {
     return nullptr;
 }
 
-cqClass *_cqObjectRoot::getClass() {
+cqClass *_cqBaseObject::clazz() {
     return nullptr;
 }
 
-cqClass *_cqObjectRoot::superclass() {
+cqClass *_cqBaseObject::dynamicSuperclass() {
     return nullptr;
 }
 
-cqClass *_cqObjectRoot::clazz() {
+cqClass *_cqBaseObject::dynamicClass() {
     return nullptr;
 }
 
-_cqObjectRoot::~_cqObjectRoot() {
+_cqBaseObject::~_cqBaseObject() {
 }
 
 cq_member(cqObject) {
@@ -38,7 +38,7 @@ bool cqObject::isKindOfClass(cqClass *cls) {
     if (cls == nullptr) {
         return false;
     }
-    for (auto it = clazz(); it; it = it->superclass) {
+    for (auto it = dynamicClass(); it; it = it->superclass) {
         if (it == cls) {
             return true;
         }
@@ -50,5 +50,5 @@ bool cqObject::isMemberOfClass(cqClass *cls) {
     if (cls == nullptr) {
         return false;
     }
-    return clazz() == cls;
+    return dynamicClass() == cls;
 }

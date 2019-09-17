@@ -32,7 +32,7 @@ csGameObjectRef csGameObject::createWithName(const std::string &name) {
     //create new game object:
     csGameObjectRef gameObject = csGameObject::create();
     gameObject->setName(name);
-    gameObject->addComponent(csTransform::getClass());
+    gameObject->addComponent(csTransform::clazz());
     
     //add to active scene:
     void *key = gameObject.get();

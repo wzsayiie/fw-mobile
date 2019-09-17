@@ -63,13 +63,13 @@ template<class T> struct cqRef {
 };
 
 struct cqClass;
-struct _cqObjectRoot {
-    cqRef<_cqObjectRoot>::Weak thisWeakRef;
-    static  cqClass *getSuperclass();
-    static  cqClass *getClass();
-    virtual cqClass *superclass();
-    virtual cqClass *clazz();
-    virtual ~_cqObjectRoot();
+struct _cqBaseObject {
+    cqRef<_cqBaseObject>::Weak thisWeakRef;
+    static  cqClass *superclass();
+    static  cqClass *clazz();
+    virtual cqClass *dynamicSuperclass();
+    virtual cqClass *dynamicClass();
+    virtual ~_cqBaseObject();
 };
 
 #define cq_declare(CLASS)\
@@ -109,19 +109,19 @@ template<class CLASS, class SUPER> struct _cqSandWich : SUPER {
         return std::static_pointer_cast<CLASS>(ref);
     }
     
-    static cqClass *getSuperclass() {
-        return SUPER::getClass();
+    static cqClass *superclass() {
+        return SUPER::clazz();
     }
     
     //the function implemented by macro cq_member()
-    static cqClass *getClass();
+    static cqClass *clazz();
     
-    cqClass *superclass() override {
-        return SUPER::getClass();
+    cqClass *dynamicSuperclass() override {
+        return SUPER::clazz();
     }
     
-    cqClass *clazz() override {
-        return CLASS::getClass();
+    cqClass *dynamicClass() override {
+        return CLASS::clazz();
     }
 };
 
@@ -137,7 +137,7 @@ template<class T> cqRef<cqObject>::Strong _cqObjectCreator() {
 }
 template<class T> cqClass *_cqClassGet(const char *name) {
     static cqClass cls = {
-        T::getSuperclass(),
+        T::superclass(),
         name,
         _cqObjectCreator<T>
     };
@@ -149,12 +149,12 @@ template<class T> cqClass *_cqClassGet(const char *name) {
 /**/        : dat(std::make_shared<Dat>())\
 /**/    {\
 /**/    }\
-/**/    template<> cqClass *_cqSandWich<CLASS, CLASS::super>::getClass() {\
+/**/    template<> cqClass *_cqSandWich<CLASS, CLASS::super>::clazz() {\
 /**/        return _cqClassGet<CLASS>(""#CLASS);\
 /**/    }\
 /**/    template<> struct _cqSandWich<CLASS, CLASS::super>::Dat
 
-cq_class(cqObject, _cqObjectRoot) {
+cq_class(cqObject, _cqBaseObject) {
     
     virtual bool isKindOfClass(cqClass *cls);
     virtual bool isMemberOfClass(cqClass *cls);
