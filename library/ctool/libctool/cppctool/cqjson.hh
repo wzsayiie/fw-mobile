@@ -11,8 +11,14 @@ _CQCTOOL_BEGIN_VERSION_NS
 
 struct cqJson {
     
-    static cq::value parseString(const std::string &str, bool *error);
-    static cq::value parseFile(const std::string &path, bool *fileErr, bool *parseErr);
+    //if succeeded, *position is INT_MAX, and the function return the value;
+    //if failed, *position specifies the location of the error in the string, return null.
+    static cq::value parseString(const std::string &string, int *position);
+    
+    //if succeeded, *position is INT_MAX, the funcntion return the value;
+    //if read file failed, *position is -1, return null;
+    //if parse json faild, *position specifies the location of the error in the file, return null.
+    static cq::value parseFile(const std::string &path, int *position);
 
     //if successful, return true.
     static bool writeFile(const std::string &path, const cq::value &value);

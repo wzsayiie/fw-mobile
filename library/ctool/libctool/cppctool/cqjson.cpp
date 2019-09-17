@@ -308,50 +308,44 @@ static cq::value parse_value(const char *&p, bool &e) {
     }
 }
 
-cq::value cqJson::parseString(const std::string &str, bool *error) {
+cq::value cqJson::parseString(const std::string &string, int *position) {
 
     //in general the json root should be a object(std::map<std::string, value>),
     //but no required here. even so only one value is still parsed.
-    const char *ptr = str.c_str();
-    bool parseErr = false;
-    cq::value value = parse_value(ptr, parseErr);
+    const char *ptr = string.c_str();
+    bool error = false;
+    cq::value value = parse_value(ptr, error);
 
     if (error) {
-        *error = parseErr;
-    }
-    if (parseErr) {
+        if (position != nullptr) {
+            *position = (int)(ptr - string.c_str());
+        }
         return nullptr;
     } else {
+        if (position != nullptr) {
+            *position = INT_MAX;
+        }
         return value;
     }
 }
 
 //file operate:
 
-cq::value cqJson::parseFile(const std::string &path, bool *fileErr, bool *parseErr) {
+cq::value cqJson::parseFile(const std::string &path, int *position) {
     //1. read file:
     std::vector<uint8_t> data;
     if (!cqData::readFromFile(path, &data)) {
-        if (fileErr ) { *fileErr  = true; }
-        if (parseErr) { *parseErr = true; }
+        if (position != nullptr) {
+            *position = -1;
+        }
         return nullptr;
     }
-    
-    std::string str;
-    str.assign(data.data(), data.data() + data.size());
     
     //2. parse json:
-    bool error = false;
-    cq::value value = cqJson::parseString(str, &error);
-    if (error) {
-        if (fileErr ) { *fileErr  = false; }
-        if (parseErr) { *parseErr = true ; }
-        return nullptr;
-    } else {
-        if (fileErr ) { *fileErr  = false; }
-        if (parseErr) { *parseErr = false; }
-        return value;
-    }
+    std::string string;
+    string.assign(data.data(), data.data() + data.size());
+    
+    return cqJson::parseString(string, position);
 }
 
 bool cqJson::writeFile(const std::string &path, const cq::value &value) {

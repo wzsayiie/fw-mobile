@@ -1,6 +1,6 @@
 #include "cqdata.hh"
 
-bool readFromFile(const std::string &path, std::vector<uint8_t> *data) {
+bool cqData::readFromFile(const std::string &path, std::vector<uint8_t> *data) {
     if (path.empty() || data == nullptr) {
         return false;
     }
@@ -20,7 +20,7 @@ bool readFromFile(const std::string &path, std::vector<uint8_t> *data) {
     return true;
 }
 
-bool writeToFile(const std::string &path, const std::vector<uint8_t> &data) {
+bool cqData::writeToFile(const std::string &path, const std::vector<uint8_t> &data) {
     if (path.empty()) {
         return false;
     }
