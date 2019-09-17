@@ -14,10 +14,10 @@
 #   include <cstdio>
 # endif
 
-static lua_State *sLuaState = nullptr;
+static lua_State *_state = nullptr;
 
 static void register_func(const char *name, int32_t (*func)(lua_State *)) {
-    if (sLuaState == nullptr) {
+    if (_state == nullptr) {
         return;
     }
     if (cq_str_empty(name)) {
@@ -27,7 +27,7 @@ static void register_func(const char *name, int32_t (*func)(lua_State *)) {
         return;
     }
     
-    lua_register(sLuaState, name, func);
+    lua_register(_state, name, func);
 }
 
 static int traceback(lua_State *state) {
@@ -49,7 +49,7 @@ static int traceback(lua_State *state) {
 }
 
 static void do_string(const char *code) {
-    if (sLuaState == nullptr) {
+    if (_state == nullptr) {
         return;
     }
     if (cq_str_empty(code)) {
@@ -57,12 +57,12 @@ static void do_string(const char *code) {
     }
     
     //trackback function
-    lua_pushcfunction(sLuaState, traceback);
+    lua_pushcfunction(_state, traceback);
     
     //load
-    int error = luaL_loadstring(sLuaState, code);
+    int error = luaL_loadstring(_state, code);
     if (error) {
-        const char *info = lua_tostring(sLuaState, -1);
+        const char *info = lua_tostring(_state, -1);
 #if CQ_ON_ANDROID
         __android_log_print(ANDROID_LOG_ERROR, "lua", "lua vm: syntax error:\n%s", info);
 #else
@@ -72,8 +72,8 @@ static void do_string(const char *code) {
     }
     
     //execute
-    int traceback = lua_gettop(sLuaState) - 1;
-    lua_pcall(sLuaState, 0, 0, traceback);
+    int traceback = lua_gettop(_state) - 1;
+    lua_pcall(_state, 0, 0, traceback);
 }
 
 static int64_t check_integer(lua_State *s, int32_t i) {return luaL_checkinteger(s, i);}
@@ -99,8 +99,8 @@ void csLuaVM::open(const std::string &directory) {
     csLuaVM::close();
     
     //new vm
-    sLuaState = luaL_newstate();
-    luaL_openlibs(sLuaState);
+    _state = luaL_newstate();
+    luaL_openlibs(_state);
     
     //change work directory. otherwise,
     //the file name specified by runtime error message is very long.
@@ -128,7 +128,7 @@ void csLuaVM::open(const std::string &directory) {
 }
 
 void csLuaVM::close() {
-    if (sLuaState == nullptr) {
+    if (_state == nullptr) {
         return;
     }
     
@@ -136,6 +136,6 @@ void csLuaVM::close() {
     _cq_lua_set_handlers(nullptr);
     
     //delete vm
-    lua_close(sLuaState);
-    sLuaState = nullptr;
+    lua_close(_state);
+    _state = nullptr;
 }
