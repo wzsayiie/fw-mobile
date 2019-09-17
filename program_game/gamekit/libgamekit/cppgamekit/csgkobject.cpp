@@ -1,10 +1,10 @@
-#include "csbaseobject.hh"
+#include "csgkobject.hh"
 #include "csgameobject.hh"
 
-cq_member(csBaseObject) {
+cq_member(csGKObject) {
 };
 
-void csBaseObject::dontDestroyOnLoad(csBaseObjectRef object) {
+void csGKObject::dontDestroyOnLoad(csGKObjectRef object) {
     if (object == nullptr) {
         return;
     }
@@ -22,7 +22,7 @@ void csBaseObject::dontDestroyOnLoad(csBaseObjectRef object) {
     }
 }
 
-void csBaseObject::destroy(csBaseObjectRef object) {
+void csGKObject::destroy(csGKObjectRef object) {
     if (object == nullptr) {
         return;
     }
