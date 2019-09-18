@@ -127,9 +127,12 @@ template<class CLASS, class SUPER> struct _cqSandWich : SUPER {
 
 struct cqObject;
 struct cqClass {
+    
     cqClass *const superclass;
     const char *const name;
     cqRef<cqObject>::Strong (*const create)();
+    
+    bool isKindOfClass(cqClass *cls) const;
 };
 
 template<class T> cqRef<cqObject>::Strong _cqObjectCreator() {

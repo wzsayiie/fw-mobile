@@ -1,5 +1,5 @@
 #include "csgameobject.hh"
-#include "csscenemanager.hh"
+#include "cscodebehaviour.hh"
 
 //global data:
 
@@ -14,6 +14,7 @@ cq_member(csGameObject) {
     csGameObjectWeakRef parent;
     std::vector<csGameObjectRef> children;
     
+    std::map<cqClass *, csCodeBehaviourRef> codeBehaviours;
     std::map<cqClass *, csComponentRef> components;
 };
 
@@ -158,26 +159,33 @@ void csGameObject::addComponent(cqClass *clazz) {
         return;
     }
     
-    csComponentRef component = cqObject::cast<csComponent>(clazz->create());
+    auto component = cqObject::cast<csComponent>(clazz->create());
     component->resetGameObjectIfNeeded(strongRef());
-    dat->components[clazz] = component;
     
-    //component initialization.
-    component->awake();
-    component->start();
+    if (clazz->isKindOfClass(csCodeBehaviour::clazz())) {
+        //NOTE: put the code behaviour into list first.
+        //such when awake() and start() called, they can find the object/component tree.
+        auto code = cqObject::cast<csCodeBehaviour>(component);
+        dat->codeBehaviours[clazz] = code;
+        code->awake();
+        code->start();
+    } else {
+        dat->components[clazz] = component;
+    }
 }
 
 void csGameObject::removeComponent(cqClass *clazz) {
     if (clazz == nullptr) {
         return;
     }
-    if (cqMap::dontContain(dat->components, clazz)) {
-        return;
-    }
     
-    csComponentRef component = dat->components[clazz];
-    component->onDestroy();
-    dat->components.erase(clazz);
+    if (cqMap::dontContain(dat->codeBehaviours, clazz)) {
+        csCodeBehaviourRef codeBehaviour = dat->codeBehaviours[clazz];
+        codeBehaviour->onDestroy();
+        dat->codeBehaviours.erase(clazz);
+    } else {
+        dat->components.erase(clazz);
+    }
 }
 
 csComponentRef csGameObject::getComponent(cqClass *clazz) {
@@ -185,7 +193,9 @@ csComponentRef csGameObject::getComponent(cqClass *clazz) {
         return nullptr;
     }
     
-    if (cqMap::contains(dat->components, clazz)) {
+    if (cqMap::contains(dat->codeBehaviours, clazz)) {
+        return dat->codeBehaviours[clazz];
+    } else if (cqMap::contains(dat->components, clazz)) {
         return dat->components[clazz];
     } else {
         return nullptr;
@@ -198,10 +208,10 @@ csTransformRef csGameObject::transform() {
 
 void csGameObject::update() {
     
-    //NOTE: it's possibly to destroy component in update(),
+    //NOTE: it's possibly to destroy a code behaviour in update(),
     //keep the traversed container unchanged.
-    std::map<cqClass *, csComponentRef> components = dat->components;
-    for (auto &cp : components) {
+    std::map<cqClass *, csCodeBehaviourRef> codes = dat->codeBehaviours;
+    for (auto &cp : codes) {
         cp.second->update();
     }
 }
@@ -214,9 +224,9 @@ void csGameObject::onDestroy() {
         it->onDestroy();
     }
     
-    //call own components:
-    std::map<cqClass *, csComponentRef> components = dat->components;
-    for (auto &cp : components) {
+    //call own code behaviours:
+    std::map<cqClass *, csCodeBehaviourRef> codes = dat->codeBehaviours;
+    for (auto &cp : codes) {
         cp.second->onDestroy();
     }
 }

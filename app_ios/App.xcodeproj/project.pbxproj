@@ -81,6 +81,8 @@
 		B4FC003F2331D71E00A21B5E /* entry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FC003B2331D71E00A21B5E /* entry.cpp */; };
 		B4FC00402331D71E00A21B5E /* gameroot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FC003D2331D71E00A21B5E /* gameroot.cpp */; };
 		B4FC00432331F7D200A21B5E /* luacontrol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FC00422331F7D200A21B5E /* luacontrol.cpp */; };
+		B4FC00462332043600A21B5E /* cscodebehaviour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FC00452332043600A21B5E /* cscodebehaviour.cpp */; };
+		B4FC004923320DCB00A21B5E /* cscamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FC004823320DCA00A21B5E /* cscamera.cpp */; };
 		B4FCC39821F0912700D152DF /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FCC39721F0912700D152DF /* libc++.tbd */; };
 		CE299D282323F15B00B5FC98 /* csscene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE299D222323F15B00B5FC98 /* csscene.cpp */; };
 		CE299D292323F15B00B5FC98 /* csgameobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE299D242323F15B00B5FC98 /* csgameobject.cpp */; };
@@ -262,6 +264,10 @@
 		B4FC003D2331D71E00A21B5E /* gameroot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gameroot.cpp; sourceTree = "<group>"; };
 		B4FC00412331F7D200A21B5E /* luacontrol.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = luacontrol.hh; sourceTree = "<group>"; };
 		B4FC00422331F7D200A21B5E /* luacontrol.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = luacontrol.cpp; sourceTree = "<group>"; };
+		B4FC00442332043600A21B5E /* cscodebehaviour.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cscodebehaviour.hh; sourceTree = "<group>"; };
+		B4FC00452332043600A21B5E /* cscodebehaviour.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cscodebehaviour.cpp; sourceTree = "<group>"; };
+		B4FC004723320DCA00A21B5E /* cscamera.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cscamera.hh; sourceTree = "<group>"; };
+		B4FC004823320DCA00A21B5E /* cscamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cscamera.cpp; sourceTree = "<group>"; };
 		B4FCC39721F0912700D152DF /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		CE299D222323F15B00B5FC98 /* csscene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csscene.cpp; sourceTree = "<group>"; };
 		CE299D242323F15B00B5FC98 /* csgameobject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csgameobject.cpp; sourceTree = "<group>"; };
@@ -866,6 +872,10 @@
 				B4C7F2AC2326316A0009E720 /* csapplication.hh */,
 				CE299D3F2324055600B5FC98 /* csbehaviour.cpp */,
 				CE299D3E2324055600B5FC98 /* csbehaviour.hh */,
+				B4FC004823320DCA00A21B5E /* cscamera.cpp */,
+				B4FC004723320DCA00A21B5E /* cscamera.hh */,
+				B4FC00452332043600A21B5E /* cscodebehaviour.cpp */,
+				B4FC00442332043600A21B5E /* cscodebehaviour.hh */,
 				CE299D3C2324055600B5FC98 /* cscomponent.cpp */,
 				CE299D3D2324055600B5FC98 /* cscomponent.hh */,
 				CE299D2C2323F1B500B5FC98 /* csgamekit.hh */,
@@ -1041,6 +1051,7 @@
 				B4411552231CB83D00053BD7 /* AppAppDelegate.m in Sources */,
 				B4FC00362331D70A00A21B5E /* appdelegate.cpp in Sources */,
 				B475C169230100A300ED7BD3 /* NSNotificationCenter+CQ.m in Sources */,
+				B4FC004923320DCB00A21B5E /* cscamera.cpp in Sources */,
 				B4DCD87F21F17DAE0090BFBB /* UserSetting.m in Sources */,
 				B4E7CD0F2224098800122637 /* main.m in Sources */,
 				B4FC00402331D71E00A21B5E /* gameroot.cpp in Sources */,
@@ -1048,6 +1059,7 @@
 				B441155A231CB83D00053BD7 /* cqcolor.cpp in Sources */,
 				B4CFD97321C7475000FFF4CF /* IAPDemoController.m in Sources */,
 				B441155B231CB83D00053BD7 /* cqgraphics.cpp in Sources */,
+				B4FC00462332043600A21B5E /* cscodebehaviour.cpp in Sources */,
 				B441152F231CB7EE00053BD7 /* CQGLAppDelegate.m in Sources */,
 				CE299D402324055600B5FC98 /* cscomponent.cpp in Sources */,
 				B44310892321FBED00FA6720 /* DocViewController.m in Sources */,

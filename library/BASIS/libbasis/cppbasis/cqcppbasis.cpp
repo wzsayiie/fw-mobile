@@ -12,38 +12,35 @@ bool cqString::empty(const char *value) {
 
 //class:
 
-cqClass *_cqBaseObject::superclass() {
-    return nullptr;
-}
-
-cqClass *_cqBaseObject::clazz() {
-    return nullptr;
-}
-
-cqClass *_cqBaseObject::dynamicSuperclass() {
-    return nullptr;
-}
-
-cqClass *_cqBaseObject::dynamicClass() {
-    return nullptr;
-}
+cqClass *_cqBaseObject::superclass       () { return nullptr; }
+cqClass *_cqBaseObject::clazz            () { return nullptr; }
+cqClass *_cqBaseObject::dynamicSuperclass() { return nullptr; }
+cqClass *_cqBaseObject::dynamicClass     () { return nullptr; }
 
 _cqBaseObject::~_cqBaseObject() {
+}
+
+bool cqClass::isKindOfClass(cqClass *cls) const {
+    if (cls == nullptr) {
+        return false;
+    }
+    
+    if (this == cls) {
+        return true;
+    }
+    for (auto it = superclass; it; it = it->superclass) {
+        if (it == cls) {
+            return true;
+        }
+    }
+    return false;
 }
 
 cq_member(cqObject) {
 };
 
 bool cqObject::isKindOfClass(cqClass *cls) {
-    if (cls == nullptr) {
-        return false;
-    }
-    for (auto it = dynamicClass(); it; it = it->superclass) {
-        if (it == cls) {
-            return true;
-        }
-    }
-    return false;
+    return dynamicClass()->isKindOfClass(cls);
 }
 
 bool cqObject::isMemberOfClass(cqClass *cls) {

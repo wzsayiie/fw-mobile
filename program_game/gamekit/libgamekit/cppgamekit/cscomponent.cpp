@@ -28,15 +28,3 @@ csComponentRef csComponent::getComponent(cqClass *clazz) {
 csTransformRef csComponent::transform() {
     return getComponent<csTransform>();
 }
-
-void csComponent::awake() {
-}
-
-void csComponent::start() {
-}
-
-void csComponent::update() {
-}
-
-void csComponent::onDestroy() {
-}

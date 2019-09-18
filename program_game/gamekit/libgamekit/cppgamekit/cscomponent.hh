@@ -23,12 +23,6 @@ cq_class(csComponent, csGKObject) {
     }
     
     virtual csTransformRef transform();
-    
-    //life cycle:
-    virtual void awake();
-    virtual void start();
-    virtual void update();
-    virtual void onDestroy();
 };
 
 _CSGAMEKIT_END_VERSION_NS
