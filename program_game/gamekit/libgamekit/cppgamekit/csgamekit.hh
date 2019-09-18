@@ -1,6 +1,5 @@
 #pragma once
 
-#include "csapplication.hh"
 #include "csbehaviour.hh"
 #include "cscamera.hh"
 #include "cscodebehaviour.hh"

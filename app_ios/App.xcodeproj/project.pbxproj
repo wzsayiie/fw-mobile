@@ -63,7 +63,6 @@
 		B475C16A230100A300ED7BD3 /* CQGCD.m in Sources */ = {isa = PBXBuildFile; fileRef = B475C166230100A200ED7BD3 /* CQGCD.m */; };
 		B4B9D32022278D4E00B35E72 /* liblua.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B9D31F22278D4D00B35E72 /* liblua.a */; };
 		B4C7448E22BCAE5100483834 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4C7448C22BCAE5100483834 /* InfoPlist.strings */; };
-		B4C7F2AD2326316B0009E720 /* csapplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4C7F2AB2326316A0009E720 /* csapplication.cpp */; };
 		B4CFD97321C7475000FFF4CF /* IAPDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96021C7475000FFF4CF /* IAPDemoController.m */; };
 		B4CFD97421C7475000FFF4CF /* DailyDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96421C7475000FFF4CF /* DailyDemoController.m */; };
 		B4CFD97A21C75AB300FFF4CF /* IAPDemoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4CFD97921C75AB300FFF4CF /* IAPDemoController.xib */; };
@@ -231,8 +230,6 @@
 		B4B9D31F22278D4D00B35E72 /* liblua.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblua.a; path = ../thirds_ios/libs/liblua.a; sourceTree = "<group>"; };
 		B4C7448D22BCAE5100483834 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B4C7448F22BCAE5600483834 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		B4C7F2AB2326316A0009E720 /* csapplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csapplication.cpp; sourceTree = "<group>"; };
-		B4C7F2AC2326316A0009E720 /* csapplication.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csapplication.hh; sourceTree = "<group>"; };
 		B4CFD96021C7475000FFF4CF /* IAPDemoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPDemoController.m; sourceTree = "<group>"; };
 		B4CFD96121C7475000FFF4CF /* IAPDemoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPDemoController.h; sourceTree = "<group>"; };
 		B4CFD96321C7475000FFF4CF /* DailyDemoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyDemoController.h; sourceTree = "<group>"; };
@@ -868,8 +865,6 @@
 		CE299D212323F15B00B5FC98 /* cppgamekit */ = {
 			isa = PBXGroup;
 			children = (
-				B4C7F2AB2326316A0009E720 /* csapplication.cpp */,
-				B4C7F2AC2326316A0009E720 /* csapplication.hh */,
 				CE299D3F2324055600B5FC98 /* csbehaviour.cpp */,
 				CE299D3E2324055600B5FC98 /* csbehaviour.hh */,
 				B4FC004823320DCA00A21B5E /* cscamera.cpp */,
@@ -1027,7 +1022,6 @@
 				B4CFD97421C7475000FFF4CF /* DailyDemoController.m in Sources */,
 				B44310872321FBED00FA6720 /* ToolbarViewController.m in Sources */,
 				B4FC003F2331D71E00A21B5E /* entry.cpp in Sources */,
-				B4C7F2AD2326316B0009E720 /* csapplication.cpp in Sources */,
 				B4411558231CB83D00053BD7 /* cqlayer.cpp in Sources */,
 				B4411592231D0B5700053BD7 /* cqopengl.cpp in Sources */,
 				B4411569231CB89C00053BD7 /* GameAppDelegate.m in Sources */,
