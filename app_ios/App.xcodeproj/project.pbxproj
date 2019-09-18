@@ -80,6 +80,7 @@
 		B4FC003E2331D71E00A21B5E /* luasource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FC003A2331D71E00A21B5E /* luasource.cpp */; };
 		B4FC003F2331D71E00A21B5E /* entry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FC003B2331D71E00A21B5E /* entry.cpp */; };
 		B4FC00402331D71E00A21B5E /* gameroot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FC003D2331D71E00A21B5E /* gameroot.cpp */; };
+		B4FC00432331F7D200A21B5E /* luacontrol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FC00422331F7D200A21B5E /* luacontrol.cpp */; };
 		B4FCC39821F0912700D152DF /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FCC39721F0912700D152DF /* libc++.tbd */; };
 		CE299D282323F15B00B5FC98 /* csscene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE299D222323F15B00B5FC98 /* csscene.cpp */; };
 		CE299D292323F15B00B5FC98 /* csgameobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE299D242323F15B00B5FC98 /* csgameobject.cpp */; };
@@ -259,6 +260,8 @@
 		B4FC003B2331D71E00A21B5E /* entry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = entry.cpp; sourceTree = "<group>"; };
 		B4FC003C2331D71E00A21B5E /* gameroot.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = gameroot.hh; sourceTree = "<group>"; };
 		B4FC003D2331D71E00A21B5E /* gameroot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gameroot.cpp; sourceTree = "<group>"; };
+		B4FC00412331F7D200A21B5E /* luacontrol.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = luacontrol.hh; sourceTree = "<group>"; };
+		B4FC00422331F7D200A21B5E /* luacontrol.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = luacontrol.cpp; sourceTree = "<group>"; };
 		B4FCC39721F0912700D152DF /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		CE299D222323F15B00B5FC98 /* csscene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csscene.cpp; sourceTree = "<group>"; };
 		CE299D242323F15B00B5FC98 /* csgameobject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csgameobject.cpp; sourceTree = "<group>"; };
@@ -838,6 +841,8 @@
 				B4FC003B2331D71E00A21B5E /* entry.cpp */,
 				B4FC003D2331D71E00A21B5E /* gameroot.cpp */,
 				B4FC003C2331D71E00A21B5E /* gameroot.hh */,
+				B4FC00422331F7D200A21B5E /* luacontrol.cpp */,
+				B4FC00412331F7D200A21B5E /* luacontrol.hh */,
 				B4FC003A2331D71E00A21B5E /* luasource.cpp */,
 				B4FC00392331D71E00A21B5E /* luasource.hh */,
 			);
@@ -1004,6 +1009,7 @@
 			files = (
 				B467ECE1231000100045E2DC /* NSString+CQ.m in Sources */,
 				CE299D322323F47200B5FC98 /* csluavm.cpp in Sources */,
+				B4FC00432331F7D200A21B5E /* luacontrol.cpp in Sources */,
 				B4411556231CB83D00053BD7 /* cqview.cpp in Sources */,
 				B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */,
 				B4411559231CB83D00053BD7 /* cqwindow.cpp in Sources */,
