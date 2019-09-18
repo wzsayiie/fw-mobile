@@ -57,6 +57,7 @@
 		B45C1BB221A02B19007CB374 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B45C1B7821A02B19007CB374 /* Assets.xcassets */; };
 		B45C1BB821A02B19007CB374 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1B8E21A02B19007CB374 /* AppDelegate.m */; };
 		B45C1BD021A034C0007CB374 /* DailyDemoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B45C1BCF21A034C0007CB374 /* DailyDemoController.xib */; };
+		B463413623322F2300383E34 /* CSGAMEKIT_PORT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B463413523322F2300383E34 /* CSGAMEKIT_PORT.cpp */; };
 		B467ECE1231000100045E2DC /* NSString+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B467ECE0231000100045E2DC /* NSString+CQ.m */; };
 		B467ECE423100B090045E2DC /* NSMutableDictionary+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B467ECE323100B090045E2DC /* NSMutableDictionary+CQ.m */; };
 		B475C169230100A300ED7BD3 /* NSNotificationCenter+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B475C165230100A200ED7BD3 /* NSNotificationCenter+CQ.m */; };
@@ -219,6 +220,7 @@
 		B45C1B8D21A02B19007CB374 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B45C1B8E21A02B19007CB374 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B45C1BCF21A034C0007CB374 /* DailyDemoController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyDemoController.xib; sourceTree = "<group>"; };
+		B463413523322F2300383E34 /* CSGAMEKIT_PORT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSGAMEKIT_PORT.cpp; sourceTree = "<group>"; };
 		B467ECDF231000100045E2DC /* NSString+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CQ.h"; sourceTree = "<group>"; };
 		B467ECE0231000100045E2DC /* NSString+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CQ.m"; sourceTree = "<group>"; };
 		B467ECE223100B090045E2DC /* NSMutableDictionary+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+CQ.h"; sourceTree = "<group>"; };
@@ -873,6 +875,7 @@
 				B4FC00442332043600A21B5E /* cscodebehaviour.hh */,
 				CE299D3C2324055600B5FC98 /* cscomponent.cpp */,
 				CE299D3D2324055600B5FC98 /* cscomponent.hh */,
+				B463413523322F2300383E34 /* CSGAMEKIT_PORT.cpp */,
 				CE299D2C2323F1B500B5FC98 /* csgamekit.hh */,
 				CE299D2B2323F1B500B5FC98 /* csgamekitbase.hh */,
 				CE299D242323F15B00B5FC98 /* csgameobject.cpp */,
@@ -1015,6 +1018,7 @@
 				B467ECE1231000100045E2DC /* NSString+CQ.m in Sources */,
 				CE299D322323F47200B5FC98 /* csluavm.cpp in Sources */,
 				B4FC00432331F7D200A21B5E /* luacontrol.cpp in Sources */,
+				B463413623322F2300383E34 /* CSGAMEKIT_PORT.cpp in Sources */,
 				B4411556231CB83D00053BD7 /* cqview.cpp in Sources */,
 				B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */,
 				B4411559231CB83D00053BD7 /* cqwindow.cpp in Sources */,
