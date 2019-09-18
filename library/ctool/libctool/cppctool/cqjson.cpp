@@ -332,29 +332,20 @@ cq::value cqJson::parseString(const std::string &string, int *position) {
 //file operate:
 
 cq::value cqJson::parseFile(const std::string &path, int *position) {
-    //1. read file:
-    std::vector<uint8_t> data;
-    if (!cqData::readFromFile(path, &data)) {
+    std::string string;
+    if (!cqData::readFile(path, &string)) {
         if (position != nullptr) {
             *position = -1;
         }
         return nullptr;
     }
     
-    //2. parse json:
-    std::string string;
-    string.assign(data.data(), data.data() + data.size());
-    
     return cqJson::parseString(string, position);
 }
 
 bool cqJson::writeFile(const std::string &path, const cq::value &value) {
     std::string json = cqJson::terseJson(value);
-    
-    std::vector<uint8_t> data;
-    data.assign(json.data(), json.data() + json.size());
-    
-    return cqData::writeToFile(path, data);
+    return cqData::writeFile(path, json.data(), json.size());
 }
 
 //terse json:

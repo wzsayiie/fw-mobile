@@ -8,17 +8,6 @@ static const char *const sLuaSources[] = {
     nullptr, nullptr,
 };
 
-static void updateFile(const std::string &path, const char *name, const char *text) {
-    FILE *file = fopen(path.c_str(), "wb");
-    if (file != nullptr) {
-        I("lua source: update '%s'", name);
-        fwrite(text, 1, strlen(text), file);
-        fclose(file);
-    } else {
-        I("lua source: failed to update '%s'", name);
-    }
-}
-
 void LuaSource::update(const std::string &directory) {
     I("lua source: update");
     
@@ -27,6 +16,10 @@ void LuaSource::update(const std::string &directory) {
         const char *text = it[1];
         
         std::string path = cqPathString::append(directory, name);
-        updateFile(path, name, text);
+        if (cqData::writeFile(path, text, strlen(text))) {
+            I("lua source: update '%s'", name);
+        } else {
+            I("lua source: failed to update '%s'", name);
+        }
     }
 }

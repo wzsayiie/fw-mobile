@@ -1,6 +1,6 @@
 #include "cqdata.hh"
 
-bool cqData::readFromFile(const std::string &path, std::vector<uint8_t> *data) {
+bool cqData::readFile(const std::string &path, std::vector<uint8_t> *data) {
     if (path.empty() || data == nullptr) {
         return false;
     }
@@ -20,7 +20,21 @@ bool cqData::readFromFile(const std::string &path, std::vector<uint8_t> *data) {
     return true;
 }
 
-bool cqData::writeToFile(const std::string &path, const std::vector<uint8_t> &data) {
+bool cqData::readFile(const std::string &path, std::string *string) {
+    if (path.empty() || string == nullptr) {
+        return false;
+    }
+    
+    std::vector<uint8_t> data;
+    if (!readFile(path, &data)) {
+        return false;
+    }
+    
+    string->assign((char *)data.data(), data.size());
+    return true;
+}
+
+bool cqData::_writeFile(const std::string &path, uint8_t *bytes, int length) {
     if (path.empty()) {
         return false;
     }
@@ -30,7 +44,11 @@ bool cqData::writeToFile(const std::string &path, const std::vector<uint8_t> &da
         return false;
     }
     
-    fwrite(data.data(), 1, data.size(), file);
+    if (bytes != nullptr && length > 0) {
+        fwrite(bytes, 1, (size_t)length, file);
+    } else {
+        //NOTE: don't write, make the file empty.
+    }
     fclose(file);
     return true;
 }
