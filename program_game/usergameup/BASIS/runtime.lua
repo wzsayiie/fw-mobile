@@ -9,17 +9,17 @@ end})
 
 -- object
 
-CQObject = {}
+_runtime_object = {}
 
-function CQObject:new(...)
+function _runtime_object:new(...)
     local object = setmetatable({}, {__index = self})
     object:init(...)
     return object
 end
 
-function CQObject:init()
+function _runtime_object:init()
 end
-    
+
 function extends(super, this)
     setmetatable(this, {__index = super})
     this.super = super

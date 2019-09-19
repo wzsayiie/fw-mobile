@@ -58,6 +58,10 @@
 		B45C1BB821A02B19007CB374 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1B8E21A02B19007CB374 /* AppDelegate.m */; };
 		B45C1BD021A034C0007CB374 /* DailyDemoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B45C1BCF21A034C0007CB374 /* DailyDemoController.xib */; };
 		B463413623322F2300383E34 /* CSGAMEKIT_PORT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B463413523322F2300383E34 /* CSGAMEKIT_PORT.cpp */; };
+		B463414B2333292B00383E34 /* luasource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B46341462333292B00383E34 /* luasource.cpp */; };
+		B463414C2333292B00383E34 /* entry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B46341472333292B00383E34 /* entry.cpp */; };
+		B463414D2333292B00383E34 /* gamelowroot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B46341482333292B00383E34 /* gamelowroot.cpp */; };
+		B463414E2333292B00383E34 /* luacontrol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B463414A2333292B00383E34 /* luacontrol.cpp */; };
 		B467ECE1231000100045E2DC /* NSString+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B467ECE0231000100045E2DC /* NSString+CQ.m */; };
 		B467ECE423100B090045E2DC /* NSMutableDictionary+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B467ECE323100B090045E2DC /* NSMutableDictionary+CQ.m */; };
 		B475C169230100A300ED7BD3 /* NSNotificationCenter+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B475C165230100A200ED7BD3 /* NSNotificationCenter+CQ.m */; };
@@ -77,10 +81,6 @@
 		B4F7AE1F232A0CE500E675A8 /* csscenemanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4F7AE1D232A0CE400E675A8 /* csscenemanager.cpp */; };
 		B4FC00362331D70A00A21B5E /* appdelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FC00332331D70A00A21B5E /* appdelegate.cpp */; };
 		B4FC00372331D70A00A21B5E /* rootviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FC00352331D70A00A21B5E /* rootviewcontroller.cpp */; };
-		B4FC003E2331D71E00A21B5E /* luasource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FC003A2331D71E00A21B5E /* luasource.cpp */; };
-		B4FC003F2331D71E00A21B5E /* entry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FC003B2331D71E00A21B5E /* entry.cpp */; };
-		B4FC00402331D71E00A21B5E /* gameroot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FC003D2331D71E00A21B5E /* gameroot.cpp */; };
-		B4FC00432331F7D200A21B5E /* luacontrol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FC00422331F7D200A21B5E /* luacontrol.cpp */; };
 		B4FC00462332043600A21B5E /* cscodebehaviour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FC00452332043600A21B5E /* cscodebehaviour.cpp */; };
 		B4FC004923320DCB00A21B5E /* cscamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FC004823320DCA00A21B5E /* cscamera.cpp */; };
 		B4FCC39821F0912700D152DF /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FCC39721F0912700D152DF /* libc++.tbd */; };
@@ -221,6 +221,13 @@
 		B45C1B8E21A02B19007CB374 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B45C1BCF21A034C0007CB374 /* DailyDemoController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyDemoController.xib; sourceTree = "<group>"; };
 		B463413523322F2300383E34 /* CSGAMEKIT_PORT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSGAMEKIT_PORT.cpp; sourceTree = "<group>"; };
+		B46341442333292B00383E34 /* gamelowroot.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = gamelowroot.hh; sourceTree = "<group>"; };
+		B46341452333292B00383E34 /* luasource.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = luasource.hh; sourceTree = "<group>"; };
+		B46341462333292B00383E34 /* luasource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = luasource.cpp; sourceTree = "<group>"; };
+		B46341472333292B00383E34 /* entry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = entry.cpp; sourceTree = "<group>"; };
+		B46341482333292B00383E34 /* gamelowroot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gamelowroot.cpp; sourceTree = "<group>"; };
+		B46341492333292B00383E34 /* luacontrol.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = luacontrol.hh; sourceTree = "<group>"; };
+		B463414A2333292B00383E34 /* luacontrol.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = luacontrol.cpp; sourceTree = "<group>"; };
 		B467ECDF231000100045E2DC /* NSString+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CQ.h"; sourceTree = "<group>"; };
 		B467ECE0231000100045E2DC /* NSString+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CQ.m"; sourceTree = "<group>"; };
 		B467ECE223100B090045E2DC /* NSMutableDictionary+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+CQ.h"; sourceTree = "<group>"; };
@@ -256,13 +263,6 @@
 		B4FC00332331D70A00A21B5E /* appdelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = appdelegate.cpp; sourceTree = "<group>"; };
 		B4FC00342331D70A00A21B5E /* appdelegate.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = appdelegate.hh; sourceTree = "<group>"; };
 		B4FC00352331D70A00A21B5E /* rootviewcontroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rootviewcontroller.cpp; sourceTree = "<group>"; };
-		B4FC00392331D71E00A21B5E /* luasource.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = luasource.hh; sourceTree = "<group>"; };
-		B4FC003A2331D71E00A21B5E /* luasource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = luasource.cpp; sourceTree = "<group>"; };
-		B4FC003B2331D71E00A21B5E /* entry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = entry.cpp; sourceTree = "<group>"; };
-		B4FC003C2331D71E00A21B5E /* gameroot.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = gameroot.hh; sourceTree = "<group>"; };
-		B4FC003D2331D71E00A21B5E /* gameroot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gameroot.cpp; sourceTree = "<group>"; };
-		B4FC00412331F7D200A21B5E /* luacontrol.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = luacontrol.hh; sourceTree = "<group>"; };
-		B4FC00422331F7D200A21B5E /* luacontrol.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = luacontrol.cpp; sourceTree = "<group>"; };
 		B4FC00442332043600A21B5E /* cscodebehaviour.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cscodebehaviour.hh; sourceTree = "<group>"; };
 		B4FC00452332043600A21B5E /* cscodebehaviour.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cscodebehaviour.cpp; sourceTree = "<group>"; };
 		B4FC004723320DCA00A21B5E /* cscamera.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cscamera.hh; sourceTree = "<group>"; };
@@ -502,12 +502,12 @@
 			name = UserApp;
 			sourceTree = "<group>";
 		};
-		B441157A231CBF7900053BD7 /* UserGame */ = {
+		B441157A231CBF7900053BD7 /* UserGameLow */ = {
 			isa = PBXGroup;
 			children = (
-				B4FC00382331D71E00A21B5E /* usergame */,
+				B46341432333292B00383E34 /* usergame */,
 			);
-			name = UserGame;
+			name = UserGameLow;
 			sourceTree = "<group>";
 		};
 		B4411583231CBFD100053BD7 /* archetype */ = {
@@ -731,6 +731,21 @@
 			path = DailyDemoController;
 			sourceTree = "<group>";
 		};
+		B46341432333292B00383E34 /* usergame */ = {
+			isa = PBXGroup;
+			children = (
+				B46341472333292B00383E34 /* entry.cpp */,
+				B46341482333292B00383E34 /* gamelowroot.cpp */,
+				B46341442333292B00383E34 /* gamelowroot.hh */,
+				B463414A2333292B00383E34 /* luacontrol.cpp */,
+				B46341492333292B00383E34 /* luacontrol.hh */,
+				B46341462333292B00383E34 /* luasource.cpp */,
+				B46341452333292B00383E34 /* luasource.hh */,
+			);
+			name = usergame;
+			path = ../program_game/usergamelow/usergame;
+			sourceTree = "<group>";
+		};
 		B473DC1B22A4E6C500218901 /* GLProgram */ = {
 			isa = PBXGroup;
 			children = (
@@ -743,7 +758,7 @@
 			isa = PBXGroup;
 			children = (
 				B4411520231CB61B00053BD7 /* GameKit */,
-				B441157A231CBF7900053BD7 /* UserGame */,
+				B441157A231CBF7900053BD7 /* UserGameLow */,
 			);
 			name = GameProgram;
 			sourceTree = "<group>";
@@ -838,21 +853,6 @@
 			);
 			name = userapp;
 			path = ../program_app/userapp/userapp;
-			sourceTree = "<group>";
-		};
-		B4FC00382331D71E00A21B5E /* usergame */ = {
-			isa = PBXGroup;
-			children = (
-				B4FC003B2331D71E00A21B5E /* entry.cpp */,
-				B4FC003D2331D71E00A21B5E /* gameroot.cpp */,
-				B4FC003C2331D71E00A21B5E /* gameroot.hh */,
-				B4FC00422331F7D200A21B5E /* luacontrol.cpp */,
-				B4FC00412331F7D200A21B5E /* luacontrol.hh */,
-				B4FC003A2331D71E00A21B5E /* luasource.cpp */,
-				B4FC00392331D71E00A21B5E /* luasource.hh */,
-			);
-			name = usergame;
-			path = ../program_game/usergame/usergame;
 			sourceTree = "<group>";
 		};
 		B4FCC39621F0912700D152DF /* Frameworks */ = {
@@ -1017,7 +1017,6 @@
 			files = (
 				B467ECE1231000100045E2DC /* NSString+CQ.m in Sources */,
 				CE299D322323F47200B5FC98 /* csluavm.cpp in Sources */,
-				B4FC00432331F7D200A21B5E /* luacontrol.cpp in Sources */,
 				B463413623322F2300383E34 /* CSGAMEKIT_PORT.cpp in Sources */,
 				B4411556231CB83D00053BD7 /* cqview.cpp in Sources */,
 				B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */,
@@ -1025,7 +1024,6 @@
 				CE299D442324175A00B5FC98 /* csgkobject.cpp in Sources */,
 				B4CFD97421C7475000FFF4CF /* DailyDemoController.m in Sources */,
 				B44310872321FBED00FA6720 /* ToolbarViewController.m in Sources */,
-				B4FC003F2331D71E00A21B5E /* entry.cpp in Sources */,
 				B4411558231CB83D00053BD7 /* cqlayer.cpp in Sources */,
 				B4411592231D0B5700053BD7 /* cqopengl.cpp in Sources */,
 				B4411569231CB89C00053BD7 /* GameAppDelegate.m in Sources */,
@@ -1035,7 +1033,9 @@
 				CEEB261C2300655C001FD8D6 /* CQNetStatusListener.m in Sources */,
 				B44310882321FBED00FA6720 /* ContentViewController.m in Sources */,
 				B4411555231CB83D00053BD7 /* cqresponder.cpp in Sources */,
+				B463414E2333292B00383E34 /* luacontrol.cpp in Sources */,
 				B475C16A230100A300ED7BD3 /* CQGCD.m in Sources */,
+				B463414D2333292B00383E34 /* gamelowroot.cpp in Sources */,
 				CE299D282323F15B00B5FC98 /* csscene.cpp in Sources */,
 				B425211422842B91004FA04B /* CQHotfixManager.m in Sources */,
 				B4411554231CB83D00053BD7 /* cqviewcontroller.cpp in Sources */,
@@ -1047,12 +1047,12 @@
 				B443108A2321FBED00FA6720 /* AttachmentController.m in Sources */,
 				B45C1BB821A02B19007CB374 /* AppDelegate.m in Sources */,
 				B4411552231CB83D00053BD7 /* AppAppDelegate.m in Sources */,
+				B463414B2333292B00383E34 /* luasource.cpp in Sources */,
 				B4FC00362331D70A00A21B5E /* appdelegate.cpp in Sources */,
 				B475C169230100A300ED7BD3 /* NSNotificationCenter+CQ.m in Sources */,
 				B4FC004923320DCB00A21B5E /* cscamera.cpp in Sources */,
 				B4DCD87F21F17DAE0090BFBB /* UserSetting.m in Sources */,
 				B4E7CD0F2224098800122637 /* main.m in Sources */,
-				B4FC00402331D71E00A21B5E /* gameroot.cpp in Sources */,
 				B4FC00372331D70A00A21B5E /* rootviewcontroller.cpp in Sources */,
 				B441155A231CB83D00053BD7 /* cqcolor.cpp in Sources */,
 				B4CFD97321C7475000FFF4CF /* IAPDemoController.m in Sources */,
@@ -1061,6 +1061,7 @@
 				B441152F231CB7EE00053BD7 /* CQGLAppDelegate.m in Sources */,
 				CE299D402324055600B5FC98 /* cscomponent.cpp in Sources */,
 				B44310892321FBED00FA6720 /* DocViewController.m in Sources */,
+				B463414C2333292B00383E34 /* entry.cpp in Sources */,
 				B441155F231CB83D00053BD7 /* cqtouchesevent.cpp in Sources */,
 				B4411591231D0B5700053BD7 /* cqwnd.cpp in Sources */,
 				B425210A22842AD3004FA04B /* UIDevice+CQ.m in Sources */,
@@ -1068,7 +1069,6 @@
 				B425212322842BE4004FA04B /* CQSceneNavigator.m in Sources */,
 				B4411590231D0B5700053BD7 /* cqglkitarche.cpp in Sources */,
 				B425210B22842AD3004FA04B /* UIViewController+CQ.m in Sources */,
-				B4FC003E2331D71E00A21B5E /* luasource.cpp in Sources */,
 				B4F7AE1C2329DF9500E675A8 /* cstransform.cpp in Sources */,
 				B425212222842BE4004FA04B /* CQCrashListener.m in Sources */,
 				B443108B2321FBED00FA6720 /* TitlebarViewController.m in Sources */,

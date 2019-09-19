@@ -24,5 +24,5 @@ void LuaControl::startup() {
     cq_lua_load_lib_subsystem();
     
     //run:
-    cq_lua_do_string("require 'cqruntime'");
+    cq_lua_do_string("require 'runtime'");
 }
