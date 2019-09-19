@@ -9,7 +9,7 @@ static const char *const sLuaSources[] = {
 };
 
 void LuaSource::update(const std::string &directory) {
-    I("lua source: update");
+    I("lua source: update lua file");
     
     for (auto it = sLuaSources; it[0] && it[1]; it += 2) {
         const char *name = it[0];
