@@ -78,8 +78,8 @@ void program_game() {
     dirs(_JAVA, "program_game/gamekit/android/java");
     dirs(_OBJC, "program_game/gamekit/IOSGameKit"  );
     dirs(_CPP , "program_game/gamekit/libgamekit"  );
-    dirs(_CPP , "program_game/usergame"            );
-    dirs(_LUA , "program_game/userscript"          );
+    dirs(_CPP , "program_game/usergamelow"         );
+    dirs(_LUA , "program_game/usergameup"          );
 }
 
 void program_gl() {
