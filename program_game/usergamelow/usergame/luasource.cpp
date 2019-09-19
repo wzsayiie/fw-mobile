@@ -2,16 +2,22 @@
 #include "cqctool.hh"
 #include "cqfoundation.hh"
 
-static const char *const sLuaSources[] = {
-    //use script generate_lua(.bat) to create GENERATED_LUA.
-    #include "../GENERATED_LUA/GENERATED_LUA"
-    nullptr, nullptr,
-};
+static const char **source() {
+    const char *holder = nullptr;
+    #define LUA holder =
+    
+    static const char *list[] = {
+        //use script generate_lua(.bat) to create GENERATED_LUA.
+        #include "../GENERATED_LUA/GENERATED_LUA"
+        nullptr, nullptr
+    };
+    return list;
+}
 
 void LuaSource::update(const std::string &directory) {
     I("lua source: update lua file");
     
-    for (auto it = sLuaSources; it[0] && it[1]; it += 2) {
+    for (auto it = source(); it[0] && it[1]; it += 2) {
         const char *name = it[0];
         const char *text = it[1];
         

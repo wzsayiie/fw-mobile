@@ -1,3 +1,5 @@
+--LUA R"R(
+
 game_up_root = extends(code_behaviour, {
 })
 
@@ -9,3 +11,5 @@ end
 
 function game_up_root:update()
 end
+
+--)R"

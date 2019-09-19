@@ -1,3 +1,5 @@
+--LUA R"R(
+
 subsystem = {}
 
 function subsystem:start()
@@ -7,3 +9,5 @@ end
 function subsystem:stop()
     cq_subsystem_start()
 end
+
+--)R"

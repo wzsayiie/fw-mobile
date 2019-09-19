@@ -1,3 +1,5 @@
+--LUA R"R(
+
 log = {}
 
 local function format(fmt, args)
@@ -22,3 +24,5 @@ function log:e(fmt, ...)
     local text = format(fmt, {...})
     cq_log_error(file, line, text)
 end
+
+--)R"
