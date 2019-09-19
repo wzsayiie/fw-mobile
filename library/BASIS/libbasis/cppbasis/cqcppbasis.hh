@@ -163,7 +163,7 @@ cq_class(cqObject, _cqBaseObject) {
     virtual bool isMemberOfClass(cqClass *cls);
     
     template<class TO_TYPE, class FROM_REF>
-    static auto cast(FROM_REF from) -> decltype(std::static_pointer_cast<TO_TYPE>(from)) {
+    static typename cqRef<TO_TYPE>::Strong cast(FROM_REF from) {
         return std::static_pointer_cast<TO_TYPE>(from);
     }
 };

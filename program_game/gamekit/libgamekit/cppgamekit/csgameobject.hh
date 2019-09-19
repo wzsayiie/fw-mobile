@@ -32,8 +32,7 @@ cq_class(csGameObject, csGKObject) {
     virtual void removeComponent(cqClass *clazz);
     virtual csComponentRef getComponent(cqClass *clazz);
     
-    template<class T>
-    auto getComponent() -> decltype(cqObject::cast<T>(getComponent(nullptr))) {
+    template<class T> typename cqRef<T>::Strong getComponent() {
         return cqObject::cast<T>(getComponent(T::clazz()));
     }
     
