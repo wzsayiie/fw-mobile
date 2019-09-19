@@ -8,7 +8,7 @@ set ultima_dir="BUILD"
 set ultima_fil="as.apk"
 
 call generate_headers.bat
-call program_lua\libluascript\generate_lua.bat
+call program_game\generate_lua.bat
 ::: configutation end
 
 :: NOTE:

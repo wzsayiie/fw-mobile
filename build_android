@@ -10,7 +10,7 @@ ultima_dir="BUILD"
 ultima_fil="as.apk"
 
 sh generate_headers
-sh program_lua/libluascript/generate_lua
+sh program_game/generate_lua
 ### configutation end
 
 origin_dir="$projct_dir/app/build/outputs/apk/release"

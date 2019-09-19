@@ -25,7 +25,7 @@ outputs_dir="BUILD"
 outputs_nam="xcode"
 
 sh generate_headers
-sh program_lua/libluascript/generate_lua
+sh program_game/generate_lua
 ##
 ## configrution end
 
