@@ -151,12 +151,15 @@ void csGameObject::detachChildren() {
 
 //components:
 
-void csGameObject::addComponent(cqClass *clazz) {
+csComponentRef csGameObject::addComponent(cqClass *clazz) {
     if (clazz == nullptr) {
-        return;
+        return nullptr;
+    }
+    if (cqMap::contains(dat->codeBehaviours, clazz)) {
+        return dat->codeBehaviours[clazz];
     }
     if (cqMap::contains(dat->components, clazz)) {
-        return;
+        return dat->components[clazz];
     }
     
     auto component = cqObject::cast<csComponent>(clazz->create());
@@ -172,6 +175,8 @@ void csGameObject::addComponent(cqClass *clazz) {
     } else {
         dat->components[clazz] = component;
     }
+    
+    return component;
 }
 
 void csGameObject::removeComponent(cqClass *clazz) {

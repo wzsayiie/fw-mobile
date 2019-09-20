@@ -41,16 +41,3 @@ void csGKObject::destroy(csGKObjectRef object) {
         csGameObject::destroy(gameObject);
     }
 }
-
-static std::set<void *> sObjectSet;
-
-csGKObjectRef csGKObject::_checkout(void *ptr) {
-    if (sObjectSet.find(ptr) != sObjectSet.end()) {
-        return ((csGKObject *)ptr)->strongRef();
-    } else {
-        return nullptr;
-    }
-}
-
-csGKObject::csGKObject () { sObjectSet.insert(this); }
-csGKObject::~csGKObject() { sObjectSet.erase (this); }

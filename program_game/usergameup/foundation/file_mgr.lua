@@ -1,5 +1,5 @@
 --LUA R"R(
 
-file_manager = {}
+file_mgr = {}
 
 --)R"

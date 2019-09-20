@@ -1,6 +1,12 @@
 --LUA R"R(
 
--- require
+package.path = package.path .. ";program_game/usergameup/BASIS/?.lua"
+package.path = package.path .. ";program_game/usergameup/foundation/?.lua"
+package.path = package.path .. ";program_game/usergameup/gamekit/?.lua"
+package.path = package.path .. ";program_game/usergameup/subsystem/?.lua"
+package.path = package.path .. ";program_game/usergameup/usergame/?.lua"
+
+-- require:
 setmetatable(_G, {__index = function(tab, key)
     if pcall(require, string.lower(key)) then
         return tab[key]
@@ -9,26 +15,7 @@ setmetatable(_G, {__index = function(tab, key)
     end
 end})
 
--- object
-
-_runtime_object = {}
-
-function _runtime_object:new(...)
-    local object = setmetatable({}, {__index = self})
-    object:init(...)
-    return object
-end
-
-function _runtime_object:init()
-end
-
-function extends(super, this)
-    setmetatable(this, {__index = super})
-    this.super = super
-    return this
-end;
-
--- app entry
+-- app entry:
 entry()
 
 --)R"

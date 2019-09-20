@@ -1,6 +1,6 @@
 --LUA R"R(
 
-camera = extends(behaviour, {
+camera = class("camera", beh, {
 })
 
 --)R"

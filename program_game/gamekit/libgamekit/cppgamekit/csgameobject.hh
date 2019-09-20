@@ -28,10 +28,13 @@ cq_class(csGameObject, csGKObject) {
     virtual void detachChildren();
     
     //components:
-    virtual void addComponent(cqClass *clazz);
+    virtual csComponentRef addComponent(cqClass *clazz);
     virtual void removeComponent(cqClass *clazz);
     virtual csComponentRef getComponent(cqClass *clazz);
     
+    template<class T> typename cqRef<T>::Strong addComponent() {
+        return cqObject::cast<T>(addComponent(T::clazz()));
+    }
     template<class T> typename cqRef<T>::Strong getComponent() {
         return cqObject::cast<T>(getComponent(T::clazz()));
     }

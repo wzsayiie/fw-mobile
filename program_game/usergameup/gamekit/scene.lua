@@ -1,5 +1,6 @@
 --LUA R"R(
 
-scene = {}
+scene = class("scene", gk_bridge, {
+})
 
 --)R"

@@ -1,6 +1,6 @@
 --LUA R"R(
 
-transform = extends(component, {
+transform = class("transform", comp, {
 })
 
 --)R"
