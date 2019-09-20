@@ -7,7 +7,10 @@ object = {
 }
 
 function object:new(...)
-    local obj = setmetatable({}, {__index = self})
+    local obj = setmetatable({}, {
+        __gc = function() end,
+        __index = self
+    })
     obj:init(...)
     return obj
 end
