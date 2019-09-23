@@ -1,6 +1,9 @@
 #include "cstransform.hh"
 #include "csgameobject.hh"
 
+csVector2::csVector2(/*............*/): x(0), y(0) {}
+csVector2::csVector2(float x, float y): x(x), y(y) {}
+
 cq_member(csTransform) {
     csVector2 position;
 };

@@ -5,8 +5,12 @@
 _CSGAMEKIT_BEGIN_VERSION_NS
 
 struct csVector2 {
-    float x = 0;
-    float y = 0;
+    
+    float x;
+    float y;
+    
+    csVector2();
+    csVector2(float x, float y);
 };
 
 cq_class(csTransform, csComponent) {
