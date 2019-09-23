@@ -22,8 +22,8 @@ struct cs_gk_obj {
     struct cs_obj obj;
 };
 
-CQ_C_LINK void cs_dont_destroy_on_load(struct cs_gk_obj obj);
-CQ_C_LINK void cs_destroy(struct cs_gk_obj obj);
+CQ_C_LINK void cs_dont_destroy_on_load(struct cs_gk_obj gk_obj);
+CQ_C_LINK void cs_destroy(struct cs_gk_obj gk_obj);
 
 //scene:
 
@@ -68,6 +68,11 @@ enum cs_cid {
     cs_cid_code_beh = 2,
     cs_cid_xform    = 3,
 };
+
+//cs_cid should have a fixed size.
+#ifdef __cplusplus
+static_assert(sizeof(cs_cid) == sizeof(int32_t), "");
+#endif
 
 CQ_C_LINK struct cs_comp cs_add_comp(struct cs_gobj gobj, cs_cid cid);
 CQ_C_LINK void cs_remove_comp(struct cs_gobj gobj, cs_cid cid);

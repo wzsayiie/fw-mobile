@@ -67,6 +67,7 @@
 		B475C169230100A300ED7BD3 /* NSNotificationCenter+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B475C165230100A200ED7BD3 /* NSNotificationCenter+CQ.m */; };
 		B475C16A230100A300ED7BD3 /* CQGCD.m in Sources */ = {isa = PBXBuildFile; fileRef = B475C166230100A200ED7BD3 /* CQGCD.m */; };
 		B4B9D32022278D4E00B35E72 /* liblua.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B9D31F22278D4D00B35E72 /* liblua.a */; };
+		B4C0584B2338AE98009D71BA /* cslualibgamekit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4C058492338AE98009D71BA /* cslualibgamekit.cpp */; };
 		B4C7448E22BCAE5100483834 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4C7448C22BCAE5100483834 /* InfoPlist.strings */; };
 		B4CFD97321C7475000FFF4CF /* IAPDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96021C7475000FFF4CF /* IAPDemoController.m */; };
 		B4CFD97421C7475000FFF4CF /* DailyDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96421C7475000FFF4CF /* DailyDemoController.m */; };
@@ -237,6 +238,8 @@
 		B475C167230100A200ED7BD3 /* CQGCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQGCD.h; sourceTree = "<group>"; };
 		B475C168230100A300ED7BD3 /* NSNotificationCenter+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+CQ.h"; sourceTree = "<group>"; };
 		B4B9D31F22278D4D00B35E72 /* liblua.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblua.a; path = ../thirds_ios/libs/liblua.a; sourceTree = "<group>"; };
+		B4C058492338AE98009D71BA /* cslualibgamekit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cslualibgamekit.cpp; sourceTree = "<group>"; };
+		B4C0584A2338AE98009D71BA /* cslualibgamekit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cslualibgamekit.h; sourceTree = "<group>"; };
 		B4C7448D22BCAE5100483834 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B4C7448F22BCAE5600483834 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		B4CFD96021C7475000FFF4CF /* IAPDemoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPDemoController.m; sourceTree = "<group>"; };
@@ -544,6 +547,7 @@
 			children = (
 				B4411595231D0DC100053BD7 /* archetype */,
 				CE299D212323F15B00B5FC98 /* cppgamekit */,
+				B4C058482338AE98009D71BA /* luagamekit */,
 			);
 			name = libgamekit;
 			path = ../program_game/gamekit/libgamekit;
@@ -770,6 +774,15 @@
 				B4411573231CBF5600053BD7 /* UserApp */,
 			);
 			name = AppProgram;
+			sourceTree = "<group>";
+		};
+		B4C058482338AE98009D71BA /* luagamekit */ = {
+			isa = PBXGroup;
+			children = (
+				B4C058492338AE98009D71BA /* cslualibgamekit.cpp */,
+				B4C0584A2338AE98009D71BA /* cslualibgamekit.h */,
+			);
+			path = luagamekit;
 			sourceTree = "<group>";
 		};
 		B4CFD95F21C7475000FFF4CF /* IAPDemoController */ = {
@@ -1065,6 +1078,7 @@
 				B441155F231CB83D00053BD7 /* cqtouchesevent.cpp in Sources */,
 				B4411591231D0B5700053BD7 /* cqwnd.cpp in Sources */,
 				B425210A22842AD3004FA04B /* UIDevice+CQ.m in Sources */,
+				B4C0584B2338AE98009D71BA /* cslualibgamekit.cpp in Sources */,
 				B4411557231CB83D00053BD7 /* cqcontext.cpp in Sources */,
 				B425212322842BE4004FA04B /* CQSceneNavigator.m in Sources */,
 				B4411590231D0B5700053BD7 /* cqglkitarche.cpp in Sources */,

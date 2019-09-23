@@ -3,6 +3,7 @@
 #include "cqfoundation.hh"
 #include "cqlualibfoundation.h"
 #include "cqlualibsubsystem.h"
+#include "cslualibgamekit.h"
 #include "csluavm.hh"
 #include "luasource.hh"
 
@@ -22,6 +23,7 @@ void LuaControl::startup() {
     //custom libraries:
     cq_lua_load_lib_foundation();
     cq_lua_load_lib_subsystem();
+    cs_lua_load_lib_gamekit();
     
     //run:
     cq_lua_do_string("require 'runtime'");

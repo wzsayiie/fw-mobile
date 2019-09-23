@@ -1,6 +1,6 @@
 --LUA R"R(
 
-scene = class("scene", gk_bridge, {
+scene = class("scene", obj, {
 })
 
 --)R"

@@ -12,6 +12,9 @@ static int32_t subsystem_stop(lua_State *state) {
 }
 
 void cq_lua_load_lib_subsystem() {
-    cq_lua_register_func("cq_subsystem_start", subsystem_start);
-    cq_lua_register_func("cq_subsystem_stop" , subsystem_stop );
+    
+#define register_func(name) cq_lua_register_func(#name, name)
+    
+    register_func(subsystem_start);
+    register_func(subsystem_stop );
 }

@@ -74,14 +74,16 @@ static int32_t remove_path(lua_State *state) {
 
 void cq_lua_load_lib_foundation() {
     
-    cq_lua_register_func("cq_log_info" , log_info );
-    cq_lua_register_func("cq_log_error", log_error);
+#define register_func(name) cq_lua_register_func(#name, name)
     
-    cq_lua_register_func("cq_document_directory" , document_directory );
-    cq_lua_register_func("cq_caches_directory"   , caches_directory   );
-    cq_lua_register_func("cq_temporary_directory", temporary_directory);
-    cq_lua_register_func("cq_directory_exists"   , directory_exists   );
-    cq_lua_register_func("cq_file_exists"        , file_exists        );
-    cq_lua_register_func("cq_create_directory"   , create_directory   );
-    cq_lua_register_func("cq_remove_path"        , remove_path        );
+    register_func(log_info );
+    register_func(log_error);
+    
+    register_func(document_directory );
+    register_func(caches_directory   );
+    register_func(temporary_directory);
+    register_func(directory_exists   );
+    register_func(file_exists        );
+    register_func(create_directory   );
+    register_func(remove_path        );
 }
