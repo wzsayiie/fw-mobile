@@ -1,30 +1,30 @@
 --LUA R"R(
 
 obj = class("obj", object, {
-    handle = 0
+    native = 0
 })
 
 local function gc(obj)
-    if obj.handle ~= 0 then
-        cs_release(obj.handle)
+    if obj.native ~= 0 then
+        cs_release(obj.native)
     end
 end
 
-function obj:new_with(handle)
-    if handle == 0 then
+function obj:new_with(native)
+    if native == 0 then
         return nil
     end
 
     local obj = object:new()
     getmetatable(obj).__gc = gc
-    obj.handle = handle
+    obj.native = native
     return obj
 end
 
-function obj:new_retain(handle)
-    if handle ~= 0 then
-        cs_retain(handle)
-        return obj:new_with(handle)
+function obj:new_retain(native)
+    if native ~= 0 then
+        cs_retain(native)
+        return obj:new_with(native)
     else
         return nil
     end
