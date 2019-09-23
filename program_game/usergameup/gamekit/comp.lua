@@ -11,7 +11,7 @@ end
 function comp:get_comp(cls)
     local id = cid:form_cls(cls)
     local native = cs_comp_brother(self.native, id)
-    return comp:new_retain(native)
+    return cls:new_retain(native)
 end
 
 function comp:xfrom()

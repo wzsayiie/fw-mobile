@@ -6,7 +6,7 @@ gobj = class("gobj", gk_obj, {
 function gobj:create(name)
     local native = cs_create_gobj(name)
     -- NOTE: do not retain reference count once again.
-    return gobj:new_with(name)
+    return gobj:new_with(native)
 end
 
 function gobj:set_name(name)
@@ -42,7 +42,7 @@ end
 function gobj:add_comp(cls)
     local id = cid:from_cls(cls)
     local native = cs_add_comp(self.native, id)
-    return comp:new_retain(native)
+    return cls:new_retain(native)
 end
 
 function gobj:remove_comp(cls)
@@ -53,7 +53,7 @@ end
 function gobj:get_comp(cls)
     local id = cid:from_cls(cls)
     local native = cs_gobj_comp(self.native, id)
-    return comp:new_retain(native)
+    return cls:new_retain(native)
 end
 
 function gobj:xfrom()

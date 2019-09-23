@@ -12,7 +12,7 @@ function cid:from_cls(cls)
     elseif cls:is_kind_of(code_beh) then return cid.code_beh
     elseif cls:is_kind_of(xform   ) then return cid.xform
     
-    else return 0
+    else return 0 end
 end
 
 --)R"

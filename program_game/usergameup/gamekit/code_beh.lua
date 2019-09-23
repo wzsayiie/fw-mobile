@@ -11,7 +11,7 @@ function code_beh:on_destroy() end
 local storage = {}
 
 function code_beh:new_with(native)
-    local obj = beh:new_with(native)
+    local obj = beh.new_with(self, native)
     if native ~= 0 then
         storage[native] = obj
     end
@@ -19,7 +19,7 @@ function code_beh:new_with(native)
 end
 
 function code_beh:new_retain(native)
-    local obj = beh:new_retain(native)
+    local obj = beh.new_retain(self, native)
     if native ~= 0 then
         storage[native] = obj
     end
@@ -36,7 +36,7 @@ end
 
 function cs_on_code_beh_start(native)
     local obj = storage[native]
-
+    
     if obj ~= nil then
         obj:start()
     end
