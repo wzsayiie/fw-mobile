@@ -160,7 +160,7 @@
 		CE2BF72921BFF1D10013614A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = wzsayiie;
 				TargetAttributes = {
 					CE2BF73021BFF1D10013614A = {
@@ -321,6 +321,7 @@
 		CE2BF73921BFF1D10013614A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../EDITOR_CPP/utility";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -330,6 +331,7 @@
 		CE2BF73A21BFF1D10013614A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../EDITOR_CPP/utility";
 				PRODUCT_NAME = "$(TARGET_NAME)";
