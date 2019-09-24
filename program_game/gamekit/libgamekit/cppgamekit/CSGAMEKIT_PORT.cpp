@@ -3,11 +3,11 @@
 
 //obj:
 
-struct ObjectStorageItem {
+struct ReferenceItem {
     int32_t referenceCount = 0;
     cqObjectRef object;
 };
-static std::map<int64_t, ObjectStorageItem> sObjectPool;
+static std::map<int64_t, ReferenceItem> sReferencePool;
 
 template<class T, class F> typename cqRef<T>::Strong cs_get(F from) {
     int64_t index = *(int64_t *)&from;
@@ -15,11 +15,11 @@ template<class T, class F> typename cqRef<T>::Strong cs_get(F from) {
     if (index == 0) {
         return typename cqRef<T>::Strong();
     }
-    if (cqMap::dontContain(sObjectPool, index)) {
+    if (cqMap::dontContain(sReferencePool, index)) {
         return typename cqRef<T>::Strong();
     }
     
-    ObjectStorageItem &item = sObjectPool[index];
+    ReferenceItem &item = sReferencePool[index];
     if (!item.object->isKindOfClass(T::clazz())) {
         return typename cqRef<T>::Strong();
     }
@@ -27,46 +27,43 @@ template<class T, class F> typename cqRef<T>::Strong cs_get(F from) {
     return cqObject::cast<T>(item.object);
 }
 
-template<class T> T cs_cast(cqObjectRef object) {
-    T ret = {0};
-    if (object != nullptr) {
-        *(int64_t *)&ret = (int64_t)object.get();
-    }
-    return ret;
-}
-
 template<class T> T cs_retain(cqObjectRef object) {
-    if (object == nullptr) {
-        return cs_cast<T>(object);
-    }
-    
-    int64_t index = (int64_t)object.get();
-    if (index == 0) {
-        return cs_cast<T>(object);
-    }
-    
-    if (cqMap::dontContain(sObjectPool, index)) {
-        ObjectStorageItem item; {
-            item.referenceCount = 1;
-            item.object = object;
+    int64_t index = 0;
+    do {
+        if (object == nullptr) {
+            break;
         }
-        sObjectPool[index] = item;
-    } else {
-        ObjectStorageItem &item = sObjectPool[index];
-        item.referenceCount += 1;
-    }
-    return cs_cast<T>(object);
+    
+        index = (int64_t)object.get();
+        if (index == 0) {
+            break;
+        }
+    
+        if (cqMap::dontContain(sReferencePool, index)) {
+            ReferenceItem item; {
+                item.referenceCount = 1;
+                item.object = object;
+            }
+            sReferencePool[index] = item;
+        } else {
+            ReferenceItem &item = sReferencePool[index];
+            item.referenceCount += 1;
+        }
+    } while (0);
+    
+    T ret = {index};
+    return ret;
 }
 
 void cs_retain(cs_obj obj) {
     if (obj.index == 0) {
         return;
     }
-    if (cqMap::dontContain(sObjectPool, obj.index)) {
+    if (cqMap::dontContain(sReferencePool, obj.index)) {
         return;
     }
     
-    ObjectStorageItem &item = sObjectPool[obj.index];
+    ReferenceItem &item = sReferencePool[obj.index];
     item.referenceCount += 1;
 }
 
@@ -74,15 +71,15 @@ void cs_release(cs_obj obj) {
     if (obj.index == 0) {
         return;
     }
-    if (cqMap::dontContain(sObjectPool, obj.index)) {
+    if (cqMap::dontContain(sReferencePool, obj.index)) {
         return;
     }
     
-    ObjectStorageItem &item = sObjectPool[obj.index];
+    ReferenceItem &item = sReferencePool[obj.index];
     if (item.referenceCount > 1) {
         item.referenceCount -= 1;
     } else {
-        sObjectPool.erase(obj.index);
+        sReferencePool.erase(obj.index);
     }
 }
 
@@ -102,7 +99,6 @@ void cs_destroy(cs_gk_obj gk_obj) {
 
 cs_scene cs_create_scene(const char *name) {
     csSceneRef scene = csSceneManager::createScene(cqString::make(name));
-    //NOTE: retain one reference count.
     return cs_retain<cs_scene>(scene);
 }
 
@@ -123,14 +119,13 @@ void cs_load_scene(const char *name) {
 
 cs_scene cs_active_scene(void) {
     csSceneRef scene = csSceneManager::activeScene();
-    return cs_cast<cs_scene>(scene);
+    return cs_retain<cs_scene>(scene);
 }
 
 //gobj:
 
 cs_gobj cs_create_gobj(const char *name) {
     csGameObjectRef gameOject = csGameObject::createWithName(cqString::make(name));
-    //NOTE: retain one reference count.
     return cs_retain<cs_gobj>(gameOject);
 }
 
@@ -169,7 +164,7 @@ cs_gobj cs_gobj_parent(cs_gobj gobj) {
     if (gameObject != nullptr) {
         parentObject = gameObject->parent();
     }
-    return cs_cast<cs_gobj>(parentObject);
+    return cs_retain<cs_gobj>(parentObject);
 }
 
 int32_t cs_child_num(cs_gobj gobj) {
@@ -191,7 +186,7 @@ cs_gobj cs_child_at(cs_gobj gobj, int32_t index) {
             childObject = children[index];
         }
     }
-    return cs_cast<cs_gobj>(childObject);
+    return cs_retain<cs_gobj>(childObject);
 }
 
 void cs_detach_children(cs_gobj gobj) {
@@ -223,37 +218,23 @@ cs_gobj cs_root_gobj_at(cs_scene scene, int32_t index) {
             gameObject = iter->second;
         }
     }
-    return cs_cast<cs_gobj>(gameObject);
+    return cs_retain<cs_gobj>(gameObject);
 }
 
 //comp:
 
-static cs_code_beh_event _code_beh_event = {nullptr};
-
 cq_class(csExternalCode, csCodeBehaviour) {
     
-    virtual void awake    ();
-    virtual void start    ();
-    virtual void update   ();
-    virtual void onDestroy();
+    void awake    () override;
+    void start    () override;
+    void update   () override;
+    void onDestroy() override;
 };
 
 cq_member(csExternalCode) {
 };
 
-template<class F> void emit_event(F func, csExternalCode *object) {
-    if (func != nullptr) {
-        cs_code_beh beh = cs_cast<cs_code_beh>(object->strongRef());
-        func(beh);
-    }
-}
-
-void csExternalCode::awake    () { emit_event(_code_beh_event.awake     , this); }
-void csExternalCode::start    () { emit_event(_code_beh_event.start     , this); }
-void csExternalCode::update   () { emit_event(_code_beh_event.update    , this); }
-void csExternalCode::onDestroy() { emit_event(_code_beh_event.on_destroy, this); }
-
-static cqClass *classFromComponentID(cs_cid cid) {
+static cqClass *classFromComponentID(cs_comp_id cid) {
     switch (cid) {
         case cs_cid_camera  : return csCamera::clazz();
         case cs_cid_code_beh: return csExternalCode::clazz();
@@ -262,7 +243,7 @@ static cqClass *classFromComponentID(cs_cid cid) {
     }
 }
 
-cs_comp cs_add_comp(cs_gobj gobj, cs_cid cid) {
+cs_comp cs_add_comp(cs_gobj gobj, cs_comp_id cid) {
     csGameObjectRef gameObject = cs_get<csGameObject>(gobj);
     cqClass *clazz = classFromComponentID(cid);
     
@@ -270,10 +251,10 @@ cs_comp cs_add_comp(cs_gobj gobj, cs_cid cid) {
     if (gameObject != nullptr && clazz != nullptr) {
         component = gameObject->addComponent(clazz);
     }
-    return cs_cast<cs_comp>(component);
+    return cs_retain<cs_comp>(component);
 }
 
-void cs_remove_comp(cs_gobj gobj, cs_cid cid) {
+void cs_remove_comp(cs_gobj gobj, cs_comp_id cid) {
     csGameObjectRef gameObject = cs_get<csGameObject>(gobj);
     cqClass *clazz = classFromComponentID(cid);
     
@@ -282,7 +263,7 @@ void cs_remove_comp(cs_gobj gobj, cs_cid cid) {
     }
 }
 
-cs_comp cs_gobj_comp(cs_gobj gobj, cs_cid cid) {
+cs_comp cs_gobj_comp(cs_gobj gobj, cs_comp_id cid) {
     csGameObjectRef gameObject = cs_get<csGameObject>(gobj);
     cqClass *clazz = classFromComponentID(cid);
     
@@ -290,7 +271,7 @@ cs_comp cs_gobj_comp(cs_gobj gobj, cs_cid cid) {
     if (gameObject != nullptr && clazz != nullptr) {
         component = gameObject->getComponent(clazz);
     }
-    return cs_cast<cs_comp>(component);
+    return cs_retain<cs_comp>(component);
 }
 
 cs_gobj cs_comp_gobj(cs_comp comp) {
@@ -300,10 +281,10 @@ cs_gobj cs_comp_gobj(cs_comp comp) {
     if (component != nullptr) {
         gameObject = component->gameObject();
     }
-    return cs_cast<cs_gobj>(gameObject);
+    return cs_retain<cs_gobj>(gameObject);
 }
 
-cs_comp cs_comp_brother(cs_comp comp, cs_cid cid) {
+cs_comp cs_comp_brother(cs_comp comp, cs_comp_id cid) {
     csComponentRef component = cs_get<csComponent>(comp);
     cqClass *clazz = classFromComponentID(cid);
     
@@ -311,15 +292,27 @@ cs_comp cs_comp_brother(cs_comp comp, cs_cid cid) {
     if (component != nullptr && clazz != nullptr) {
         brother = component->getComponent(clazz);
     }
-    return cs_cast<cs_comp>(brother);
+    return cs_retain<cs_comp>(brother);
 }
 
 //code_beh:
 
-void cs_set_code_beh_callback(cs_code_beh_event *event) {
-    if (event != nullptr) {
-        _code_beh_event = *event;
+static cs_cb_callback _cb_callback = nullptr;
+
+static void emit_event(const char *event, csExternalCode *object) {
+    if (_cb_callback != nullptr) {
+        cs_code_beh beh = {(int64_t)object};
+        _cb_callback(event, beh);
     }
+}
+
+void csExternalCode::awake    () { emit_event("awake"     , this); }
+void csExternalCode::start    () { emit_event("start"     , this); }
+void csExternalCode::update   () { emit_event("update"    , this); }
+void csExternalCode::onDestroy() { emit_event("on_destroy", this); }
+
+void cs_set_cb_callback(cs_cb_callback callback) {
+    _cb_callback = callback;
 }
 
 //xform:
@@ -331,7 +324,7 @@ cs_xform cs_gobj_xform(cs_gobj gobj) {
     if (gameObject != nullptr) {
         transform = gameObject->transform();
     }
-    return cs_cast<cs_xform>(transform);
+    return cs_retain<cs_xform>(transform);
 }
 
 cs_xform cs_comp_xform(cs_comp comp) {
@@ -341,7 +334,7 @@ cs_xform cs_comp_xform(cs_comp comp) {
     if (component != nullptr) {
         transform = component->transform();
     }
-    return cs_cast<cs_xform>(transform);
+    return cs_retain<cs_xform>(transform);
 }
 
 void cs_set_xform_xy(cs_xform xform, float x, float y) {
@@ -386,5 +379,5 @@ cs_xform cs_xform_parent(cs_xform xform) {
     if (transform != nullptr) {
         parent = transform->parent();
     }
-    return cs_cast<cs_xform>(parent);
+    return cs_retain<cs_xform>(parent);
 }

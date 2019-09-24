@@ -73,7 +73,7 @@ static int32_t cs_create_gobj(lua_State *state) {
 }
 
 static int32_t cs_set_gobj_name(lua_State *state) {
-    cs_gobj gobj = lua_check<cs_gobj>(state, 1);
+    cs_gobj     gobj = lua_check<cs_gobj> (state, 1);
     const char *name = cq_lua_check_string(state, 2);
     
     cs_set_gobj_name(gobj, name);
@@ -131,7 +131,7 @@ static int32_t cs_root_gobj_num(lua_State *state) {
 
 static int32_t cs_root_gobj_at(lua_State *state) {
     cs_scene scene = lua_check<cs_scene>(state, 1);
-    int32_t index = cq_lua_check_int32(state, 2);
+    int32_t  index = cq_lua_check_int32 (state, 2);
     
     cs_gobj gobj = cs_root_gobj_at(scene, index);
     
@@ -141,8 +141,8 @@ static int32_t cs_root_gobj_at(lua_State *state) {
 //comp:
 
 static int32_t cs_add_comp(lua_State *state) {
-    cs_gobj gobj = lua_check<cs_gobj>(state, 1);
-    cs_cid cid = (cs_cid)cq_lua_check_int32(state, 2);
+    cs_gobj   gobj = lua_check<cs_gobj>(state, 1);
+    cs_comp_id cid = cq_lua_check_int32(state, 2);
     
     cs_comp comp = cs_add_comp(gobj, cid);
     
@@ -150,8 +150,8 @@ static int32_t cs_add_comp(lua_State *state) {
 }
 
 static int32_t cs_remove_comp(lua_State *state) {
-    cs_gobj gobj = lua_check<cs_gobj>(state, 1);
-    cs_cid cid = (cs_cid)cq_lua_check_int32(state, 2);
+    cs_gobj   gobj = lua_check<cs_gobj>(state, 1);
+    cs_comp_id cid = cq_lua_check_int32(state, 2);
     
     cs_remove_comp(gobj, cid);
     
@@ -159,8 +159,8 @@ static int32_t cs_remove_comp(lua_State *state) {
 }
 
 static int32_t cs_gobj_comp(lua_State *state) {
-    cs_gobj gobj = lua_check<cs_gobj>(state, 1);
-    cs_cid cid = (cs_cid)cq_lua_check_int32(state, 2);
+    cs_gobj   gobj = lua_check<cs_gobj>(state, 1);
+    cs_comp_id cid = cq_lua_check_int32(state, 2);
     
     cs_comp comp = cs_gobj_comp(gobj, cid);
     
@@ -174,8 +174,8 @@ static int32_t cs_comp_gobj(lua_State *state) {
 }
 
 static int32_t cs_comp_brother(lua_State *state) {
-    cs_comp comp = lua_check<cs_comp>(state, 1);
-    cs_cid cid = (cs_cid)cq_lua_check_int32(state, 2);
+    cs_comp   comp = lua_check<cs_comp>(state, 1);
+    cs_comp_id cid = cq_lua_check_int32(state, 2);
     
     cs_comp brother = cs_comp_brother(comp, cid);
     
@@ -198,8 +198,8 @@ static int32_t cs_comp_xform(lua_State *state) {
 
 static int32_t cs_set_xform_xy(lua_State *state) {
     cs_xform xform = lua_check<cs_xform>(state, 1);
-    float x = cq_lua_check_float(state, 2);
-    float y = cq_lua_check_float(state, 3);
+    float    x     = cq_lua_check_float (state, 2);
+    float    y     = cq_lua_check_float (state, 3);
     
     cs_set_xform_xy(xform, x, y);
     
@@ -219,7 +219,7 @@ static int32_t cs_xform_y(lua_State *state) {
 }
 
 static int32_t cs_set_xform_parent(lua_State *state) {
-    cs_xform xform = lua_check<cs_xform>(state, 1);
+    cs_xform xform  = lua_check<cs_xform>(state, 1);
     cs_xform parent = lua_check<cs_xform>(state, 2);
     
     cs_set_xform_parent(xform, parent);
@@ -233,32 +233,19 @@ static int32_t cs_xform_parent(lua_State *state) {
     return lua_return_obj(state, parent);
 }
 
-static void on_event(const char *express, cs_code_beh beh) {
-    char buffer[64];
-    sprintf(buffer, express, *(int64_t *)&beh);
-    cq_lua_do_string(buffer);
-}
-
-static void awake     (cs_code_beh b) { on_event("cs_on_code_beh_awake(%ld)"     , b); }
-static void start     (cs_code_beh b) { on_event("cs_on_code_beh_start(%ld)"     , b); }
-static void update    (cs_code_beh b) { on_event("cs_on_code_beh_update(%ld)"    , b); }
-static void on_destroy(cs_code_beh b) { on_event("cs_on_code_beh_on_destroy(%ld)", b); }
-
-static void set_code_beh_callback() {
+static void on_cb_event(const char *event, cs_code_beh beh) {
     
-    cs_code_beh_event event = {0}; {
-        
-        event.awake      = awake     ;
-        event.start      = start     ;
-        event.update     = update    ;
-        event.on_destroy = on_destroy;
-    }
-    cs_set_code_beh_callback(&event);
+    const char *cmd = "cs_on_cb_event(\"%s\", %ld)";
+    int64_t idx = *(int64_t *)&beh;
+    
+    char buf[64];
+    sprintf(buf, cmd, event, idx);
+    cq_lua_do_string(buf);
 }
 
 void cs_lua_load_lib_gamekit() {
     
-    set_code_beh_callback();
+    cs_set_cb_callback(on_cb_event);
 
 #define register_func(name) cq_lua_register_func(#name, name)
 

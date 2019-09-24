@@ -1,14 +1,16 @@
 #include "cscodebehaviour.hh"
 
 cq_member(csCodeBehaviour) {
+    bool waitingAwake = true;
     bool waitingStart = true;
 };
 
-void csCodeBehaviour::emitAwake() {
-    awake();
-}
-
 void csCodeBehaviour::emitUpdate() {
+    //awake.
+    if (dat->waitingAwake) {
+        dat->waitingAwake = false;
+        awake();
+    }
     //start.
     if (dat->waitingStart) {
         dat->waitingStart = false;

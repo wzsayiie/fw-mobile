@@ -21,13 +21,4 @@ function obj:new_with(native)
     return obj
 end
 
-function obj:new_retain(native)
-    if native ~= 0 then
-        cs_retain(native)
-        return obj.new_with(self, native)
-    else
-        return nil
-    end
-end
-
 --)R"

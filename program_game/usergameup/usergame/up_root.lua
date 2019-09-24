@@ -4,14 +4,15 @@ up_root = class("up_root", code_beh, {
 })
 
 function up_root:awake()
-    log:i("up root awake")
 end
 
 function up_root:start()
-    log:i("up root start")
 end
 
 function up_root:update()
+end
+
+function up_root:on_destroy()
 end
 
 --)R"

@@ -8,10 +8,7 @@ struct cs_obj {
     int64_t index;
 };
 
-//NOTE:
-//the return value of the function starting with "cs_create_"
-//needs to be released with cs_release(), otherwise there will be a memory leak.
-//other function return values are not required, unless call "cs_retain()" on them.
+//NOTE: objects that returned as return values need to be cleaned by cs_release().
 
 CQ_C_LINK void cs_retain(struct cs_obj obj);
 CQ_C_LINK void cs_release(struct cs_obj obj);
@@ -63,23 +60,17 @@ struct cs_comp {
     struct cs_gk_obj gk_obj;
 };
 
-enum cs_cid {
-    cs_cid_camera   = 1,
-    cs_cid_code_beh = 2,
-    cs_cid_xform    = 3,
-};
+typedef int32_t cs_comp_id;
+static const cs_comp_id cs_cid_camera   = 1;
+static const cs_comp_id cs_cid_code_beh = 2;
+static const cs_comp_id cs_cid_xform    = 3;
 
-//cs_cid should have a fixed size.
-#ifdef __cplusplus
-static_assert(sizeof(cs_cid) == sizeof(int32_t), "");
-#endif
-
-CQ_C_LINK struct cs_comp cs_add_comp(struct cs_gobj gobj, cs_cid cid);
-CQ_C_LINK void cs_remove_comp(struct cs_gobj gobj, cs_cid cid);
-CQ_C_LINK struct cs_comp cs_gobj_comp(struct cs_gobj gobj, cs_cid cid);
+CQ_C_LINK struct cs_comp cs_add_comp(struct cs_gobj gobj, cs_comp_id cid);
+CQ_C_LINK void cs_remove_comp(struct cs_gobj gobj, cs_comp_id cid);
+CQ_C_LINK struct cs_comp cs_gobj_comp(struct cs_gobj gobj, cs_comp_id cid);
 
 CQ_C_LINK struct cs_gobj cs_comp_gobj(struct cs_comp comp);
-CQ_C_LINK struct cs_comp cs_comp_brother(struct cs_comp comp, cs_cid cid);
+CQ_C_LINK struct cs_comp cs_comp_brother(struct cs_comp comp, cs_comp_id cid);
 
 //camera:
 
@@ -93,15 +84,8 @@ struct cs_code_beh {
     cs_comp comp;
 };
 
-struct cs_code_beh_event {
-    
-    void (*awake     )(struct cs_code_beh beh);
-    void (*start     )(struct cs_code_beh beh);
-    void (*update    )(struct cs_code_beh beh);
-    void (*on_destroy)(struct cs_code_beh beh);
-};
-
-CQ_C_LINK void cs_set_code_beh_callback(struct cs_code_beh_event *event);
+typedef void (*cs_cb_callback)(const char *event, cs_code_beh beh);
+CQ_C_LINK void cs_set_cb_callback(cs_cb_callback callback);
 
 //xform:
 

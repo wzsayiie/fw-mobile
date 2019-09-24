@@ -18,43 +18,19 @@ function code_beh:new_with(native)
     return obj
 end
 
-function code_beh:new_retain(native)
-    local obj = beh.new_retain(self, native)
-    if native ~= 0 then
-        storage[native] = obj
-    end
-    return obj
-end
-
-function cs_on_code_beh_awake(native)
+function cs_on_cb_event(name, native)
     local obj = storage[native]
-
-    if obj ~= nil then
-        obj:awake()
+    if obj == nil then
+        return
     end
-end
 
-function cs_on_code_beh_start(native)
-    local obj = storage[native]
-    
-    if obj ~= nil then
-        obj:start()
+    if     name == "awake"      then obj:awake()
+    elseif name == "start"      then obj:start()
+    elseif name == "update"     then obj:update()
+    elseif name == "on_destroy" then obj:on_destroy()
     end
-end
 
-function cs_on_code_beh_update(native)
-    local obj = storage[native]
-    
-    if obj ~= nil then
-        obj:update()
-    end
-end
-
-function cs_on_code_beh_on_destroy(native)
-    local obj = storage[native]
-    
-    if obj ~= nil then
-        obj:on_destroy()
+    if name == "on_destroy" then
         storage[native] = nil
     end
 end

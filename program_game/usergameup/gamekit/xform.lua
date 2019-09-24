@@ -21,7 +21,7 @@ end
 
 function xform:parent()
     local native = cs_xform_parent(self.native)
-    return xform:new_retain(native)
+    return xform:new_with(native)
 end
 
 --)R"

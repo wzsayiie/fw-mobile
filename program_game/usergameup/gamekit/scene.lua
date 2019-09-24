@@ -13,7 +13,7 @@ end
 
 function scene:root_gobj_at(index)
     local native = cs_root_gobj_at(self.native, index)
-    return gobj:new_retain(native)
+    return gobj:new_with(native)
 end
 
 --)R"

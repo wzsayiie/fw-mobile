@@ -170,7 +170,6 @@ csComponentRef csGameObject::addComponent(cqClass *clazz) {
         //such when awake() and start() called, they can find the object/component tree.
         auto code = cqObject::cast<csCodeBehaviour>(component);
         dat->codeBehaviours[clazz] = code;
-        code->emitAwake();
     } else {
         dat->components[clazz] = component;
     }
@@ -183,7 +182,7 @@ void csGameObject::removeComponent(cqClass *clazz) {
         return;
     }
     
-    if (cqMap::dontContain(dat->codeBehaviours, clazz)) {
+    if (cqMap::contains(dat->codeBehaviours, clazz)) {
         csCodeBehaviourRef codeBehaviour = dat->codeBehaviours[clazz];
         codeBehaviour->emitDestroy();
         dat->codeBehaviours.erase(clazz);

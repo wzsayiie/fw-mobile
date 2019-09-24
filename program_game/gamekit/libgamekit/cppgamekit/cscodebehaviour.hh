@@ -6,7 +6,6 @@ _CSGAMEKIT_BEGIN_VERSION_NS
 
 cq_class(csCodeBehaviour, csBehaviour) {
     
-    virtual void emitAwake();
     virtual void emitUpdate();
     virtual void emitDestroy();
     
