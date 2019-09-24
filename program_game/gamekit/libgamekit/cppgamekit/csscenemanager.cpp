@@ -22,12 +22,12 @@ static void update(cq_wnd *wnd) {
     
     gameObjects = csGameObject::activeRoots();
     for (auto &cp : gameObjects) {
-        cp.second->update();
+        cp.second->emitUpdate();
     }
     
     gameObjects = csGameObject::globalRoots();
     for (auto &cp : gameObjects) {
-        cp.second->update();
+        cp.second->emitUpdate();
     }
 }
 

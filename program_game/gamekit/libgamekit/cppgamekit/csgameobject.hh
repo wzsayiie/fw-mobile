@@ -41,9 +41,9 @@ cq_class(csGameObject, csGKObject) {
     
     virtual csTransformRef transform();
     
-    //life cycle:
-    virtual void update();
-    virtual void onDestroy();
+    //lifecycle events:
+    virtual void emitUpdate();
+    virtual void emitDestroy();
 };
 
 _CSGAMEKIT_END_VERSION_NS

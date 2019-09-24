@@ -60,7 +60,7 @@ void csGameObject::dontDestoryOnLoad(csGameObjectRef gameObject) {
 void csGameObject::destroyActiveRoots() {
     std::map<void *, csGameObjectRef> gameObjects = sActiveRoots;
     for (auto &cp : gameObjects) {
-        cp.second->onDestroy();
+        cp.second->emitDestroy();
     }
     sActiveRoots.clear();
 }
@@ -70,7 +70,7 @@ void csGameObject::destroy(csGameObjectRef gameObject) {
         return;
     }
     
-    gameObject->onDestroy();
+    gameObject->emitDestroy();
     
     void *key = gameObject.get();
     if (cqMap::contains(sActiveRoots, key)) {
@@ -170,8 +170,7 @@ csComponentRef csGameObject::addComponent(cqClass *clazz) {
         //such when awake() and start() called, they can find the object/component tree.
         auto code = cqObject::cast<csCodeBehaviour>(component);
         dat->codeBehaviours[clazz] = code;
-        code->awake();
-        code->start();
+        code->emitAwake();
     } else {
         dat->components[clazz] = component;
     }
@@ -186,7 +185,7 @@ void csGameObject::removeComponent(cqClass *clazz) {
     
     if (cqMap::dontContain(dat->codeBehaviours, clazz)) {
         csCodeBehaviourRef codeBehaviour = dat->codeBehaviours[clazz];
-        codeBehaviour->onDestroy();
+        codeBehaviour->emitDestroy();
         dat->codeBehaviours.erase(clazz);
     } else {
         dat->components.erase(clazz);
@@ -211,27 +210,27 @@ csTransformRef csGameObject::transform() {
     return getComponent<csTransform>();
 }
 
-void csGameObject::update() {
+void csGameObject::emitUpdate() {
     
     //NOTE: it's possibly to destroy a code behaviour in update(),
     //keep the traversed container unchanged.
     std::map<cqClass *, csCodeBehaviourRef> codes = dat->codeBehaviours;
     for (auto &cp : codes) {
-        cp.second->update();
+        cp.second->emitUpdate();
     }
 }
 
-void csGameObject::onDestroy() {
+void csGameObject::emitDestroy() {
     
     //call children:
     std::vector<csGameObjectRef> children = dat->children;
     for (auto &it : children) {
-        it->onDestroy();
+        it->emitDestroy();
     }
     
     //call own code behaviours:
     std::map<cqClass *, csCodeBehaviourRef> codes = dat->codeBehaviours;
     for (auto &cp : codes) {
-        cp.second->onDestroy();
+        cp.second->emitDestroy();
     }
 }
