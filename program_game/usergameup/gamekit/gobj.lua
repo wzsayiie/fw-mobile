@@ -39,20 +39,27 @@ function gobj:detach_children()
 end
 
 function gobj:add_comp(cls)
-    local cid = comp:id_from_cls(cls)
-    local native = cs_add_comp(self.native, cid)
-    return cls:new_with(native)
+    if cls ~= nil and cls:is_kind_of(code_beh) then
+        local native = cs_add_comp(self.native, cls.clsname)
+        return cls:new_with(native)
+    else
+        return nil
+    end
 end
 
 function gobj:remove_comp(cls)
-    local cid = comp:id_from_cls(cls)
-    cs_remove_comp(self.native, cid)
+    if cls ~= nil and cls:is_kind_of(code_beh) then
+        cs_remove_comp(self.native, cls.clsname)
+    end
 end
 
 function gobj:get_comp(cls)
-    local cid = comp:id_from_cls(cls)
-    local native = cs_gobj_comp(self.native, cid)
-    return cls:new_with(native)
+    if cls ~= nil and cls:is_kind_of(code_beh) then
+        local native = cs_gobj_comp(self.native, cls.clsname)
+        return cls:new_with(native)
+    else
+        return nil
+    end
 end
 
 function gobj:xfrom()

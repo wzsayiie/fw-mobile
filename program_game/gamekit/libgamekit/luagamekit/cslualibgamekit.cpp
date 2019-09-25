@@ -141,28 +141,28 @@ static int32_t cs_root_gobj_at(lua_State *state) {
 //comp:
 
 static int32_t cs_add_comp(lua_State *state) {
-    cs_gobj   gobj = lua_check<cs_gobj>(state, 1);
-    cs_comp_id cid = cq_lua_check_int32(state, 2);
+    cs_gobj     gobj = lua_check<cs_gobj> (state, 1);
+    const char *name = cq_lua_check_string(state, 2);
     
-    cs_comp comp = cs_add_comp(gobj, cid);
+    cs_comp comp = cs_add_comp(gobj, name);
     
     return lua_return_obj(state, comp);
 }
 
 static int32_t cs_remove_comp(lua_State *state) {
-    cs_gobj   gobj = lua_check<cs_gobj>(state, 1);
-    cs_comp_id cid = cq_lua_check_int32(state, 2);
+    cs_gobj     gobj = lua_check<cs_gobj> (state, 1);
+    const char *name = cq_lua_check_string(state, 2);
     
-    cs_remove_comp(gobj, cid);
+    cs_remove_comp(gobj, name);
     
     return cq_lua_return_void(state);
 }
 
 static int32_t cs_gobj_comp(lua_State *state) {
-    cs_gobj   gobj = lua_check<cs_gobj>(state, 1);
-    cs_comp_id cid = cq_lua_check_int32(state, 2);
+    cs_gobj     gobj = lua_check<cs_gobj> (state, 1);
+    const char *name = cq_lua_check_string(state, 2);
     
-    cs_comp comp = cs_gobj_comp(gobj, cid);
+    cs_comp comp = cs_gobj_comp(gobj, name);
     
     return lua_return_obj(state, comp);
 }
@@ -174,10 +174,10 @@ static int32_t cs_comp_gobj(lua_State *state) {
 }
 
 static int32_t cs_comp_brother(lua_State *state) {
-    cs_comp   comp = lua_check<cs_comp>(state, 1);
-    cs_comp_id cid = cq_lua_check_int32(state, 2);
+    cs_comp     comp = lua_check<cs_comp> (state, 1);
+    const char *name = cq_lua_check_string(state, 2);
     
-    cs_comp brother = cs_comp_brother(comp, cid);
+    cs_comp brother = cs_comp_brother(comp, name);
     
     return lua_return_obj(state, brother);
 }

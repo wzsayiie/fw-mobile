@@ -225,6 +225,9 @@ cs_gobj cs_root_gobj_at(cs_scene scene, int32_t index) {
 
 cq_class(csExternalCode, csCodeBehaviour) {
     
+    virtual void setExternalName(const std::string &name);
+    std::string externalName() override;
+    
     void awake    () override;
     void start    () override;
     void update   () override;
@@ -232,45 +235,99 @@ cq_class(csExternalCode, csCodeBehaviour) {
 };
 
 cq_member(csExternalCode) {
+    std::string externalName;
 };
 
-static cqClass *classFromComponentID(cs_comp_id cid) {
-    switch (cid) {
-        case cs_cid_camera  : return csCamera::clazz();
-        case cs_cid_code_beh: return csExternalCode::clazz();
-        case cs_cid_xform   : return csTransform::clazz();
-        default/* err cid */: return nullptr;
+//up to 4 external code behaviours are supported.
+cq_class(csExternalCodeA, csExternalCode) {}; cq_member(csExternalCodeA) {};
+cq_class(csExternalCodeB, csExternalCode) {}; cq_member(csExternalCodeB) {};
+cq_class(csExternalCodeC, csExternalCode) {}; cq_member(csExternalCodeC) {};
+cq_class(csExternalCodeD, csExternalCode) {}; cq_member(csExternalCodeD) {};
+
+static csComponentRef check_comp(csGameObjectRef gameObject, const std::string &name, cqClass **clazz) {
+    
+    if (name == "camera") {
+        *clazz = csCamera::clazz();
+        return gameObject->getComponent(*clazz);
     }
+    
+    if (name == "transform" || name == "xform") {
+        *clazz = csTransform::clazz();
+        return gameObject->getComponent(*clazz);
+    }
+    
+    //if unknown name, regarded it as external code.
+    cqClass *vacancy = nullptr;
+    
+#define handle(cls) do {\
+/**/    auto externalCode = gameObject->getComponent<cls>();\
+/**/    if (externalCode && externalCode->externalName() == name) {\
+/**/        *clazz = cls::clazz();\
+/**/        return externalCode;\
+/**/    }\
+/**/    if (vacancy == nullptr && externalCode == nullptr) {\
+/**/        vacancy = cls::clazz();\
+/**/    }\
+/**/} while (0)
+    
+    handle(csExternalCodeA);
+    handle(csExternalCodeB);
+    handle(csExternalCodeC);
+    handle(csExternalCodeD);
+    
+#undef handle
+    
+    *clazz = vacancy;
+    return nullptr;
 }
 
-cs_comp cs_add_comp(cs_gobj gobj, cs_comp_id cid) {
+cs_comp cs_add_comp(cs_gobj gobj, const char *name) {
     csGameObjectRef gameObject = cs_get<csGameObject>(gobj);
-    cqClass *clazz = classFromComponentID(cid);
+    if (gameObject == nullptr || cqString::empty(name)) {
+        return cs_retain<cs_comp>(nullptr);
+    }
     
-    csComponentRef component = nullptr;
-    if (gameObject != nullptr && clazz != nullptr) {
-        component = gameObject->addComponent(clazz);
+    //the component exsited?
+    cqClass *clazz = nullptr;
+    csComponentRef component = check_comp(gameObject, name, &clazz);
+    if (component != nullptr) {
+        return cs_retain<cs_comp>(component);
+    }
+    
+    //add new component.
+    if (clazz == nullptr) {
+        return cs_retain<cs_comp>(nullptr);
+    }
+    
+    component = gameObject->addComponent(clazz);
+    if (component && component->isKindOfClass(csExternalCode::clazz())) {
+        auto externalCode = cqObject::cast<csExternalCode>(component);
+        externalCode->setExternalName(name);
     }
     return cs_retain<cs_comp>(component);
 }
 
-void cs_remove_comp(cs_gobj gobj, cs_comp_id cid) {
+void cs_remove_comp(cs_gobj gobj, const char *name) {
     csGameObjectRef gameObject = cs_get<csGameObject>(gobj);
-    cqClass *clazz = classFromComponentID(cid);
+    if (gameObject == nullptr || cqString::empty(name)) {
+        return;
+    }
     
-    if (gameObject != nullptr && clazz != nullptr) {
+    cqClass *clazz = nullptr;
+    csComponentRef component = check_comp(gameObject, name, &clazz);
+    if (component != nullptr) {
         gameObject->removeComponent(clazz);
     }
 }
 
-cs_comp cs_gobj_comp(cs_gobj gobj, cs_comp_id cid) {
+cs_comp cs_gobj_comp(cs_gobj gobj, const char *name) {
     csGameObjectRef gameObject = cs_get<csGameObject>(gobj);
-    cqClass *clazz = classFromComponentID(cid);
-    
-    csComponentRef component = nullptr;
-    if (gameObject != nullptr && clazz != nullptr) {
-        component = gameObject->getComponent(clazz);
+    if (gameObject == nullptr || cqString::empty(name)) {
+        return cs_retain<cs_comp>(nullptr);
     }
+    
+    cqClass *clazz = nullptr;
+    csComponentRef component = check_comp(gameObject, name, &clazz);
     return cs_retain<cs_comp>(component);
 }
 
@@ -284,20 +341,32 @@ cs_gobj cs_comp_gobj(cs_comp comp) {
     return cs_retain<cs_gobj>(gameObject);
 }
 
-cs_comp cs_comp_brother(cs_comp comp, cs_comp_id cid) {
+cs_comp cs_comp_brother(cs_comp comp, const char *name) {
     csComponentRef component = cs_get<csComponent>(comp);
-    cqClass *clazz = classFromComponentID(cid);
-    
-    csComponentRef brother = nullptr;
-    if (component != nullptr && clazz != nullptr) {
-        brother = component->getComponent(clazz);
+    if (component == nullptr) {
+        return cs_retain<cs_comp>(nullptr);
     }
-    return cs_retain<cs_comp>(brother);
+    
+    csGameObjectRef gameObject = component->gameObject();
+    cs_gobj gobj = {(int64_t)gameObject.get()};
+    return cs_gobj_comp(gobj, name);
 }
 
 //code_beh:
 
 static cs_cb_callback _cb_callback = nullptr;
+
+void cs_set_cb_callback(cs_cb_callback callback) {
+    _cb_callback = callback;
+}
+
+void csExternalCode::setExternalName(const std::string &name) {
+    dat->externalName = name;
+}
+
+std::string csExternalCode::externalName() {
+    return dat->externalName;
+}
 
 static void emit_event(const char *event, csExternalCode *object) {
     if (_cb_callback != nullptr) {
@@ -310,10 +379,6 @@ void csExternalCode::awake    () { emit_event("awake"     , this); }
 void csExternalCode::start    () { emit_event("start"     , this); }
 void csExternalCode::update   () { emit_event("update"    , this); }
 void csExternalCode::onDestroy() { emit_event("on_destroy", this); }
-
-void cs_set_cb_callback(cs_cb_callback callback) {
-    _cb_callback = callback;
-}
 
 //xform:
 

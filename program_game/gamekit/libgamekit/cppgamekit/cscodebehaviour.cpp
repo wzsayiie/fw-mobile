@@ -5,6 +5,14 @@ cq_member(csCodeBehaviour) {
     bool waitingStart = true;
 };
 
+bool csCodeBehaviour::external() {
+    return !externalName().empty();
+}
+
+std::string csCodeBehaviour::externalName() {
+    return "";
+}
+
 void csCodeBehaviour::emitUpdate() {
     //awake.
     if (dat->waitingAwake) {

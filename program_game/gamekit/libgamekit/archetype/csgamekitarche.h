@@ -60,17 +60,12 @@ struct cs_comp {
     struct cs_gk_obj gk_obj;
 };
 
-typedef int32_t cs_comp_id;
-static const cs_comp_id cs_cid_camera   = 1;
-static const cs_comp_id cs_cid_code_beh = 2;
-static const cs_comp_id cs_cid_xform    = 3;
-
-CQ_C_LINK struct cs_comp cs_add_comp(struct cs_gobj gobj, cs_comp_id cid);
-CQ_C_LINK void cs_remove_comp(struct cs_gobj gobj, cs_comp_id cid);
-CQ_C_LINK struct cs_comp cs_gobj_comp(struct cs_gobj gobj, cs_comp_id cid);
+CQ_C_LINK struct cs_comp cs_add_comp(struct cs_gobj gobj, const char *name);
+CQ_C_LINK void cs_remove_comp(struct cs_gobj gobj, const char *name);
+CQ_C_LINK struct cs_comp cs_gobj_comp(struct cs_gobj gobj, const char *name);
 
 CQ_C_LINK struct cs_gobj cs_comp_gobj(struct cs_comp comp);
-CQ_C_LINK struct cs_comp cs_comp_brother(struct cs_comp comp, cs_comp_id cid);
+CQ_C_LINK struct cs_comp cs_comp_brother(struct cs_comp comp, const char *name);
 
 //camera:
 
