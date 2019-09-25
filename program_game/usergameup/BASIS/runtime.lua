@@ -9,7 +9,9 @@ setmetatable(_G, {__index = function(tab, key)
         log:i("required: " .. key)
         return tab[key]
     else
+        local stack = debug.traceback()
         log:e("require error: " .. msg)
+        log:e("error stack: " .. stack)
         return nil
     end
 end})
