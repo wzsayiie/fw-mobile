@@ -1,10 +1,9 @@
 --LUA R"R(
 
-object = {
-    clsname = "object",
-    super = nil,
-    cls = self
-}
+object = {}
+object.clsname = "object"
+object.super = nil
+object.cls = object
 
 function object:new(...)
     local obj = setmetatable({}, {

@@ -37,6 +37,9 @@ EDITOR_CS_OSX/.vs/*
 EDITOR_CS_OSX/bin/*
 EDITOR_CS_OSX/obj/*
 
+# VS Code local files
+.vscode/
+
 # the project's local files
 app_unity/XCODEBUILD/*
 BUILD/*

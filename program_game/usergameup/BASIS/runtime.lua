@@ -1,10 +1,15 @@
 --LUA R"R(
 
--- require:
+-- automatically require:
+require "log"
+
 setmetatable(_G, {__index = function(tab, key)
-    if pcall(require, string.lower(key)) then
+    local okay, msg = pcall(require, key)
+    if okay then
+        log:i("required: " .. key)
         return tab[key]
     else
+        log:e("require error: " .. msg)
         return nil
     end
 end})
