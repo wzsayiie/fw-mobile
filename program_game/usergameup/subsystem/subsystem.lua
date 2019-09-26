@@ -7,7 +7,7 @@ function subsystem:start()
 end
 
 function subsystem:stop()
-    cq_subsystem_start()
+    cq_subsystem_stop()
 end
 
 --)R"
