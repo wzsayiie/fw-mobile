@@ -2,7 +2,18 @@
 #include "csgameobject.hh"
 
 cq_member(csGKObject) {
+    int32_t id = 0;
 };
+
+void csGKObject::setIDIfNeeded(int32_t id) {
+    if (dat->id == 0) {
+        dat->id = id;
+    }
+}
+
+int32_t csGKObject::id() {
+    return dat->id;
+}
 
 void csGKObject::dontDestroyOnLoad(csGKObjectRef object) {
     if (object == nullptr) {
