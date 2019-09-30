@@ -117,10 +117,7 @@ void cqView::addSubview(cqViewRef subview) {
 void cqView::removeFromSuperview() {
     auto superview = dat->superview.lock();
     if (superview != nullptr) {
-        auto brothers = superview->dat->subviews;
-        std::remove_if(brothers.begin(), brothers.end(), [=](cqViewRef it) {
-            return it.get() == this;
-        });
+        cqVector::erase(&superview->dat->subviews, strongRef());
         dat->superview.reset();
     }
 }

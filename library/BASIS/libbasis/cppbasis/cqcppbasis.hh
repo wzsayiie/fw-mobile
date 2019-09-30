@@ -31,6 +31,18 @@ struct cqString {
     static bool empty(const char *value);
 };
 
+struct cqVector {
+    template<class T> static void erase(std::vector<T> *vec, const T &elem) {
+        if (vec == nullptr) {
+            return;
+        }
+        auto discard = std::remove_if(vec->begin(), vec->end(), [&](const T &it) {
+            return it == elem;
+        });
+        vec->erase(discard, vec->end());
+    }
+};
+
 struct cqMap {
     template<class M, class K> static bool contains(const M &m, const K &k) {
         return m.find(k) != m.end();

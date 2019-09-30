@@ -88,10 +88,7 @@ void csGameObject::destroy(csGameObjectRef gameObject) {
         //remove from parent.
         //NOTE: don't use setParent(null), it will move the game object to active roots.
         csGameObjectRef parent = gameObject->parent();
-        auto brothers = parent->dat->children;
-        std::remove_if(brothers.begin(), brothers.end(), [=](csGameObjectRef it) {
-            return it.get() == key;
-        });
+        cqVector::erase(&parent->dat->children, gameObject);
     }
 }
 
@@ -116,10 +113,7 @@ void csGameObject::setParent(csGameObjectRef parent) {
     
     //remove from old parent:
     if (oldParent != nullptr) {
-        auto brothers = oldParent->dat->children;
-        std::remove_if(brothers.begin(), brothers.end(), [=](csGameObjectRef it) {
-            return it.get() == this;
-        });
+        cqVector::erase(&oldParent->dat->children, strongRef());
         dat->parent.reset();
     }
     
