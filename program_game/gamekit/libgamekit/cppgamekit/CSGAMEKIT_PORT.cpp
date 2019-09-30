@@ -86,13 +86,13 @@ void cs_release(cs_obj obj) {
 //gk_obj:
 
 void cs_dont_destroy_on_load(cs_gk_obj gk_obj) {
-    csGKObjectRef object = cs_get<csGKObject>(gk_obj);
-    csGKObject::dontDestroyOnLoad(object);
+    csNodeRef object = cs_get<csNode>(gk_obj);
+    csNode::dontDestroyOnLoad(object);
 }
 
 void cs_destroy(cs_gk_obj gk_obj) {
-    csGKObjectRef object = cs_get<csGKObject>(gk_obj);
-    csGKObject::destroy(object);
+    csNodeRef object = cs_get<csNode>(gk_obj);
+    csNode::destroy(object);
 }
 
 //scene:

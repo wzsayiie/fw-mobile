@@ -90,8 +90,7 @@
 		CE299D322323F47200B5FC98 /* csluavm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE299D2F2323F47200B5FC98 /* csluavm.cpp */; };
 		CE299D402324055600B5FC98 /* cscomponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE299D3C2324055600B5FC98 /* cscomponent.cpp */; };
 		CE299D412324055600B5FC98 /* csbehaviour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE299D3F2324055600B5FC98 /* csbehaviour.cpp */; };
-		CE299D442324175A00B5FC98 /* csgkobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE299D432324175A00B5FC98 /* csgkobject.cpp */; };
-		CEA9856D233F712600246B9E /* csobjectstorage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA9856B233F712600246B9E /* csobjectstorage.cpp */; };
+		CE299D442324175A00B5FC98 /* csnode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE299D432324175A00B5FC98 /* csnode.cpp */; };
 		CEA9857A233FC08000246B9E /* csmapfilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA9856E233FC07F00246B9E /* csmapfilter.cpp */; };
 		CEA9857B233FC08000246B9E /* csrenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA9856F233FC07F00246B9E /* csrenderer.cpp */; };
 		CEA9857C233FC08000246B9E /* cscollider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA98570233FC07F00246B9E /* cscollider.cpp */; };
@@ -291,10 +290,8 @@
 		CE299D3D2324055600B5FC98 /* cscomponent.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cscomponent.hh; sourceTree = "<group>"; };
 		CE299D3E2324055600B5FC98 /* csbehaviour.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csbehaviour.hh; sourceTree = "<group>"; };
 		CE299D3F2324055600B5FC98 /* csbehaviour.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csbehaviour.cpp; sourceTree = "<group>"; };
-		CE299D422324175A00B5FC98 /* csgkobject.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csgkobject.hh; sourceTree = "<group>"; };
-		CE299D432324175A00B5FC98 /* csgkobject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csgkobject.cpp; sourceTree = "<group>"; };
-		CEA9856B233F712600246B9E /* csobjectstorage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csobjectstorage.cpp; sourceTree = "<group>"; };
-		CEA9856C233F712600246B9E /* csobjectstorage.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csobjectstorage.hh; sourceTree = "<group>"; };
+		CE299D422324175A00B5FC98 /* csnode.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csnode.hh; sourceTree = "<group>"; };
+		CE299D432324175A00B5FC98 /* csnode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csnode.cpp; sourceTree = "<group>"; };
 		CEA9856E233FC07F00246B9E /* csmapfilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csmapfilter.cpp; sourceTree = "<group>"; };
 		CEA9856F233FC07F00246B9E /* csrenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csrenderer.cpp; sourceTree = "<group>"; };
 		CEA98570233FC07F00246B9E /* cscollider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cscollider.cpp; sourceTree = "<group>"; };
@@ -923,16 +920,14 @@
 				CE299D2B2323F1B500B5FC98 /* csgamekitbase.hh */,
 				CE299D242323F15B00B5FC98 /* csgameobject.cpp */,
 				CE299D252323F15B00B5FC98 /* csgameobject.hh */,
-				CE299D432324175A00B5FC98 /* csgkobject.cpp */,
-				CE299D422324175A00B5FC98 /* csgkobject.hh */,
 				CE299D2F2323F47200B5FC98 /* csluavm.cpp */,
 				CE299D302323F47200B5FC98 /* csluavm.hh */,
 				CEA9856E233FC07F00246B9E /* csmapfilter.cpp */,
 				CEA98572233FC07F00246B9E /* csmapfilter.hh */,
 				CEA98573233FC07F00246B9E /* csmaprenderder.cpp */,
 				CEA98578233FC08000246B9E /* csmaprenderder.hh */,
-				CEA9856B233F712600246B9E /* csobjectstorage.cpp */,
-				CEA9856C233F712600246B9E /* csobjectstorage.hh */,
+				CE299D432324175A00B5FC98 /* csnode.cpp */,
+				CE299D422324175A00B5FC98 /* csnode.hh */,
 				CEA9856F233FC07F00246B9E /* csrenderer.cpp */,
 				CEA98579233FC08000246B9E /* csrenderer.hh */,
 				CEA98581233FC19900246B9E /* csrigidbody.cpp */,
@@ -1074,7 +1069,7 @@
 				B4411556231CB83D00053BD7 /* cqview.cpp in Sources */,
 				B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */,
 				B4411559231CB83D00053BD7 /* cqwindow.cpp in Sources */,
-				CE299D442324175A00B5FC98 /* csgkobject.cpp in Sources */,
+				CE299D442324175A00B5FC98 /* csnode.cpp in Sources */,
 				B4CFD97421C7475000FFF4CF /* DailyDemoController.m in Sources */,
 				B44310872321FBED00FA6720 /* ToolbarViewController.m in Sources */,
 				B4411558231CB83D00053BD7 /* cqlayer.cpp in Sources */,
@@ -1119,7 +1114,6 @@
 				B441152F231CB7EE00053BD7 /* CQGLAppDelegate.m in Sources */,
 				CE299D402324055600B5FC98 /* cscomponent.cpp in Sources */,
 				B44310892321FBED00FA6720 /* DocViewController.m in Sources */,
-				CEA9856D233F712600246B9E /* csobjectstorage.cpp in Sources */,
 				B463414C2333292B00383E34 /* entry.cpp in Sources */,
 				B441155F231CB83D00053BD7 /* cqtouchesevent.cpp in Sources */,
 				B4411591231D0B5700053BD7 /* cqwnd.cpp in Sources */,

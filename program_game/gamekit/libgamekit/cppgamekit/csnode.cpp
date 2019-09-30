@@ -1,21 +1,10 @@
-#include "csgkobject.hh"
+#include "csnode.hh"
 #include "csgameobject.hh"
 
-cq_member(csGKObject) {
-    int32_t id = 0;
+cq_member(csNode) {
 };
 
-void csGKObject::setIDIfNeeded(int32_t id) {
-    if (dat->id == 0) {
-        dat->id = id;
-    }
-}
-
-int32_t csGKObject::id() {
-    return dat->id;
-}
-
-void csGKObject::dontDestroyOnLoad(csGKObjectRef object) {
+void csNode::dontDestroyOnLoad(csNodeRef object) {
     if (object == nullptr) {
         return;
     }
@@ -33,7 +22,7 @@ void csGKObject::dontDestroyOnLoad(csGKObjectRef object) {
     }
 }
 
-void csGKObject::destroy(csGKObjectRef object) {
+void csNode::destroy(csNodeRef object) {
     if (object == nullptr) {
         return;
     }

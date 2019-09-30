@@ -4,7 +4,7 @@
 
 _CSGAMEKIT_BEGIN_VERSION_NS
 
-cq_class(csGameObject, csGKObject) {
+cq_class(csGameObject, csNode) {
     
     //create and destroy:
     static const std::map<void *, csGameObjectRef> &activeRoots();

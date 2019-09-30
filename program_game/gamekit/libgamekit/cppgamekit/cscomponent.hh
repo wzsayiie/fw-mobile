@@ -1,13 +1,13 @@
 #pragma once
 
-#include "csgkobject.hh"
+#include "csnode.hh"
 
 _CSGAMEKIT_BEGIN_VERSION_NS
 
 cq_declare(csGameObject);
 cq_declare(csTransform);
 
-cq_class(csComponent, csGKObject) {
+cq_class(csComponent, csNode) {
     
     //csGameObject.addComponent() will invoke this function, developer should not call it.
     virtual void resetGameObjectIfNeeded(csGameObjectRef gameObject);
