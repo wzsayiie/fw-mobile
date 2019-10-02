@@ -1,13 +1,14 @@
 #include "csscenemanager.hh"
 #include "cqopengl.h"
 #include "cqwnd.h"
+#include "csscript.hh"
 
 //global data:
 
-static std::map<std::string, csSceneRef> sAllScenes;
-static csSceneRef sActiveScene;
+static std::map<std::string, csSceneRef> theAllScenes;
+static csSceneRef theActiveScene;
 
-static cq_wnd *sWnd = NULL;
+static cq_wnd *theWnd = NULL;
 
 //wnd:
 
@@ -15,20 +16,7 @@ static void load(cq_wnd *wnd) {
 }
 
 static void update(cq_wnd *wnd) {
-    
-    //NOTE: it's possibly to destroy game object in update(),
-    //keep the traversed container unchanged.
-    std::map<void *, csGameObjectRef> gameObjects;
-    
-    gameObjects = csGameObject::activeRoots();
-    for (auto &cp : gameObjects) {
-        cp.second->emitUpdate();
-    }
-    
-    gameObjects = csGameObject::globalRoots();
-    for (auto &cp : gameObjects) {
-        cp.second->emitUpdate();
-    }
+    csScript::updateAllScripts();
 }
 
 static void gldraw(cq_wnd *wnd) {
@@ -37,7 +25,7 @@ static void gldraw(cq_wnd *wnd) {
 }
 
 static void initializeWndIfNeeded() {
-    if (sWnd != NULL) {
+    if (theWnd != NULL) {
         return;
     }
     
@@ -46,25 +34,26 @@ static void initializeWndIfNeeded() {
     proc.update = update;
     proc.gldraw = gldraw;
     
-    sWnd = cq_new_wnd();
-    cq_set_wndproc(sWnd, &proc);
-    cq_show_wnd(sWnd);
+    theWnd = cq_new_wnd();
+    cq_set_wndproc(theWnd, &proc);
+    cq_show_wnd(theWnd);
 }
 
-//scene manager interfaces:
+//scene manager:
 
 csSceneRef csSceneManager::createScene(const std::string &name) {
     if (name.empty()) {
         return nullptr;
     }
-    if (cqMap::contains(sAllScenes, name)) {
+    if (cqMap::contains(theAllScenes, name)) {
         return nullptr;
     }
     
     initializeWndIfNeeded();
     
-    csSceneRef scene = csScene::createWithName(name);
-    sAllScenes[name] = scene;
+    csSceneRef scene = csScene::create();
+    scene->setNameIfNeeded(name);
+    theAllScenes[name] = scene;
     return scene;
 }
 
@@ -72,20 +61,22 @@ void csSceneManager::loadScene(const std::string &name) {
     if (name.empty()) {
         return;
     }
-    if (sActiveScene && sActiveScene->name() == name) {
+    if (theActiveScene && theActiveScene->name() == name) {
         return;
     }
-    if (cqMap::dontContain(sAllScenes, name)) {
+    if (cqMap::dontContain(theAllScenes, name)) {
         return;
     }
     
     //remove old scene:
-    csGameObject::destroyActiveRoots();
+    for (csTransformRef transform : csTransform::activeRoots()) {
+        csGameObject::destroy(transform->gameObject());
+    }
     
     //load new scene:
-    sActiveScene = sAllScenes[name];
+    theActiveScene = theAllScenes[name];
 }
 
 csSceneRef csSceneManager::activeScene() {
-    return sActiveScene;
+    return theActiveScene;
 }

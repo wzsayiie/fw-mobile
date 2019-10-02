@@ -32,6 +32,14 @@ struct cqString {
 };
 
 struct cqVector {
+    
+    template<class T> static bool contains(const std::vector<T> &vec, const T &elem) {
+        return std::find(vec.begin(), vec.end(), elem) != vec.end();
+    }
+    template<class T> static bool dontContain(const std::vector<T> &vec, const T &elem) {
+        return std::find(vec.begin(), vec.end(), elem) == vec.end();
+    }
+    
     template<class T> static void erase(std::vector<T> *vec, const T &elem) {
         if (vec == nullptr) {
             return;

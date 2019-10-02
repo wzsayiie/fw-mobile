@@ -1,6 +1,6 @@
 #include "csgamekit.hh"
 
-cq_class(GameLowRoot, csCodeBehaviour) {
+cq_class(GameLowRoot, csScript) {
     
     void awake () override;
     void start () override;

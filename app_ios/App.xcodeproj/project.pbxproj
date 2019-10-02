@@ -82,7 +82,7 @@
 		B4F7AE1F232A0CE500E675A8 /* csscenemanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4F7AE1D232A0CE400E675A8 /* csscenemanager.cpp */; };
 		B4FC00362331D70A00A21B5E /* appdelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FC00332331D70A00A21B5E /* appdelegate.cpp */; };
 		B4FC00372331D70A00A21B5E /* rootviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FC00352331D70A00A21B5E /* rootviewcontroller.cpp */; };
-		B4FC00462332043600A21B5E /* cscodebehaviour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FC00452332043600A21B5E /* cscodebehaviour.cpp */; };
+		B4FC00462332043600A21B5E /* csscript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FC00452332043600A21B5E /* csscript.cpp */; };
 		B4FC004923320DCB00A21B5E /* cscamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4FC004823320DCA00A21B5E /* cscamera.cpp */; };
 		B4FCC39821F0912700D152DF /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B4FCC39721F0912700D152DF /* libc++.tbd */; };
 		CE299D282323F15B00B5FC98 /* csscene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE299D222323F15B00B5FC98 /* csscene.cpp */; };
@@ -273,8 +273,8 @@
 		B4FC00332331D70A00A21B5E /* appdelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = appdelegate.cpp; sourceTree = "<group>"; };
 		B4FC00342331D70A00A21B5E /* appdelegate.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = appdelegate.hh; sourceTree = "<group>"; };
 		B4FC00352331D70A00A21B5E /* rootviewcontroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rootviewcontroller.cpp; sourceTree = "<group>"; };
-		B4FC00442332043600A21B5E /* cscodebehaviour.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cscodebehaviour.hh; sourceTree = "<group>"; };
-		B4FC00452332043600A21B5E /* cscodebehaviour.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cscodebehaviour.cpp; sourceTree = "<group>"; };
+		B4FC00442332043600A21B5E /* csscript.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csscript.hh; sourceTree = "<group>"; };
+		B4FC00452332043600A21B5E /* csscript.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csscript.cpp; sourceTree = "<group>"; };
 		B4FC004723320DCA00A21B5E /* cscamera.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cscamera.hh; sourceTree = "<group>"; };
 		B4FC004823320DCA00A21B5E /* cscamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cscamera.cpp; sourceTree = "<group>"; };
 		B4FCC39721F0912700D152DF /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -909,8 +909,6 @@
 				CE299D3E2324055600B5FC98 /* csbehaviour.hh */,
 				B4FC004823320DCA00A21B5E /* cscamera.cpp */,
 				B4FC004723320DCA00A21B5E /* cscamera.hh */,
-				B4FC00452332043600A21B5E /* cscodebehaviour.cpp */,
-				B4FC00442332043600A21B5E /* cscodebehaviour.hh */,
 				CEA98570233FC07F00246B9E /* cscollider.cpp */,
 				CEA98571233FC07F00246B9E /* cscollider.hh */,
 				CE299D3C2324055600B5FC98 /* cscomponent.cpp */,
@@ -936,6 +934,8 @@
 				CE299D272323F15B00B5FC98 /* csscene.hh */,
 				B4F7AE1D232A0CE400E675A8 /* csscenemanager.cpp */,
 				B4F7AE1E232A0CE500E675A8 /* csscenemanager.hh */,
+				B4FC00452332043600A21B5E /* csscript.cpp */,
+				B4FC00442332043600A21B5E /* csscript.hh */,
 				B4F7AE1B2329DF9500E675A8 /* cstransform.cpp */,
 				B4F7AE1A2329DF9500E675A8 /* cstransform.hh */,
 			);
@@ -1109,7 +1109,7 @@
 				CEA9857A233FC08000246B9E /* csmapfilter.cpp in Sources */,
 				B4CFD97321C7475000FFF4CF /* IAPDemoController.m in Sources */,
 				B441155B231CB83D00053BD7 /* cqgraphics.cpp in Sources */,
-				B4FC00462332043600A21B5E /* cscodebehaviour.cpp in Sources */,
+				B4FC00462332043600A21B5E /* csscript.cpp in Sources */,
 				CEA9857C233FC08000246B9E /* cscollider.cpp in Sources */,
 				B441152F231CB7EE00053BD7 /* CQGLAppDelegate.m in Sources */,
 				CE299D402324055600B5FC98 /* cscomponent.cpp in Sources */,

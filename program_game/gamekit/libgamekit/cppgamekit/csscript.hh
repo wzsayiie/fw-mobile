@@ -4,13 +4,16 @@
 
 _CSGAMEKIT_BEGIN_VERSION_NS
 
-cq_class(csCodeBehaviour, csBehaviour) {
+cq_class(csScript, csBehaviour) {
+    
+    static void updateAllScripts();
     
     virtual bool external();
     virtual std::string externalName();
     
-    virtual void emitUpdate();
-    virtual void emitDestroy();
+    /*old*/ void handleCreate () override;
+    virtual void handleUpdate () /*new */;
+    /*old*/ void handleDestroy() override;
     
     //user-oriented lifecycle events:
     virtual void awake();

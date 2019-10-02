@@ -25,17 +25,17 @@ static int32_t cs_release(lua_State *state) {
     return cq_lua_return_void(state);
 }
 
-//gk_obj:
+//node:
 
 static int32_t cs_dont_destroy_on_load(lua_State *state) {
-    cs_gk_obj gk_obj = lua_check<cs_gk_obj>(state, 1);
-    cs_dont_destroy_on_load(gk_obj);
+    cs_node node = lua_check<cs_node>(state, 1);
+    cs_dont_destroy_on_load(node);
     return cq_lua_return_void(state);
 }
 
 static int32_t cs_destroy(lua_State *state) {
-    cs_gk_obj gk_obj = lua_check<cs_gk_obj>(state, 1);
-    cs_destroy(gk_obj);
+    cs_node node = lua_check<cs_node>(state, 1);
+    cs_destroy(node);
     return cq_lua_return_void(state);
 }
 
@@ -75,9 +75,9 @@ static int32_t cs_create_gobj(lua_State *state) {
 static int32_t cs_set_gobj_name(lua_State *state) {
     cs_gobj     gobj = lua_check<cs_gobj> (state, 1);
     const char *name = cq_lua_check_string(state, 2);
-    
+
     cs_set_gobj_name(gobj, name);
-    
+
     return cq_lua_return_void(state);
 }
 
@@ -87,85 +87,24 @@ static int32_t cs_gobj_name(lua_State *state) {
     return cq_lua_return_string(state, name);
 }
 
-static int32_t cs_set_gobj_parent(lua_State *state) {
-    cs_gobj gobj   = lua_check<cs_gobj>(state, 1);
-    cs_gobj parent = lua_check<cs_gobj>(state, 2);
-    
-    cs_set_gobj_parent(gobj, parent);
-    
-    return cq_lua_return_void(state);
-}
-
-static int32_t cs_gobj_parent(lua_State *state) {
-    cs_gobj gobj = lua_check<cs_gobj>(state, 1);
-    cs_gobj parent = cs_gobj_parent(gobj);
-    return lua_return_obj(state, parent);
-}
-
-static int32_t cs_child_num(lua_State *state) {
-    cs_gobj gobj = lua_check<cs_gobj>(state, 1);
-    int32_t num = cs_child_num(gobj);
+static int32_t cs_list_root_begin(lua_State *state) {
+    cs_scene scene = lua_check<cs_scene>(state, 1);
+    int32_t num = cs_list_root_begin(scene);
     return cq_lua_return_int32(state, num);
 }
 
-static int32_t cs_child_at(lua_State *state) {
-    cs_gobj gobj  = lua_check<cs_gobj>(state, 1);
-    int32_t index = cq_lua_check_int32(state, 2);
-    
-    cs_gobj child = cs_child_at(gobj, index);
-    
-    return lua_return_obj(state, child);
-}
-
-static int32_t cs_detach_children(lua_State *state) {
-    cs_gobj gobj = lua_check<cs_gobj>(state, 1);
-    cs_detach_children(gobj);
-    return cq_lua_return_void(state);
-}
-
-static int32_t cs_root_gobj_num(lua_State *state) {
-    cs_scene scene = lua_check<cs_scene>(state, 1);
-    int32_t num = cs_root_gobj_num(scene);
-    return cq_lua_return_int32(state, num);
-}
-
-static int32_t cs_root_gobj_at(lua_State *state) {
-    cs_scene scene = lua_check<cs_scene>(state, 1);
-    int32_t  index = cq_lua_check_int32 (state, 2);
-    
-    cs_gobj gobj = cs_root_gobj_at(scene, index);
-    
+static int32_t cs_list_root_at(lua_State *state) {
+    int32_t index = cq_lua_check_int32(state, 1);
+    cs_gobj gobj = cs_list_root_at(index);
     return lua_return_obj(state, gobj);
 }
 
-//comp:
-
-static int32_t cs_add_comp(lua_State *state) {
-    cs_gobj     gobj = lua_check<cs_gobj> (state, 1);
-    const char *name = cq_lua_check_string(state, 2);
-    
-    cs_comp comp = cs_add_comp(gobj, name);
-    
-    return lua_return_obj(state, comp);
-}
-
-static int32_t cs_remove_comp(lua_State *state) {
-    cs_gobj     gobj = lua_check<cs_gobj> (state, 1);
-    const char *name = cq_lua_check_string(state, 2);
-    
-    cs_remove_comp(gobj, name);
-    
+static int32_t cs_list_root_end(lua_State *state) {
+    cs_list_root_end();
     return cq_lua_return_void(state);
 }
 
-static int32_t cs_gobj_comp(lua_State *state) {
-    cs_gobj     gobj = lua_check<cs_gobj> (state, 1);
-    const char *name = cq_lua_check_string(state, 2);
-    
-    cs_comp comp = cs_gobj_comp(gobj, name);
-    
-    return lua_return_obj(state, comp);
-}
+//comp:
 
 static int32_t cs_comp_gobj(lua_State *state) {
     cs_comp comp = lua_check<cs_comp>(state, 1);
@@ -173,36 +112,69 @@ static int32_t cs_comp_gobj(lua_State *state) {
     return lua_return_obj(state, gobj);
 }
 
-static int32_t cs_comp_brother(lua_State *state) {
-    cs_comp     comp = lua_check<cs_comp> (state, 1);
-    const char *name = cq_lua_check_string(state, 2);
+static int32_t cs_add_comp(lua_State *state) {
+    cs_gobj     gobj = lua_check<cs_gobj> (state, 1);
+    const char *cls  = cq_lua_check_string(state, 2);
+
+    cs_comp comp = cs_add_comp(gobj, cls);
     
-    cs_comp brother = cs_comp_brother(comp, name);
+    return lua_return_obj(state, comp);
+}
+
+static int32_t cs_remove_comp(lua_State *state) {
+    cs_gobj gobj = lua_check<cs_gobj>(state, 1);
+    cs_comp comp = lua_check<cs_comp>(state, 2);
+
+    cs_remove_comp(gobj, comp);
+
+    return cq_lua_return_void(state);
+}
+
+static int32_t cs_list_comp_begin(lua_State *state) {
+    cs_node     node = lua_check<cs_node> (state, 1);
+    const char *cls  = cq_lua_check_string(state, 2);
     
-    return lua_return_obj(state, brother);
+    int32_t num = cs_list_comp_begin(node, cls);
+    
+    return cq_lua_check_int32(state, num);
+}
+
+static int32_t cs_list_comp_at(lua_State *state) {
+    int32_t index = cq_lua_check_int32(state, 1);
+    cs_comp comp = cs_list_comp_at(index);
+    return lua_return_obj(state, comp);
+}
+
+static int32_t cs_list_comp_end(lua_State *state) {
+    cs_list_comp_end();
+    return cq_lua_return_void(state);
+}
+
+static int32_t cs_get_comp(lua_State *state) {
+    cs_node     node = lua_check<cs_node> (state, 1);
+    const char *cls  = cq_lua_check_string(state, 2);
+
+    cs_comp comp = cs_get_comp(node, cls);
+
+    return lua_return_obj(state, comp);
 }
 
 //xform:
 
-static int32_t cs_gobj_xform(lua_State *state) {
-    cs_gobj gobj = lua_check<cs_gobj>(state, 1);
-    cs_xform xform = cs_gobj_xform(gobj);
+static int32_t cs_get_xform(lua_State *state) {
+    cs_node node = lua_check<cs_node>(state, 1);
+    cs_xform xform = cs_get_xform(node);
     return lua_return_obj(state, xform);
 }
 
-static int32_t cs_comp_xform(lua_State *state) {
-    cs_comp comp = lua_check<cs_comp>(state, 1);
-    cs_xform xform = cs_comp_xform(comp);
-    return lua_return_obj(state, xform);
-}
-
-static int32_t cs_set_xform_xy(lua_State *state) {
+static int32_t cs_set_xform_pos(lua_State *state) {
     cs_xform xform = lua_check<cs_xform>(state, 1);
     float    x     = cq_lua_check_float (state, 2);
     float    y     = cq_lua_check_float (state, 3);
-    
-    cs_set_xform_xy(xform, x, y);
-    
+    float    z     = cq_lua_check_float (state, 4);
+
+    cs_set_xform_pos(xform, x, y, z);
+
     return cq_lua_return_void(state);
 }
 
@@ -218,12 +190,18 @@ static int32_t cs_xform_y(lua_State *state) {
     return cq_lua_return_float(state, y);
 }
 
+static int32_t cs_xform_z(lua_State *state) {
+    cs_xform xform = lua_check<cs_xform>(state, 1);
+    float z = cs_xform_z(xform);
+    return cq_lua_return_float(state, z);
+}
+
 static int32_t cs_set_xform_parent(lua_State *state) {
     cs_xform xform  = lua_check<cs_xform>(state, 1);
     cs_xform parent = lua_check<cs_xform>(state, 2);
-    
+
     cs_set_xform_parent(xform, parent);
-    
+
     return cq_lua_return_void(state);
 }
 
@@ -233,19 +211,46 @@ static int32_t cs_xform_parent(lua_State *state) {
     return lua_return_obj(state, parent);
 }
 
-static void on_cb_event(const char *event, cs_code_beh beh) {
-    
-    const char *cmd = "cs_on_cb_event(\"%s\", %ld)";
-    int64_t idx = *(int64_t *)&beh;
-    
-    char buf[64];
-    sprintf(buf, cmd, event, idx);
-    cq_lua_do_string(buf);
+static int32_t cs_list_child_begin(lua_State *state) {
+    cs_xform xform = lua_check<cs_xform>(state, 1);
+    int32_t num = cs_list_child_begin(xform);
+    return cq_lua_return_int32(state, num);
 }
 
+static int32_t cs_list_child_at(lua_State *state) {
+    int32_t index = cq_lua_check_int32(state, 1);
+    cs_xform xform = cs_list_child_at(index);
+    return lua_return_obj(state, xform);
+}
+
+static int32_t cs_list_child_end(lua_State *state) {
+    cs_list_child_end();
+    return cq_lua_return_void(state);
+}
+
+static int32_t cs_detach_children(lua_State *state) {
+    cs_xform xform = lua_check<cs_xform>(state, 1);
+    cs_detach_children(xform);
+    return cq_lua_return_void(state);
+}
+
+//script callback:
+
+static void on_script_callback(const char *event, cs_script script) {
+
+    const char *express = "cs_on_script_callback(\"%s\", %ld)";
+    int64_t index = *(int64_t *)&script;
+
+    char buffer[64];
+    sprintf(buffer, express, event, index);
+    cq_lua_do_string(buffer);
+}
+
+//load lib:
+
 void cs_lua_load_lib_gamekit() {
-    
-    cs_set_cb_callback(on_cb_event);
+
+    cs_set_script_callback(on_script_callback);
 
 #define register_func(name) cq_lua_register_func(#name, name)
 
@@ -253,7 +258,7 @@ void cs_lua_load_lib_gamekit() {
     register_func(cs_retain );
     register_func(cs_release);
 
-    //gk_obj:
+    //node:
     register_func(cs_dont_destroy_on_load);
     register_func(cs_destroy);
 
@@ -269,32 +274,36 @@ void cs_lua_load_lib_gamekit() {
     register_func(cs_set_gobj_name);
     register_func(cs_gobj_name    );
 
-    register_func(cs_set_gobj_parent);
-    register_func(cs_gobj_parent    );
-
-    register_func(cs_child_num      );
-    register_func(cs_child_at       );
-    register_func(cs_detach_children);
-
-    register_func(cs_root_gobj_num);
-    register_func(cs_root_gobj_at );
+    register_func(cs_list_root_begin);
+    register_func(cs_list_root_at   );
+    register_func(cs_list_root_end  );
 
     //comp:
+    register_func(cs_comp_gobj);
+    
     register_func(cs_add_comp   );
     register_func(cs_remove_comp);
-    register_func(cs_gobj_comp  );
+    
+    register_func(cs_list_comp_begin);
+    register_func(cs_list_comp_at   );
+    register_func(cs_list_comp_end  );
 
-    register_func(cs_comp_gobj   );
-    register_func(cs_comp_brother);
+    register_func(cs_get_comp);
 
     //xform:
-    register_func(cs_gobj_xform);
-    register_func(cs_comp_xform);
+    register_func(cs_get_xform);
 
-    register_func(cs_set_xform_xy);
-    register_func(cs_xform_x     );
-    register_func(cs_xform_y     );
+    register_func(cs_set_xform_pos);
+    register_func(cs_xform_x      );
+    register_func(cs_xform_y      );
+    register_func(cs_xform_z      );
 
     register_func(cs_set_xform_parent);
     register_func(cs_xform_parent    );
+    
+    register_func(cs_list_child_begin);
+    register_func(cs_list_child_at   );
+    register_func(cs_list_child_end  );
+    
+    register_func(cs_detach_children);
 }

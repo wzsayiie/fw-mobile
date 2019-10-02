@@ -4,40 +4,42 @@
 cq_member(csNode) {
 };
 
-void csNode::dontDestroyOnLoad(csNodeRef object) {
-    if (object == nullptr) {
+void csNode::handleCreate () {}
+void csNode::handleDestroy() {}
+
+void csNode::dontDestroyOnLoad(csNodeRef node) {
+    if (node == nullptr) {
         return;
     }
     
-    if (object->isKindOfClass(csComponent::clazz())) {
+    if (node->isKindOfClass(csComponent::clazz())) {
         
-        auto component = cqObject::cast<csComponent>(object);
-        auto gameObject = component->gameObject();
-        csGameObject::dontDestoryOnLoad(gameObject);
+        auto component = cqObject::cast<csComponent>(node);
+        auto transform = component->getComponent<csTransform>();
+        transform->asGlobalRoot();
         
-    } else if (object->isKindOfClass(csGameObject::clazz())) {
+    } else if (node->isKindOfClass(csGameObject::clazz())) {
         
-        auto gameObject = cqObject::cast<csGameObject>(object);
-        csGameObject::dontDestoryOnLoad(gameObject);
+        auto gameObject = cqObject::cast<csGameObject>(node);
+        auto transform = gameObject->getComponent<csTransform>();
+        transform->asGlobalRoot();
     }
 }
 
-void csNode::destroy(csNodeRef object) {
-    if (object == nullptr) {
+void csNode::destroy(csNodeRef node) {
+    if (node == nullptr) {
         return;
     }
     
-    if (object->isKindOfClass(csComponent::clazz())) {
+    if (node->isKindOfClass(csComponent::clazz())) {
         
-        auto component = cqObject::cast<csComponent>(object);
+        auto component = cqObject::cast<csComponent>(node);
         auto gameObject = component->gameObject();
-        if (gameObject != nullptr) {
-            gameObject->removeComponent(object->dynamicClass());
-        }
+        gameObject->removeComponent(component);
         
-    } else if (object->isKindOfClass(csGameObject::clazz())) {
+    } else if (node->isKindOfClass(csGameObject::clazz())) {
         
-        auto gameObject = cqObject::cast<csGameObject>(object);
+        auto gameObject = cqObject::cast<csGameObject>(node);
         csGameObject::destroy(gameObject);
     }
 }

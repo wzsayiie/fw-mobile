@@ -1,45 +1,111 @@
 #include "cstransform.hh"
 #include "csgameobject.hh"
 
-csVector2::csVector2(/*............*/): x(0), y(0) {}
-csVector2::csVector2(float x, float y): x(x), y(y) {}
+//vector3:
+
+csVector3::csVector3(/* .... .... .... .... */): x(0), y(0), z(0) {}
+csVector3::csVector3(float x, float y, float z): x(x), y(y), z(z) {}
+
+//global data:
+
+static std::vector<csTransformRef> theActiveRoots;
+static std::vector<csTransformRef> theGlobalRoots;
+
+std::vector<csTransformRef> csTransform::activeRoots() { return theActiveRoots; }
+std::vector<csTransformRef> csTransform::globalRoots() { return theGlobalRoots; }
+
+//transform:
 
 cq_member(csTransform) {
-    csVector2 position;
+    
+    csVector3 position;
+    
+    csTransformWeakRef parent;
+    std::vector<csTransformRef> children;
 };
 
-void csTransform::setPosition(csVector2 position) {
-    dat->position = position;
+void csTransform::handleCreate() {
+    //when a transform created, it should be a active root.
+    theActiveRoots.push_back(strongRef());
 }
 
-csVector2 csTransform::position() {
-    return dat->position;
-}
-
-void csTransform::setParent(csTransformRef parent) {
-    csGameObjectRef object = gameObject();
-    if (object == nullptr) {
+void csTransform::handleDestroy() {
+    if (dat->parent.lock() == nullptr) {
         return;
     }
     
+    csTransformRef self = strongRef();
+    cqVector::erase(&theActiveRoots, self);
+    cqVector::erase(&theGlobalRoots, self);
+}
+
+//properties:
+
+void csTransform::setPosition(csVector3 position) {
+    dat->position = position;
+}
+
+csVector3 csTransform::position() {
+    return dat->position;
+}
+
+//hierarchy:
+
+static void move(csTransformRef self, std::vector<csTransformRef> *in, std::vector<csTransformRef> *out) {
+    csTransformRef parent = self->dat->parent.lock();
     if (parent != nullptr) {
-        csGameObjectRef parentObject = parent->gameObject();
-        object->setParent(parentObject);
+        cqVector::erase(&parent->dat->children, self);
+        self->dat->parent.reset();
+    }
+    
+    if (cqVector::dontContain(*in, self)) {
+        in->push_back(self);
+    }
+    if (cqVector::contains(*out, self)) {
+        cqVector::erase(out, self);
+    }
+}
+
+void csTransform::asActiveRoot() { move(strongRef(), &theActiveRoots, &theGlobalRoots); }
+void csTransform::asGlobalRoot() { move(strongRef(), &theGlobalRoots, &theActiveRoots); }
+
+void csTransform::setParent(csTransformRef parent) {
+    csTransformRef oldParent = dat->parent.lock();
+    if (parent == oldParent) {
+        return;
+    }
+    
+    csTransformRef self = strongRef();
+    
+    //remove from old parent:
+    if (oldParent != nullptr) {
+        cqVector::erase(&oldParent->dat->children, self);
     } else {
-        object->setParent(nullptr);
+        cqVector::erase(&theActiveRoots, self);
+        cqVector::erase(&theGlobalRoots, self);
+    }
+    
+    //add to new parent:
+    self->dat->parent = parent;
+    if (parent != nullptr) {
+        parent->dat->children.push_back(self);
+    } else {
+        theActiveRoots.push_back(self);
     }
 }
 
 csTransformRef csTransform::parent() {
-    csGameObjectRef object = gameObject();
-    if (object == nullptr) {
-        return nullptr;
+    return dat->parent.lock();
+}
+
+std::vector<csTransformRef> csTransform::children() {
+    return dat->children;
+}
+
+void csTransform::detachChildren() {
+    for (csTransformRef transform : dat->children) {
+        transform->dat->parent.reset();
+        theActiveRoots.push_back(transform);
     }
-    
-    csGameObjectRef parentObject = object->parent();
-    if (parentObject != nullptr) {
-        return parentObject->transform();
-    } else {
-        return nullptr;
-    }
+    dat->children.clear();
 }

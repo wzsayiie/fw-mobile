@@ -5,7 +5,9 @@ cq_member(csComponent) {
     csGameObjectWeakRef gameObject;
 };
 
-void csComponent::resetGameObjectIfNeeded(csGameObjectRef gameObject) {
+//properties:
+
+void csComponent::setGameObjectIfNeeded(csGameObjectRef gameObject) {
     if (dat->gameObject.lock() == nullptr) {
         dat->gameObject = gameObject;
     }
@@ -15,14 +17,24 @@ csGameObjectRef csComponent::gameObject() {
     return dat->gameObject.lock();
 }
 
+//brother components:
+
+std::vector<csComponentRef> csComponent::getComponents(cqClass *clazz) {
+    csGameObjectRef object = gameObject();
+    
+    if (object != nullptr) {
+        return object->getComponents(clazz);
+    }
+    return std::vector<csComponentRef>();
+}
+
 csComponentRef csComponent::getComponent(cqClass *clazz) {
     csGameObjectRef object = gameObject();
     
     if (object != nullptr) {
         return object->getComponent(clazz);
-    } else {
-        return nullptr;
     }
+    return nullptr;
 }
 
 csTransformRef csComponent::transform() {

@@ -6,8 +6,11 @@ _CSGAMEKIT_BEGIN_VERSION_NS
 
 cq_class(csNode, cqObject) {
     
-    static void dontDestroyOnLoad(csNodeRef object);
-    static void destroy(csNodeRef object);
+    virtual void handleCreate ();
+    virtual void handleDestroy();
+    
+    static void dontDestroyOnLoad(csNodeRef node);
+    static void destroy(csNodeRef node);
 };
 
 _CSGAMEKIT_END_VERSION_NS

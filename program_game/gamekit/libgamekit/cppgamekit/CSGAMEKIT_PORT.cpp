@@ -3,11 +3,11 @@
 
 //obj:
 
-struct ReferenceItem {
-    int32_t referenceCount = 0;
+struct RefItem {
+    int32_t count = 0;
     cqObjectRef object;
 };
-static std::map<int64_t, ReferenceItem> sReferencePool;
+static std::map<int64_t, RefItem> theRefPool;
 
 template<class T, class F> typename cqRef<T>::Strong cs_get(F from) {
     int64_t index = *(int64_t *)&from;
@@ -15,11 +15,11 @@ template<class T, class F> typename cqRef<T>::Strong cs_get(F from) {
     if (index == 0) {
         return typename cqRef<T>::Strong();
     }
-    if (cqMap::dontContain(sReferencePool, index)) {
+    if (cqMap::dontContain(theRefPool, index)) {
         return typename cqRef<T>::Strong();
     }
     
-    ReferenceItem &item = sReferencePool[index];
+    RefItem &item = theRefPool[index];
     if (!item.object->isKindOfClass(T::clazz())) {
         return typename cqRef<T>::Strong();
     }
@@ -28,30 +28,29 @@ template<class T, class F> typename cqRef<T>::Strong cs_get(F from) {
 }
 
 template<class T> T cs_retain(cqObjectRef object) {
-    int64_t index = 0;
-    do {
-        if (object == nullptr) {
-            break;
-        }
+    T ret = {0};
     
-        index = (int64_t)object.get();
-        if (index == 0) {
-            break;
-        }
+    if (object == nullptr) {
+        return ret;
+    }
     
-        if (cqMap::dontContain(sReferencePool, index)) {
-            ReferenceItem item; {
-                item.referenceCount = 1;
-                item.object = object;
-            }
-            sReferencePool[index] = item;
-        } else {
-            ReferenceItem &item = sReferencePool[index];
-            item.referenceCount += 1;
-        }
-    } while (0);
+    auto index = (int64_t)object.get();
+    if (index == 0) {
+        return ret;
+    }
     
-    T ret = {index};
+    if (cqMap::dontContain(theRefPool, index)) {
+        RefItem item; {
+            item.count = 1;
+            item.object = object;
+        }
+        theRefPool[index] = item;
+    } else {
+        RefItem &item = theRefPool[index];
+        item.count += 1;
+    }
+    
+    *(int64_t *)&ret = index;
     return ret;
 }
 
@@ -59,47 +58,68 @@ void cs_retain(cs_obj obj) {
     if (obj.index == 0) {
         return;
     }
-    if (cqMap::dontContain(sReferencePool, obj.index)) {
+    if (cqMap::dontContain(theRefPool, obj.index)) {
         return;
     }
     
-    ReferenceItem &item = sReferencePool[obj.index];
-    item.referenceCount += 1;
+    RefItem &item = theRefPool[obj.index];
+    item.count += 1;
 }
 
 void cs_release(cs_obj obj) {
     if (obj.index == 0) {
         return;
     }
-    if (cqMap::dontContain(sReferencePool, obj.index)) {
+    if (cqMap::dontContain(theRefPool, obj.index)) {
         return;
     }
     
-    ReferenceItem &item = sReferencePool[obj.index];
-    if (item.referenceCount > 1) {
-        item.referenceCount -= 1;
+    RefItem &item = theRefPool[obj.index];
+    if (item.count > 1) {
+        item.count -= 1;
     } else {
-        sReferencePool.erase(obj.index);
+        theRefPool.erase(obj.index);
     }
 }
 
-//gk_obj:
+//node:
 
-void cs_dont_destroy_on_load(cs_gk_obj gk_obj) {
-    csNodeRef object = cs_get<csNode>(gk_obj);
-    csNode::dontDestroyOnLoad(object);
+void cs_dont_destroy_on_load(cs_node node) {
+    csNodeRef nodeObject = cs_get<csNode>(node);
+    csNode::dontDestroyOnLoad(nodeObject);
 }
 
-void cs_destroy(cs_gk_obj gk_obj) {
-    csNodeRef object = cs_get<csNode>(gk_obj);
-    csNode::destroy(object);
+void cs_destroy(cs_node node) {
+    csNodeRef nodeObject = cs_get<csNode>(node);
+    csNode::destroy(nodeObject);
+}
+
+static csGameObjectRef cs_node_gobj(cs_node node) {
+    csNodeRef nodeObject = cs_get<csNode>(node);
+    if (nodeObject == nullptr) {
+        return nullptr;
+    }
+
+    if (nodeObject->isKindOfClass(csComponent::clazz())) {
+        
+        auto componentObject = cqObject::cast<csComponent>(nodeObject);
+        return componentObject->gameObject();
+        
+    } else if (nodeObject->isKindOfClass(csGameObject::clazz())) {
+        
+        return cqObject::cast<csGameObject>(nodeObject);
+        
+    } else {
+        
+        return nullptr;
+    }
 }
 
 //scene:
 
 cs_scene cs_create_scene(const char *name) {
-    csSceneRef scene = csSceneManager::createScene(cqString::make(name));
-    return cs_retain<cs_scene>(scene);
+    csSceneRef sceneObject = csSceneManager::createScene(cqString::make(name));
+    return cs_retain<cs_scene>(sceneObject);
 }
 
 const char *cs_scene_name(cs_scene scene) {
@@ -117,16 +137,16 @@ void cs_load_scene(const char *name) {
     csSceneManager::loadScene(cqString::make(name));
 }
 
-cs_scene cs_active_scene(void) {
-    csSceneRef scene = csSceneManager::activeScene();
-    return cs_retain<cs_scene>(scene);
+cs_scene cs_active_scene() {
+    csSceneRef sceneObject = csSceneManager::activeScene();
+    return cs_retain<cs_scene>(sceneObject);
 }
 
 //gobj:
 
 cs_gobj cs_create_gobj(const char *name) {
-    csGameObjectRef gameOject = csGameObject::createWithName(cqString::make(name));
-    return cs_retain<cs_gobj>(gameOject);
+    csGameObjectRef gameObject = csGameObject::createWithName(cqString::make(name));
+    return cs_retain<cs_gobj>(gameObject);
 }
 
 void cs_set_gobj_name(cs_gobj gobj, const char *name) {
@@ -148,82 +168,43 @@ const char *cs_gobj_name(cs_gobj gobj) {
     }
 }
 
-void cs_set_gobj_parent(cs_gobj gobj, cs_gobj parent) {
-    csGameObjectRef gameObject = cs_get<csGameObject>(gobj);
-    csGameObjectRef parentObject = cs_get<csGameObject>(parent);
-    
-    if (gameObject != nullptr) {
-        gameObject->setParent(parentObject);
-    }
-}
+static std::vector<csGameObjectRef> theRootCache;
 
-cs_gobj cs_gobj_parent(cs_gobj gobj) {
-    csGameObjectRef gameObject = cs_get<csGameObject>(gobj);
-    csGameObjectRef parentObject = nullptr;
+int32_t cs_list_root_begin(cs_scene scene) {
+    theRootCache.clear();
     
-    if (gameObject != nullptr) {
-        parentObject = gameObject->parent();
-    }
-    return cs_retain<cs_gobj>(parentObject);
-}
-
-int32_t cs_child_num(cs_gobj gobj) {
-    csGameObjectRef gameObject = cs_get<csGameObject>(gobj);
-    
-    if (gameObject != nullptr) {
-        return (int32_t)gameObject->children().size();
-    }
-    return 0;
-}
-
-cs_gobj cs_child_at(cs_gobj gobj, int32_t index) {
-    csGameObjectRef gameObject = cs_get<csGameObject>(gobj);
-    csGameObjectRef childObject = nullptr;
-    
-    if (gameObject != nullptr) {
-        const auto &children = gameObject->children();
-        if (0 <= index && index < (int32_t)children.size()) {
-            childObject = children[index];
-        }
-    }
-    return cs_retain<cs_gobj>(childObject);
-}
-
-void cs_detach_children(cs_gobj gobj) {
-    csGameObjectRef gameObject = cs_get<csGameObject>(gobj);
-    
-    if (gameObject != nullptr) {
-        gameObject->detachChildren();
-    }
-}
-
-int32_t cs_root_gobj_num(cs_scene scene) {
     csSceneRef sceneObject = cs_get<csScene>(scene);
-    
     if (sceneObject != nullptr) {
-        return (int32_t)sceneObject->rootGameObjects().size();
+        theRootCache = sceneObject->rootGameObjects();
     }
-    return 0;
+    return (int32_t)theRootCache.size();
 }
 
-cs_gobj cs_root_gobj_at(cs_scene scene, int32_t index) {
-    csSceneRef sceneObject = cs_get<csScene>(scene);
-    csGameObjectRef gameObject = nullptr;
-    
-    if (sceneObject != nullptr) {
-        const auto &objects = sceneObject->rootGameObjects();
-        if (0 <= index && index < (int32_t)objects.size()) {
-            auto iter = objects.begin();
-            std::advance(iter, index);
-            gameObject = iter->second;
-        }
+cs_gobj cs_list_root_at(int32_t index) {
+    if (0 <= index && index < (int32_t)theRootCache.size()) {
+        return cs_retain<cs_gobj>(theRootCache[index]);
+    } else {
+        return cs_retain<cs_gobj>(nullptr);
     }
-    return cs_retain<cs_gobj>(gameObject);
+}
+
+void cs_list_root_end() {
+    theRootCache.clear();
 }
 
 //comp:
 
-cq_class(csExternalCode, csCodeBehaviour) {
+cs_gobj cs_comp_gobj(cs_comp comp) {
+    csComponentRef componentObject = cs_get<csComponent>(comp);
+    
+    csGameObjectRef gameObject = nullptr;
+    if (componentObject != nullptr) {
+        gameObject = componentObject->gameObject();
+    }
+    return cs_retain<cs_gobj>(gameObject);
+}
+
+cq_class(csExternalScript, csScript) {
     
     virtual void setExternalName(const std::string &name);
     std::string externalName() override;
@@ -234,199 +215,179 @@ cq_class(csExternalCode, csCodeBehaviour) {
     void onDestroy() override;
 };
 
-cq_member(csExternalCode) {
+cq_member(csExternalScript) {
     std::string externalName;
 };
 
-//up to 4 external code behaviours are supported.
-cq_class(csExternalCodeA, csExternalCode) {}; cq_member(csExternalCodeA) {};
-cq_class(csExternalCodeB, csExternalCode) {}; cq_member(csExternalCodeB) {};
-cq_class(csExternalCodeC, csExternalCode) {}; cq_member(csExternalCodeC) {};
-cq_class(csExternalCodeD, csExternalCode) {}; cq_member(csExternalCodeD) {};
-
-static csComponentRef check_comp(csGameObjectRef gameObject, const std::string &name, cqClass **clazz) {
+static cqClass *cs_cls_from_str(const std::string &str) {
     
-    if (name == "camera") {
-        *clazz = csCamera::clazz();
-        return gameObject->getComponent(*clazz);
-    }
+    if (str == "anim"    ) { return csAnimation  ::clazz(); }
+    if (str == "animator") { return csAnimator   ::clazz(); }
+    if (str == "camera"  ) { return csCamera     ::clazz(); }
+    if (str == "collider") { return csCollider   ::clazz(); }
+    if (str == "mfilter" ) { return csMapFilter  ::clazz(); }
+    if (str == "mrender" ) { return csMapRenderer::clazz(); }
+    if (str == "rigid"   ) { return csRigidBody  ::clazz(); }
+    if (str == "script"  ) { return csScript     ::clazz(); }
+    if (str == "xform"   ) { return csTransform  ::clazz(); }
     
-    if (name == "transform" || name == "xform") {
-        *clazz = csTransform::clazz();
-        return gameObject->getComponent(*clazz);
-    }
-    
-    //if unknown name, regarded it as external code.
-    cqClass *vacancy = nullptr;
-    
-#define handle(cls) do {\
-/**/    auto externalCode = gameObject->getComponent<cls>();\
-/**/    if (externalCode && externalCode->externalName() == name) {\
-/**/        *clazz = cls::clazz();\
-/**/        return externalCode;\
-/**/    }\
-/**/    if (vacancy == nullptr && externalCode == nullptr) {\
-/**/        vacancy = cls::clazz();\
-/**/    }\
-/**/} while (0)
-    
-    handle(csExternalCodeA);
-    handle(csExternalCodeB);
-    handle(csExternalCodeC);
-    handle(csExternalCodeD);
-    
-#undef handle
-    
-    *clazz = vacancy;
-    return nullptr;
+    //regard unknown name as external script.
+    return csExternalScript::clazz();
 }
 
-cs_comp cs_add_comp(cs_gobj gobj, const char *name) {
+cs_comp cs_add_comp(cs_gobj gobj, const char *cls) {
     csGameObjectRef gameObject = cs_get<csGameObject>(gobj);
-    if (gameObject == nullptr || cqString::empty(name)) {
+    if (gameObject == nullptr || cqString::empty(cls)) {
         return cs_retain<cs_comp>(nullptr);
     }
     
-    //the component exsited?
-    cqClass *clazz = nullptr;
-    csComponentRef component = check_comp(gameObject, name, &clazz);
-    if (component != nullptr) {
-        return cs_retain<cs_comp>(component);
-    }
+    cqClass *clazz = cs_cls_from_str(cls);
+    csComponentRef componentObject = gameObject->addComponent(clazz);
     
-    //add new component.
-    if (clazz == nullptr) {
-        return cs_retain<cs_comp>(nullptr);
+    if (componentObject->isKindOfClass(csExternalScript::clazz())) {
+        auto scriptObject = cqObject::cast<csExternalScript>(componentObject);
+        scriptObject->setExternalName(cls);
     }
-    
-    component = gameObject->addComponent(clazz);
-    if (component && component->isKindOfClass(csExternalCode::clazz())) {
-        auto externalCode = cqObject::cast<csExternalCode>(component);
-        externalCode->setExternalName(name);
-    }
-    return cs_retain<cs_comp>(component);
+    return cs_retain<cs_comp>(componentObject);
 }
 
-void cs_remove_comp(cs_gobj gobj, const char *name) {
+void cs_remove_comp(cs_gobj gobj, struct cs_comp comp) {
     csGameObjectRef gameObject = cs_get<csGameObject>(gobj);
-    if (gameObject == nullptr || cqString::empty(name)) {
+    if (gameObject == nullptr) {
         return;
     }
     
-    cqClass *clazz = nullptr;
-    csComponentRef component = check_comp(gameObject, name, &clazz);
-    if (component != nullptr) {
-        gameObject->removeComponent(clazz);
+    csComponentRef componentObject = cs_get<csComponent>(comp);
+    if (componentObject == nullptr) {
+        return;
+    }
+    
+    gameObject->removeComponent(componentObject);
+}
+
+static std::vector<csComponentRef> theCompCache;
+
+int32_t cs_list_comp_begin(cs_node node, const char *cls) {
+    theCompCache.clear();
+    
+    csGameObjectRef gameObject = cs_node_gobj(node);
+    if (gameObject == nullptr || cqString::empty(cls)) {
+        return 0;
+    }
+    
+    cqClass *clazz = cs_cls_from_str(cls);
+    if (clazz->isKindOfClass(csExternalScript::clazz())) {
+        
+        auto candidates = gameObject->getComponents<csExternalScript>();
+        for (csExternalScriptRef it : candidates) {
+            if (it->externalName() == cls) {
+                theCompCache.push_back(it);
+            }
+        }
+        
+    } else {
+        
+        theCompCache = gameObject->getComponents(clazz);
+    }
+    
+    return (int32_t)theCompCache.size();
+}
+
+cs_comp cs_list_comp_at(int32_t index) {
+    if (0 <= index && index < (int32_t)theCompCache.size()) {
+        return cs_retain<cs_comp>(theCompCache[index]);
+    } else {
+        return cs_retain<cs_comp>(nullptr);
     }
 }
 
-cs_comp cs_gobj_comp(cs_gobj gobj, const char *name) {
-    csGameObjectRef gameObject = cs_get<csGameObject>(gobj);
-    if (gameObject == nullptr || cqString::empty(name)) {
+void cs_list_comp_end() {
+    theCompCache.clear();
+}
+
+cs_comp cs_get_comp(cs_node node, const char *cls) {
+    csGameObjectRef gameObject = cs_node_gobj(node);
+    if (gameObject == nullptr || cqString::empty(cls)) {
         return cs_retain<cs_comp>(nullptr);
     }
     
-    cqClass *clazz = nullptr;
-    csComponentRef component = check_comp(gameObject, name, &clazz);
-    return cs_retain<cs_comp>(component);
-}
-
-cs_gobj cs_comp_gobj(cs_comp comp) {
-    csComponentRef component = cs_get<csComponent>(comp);
-    
-    csGameObjectRef gameObject = nullptr;
-    if (component != nullptr) {
-        gameObject = component->gameObject();
-    }
-    return cs_retain<cs_gobj>(gameObject);
-}
-
-cs_comp cs_comp_brother(cs_comp comp, const char *name) {
-    csComponentRef component = cs_get<csComponent>(comp);
-    if (component == nullptr) {
+    cqClass *clazz = cs_cls_from_str(cls);
+    if (clazz->isKindOfClass(csExternalScript::clazz())) {
+        
+        auto candidates = gameObject->getComponents<csExternalScript>();
+        for (csExternalScriptRef it : candidates) {
+            if (it->externalName() == cls) {
+                return cs_retain<cs_comp>(it);
+            }
+        }
         return cs_retain<cs_comp>(nullptr);
+        
+    } else {
+        
+        auto componentObject = gameObject->getComponent(clazz);
+        return cs_retain<cs_comp>(componentObject);
     }
-    
-    csGameObjectRef gameObject = component->gameObject();
-    cs_gobj gobj = {(int64_t)gameObject.get()};
-    return cs_gobj_comp(gobj, name);
 }
 
-//code_beh:
+//script:
 
-static cs_cb_callback _cb_callback = nullptr;
+static cs_script_callback_t theScriptCallback = nullptr;
 
-void cs_set_cb_callback(cs_cb_callback callback) {
-    _cb_callback = callback;
+void cs_set_script_callback(cs_script_callback_t callback) {
+    theScriptCallback = callback;
 }
 
-void csExternalCode::setExternalName(const std::string &name) {
+void csExternalScript::setExternalName(const std::string &name) {
     dat->externalName = name;
 }
 
-std::string csExternalCode::externalName() {
+std::string csExternalScript::externalName() {
     return dat->externalName;
 }
 
-static void emit_event(const char *event, csExternalCode *object) {
-    if (_cb_callback != nullptr) {
-        cs_code_beh beh = {(int64_t)object};
-        _cb_callback(event, beh);
+static void emit_event(const char *event, csExternalScript *scriptObject) {
+    if (theScriptCallback != nullptr) {
+        cs_script script = {(int64_t)scriptObject};
+        theScriptCallback(event, script);
     }
 }
 
-void csExternalCode::awake    () { emit_event("awake"     , this); }
-void csExternalCode::start    () { emit_event("start"     , this); }
-void csExternalCode::update   () { emit_event("update"    , this); }
-void csExternalCode::onDestroy() { emit_event("on_destroy", this); }
+void csExternalScript::awake    () { emit_event("awake"     , this); }
+void csExternalScript::start    () { emit_event("start"     , this); }
+void csExternalScript::update   () { emit_event("update"    , this); }
+void csExternalScript::onDestroy() { emit_event("on_destroy", this); }
 
 //xform:
 
-cs_xform cs_gobj_xform(cs_gobj gobj) {
-    csGameObjectRef gameObject = cs_get<csGameObject>(gobj);
+cs_xform cs_get_xform(cs_node node) {
+    csGameObjectRef gameObject = cs_node_gobj(node);
     
-    csTransformRef transform = nullptr;
     if (gameObject != nullptr) {
-        transform = gameObject->transform();
+        return cs_retain<cs_xform>(gameObject->transform());
     }
-    return cs_retain<cs_xform>(transform);
+    return cs_retain<cs_xform>(nullptr);
 }
 
-cs_xform cs_comp_xform(cs_comp comp) {
-    csComponentRef component = cs_get<csComponent>(comp);
+void cs_set_xform_pos(cs_xform xform, float x, float y, float z) {
+    csTransformRef transformObject = cs_get<csTransform>(xform);
     
-    csTransformRef transform = nullptr;
-    if (component != nullptr) {
-        transform = component->transform();
-    }
-    return cs_retain<cs_xform>(transform);
-}
-
-void cs_set_xform_xy(cs_xform xform, float x, float y) {
-    csTransformRef transform = cs_get<csTransform>(xform);
-    
-    if (transform != nullptr) {
-        transform->setPosition(csVector2(x, y));
+    if (transformObject != nullptr) {
+        transformObject->setPosition(csVector3(x, y, z));
     }
 }
 
-float cs_xform_x(cs_xform xform) {
-    csTransformRef transform = cs_get<csTransform>(xform);
+static csVector3 cs_xform_pos(cs_xform xform) {
+    csTransformRef transformObject = cs_get<csTransform>(xform);
     
-    if (transform != nullptr) {
-        return transform->position().x;
+    if (transformObject != nullptr) {
+        return transformObject->position();
     }
-    return 0.F;
+    return csVector3();
 }
 
-float cs_xform_y(cs_xform xform) {
-    csTransformRef transform = cs_get<csTransform>(xform);
-    
-    if (transform != nullptr) {
-        return transform->position().y;
-    }
-    return 0.F;
-}
+float cs_xform_x(cs_xform xform) { return cs_xform_pos(xform).x; }
+float cs_xform_y(cs_xform xform) { return cs_xform_pos(xform).y; }
+float cs_xform_z(cs_xform xform) { return cs_xform_pos(xform).z; }
 
 void cs_set_xform_parent(cs_xform xform, cs_xform parent) {
     csTransformRef transformObject = cs_get<csTransform>(xform);
@@ -438,11 +399,43 @@ void cs_set_xform_parent(cs_xform xform, cs_xform parent) {
 }
 
 cs_xform cs_xform_parent(cs_xform xform) {
-    csTransformRef transform = cs_get<csTransform>(xform);
+    csTransformRef transformObject = cs_get<csTransform>(xform);
     
-    csTransformRef parent = nullptr;
-    if (transform != nullptr) {
-        parent = transform->parent();
+    csTransformRef parentObject = nullptr;
+    if (transformObject != nullptr) {
+        parentObject = transformObject->parent();
     }
-    return cs_retain<cs_xform>(parent);
+    return cs_retain<cs_xform>(parentObject);
+}
+
+static std::vector<csTransformRef> theChildCache;
+
+int32_t cs_list_child_begin(struct cs_xform xform) {
+    theChildCache.clear();
+    
+    csTransformRef transformObject = cs_get<csTransform>(xform);
+    if (transformObject != nullptr) {
+        theChildCache = transformObject->children();
+    }
+    return (int32_t)theChildCache.size();
+}
+
+struct cs_xform cs_list_child_at(int32_t index) {
+    if (0 <= index && index < (int32_t)theChildCache.size()) {
+        return cs_retain<cs_xform>(theChildCache[index]);
+    } else {
+        return cs_retain<cs_xform>(nullptr);
+    }
+}
+
+void cs_list_child_end() {
+    theChildCache.clear();
+}
+
+void cs_detach_children(struct cs_xform xform) {
+    csTransformRef transformObject = cs_get<csTransform>(xform);
+    
+    if (transformObject != nullptr) {
+        transformObject->detachChildren();
+    }
 }
