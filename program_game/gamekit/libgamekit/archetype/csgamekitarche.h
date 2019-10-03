@@ -22,14 +22,13 @@ struct cs_node {
 CQ_C_LINK void cs_dont_destroy_on_load(struct cs_node node);
 CQ_C_LINK void cs_destroy(struct cs_node node);
 
-//scene:
+//scene_mgr:
 
 struct cs_scene {
     struct cs_obj obj;
 };
 
 CQ_C_LINK struct cs_scene cs_create_scene(const char *name);
-CQ_C_LINK const char *cs_scene_name(struct cs_scene scene);
 CQ_C_LINK void cs_load_scene(const char *name);
 CQ_C_LINK struct cs_scene cs_active_scene(void);
 
@@ -43,6 +42,10 @@ CQ_C_LINK struct cs_gobj cs_create_gobj(const char *name);
 
 CQ_C_LINK void cs_set_gobj_name(struct cs_gobj gobj, const char *name);
 CQ_C_LINK const char *cs_gobj_name(struct cs_gobj gobj);
+
+//scene:
+
+CQ_C_LINK const char *cs_scene_name(struct cs_scene scene);
 
 CQ_C_LINK int32_t cs_list_root_begin(struct cs_scene scene);
 CQ_C_LINK struct cs_gobj cs_list_root_at(int32_t index);

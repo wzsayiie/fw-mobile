@@ -39,18 +39,12 @@ static int32_t cs_destroy(lua_State *state) {
     return cq_lua_return_void(state);
 }
 
-//scene:
+//scene_mgr:
 
 static int32_t cs_create_scene(lua_State *state) {
     const char *name = cq_lua_check_string(state, 1);
     cs_scene scene = cs_create_scene(name);
     return lua_return_obj(state, scene);
-}
-
-static int32_t cs_scene_name(lua_State *state) {
-    cs_scene scene = lua_check<cs_scene>(state, 1);
-    const char *name = cs_scene_name(scene);
-    return cq_lua_return_string(state, name);
 }
 
 static int32_t cs_load_scene(lua_State *state) {
@@ -84,6 +78,14 @@ static int32_t cs_set_gobj_name(lua_State *state) {
 static int32_t cs_gobj_name(lua_State *state) {
     cs_gobj gobj = lua_check<cs_gobj>(state, 1);
     const char *name = cs_gobj_name(gobj);
+    return cq_lua_return_string(state, name);
+}
+
+//scene:
+
+static int32_t cs_scene_name(lua_State *state) {
+    cs_scene scene = lua_check<cs_scene>(state, 1);
+    const char *name = cs_scene_name(scene);
     return cq_lua_return_string(state, name);
 }
 
@@ -262,9 +264,8 @@ void cs_lua_load_lib_gamekit() {
     register_func(cs_dont_destroy_on_load);
     register_func(cs_destroy);
 
-    //scene:
+    //scene_mgr:
     register_func(cs_create_scene);
-    register_func(cs_scene_name  );
     register_func(cs_load_scene  );
     register_func(cs_active_scene);
 
@@ -274,6 +275,9 @@ void cs_lua_load_lib_gamekit() {
     register_func(cs_set_gobj_name);
     register_func(cs_gobj_name    );
 
+    //scene:
+    register_func(cs_scene_name);
+    
     register_func(cs_list_root_begin);
     register_func(cs_list_root_at   );
     register_func(cs_list_root_end  );

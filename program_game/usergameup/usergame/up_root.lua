@@ -1,6 +1,6 @@
 --LUA R"R(
 
-up_root = class("up_root", code_beh, {
+up_root = class("up_root", script, {
 })
 
 function up_root:awake()

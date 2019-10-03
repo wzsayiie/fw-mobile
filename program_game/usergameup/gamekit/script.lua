@@ -1,24 +1,24 @@
 --LUA R"R(
 
-code_beh = class("code_beh", beh, {
+script = class("script", behaviour, {
 })
 
-function code_beh:awake     () end
-function code_beh:start     () end
-function code_beh:update    () end
-function code_beh:on_destroy() end
+function script:awake     () end
+function script:start     () end
+function script:update    () end
+function script:on_destroy() end
 
 local storage = {}
 
-function code_beh:new_with(native)
-    local obj = beh.new_with(self, native)
+function script:new_with(native)
+    local obj = behaviour.new_with(self, native)
     if native ~= 0 then
         storage[native] = obj
     end
     return obj
 end
 
-function cs_on_cb_event(name, native)
+function cs_on_script_callback(name, native)
     local obj = storage[native]
     if obj == nil then
         return

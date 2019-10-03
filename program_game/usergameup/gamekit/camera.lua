@@ -1,6 +1,6 @@
 --LUA R"R(
 
-camera = class("camera", beh, {
+camera = class("camera", behaviour, {
 })
 
 --)R"

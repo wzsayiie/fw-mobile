@@ -1,6 +1,6 @@
 --LUA R"R(
-    
-gobj = class("gobj", gk_obj, {
+
+gobj = class("gobj", node, {
 })
 
 function gobj:create(name)
@@ -16,54 +16,49 @@ function gobj:name()
     return cs_gobj_name(self.native)
 end
 
-function gobj:set_parent(parent)
-    cs_set_gobj_parent(self.native, parent.native)
-end
-
-function gobj:parent()
-    local native = cs_gobj_parent(self.native)
-    return gobj:new_with(native)
-end
-
-function gobj:child_num()
-    return cs_child_num(self.native)
-end
-
-function gobj:child_at(index)
-    local native = cs_child_at(self.native, index)
-    return gobj:new_with(native)
-end
-
-function gobj:detach_children()
-    cs_detach_children(self.native)
-end
-
 function gobj:add_comp(cls)
-    if cls ~= nil and cls:is_kind_of(code_beh) then
+    if cls ~= nil and cls:is_kind_of(comp) then
         local native = cs_add_comp(self.native, cls.clsname)
         return cls:new_with(native)
-    else
-        return nil
+    end
+
+    return nil
+end
+
+function gobj:remove_comp(obj)
+    if obj ~= nil and obj:is_kind_of(comp) then
+        cs_remove_comp(self.native, obj.native)
     end
 end
 
-function gobj:remove_comp(cls)
-    if cls ~= nil and cls:is_kind_of(code_beh) then
-        cs_remove_comp(self.native, cls.clsname)
+function gobj:list_comp(cls)
+    if cls ~= nil and cls:is_kind_of(comp) then
+        local set = {}
+
+        local num = cs_list_comp_begin(self.native, cls.clsname)
+        for it = 0, num - 1 do
+            local native = cs_list_comp_at(it)
+            table.insert(set, cls:new_with(native))
+        end
+        cs_list_comp_end()
+
+        return set
     end
+
+    return nil
 end
 
 function gobj:get_comp(cls)
-    if cls ~= nil and cls:is_kind_of(code_beh) then
-        local native = cs_gobj_comp(self.native, cls.clsname)
+    if cls ~= nil and cls:is_kind_of(comp) then
+        local native = cs_get_comp(self.native, cls.clsname)
         return cls:new_with(native)
-    else
-        return nil
     end
+
+    return nil
 end
 
 function gobj:xfrom()
-    local native = cs_gobj_xform(self.native)
+    local native = cs_get_xform(self.native)
     return xform:new_with(native)
 end
 

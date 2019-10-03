@@ -115,22 +115,11 @@ static csGameObjectRef cs_node_gobj(cs_node node) {
     }
 }
 
-//scene:
+//scene_mgr:
 
 cs_scene cs_create_scene(const char *name) {
     csSceneRef sceneObject = csSceneManager::createScene(cqString::make(name));
     return cs_retain<cs_scene>(sceneObject);
-}
-
-const char *cs_scene_name(cs_scene scene) {
-    csSceneRef sceneObject = cs_get<csScene>(scene);
-    
-    if (sceneObject != nullptr) {
-        std::string name = sceneObject->name();
-        return cq_store_str(name.c_str());
-    } else {
-        return cq_store_str(nullptr);
-    }
 }
 
 void cs_load_scene(const char *name) {
@@ -162,6 +151,19 @@ const char *cs_gobj_name(cs_gobj gobj) {
     
     if (gameObject != nullptr) {
         std::string name = gameObject->name();
+        return cq_store_str(name.c_str());
+    } else {
+        return cq_store_str(nullptr);
+    }
+}
+
+//scene:
+
+const char *cs_scene_name(cs_scene scene) {
+    csSceneRef sceneObject = cs_get<csScene>(scene);
+    
+    if (sceneObject != nullptr) {
+        std::string name = sceneObject->name();
         return cq_store_str(name.c_str());
     } else {
         return cq_store_str(nullptr);
