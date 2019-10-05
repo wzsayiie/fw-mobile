@@ -11,13 +11,14 @@
 		B4B19642221EB6C7007D4146 /* codecount.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B19636221EB6C7007D4146 /* codecount.cpp */; };
 		CE1BAAAC234871B900DAD494 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE1BAAAA234871B900DAD494 /* main.mm */; };
 		CE1BAAAD234871B900DAD494 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE1BAAAB234871B900DAD494 /* main.cpp */; };
-		CE1BAAB82348A34B00DAD494 /* dynamic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE1BAAB62348A34B00DAD494 /* dynamic.cpp */; };
+		CE1BAAB82348A34B00DAD494 /* dynamic_osx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE1BAAB62348A34B00DAD494 /* dynamic_osx.cpp */; };
 		CE21BEA322085E4B00AED03F /* mainctrl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE9522085E4B00AED03F /* mainctrl.cpp */; };
 		CE21BEA622085E4B00AED03F /* stdlibs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE9B22085E4B00AED03F /* stdlibs.cpp */; };
 		CE21BEAE2208620300AED03F /* fsystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEAB2208620300AED03F /* fsystem.cpp */; };
-		CE21BEAF2208620300AED03F /* fsystem_osx.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEAC2208620300AED03F /* fsystem_osx.mm */; };
+		CE21BEAF2208620300AED03F /* fsystem_osx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEAC2208620300AED03F /* fsystem_osx.cpp */; };
 		CE21BEB2220868B900AED03F /* print.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEB0220868B900AED03F /* print.cpp */; };
-		CE4B65D32347913F00C4FB1E /* fsystem_win32.cc in Sources */ = {isa = PBXBuildFile; fileRef = CE4B65D22347913F00C4FB1E /* fsystem_win32.cc */; };
+		CE2B47E62348D6DB001816D8 /* dynamic_win32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE2B47E52348D6DB001816D8 /* dynamic_win32.cpp */; };
+		CE4B65D32347913F00C4FB1E /* fsystem_win32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4B65D22347913F00C4FB1E /* fsystem_win32.cpp */; };
 		CE844339220D5874008D3F79 /* unicode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE844337220D5874008D3F79 /* unicode.cpp */; };
 /* End PBXBuildFile section */
 
@@ -40,18 +41,19 @@
 		CE1BAAAA234871B900DAD494 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		CE1BAAAB234871B900DAD494 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		CE1BAAB52348A34B00DAD494 /* dynamic.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = dynamic.hh; sourceTree = "<group>"; };
-		CE1BAAB62348A34B00DAD494 /* dynamic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dynamic.cpp; sourceTree = "<group>"; };
+		CE1BAAB62348A34B00DAD494 /* dynamic_osx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dynamic_osx.cpp; sourceTree = "<group>"; };
 		CE21BE9522085E4B00AED03F /* mainctrl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mainctrl.cpp; sourceTree = "<group>"; };
 		CE21BE9B22085E4B00AED03F /* stdlibs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stdlibs.cpp; sourceTree = "<group>"; };
 		CE21BE9C22085E4B00AED03F /* stdlibs.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = stdlibs.hh; sourceTree = "<group>"; };
 		CE21BEA122085E4B00AED03F /* toolset.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = toolset.hh; sourceTree = "<group>"; };
 		CE21BEAB2208620300AED03F /* fsystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fsystem.cpp; sourceTree = "<group>"; };
-		CE21BEAC2208620300AED03F /* fsystem_osx.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = fsystem_osx.mm; sourceTree = "<group>"; };
+		CE21BEAC2208620300AED03F /* fsystem_osx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fsystem_osx.cpp; sourceTree = "<group>"; };
 		CE21BEAD2208620300AED03F /* fsystem.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fsystem.hh; sourceTree = "<group>"; };
 		CE21BEB0220868B900AED03F /* print.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = print.cpp; sourceTree = "<group>"; };
 		CE21BEB1220868B900AED03F /* print.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = print.hh; sourceTree = "<group>"; };
+		CE2B47E52348D6DB001816D8 /* dynamic_win32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dynamic_win32.cpp; sourceTree = "<group>"; };
 		CE2BF73121BFF1D10013614A /* EDITOR_CPP */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EDITOR_CPP; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE4B65D22347913F00C4FB1E /* fsystem_win32.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fsystem_win32.cc; sourceTree = "<group>"; };
+		CE4B65D22347913F00C4FB1E /* fsystem_win32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fsystem_win32.cpp; sourceTree = "<group>"; };
 		CE844337220D5874008D3F79 /* unicode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = unicode.cpp; sourceTree = "<group>"; };
 		CE844338220D5874008D3F79 /* unicode.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = unicode.hh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,10 +103,11 @@
 		CE21BE9722085E4B00AED03F /* toolset */ = {
 			isa = PBXGroup;
 			children = (
-				CE1BAAB62348A34B00DAD494 /* dynamic.cpp */,
+				CE1BAAB62348A34B00DAD494 /* dynamic_osx.cpp */,
+				CE2B47E52348D6DB001816D8 /* dynamic_win32.cpp */,
 				CE1BAAB52348A34B00DAD494 /* dynamic.hh */,
-				CE21BEAC2208620300AED03F /* fsystem_osx.mm */,
-				CE4B65D22347913F00C4FB1E /* fsystem_win32.cc */,
+				CE21BEAC2208620300AED03F /* fsystem_osx.cpp */,
+				CE4B65D22347913F00C4FB1E /* fsystem_win32.cpp */,
 				CE21BEAB2208620300AED03F /* fsystem.cpp */,
 				CE21BEAD2208620300AED03F /* fsystem.hh */,
 				CE21BEB0220868B900AED03F /* print.cpp */,
@@ -192,15 +195,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4B19642221EB6C7007D4146 /* codecount.cpp in Sources */,
-				CE21BEAF2208620300AED03F /* fsystem_osx.mm in Sources */,
+				CE21BEAF2208620300AED03F /* fsystem_osx.cpp in Sources */,
 				B499A310221E72510060165A /* main.cpp in Sources */,
 				CE21BEB2220868B900AED03F /* print.cpp in Sources */,
 				CE1BAAAD234871B900DAD494 /* main.cpp in Sources */,
 				CE1BAAAC234871B900DAD494 /* main.mm in Sources */,
 				CE844339220D5874008D3F79 /* unicode.cpp in Sources */,
-				CE1BAAB82348A34B00DAD494 /* dynamic.cpp in Sources */,
+				CE2B47E62348D6DB001816D8 /* dynamic_win32.cpp in Sources */,
+				CE1BAAB82348A34B00DAD494 /* dynamic_osx.cpp in Sources */,
 				CE21BEAE2208620300AED03F /* fsystem.cpp in Sources */,
-				CE4B65D32347913F00C4FB1E /* fsystem_win32.cc in Sources */,
+				CE4B65D32347913F00C4FB1E /* fsystem_win32.cpp in Sources */,
 				CE21BEA322085E4B00AED03F /* mainctrl.cpp in Sources */,
 				CE21BEA622085E4B00AED03F /* stdlibs.cpp in Sources */,
 			);

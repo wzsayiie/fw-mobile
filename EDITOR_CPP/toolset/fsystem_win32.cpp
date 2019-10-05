@@ -6,7 +6,7 @@
 //directory operation:
 
 string getcwd() {
-    CHAR szBuffer[256] = "\0";
+    CHAR szBuffer[512] = "\0";
     GetCurrentDirectoryA(sizeof(szBuffer), szBuffer);
     return szBuffer;
 }
