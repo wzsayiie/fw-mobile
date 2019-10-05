@@ -22,14 +22,14 @@ string joinpath(const string &dir, const string &subitem);
 bool readf(const string &path, vector<char> *out);
 bool writef(const string &path, const vector<char> &content);
 
-//traverse path:
-struct scanit {
+//file item structure:
+struct fitem {
     string name;
-    bool isdir;
-    int deep;
+    bool isdir = false;
 };
 
-typedef function<void (const scanit &item)> scanfn;
+//traverse directory:
+typedef function<void (const fitem &it, int deep)> scanfn;
 
 void scan(const string &path, scanfn fn);
 
@@ -42,11 +42,6 @@ bool chdir(const string &dir);
 //file or directory exists:
 bool fexists(const string &path, bool *isdir);
 
-//subitems of directory:
-struct fitem {
-    string name;
-    bool isdir;
-};
-
+//get subitems of directory.
 //NOTE: hidden files and directories will be ignored.
 vector<fitem> subitems(const string &dir, bool *err);

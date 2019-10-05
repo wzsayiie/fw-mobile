@@ -171,9 +171,9 @@ void codecount(const vector<string> &paths) {
         spac(1);
         
         countdata stage;
-        scan(it, [&](const scanit &i) {
-            if (i.isdir) {ondir (i.name, i.deep, &stage);}
-            else /* - */ {onfile(i.name, i.deep, &stage);}
+        scan(it, [&](const fitem &i, int deep) {
+            if (i.isdir) {ondir (i.name, deep, &stage);}
+            else /* - */ {onfile(i.name, deep, &stage);}
         });
         logsum(stage);
         

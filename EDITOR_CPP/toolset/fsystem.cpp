@@ -129,23 +129,21 @@ bool writef(const string &path, const vector<char> &content) {
     return true;
 }
 
-//traverse path:
+//traverse directory:
 
 static void onfile(const string &name, int deep, scanfn fn) {
-    scanit self;
-    self.name = name;
-    self.isdir = false;
-    self.deep = deep;
-    fn(self);
+    fitem item;
+    item.name = name;
+    item.isdir = false;
+    fn(item, deep);
 }
 
 static void ondir(const string &name, int deep, scanfn fn) {
     //self:
-    scanit self;
-    self.name = name;
-    self.isdir = true;
-    self.deep = deep;
-    fn(self);
+    fitem item;
+    item.name = name;
+    item.isdir = true;
+    fn(item, deep);
     
     //subitems:
     if (!chdir(name)) {
