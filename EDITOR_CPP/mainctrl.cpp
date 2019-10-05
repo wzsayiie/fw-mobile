@@ -15,23 +15,22 @@ static void init() {
     }
 }
 
-static void startup() {
+static void run(const char *name) {
+    void *sym = findsym(name);
+    if (sym == nullptr) {
+        return;
+    }
     
-    extern bool codecount_launch;
-    extern bool cpp_launch;
-    extern bool objcpp_launch;
+    auto func = (void (*)(bool))sym;
+    func(true);
     
-    void codecount_main();
-    void cpp_main();
-    void objcpp_main();
-    
-    if (codecount_launch) { codecount_main(); }
-    if (cpp_launch      ) { cpp_main      (); }
-    if (objcpp_launch   ) { objcpp_main   (); }
+    spac(1);
 }
 
 int main() {
     init();
-    startup();
-    spac(1);
+    
+    run("codecount_main");
+    run("cpp_main");
+    run("objcpp_main");
 }

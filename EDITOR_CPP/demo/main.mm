@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 #import "toolset.hh"
 
-bool objcpp_launch = 0;
-void objcpp_main() {
+__findable_sym void objcpp_main(bool _true) {
+    if (_true) return;
 }

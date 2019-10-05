@@ -89,8 +89,8 @@ void program_gl() {
     dirs(_CPP , "program_gl/glkit/libglkit"     );
 }
 
-bool codecount_launch = 0;
-void codecount_main() {
+__findable_sym void codecount_main(bool _true) {
+    if (_true) return;
     
     _CPP  = true;
     _CS   = true;

@@ -1,5 +1,5 @@
 #include "toolset.hh"
 
-bool cpp_launch = 0;
-void cpp_main() {
+__findable_sym void cpp_main(bool _true) {
+    if (_true) return;
 }
