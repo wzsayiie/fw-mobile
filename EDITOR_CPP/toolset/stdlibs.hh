@@ -1,16 +1,21 @@
 #pragma once
 
-#include <cstdint>
+//stream io:
 #include <cstdio>
-#include <cstring>
 
+//types:
+#include <cstdint>
+#include <cstring>
+#include <functional>
+
+//collections:
 #include <map>
 #include <set>
 #include <string>
 #include <vector>
 
-#include <functional>
-
+//algorithm:
 #include <algorithm>
 
+//using namespace std default.
 using namespace std;

@@ -1,4 +1,4 @@
-#include "utility.hh"
+#include "toolset.hh"
 
 static void init() {
 
@@ -9,9 +9,9 @@ static void init() {
     if (pos != string::npos) {
         string dir = path.substr(0, pos + root.size());
         chdir(dir);
-        closeto.log("work path: %s", dir.c_str());
+        closeto.i("work path: %s", dir.c_str());
     } else {
-        closeto.log("failed to change the path");
+        closeto.i("failed to change the path");
     }
 }
 
@@ -33,5 +33,5 @@ static void startup() {
 int main() {
     init();
     startup();
-    medi(1);
+    spac(1);
 }

@@ -36,10 +36,10 @@ developer can use them to edit source files and project files.
 
 * EDITOR_CPP/
 * EDITOR_CPP_OSX/
-* EDITOR_CPP_WINDOWS/
+* EDITOR_CPP_WIN32/
 * EDITOR_CS/
 * EDITOR_CS_OSX/
-* EDITOR_CS_WINDOWS/
+* EDITOR_CS_WIN32/
 
 These scripts traverse headers and create new homonymic headers
 which reference former to *GENERATED_HEADERS/*.

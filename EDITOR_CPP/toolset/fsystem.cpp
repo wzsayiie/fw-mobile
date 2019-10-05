@@ -1,4 +1,6 @@
-#include "file.hh"
+#include "fsystem.hh"
+
+//path string operation:
 
 static string readpitem(const char **ptr) {
     while (**ptr == pathdiv) {
@@ -37,7 +39,7 @@ vector<string> splitpath(const string &path) {
         }
     }
     
-    //if is root
+    //is root path?
     if (!path.empty() && path[0] == pathdiv) {
         char div[] = { pathdiv, '\0' };
         if (!items.empty()) {
@@ -71,22 +73,44 @@ string dirname(const string &path) {
     return dir;
 }
 
+string joinpath(const string &dir, const string &subitem) {
+    if (dir.empty()) {
+        return subitem;
+    }
+    
+    if (subitem.empty()) {
+        return dir;
+    }
+    
+    string gen = dir;
+    if (gen.back() != pathdiv) {
+        gen.append(1, pathdiv);
+    }
+    gen.append(subitem);
+    
+    return gen;
+}
+
+//read and write file:
+
 bool readf(const string &path, vector<char> *out) {
     if (path.empty() || out == nullptr) {
         return false;
     }
     
+    out->clear();
+    
     FILE *file = fopen(path.c_str(), "rb");
     if (file == nullptr) {
         return false;
     }
-    
     while (!feof(file)) {
-        char buffer[1024];
-        size_t len = fread(buffer, 1, sizeof(buffer), file);
-        out->insert(out->end(), buffer, buffer + len);
+        char buf[1024];
+        size_t len = fread(buf, 1, sizeof(buf), file);
+        out->insert(out->end(), buf, buf + len);
     }
     fclose(file);
+    
     return true;
 }
 
@@ -99,11 +123,13 @@ bool writef(const string &path, const vector<char> &content) {
     if (file == nullptr) {
         return false;
     }
-    
     fwrite(content.data(), 1, content.size(), file);
     fclose(file);
+    
     return true;
 }
+
+//traverse path:
 
 static void onfile(const string &name, int deep, scanfn fn) {
     scanit self;
@@ -114,14 +140,14 @@ static void onfile(const string &name, int deep, scanfn fn) {
 }
 
 static void ondir(const string &name, int deep, scanfn fn) {
-    //self
+    //self:
     scanit self;
     self.name = name;
     self.isdir = true;
     self.deep = deep;
     fn(self);
     
-    //subitems
+    //subitems:
     if (!chdir(name)) {
         return;
     }
@@ -151,6 +177,7 @@ void scan(const string &path, scanfn fn) {
         string parent = dirname(path);
         string name = basename(path);
         chdir(parent);
+        
         if (isdir) {
             ondir(name, 0, fn);
         } else {
