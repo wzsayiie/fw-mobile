@@ -171,13 +171,15 @@ void codecount(const vector<string> &paths) {
         spac(1);
         
         countdata stage;
-        scan(it, [&](const fitem &i, int deep) {
+        bool okay = scan(it, [&](const fitem &i, int deep) {
             if (i.isdir) {ondir (i.name, deep, &stage);}
-            else /* - */ {onfile(i.name, deep, &stage);}
+            else/*file*/ {onfile(i.name, deep, &stage);}
         });
-        logsum(stage);
         
-        global += stage;
+        if (okay) {
+            logsum(stage);
+            global += stage;
+        }
     }
     if (paths.size() > 1) {
         spac(1).i("total:");

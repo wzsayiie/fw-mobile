@@ -160,14 +160,14 @@ static void ondir(const string &name, int deep, scanfn fn) {
     chdir("..");
 }
 
-void scan(const string &path, scanfn fn) {
+bool scan(const string &path, scanfn fn) {
     if (path.empty() || fn == nullptr) {
-        return;
+        return false;
     }
     
     bool isdir = false;
     if (!fexists(path, &isdir)) {
-        return;
+        return false;
     }
     
     string origin = getcwd();
@@ -183,4 +183,6 @@ void scan(const string &path, scanfn fn) {
         }
     }
     chdir(origin);
+    
+    return true;
 }

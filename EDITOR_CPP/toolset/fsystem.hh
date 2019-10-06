@@ -31,7 +31,8 @@ struct fitem {
 //traverse directory:
 typedef function<void (const fitem &it, int deep)> scanfn;
 
-void scan(const string &path, scanfn fn);
+//if $path exsits and $fn is not null, return true; else return false.
+bool scan(const string &path, scanfn fn);
 
 //PLATFORM RELATED:
 
