@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Reflection;
 using System.IO;
 using System;
 
@@ -6,34 +7,50 @@ class Program
 {
     static void Initialize()
     {
-        string rootDirectory = "fw-mobile";
+        StackTrace stackTrace = new StackTrace(new StackFrame(true));
+        StackFrame stackFrame = stackTrace.GetFrame(0);
+        string     allPath    = stackFrame.GetFileName();
 
-        StackTrace trace = new StackTrace(new StackFrame(true));
-        StackFrame frame = trace.GetFrame(0);
-        string fileName = frame.GetFileName();
+        string workDirName = "fw-mobile";
 
-        int rootBegin = fileName.IndexOf(rootDirectory, StringComparison.Ordinal);
-        if (rootBegin != -1)
+        int begin = allPath.IndexOf(workDirName, StringComparison.Ordinal);
+        if (begin == -1)
         {
-            string rootPath = fileName.Substring(0, rootBegin + rootDirectory.Length);
-            Directory.SetCurrentDirectory(rootPath);
-            L.ContinueLast.Write("work directory: {0}", rootPath);
+            Terminal.WriteText("failed to find target directory");
+            Terminal.Spac(1);
+            return;
         }
-        else
+
+        string workDirPath = allPath.Substring(0, begin + workDirName.Length);
+        Directory.SetCurrentDirectory(workDirPath);
+
+        Terminal.WriteText("work path: {0}", workDirPath);
+        Terminal.Spac(1);
+    }
+
+    static void Run(string clazz, string method)
+    {
+        try
         {
-            L.ContinueLast.Write("FAILED TO CHANGE DIRECTORY");
+            Type type = Type.GetType(clazz);
+
+            BindingFlags flags = 0;
+            flags |= BindingFlags.InvokeMethod;
+            flags |= BindingFlags.Public;
+            flags |= BindingFlags.Static;
+
+            type.InvokeMember(method, flags, null, null, null);
+        }
+        catch (Exception)
+        {
+            Terminal.WriteLine("failed to invoke '{0}.{1}'", clazz, method);
         }
     }
 
     static void Main()
     {
         Initialize();
-        Execute();
-        L.SpaceLine(1);
-    }
 
-    static void Execute()
-    {
-        if (Demo.Enabled) { Demo.Entry(); }
+        Run("Demo", "Entry");
     }
 }

@@ -33,12 +33,12 @@
     <Compile Include="..\EDITOR_CS\Program.cs">
       <Link>Program.cs</Link>
     </Compile>
-    <Compile Include="..\EDITOR_CS\Utility\L.cs">
-      <Link>Utility\L.cs</Link>
+    <Compile Include="..\EDITOR_CS\Toolset\Terminal.cs">
+      <Link>Toolset\Terminal.cs</Link>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utility\" />
+    <Compile Include="..\EDITOR_CS\Toolset\L.cs">
+      <Link>Toolset\L.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
