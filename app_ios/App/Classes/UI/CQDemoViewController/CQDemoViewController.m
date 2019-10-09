@@ -60,7 +60,7 @@ static NSString *const CQDemoViewControllerCellID = @"Cell";
     CQDemoViewControllerDataRow *row = [[CQDemoViewControllerDataRow alloc] init];
     row.text = rowText;
     row.action = [NSValue valueWithPointer:action];
-    [self.dataSource addObject:row];
+    [self.dataSource safeAddObject:row];
     
     [self loadTableViewIfNeeded];
     [self.tableView reloadData];

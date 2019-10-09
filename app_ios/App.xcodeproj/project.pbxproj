@@ -63,7 +63,7 @@
 		B463414D2333292B00383E34 /* gamelowroot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B46341482333292B00383E34 /* gamelowroot.cpp */; };
 		B463414E2333292B00383E34 /* luacontrol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B463414A2333292B00383E34 /* luacontrol.cpp */; };
 		B467ECE1231000100045E2DC /* NSString+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B467ECE0231000100045E2DC /* NSString+CQ.m */; };
-		B467ECE423100B090045E2DC /* NSMutableDictionary+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B467ECE323100B090045E2DC /* NSMutableDictionary+CQ.m */; };
+		B467ECE423100B090045E2DC /* NSMutableCollections+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B467ECE323100B090045E2DC /* NSMutableCollections+CQ.m */; };
 		B475C169230100A300ED7BD3 /* NSNotificationCenter+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B475C165230100A200ED7BD3 /* NSNotificationCenter+CQ.m */; };
 		B475C16A230100A300ED7BD3 /* CQGCD.m in Sources */ = {isa = PBXBuildFile; fileRef = B475C166230100A200ED7BD3 /* CQGCD.m */; };
 		B4B9D32022278D4E00B35E72 /* liblua.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B9D31F22278D4D00B35E72 /* liblua.a */; };
@@ -238,8 +238,8 @@
 		B463414A2333292B00383E34 /* luacontrol.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = luacontrol.cpp; sourceTree = "<group>"; };
 		B467ECDF231000100045E2DC /* NSString+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CQ.h"; sourceTree = "<group>"; };
 		B467ECE0231000100045E2DC /* NSString+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CQ.m"; sourceTree = "<group>"; };
-		B467ECE223100B090045E2DC /* NSMutableDictionary+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+CQ.h"; sourceTree = "<group>"; };
-		B467ECE323100B090045E2DC /* NSMutableDictionary+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+CQ.m"; sourceTree = "<group>"; };
+		B467ECE223100B090045E2DC /* NSMutableCollections+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableCollections+CQ.h"; sourceTree = "<group>"; };
+		B467ECE323100B090045E2DC /* NSMutableCollections+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableCollections+CQ.m"; sourceTree = "<group>"; };
 		B475C165230100A200ED7BD3 /* NSNotificationCenter+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+CQ.m"; sourceTree = "<group>"; };
 		B475C166230100A200ED7BD3 /* CQGCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQGCD.m; sourceTree = "<group>"; };
 		B475C167230100A200ED7BD3 /* CQGCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQGCD.h; sourceTree = "<group>"; };
@@ -347,8 +347,8 @@
 				B475C166230100A200ED7BD3 /* CQGCD.m */,
 				B42520FF22842AD2004FA04B /* NSBundle+CQ.h */,
 				B425210422842AD2004FA04B /* NSBundle+CQ.m */,
-				B467ECE223100B090045E2DC /* NSMutableDictionary+CQ.h */,
-				B467ECE323100B090045E2DC /* NSMutableDictionary+CQ.m */,
+				B467ECE223100B090045E2DC /* NSMutableCollections+CQ.h */,
+				B467ECE323100B090045E2DC /* NSMutableCollections+CQ.m */,
 				B475C168230100A300ED7BD3 /* NSNotificationCenter+CQ.h */,
 				B475C165230100A200ED7BD3 /* NSNotificationCenter+CQ.m */,
 				B467ECDF231000100045E2DC /* NSString+CQ.h */,
@@ -1077,7 +1077,7 @@
 				B4411569231CB89C00053BD7 /* GameAppDelegate.m in Sources */,
 				B425210922842AD3004FA04B /* NSBundle+CQ.m in Sources */,
 				B441155C231CB83D00053BD7 /* cqevent.cpp in Sources */,
-				B467ECE423100B090045E2DC /* NSMutableDictionary+CQ.m in Sources */,
+				B467ECE423100B090045E2DC /* NSMutableCollections+CQ.m in Sources */,
 				CEEB261C2300655C001FD8D6 /* CQNetStatusListener.m in Sources */,
 				B44310882321FBED00FA6720 /* ContentViewController.m in Sources */,
 				B4411555231CB83D00053BD7 /* cqresponder.cpp in Sources */,

@@ -33,7 +33,7 @@
 - (void)handleRequestProducts {
     
     NSMutableSet<NSString *> *identifiers = [NSMutableSet set];
-    //[identifiers addObject:@""];
+    //[identifiers safeAddObject:@""];
     
     if (identifiers.count == 0) {
         E(@"not specify identifers of product need to request");
@@ -101,7 +101,7 @@
             default:;
         }
         if (f) {
-            [finishedTransactions addObject:t];
+            [finishedTransactions safeAddObject:t];
         }
     }
     for (SKPaymentTransaction *transaction in finishedTransactions) {

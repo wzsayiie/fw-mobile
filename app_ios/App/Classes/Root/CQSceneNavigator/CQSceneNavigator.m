@@ -274,7 +274,7 @@ NSString *const CQSceneStyleFloat = @"CQSceneStyleFloat";
             item.launch = number.boolValue;
         }
         
-        [itemList addObject:item];
+        [itemList safeAddObject:item];
     }
     return itemList;
 }
@@ -303,9 +303,9 @@ NSString *const CQSceneStyleFloat = @"CQSceneStyleFloat";
         NSScanner *scanner = [NSScanner scannerWithString:item.value];
         int number = 0;
         if ([scanner scanInt:&number] && scanner.isAtEnd) {
-            [query setObject:@(number) forKey:item.name];
+            [query safeSetObject:@(number) forKey:item.name];
         } else {
-            [query setObject:item.value forKey:item.name];
+            [query safeSetObject:item.value forKey:item.name];
         }
     }
     
