@@ -3,14 +3,14 @@
 #import <arpa/inet.h>
 #import <ifaddrs.h>
 
-cq_define_s(CQNotif_NetStatusChanged);
-cq_define_s(CQNotif_NetStatusChanged_Int_PreferredStatus);
-cq_define_s(CQNotif_NetStatusChanged_Bol_WWANAvailable);
-cq_define_s(CQNotif_NetStatusChanged_Bol_WiFiAvailable);
-cq_define_s(CQNotif_NetStatusChanged_Str_WWANIPv4);
-cq_define_s(CQNotif_NetStatusChanged_Str_WiFiIPv4);
-cq_define_s(CQNotif_NetStatusChanged_Str_WWANIPv6LinkLocal);
-cq_define_s(CQNotif_NetStatusChanged_Str_WiFiIPv6LinkLocal);
+CQ_DEFINE_S(CQNotif_NetStatusChanged);
+CQ_DEFINE_S(CQNotif_NetStatusChanged_Int_PreferredStatus);
+CQ_DEFINE_S(CQNotif_NetStatusChanged_Bol_WWANAvailable);
+CQ_DEFINE_S(CQNotif_NetStatusChanged_Bol_WiFiAvailable);
+CQ_DEFINE_S(CQNotif_NetStatusChanged_Str_WWANIPv4);
+CQ_DEFINE_S(CQNotif_NetStatusChanged_Str_WiFiIPv4);
+CQ_DEFINE_S(CQNotif_NetStatusChanged_Str_WWANIPv6LinkLocal);
+CQ_DEFINE_S(CQNotif_NetStatusChanged_Str_WiFiIPv6LinkLocal);
 
 NSString *CQStringFromNetStatus(CQNetStatus status) {
     switch (status) {
@@ -38,7 +38,7 @@ NSString *CQStringFromNetStatus(CQNetStatus status) {
 - (BOOL)WiFiAvailable { return self.WiFiIPv4.length > 0 || self.WiFiIPv6LinkLocal.length > 0; }
 
 + (instancetype)sharedObject {
-    cq_shared_object(self);
+    CQ_SHARED_OBJECT(self);
 }
 
 - (instancetype)init {

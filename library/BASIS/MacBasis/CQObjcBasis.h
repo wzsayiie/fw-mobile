@@ -10,7 +10,7 @@ void CQSetCopyProperty  (id object, const void *key, id value);
 
 id CQGetProperty(id object, const void *key);
 
-#define cq_synthesize_strong(GET, SET)\
+#define CQ_SYNTHESIZE_STRONG(GET, SET)\
 /**/    - (id)GET {\
 /**/        return CQGetProperty(self, @selector(GET));\
 /**/    }\
@@ -18,7 +18,7 @@ id CQGetProperty(id object, const void *key);
 /**/        CQSetStrongProperty(self, @selector(GET), value);\
 /**/    }
 
-#define cq_synthesize_copy(GET, SET)\
+#define CQ_SYNTHESIZE_COPY(GET, SET)\
 /**/    - (id)GET {\
 /**/        return CQGetProperty(self, @selector(GET));\
 /**/    }\
@@ -28,15 +28,15 @@ id CQGetProperty(id object, const void *key);
 
 //NOTE: the inquiry of shared object is atomic.
 
-#define cq_shared_object(CLASS)\
+#define CQ_SHARED_OBJECT(CLASS)\
 /**/    do {\
 /**/        static id object = nil;\
-/**/        static dispatch_once_t token;\
+/**/        static dispatch_once_t token = 0;\
 /**/        dispatch_once(&token, ^{\
 /**/            object = [[CLASS alloc] init];\
 /**/        });\
 /**/        return object;\
 /**/    } while (0)
 
-#define cq_declare_s(string) extern NSString *const string
-#define cq_define_s(string) NSString *const string = @""#string
+#define CQ_DECLARE_S(string) extern NSString *const string
+#define CQ_DEFINE_S(string) NSString *const string = @""#string

@@ -2,7 +2,7 @@
 
 @implementation UIViewController (CQSceneNavigator)
 
-cq_synthesize_strong(sceneData, setSceneData)
+CQ_SYNTHESIZE_STRONG(sceneData, setSceneData)
 
 - (void)finishScene {
     [CQSceneNavigator.sharedObject finishScene:self];

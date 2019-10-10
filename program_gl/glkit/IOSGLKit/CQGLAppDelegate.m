@@ -5,7 +5,7 @@
 @implementation CQGLAppDelegate
 
 + (instancetype)sharedObject {
-    cq_shared_object(self);
+    CQ_SHARED_OBJECT(self);
 }
 
 static int64_t new_wnd(void) {

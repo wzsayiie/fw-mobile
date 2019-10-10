@@ -3,7 +3,7 @@
 @implementation CQHotfixManager
 
 + (instancetype)sharedObject {
-    cq_shared_object(self);
+    CQ_SHARED_OBJECT(self);
 }
 
 - (instancetype)init {

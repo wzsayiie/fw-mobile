@@ -1,13 +1,13 @@
 //
 
-cq_declare_s(CQNotif_NetStatusChanged);
-cq_declare_s(CQNotif_NetStatusChanged_Int_PreferredStatus);
-cq_declare_s(CQNotif_NetStatusChanged_Bol_WWANAvailable);
-cq_declare_s(CQNotif_NetStatusChanged_Bol_WiFiAvailable);
-cq_declare_s(CQNotif_NetStatusChanged_Str_WWANIPv4);
-cq_declare_s(CQNotif_NetStatusChanged_Str_WiFiIPv4);
-cq_declare_s(CQNotif_NetStatusChanged_Str_WWANIPv6LinkLocal);
-cq_declare_s(CQNotif_NetStatusChanged_Str_WiFiIPv6LinkLocal);
+CQ_DECLARE_S(CQNotif_NetStatusChanged);
+CQ_DECLARE_S(CQNotif_NetStatusChanged_Int_PreferredStatus);
+CQ_DECLARE_S(CQNotif_NetStatusChanged_Bol_WWANAvailable);
+CQ_DECLARE_S(CQNotif_NetStatusChanged_Bol_WiFiAvailable);
+CQ_DECLARE_S(CQNotif_NetStatusChanged_Str_WWANIPv4);
+CQ_DECLARE_S(CQNotif_NetStatusChanged_Str_WiFiIPv4);
+CQ_DECLARE_S(CQNotif_NetStatusChanged_Str_WWANIPv6LinkLocal);
+CQ_DECLARE_S(CQNotif_NetStatusChanged_Str_WiFiIPv6LinkLocal);
 
 typedef NS_ENUM(NSInteger, CQNetStatus) {
     CQNetStatusNone,
