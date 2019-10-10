@@ -91,6 +91,7 @@
 		CE299D402324055600B5FC98 /* cscomponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE299D3C2324055600B5FC98 /* cscomponent.cpp */; };
 		CE299D412324055600B5FC98 /* csbehaviour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE299D3F2324055600B5FC98 /* csbehaviour.cpp */; };
 		CE299D442324175A00B5FC98 /* csnode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE299D432324175A00B5FC98 /* csnode.cpp */; };
+		CE62C93E234F2B9200F94D97 /* UIColor+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = CE62C93D234F2B9200F94D97 /* UIColor+CQ.m */; };
 		CEA9857A233FC08000246B9E /* csmapfilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA9856E233FC07F00246B9E /* csmapfilter.cpp */; };
 		CEA9857B233FC08000246B9E /* csrenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA9856F233FC07F00246B9E /* csrenderer.cpp */; };
 		CEA9857C233FC08000246B9E /* cscollider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA98570233FC07F00246B9E /* cscollider.cpp */; };
@@ -292,6 +293,8 @@
 		CE299D3F2324055600B5FC98 /* csbehaviour.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csbehaviour.cpp; sourceTree = "<group>"; };
 		CE299D422324175A00B5FC98 /* csnode.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csnode.hh; sourceTree = "<group>"; };
 		CE299D432324175A00B5FC98 /* csnode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csnode.cpp; sourceTree = "<group>"; };
+		CE62C93C234F2B9200F94D97 /* UIColor+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CQ.h"; sourceTree = "<group>"; };
+		CE62C93D234F2B9200F94D97 /* UIColor+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CQ.m"; sourceTree = "<group>"; };
 		CEA9856E233FC07F00246B9E /* csmapfilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csmapfilter.cpp; sourceTree = "<group>"; };
 		CEA9856F233FC07F00246B9E /* csrenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csrenderer.cpp; sourceTree = "<group>"; };
 		CEA98570233FC07F00246B9E /* cscollider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cscollider.cpp; sourceTree = "<group>"; };
@@ -353,6 +356,8 @@
 				B475C165230100A200ED7BD3 /* NSNotificationCenter+CQ.m */,
 				B467ECDF231000100045E2DC /* NSString+CQ.h */,
 				B467ECE0231000100045E2DC /* NSString+CQ.m */,
+				CE62C93C234F2B9200F94D97 /* UIColor+CQ.h */,
+				CE62C93D234F2B9200F94D97 /* UIColor+CQ.m */,
 				B425210122842AD2004FA04B /* UIDevice+CQ.h */,
 				B425210522842AD2004FA04B /* UIDevice+CQ.m */,
 				B42520FE22842AD2004FA04B /* UIView+CQ.h */,
@@ -1115,6 +1120,7 @@
 				CE299D402324055600B5FC98 /* cscomponent.cpp in Sources */,
 				B44310892321FBED00FA6720 /* DocViewController.m in Sources */,
 				B463414C2333292B00383E34 /* entry.cpp in Sources */,
+				CE62C93E234F2B9200F94D97 /* UIColor+CQ.m in Sources */,
 				B441155F231CB83D00053BD7 /* cqtouchesevent.cpp in Sources */,
 				B4411591231D0B5700053BD7 /* cqwnd.cpp in Sources */,
 				B425210A22842AD3004FA04B /* UIDevice+CQ.m in Sources */,
