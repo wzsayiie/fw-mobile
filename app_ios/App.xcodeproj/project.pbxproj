@@ -56,7 +56,6 @@
 		B45C1BB121A02B19007CB374 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B45C1B7721A02B19007CB374 /* LaunchScreen.storyboard */; };
 		B45C1BB221A02B19007CB374 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B45C1B7821A02B19007CB374 /* Assets.xcassets */; };
 		B45C1BB821A02B19007CB374 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B45C1B8E21A02B19007CB374 /* AppDelegate.m */; };
-		B45C1BD021A034C0007CB374 /* DailyDemoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B45C1BCF21A034C0007CB374 /* DailyDemoController.xib */; };
 		B463413623322F2300383E34 /* CSGAMEKIT_PORT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B463413523322F2300383E34 /* CSGAMEKIT_PORT.cpp */; };
 		B463414B2333292B00383E34 /* luasource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B46341462333292B00383E34 /* luasource.cpp */; };
 		B463414C2333292B00383E34 /* entry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B46341472333292B00383E34 /* entry.cpp */; };
@@ -70,10 +69,7 @@
 		B4C0584B2338AE98009D71BA /* cslualibgamekit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4C058492338AE98009D71BA /* cslualibgamekit.cpp */; };
 		B4C7448E22BCAE5100483834 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4C7448C22BCAE5100483834 /* InfoPlist.strings */; };
 		B4CFD97321C7475000FFF4CF /* IAPDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96021C7475000FFF4CF /* IAPDemoController.m */; };
-		B4CFD97421C7475000FFF4CF /* DailyDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96421C7475000FFF4CF /* DailyDemoController.m */; };
 		B4CFD97A21C75AB300FFF4CF /* IAPDemoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4CFD97921C75AB300FFF4CF /* IAPDemoController.xib */; };
-		B4D3B3922260C15B007D3E4A /* BlankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D3B3902260C15B007D3E4A /* BlankViewController.m */; };
-		B4D3B3952260C21D007D3E4A /* BlankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D3B3942260C21D007D3E4A /* BlankViewController.xib */; };
 		B4D3B39A2260C88E007D3E4A /* FloatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D3B3982260C88E007D3E4A /* FloatViewController.m */; };
 		B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DCD87B21F17DAE0090BFBB /* UserIdentity.m */; };
 		B4DCD87F21F17DAE0090BFBB /* UserSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DCD87C21F17DAE0090BFBB /* UserSetting.m */; };
@@ -92,6 +88,11 @@
 		CE299D412324055600B5FC98 /* csbehaviour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE299D3F2324055600B5FC98 /* csbehaviour.cpp */; };
 		CE299D442324175A00B5FC98 /* csnode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE299D432324175A00B5FC98 /* csnode.cpp */; };
 		CE62C93E234F2B9200F94D97 /* UIColor+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = CE62C93D234F2B9200F94D97 /* UIColor+CQ.m */; };
+		CE749FAA2351C7D600E4FCEE /* DailyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE749FA82351C7D600E4FCEE /* DailyViewController.m */; };
+		CE749FB12351C9E200E4FCEE /* BlankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE749FAC2351C9E100E4FCEE /* BlankViewController.m */; };
+		CE749FB22351C9E200E4FCEE /* ActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE749FB02351C9E100E4FCEE /* ActionViewController.m */; };
+		CE749FB72351CB9B00E4FCEE /* ActionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE749FB62351CB9B00E4FCEE /* ActionViewController.xib */; };
+		CE749FB92351CD3800E4FCEE /* BlankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE749FB82351CD3800E4FCEE /* BlankViewController.xib */; };
 		CEA9857A233FC08000246B9E /* csmapfilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA9856E233FC07F00246B9E /* csmapfilter.cpp */; };
 		CEA9857B233FC08000246B9E /* csrenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA9856F233FC07F00246B9E /* csrenderer.cpp */; };
 		CEA9857C233FC08000246B9E /* cscollider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA98570233FC07F00246B9E /* cscollider.cpp */; };
@@ -228,7 +229,6 @@
 		B45C1B7821A02B19007CB374 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B45C1B8D21A02B19007CB374 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B45C1B8E21A02B19007CB374 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B45C1BCF21A034C0007CB374 /* DailyDemoController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyDemoController.xib; sourceTree = "<group>"; };
 		B463413523322F2300383E34 /* CSGAMEKIT_PORT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSGAMEKIT_PORT.cpp; sourceTree = "<group>"; };
 		B46341442333292B00383E34 /* gamelowroot.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = gamelowroot.hh; sourceTree = "<group>"; };
 		B46341452333292B00383E34 /* luasource.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = luasource.hh; sourceTree = "<group>"; };
@@ -252,12 +252,7 @@
 		B4C7448F22BCAE5600483834 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		B4CFD96021C7475000FFF4CF /* IAPDemoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPDemoController.m; sourceTree = "<group>"; };
 		B4CFD96121C7475000FFF4CF /* IAPDemoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPDemoController.h; sourceTree = "<group>"; };
-		B4CFD96321C7475000FFF4CF /* DailyDemoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyDemoController.h; sourceTree = "<group>"; };
-		B4CFD96421C7475000FFF4CF /* DailyDemoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyDemoController.m; sourceTree = "<group>"; };
 		B4CFD97921C75AB300FFF4CF /* IAPDemoController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IAPDemoController.xib; sourceTree = "<group>"; };
-		B4D3B3902260C15B007D3E4A /* BlankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlankViewController.m; sourceTree = "<group>"; };
-		B4D3B3912260C15B007D3E4A /* BlankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlankViewController.h; sourceTree = "<group>"; };
-		B4D3B3942260C21D007D3E4A /* BlankViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlankViewController.xib; sourceTree = "<group>"; };
 		B4D3B3982260C88E007D3E4A /* FloatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatViewController.m; sourceTree = "<group>"; };
 		B4D3B3992260C88E007D3E4A /* FloatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatViewController.h; sourceTree = "<group>"; };
 		B4DCD87A21F17DAE0090BFBB /* UserSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSetting.h; sourceTree = "<group>"; };
@@ -295,6 +290,14 @@
 		CE299D432324175A00B5FC98 /* csnode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csnode.cpp; sourceTree = "<group>"; };
 		CE62C93C234F2B9200F94D97 /* UIColor+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CQ.h"; sourceTree = "<group>"; };
 		CE62C93D234F2B9200F94D97 /* UIColor+CQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CQ.m"; sourceTree = "<group>"; };
+		CE749FA82351C7D600E4FCEE /* DailyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyViewController.m; sourceTree = "<group>"; };
+		CE749FA92351C7D600E4FCEE /* DailyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyViewController.h; sourceTree = "<group>"; };
+		CE749FAC2351C9E100E4FCEE /* BlankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlankViewController.m; sourceTree = "<group>"; };
+		CE749FAD2351C9E100E4FCEE /* BlankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlankViewController.h; sourceTree = "<group>"; };
+		CE749FAF2351C9E100E4FCEE /* ActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionViewController.h; sourceTree = "<group>"; };
+		CE749FB02351C9E100E4FCEE /* ActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionViewController.m; sourceTree = "<group>"; };
+		CE749FB62351CB9B00E4FCEE /* ActionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActionViewController.xib; sourceTree = "<group>"; };
+		CE749FB82351CD3800E4FCEE /* BlankViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlankViewController.xib; sourceTree = "<group>"; };
 		CEA9856E233FC07F00246B9E /* csmapfilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csmapfilter.cpp; sourceTree = "<group>"; };
 		CEA9856F233FC07F00246B9E /* csrenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csrenderer.cpp; sourceTree = "<group>"; };
 		CEA98570233FC07F00246B9E /* cscollider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cscollider.cpp; sourceTree = "<group>"; };
@@ -702,9 +705,8 @@
 		B45C1B7A21A02B19007CB374 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				B4D3B38F2260C15B007D3E4A /* BlankViewController */,
 				B425212722842C8E004FA04B /* CQDemoViewController */,
-				B4CFD96221C7475000FFF4CF /* DailyDemoController */,
+				CE749FA72351C7D600E4FCEE /* DailyViewController */,
 				B443107C2321FBED00FA6720 /* DocViewController */,
 				B4D3B3972260C88E007D3E4A /* FloatViewController */,
 				B4CFD95F21C7475000FFF4CF /* IAPDemoController */,
@@ -744,21 +746,12 @@
 		B45C1BCD21A0349B007CB374 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				B4D3B3932260C209007D3E4A /* BlankViewController */,
-				B45C1BCE21A0349B007CB374 /* DailyDemoController */,
+				CE749FB32351CB7400E4FCEE /* DailyViewController */,
 				B443108C2321FE5400FA6720 /* DocViewController */,
 				B44310972322072F00FA6720 /* FloatViewController */,
 				B4CFD97821C75A0600FFF4CF /* IAPDemoController */,
 			);
 			path = UI;
-			sourceTree = "<group>";
-		};
-		B45C1BCE21A0349B007CB374 /* DailyDemoController */ = {
-			isa = PBXGroup;
-			children = (
-				B45C1BCF21A034C0007CB374 /* DailyDemoController.xib */,
-			);
-			path = DailyDemoController;
 			sourceTree = "<group>";
 		};
 		B46341432333292B00383E34 /* usergame */ = {
@@ -820,38 +813,12 @@
 			path = IAPDemoController;
 			sourceTree = "<group>";
 		};
-		B4CFD96221C7475000FFF4CF /* DailyDemoController */ = {
-			isa = PBXGroup;
-			children = (
-				B4CFD96321C7475000FFF4CF /* DailyDemoController.h */,
-				B4CFD96421C7475000FFF4CF /* DailyDemoController.m */,
-			);
-			path = DailyDemoController;
-			sourceTree = "<group>";
-		};
 		B4CFD97821C75A0600FFF4CF /* IAPDemoController */ = {
 			isa = PBXGroup;
 			children = (
 				B4CFD97921C75AB300FFF4CF /* IAPDemoController.xib */,
 			);
 			path = IAPDemoController;
-			sourceTree = "<group>";
-		};
-		B4D3B38F2260C15B007D3E4A /* BlankViewController */ = {
-			isa = PBXGroup;
-			children = (
-				B4D3B3912260C15B007D3E4A /* BlankViewController.h */,
-				B4D3B3902260C15B007D3E4A /* BlankViewController.m */,
-			);
-			path = BlankViewController;
-			sourceTree = "<group>";
-		};
-		B4D3B3932260C209007D3E4A /* BlankViewController */ = {
-			isa = PBXGroup;
-			children = (
-				B4D3B3942260C21D007D3E4A /* BlankViewController.xib */,
-			);
-			path = BlankViewController;
 			sourceTree = "<group>";
 		};
 		B4D3B3972260C88E007D3E4A /* FloatViewController */ = {
@@ -945,6 +912,60 @@
 				B4F7AE1A2329DF9500E675A8 /* cstransform.hh */,
 			);
 			path = cppgamekit;
+			sourceTree = "<group>";
+		};
+		CE749FA72351C7D600E4FCEE /* DailyViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CE749FA92351C7D600E4FCEE /* DailyViewController.h */,
+				CE749FA82351C7D600E4FCEE /* DailyViewController.m */,
+				CE749FAE2351C9E100E4FCEE /* ActionViewController */,
+				CE749FAB2351C9E100E4FCEE /* BlankViewController */,
+			);
+			path = DailyViewController;
+			sourceTree = "<group>";
+		};
+		CE749FAB2351C9E100E4FCEE /* BlankViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CE749FAD2351C9E100E4FCEE /* BlankViewController.h */,
+				CE749FAC2351C9E100E4FCEE /* BlankViewController.m */,
+			);
+			path = BlankViewController;
+			sourceTree = "<group>";
+		};
+		CE749FAE2351C9E100E4FCEE /* ActionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CE749FAF2351C9E100E4FCEE /* ActionViewController.h */,
+				CE749FB02351C9E100E4FCEE /* ActionViewController.m */,
+			);
+			path = ActionViewController;
+			sourceTree = "<group>";
+		};
+		CE749FB32351CB7400E4FCEE /* DailyViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CE749FB52351CB7400E4FCEE /* ActionViewController */,
+				CE749FB42351CB7400E4FCEE /* BlankViewController */,
+			);
+			path = DailyViewController;
+			sourceTree = "<group>";
+		};
+		CE749FB42351CB7400E4FCEE /* BlankViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CE749FB82351CD3800E4FCEE /* BlankViewController.xib */,
+			);
+			path = BlankViewController;
+			sourceTree = "<group>";
+		};
+		CE749FB52351CB7400E4FCEE /* ActionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CE749FB62351CB9B00E4FCEE /* ActionViewController.xib */,
+			);
+			path = ActionViewController;
 			sourceTree = "<group>";
 		};
 		CEEB26192300655C001FD8D6 /* CQNetStatusListener */ = {
@@ -1047,16 +1068,16 @@
 				B401E5C8226F3470002F65BF /* Resource.bundle in Resources */,
 				B45C1BB221A02B19007CB374 /* Assets.xcassets in Resources */,
 				B44310992322074200FA6720 /* FloatViewController.xib in Resources */,
-				B45C1BD021A034C0007CB374 /* DailyDemoController.xib in Resources */,
 				B4431096232206C800FA6720 /* ToolbarViewConotroller.xib in Resources */,
 				B45C1BB121A02B19007CB374 /* LaunchScreen.storyboard in Resources */,
 				B4549AB722BCA2FE00781D3C /* L.strings in Resources */,
 				B416F18921A2CD630045FDF6 /* Scenes.plist in Resources */,
 				B4CFD97A21C75AB300FFF4CF /* IAPDemoController.xib in Resources */,
-				B4D3B3952260C21D007D3E4A /* BlankViewController.xib in Resources */,
 				B44310922322065A00FA6720 /* ContentViewController.xib in Resources */,
+				CE749FB92351CD3800E4FCEE /* BlankViewController.xib in Resources */,
 				B4C7448E22BCAE5100483834 /* InfoPlist.strings in Resources */,
 				B443108E2321FF8700FA6720 /* DocViewController.xib in Resources */,
+				CE749FB72351CB9B00E4FCEE /* ActionViewController.xib in Resources */,
 				B44310902322060800FA6720 /* AttachmentController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1075,7 +1096,6 @@
 				B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */,
 				B4411559231CB83D00053BD7 /* cqwindow.cpp in Sources */,
 				CE299D442324175A00B5FC98 /* csnode.cpp in Sources */,
-				B4CFD97421C7475000FFF4CF /* DailyDemoController.m in Sources */,
 				B44310872321FBED00FA6720 /* ToolbarViewController.m in Sources */,
 				B4411558231CB83D00053BD7 /* cqlayer.cpp in Sources */,
 				B4411592231D0B5700053BD7 /* cqopengl.cpp in Sources */,
@@ -1083,6 +1103,7 @@
 				B425210922842AD3004FA04B /* NSBundle+CQ.m in Sources */,
 				B441155C231CB83D00053BD7 /* cqevent.cpp in Sources */,
 				B467ECE423100B090045E2DC /* NSMutableCollections+CQ.m in Sources */,
+				CE749FB12351C9E200E4FCEE /* BlankViewController.m in Sources */,
 				CEEB261C2300655C001FD8D6 /* CQNetStatusListener.m in Sources */,
 				B44310882321FBED00FA6720 /* ContentViewController.m in Sources */,
 				B4411555231CB83D00053BD7 /* cqresponder.cpp in Sources */,
@@ -1095,7 +1116,6 @@
 				CE299D292323F15B00B5FC98 /* csgameobject.cpp in Sources */,
 				B441159D231D0DC100053BD7 /* csgamekitarche.cpp in Sources */,
 				B425212A22842C8E004FA04B /* CQDemoViewController.m in Sources */,
-				B4D3B3922260C15B007D3E4A /* BlankViewController.m in Sources */,
 				B441155D231CB83D00053BD7 /* cqapplication.cpp in Sources */,
 				CEA9857B233FC08000246B9E /* csrenderer.cpp in Sources */,
 				B443108A2321FBED00FA6720 /* AttachmentController.m in Sources */,
@@ -1131,6 +1151,7 @@
 				B4411590231D0B5700053BD7 /* cqglkitarche.cpp in Sources */,
 				B425210B22842AD3004FA04B /* UIViewController+CQ.m in Sources */,
 				B4F7AE1C2329DF9500E675A8 /* cstransform.cpp in Sources */,
+				CE749FB22351C9E200E4FCEE /* ActionViewController.m in Sources */,
 				B425212222842BE4004FA04B /* CQCrashListener.m in Sources */,
 				B443108B2321FBED00FA6720 /* TitlebarViewController.m in Sources */,
 				CEA9857E233FC08000246B9E /* csanimation.cpp in Sources */,
@@ -1138,6 +1159,7 @@
 				B4F7AE1F232A0CE500E675A8 /* csscenemanager.cpp in Sources */,
 				CE299D412324055600B5FC98 /* csbehaviour.cpp in Sources */,
 				B441155E231CB83D00053BD7 /* cqtouch.cpp in Sources */,
+				CE749FAA2351C7D600E4FCEE /* DailyViewController.m in Sources */,
 				B4411586231CBFD100053BD7 /* cqappkitarche.cpp in Sources */,
 				B425210822842AD3004FA04B /* UIView+CQ.m in Sources */,
 				B441152E231CB7EE00053BD7 /* CQGLViewController.m in Sources */,

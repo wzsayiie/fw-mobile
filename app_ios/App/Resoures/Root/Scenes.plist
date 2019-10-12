@@ -4,17 +4,9 @@
 <array>
 	<dict>
 		<key>address</key>
-		<string>apps://blank</string>
-		<key>controller</key>
-		<string>BlankViewController</string>
-		<key>style</key>
-		<string>stack</string>
-	</dict>
-	<dict>
-		<key>address</key>
 		<string>apps://daily</string>
 		<key>controller</key>
-		<string>DailyDemoController</string>
+		<string>DailyViewController</string>
 		<key>style</key>
 		<string>stack</string>
 		<key>launch</key>

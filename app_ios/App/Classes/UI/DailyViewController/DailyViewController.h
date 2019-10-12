@@ -1,0 +1,4 @@
+//
+
+@interface DailyViewController : UITabBarController
+@end

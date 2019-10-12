@@ -1,10 +1,10 @@
-#import "DailyDemoController.h"
+#import "ActionViewController.h"
 
-@interface DailyDemoController ()
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@interface ActionViewController ()
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 @end
 
-@implementation DailyDemoController
+@implementation ActionViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
