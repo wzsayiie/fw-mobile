@@ -1,4 +1,0 @@
-//
-
-@interface ToolbarViewController : UIViewController
-@end

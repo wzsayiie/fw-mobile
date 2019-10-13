@@ -1,4 +1,0 @@
-//
-
-@interface AttachmentController : UIViewController
-@end

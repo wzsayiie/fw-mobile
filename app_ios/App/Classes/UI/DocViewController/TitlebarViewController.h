@@ -1,4 +1,0 @@
-//
-
-@interface TitlebarViewController : UIViewController
-@end

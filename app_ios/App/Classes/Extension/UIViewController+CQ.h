@@ -2,8 +2,10 @@
 
 @interface UIViewController (CQ)
 
-- (void)addFillingSubviewWithController:(UIViewController *)childController;
+//NOTE: $view must be self.view or it's subview.
+- (void)safeView:(UIView *)view addChildController:(UIViewController *)controller;
 
-- (void)removeFillingSubviewAndController;
+- (void)safeAddChildController:(UIViewController *)controller;
+- (void)safeRemoveFromParentController;
 
 @end

@@ -10,9 +10,11 @@
 		<key>style</key>
 		<string>stack</string>
 		<key>launch</key>
-		<true/>
+		<false/>
 	</dict>
 	<dict>
+		<key>launch</key>
+		<true/>
 		<key>address</key>
 		<string>apps://doc</string>
 		<key>controller</key>

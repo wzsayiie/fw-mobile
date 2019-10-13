@@ -2,6 +2,8 @@
 #import <objc/runtime.h>
 #import "cqcbasis.h"
 
+//property synthesize:
+
 //it's not supported to associate a weak object to the other object.
 //OBJC_ASSOCIATION_ASSIGN holds wild pointer possibly.
 
@@ -26,7 +28,7 @@ id CQGetProperty(id object, const void *key);
 /**/        CQSetCopyProperty(self, @selector(GET), value);\
 /**/    }
 
-//NOTE: the inquiry of shared object is atomic.
+//shared singleton:
 
 #define CQ_SHARED_OBJECT(CLASS)\
 /**/    do {\
@@ -38,5 +40,11 @@ id CQGetProperty(id object, const void *key);
 /**/        return object;\
 /**/    } while (0)
 
+//string key:
+
 #define CQ_DECLARE_S(string) extern NSString *const string
 #define CQ_DEFINE_S(string) NSString *const string = @""#string
+
+//weak object:
+
+#define CQ_WEAK(NAME, VALUE) __weak typeof(VALUE) NAME = VALUE

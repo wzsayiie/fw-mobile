@@ -37,7 +37,7 @@ NSString *const CQSceneStyleFloat = @"CQSceneStyleFloat";
     self.stackNavigationController.view.backgroundColor = UIColor.whiteColor;
     self.stackNavigationController.delegate = self;
     self.stackNavigationController.interactivePopGestureRecognizer.delegate = self;
-    [self addFillingSubviewWithController:self.stackNavigationController];
+    [self safeAddChildController:self.stackNavigationController];
     
     //load configuration
     self.configuration = [self loadConfiguration];
@@ -125,7 +125,7 @@ NSString *const CQSceneStyleFloat = @"CQSceneStyleFloat";
     } else if (configurationItem.style == CQSceneStyleFloat) {
         
         I(@"show scene '%@'", newAddress);
-        [self addFillingSubviewWithController:controller];
+        [self safeAddChildController:controller];
     }
 }
 
@@ -154,7 +154,7 @@ NSString *const CQSceneStyleFloat = @"CQSceneStyleFloat";
             dataItem.response(dataItem.result);
         }
         I(@"remove scene '%@'", dataItem.address);
-        [viewController removeFillingSubviewAndController];
+        [viewController safeRemoveFromParentController];
         
     } else {
         

@@ -40,11 +40,11 @@
 		B4411591231D0B5700053BD7 /* cqwnd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B441158E231D0B5700053BD7 /* cqwnd.cpp */; };
 		B4411592231D0B5700053BD7 /* cqopengl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B441158F231D0B5700053BD7 /* cqopengl.cpp */; };
 		B441159D231D0DC100053BD7 /* csgamekitarche.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4411596231D0DC100053BD7 /* csgamekitarche.cpp */; };
-		B44310872321FBED00FA6720 /* ToolbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B443107E2321FBED00FA6720 /* ToolbarViewController.m */; };
+		B44310872321FBED00FA6720 /* ToolBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B443107E2321FBED00FA6720 /* ToolBarViewController.m */; };
 		B44310882321FBED00FA6720 /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44310822321FBED00FA6720 /* ContentViewController.m */; };
 		B44310892321FBED00FA6720 /* DocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44310842321FBED00FA6720 /* DocViewController.m */; };
-		B443108A2321FBED00FA6720 /* AttachmentController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44310852321FBED00FA6720 /* AttachmentController.m */; };
-		B443108B2321FBED00FA6720 /* TitlebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44310862321FBED00FA6720 /* TitlebarViewController.m */; };
+		B443108A2321FBED00FA6720 /* AttachViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44310852321FBED00FA6720 /* AttachViewController.m */; };
+		B443108B2321FBED00FA6720 /* TitleBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B44310862321FBED00FA6720 /* TitleBarViewController.m */; };
 		B443108E2321FF8700FA6720 /* DocViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B443108D2321FF8700FA6720 /* DocViewController.xib */; };
 		B44310902322060800FA6720 /* AttachmentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B443108F2322060800FA6720 /* AttachmentController.xib */; };
 		B44310922322065A00FA6720 /* ContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B44310912322065A00FA6720 /* ContentViewController.xib */; };
@@ -93,7 +93,6 @@
 		CE749FB22351C9E200E4FCEE /* ActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE749FB02351C9E100E4FCEE /* ActionViewController.m */; };
 		CE749FB72351CB9B00E4FCEE /* ActionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE749FB62351CB9B00E4FCEE /* ActionViewController.xib */; };
 		CE749FB92351CD3800E4FCEE /* BlankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE749FB82351CD3800E4FCEE /* BlankViewController.xib */; };
-		CE83C1D323536BE900336FF5 /* CQGhostView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE83C1D223536BE900336FF5 /* CQGhostView.m */; };
 		CEA9857A233FC08000246B9E /* csmapfilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA9856E233FC07F00246B9E /* csmapfilter.cpp */; };
 		CEA9857B233FC08000246B9E /* csrenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA9856F233FC07F00246B9E /* csrenderer.cpp */; };
 		CEA9857C233FC08000246B9E /* cscollider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA98570233FC07F00246B9E /* cscollider.cpp */; };
@@ -207,15 +206,15 @@
 		B4411596231D0DC100053BD7 /* csgamekitarche.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csgamekitarche.cpp; sourceTree = "<group>"; };
 		B4411597231D0DC100053BD7 /* csgamekitarche.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = csgamekitarche.h; sourceTree = "<group>"; };
 		B443107D2321FBED00FA6720 /* DocViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocViewController.h; sourceTree = "<group>"; };
-		B443107E2321FBED00FA6720 /* ToolbarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolbarViewController.m; sourceTree = "<group>"; };
+		B443107E2321FBED00FA6720 /* ToolBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolBarViewController.m; sourceTree = "<group>"; };
 		B443107F2321FBED00FA6720 /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
-		B44310802321FBED00FA6720 /* AttachmentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttachmentController.h; sourceTree = "<group>"; };
-		B44310812321FBED00FA6720 /* TitlebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitlebarViewController.h; sourceTree = "<group>"; };
+		B44310802321FBED00FA6720 /* AttachViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttachViewController.h; sourceTree = "<group>"; };
+		B44310812321FBED00FA6720 /* TitleBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleBarViewController.h; sourceTree = "<group>"; };
 		B44310822321FBED00FA6720 /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
-		B44310832321FBED00FA6720 /* ToolbarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolbarViewController.h; sourceTree = "<group>"; };
+		B44310832321FBED00FA6720 /* ToolBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolBarViewController.h; sourceTree = "<group>"; };
 		B44310842321FBED00FA6720 /* DocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocViewController.m; sourceTree = "<group>"; };
-		B44310852321FBED00FA6720 /* AttachmentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttachmentController.m; sourceTree = "<group>"; };
-		B44310862321FBED00FA6720 /* TitlebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitlebarViewController.m; sourceTree = "<group>"; };
+		B44310852321FBED00FA6720 /* AttachViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttachViewController.m; sourceTree = "<group>"; };
+		B44310862321FBED00FA6720 /* TitleBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleBarViewController.m; sourceTree = "<group>"; };
 		B443108D2321FF8700FA6720 /* DocViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocViewController.xib; sourceTree = "<group>"; };
 		B443108F2322060800FA6720 /* AttachmentController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AttachmentController.xib; sourceTree = "<group>"; };
 		B44310912322065A00FA6720 /* ContentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentViewController.xib; sourceTree = "<group>"; };
@@ -299,8 +298,6 @@
 		CE749FB02351C9E100E4FCEE /* ActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionViewController.m; sourceTree = "<group>"; };
 		CE749FB62351CB9B00E4FCEE /* ActionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActionViewController.xib; sourceTree = "<group>"; };
 		CE749FB82351CD3800E4FCEE /* BlankViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlankViewController.xib; sourceTree = "<group>"; };
-		CE83C1D123536BE900336FF5 /* CQGhostView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQGhostView.h; sourceTree = "<group>"; };
-		CE83C1D223536BE900336FF5 /* CQGhostView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQGhostView.m; sourceTree = "<group>"; };
 		CEA9856E233FC07F00246B9E /* csmapfilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csmapfilter.cpp; sourceTree = "<group>"; };
 		CEA9856F233FC07F00246B9E /* csrenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csrenderer.cpp; sourceTree = "<group>"; };
 		CEA98570233FC07F00246B9E /* cscollider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cscollider.cpp; sourceTree = "<group>"; };
@@ -597,16 +594,16 @@
 		B443107C2321FBED00FA6720 /* DocViewController */ = {
 			isa = PBXGroup;
 			children = (
-				B44310802321FBED00FA6720 /* AttachmentController.h */,
-				B44310852321FBED00FA6720 /* AttachmentController.m */,
+				B44310802321FBED00FA6720 /* AttachViewController.h */,
+				B44310852321FBED00FA6720 /* AttachViewController.m */,
 				B443107F2321FBED00FA6720 /* ContentViewController.h */,
 				B44310822321FBED00FA6720 /* ContentViewController.m */,
 				B443107D2321FBED00FA6720 /* DocViewController.h */,
 				B44310842321FBED00FA6720 /* DocViewController.m */,
-				B44310812321FBED00FA6720 /* TitlebarViewController.h */,
-				B44310862321FBED00FA6720 /* TitlebarViewController.m */,
-				B44310832321FBED00FA6720 /* ToolbarViewController.h */,
-				B443107E2321FBED00FA6720 /* ToolbarViewController.m */,
+				B44310812321FBED00FA6720 /* TitleBarViewController.h */,
+				B44310862321FBED00FA6720 /* TitleBarViewController.m */,
+				B44310832321FBED00FA6720 /* ToolBarViewController.h */,
+				B443107E2321FBED00FA6720 /* ToolBarViewController.m */,
 			);
 			path = DocViewController;
 			sourceTree = "<group>";
@@ -709,7 +706,6 @@
 			isa = PBXGroup;
 			children = (
 				B425212722842C8E004FA04B /* CQDemoViewController */,
-				CE83C1D023536BE900336FF5 /* CQGhostView */,
 				CE749FA72351C7D600E4FCEE /* DailyViewController */,
 				B443107C2321FBED00FA6720 /* DocViewController */,
 				B4D3B3972260C88E007D3E4A /* FloatViewController */,
@@ -972,15 +968,6 @@
 			path = ActionViewController;
 			sourceTree = "<group>";
 		};
-		CE83C1D023536BE900336FF5 /* CQGhostView */ = {
-			isa = PBXGroup;
-			children = (
-				CE83C1D123536BE900336FF5 /* CQGhostView.h */,
-				CE83C1D223536BE900336FF5 /* CQGhostView.m */,
-			);
-			path = CQGhostView;
-			sourceTree = "<group>";
-		};
 		CEEB26192300655C001FD8D6 /* CQNetStatusListener */ = {
 			isa = PBXGroup;
 			children = (
@@ -1109,7 +1096,7 @@
 				B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */,
 				B4411559231CB83D00053BD7 /* cqwindow.cpp in Sources */,
 				CE299D442324175A00B5FC98 /* csnode.cpp in Sources */,
-				B44310872321FBED00FA6720 /* ToolbarViewController.m in Sources */,
+				B44310872321FBED00FA6720 /* ToolBarViewController.m in Sources */,
 				B4411558231CB83D00053BD7 /* cqlayer.cpp in Sources */,
 				B4411592231D0B5700053BD7 /* cqopengl.cpp in Sources */,
 				B4411569231CB89C00053BD7 /* GameAppDelegate.m in Sources */,
@@ -1131,7 +1118,7 @@
 				B425212A22842C8E004FA04B /* CQDemoViewController.m in Sources */,
 				B441155D231CB83D00053BD7 /* cqapplication.cpp in Sources */,
 				CEA9857B233FC08000246B9E /* csrenderer.cpp in Sources */,
-				B443108A2321FBED00FA6720 /* AttachmentController.m in Sources */,
+				B443108A2321FBED00FA6720 /* AttachViewController.m in Sources */,
 				B45C1BB821A02B19007CB374 /* AppDelegate.m in Sources */,
 				B4411552231CB83D00053BD7 /* AppAppDelegate.m in Sources */,
 				B463414B2333292B00383E34 /* luasource.cpp in Sources */,
@@ -1148,7 +1135,6 @@
 				B4CFD97321C7475000FFF4CF /* IAPDemoController.m in Sources */,
 				B441155B231CB83D00053BD7 /* cqgraphics.cpp in Sources */,
 				B4FC00462332043600A21B5E /* csscript.cpp in Sources */,
-				CE83C1D323536BE900336FF5 /* CQGhostView.m in Sources */,
 				CEA9857C233FC08000246B9E /* cscollider.cpp in Sources */,
 				B441152F231CB7EE00053BD7 /* CQGLAppDelegate.m in Sources */,
 				CE299D402324055600B5FC98 /* cscomponent.cpp in Sources */,
@@ -1167,7 +1153,7 @@
 				B4F7AE1C2329DF9500E675A8 /* cstransform.cpp in Sources */,
 				CE749FB22351C9E200E4FCEE /* ActionViewController.m in Sources */,
 				B425212222842BE4004FA04B /* CQCrashListener.m in Sources */,
-				B443108B2321FBED00FA6720 /* TitlebarViewController.m in Sources */,
+				B443108B2321FBED00FA6720 /* TitleBarViewController.m in Sources */,
 				CEA9857E233FC08000246B9E /* csanimation.cpp in Sources */,
 				B4411553231CB83D00053BD7 /* cqgeometry.cpp in Sources */,
 				B4F7AE1F232A0CE500E675A8 /* csscenemanager.cpp in Sources */,
