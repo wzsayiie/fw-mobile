@@ -1,0 +1,4 @@
+//
+
+@interface CQGhostView : UIView
+@end
