@@ -1,16 +1,61 @@
 #import "UIView+CQ.h"
 
-@implementation UIView (CQ)
+//layout constraits:
 
-- (NSLayoutConstraint *)constraint:(UIView *)subview align:(NSLayoutAttribute)direction {
-    return [NSLayoutConstraint constraintWithItem:subview
-                                        attribute:direction
-                                        relatedBy:NSLayoutRelationEqual
-                                           toItem:self
-                                        attribute:direction
-                                       multiplier:1
-                                         constant:0];
+void cq_strain_remove(UIView *holderView, UIView *targetView) {
+    if (holderView == nil || targetView == nil) {
+        return;
+    }
+    
+    NSMutableArray<NSLayoutConstraint *> *constaints = [NSMutableArray array];
+    for (NSLayoutConstraint *it in holderView.constraints) {
+        if ([it.firstItem isEqual:targetView] || [it.secondItem isEqual:targetView]) {
+            [constaints safeAddObject:it];
+        }
+    }
+    if (constaints.count > 0) {
+        [holderView removeConstraints:constaints];
+    }
 }
+
+static NSMutableArray<NSLayoutConstraint *> *_active_constraits = nil;
+
+void cq_strain_begin(void) {
+    _active_constraits = [NSMutableArray array];
+}
+
+void cq_strain_set(
+    id firstItem , NSLayoutAttribute firstAttr , NSLayoutRelation relation,
+    id secondItem, NSLayoutAttribute secondAttr,
+    CGFloat multiplier,
+    CGFloat constant)
+{
+    if (_active_constraits == nil) {
+        return;
+    }
+    
+    NSLayoutConstraint *constraint =
+    [NSLayoutConstraint constraintWithItem:firstItem
+                                 attribute:firstAttr
+                                 relatedBy:relation
+                                    toItem:secondItem
+                                 attribute:secondAttr
+                                multiplier:multiplier
+                                  constant:constant];
+    
+    [_active_constraits safeAddObject:constraint];
+}
+
+void cq_strain_end(UIView *view) {
+    if (view != nil && _active_constraits.count > 0) {
+        [view addConstraints:_active_constraits];
+    }
+    _active_constraits = nil;
+}
+
+//UIView(CQ):
+
+@implementation UIView (CQ)
 
 - (void)addFillingSubview:(UIView *)subview {
     if (subview == nil) {
@@ -18,13 +63,14 @@
     }
     
     subview.translatesAutoresizingMaskIntoConstraints = NO;
-    
     [self addSubview:subview];
-    NSLayoutConstraint *a = [self constraint:subview align:NSLayoutAttributeTop   ];
-    NSLayoutConstraint *b = [self constraint:subview align:NSLayoutAttributeBottom];
-    NSLayoutConstraint *c = [self constraint:subview align:NSLayoutAttributeLeft  ];
-    NSLayoutConstraint *d = [self constraint:subview align:NSLayoutAttributeRight ];
-    [self addConstraints:@[a, b, c, d]];
+    
+    cq_strain_begin();
+    cq_strain_set(subview, S_LEFT , S_EQUAL, self, S_LEFT , 1, 0);
+    cq_strain_set(subview, S_RIGHT, S_EQUAL, self, S_RIGHT, 1, 0);
+    cq_strain_set(subview, S_TOP  , S_EQUAL, self, S_TOP  , 1, 0);
+    cq_strain_set(subview, S_BOTT , S_EQUAL, self, S_BOTT , 1, 0);
+    cq_strain_end(self);
 }
 
 @end
