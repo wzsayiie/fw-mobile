@@ -1,4 +1,5 @@
 #import "UIView+CQ.h"
+#import <objc/runtime.h>
 
 //layout constraits:
 
@@ -55,6 +56,16 @@ void cq_strain_end(UIView *view) {
 
 //UIView(CQ):
 
+static void exchangeUIViewMethodsIfNeeded(void);
+
+@interface UIView (CQ_DAT)
+@property (nonatomic) NSNumber *currentVoid;
+@end
+
+@implementation UIView (CQ_DAT)
+CQ_SYNTHESIZE_STRONG(currentVoid, setCurrentVoid)
+@end
+
 @implementation UIView (CQ)
 
 - (void)addFillingSubview:(UIView *)subview {
@@ -73,4 +84,35 @@ void cq_strain_end(UIView *view) {
     cq_strain_end(self);
 }
 
+- (void)setIsVoid:(BOOL)isVoid {
+    exchangeUIViewMethodsIfNeeded();
+    if (isVoid) {
+        self.backgroundColor = UIColor.clearColor;
+        self.currentVoid = @YES;
+    } else {
+        self.currentVoid = @NO;
+    }
+}
+
+- (BOOL)isVoid {
+    return self.currentVoid.boolValue;
+}
+
+- (UIView *)r_hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    UIView *target = [self r_hitTest:point withEvent:event];
+    if (self.currentVoid.boolValue && target == self) {
+        return nil;
+    }
+    return target;
+}
+
 @end
+
+static void exchangeUIViewMethodsIfNeeded(void) {
+    static dispatch_once_t token = 0;
+    dispatch_once(&token, ^{
+        Method m1 = class_getInstanceMethod(UIView.class, @selector(r_hitTest:withEvent:));
+        Method m2 = class_getInstanceMethod(UIView.class, @selector(hitTest:withEvent:));
+        method_exchangeImplementations(m1, m2);
+    });
+}

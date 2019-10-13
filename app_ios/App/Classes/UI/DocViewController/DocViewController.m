@@ -6,7 +6,7 @@
 
 @interface DocViewController ()
 
-@property (nonnull, strong) IBOutlet UIView *containView;
+@property (nonnull, strong) IBOutlet UIView *vesselView;
 @property (nonnull, strong) IBOutlet UIView *contentView;
 @property (nonnull, strong) IBOutlet UIView *attachView;
 @property (nonnull, strong) IBOutlet UIView *titleBarView;
@@ -32,6 +32,12 @@
     
     //2. ui status initailize:
     [self adjustContainViewToSize:self.view.bounds.size];
+    
+    self.vesselView  .isVoid = YES;
+    self.contentView .isVoid = YES;
+    self.attachView  .isVoid = YES;
+    self.titleBarView.isVoid = YES;
+    self.toolBarView .isVoid = YES;
     
     self.contentViewController  = [[ContentViewController  alloc] init];
     self.attachViewController   = [[AttachViewController   alloc] init];
@@ -113,7 +119,7 @@
 
 - (void)adjustContainViewToSize:(CGSize)size {
     
-    cq_strain_remove(self.view, self.containView);
+    cq_strain_remove(self.view, self.vesselView);
     
     id safeArea = self.view.safeAreaLayoutGuide;
     
@@ -124,10 +130,10 @@
     id BOTT  = (size.width < size.height ? safeArea : self.view);
     
     cq_strain_begin();
-    cq_strain_set(self.containView, S_LEFT , S_EQUAL, LEFT , S_LEFT , 1, 0);
-    cq_strain_set(self.containView, S_RIGHT, S_EQUAL, RIGHT, S_RIGHT, 1, 0);
-    cq_strain_set(self.containView, S_TOP  , S_EQUAL, TOP  , S_TOP  , 1, 0);
-    cq_strain_set(self.containView, S_BOTT , S_EQUAL, BOTT , S_BOTT , 1, 0);
+    cq_strain_set(self.vesselView, S_LEFT , S_EQUAL, LEFT , S_LEFT , 1, 0);
+    cq_strain_set(self.vesselView, S_RIGHT, S_EQUAL, RIGHT, S_RIGHT, 1, 0);
+    cq_strain_set(self.vesselView, S_TOP  , S_EQUAL, TOP  , S_TOP  , 1, 0);
+    cq_strain_set(self.vesselView, S_BOTT , S_EQUAL, BOTT , S_BOTT , 1, 0);
     cq_strain_end(self.view);
 }
 

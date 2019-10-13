@@ -11,10 +11,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DocViewController">
             <connections>
                 <outlet property="attachView" destination="N7s-o2-hlM" id="U9w-SM-GWO"/>
-                <outlet property="containView" destination="Qfd-5K-qYG" id="Y2j-bv-pl4"/>
                 <outlet property="contentView" destination="Phg-zs-J13" id="O1H-XW-4tQ"/>
                 <outlet property="titleBarView" destination="mL3-tg-gba" id="DsO-vG-iSU"/>
                 <outlet property="toolBarView" destination="z6P-kJ-Ay2" id="NG5-gW-aSb"/>
+                <outlet property="vesselView" destination="Qfd-5K-qYG" id="vOm-a1-OqZ"/>
                 <outlet property="view" destination="iN0-l3-epB" id="NaL-9m-qma"/>
             </connections>
         </placeholder>

@@ -29,4 +29,7 @@ void cq_strain_end(UIView *view);
 
 - (void)addFillingSubview:(UIView *)subview;
 
+//if a view is void, then it's transparent and not responding hit event.
+@property (nonatomic) BOOL isVoid;
+
 @end
