@@ -9,7 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.IBinder;
-import android.support.v4.app.NotificationCompat;
+
+import androidx.core.app.NotificationCompat;
 
 import src.app.boot.AppWrapper;
 import src.app.mod.AndroidVersion;
@@ -80,7 +81,9 @@ public class WorkService extends Service {
             NotificationChannel channel = new NotificationChannel(
                 "channel_id", "channel_name", NotificationManager.IMPORTANCE_DEFAULT
             );
-            manager.createNotificationChannel(channel);
+            if (manager != null) {
+                manager.createNotificationChannel(channel);
+            }
         }
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(app, "channel_id");
