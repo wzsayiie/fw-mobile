@@ -15,8 +15,14 @@ public class AppContextAssist {
         try {
             Class<?> clazz = Class.forName("src.library.glkit.GLActivity");
             Method method = clazz.getMethod("sharedInstance");
+
             Activity activity = (Activity) method.invoke(clazz);
-            return activity.getApplication();
+            if (activity != null) {
+                return activity.getApplication();
+            } else {
+                return null;
+            }
+
         } catch (Exception e) {
             return null;
         }
@@ -26,8 +32,14 @@ public class AppContextAssist {
         try {
             Class clazz = Class.forName("com.unity3d.player.UnityPlayer");
             Field field = clazz.getField("currentActivity");
+
             Activity activity = (Activity) field.get(null);
-            return activity.getApplication();
+            if (activity != null) {
+                return activity.getApplication();
+            } else {
+                return null;
+            }
+
         } catch (Exception e) {
             return null;
         }
@@ -37,7 +49,9 @@ public class AppContextAssist {
         try {
             Class<?> clazz = Class.forName("src.app.boot.AppWrapper");
             Method method = clazz.getMethod("getApp");
+
             return (Application) method.invoke(clazz);
+
         } catch (Exception e) {
             return null;
         }

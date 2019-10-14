@@ -34,6 +34,11 @@ public class TaskHelper {
         }
 
         Looper looper = Looper.myLooper();
+        if (looper == null) {
+            L.e("failed to get current looper");
+            return;
+        }
+
         new Handler(looper).postDelayed(task, delayMillis);
     }
 

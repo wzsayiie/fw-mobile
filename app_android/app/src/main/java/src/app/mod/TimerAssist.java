@@ -26,27 +26,37 @@ public class TimerAssist {
             return null;
         }
 
-        Timer timer = new Timer(true);
-
-        TimerTask timerTask;
         if (tickOnCurrentLooper) {
+
             Looper looper = Looper.myLooper();
-            timerTask = new TimerTask() {
+            if (looper == null) {
+                L.e("failed to get current looper");
+                return null;
+            }
+
+            Timer timer = new Timer(true);
+            TimerTask timerTask = new TimerTask() {
                 @Override
                 public void run() {
                     new Handler(looper).post(() -> task.once(timer));
                 }
             };
+
+            timer.schedule(timerTask, periodMillis, periodMillis);
+            return timer;
+
         } else {
-            timerTask = new TimerTask() {
+
+            Timer timer = new Timer(true);
+            TimerTask timerTask = new TimerTask() {
                 @Override
                 public void run() {
                     task.once(timer);
                 }
             };
-        }
 
-        timer.schedule(timerTask, periodMillis, periodMillis);
-        return timer;
+            timer.schedule(timerTask, periodMillis, periodMillis);
+            return timer;
+        }
     }
 }

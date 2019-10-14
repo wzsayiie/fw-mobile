@@ -12,6 +12,8 @@ import android.net.NetworkRequest;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+
 import java.net.Inet4Address;
 import java.net.Inet6Address;
 import java.net.InetAddress;
@@ -83,19 +85,22 @@ public class NetStatusHelper {
             b.addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR);
             b.addTransportType(NetworkCapabilities.TRANSPORT_WIFI);
 
-            ConnectivityManager m = (ConnectivityManager) AppWrapper.getApp().getSystemService(
+            ConnectivityManager manager = (ConnectivityManager) AppWrapper.getApp().getSystemService(
                 Context.CONNECTIVITY_SERVICE
             );
-            m.registerNetworkCallback(b.build(), new ConnectivityManager.NetworkCallback() {
-                @Override
-                public void onAvailable(Network network) {
-                    onNetStatusChanged();
-                }
-                @Override
-                public void onLost(Network network) {
-                    onNetStatusChanged();
-                }
-            });
+            if (manager != null) {
+                manager.registerNetworkCallback(b.build(), new ConnectivityManager.NetworkCallback() {
+                    @Override
+                    public void onAvailable(@NonNull Network network) {
+                        onNetStatusChanged();
+                    }
+
+                    @Override
+                    public void onLost(@NonNull Network network) {
+                        onNetStatusChanged();
+                    }
+                });
+            }
 
         } else {
 
@@ -163,7 +168,12 @@ public class NetStatusHelper {
         ConnectivityManager manager = (ConnectivityManager) AppWrapper.getApp().getSystemService(
             Context.CONNECTIVITY_SERVICE
         );
-        NetworkInfo info = manager.getActiveNetworkInfo();
+
+        NetworkInfo info = null;
+        if (manager != null) {
+            info = manager.getActiveNetworkInfo();
+        }
+
         if (info != null && info.isConnected()) {
             switch (info.getType()) {
                 case ConnectivityManager.TYPE_MOBILE: mNetStatus = NET_STATUS_CELL; break;

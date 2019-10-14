@@ -7,6 +7,8 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+
 import src.app.boot.AppWrapper;
 import src.library.basis.StringUtil;
 import src.library.basis.W;
@@ -34,14 +36,18 @@ public class ActivityHelper {
 
         AppWrapper.getApp().registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
 
-            public void onActivitySaveInstanceState(Activity a, Bundle b) { onActSaveInstanceState(a); }
-            public void onActivityCreated          (Activity a, Bundle b) { onActCreated(a);}
+            public void onActivitySaveInstanceState(@NonNull Activity a, @NonNull Bundle b) {
+                onActSaveInstanceState(a);
+            }
+            public void onActivityCreated(@NonNull Activity a, Bundle b) {
+                onActCreated(a);
+            }
 
-            public void onActivityStarted  (Activity a) { onActStarted  (a); }
-            public void onActivityResumed  (Activity a) { onActResumed  (a); }
-            public void onActivityPaused   (Activity a) { onActPaused   (a); }
-            public void onActivityStopped  (Activity a) { onActStopped  (a); }
-            public void onActivityDestroyed(Activity a) { onActDestroyed(a); }
+            public void onActivityStarted  (@NonNull Activity a) { onActStarted  (a); }
+            public void onActivityResumed  (@NonNull Activity a) { onActResumed  (a); }
+            public void onActivityPaused   (@NonNull Activity a) { onActPaused   (a); }
+            public void onActivityStopped  (@NonNull Activity a) { onActStopped  (a); }
+            public void onActivityDestroyed(@NonNull Activity a) { onActDestroyed(a); }
         });
     }
 

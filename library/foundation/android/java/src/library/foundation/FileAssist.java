@@ -64,9 +64,16 @@ public class FileAssist {
     }
 
     private static void removeRecursively(File file) {
+        if (file == null) {
+            return;
+        }
+
         if (file.isDirectory()) {
-            for (File item : file.listFiles()) {
-                removeRecursively(item);
+            File[] subFiles = file.listFiles();
+            if (subFiles != null) {
+                for (File it : subFiles) {
+                    removeRecursively(it);
+                }
             }
         } else if (file.isFile()) {
             boolean ignored = file.delete();
