@@ -10,13 +10,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    ActionViewController *action = [[ActionViewController alloc] init];
-    action.tabBarItem.title = @"Action";
-    [self addChildViewController:action];
-    
-    BlankViewController *blank = [[BlankViewController alloc] init];
-    blank.tabBarItem.title = @"Blank";
-    [self addChildViewController:blank];
+    [self setTabItemController:ActionViewController.class forTitle:@"Action"];
+    [self setTabItemController:BlankViewController.class  forTitle:@"Blank" ];
+}
+
+- (void)setTabItemController:(Class)clazz forTitle:(NSString *)title {
+    UIViewController *controller = [[clazz alloc] init];
+    controller.tabBarItem.title = title;
+    [self addChildViewController:controller];
 }
 
 @end
