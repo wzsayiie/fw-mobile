@@ -26,16 +26,7 @@
         </activity>
 
         <activity
-            android:name=".components.activities.blank.BlankActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden">
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-                <action android:name="apps.blank" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".components.activities.daily.DailyDemoActivity"
+            android:name=".components.activities.daily.DailyActivity"
             android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -44,7 +35,7 @@
         </activity>
 
         <activity
-            android:name=".components.activities.document.DocumentActivity"
+            android:name=".components.activities.doc.DocActivity"
             android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />

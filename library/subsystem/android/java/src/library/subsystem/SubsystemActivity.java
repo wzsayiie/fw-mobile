@@ -14,7 +14,7 @@ public class SubsystemActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_subsystem);
+        setContentView(R.layout.subsystem_activity);
         SubsystemManager.get().setSubsystemActivityInstance(this);
 
         Button closeButton = findViewById(R.id.close_button);

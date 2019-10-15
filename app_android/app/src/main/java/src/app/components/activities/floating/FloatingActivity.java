@@ -12,6 +12,6 @@ public class FloatingActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_floating);
+        setContentView(R.layout.floating_activity);
     }
 }
