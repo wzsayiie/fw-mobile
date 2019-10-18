@@ -1,6 +1,6 @@
 package src.app.com;
 
-import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +13,9 @@ import java.util.ArrayList;
 
 import src.library.basis.StringUtil;
 import src.library.basis.W;
-import src.library.foundation.L;
 
 @SuppressWarnings({W.APP_OMIT_0, W.APP_OMIT_1, W.APP_OMIT_2, W.APP_OMIT_3})
-public abstract class DemoActivity extends Activity {
+public class CommandHelper {
 
     protected static class DataItem {
 
@@ -40,44 +39,30 @@ public abstract class DemoActivity extends Activity {
         }
     }
 
+    private ListView mListView;
     private ArrayList<DataItem> mDataSource;
     private BaseAdapter mListAdapter;
     private ListView.OnItemClickListener mClickListener;
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        loadListViewIfNeeded();
-    }
-
-    protected ListView getListView() {
-        L.e("the getListView should be overridden");
-        return null;
-    }
-
-    protected void loadListViewIfNeeded() {
-        ListView listView = getListView();
-
+    public void setListViewIfNeeded(ListView listView) {
+        if (mListView != null) {
+            //only can set once.
+            return;
+        }
         if (listView == null) {
             return;
         }
-        if (listView.getAdapter() != null) {
+
+        mListView = listView;
+        mListView.setAdapter(getListAdapter());
+        mListView.setOnItemClickListener(getClickListener());
+    }
+
+    public void addAction(String actionText, Runnable action) {
+        if (StringUtil.isEmpty(actionText)) {
             return;
         }
-
-        listView.setAdapter(getListAdapter());
-        listView.setOnItemClickListener(getClickListener());
-    }
-
-    protected ArrayList<DataItem> getDataSource() {
-        if (mDataSource == null) {
-            mDataSource = new ArrayList<>();
-        }
-        return mDataSource;
-    }
-
-    protected void addAction(String actionText, Runnable action) {
-        if (StringUtil.isEmpty(actionText)) {
+        if (mListView == null) {
             return;
         }
 
@@ -86,8 +71,14 @@ public abstract class DemoActivity extends Activity {
         item.setAction(action);
         getDataSource().add(item);
 
-        loadListViewIfNeeded();
         getListAdapter().notifyDataSetChanged();
+    }
+
+    protected ArrayList<DataItem> getDataSource() {
+        if (mDataSource == null) {
+            mDataSource = new ArrayList<>();
+        }
+        return mDataSource;
     }
 
     protected BaseAdapter getListAdapter() {
@@ -116,7 +107,9 @@ public abstract class DemoActivity extends Activity {
                 String text = getDataSource().get(position).getText();
 
                 if (convertView == null) {
-                    LayoutInflater inflater = LayoutInflater.from(DemoActivity.this);
+                    //NOTE: if mListView is null, should not enter this branch.
+                    Context context = mListView.getContext();
+                    LayoutInflater inflater = LayoutInflater.from(context);
                     convertView = inflater.inflate(android.R.layout.simple_list_item_1, null);
                 }
                 TextView textView = convertView.findViewById(android.R.id.text1);
