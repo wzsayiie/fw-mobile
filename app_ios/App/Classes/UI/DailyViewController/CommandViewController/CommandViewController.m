@@ -1,10 +1,10 @@
-#import "ActionViewController.h"
+#import "CommandViewController.h"
 
-@interface ActionViewController ()
+@interface CommandViewController ()
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @end
 
-@implementation ActionViewController
+@implementation CommandViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

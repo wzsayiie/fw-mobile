@@ -1,6 +1,6 @@
 #import "DailyViewController.h"
-#import "ActionViewController.h"
 #import "BlankViewController.h"
+#import "CommandViewController.h"
 
 @interface DailyViewController ()
 @end
@@ -10,8 +10,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setTabItemController:ActionViewController.class forTitle:@"Action"];
-    [self setTabItemController:BlankViewController.class  forTitle:@"Blank" ];
+    [self setTabItemController:CommandViewController.class forTitle:@"Command"];
+    [self setTabItemController:BlankViewController.class forTitle:@"Blank"];
 }
 
 - (void)setTabItemController:(Class)clazz forTitle:(NSString *)title {

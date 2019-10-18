@@ -1,20 +1,20 @@
-#import "CQDemoViewController.h"
+#import "CQCommandViewController.h"
 
-@interface CQDemoViewControllerDataRow : NSObject
+@interface CQCommandViewControllerDataRow : NSObject
 @property (nonatomic, copy) NSString *text;
 @property (nonatomic) NSValue *action;
 @end
 
-@implementation CQDemoViewControllerDataRow
+@implementation CQCommandViewControllerDataRow
 @end
 
-static NSString *const CQDemoViewControllerCellID = @"Cell";
+static NSString *const CQCommandViewControllerCellID = @"Cell";
 
-@interface CQDemoViewController() <UITableViewDataSource, UITableViewDelegate>
-@property (nonatomic) NSMutableArray<CQDemoViewControllerDataRow *> *dataSource;
+@interface CQCommandViewController() <UITableViewDataSource, UITableViewDelegate>
+@property (nonatomic) NSMutableArray<CQCommandViewControllerDataRow *> *dataSource;
 @end
 
-@implementation CQDemoViewController
+@implementation CQCommandViewController
 
 #pragma mark - Controller Life Events
 
@@ -38,14 +38,14 @@ static NSString *const CQDemoViewControllerCellID = @"Cell";
     }
     
     [tableView registerClass:UITableViewCell.class
-      forCellReuseIdentifier:CQDemoViewControllerCellID];
+      forCellReuseIdentifier:CQCommandViewControllerCellID];
     
     tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     tableView.dataSource = self;
     tableView.delegate = self;
 }
 
-- (NSMutableArray<CQDemoViewControllerDataRow *> *)dataSource {
+- (NSMutableArray<CQCommandViewControllerDataRow *> *)dataSource {
     if (_dataSource == nil) {
         _dataSource = [NSMutableArray array];
     }
@@ -57,7 +57,7 @@ static NSString *const CQDemoViewControllerCellID = @"Cell";
         return;
     }
     
-    CQDemoViewControllerDataRow *row = [[CQDemoViewControllerDataRow alloc] init];
+    CQCommandViewControllerDataRow *row = [[CQCommandViewControllerDataRow alloc] init];
     row.text = rowText;
     row.action = [NSValue valueWithPointer:action];
     [self.dataSource safeAddObject:row];
@@ -74,7 +74,7 @@ static NSString *const CQDemoViewControllerCellID = @"Cell";
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell =
-    [tableView dequeueReusableCellWithIdentifier:CQDemoViewControllerCellID];
+    [tableView dequeueReusableCellWithIdentifier:CQCommandViewControllerCellID];
     
     cell.textLabel.text = self.dataSource[indexPath.row].text;
     return cell;

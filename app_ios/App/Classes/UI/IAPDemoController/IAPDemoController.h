@@ -1,4 +1,4 @@
-#import "CQDemoViewController.h"
+#import "CQCommandViewController.h"
 
-@interface IAPDemoController : CQDemoViewController
+@interface IAPDemoController : CQCommandViewController
 @end

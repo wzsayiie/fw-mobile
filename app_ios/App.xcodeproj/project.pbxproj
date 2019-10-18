@@ -17,7 +17,7 @@
 		B425212222842BE4004FA04B /* CQCrashListener.m in Sources */ = {isa = PBXBuildFile; fileRef = B425211622842BE4004FA04B /* CQCrashListener.m */; };
 		B425212322842BE4004FA04B /* CQSceneNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = B425211922842BE4004FA04B /* CQSceneNavigator.m */; };
 		B425212422842BE4004FA04B /* UIViewController+CQScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B425211C22842BE4004FA04B /* UIViewController+CQScene.m */; };
-		B425212A22842C8E004FA04B /* CQDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B425212922842C8E004FA04B /* CQDemoViewController.m */; };
+		B425212A22842C8E004FA04B /* CQCommandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B425212922842C8E004FA04B /* CQCommandViewController.m */; };
 		B441152E231CB7EE00053BD7 /* CQGLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4411529231CB7EE00053BD7 /* CQGLViewController.m */; };
 		B441152F231CB7EE00053BD7 /* CQGLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B441152A231CB7EE00053BD7 /* CQGLAppDelegate.m */; };
 		B4411552231CB83D00053BD7 /* AppAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4411532231CB83D00053BD7 /* AppAppDelegate.m */; };
@@ -90,8 +90,8 @@
 		CE62C93E234F2B9200F94D97 /* UIColor+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = CE62C93D234F2B9200F94D97 /* UIColor+CQ.m */; };
 		CE749FAA2351C7D600E4FCEE /* DailyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE749FA82351C7D600E4FCEE /* DailyViewController.m */; };
 		CE749FB12351C9E200E4FCEE /* BlankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE749FAC2351C9E100E4FCEE /* BlankViewController.m */; };
-		CE749FB22351C9E200E4FCEE /* ActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE749FB02351C9E100E4FCEE /* ActionViewController.m */; };
-		CE749FB72351CB9B00E4FCEE /* ActionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE749FB62351CB9B00E4FCEE /* ActionViewController.xib */; };
+		CE749FB22351C9E200E4FCEE /* CommandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE749FB02351C9E100E4FCEE /* CommandViewController.m */; };
+		CE749FB72351CB9B00E4FCEE /* CommandViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE749FB62351CB9B00E4FCEE /* CommandViewController.xib */; };
 		CE749FB92351CD3800E4FCEE /* BlankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE749FB82351CD3800E4FCEE /* BlankViewController.xib */; };
 		CEA9857A233FC08000246B9E /* csmapfilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA9856E233FC07F00246B9E /* csmapfilter.cpp */; };
 		CEA9857B233FC08000246B9E /* csrenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA9856F233FC07F00246B9E /* csrenderer.cpp */; };
@@ -154,8 +154,8 @@
 		B425211A22842BE4004FA04B /* UIViewController+CQScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CQScene.h"; sourceTree = "<group>"; };
 		B425211B22842BE4004FA04B /* CQSceneNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQSceneNavigator.h; sourceTree = "<group>"; };
 		B425211C22842BE4004FA04B /* UIViewController+CQScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CQScene.m"; sourceTree = "<group>"; };
-		B425212822842C8E004FA04B /* CQDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQDemoViewController.h; sourceTree = "<group>"; };
-		B425212922842C8E004FA04B /* CQDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQDemoViewController.m; sourceTree = "<group>"; };
+		B425212822842C8E004FA04B /* CQCommandViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQCommandViewController.h; sourceTree = "<group>"; };
+		B425212922842C8E004FA04B /* CQCommandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQCommandViewController.m; sourceTree = "<group>"; };
 		B4411528231CB7EE00053BD7 /* CQGLAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQGLAppDelegate.h; sourceTree = "<group>"; };
 		B4411529231CB7EE00053BD7 /* CQGLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQGLViewController.m; sourceTree = "<group>"; };
 		B441152A231CB7EE00053BD7 /* CQGLAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQGLAppDelegate.m; sourceTree = "<group>"; };
@@ -294,9 +294,9 @@
 		CE749FA92351C7D600E4FCEE /* DailyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyViewController.h; sourceTree = "<group>"; };
 		CE749FAC2351C9E100E4FCEE /* BlankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlankViewController.m; sourceTree = "<group>"; };
 		CE749FAD2351C9E100E4FCEE /* BlankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlankViewController.h; sourceTree = "<group>"; };
-		CE749FAF2351C9E100E4FCEE /* ActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionViewController.h; sourceTree = "<group>"; };
-		CE749FB02351C9E100E4FCEE /* ActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionViewController.m; sourceTree = "<group>"; };
-		CE749FB62351CB9B00E4FCEE /* ActionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActionViewController.xib; sourceTree = "<group>"; };
+		CE749FAF2351C9E100E4FCEE /* CommandViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandViewController.h; sourceTree = "<group>"; };
+		CE749FB02351C9E100E4FCEE /* CommandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandViewController.m; sourceTree = "<group>"; };
+		CE749FB62351CB9B00E4FCEE /* CommandViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommandViewController.xib; sourceTree = "<group>"; };
 		CE749FB82351CD3800E4FCEE /* BlankViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlankViewController.xib; sourceTree = "<group>"; };
 		CEA9856E233FC07F00246B9E /* csmapfilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csmapfilter.cpp; sourceTree = "<group>"; };
 		CEA9856F233FC07F00246B9E /* csrenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csrenderer.cpp; sourceTree = "<group>"; };
@@ -400,13 +400,13 @@
 			path = CQSceneNavigator;
 			sourceTree = "<group>";
 		};
-		B425212722842C8E004FA04B /* CQDemoViewController */ = {
+		B425212722842C8E004FA04B /* CQCommandViewController */ = {
 			isa = PBXGroup;
 			children = (
-				B425212822842C8E004FA04B /* CQDemoViewController.h */,
-				B425212922842C8E004FA04B /* CQDemoViewController.m */,
+				B425212822842C8E004FA04B /* CQCommandViewController.h */,
+				B425212922842C8E004FA04B /* CQCommandViewController.m */,
 			);
-			path = CQDemoViewController;
+			path = CQCommandViewController;
 			sourceTree = "<group>";
 		};
 		B441151D231CB5F100053BD7 /* AppKit */ = {
@@ -705,7 +705,7 @@
 		B45C1B7A21A02B19007CB374 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				B425212722842C8E004FA04B /* CQDemoViewController */,
+				B425212722842C8E004FA04B /* CQCommandViewController */,
 				CE749FA72351C7D600E4FCEE /* DailyViewController */,
 				B443107C2321FBED00FA6720 /* DocViewController */,
 				B4D3B3972260C88E007D3E4A /* FloatViewController */,
@@ -919,8 +919,8 @@
 			children = (
 				CE749FA92351C7D600E4FCEE /* DailyViewController.h */,
 				CE749FA82351C7D600E4FCEE /* DailyViewController.m */,
-				CE749FAE2351C9E100E4FCEE /* ActionViewController */,
 				CE749FAB2351C9E100E4FCEE /* BlankViewController */,
+				CE749FAE2351C9E100E4FCEE /* CommandViewController */,
 			);
 			path = DailyViewController;
 			sourceTree = "<group>";
@@ -934,20 +934,20 @@
 			path = BlankViewController;
 			sourceTree = "<group>";
 		};
-		CE749FAE2351C9E100E4FCEE /* ActionViewController */ = {
+		CE749FAE2351C9E100E4FCEE /* CommandViewController */ = {
 			isa = PBXGroup;
 			children = (
-				CE749FAF2351C9E100E4FCEE /* ActionViewController.h */,
-				CE749FB02351C9E100E4FCEE /* ActionViewController.m */,
+				CE749FAF2351C9E100E4FCEE /* CommandViewController.h */,
+				CE749FB02351C9E100E4FCEE /* CommandViewController.m */,
 			);
-			path = ActionViewController;
+			path = CommandViewController;
 			sourceTree = "<group>";
 		};
 		CE749FB32351CB7400E4FCEE /* DailyViewController */ = {
 			isa = PBXGroup;
 			children = (
-				CE749FB52351CB7400E4FCEE /* ActionViewController */,
 				CE749FB42351CB7400E4FCEE /* BlankViewController */,
+				CE749FB52351CB7400E4FCEE /* CommandViewController */,
 			);
 			path = DailyViewController;
 			sourceTree = "<group>";
@@ -960,12 +960,12 @@
 			path = BlankViewController;
 			sourceTree = "<group>";
 		};
-		CE749FB52351CB7400E4FCEE /* ActionViewController */ = {
+		CE749FB52351CB7400E4FCEE /* CommandViewController */ = {
 			isa = PBXGroup;
 			children = (
-				CE749FB62351CB9B00E4FCEE /* ActionViewController.xib */,
+				CE749FB62351CB9B00E4FCEE /* CommandViewController.xib */,
 			);
-			path = ActionViewController;
+			path = CommandViewController;
 			sourceTree = "<group>";
 		};
 		CEEB26192300655C001FD8D6 /* CQNetStatusListener */ = {
@@ -1077,7 +1077,7 @@
 				CE749FB92351CD3800E4FCEE /* BlankViewController.xib in Resources */,
 				B4C7448E22BCAE5100483834 /* InfoPlist.strings in Resources */,
 				B443108E2321FF8700FA6720 /* DocViewController.xib in Resources */,
-				CE749FB72351CB9B00E4FCEE /* ActionViewController.xib in Resources */,
+				CE749FB72351CB9B00E4FCEE /* CommandViewController.xib in Resources */,
 				B44310902322060800FA6720 /* AttachmentController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1115,7 +1115,7 @@
 				B4411554231CB83D00053BD7 /* cqviewcontroller.cpp in Sources */,
 				CE299D292323F15B00B5FC98 /* csgameobject.cpp in Sources */,
 				B441159D231D0DC100053BD7 /* csgamekitarche.cpp in Sources */,
-				B425212A22842C8E004FA04B /* CQDemoViewController.m in Sources */,
+				B425212A22842C8E004FA04B /* CQCommandViewController.m in Sources */,
 				B441155D231CB83D00053BD7 /* cqapplication.cpp in Sources */,
 				CEA9857B233FC08000246B9E /* csrenderer.cpp in Sources */,
 				B443108A2321FBED00FA6720 /* AttachViewController.m in Sources */,
@@ -1151,7 +1151,7 @@
 				B4411590231D0B5700053BD7 /* cqglkitarche.cpp in Sources */,
 				B425210B22842AD3004FA04B /* UIViewController+CQ.m in Sources */,
 				B4F7AE1C2329DF9500E675A8 /* cstransform.cpp in Sources */,
-				CE749FB22351C9E200E4FCEE /* ActionViewController.m in Sources */,
+				CE749FB22351C9E200E4FCEE /* CommandViewController.m in Sources */,
 				B425212222842BE4004FA04B /* CQCrashListener.m in Sources */,
 				B443108B2321FBED00FA6720 /* TitleBarViewController.m in Sources */,
 				CEA9857E233FC08000246B9E /* csanimation.cpp in Sources */,
