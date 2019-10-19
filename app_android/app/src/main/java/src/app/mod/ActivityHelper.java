@@ -30,7 +30,7 @@ public class ActivityHelper {
         return get().mResumedActivity;
     }
 
-    //activity lifecycle
+    //activity lifecycle:
 
     private ActivityHelper() {
 
@@ -89,7 +89,10 @@ public class ActivityHelper {
         L.i("activity '%s' Destroyed", L.string(activity));
     }
 
-    //start activity
+    //start activity:
+
+    public static final int REQUEST_CODE = 100;
+    public static final int RESULT_CODE = 100;
 
     private static final String ANIMATION_DEFAULT = "animation_default";
     private static final String ANIMATION_FADE    = "animation_fade";
@@ -119,15 +122,49 @@ public class ActivityHelper {
         }
 
         try {
-            mResumedActivity.startActivity(intent);
+            mResumedActivity.startActivityForResult(intent, REQUEST_CODE);
             L.i("start activity with animation '%s'", animation);
             if (animation.equals(ANIMATION_FADE)) {
-                int entry = android.R.anim.fade_in;
-                int exit = android.R.anim.fade_out;
-                mResumedActivity.overridePendingTransition(entry, exit);
+                int entryAnim = android.R.anim.fade_in;
+                int exitAnim = android.R.anim.fade_out;
+                mResumedActivity.overridePendingTransition(entryAnim, exitAnim);
             }
         } catch (ActivityNotFoundException e) {
             L.e("activity not found: %s", e.toString());
+        }
+    }
+
+    //stop activity:
+
+    public void finishActivity(Activity activity, Bundle extras) {
+        finishActivityWithAnimation(ANIMATION_DEFAULT, activity, extras);
+    }
+
+    public void finishActivityWithFade(Activity activity, Bundle extras) {
+        finishActivityWithAnimation(ANIMATION_FADE, activity, extras);
+    }
+
+    private void finishActivityWithAnimation(String animation, Activity activity, Bundle extras) {
+        if (activity == null) {
+            L.e("try finish a null activity");
+            return;
+        }
+
+        //result data.
+        Intent data = new Intent();
+        if (extras != null) {
+            data.putExtras(extras);
+        }
+        activity.setResult(RESULT_CODE, data);
+
+        //finish with animation.
+        activity.finish();
+        L.i("finish activity with animation '%s'", animation);
+
+        if (animation.equals(ANIMATION_FADE)) {
+            int entryAnim = android.R.anim.fade_in;
+            int exitAnim = android.R.anim.fade_out;
+            activity.overridePendingTransition(entryAnim, exitAnim);
         }
     }
 }
