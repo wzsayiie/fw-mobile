@@ -39,7 +39,7 @@
             android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
-                <action android:name="apps.document" />
+                <action android:name="apps.doc" />
             </intent-filter>
         </activity>
 

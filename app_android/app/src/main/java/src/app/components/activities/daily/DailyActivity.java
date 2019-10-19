@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -22,35 +24,62 @@ public class DailyActivity extends FragmentActivity {
     private static final int SELECTED_COLOR = Color.rgb(0, 102, 204);
     private static final int NORMAL_COLOR = Color.rgb(0, 0, 0);
 
-    private ArrayList<Fragment> mFragments;
-    private ArrayList<Button> mBarButtons;
+    private ArrayList<Fragment> mMasterFragments;
+    private ArrayList<Button> mTabButtons;
     private int mSelectedIndex;
+
+    //life cycle:
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.daily_activity);
 
-        addPage(mSelectedIndex, "command", new CommandFragment());
-        addPage(mSelectedIndex, "blank", new BlankFragment());
+        addMasterFragment(mSelectedIndex, "command", new CommandFragment());
+        addMasterFragment(mSelectedIndex, "blank", new BlankFragment());
+
+        setDrawerFragment();
     }
 
-    protected void onBarButtonClick(int index) {
+    //event:
+
+    protected void onTopButtonClick(View view) {
+        DrawerLayout contentDrawer = findViewById(R.id.content_drawer);
+        FrameLayout drawerFrame = findViewById(R.id.drawer_frame);
+
+        contentDrawer.openDrawer(drawerFrame);
+    }
+
+    protected void onTabBarButtonClick(View view) {
+        Integer index = (Integer) view.getTag();
         selectPage(index);
     }
 
-    protected void addPage(int currentIndex, String name, Fragment fragment) {
+    //functions:
 
-        int thisIndex = (mFragments != null ? mFragments.size() : 0);
+    protected void setDrawerFragment() {
+        //left drawer view:
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.drawer_frame, new DrawerFragment());
+        transaction.commit();
+
+        //top button:
+        Button topButton = findViewById(R.id.top_button);
+        topButton.setOnClickListener(this::onTopButtonClick);
+    }
+
+    protected void addMasterFragment(int currentIndex, String name, Fragment fragment) {
+
+        int thisIndex = (mMasterFragments != null ? mMasterFragments.size() : 0);
 
         //add fragment:
-        if (mFragments == null) {
-            mFragments = new ArrayList<>();
+        if (mMasterFragments == null) {
+            mMasterFragments = new ArrayList<>();
         }
-        mFragments.add(fragment);
+        mMasterFragments.add(fragment);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.fragment_container, fragment);
+        transaction.add(R.id.master_frame, fragment);
         if (thisIndex != currentIndex) {
             transaction.hide(fragment);
         }
@@ -59,11 +88,13 @@ public class DailyActivity extends FragmentActivity {
         //add button:
         Button button = new Button(this);
 
-        if (mBarButtons == null) {
-            mBarButtons = new ArrayList<>();
+        if (mTabButtons == null) {
+            mTabButtons = new ArrayList<>();
         }
-        mBarButtons.add(button);
+        mTabButtons.add(button);
 
+        button.setTag(thisIndex);
+        button.setOnClickListener(this::onTabBarButtonClick);
         button.setText(name);
         if (thisIndex == currentIndex) {
             button.setTextColor(SELECTED_COLOR);
@@ -71,20 +102,16 @@ public class DailyActivity extends FragmentActivity {
             button.setTextColor(NORMAL_COLOR);
         }
 
-        button.setOnClickListener((View view) ->
-            onBarButtonClick(thisIndex)
-        );
-
         button.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1));
-        LinearLayout layout = findViewById(R.id.button_container);
-        layout.addView(button);
+        LinearLayout tabLinear = findViewById(R.id.tab_linear);
+        tabLinear.addView(button);
     }
 
     protected void selectPage(int index) {
-        if (mFragments == null) {
+        if (mMasterFragments == null) {
             return;
         }
-        if (index < 0 || index >= mFragments.size()) {
+        if (index < 0 || index >= mMasterFragments.size()) {
             return;
         }
         if (index == mSelectedIndex) {
@@ -92,8 +119,8 @@ public class DailyActivity extends FragmentActivity {
         }
 
         //switch fragment:
-        Fragment oldFragment = mFragments.get(mSelectedIndex);
-        Fragment newFragment = mFragments.get(index);
+        Fragment oldFragment = mMasterFragments.get(mSelectedIndex);
+        Fragment newFragment = mMasterFragments.get(index);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.hide(oldFragment);
@@ -101,8 +128,8 @@ public class DailyActivity extends FragmentActivity {
         transaction.commit();
 
         //switch button:
-        Button oldButton = mBarButtons.get(mSelectedIndex);
-        Button newButton = mBarButtons.get(index);
+        Button oldButton = mTabButtons.get(mSelectedIndex);
+        Button newButton = mTabButtons.get(index);
 
         oldButton.setTextColor(NORMAL_COLOR);
         newButton.setTextColor(SELECTED_COLOR);
