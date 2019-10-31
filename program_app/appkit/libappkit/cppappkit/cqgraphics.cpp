@@ -1,5 +1,5 @@
 #include "cqgraphics.hh"
-#include "cqopengl.h"
+#include "cqglkit.h"
 #include "cqwindow.hh"
 
 static cqWindowRef sWindow;

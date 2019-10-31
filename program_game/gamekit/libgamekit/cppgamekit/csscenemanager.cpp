@@ -1,6 +1,5 @@
 #include "csscenemanager.hh"
-#include "cqopengl.h"
-#include "cqwnd.h"
+#include "cqglkit.h"
 #include "csscript.hh"
 
 //global data:

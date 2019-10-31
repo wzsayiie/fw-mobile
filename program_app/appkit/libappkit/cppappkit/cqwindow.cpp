@@ -1,8 +1,8 @@
 #include "cqwindow.hh"
 #include "cqapplication.hh"
+#include "cqglkit.h"
 #include "cqgraphics.hh"
 #include "cqtouchesevent_p.hh"
-#include "cqwnd.h"
 
 cq_member(cqWindow) {
     cq_wnd *wnd = nullptr;

@@ -1,1 +1,1 @@
-#include "cqopengl.h"
+#include "cqopengl_p.h"
