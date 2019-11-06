@@ -1,12 +1,14 @@
 #include "rootviewcontroller.hh"
 #include "cqctool.hh"
 #include "cqfoundation.hh"
+#include "cqglkit.h"
 
 cq_member(RootViewController) {
 };
 
 void RootViewController::viewDidLoad() {
     super::viewDidLoad();
+    view()->setBackgroundColor(cqColor::WhiteColor);
 }
 
 void RootViewController::touchesBegan(

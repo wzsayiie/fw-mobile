@@ -1,12 +1,9 @@
 #include "cqview.hh"
-#include "cqgraphics.hh"
 #include "cqviewcontroller.hh"
 #include "cqwindow.hh"
 
 cq_member(cqView) {
-    cqRect frame;
-    
-    cqColor backgroundColor;
+    cqLayerRef layer;
     
     cqViewWeakRef superview;
     std::vector<cqViewRef> subviews;
@@ -19,65 +16,58 @@ cqViewRef cqView::createWithFrame(cqRect frame) {
     return view;
 }
 
+void cqView::init() {
+    super::init();
+    
+    dat->layer = cqLayer::create();
+    dat->layer->setDelegate(cqLayerDelegate(strongRef()));
+}
+
 void cqView::setFrame(cqRect frame) {
-    dat->frame = frame;
+    dat->layer->setFrame(frame);
 }
 
 cqRect cqView::frame() {
-    return dat->frame;
+    return dat->layer->frame();
 }
 
 cqRect cqView::bounds() {
-    return cqRect(cqPoint(), dat->frame.size);
+    return dat->layer->bounds();
+}
+
+cqLayerRef cqView::layer() {
+    return dat->layer;
 }
 
 void cqView::setBackgroundColor(cqColor backgroundColor) {
-    dat->backgroundColor = backgroundColor;
+    dat->layer->setBackgroundColor(backgroundColor);
 }
 
 cqColor cqView::backgroundColor() {
-    return dat->backgroundColor;
+    return dat->layer->backgroundColor();
 }
 
-void cqView::drawSelfAndSubviews() {
-    cqRect rect = bounds();
-    
-    //draw self.
-    drawBackgroundInRect(rect);
-    drawInRect(rect);
-    
-    //draw subviews.
-    for (cqViewRef sub : dat->subviews) {
-        cqContext context = cqGraphics::currentContext();
-        
-        cqRect subFrame = sub->frame();
-        cqContext subContext(
-            context.offsetX + subFrame.origin.x,
-            context.offsetY + subFrame.origin.y
-        );
-        cqGraphics::pushContext(subContext);
-        sub->drawSelfAndSubviews();
-        cqGraphics::popContext();
-    }
+void cqView::setClipsToBounds(bool clipsToBounds) {
+    dat->layer->setClipsToBounds(clipsToBounds);
 }
 
-void cqView::drawBackgroundInRect(cqRect rect) {
-    cqColor color = dat->backgroundColor;
-    
-    bool isClearColor =
-        cq_flt_equal(color.red  , 0) &&
-        cq_flt_equal(color.green, 0) &&
-        cq_flt_equal(color.blue , 0) &&
-        cq_flt_equal(color.alpha, 0);
-    
-    if (!isClearColor) {
-        cqContext context = cqGraphics::currentContext();
-        context.setFillColor(color);
-        context.fillRect(rect);
-    }
+bool cqView::clipsToBounds() {
+    return dat->layer->clipsToBounds();
 }
 
-void cqView::drawInRect(cqRect rect) {
+void cqView::setNeedsDisplay() {
+    dat->layer->setNeedsDisplay();
+}
+
+void cqView::drawLayerInContext(cqLayerRef layer, cqContext context) {
+    drawRect(bounds());
+}
+
+void cqView::drawRect(cqRect rect) {
+}
+
+void cqView::displayOnScreen(float w, float h) {
+    dat->layer->displayOnScreen(w, h);
 }
 
 cqWindowRef cqView::window() {
@@ -109,17 +99,25 @@ void cqView::addSubview(cqViewRef subview) {
         return;
     }
     
+    //add view.
     subview->removeFromSuperview();
     subview->dat->superview = weakRef();
     dat->subviews.push_back(subview);
+    
+    //add layer.
+    dat->layer->addSublayer(subview->layer());
 }
 
 void cqView::removeFromSuperview() {
+    //remove view.
     auto superview = dat->superview.lock();
     if (superview != nullptr) {
         cqVector::erase(&superview->dat->subviews, strongRef());
         dat->superview.reset();
     }
+    
+    //remove layer.
+    dat->layer->removeFromSuperlayer();
 }
 
 void cqView::setViewController(cqViewControllerRef viewController) {

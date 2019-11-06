@@ -6,6 +6,8 @@ _CQAPPKIT_BEGIN_VERSION_NS
 
 cq_class(cqWindow, cqView) {
     
+    void init() override;
+    
     virtual void setRootViewController(cqViewControllerRef controller);
     virtual cqViewControllerRef rootViewController();
     

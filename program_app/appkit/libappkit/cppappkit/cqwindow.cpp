@@ -1,7 +1,6 @@
 #include "cqwindow.hh"
 #include "cqapplication.hh"
 #include "cqglkit.h"
-#include "cqgraphics.hh"
 #include "cqtouchesevent_p.hh"
 
 cq_member(cqWindow) {
@@ -10,6 +9,13 @@ cq_member(cqWindow) {
     cqViewControllerRef rootViewController;
     cqViewRef touchesResponder;
 };
+
+void cqWindow::init() {
+    super::init();
+    
+    //NOTE: make sublayers renderered to the window's layer.
+    setClipsToBounds(true);
+}
 
 void cqWindow::setRootViewController(cqViewControllerRef controller) {
     if (dat->rootViewController == controller) {
@@ -35,8 +41,6 @@ static void load(cq_wnd *wnd) {
         rect.size.height = cq_wnd_height(wnd);
     }
     self->setFrame(rect);
-    
-    cqGraphics::startupGraphicsProgram(self->strongRef());
 }
 
 static void appear(cq_wnd *wnd) {
@@ -65,12 +69,10 @@ static void resize(cq_wnd *wnd, float width, float height) {
 
 static void gldraw(cq_wnd *wnd) {
     auto self = (cqWindow *)cq_wnd_extra(wnd);
-    
-    cqGraphics::prepareDraw();
-    
-    cqGraphics::pushContext(cqContext(0, 0));
-    self->drawSelfAndSubviews();
-    cqGraphics::popContext();
+
+    float w = self->frame().size.width ;
+    float h = self->frame().size.height;
+    self->displayOnScreen(w, h);
 }
 
 static void pbegan(cq_wnd *wnd, float x, float y) {

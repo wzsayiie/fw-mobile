@@ -9,6 +9,13 @@ static jclass clazz() {
     return clazz;
 }
 
+static float wnd_scale() {
+    static jmethodID methodID = nullptr;
+
+    cqJNIStaticMethod method(clazz(), &methodID, "windowScale");
+    return method.callFloat();
+}
+
 static int64_t new_wnd() {
     static jmethodID methodID = nullptr;
 
@@ -28,8 +35,9 @@ extern "C" JNIEXPORT void JNICALL Java_src_library_glkit_GLActivity_initWindowPo
     (JNIEnv *, jclass)
 {
     _cq_wndport port = {nullptr}; {
-        port.new_wnd = new_wnd;
-        port.show_wnd = show_wnd;
+        port.wnd_scale = wnd_scale;
+        port.new_wnd   = new_wnd;
+        port.show_wnd  = show_wnd;
     }
     _cq_init_wndport(&port);
 }
@@ -56,12 +64,6 @@ extern "C" JNIEXPORT void JNICALL Java_src_library_glkit_GLActivity_windowUnload
     (JNIEnv *, jclass, jlong wid)
 {
     _cq_wnd_unload(wid);
-}
-
-extern "C" JNIEXPORT void JNICALL Java_src_library_glkit_GLActivity_windowScale
-    (JNIEnv *, jclass, jlong wid, jfloat scale)
-{
-    _cq_wnd_scale(wid, scale);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_glkit_GLActivity_windowOrigin

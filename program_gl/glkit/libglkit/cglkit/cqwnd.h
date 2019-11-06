@@ -2,7 +2,9 @@
 
 #include "cqcbasis.h"
 
-struct cq_wnd;
+//global configuration:
+
+CQ_C_LINK float cq_wnd_scale(void);
 
 //cq_wnd lifecycle:
 //
@@ -14,6 +16,8 @@ struct cq_wnd;
 //  |         |            |           |
 //  |move   ->|-- move   ->|- move   ->|
 //  |resize ->|-- resize ->|- resize ->|
+
+struct cq_wnd;
 
 struct cq_wndproc {
     
@@ -43,7 +47,6 @@ CQ_C_LINK int64_t cq_wnd_extra(struct cq_wnd *wnd);
 CQ_C_LINK bool cq_wnd_loaded (struct cq_wnd *wnd);
 CQ_C_LINK bool cq_wnd_visible(struct cq_wnd *wnd);
 
-CQ_C_LINK float cq_wnd_scale (struct cq_wnd *wnd);
 CQ_C_LINK float cq_wnd_x     (struct cq_wnd *wnd);
 CQ_C_LINK float cq_wnd_y     (struct cq_wnd *wnd);
 CQ_C_LINK float cq_wnd_width (struct cq_wnd *wnd);
@@ -55,8 +58,9 @@ CQ_C_LINK float cq_wnd_height(struct cq_wnd *wnd);
 
 struct _cq_wndport {
     
-    int64_t (*new_wnd )(void);
-    void    (*show_wnd)(int64_t wid);
+    float   (*wnd_scale)(void);
+    int64_t (*new_wnd  )(void);
+    void    (*show_wnd )(int64_t wid);
 };
 
 CQ_C_LINK void _cq_init_wndport(struct _cq_wndport *port);
@@ -65,7 +69,6 @@ CQ_C_LINK void _cq_init_wndport(struct _cq_wndport *port);
 //
 // |        load --> appear <-> disappear --> unload
 // |         |         |            |           |
-// |scale  ->|         |            |           |
 // |         |update ->|-- update ->|           |
 // |         |draw   ->|-- draw   ->|           |
 // |         |         |-- touch  ->|           |
@@ -78,7 +81,6 @@ CQ_C_LINK void _cq_wnd_appear   (int64_t wid);
 CQ_C_LINK void _cq_wnd_disappear(int64_t wid);
 CQ_C_LINK void _cq_wnd_unload   (int64_t wid);
 
-CQ_C_LINK void _cq_wnd_scale (int64_t wid, float scale);
 CQ_C_LINK void _cq_wnd_origin(int64_t wid, float x, float y);
 CQ_C_LINK void _cq_wnd_size  (int64_t wid, float width, float height);
 CQ_C_LINK void _cq_wnd_update(int64_t wid);

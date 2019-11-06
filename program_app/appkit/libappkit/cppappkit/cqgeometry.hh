@@ -11,6 +11,11 @@ struct cqPoint {
     
     cqPoint();
     cqPoint(float x, float y);
+    
+    bool operator==(cqPoint that) const;
+    bool operator!=(cqPoint that) const;
+    
+    const char *string() const;
 };
 
 struct cqSize {
@@ -20,6 +25,11 @@ struct cqSize {
     
     cqSize();
     cqSize(float width, float height);
+    
+    bool operator==(cqSize that) const;
+    bool operator!=(cqSize that) const;
+    
+    const char *string() const;
 };
 
 struct cqRect {
@@ -37,10 +47,11 @@ struct cqRect {
     float maxY() const;
     
     bool contains(cqPoint point) const;
+    
+    bool operator==(cqRect that) const;
+    bool operator!=(cqRect that) const;
+    
+    const char *string() const;
 };
-
-const char *cqStringFromPoint(cqPoint point);
-const char *cqStringFromSize(cqSize size);
-const char *cqStringFromRect(cqRect rect);
 
 _CQAPPKIT_END_VERSION_NS

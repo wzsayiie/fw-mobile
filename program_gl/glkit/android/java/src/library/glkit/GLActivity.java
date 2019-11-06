@@ -129,6 +129,11 @@ public class GLActivity extends Activity implements GLView.Renderer {
     }
 
     /* called by native code */
+    protected static float windowScale() {
+        return sScreenDensity;
+    }
+
+    /* called by native code */
     protected static long createWindow() {
 
         //only one window can be created on android
@@ -149,7 +154,6 @@ public class GLActivity extends Activity implements GLView.Renderer {
         float width  = sWidthPixels  / sScreenDensity;
         float height = sHeightPixels / sScreenDensity;
 
-        windowScale (wid, sScreenDensity);
         windowOrigin(wid, 0, 0);
         windowSize  (wid, width, height);
         windowLoad  (wid);
@@ -232,7 +236,6 @@ public class GLActivity extends Activity implements GLView.Renderer {
     /* on android 'unload' event is invalid */
     protected static native void windowUnload(long wid);
 
-    protected static native void windowScale (long wid, float scale);
     protected static native void windowOrigin(long wid, float x, float y);
     protected static native void windowSize  (long wid, float width, float height);
     protected static native void windowUpdate(long wid);

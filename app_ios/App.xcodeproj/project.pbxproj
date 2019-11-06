@@ -25,11 +25,9 @@
 		B4411554231CB83D00053BD7 /* cqviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B441153B231CB83D00053BD7 /* cqviewcontroller.cpp */; };
 		B4411555231CB83D00053BD7 /* cqresponder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B441153E231CB83D00053BD7 /* cqresponder.cpp */; };
 		B4411556231CB83D00053BD7 /* cqview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4411540231CB83D00053BD7 /* cqview.cpp */; };
-		B4411557231CB83D00053BD7 /* cqcontext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4411542231CB83D00053BD7 /* cqcontext.cpp */; };
 		B4411558231CB83D00053BD7 /* cqlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4411543231CB83D00053BD7 /* cqlayer.cpp */; };
 		B4411559231CB83D00053BD7 /* cqwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4411544231CB83D00053BD7 /* cqwindow.cpp */; };
 		B441155A231CB83D00053BD7 /* cqcolor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4411545231CB83D00053BD7 /* cqcolor.cpp */; };
-		B441155B231CB83D00053BD7 /* cqgraphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4411548231CB83D00053BD7 /* cqgraphics.cpp */; };
 		B441155C231CB83D00053BD7 /* cqevent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B441154D231CB83D00053BD7 /* cqevent.cpp */; };
 		B441155D231CB83D00053BD7 /* cqapplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B441154E231CB83D00053BD7 /* cqapplication.cpp */; };
 		B441155E231CB83D00053BD7 /* cqtouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B441154F231CB83D00053BD7 /* cqtouch.cpp */; };
@@ -170,7 +168,6 @@
 		B4411537231CB83D00053BD7 /* cqappkit.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqappkit.hh; sourceTree = "<group>"; };
 		B4411538231CB83D00053BD7 /* cqview.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqview.hh; sourceTree = "<group>"; };
 		B4411539231CB83D00053BD7 /* cqgeometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqgeometry.cpp; sourceTree = "<group>"; };
-		B441153A231CB83D00053BD7 /* cqcontext.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqcontext.hh; sourceTree = "<group>"; };
 		B441153B231CB83D00053BD7 /* cqviewcontroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqviewcontroller.cpp; sourceTree = "<group>"; };
 		B441153C231CB83D00053BD7 /* cqlayer.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqlayer.hh; sourceTree = "<group>"; };
 		B441153D231CB83D00053BD7 /* cqtouch.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqtouch.hh; sourceTree = "<group>"; };
@@ -178,14 +175,11 @@
 		B441153F231CB83D00053BD7 /* cqviewcontroller.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqviewcontroller.hh; sourceTree = "<group>"; };
 		B4411540231CB83D00053BD7 /* cqview.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqview.cpp; sourceTree = "<group>"; };
 		B4411541231CB83D00053BD7 /* cqresponder.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqresponder.hh; sourceTree = "<group>"; };
-		B4411542231CB83D00053BD7 /* cqcontext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqcontext.cpp; sourceTree = "<group>"; };
 		B4411543231CB83D00053BD7 /* cqlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqlayer.cpp; sourceTree = "<group>"; };
 		B4411544231CB83D00053BD7 /* cqwindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqwindow.cpp; sourceTree = "<group>"; };
 		B4411545231CB83D00053BD7 /* cqcolor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqcolor.cpp; sourceTree = "<group>"; };
 		B4411546231CB83D00053BD7 /* cqwindow.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqwindow.hh; sourceTree = "<group>"; };
 		B4411547231CB83D00053BD7 /* cqevent.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqevent.hh; sourceTree = "<group>"; };
-		B4411548231CB83D00053BD7 /* cqgraphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqgraphics.cpp; sourceTree = "<group>"; };
-		B4411549231CB83D00053BD7 /* cqgraphics.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqgraphics.hh; sourceTree = "<group>"; };
 		B441154A231CB83D00053BD7 /* cqcolor.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqcolor.hh; sourceTree = "<group>"; };
 		B441154B231CB83D00053BD7 /* cqapplication.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqapplication.hh; sourceTree = "<group>"; };
 		B441154C231CB83D00053BD7 /* cqappkitbase.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqappkitbase.hh; sourceTree = "<group>"; };
@@ -504,14 +498,10 @@
 				B441154B231CB83D00053BD7 /* cqapplication.hh */,
 				B4411545231CB83D00053BD7 /* cqcolor.cpp */,
 				B441154A231CB83D00053BD7 /* cqcolor.hh */,
-				B4411542231CB83D00053BD7 /* cqcontext.cpp */,
-				B441153A231CB83D00053BD7 /* cqcontext.hh */,
 				B441154D231CB83D00053BD7 /* cqevent.cpp */,
 				B4411547231CB83D00053BD7 /* cqevent.hh */,
 				B4411539231CB83D00053BD7 /* cqgeometry.cpp */,
 				B4411536231CB83D00053BD7 /* cqgeometry.hh */,
-				B4411548231CB83D00053BD7 /* cqgraphics.cpp */,
-				B4411549231CB83D00053BD7 /* cqgraphics.hh */,
 				B4411543231CB83D00053BD7 /* cqlayer.cpp */,
 				B441153C231CB83D00053BD7 /* cqlayer.hh */,
 				B441153E231CB83D00053BD7 /* cqresponder.cpp */,
@@ -1160,7 +1150,6 @@
 				B441155A231CB83D00053BD7 /* cqcolor.cpp in Sources */,
 				CEA9857A233FC08000246B9E /* csmapfilter.cpp in Sources */,
 				B4CFD97321C7475000FFF4CF /* IAPDemoController.m in Sources */,
-				B441155B231CB83D00053BD7 /* cqgraphics.cpp in Sources */,
 				B4FC00462332043600A21B5E /* csscript.cpp in Sources */,
 				CEA9857C233FC08000246B9E /* cscollider.cpp in Sources */,
 				B441152F231CB7EE00053BD7 /* CQGLAppDelegate.m in Sources */,
@@ -1172,7 +1161,6 @@
 				B4411591231D0B5700053BD7 /* cqwnd.cpp in Sources */,
 				B425210A22842AD3004FA04B /* UIDevice+CQ.m in Sources */,
 				B4C0584B2338AE98009D71BA /* cslualibgamekit.cpp in Sources */,
-				B4411557231CB83D00053BD7 /* cqcontext.cpp in Sources */,
 				B425212322842BE4004FA04B /* CQSceneNavigator.m in Sources */,
 				CEA98582233FC19900246B9E /* csrigidbody.cpp in Sources */,
 				B4411590231D0B5700053BD7 /* cqglkitarche.cpp in Sources */,

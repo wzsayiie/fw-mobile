@@ -1,17 +1,17 @@
 #pragma once
 
-#include "cqcolor.hh"
-#include "cqgeometry.hh"
-#include "cqresponder.hh"
+#include "cqlayer.hh"
 
 _CQAPPKIT_BEGIN_VERSION_NS
 
 cq_declare(cqViewController);
 cq_declare(cqWindow);
 
-cq_class(cqView, cqResponder) {
+cq_class(cqView, cqResponder_LayerDelegate) {
     
     static cqViewRef createWithFrame(cqRect frame);
+    
+    void init() override;
     
     //position:
     virtual void setFrame(cqRect frame);
@@ -19,12 +19,20 @@ cq_class(cqView, cqResponder) {
     virtual cqRect bounds();
     
     //draw:
+    virtual cqLayerRef layer();
+    
     virtual void setBackgroundColor(cqColor backgroundColor);
     virtual cqColor backgroundColor();
     
-    virtual void drawSelfAndSubviews();
-    virtual void drawBackgroundInRect(cqRect rect);
-    virtual void drawInRect(cqRect rect);
+    virtual void setClipsToBounds(bool clipsToBounds);
+    virtual bool clipsToBounds();
+    
+    virtual void setNeedsDisplay();
+    
+    void drawLayerInContext(cqLayerRef layer, cqContext context) override;
+    virtual void drawRect(cqRect rect);
+    
+    virtual void displayOnScreen(float w, float h);
     
     //superview and subviews:
     virtual cqWindowRef window();

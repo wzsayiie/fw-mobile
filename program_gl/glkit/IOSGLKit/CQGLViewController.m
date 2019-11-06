@@ -30,7 +30,6 @@
     [EAGLContext setCurrentContext:self.view.context];
     
     CGSize size = self.view.frame.size;
-    _cq_wnd_scale (self.wid, UIScreen.mainScreen.scale);
     _cq_wnd_origin(self.wid, 0, 0);
     _cq_wnd_size  (self.wid, size.width, size.height);
     _cq_wnd_load  (self.wid);

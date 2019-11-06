@@ -23,6 +23,8 @@ struct cq_fbo {
     uint32_t tex; //color attachment is a texture.
 };
 
+extern const struct cq_fbo CQ_FBO_ZERO;
+
 //NOTE: parameters [pw, ph] is pixel size.
 
 CQ_C_LINK struct cq_fbo cq_new_fbo    (int32_t pw, int32_t ph, const void *data);
@@ -48,4 +50,4 @@ CQ_C_LINK void cq_draw_path_add  (float x, float y);
 CQ_C_LINK void cq_draw_path_stop (float x, float y);
 
 //draw texture on fbo:
-CQ_C_LINK void cq_draw_fbo(float x, float y, float w, float h, uint32_t tex);
+CQ_C_LINK void cq_draw_tex(float x, float y, float w, float h, uint32_t tex);

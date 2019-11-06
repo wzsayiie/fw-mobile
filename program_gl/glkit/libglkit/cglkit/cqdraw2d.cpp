@@ -53,6 +53,8 @@ void cq_del_tex(uint32_t tex) {
 
 //frame buffer object:
 
+extern const cq_fbo CQ_FBO_ZERO = {0, 0};
+
 static cq_fbo cq_new_formatted_fbo(int32_t pw, int32_t ph, GLint format, const void *data) {
     
     GLuint tex = cq_new_formatted_tex(pw, ph, format, data);
@@ -86,7 +88,7 @@ void cq_del_fbo(cq_fbo fbo) {
 
 //draw fbo:
 
-extern const cq_fbo CQ_SCREEN_FBO = {0, 0};
+extern const cq_fbo CQ_SCREEN_FBO = {0};
 
 static cq_fbo  _active_fbo    = {0};
 static int32_t _active_fbo_pw = 0;
@@ -169,7 +171,7 @@ void cq_draw_path_stop(float x, float y) {
 
 //draw texture on fbo:
 
-void cq_draw_fbo(float x, float y, float w, float h, uint32_t tex) {
+void cq_draw_tex(float x, float y, float w, float h, uint32_t tex) {
     cq_shader_use_tex_program();
     
     //assign "cq_ViewCenter".

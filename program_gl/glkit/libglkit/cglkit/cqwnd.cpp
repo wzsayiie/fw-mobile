@@ -40,7 +40,6 @@ static cq_wnd *get_wnd(int64_t wid) {
 struct cq_wnd {
     cq_wndproc proc;
     
-    float scale;
     float x;
     float y;
     float width;
@@ -55,6 +54,14 @@ struct cq_wnd {
 };
 
 static _cq_wndport _wndport = {nullptr};
+
+float cq_wnd_scale() {
+    static float scale = 0;
+    if (cq_flt_equal(scale, 0) && _wndport.wnd_scale) {
+        scale = _wndport.wnd_scale();
+    }
+    return scale;
+}
 
 cq_wnd *cq_new_wnd() {
     if (_wndport.new_wnd) {
@@ -96,7 +103,6 @@ int64_t cq_wnd_extra(cq_wnd *wnd) {
 bool cq_wnd_loaded (cq_wnd *w) {return w ? w->loaded  : false;}
 bool cq_wnd_visible(cq_wnd *w) {return w ? w->visible : false;}
 
-float cq_wnd_scale (cq_wnd *w) {return w ? w->scale  : 0.f;}
 float cq_wnd_x     (cq_wnd *w) {return w ? w->x      : 0.f;}
 float cq_wnd_y     (cq_wnd *w) {return w ? w->y      : 0.f;}
 float cq_wnd_width (cq_wnd *w) {return w ? w->width  : 0.f;}
@@ -147,12 +153,6 @@ void _cq_wnd_unload(int64_t wid) {
             notify(wnd->proc.unload, wnd);
             wnd->loaded = false;
         }
-    }
-}
-
-void _cq_wnd_scale(int64_t wid, float scale) {
-    if (cq_wnd *wnd = get_wnd(wid)) {
-        wnd->scale = scale;
     }
 }
 

@@ -12,6 +12,9 @@ bool cqString::empty(const char *value) {
 
 //class:
 
+void _cqBaseObject::init() {
+}
+
 cqClass *_cqBaseObject::superclass       () { return nullptr; }
 cqClass *_cqBaseObject::clazz            () { return nullptr; }
 cqClass *_cqBaseObject::dynamicSuperclass() { return nullptr; }

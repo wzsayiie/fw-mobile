@@ -8,6 +8,9 @@
     CQ_SHARED_OBJECT(self);
 }
 
+static float wnd_scale(void) {
+    return [CQGLAppDelegate.sharedObject windowScale];
+}
 static int64_t new_wnd(void) {
     return [CQGLAppDelegate.sharedObject createWindow];
 }
@@ -19,14 +22,19 @@ static void show_wnd(int64_t wid) {
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     struct _cq_wndport port = {NULL}; {
-        port.new_wnd  = new_wnd;
-        port.show_wnd = show_wnd;
+        port.wnd_scale = wnd_scale;
+        port.new_wnd   = new_wnd;
+        port.show_wnd  = show_wnd;
     }
     _cq_init_wndport(&port);
     
     //NOTE: call entry function here.
     
     return YES;
+}
+
+- (float)windowScale {
+    return UIScreen.mainScreen.scale;
 }
 
 - (int64_t)createWindow {
