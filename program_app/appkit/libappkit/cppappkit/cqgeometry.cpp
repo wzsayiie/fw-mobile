@@ -30,6 +30,26 @@ bool cqPoint::operator!=(cqPoint that) const {
         || !cq_flt_equal(y, that.y);
 }
 
+cqPoint cqPoint::operator+(cqPoint that) const {
+    return cqPoint(x + that.x, y + that.y);
+}
+
+cqPoint cqPoint::operator-(cqPoint that) const {
+    return cqPoint(x - that.x, y - that.y);
+}
+
+cqPoint cqPoint::operator+=(cqPoint that) {
+    x += that.x;
+    y += that.y;
+    return *this;
+}
+
+cqPoint cqPoint::operator-=(cqPoint that) {
+    x -= that.x;
+    y -= that.y;
+    return *this;
+}
+
 const char *cqPoint::string() const {
     return makeString("(%.1f, %.1f)", x, y);
 }

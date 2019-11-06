@@ -170,13 +170,13 @@ NSString *const CQSceneStyleFloat = @"CQSceneStyleFloat";
         return;
     }
     
-    //NOTE: set $animal to YES.
+    //NOTE: set $animated to YES.
     //
     //for interactive pop gesture, if user does not pop the topest controller finally,
     //when the topest controller returns to nomral,
     //app will be not receive "didShowViewController" callback.
     //
-    //set $animal to YES, the status of the navigation bar is not reset immediately.
+    //set $animated to YES, the status of the navigation bar is not reset immediately.
     [self adjustNavigationBarForController:newStackTopController animated:YES];
 }
 

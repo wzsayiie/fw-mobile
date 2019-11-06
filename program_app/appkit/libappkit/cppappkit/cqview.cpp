@@ -23,6 +23,8 @@ void cqView::init() {
     dat->layer->setDelegate(cqLayerDelegate(strongRef()));
 }
 
+//position:
+
 void cqView::setFrame(cqRect frame) {
     dat->layer->setFrame(frame);
 }
@@ -34,6 +36,22 @@ cqRect cqView::frame() {
 cqRect cqView::bounds() {
     return dat->layer->bounds();
 }
+
+void cqView::setCenter(cqPoint point) {
+    cqRect f = frame();
+    f.origin.x = point.x - f.size.width  / 2;
+    f.origin.y = point.y - f.size.height / 2;
+    setFrame(f);
+}
+
+cqPoint cqView::center() {
+    cqRect f = frame();
+    float x = f.origin.x + f.size.width  / 2;
+    float y = f.origin.y + f.size.height / 2;
+    return cqPoint(x, y);
+}
+
+//draw:
 
 cqLayerRef cqView::layer() {
     return dat->layer;
@@ -69,6 +87,8 @@ void cqView::drawRect(cqRect rect) {
 void cqView::displayOnScreen(float w, float h) {
     dat->layer->displayOnScreen(w, h);
 }
+
+//hierarchy:
 
 cqWindowRef cqView::window() {
     cqViewRef it = strongRef();
@@ -135,6 +155,8 @@ cqResponderRef cqView::nextResponder() {
         return dat->superview.lock();
     }
 }
+
+//hit test:
 
 static cqWindowRef offsetOnWindow(cqViewRef self, cqPoint *offset) {
     *offset = self->frame().origin;

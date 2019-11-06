@@ -15,6 +15,12 @@ struct cqPoint {
     bool operator==(cqPoint that) const;
     bool operator!=(cqPoint that) const;
     
+    cqPoint operator+(cqPoint that) const;
+    cqPoint operator-(cqPoint that) const;
+    
+    cqPoint operator+=(cqPoint that);
+    cqPoint operator-=(cqPoint that);
+    
     const char *string() const;
 };
 

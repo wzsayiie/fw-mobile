@@ -18,6 +18,9 @@ cq_class(cqView, cqResponder_LayerDelegate) {
     virtual cqRect frame();
     virtual cqRect bounds();
     
+    virtual void setCenter(cqPoint point);
+    virtual cqPoint center();
+    
     //draw:
     virtual cqLayerRef layer();
     
@@ -34,7 +37,7 @@ cq_class(cqView, cqResponder_LayerDelegate) {
     
     virtual void displayOnScreen(float w, float h);
     
-    //superview and subviews:
+    //hierarchy:
     virtual cqWindowRef window();
     virtual cqViewRef superview();
     virtual const std::vector<cqViewRef> &subviews();
