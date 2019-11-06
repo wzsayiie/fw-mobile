@@ -9,9 +9,9 @@ bool cqColor::operator==(cqColor that) const {
 
 bool cqColor::operator!=(cqColor that) const {
     return !cq_flt_equal(red  , that.red  )
-        && !cq_flt_equal(green, that.green)
-        && !cq_flt_equal(blue , that.blue )
-        && !cq_flt_equal(alpha, that.alpha);
+        || !cq_flt_equal(green, that.green)
+        || !cq_flt_equal(blue , that.blue )
+        || !cq_flt_equal(alpha, that.alpha);
 }
 
 cqColor cqColor::iRGBA(uint8_t r, uint8_t g, uint8_t b, uint8_t a) {

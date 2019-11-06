@@ -56,7 +56,7 @@ cq_member(cqLayer) {
     bool needsSuperDisplay = true;
     bool needsDisplay = true;
     
-    cq_fbo fbo = CQ_FBO_ZERO;
+    cq_fbo *fbo = nullptr;
     float fw = 0;
     float fh = 0;
     
@@ -132,7 +132,8 @@ static void mergeLayers(float x, float y, cqLayerRef layer) {
     float sw = f.size.width;
     float sh = f.size.height;
     
-    cq_draw_tex(sx, sy, sw, sh, layer->dat->fbo.tex);
+    cq_tex *tex = cq_fbo_tex(layer->dat->fbo);
+    cq_draw_tex(sx, sy, sw, sh, tex);
     
     if (layer->clipsToBounds()) {
         return;
@@ -170,19 +171,21 @@ bool cqLayer::displayIfNeeded() {
     float h = dat->frame.size.height;
     if (w != dat->fw || h != dat->fh) {
         cq_del_fbo(dat->fbo);
-        dat->fbo = CQ_FBO_ZERO;
+        dat->fbo = nullptr;
         
         dat->fw = w;
         dat->fh = h;
     }
     
     //new fbo if needed.
-    if (dat->fbo.fbo == 0 && w > 0 && h > 0) {
-        dat->fbo = cq_new_fbo(w, h, NULL);
+    if (dat->fbo == nullptr && w > 0 && h > 0) {
+        //make clearer with pixel size.
+        float scale = cq_wnd_scale();
+        dat->fbo = cq_new_fbo(w * scale, h *scale, NULL);
     }
     
     //draw:
-    if (dat->fbo.fbo == 0) {
+    if (dat->fbo == nullptr) {
         return true;
     }
     cq_begin_draw_fbo(w, h, dat->fbo);
@@ -207,12 +210,9 @@ bool cqLayer::displayIfNeeded() {
 
 void cqLayer::displayOnScreen(float w, float h) {
     displayIfNeeded();
-
-    float s = cq_wnd_scale();
-    auto pw = (int32_t)(w * s);
-    auto ph = (int32_t)(h * s);
-    cq_begin_draw_fbo(pw, ph, CQ_SCREEN_FBO);
-    cq_draw_tex(0, 0, pw, ph, dat->fbo.tex);
+    
+    cq_begin_draw_fbo(w, h, CQ_SCREEN_FBO);
+    cq_draw_tex(0, 0, w, h, cq_fbo_tex(dat->fbo));
     cq_end_draw_fbo();
 }
 

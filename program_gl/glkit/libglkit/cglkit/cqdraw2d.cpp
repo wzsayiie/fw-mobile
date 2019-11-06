@@ -2,6 +2,7 @@
 #include "cqcppbasis.hh"
 #include "cqopengl_p.h"
 #include "cqshader2d_p.h"
+#include "cqwnd.h"
 
 //global:
 
@@ -24,11 +25,23 @@ void cq_enable_alpha(bool enabled) {
 
 //texture:
 
-static uint32_t cq_new_formatted_tex(int32_t pw, int32_t ph, GLint format, const void *data) {
-    GLuint tex = 0;
+struct cq_tex {
+    GLuint  tex;
+    int32_t pw;
+    int32_t ph;
+};
+
+static cq_tex *cq_new_formatted_tex(int32_t pw, int32_t ph, GLint format, const void *data) {
+    if (pw <= 0 || ph <= 0) {
+        return nullptr;
+    }
     
-    glGenTextures(1, &tex);
-    glBindTexture(GL_TEXTURE_2D, tex);
+    cq_tex *tex = new cq_tex;
+    tex->pw = pw;
+    tex->ph = ph;
+    
+    glGenTextures(1, &tex->tex);
+    glBindTexture(GL_TEXTURE_2D, tex->tex);
     glTexImage2D(GL_TEXTURE_2D, 0, format, pw, ph, 0, format, GL_UNSIGNED_BYTE, data);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -37,77 +50,99 @@ static uint32_t cq_new_formatted_tex(int32_t pw, int32_t ph, GLint format, const
     return tex;
 }
 
-uint32_t cq_new_tex(int32_t pw, int32_t ph, const void *data) {
+cq_tex *cq_new_tex(int32_t pw, int32_t ph, const void *data) {
     return cq_new_formatted_tex(pw, ph, GL_RGBA, data);
 }
 
-uint32_t cq_new_rgb_tex(int32_t pw, int32_t ph, const void *data) {
+cq_tex *cq_new_rgb_tex(int32_t pw, int32_t ph, const void *data) {
     return cq_new_formatted_tex(pw, ph, GL_RGB, data);
 }
 
-void cq_del_tex(uint32_t tex) {
-    if (tex != 0) {
-        glDeleteTextures(1, &tex);
+void cq_del_tex(cq_tex *tex) {
+    if (tex != nullptr) {
+        glDeleteTextures(1, &tex->tex);
     }
 }
 
 //frame buffer object:
 
-extern const cq_fbo CQ_FBO_ZERO = {0, 0};
+struct cq_fbo {
+    GLuint  fbo;
+    cq_tex *tex;
+};
 
-static cq_fbo cq_new_formatted_fbo(int32_t pw, int32_t ph, GLint format, const void *data) {
+static cq_fbo *cq_new_formatted_fbo(int32_t pw, int32_t ph, GLint format, const void *data) {
+    if (pw <= 0 || ph <= 0) {
+        return nullptr;
+    }
     
-    GLuint tex = cq_new_formatted_tex(pw, ph, format, data);
+    cq_fbo *fbo = new cq_fbo;
     
-    GLuint fbo = 0;
-    glGenFramebuffers(1, &fbo);
-    glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, tex, 0);
+    //new tex.
+    fbo->tex = cq_new_formatted_tex(pw, ph, format, data);
+    //new fbo.
+    glGenFramebuffers(1, &fbo->fbo);
+    glBindFramebuffer(GL_FRAMEBUFFER, fbo->fbo);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, fbo->tex->tex, 0);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     
-    cq_fbo ret = {0};
-    ret.fbo = fbo;
-    ret.tex = tex;
-    return ret;
+    return fbo;
 }
 
-cq_fbo cq_new_fbo(int32_t pw, int32_t ph, const void *data) {
+cq_fbo *cq_new_fbo(int32_t pw, int32_t ph, const void *data) {
     return cq_new_formatted_fbo(pw, ph, GL_RGBA, data);
 }
 
-cq_fbo cq_new_rgb_fbo(int32_t pw, int32_t ph, const void *data) {
+cq_fbo *cq_new_rgb_fbo(int32_t pw, int32_t ph, const void *data) {
     return cq_new_formatted_fbo(pw, ph, GL_RGB, data);
 }
 
-void cq_del_fbo(cq_fbo fbo) {
-    if (fbo.fbo != 0) {
-        glDeleteFramebuffers(1, &fbo.fbo);
+cq_tex *cq_fbo_tex(cq_fbo *fbo) {
+    if (fbo != nullptr) {
+        return fbo->tex;
+    } else {
+        return nullptr;
     }
-    cq_del_tex(fbo.tex);
+}
+
+void cq_del_fbo(cq_fbo *fbo) {
+    if (fbo != nullptr) {
+        glDeleteFramebuffers(1, &fbo->fbo);
+        cq_del_tex(fbo->tex);
+    }
 }
 
 //draw fbo:
 
-extern const cq_fbo CQ_SCREEN_FBO = {0};
+extern cq_fbo *const CQ_SCREEN_FBO = (cq_fbo *)(-1);
 
-static cq_fbo  _active_fbo    = {0};
-static int32_t _active_fbo_pw = 0;
-static int32_t _active_fbo_ph = 0;
+static cq_fbo *_active_fbo = nullptr;
+static float _active_fbo_w = 0;
+static float _active_fbo_h = 0;
 
 static float _color_r = 0;
 static float _color_g = 0;
 static float _color_b = 0;
 static float _color_a = 0;
 
-void cq_begin_draw_fbo(int32_t pw, int32_t ph, cq_fbo fbo) {
-    _active_fbo_pw = pw;
-    _active_fbo_ph = ph;
+void cq_begin_draw_fbo(float w, float h, cq_fbo *fbo) {
+    if (w <= 0 || h <= 0 || fbo == nullptr) {
+        return;
+    }
     
-    if (_active_fbo.fbo != fbo.fbo) {
-        glBindFramebuffer(GL_FRAMEBUFFER, fbo.fbo);
-        glViewport(0, 0, pw, ph);
+    if (_active_fbo != fbo) {
+        if (fbo == CQ_SCREEN_FBO) {
+            float scale = cq_wnd_scale();
+            glBindFramebuffer(GL_FRAMEBUFFER, 0);
+            glViewport(0, 0, w * scale, h * scale);
+        } else {
+            glBindFramebuffer(GL_FRAMEBUFFER, fbo->fbo);
+            glViewport(0, 0, fbo->tex->pw, fbo->tex->ph);
+        }
     }
     _active_fbo = fbo;
+    _active_fbo_w = w;
+    _active_fbo_h = h;
 }
 
 void cq_end_draw_fbo() {
@@ -130,8 +165,8 @@ void cq_set_draw_color(float r, float g, float b, float a) {
 static std::vector<float> _drawing_path;
 
 static void add_drawing_point(float x, float y) {
-    _drawing_path.push_back(cq_gl_x_from_ui(_active_fbo_pw , x));
-    _drawing_path.push_back(cq_gl_y_from_ui(_active_fbo_ph, y));
+    _drawing_path.push_back(cq_gl_x_from_ui(_active_fbo_w, x));
+    _drawing_path.push_back(cq_gl_y_from_ui(_active_fbo_h, y));
 }
 
 static int32_t drawing_points_count() {
@@ -171,7 +206,11 @@ void cq_draw_path_stop(float x, float y) {
 
 //draw texture on fbo:
 
-void cq_draw_tex(float x, float y, float w, float h, uint32_t tex) {
+void cq_draw_tex(float x, float y, float w, float h, cq_tex *tex) {
+    if (w <= 0 || h <= 0 || tex == nullptr) {
+        return;
+    }
+    
     cq_shader_use_tex_program();
     
     //assign "cq_ViewCenter".
@@ -179,13 +218,13 @@ void cq_draw_tex(float x, float y, float w, float h, uint32_t tex) {
     
     //assign "texSimple".
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, tex);
+    glBindTexture(GL_TEXTURE_2D, tex->tex);
     
     //assign "vecPosition".
-    float left  = cq_gl_x_from_ui(_active_fbo_pw, x);
-    float right = cq_gl_x_from_ui(_active_fbo_pw, x + w);
-    float top   = cq_gl_y_from_ui(_active_fbo_ph, y);
-    float bott  = cq_gl_y_from_ui(_active_fbo_ph, y + h);
+    float left  = cq_gl_x_from_ui(_active_fbo_w, x);
+    float right = cq_gl_x_from_ui(_active_fbo_w, x + w);
+    float top   = cq_gl_y_from_ui(_active_fbo_h, y);
+    float bott  = cq_gl_y_from_ui(_active_fbo_h, y + h);
     float vecCoord[] = {
         left , top ,
         right, top ,
