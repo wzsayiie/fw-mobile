@@ -12,7 +12,7 @@ void cqImage::init() {
 void cqImage::init(const std::vector<uint8_t> &data) {
     super::init();
     
-    dat->tex = cq_img_from_data(data.data());
+    dat->tex = cq_img_from_data(data.data(), (int32_t)data.size());
 }
 
 void cqImage::init(const std::string &file) {

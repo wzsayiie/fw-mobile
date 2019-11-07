@@ -212,6 +212,7 @@ void cqLayer::displayOnScreen(float w, float h) {
     displayIfNeeded();
     
     cq_begin_draw_fbo(w, h, CQ_SCREEN_FBO);
+    cq_clear_current(1, 1, 1, 1);
     cq_draw_tex(0, 0, w, h, cq_fbo_tex(dat->fbo));
     cq_end_draw_fbo();
 }
