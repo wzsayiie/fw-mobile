@@ -2,6 +2,5 @@
 
 #include "cqdraw2d.h"
 #include "cqfont.h"
+#include "cqimg.h"
 #include "cqwnd.h"
-
-#include "cqopengl_p.h"

@@ -19,8 +19,7 @@ static void update(cq_wnd *wnd) {
 }
 
 static void gldraw(cq_wnd *wnd) {
-    glClearColor(0.5, 0.6, 0.9, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT);
+    cq_clear_current(0.5, 0.6, 0.9, 1.0);
 }
 
 static void initializeWndIfNeeded() {

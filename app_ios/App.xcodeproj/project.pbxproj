@@ -99,6 +99,9 @@
 		CEA9857F233FC08000246B9E /* csanimator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA98577233FC08000246B9E /* csanimator.cpp */; };
 		CEA98582233FC19900246B9E /* csrigidbody.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA98581233FC19900246B9E /* csrigidbody.cpp */; };
 		CEDE75462362092F003A9F02 /* cqdraw2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEDE75442362092F003A9F02 /* cqdraw2d.cpp */; };
+		CEE0B1722373BF3100878DB3 /* cqimageview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE0B16E2373BF3000878DB3 /* cqimageview.cpp */; };
+		CEE0B1732373BF3100878DB3 /* cqimage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE0B1702373BF3000878DB3 /* cqimage.cpp */; };
+		CEE0B1762373C36A00878DB3 /* cqimg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE0B1742373C36A00878DB3 /* cqimg.cpp */; };
 		CEEB261C2300655C001FD8D6 /* CQNetStatusListener.m in Sources */ = {isa = PBXBuildFile; fileRef = CEEB261B2300655C001FD8D6 /* CQNetStatusListener.m */; };
 		CEF77F2D2362DDBC001B48C8 /* cqshader2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF77F2C2362DDBB001B48C8 /* cqshader2d.cpp */; };
 		CEF77F2F2362DFC6001B48C8 /* cqopengl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF77F2E2362DFC6001B48C8 /* cqopengl.cpp */; };
@@ -316,6 +319,12 @@
 		CEA98581233FC19900246B9E /* csrigidbody.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csrigidbody.cpp; sourceTree = "<group>"; };
 		CEDE75442362092F003A9F02 /* cqdraw2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqdraw2d.cpp; sourceTree = "<group>"; };
 		CEDE75452362092F003A9F02 /* cqdraw2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqdraw2d.h; sourceTree = "<group>"; };
+		CEE0B16E2373BF3000878DB3 /* cqimageview.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqimageview.cpp; sourceTree = "<group>"; };
+		CEE0B16F2373BF3000878DB3 /* cqimage.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqimage.hh; sourceTree = "<group>"; };
+		CEE0B1702373BF3000878DB3 /* cqimage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqimage.cpp; sourceTree = "<group>"; };
+		CEE0B1712373BF3000878DB3 /* cqimageview.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqimageview.hh; sourceTree = "<group>"; };
+		CEE0B1742373C36A00878DB3 /* cqimg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqimg.cpp; sourceTree = "<group>"; };
+		CEE0B1752373C36A00878DB3 /* cqimg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqimg.h; sourceTree = "<group>"; };
 		CEEB261A2300655C001FD8D6 /* CQNetStatusListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQNetStatusListener.h; sourceTree = "<group>"; };
 		CEEB261B2300655C001FD8D6 /* CQNetStatusListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQNetStatusListener.m; sourceTree = "<group>"; };
 		CEF77F2A2362DDBB001B48C8 /* cqglkit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqglkit.h; sourceTree = "<group>"; };
@@ -502,6 +511,10 @@
 				B4411547231CB83D00053BD7 /* cqevent.hh */,
 				B4411539231CB83D00053BD7 /* cqgeometry.cpp */,
 				B4411536231CB83D00053BD7 /* cqgeometry.hh */,
+				CEE0B1702373BF3000878DB3 /* cqimage.cpp */,
+				CEE0B16F2373BF3000878DB3 /* cqimage.hh */,
+				CEE0B16E2373BF3000878DB3 /* cqimageview.cpp */,
+				CEE0B1712373BF3000878DB3 /* cqimageview.hh */,
 				B4411543231CB83D00053BD7 /* cqlayer.cpp */,
 				B441153C231CB83D00053BD7 /* cqlayer.hh */,
 				B441153E231CB83D00053BD7 /* cqresponder.cpp */,
@@ -572,6 +585,8 @@
 				CE4117DE236A8A8300491FE3 /* cqfont.cpp */,
 				CE4117DF236A8A8400491FE3 /* cqfont.h */,
 				CEF77F2A2362DDBB001B48C8 /* cqglkit.h */,
+				CEE0B1742373C36A00878DB3 /* cqimg.cpp */,
+				CEE0B1752373C36A00878DB3 /* cqimg.h */,
 				B441158C231D0B5700053BD7 /* cqopengl_p.h */,
 				CEF77F2E2362DFC6001B48C8 /* cqopengl.cpp */,
 				CEF77F2B2362DDBB001B48C8 /* cqshader2d_p.h */,
@@ -1130,6 +1145,8 @@
 				CE299D282323F15B00B5FC98 /* csscene.cpp in Sources */,
 				B425211422842B91004FA04B /* CQHotfixManager.m in Sources */,
 				B4411554231CB83D00053BD7 /* cqviewcontroller.cpp in Sources */,
+				CEE0B1722373BF3100878DB3 /* cqimageview.cpp in Sources */,
+				CEE0B1762373C36A00878DB3 /* cqimg.cpp in Sources */,
 				CE299D292323F15B00B5FC98 /* csgameobject.cpp in Sources */,
 				B441159D231D0DC100053BD7 /* csgamekitarche.cpp in Sources */,
 				B425212A22842C8E004FA04B /* CQCommandViewController.m in Sources */,
@@ -1174,6 +1191,7 @@
 				B4F7AE1F232A0CE500E675A8 /* csscenemanager.cpp in Sources */,
 				CE299D412324055600B5FC98 /* csbehaviour.cpp in Sources */,
 				B441155E231CB83D00053BD7 /* cqtouch.cpp in Sources */,
+				CEE0B1732373BF3100878DB3 /* cqimage.cpp in Sources */,
 				CE749FAA2351C7D600E4FCEE /* DailyViewController.m in Sources */,
 				B4411586231CBFD100053BD7 /* cqappkitarche.cpp in Sources */,
 				CE4117E0236A8A8400491FE3 /* cqfont.cpp in Sources */,
