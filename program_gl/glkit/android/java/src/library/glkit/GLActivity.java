@@ -92,13 +92,13 @@ public class GLActivity extends Activity implements GLView.Renderer {
     }
 
     protected void timeout() {
-        //NOTE: update data above all, after paint ui.
+        //NOTE: update data above all, after draw ui.
         setWindowUpdateIfNeeded();
         mView.update();
     }
 
-    public void onGLViewPaint() {
-        setWindowGLPaintIfNeeded();
+    public void onGLViewDraw() {
+        setWindowGLDrawIfNeeded();
     }
 
     //store values as static date.
@@ -216,12 +216,12 @@ public class GLActivity extends Activity implements GLView.Renderer {
         windowUpdate(sWid);
     }
 
-    private static void setWindowGLPaintIfNeeded() {
+    private static void setWindowGLDrawIfNeeded() {
         if (sWid == 0) {
             return;
         }
 
-        //only paint window when it's visible, that's different with windowUpdate().
+        //only draw window when it's visible, that's different with windowUpdate().
         if (sVisible) {
             windowGLDraw(sWid);
         }

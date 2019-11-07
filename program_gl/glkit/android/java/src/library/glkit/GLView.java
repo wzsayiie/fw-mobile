@@ -19,7 +19,7 @@ public class GLView extends SurfaceView implements SurfaceHolder.Callback {
     public interface Renderer {
         void onGLViewLoad(int width, int height);
         void onGLViewResize(int width, int height);
-        void onGLViewPaint();
+        void onGLViewDraw();
     }
 
     private static final int GL_ES_VERSION = EGL14.EGL_OPENGL_ES2_BIT;
@@ -163,7 +163,7 @@ public class GLView extends SurfaceView implements SurfaceHolder.Callback {
 
     public void update() {
         if (mRenderer != null && mEGL != null) {
-            mRenderer.onGLViewPaint();
+            mRenderer.onGLViewDraw();
             mEGL.eglSwapBuffers(mEGLDisplay, mEGLSurface);
         }
     }
