@@ -101,7 +101,7 @@ public class GLActivity extends Activity implements GLView.Renderer {
         setWindowGLDrawIfNeeded();
     }
 
-    //store values as static date.
+    //store values as static data.
     //if app entries to background, the activity will be release possibly.
     private static boolean sInitialized;
     private static float   sScreenDensity;
