@@ -6,15 +6,19 @@ cq_member(cqTouch) {
     cqPoint locationInWindow;
 };
 
-cqTouchRef cqTouch::createWithLocation(cqWindowRef window, cqPoint location) {
-    cqTouchRef touch = cqTouch::create();
-    touch->dat->locatedWindow = window;
-    touch->dat->locationInWindow = location;
-    return touch;
+void cqTouch::init() {
+    init(nullptr, cqPoint());
+}
+
+void cqTouch::init(cqWindowRef window, cqPoint location) {
+    super::init();
+    
+    dat->locatedWindow = window;
+    dat->locationInWindow = location;
 }
 
 cqPoint cqTouch::locationInView(cqViewRef view) {
-    if (view != nullptr) {
+    if (!dat->locatedWindow.expired() && view != nullptr) {
         auto location = dat->locationInWindow;
         auto window = dat->locatedWindow.lock();
         return view->convertPointFromView(location, window);

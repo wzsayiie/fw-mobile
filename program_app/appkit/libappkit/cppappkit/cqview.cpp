@@ -10,17 +10,17 @@ cq_member(cqView) {
     cqViewControllerWeakRef viewController;
 };
 
-cqViewRef cqView::createWithFrame(cqRect frame) {
-    cqViewRef view = cqView::create();
-    view->setFrame(frame);
-    return view;
+void cqView::init() {
+    init(cqRect());
 }
 
-void cqView::init() {
+void cqView::init(cqRect frame) {
     super::init();
     
     dat->layer = cqLayer::create();
     dat->layer->setDelegate(cqLayerDelegate(strongRef()));
+    
+    setFrame(frame);
 }
 
 //position:

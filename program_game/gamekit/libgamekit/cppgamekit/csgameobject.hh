@@ -7,7 +7,9 @@ _CSGAMEKIT_BEGIN_VERSION_NS
 cq_class(csGameObject, csNode) {
     
     //NOTE: new game object will be attached default components, and add to active scene.
-    static csGameObjectRef createWithName(const std::string &name);
+    void init();
+    void init(const std::string &name);
+    
     static void destroy(csGameObjectRef gameObject);
     
     void handleCreate () override;

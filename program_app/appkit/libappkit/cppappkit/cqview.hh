@@ -9,9 +9,8 @@ cq_declare(cqWindow);
 
 cq_class(cqView, cqResponder_LayerDelegate) {
     
-    static cqViewRef createWithFrame(cqRect frame);
-    
-    void init() override;
+    void init();
+    void init(cqRect frame);
     
     //position:
     virtual void setFrame(cqRect frame);

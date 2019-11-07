@@ -13,12 +13,15 @@ cq_member(csGameObject) {
 
 //create and destroy:
 
-csGameObjectRef csGameObject::createWithName(const std::string &name) {
-    csGameObjectRef gameObject = csGameObject::create(); {
-        gameObject->setName(name);
-        gameObject->handleCreate();
-    }
-    return gameObject;
+void csGameObject::init() {
+    init("");
+}
+
+void csGameObject::init(const std::string &name) {
+    super::init();
+    
+    setName(name);
+    handleCreate();
 }
 
 void csGameObject::destroy(csGameObjectRef gameObject) {

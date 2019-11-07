@@ -11,7 +11,11 @@ cq_member(cqWindow) {
 };
 
 void cqWindow::init() {
-    super::init();
+    init(cqRect());
+}
+
+void cqWindow::init(cqRect frame) {
+    super::init(frame);
     
     //NOTE: make sublayers renderered to the window's layer.
     setClipsToBounds(true);
@@ -79,7 +83,7 @@ static void pbegan(cq_wnd *wnd, float x, float y) {
     auto self = (cqWindow *)cq_wnd_extra(wnd);
     
     std::set<cqTouchRef> touches = {
-        cqTouch::createWithLocation(self->strongRef(), cqPoint(x, y))
+        cqTouch::create(self->strongRef(), cqPoint(x, y))
     };
     cqTouchesEventRef touchesEvent = cqTouchesEvent::create();
     
@@ -101,7 +105,7 @@ static void pmoved(cq_wnd *wnd, float x, float y) {
     }
     
     std::set<cqTouchRef> touches = {
-        cqTouch::createWithLocation(self->strongRef(), cqPoint(x, y))
+        cqTouch::create(self->strongRef(), cqPoint(x, y))
     };
     cqTouchesEventRef touchesEvent = cqTouchesEvent::create();
     
@@ -115,7 +119,7 @@ static void pended(cq_wnd *wnd, float x, float y) {
     }
     
     std::set<cqTouchRef> touches = {
-        cqTouch::createWithLocation(self->strongRef(), cqPoint(x, y))
+        cqTouch::create(self->strongRef(), cqPoint(x, y))
     };
     cqTouchesEventRef touchesEvent = cqTouchesEvent::create();
     

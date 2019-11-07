@@ -9,7 +9,8 @@ cq_declare(cqWindow);
 
 cq_class(cqTouch, cqObject) {
     
-    static cqTouchRef createWithLocation(cqWindowRef window, cqPoint location);
+    void init();
+    void init(cqWindowRef window, cqPoint location);
     
     virtual cqPoint locationInView(cqViewRef view);
 };

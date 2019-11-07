@@ -134,7 +134,7 @@ cs_scene cs_active_scene() {
 //gobj:
 
 cs_gobj cs_create_gobj(const char *name) {
-    csGameObjectRef gameObject = csGameObject::createWithName(cqString::make(name));
+    csGameObjectRef gameObject = csGameObject::create(cqString::make(name));
     return cs_retain<cs_gobj>(gameObject);
 }
 

@@ -86,12 +86,13 @@ struct cqClass;
 struct _cqBaseObject {
     cqRef<_cqBaseObject>::Weak thisWeakRef;
     
-    virtual void init();
+    void init();
     
     static  cqClass *superclass();
     static  cqClass *clazz();
     virtual cqClass *dynamicSuperclass();
     virtual cqClass *dynamicClass();
+    
     virtual ~_cqBaseObject();
 };
 
@@ -116,10 +117,10 @@ template<class CLASS, class SUPER> struct _cqSandWich : SUPER {
     //the constructor implemented by macro cq_member()
     _cqSandWich();
     
-    static typename cqRef<CLASS>::Strong create() {
+    template<class... A> static typename cqRef<CLASS>::Strong create(A... a) {
         auto object = std::make_shared<CLASS>();
         object->thisWeakRef = object;
-        object->init();
+        object->init(a...);
         return object;
     }
     
