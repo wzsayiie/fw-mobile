@@ -182,9 +182,5 @@ bool cqJNIStaticMethod::check() {
         return false;
     }
     cqJNIGetStatic(_methodID, _env, _clazz, _name.c_str(), _signature.c_str());
-    if (*_methodID == nullptr) {
-        return false;
-    }
-
-    return true;
+    return *_methodID != nullptr;
 }
