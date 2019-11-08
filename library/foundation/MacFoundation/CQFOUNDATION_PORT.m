@@ -11,6 +11,25 @@ void cq_log_error(const char *file, int32_t line, const char *message) {
     CQLogError(@(file), line, @"%s", message);
 }
 
+//app bundle resource:
+
+uint8_t *cq_bundle_res(int32_t *len, const char *type, const char *name) {
+    NSData *data = [CQBundle.sharedObject resourceForType:@(type) name:@(name)];
+    if (data.length > 0) {
+        uint8_t *bytes = malloc(data.length);
+        memcpy(bytes, data.bytes, data.length);
+        if (len != NULL) {
+            *len = (int32_t)data.length;
+        }
+        return bytes;
+    } else {
+        if (len != NULL) {
+            *len = 0;
+        }
+        return NULL;
+    }
+}
+
 //file access:
 
 const char *cq_document_directory(void) {
