@@ -27,6 +27,15 @@ struct cqLog {
 #define I(...) cqLog::info (__FILE__, __LINE__, __VA_ARGS__)
 #define E(...) cqLog::error(__FILE__, __LINE__, __VA_ARGS__)
 
+//app bundle resource:
+
+cq_class(cqBundle, cqObject) {
+    
+    static cqBundleRef get();
+    
+    virtual std::vector<uint8_t> resource(const std::string &type, const std::string &name);
+};
+
 //file access:
 
 struct cqPath {

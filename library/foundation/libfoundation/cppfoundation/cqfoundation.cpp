@@ -29,6 +29,27 @@ void cqLog::error(const char *file, int line, _Printf_format_string_ const char 
     va_end(args);
 }
 
+//app bundle resource:
+
+cq_member(cqBundle) {
+};
+
+cqBundleRef cqBundle::get() {
+    return cqStaticObject<cqBundle>();
+}
+
+std::vector<uint8_t> cqBundle::resource(const std::string &type, const std::string &name) {
+    int32_t len = 0;
+    uint8_t *bytes = cq_bundle_res(&len, type.c_str(), name.c_str());
+    
+    std::vector<uint8_t> data;
+    if (bytes != nullptr && len > 0) {
+        data.insert(data.end(), bytes, bytes + len);
+        free(bytes);
+    }
+    return data;
+}
+
 //file access:
 
 std::string cqPath::documentDirectory() {

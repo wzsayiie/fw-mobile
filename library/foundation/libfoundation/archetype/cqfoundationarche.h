@@ -7,6 +7,11 @@
 CQ_C_LINK void cq_log_info (const char *file, int32_t line, const char *message);
 CQ_C_LINK void cq_log_error(const char *file, int32_t line, const char *message);
 
+//app bundle resource:
+
+//NOTE: return value need to free by free().
+CQ_C_LINK uint8_t *cq_bundle_res(int32_t *len, const char *type, const char *name);
+
 //file access:
 
 CQ_C_LINK const char *cq_document_directory(void);
