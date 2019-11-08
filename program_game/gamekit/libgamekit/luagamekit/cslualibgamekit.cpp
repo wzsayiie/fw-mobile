@@ -240,7 +240,7 @@ static int32_t cs_detach_children(lua_State *state) {
 
 static void on_script_callback(const char *event, cs_script script) {
 
-    const char *express = "cs_on_script_callback(\"%s\", %ld)";
+    const char *express = "cs_on_script_callback(\"%s\", %lld)";
     int64_t index = *(int64_t *)&script;
 
     char buffer[64];
