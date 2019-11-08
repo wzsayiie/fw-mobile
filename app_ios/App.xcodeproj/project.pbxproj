@@ -98,6 +98,9 @@
 		CEA9857E233FC08000246B9E /* csanimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA98574233FC07F00246B9E /* csanimation.cpp */; };
 		CEA9857F233FC08000246B9E /* csanimator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA98577233FC08000246B9E /* csanimator.cpp */; };
 		CEA98582233FC19900246B9E /* csrigidbody.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA98581233FC19900246B9E /* csrigidbody.cpp */; };
+		CEC4E54E237558E1000B3218 /* doc.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC4E54B237558E1000B3218 /* doc.png */; };
+		CEC4E54F237558E1000B3218 /* xls.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC4E54C237558E1000B3218 /* xls.png */; };
+		CEC4E550237558E1000B3218 /* ppt.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC4E54D237558E1000B3218 /* ppt.png */; };
 		CEDE75462362092F003A9F02 /* cqdraw2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEDE75442362092F003A9F02 /* cqdraw2d.cpp */; };
 		CEE0B1722373BF3100878DB3 /* cqimageview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE0B16E2373BF3000878DB3 /* cqimageview.cpp */; };
 		CEE0B1732373BF3100878DB3 /* cqimage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE0B1702373BF3000878DB3 /* cqimage.cpp */; };
@@ -317,6 +320,9 @@
 		CEA98579233FC08000246B9E /* csrenderer.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csrenderer.hh; sourceTree = "<group>"; };
 		CEA98580233FC19900246B9E /* csrigidbody.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csrigidbody.hh; sourceTree = "<group>"; };
 		CEA98581233FC19900246B9E /* csrigidbody.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csrigidbody.cpp; sourceTree = "<group>"; };
+		CEC4E54B237558E1000B3218 /* doc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doc.png; sourceTree = "<group>"; };
+		CEC4E54C237558E1000B3218 /* xls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xls.png; sourceTree = "<group>"; };
+		CEC4E54D237558E1000B3218 /* ppt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ppt.png; sourceTree = "<group>"; };
 		CEDE75442362092F003A9F02 /* cqdraw2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqdraw2d.cpp; sourceTree = "<group>"; };
 		CEDE75452362092F003A9F02 /* cqdraw2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqdraw2d.h; sourceTree = "<group>"; };
 		CEE0B16E2373BF3000878DB3 /* cqimageview.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqimageview.cpp; sourceTree = "<group>"; };
@@ -821,6 +827,7 @@
 			children = (
 				B441151D231CB5F100053BD7 /* AppKit */,
 				B4411573231CBF5600053BD7 /* UserApp */,
+				CEC4E548237558B4000B3218 /* UserAppRes */,
 			);
 			name = AppProgram;
 			sourceTree = "<group>";
@@ -998,6 +1005,25 @@
 			path = CommandViewController;
 			sourceTree = "<group>";
 		};
+		CEC4E548237558B4000B3218 /* UserAppRes */ = {
+			isa = PBXGroup;
+			children = (
+				CEC4E54A237558E1000B3218 /* userappres */,
+			);
+			name = UserAppRes;
+			sourceTree = "<group>";
+		};
+		CEC4E54A237558E1000B3218 /* userappres */ = {
+			isa = PBXGroup;
+			children = (
+				CEC4E54B237558E1000B3218 /* doc.png */,
+				CEC4E54D237558E1000B3218 /* ppt.png */,
+				CEC4E54C237558E1000B3218 /* xls.png */,
+			);
+			name = userappres;
+			path = ../program_app/userappres/userappres;
+			sourceTree = "<group>";
+		};
 		CEEB26192300655C001FD8D6 /* CQNetStatusListener */ = {
 			isa = PBXGroup;
 			children = (
@@ -1094,6 +1120,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEC4E54E237558E1000B3218 /* doc.png in Resources */,
+				CEC4E54F237558E1000B3218 /* xls.png in Resources */,
 				B44310942322069200FA6720 /* TitlebarViewController.xib in Resources */,
 				B401E5C8226F3470002F65BF /* Resource.bundle in Resources */,
 				B45C1BB221A02B19007CB374 /* Assets.xcassets in Resources */,
@@ -1104,6 +1132,7 @@
 				B416F18921A2CD630045FDF6 /* Scenes.plist in Resources */,
 				B4CFD97A21C75AB300FFF4CF /* IAPDemoController.xib in Resources */,
 				B44310922322065A00FA6720 /* ContentViewController.xib in Resources */,
+				CEC4E550237558E1000B3218 /* ppt.png in Resources */,
 				CE749FB92351CD3800E4FCEE /* BlankViewController.xib in Resources */,
 				B4C7448E22BCAE5100483834 /* InfoPlist.strings in Resources */,
 				B443108E2321FF8700FA6720 /* DocViewController.xib in Resources */,
