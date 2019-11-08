@@ -20,6 +20,12 @@ public class PORT {
         L.error(file, line, message);
     }
 
+    //app bundle resource:
+
+    public static byte[] cq_bundle_res(String type, String name) {
+        return AssetAssist.getAsset(type, name);
+    }
+
     //file access:
 
     public static String cq_document_directory() {

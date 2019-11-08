@@ -33,6 +33,56 @@ void cq_log_error(const char *file, int32_t line, const char *message) {
     method.callVoid();
 }
 
+//app bundle resource:
+
+uint8_t *cq_bundle_res(int32_t *len, const char *type, const char *name) {
+    static jmethodID methodID = nullptr;
+
+    //1. get method.
+    JNIEnv *env = cqJNIGetEnv();
+    jclass cls = clazz();
+    if (methodID == nullptr) {
+        const char *signature = "(Ljava/lang/String;Ljava/lang/String;)[B";
+        cqJNIGetStatic(&methodID, env, cls, "cq_bundle_res", signature);
+    }
+    if (methodID == nullptr) {
+        return nullptr;
+    }
+
+    //2. call.
+    jbyteArray jData = nullptr; {
+        jstring jType = cqJNIStringFromU8(env, type);
+        jstring jName = cqJNIStringFromU8(env, name);
+        jData = (jbyteArray) env->CallStaticObjectMethod(cls, methodID, jType, jName);
+        env->DeleteLocalRef(jType);
+        env->DeleteLocalRef(jName);
+    }
+    if (jData == nullptr) {
+        return nullptr;
+    }
+
+    //3. convert.
+    jbyte *jBytes = env->GetByteArrayElements(jData, nullptr);
+    int32_t jLen = env->GetArrayLength(jData);
+    if (jBytes == nullptr || jLen <= 0) {
+        env->DeleteLocalRef(jData);
+        if (len != nullptr) {
+            *len = 0;
+        }
+        return nullptr;
+    }
+
+    auto bytes = (uint8_t *)malloc((size_t)jLen);
+    memcpy(bytes, jBytes, (size_t)jLen);
+    env->ReleaseByteArrayElements(jData, jBytes, 0);
+    env->DeleteLocalRef(jData);
+
+    if (len != nullptr) {
+        *len = (int32_t)jLen;
+    }
+    return bytes;
+}
+
 //file access:
 
 const char *cq_document_directory() {
