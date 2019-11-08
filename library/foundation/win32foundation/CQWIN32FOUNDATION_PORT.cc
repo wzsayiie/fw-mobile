@@ -19,6 +19,16 @@ void cq_log_error(const char *file, int32_t line, const char *message)
     CQLogErrorW(szFile.c_str(), line, szMessage.c_str());
 }
 
+//app bundle resource:
+
+uint8_t *cq_bundle_res(int32_t *len, const char *type, const char *name) {
+    //empty implementation.
+    if (len != NULL) {
+        *len = 0;
+    }
+    return nullptr;
+}
+
 //file access:
 
 const char *cq_document_directory(void)
