@@ -129,6 +129,9 @@ static void pended(cq_wnd *wnd, float x, float y) {
 
 void cqWindow::makeKeyAndVisible() {
     
+    //NOTE: gl enable alpha channel.
+    cq_enable_alpha(true);
+    
     cq_wndproc proc = {nullptr};
     proc.load = load;
     proc.appear = appear;
