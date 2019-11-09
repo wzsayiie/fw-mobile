@@ -55,6 +55,7 @@ android {
             java.srcDirs += '../../program_gl/glkit/android/java'
 
             assets.srcDirs += "../../program_app/userappres"
+            assets.srcDirs += "../../program_game/usergameres"
 
             jniLibs.srcDirs += '../../thirds_android/jniLibs'
         }
