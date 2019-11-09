@@ -29,11 +29,20 @@ struct cqLog {
 
 //app bundle resource:
 
-cq_class(cqBundle, cqObject) {
+cq_class(cqIOSBundle, cqObject) {
     
-    static cqBundleRef get();
+    static cqIOSBundleRef get();
     
+    virtual std::string bundlePath();
     virtual std::vector<uint8_t> resource(const std::string &type, const std::string &name);
+};
+
+cq_class(cqAndroidBundle, cqObject) {
+    
+    static cqAndroidBundleRef get();
+    
+    virtual bool copyAsset(const std::string &fromPath, const std::string &toPath);
+    virtual std::vector<uint8_t> asset(const std::string &name);
 };
 
 //file access:

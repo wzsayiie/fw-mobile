@@ -31,16 +31,44 @@ void cqLog::error(const char *file, int line, _Printf_format_string_ const char 
 
 //app bundle resource:
 
-cq_member(cqBundle) {
+cq_member(cqIOSBundle) {
 };
 
-cqBundleRef cqBundle::get() {
-    return cqStaticObject<cqBundle>();
+cqIOSBundleRef cqIOSBundle::get() {
+    return cqStaticObject<cqIOSBundle>();
 }
 
-std::vector<uint8_t> cqBundle::resource(const std::string &type, const std::string &name) {
+std::string cqIOSBundle::bundlePath() {
+    const char *path = cq_ios_bundle_path();
+    return cqString::make(path);
+}
+
+std::vector<uint8_t> cqIOSBundle::resource(const std::string &type, const std::string &name) {
     int32_t len = 0;
-    uint8_t *bytes = cq_bundle_res(&len, type.c_str(), name.c_str());
+    uint8_t *bytes = cq_ios_bundle_res(&len, type.c_str(), name.c_str());
+    
+    std::vector<uint8_t> data;
+    if (bytes != nullptr && len > 0) {
+        data.insert(data.end(), bytes, bytes + len);
+        free(bytes);
+    }
+    return data;
+}
+
+cq_member(cqAndroidBundle) {
+};
+
+cqAndroidBundleRef cqAndroidBundle::get() {
+    return cqStaticObject<cqAndroidBundle>();
+}
+
+bool cqAndroidBundle::copyAsset(const std::string &fromPath, const std::string &toPath) {
+    return cq_andr_copy_asset(fromPath.c_str(), toPath.c_str());
+}
+
+std::vector<uint8_t> cqAndroidBundle::asset(const std::string &name) {
+    int32_t len = 0;
+    uint8_t *bytes = cq_andr_asset(&len, name.c_str());
     
     std::vector<uint8_t> data;
     if (bytes != nullptr && len > 0) {

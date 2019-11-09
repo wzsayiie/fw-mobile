@@ -9,8 +9,14 @@ CQ_C_LINK void cq_log_error(const char *file, int32_t line, const char *message)
 
 //app bundle resource:
 
-//NOTE: return value need to free by free().
-CQ_C_LINK uint8_t *cq_bundle_res(int32_t *len, const char *type, const char *name);
+CQ_C_LINK const char *cq_ios_bundle_path(void);
+
+//get ios app bundle resource or android app assets resourse.
+//NOTE: return value need to release by free().
+CQ_C_LINK uint8_t *cq_ios_bundle_res(int32_t *len, const char *type, const char *name);
+CQ_C_LINK uint8_t *cq_andr_asset(int32_t *len, const char *name);
+
+CQ_C_LINK bool cq_andr_copy_asset(const char *from_path, const char *to_path);
 
 //file access:
 
