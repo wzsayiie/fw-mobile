@@ -2,7 +2,9 @@
 
 @interface CQBundle : NSObject
 
-+ (instancetype)sharedObject;
++ (instancetype)mainBundle;
+
+@property (nonatomic, readonly) NSString *bundlePath;
 
 - (NSData *)resourceForType:(NSString *)type name:(NSString *)name;
 
