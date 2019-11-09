@@ -86,41 +86,4 @@ public class FileAssist {
             removeRecursively(file);
         }
     }
-
-    public static void copyAssetToDir(String assetName, String dir, String fileName) {
-        if (StringUtil.isEmpty(assetName)) {
-            return;
-        }
-        if (StringUtil.isEmpty(dir)) {
-            return;
-        }
-        if (StringUtil.isEmpty(fileName)) {
-            return;
-        }
-
-        File outFile = new File(dir, fileName);
-        if (outFile.exists()) {
-            removeRecursively(outFile);
-        }
-
-        try {
-            Application app = AppContextAssist.getApp();
-            if (app == null) {
-                return;
-            }
-            InputStream inStream = app.getAssets().open(assetName);
-            OutputStream outStream = new FileOutputStream(outFile);
-
-            byte[] buffer = new byte[4 * 1024];
-            int count;
-            while ((count = inStream.read(buffer)) > 0) {
-                outStream.write(buffer, 0, count);
-            }
-
-            inStream.close();
-            outStream.close();
-
-        } catch (IOException ignored) {
-        }
-    }
 }

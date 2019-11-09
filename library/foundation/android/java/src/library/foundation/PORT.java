@@ -22,8 +22,12 @@ public class PORT {
 
     //app bundle resource:
 
-    public static byte[] cq_bundle_res(String type, String name) {
-        return AssetAssist.getAsset(type, name);
+    public static boolean cq_andr_copy_asset(String fromPath, String toPath) {
+        return AssetAssist.copyAsset(fromPath, toPath);
+    }
+
+    public static byte[] cq_andr_asset(String name) {
+        return AssetAssist.getAsset(name);
     }
 
     //file access:

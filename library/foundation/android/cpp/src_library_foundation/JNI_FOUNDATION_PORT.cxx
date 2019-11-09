@@ -35,15 +35,26 @@ void cq_log_error(const char *file, int32_t line, const char *message) {
 
 //app bundle resource:
 
-uint8_t *cq_bundle_res(int32_t *len, const char *type, const char *name) {
+const char *cq_ios_bundle_path() {
+    return nullptr;
+}
+
+uint8_t *cq_ios_bundle_res(int32_t *len, const char *, const char *) {
+    if (len != nullptr) {
+        *len = 0;
+    }
+    return nullptr;
+}
+
+uint8_t *cq_andr_asset(int32_t *len, const char *name) {
     static jmethodID methodID = nullptr;
 
     //1. get method.
     JNIEnv *env = cqJNIGetEnv();
     jclass cls = clazz();
     if (methodID == nullptr) {
-        const char *signature = "(Ljava/lang/String;Ljava/lang/String;)[B";
-        cqJNIGetStatic(&methodID, env, cls, "cq_bundle_res", signature);
+        const char *signature = "(Ljava/lang/String;)[B";
+        cqJNIGetStatic(&methodID, env, cls, "cq_andr_asset", signature);
     }
     if (methodID == nullptr) {
         return nullptr;
@@ -51,10 +62,8 @@ uint8_t *cq_bundle_res(int32_t *len, const char *type, const char *name) {
 
     //2. call.
     jbyteArray jData = nullptr; {
-        jstring jType = cqJNIStringFromU8(env, type);
         jstring jName = cqJNIStringFromU8(env, name);
-        jData = (jbyteArray) env->CallStaticObjectMethod(cls, methodID, jType, jName);
-        env->DeleteLocalRef(jType);
+        jData = (jbyteArray) env->CallStaticObjectMethod(cls, methodID, jName);
         env->DeleteLocalRef(jName);
     }
     if (jData == nullptr) {
@@ -81,6 +90,16 @@ uint8_t *cq_bundle_res(int32_t *len, const char *type, const char *name) {
         *len = (int32_t)jLen;
     }
     return bytes;
+}
+
+bool cq_andr_copy_asset(const char *from_path, const char *to_path) {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_andr_copy_asset");
+
+    method.push(from_path);
+    method.push(to_path);
+
+    return method.callBool();
 }
 
 //file access:
