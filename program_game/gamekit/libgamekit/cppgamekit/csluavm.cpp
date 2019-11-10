@@ -1,12 +1,7 @@
 #include "csluavm.hh"
+#include "cqctool.hh"
 #include "cqluabasis.h"
 #include "lua.hpp"
-
-# if CQ_ON_WINDOWS
-#   include <Winbase.h>
-# else
-#   include <unistd.h>
-# endif
 
 # if CQ_ON_ANDROID
 #   include <android/log.h>
@@ -56,10 +51,10 @@ static void do_string(const char *code) {
         return;
     }
     
-    //trackback function
+    //trackback function.
     lua_pushcfunction(_state, traceback);
     
-    //load
+    //load.
     int error = luaL_loadstring(_state, code);
     if (error) {
         const char *info = lua_tostring(_state, -1);
@@ -71,7 +66,7 @@ static void do_string(const char *code) {
         return;
     }
     
-    //execute
+    //execute.
     int traceback = lua_gettop(_state) - 1;
     lua_pcall(_state, 0, 0, traceback);
 }
@@ -91,6 +86,14 @@ static void push_string(lua_State *state, const char *value) {
     lua_pushstring(state, value);
 }
 
+static void collectSubDirectories(std::vector<std::string> *added, const std::string &directory) {
+    added->push_back(cqPathString::append(directory, "BASIS"));
+    added->push_back(cqPathString::append(directory, "foundation"));
+    added->push_back(cqPathString::append(directory, "gamekit"));
+    added->push_back(cqPathString::append(directory, "subsystem"));
+    added->push_back(cqPathString::append(directory, "user"));
+}
+
 void csLuaVM::open(const std::string &directory) {
     if (directory.empty()) {
         return;
@@ -98,21 +101,25 @@ void csLuaVM::open(const std::string &directory) {
     
     csLuaVM::close();
     
-    //new vm
+    //new vm.
     _state = luaL_newstate();
     luaL_openlibs(_state);
     
-    //change work directory. otherwise,
-    //the file name specified by runtime error message is very long.
-#if CQ_ON_WINDOWS
-    SetCurrentDirectoryA(directory.c_str());
-#else
-    chdir(directory.c_str());
-#endif
-    do_string("package.path  = '?.lua'");
+    //set search path.
+    std::string pathes; {
+        std::vector<std::string> subDirectories;
+        collectSubDirectories(&subDirectories, directory);
+        for (auto &it : subDirectories) {
+            if (!pathes.empty()) {
+                pathes.append(";");
+            }
+            pathes.append(cqPathString::append(it, "?.lua"));
+        }
+    }
+    do_string(("package.path = '" + pathes + "'").c_str());
     do_string("package.cpath = ''");
     
-    //register handlers
+    //register handlers.
     _cq_lua_handlers handlers = {nullptr}; {
         handlers.register_func = register_func;
         handlers.do_string     = do_string    ;
@@ -132,10 +139,10 @@ void csLuaVM::close() {
         return;
     }
     
-    //disable handlers
+    //disable handlers.
     _cq_lua_set_handlers(nullptr);
     
-    //delete vm
+    //delete vm.
     lua_close(_state);
     _state = nullptr;
 }

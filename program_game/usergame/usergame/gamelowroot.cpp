@@ -1,12 +1,13 @@
 #include "gamelowroot.hh"
 #include "cqfoundation.hh"
-#include "luacontrol.hh"
+#include "respackage.hh"
 
 cq_member(GameLowRoot) {
 };
 
 void GameLowRoot::awake() {
-    LuaControl::startup();
+    ResPackage::load();
+    ResPackage::startupLuaVM();
 }
 
 void GameLowRoot::start() {
