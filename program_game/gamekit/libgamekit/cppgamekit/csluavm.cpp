@@ -1,5 +1,6 @@
 #include "csluavm.hh"
 #include "cqctool.hh"
+#include "cqfoundation.hh"
 #include "cqluabasis.h"
 #include "lua.hpp"
 
@@ -87,11 +88,15 @@ static void push_string(lua_State *state, const char *value) {
 }
 
 static void collectSubDirectories(std::vector<std::string> *added, const std::string &directory) {
-    added->push_back(cqPathString::append(directory, "BASIS"));
-    added->push_back(cqPathString::append(directory, "foundation"));
-    added->push_back(cqPathString::append(directory, "gamekit"));
-    added->push_back(cqPathString::append(directory, "subsystem"));
-    added->push_back(cqPathString::append(directory, "user"));
+    added->push_back(directory);
+    
+    auto items = cqFileManager::get()->contentsOfDirectoryAtPath(directory);
+    for (auto &it : items) {
+        std::string path = cqPathString::append(directory, it);
+        if (cqFileManager::get()->directoryExists(path)) {
+            collectSubDirectories(added, path);
+        }
+    }
 }
 
 void csLuaVM::open(const std::string &directory) {
