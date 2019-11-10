@@ -21,25 +21,31 @@ void cq_log_error(const char *file, int32_t line, const char *message)
 
 //app bundle resource:
 
-const char *cq_ios_bundle_path() {
+const char *cq_ios_bundle_path()
+{
     return NULL;
 }
 
-uint8_t *cq_ios_bundle_res(int32_t *len, const char *type, const char *name) {
-    if (len != NULL) {
+uint8_t *cq_ios_bundle_res(int32_t *len, const char *type, const char *name)
+{
+    if (len != NULL)
+    {
         *len = 0;
     }
     return NULL;
 }
 
-uint8_t *cq_andr_asset(int32_t *len, const char *name) {
-    if (len != NULL) {
+uint8_t *cq_andr_asset(int32_t *len, const char *name)
+{
+    if (len != NULL)
+    {
         *len = 0;
     }
     return NULL;
 }
 
-bool cq_andr_copy_asset(const char *from_path, const char *to_path) {
+bool cq_andr_copy_asset(const char *from_path, const char *to_path)
+{
     return false;
 }
 
@@ -85,6 +91,19 @@ void cq_remove_path(const char *path)
 {
     CQWSTR szPath = CQWStr_FromU8S(path);
     CQRemovePathW(szPath);
+}
+
+bool cq_open_dir(const char *path)
+{
+    return false;
+}
+
+const char *cq_read_dir()
+{
+}
+
+void cq_close_dir()
+{
 }
 
 //thread:
