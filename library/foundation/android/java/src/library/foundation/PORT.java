@@ -3,8 +3,10 @@ package src.library.foundation;
 import android.util.LongSparseArray;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 
+import src.library.basis.StringUtil;
 import src.library.basis.W;
 
 @SuppressWarnings({W.LIB_OMIT_0, W.LIB_OMIT_1, W.LIB_OMIT_2, W.LIB_OMIT_3})
@@ -58,6 +60,46 @@ public class PORT {
 
     public static void cq_remove_path(String path) {
         FileAssist.removePath(path);
+    }
+
+    private static ArrayList<String> _traverse_items = null;
+    private static int _traverse_index = 0;
+
+    public static boolean cq_open_dir(String path) {
+        cq_close_dir();
+
+        if (StringUtil.isEmpty(path)) {
+            return false;
+        }
+
+        ArrayList<String> items = FileAssist.listSubItems(path);
+
+        if (items != null && items.size() > 0) {
+            _traverse_items = items;
+            _traverse_index = 0;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static String cq_read_dir() {
+        if (_traverse_items == null) {
+            return null;
+        }
+        if (_traverse_index >= _traverse_items.size()) {
+            return null;
+        }
+
+        String item = _traverse_items.get(_traverse_index);
+        _traverse_index += 1;
+
+        return item;
+    }
+
+    public static void cq_close_dir() {
+        _traverse_items = null;
+        _traverse_index = 0;
     }
 
     //thread:

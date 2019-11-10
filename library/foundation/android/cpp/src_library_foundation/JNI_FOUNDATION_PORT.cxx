@@ -165,6 +165,30 @@ void cq_remove_path(const char *path) {
     method.callVoid();
 }
 
+bool cq_open_dir(const char *path) {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_open_dir");
+
+    method.push(path);
+
+    return method.callBool();
+}
+
+const char *cq_read_dir() {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_read_dir");
+
+    std::string ret = method.callString();
+    return cq_store_str(ret.c_str());
+}
+
+void cq_close_dir() {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_close_dir");
+
+    method.callVoid();
+}
+
 //thread:
 
 void cq_thread_run(void (*task)(void *), void *data) {
@@ -320,7 +344,8 @@ const char *cq_http_error(cq_http *http) {
 
     method.push((jlong)http);
 
-    return cq_store_str(method.callString().c_str());
+    std::string ret = method.callString();
+    return cq_store_str(ret.c_str());
 }
 
 extern "C" JNIEXPORT jint JNICALL Java_src_library_foundation_PORT_httpReadRequestBody
