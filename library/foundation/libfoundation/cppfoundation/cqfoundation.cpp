@@ -118,6 +118,26 @@ void cqFileManager::removePath(const std::string &path) {
     cq_remove_path(path.c_str());
 }
 
+std::vector<std::string> cqFileManager::contentsOfDirectoryAtPath(const std::string &path) {
+    std::vector<std::string> contents;
+    
+    bool opened = cq_open_dir(path.c_str());
+    if (!opened) {
+        return contents;
+    }
+    
+    while (true) {
+        const char *it = cq_read_dir();
+        if (cq_str_empty(it)) {
+            break;
+        }
+        contents.push_back(it);
+    }
+    cq_close_dir();
+    
+    return contents;
+}
+
 //thread:
 
 static void cqThreadBody(void *data) {
