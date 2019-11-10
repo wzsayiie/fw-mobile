@@ -47,4 +47,19 @@ NSString *CQTemporaryDirectory(void) {
     [manager removeItemAtPath:path error:nil];
 }
 
+- (NSArray<NSString *> *)contentsOfDirectoryAtPath:(NSString *)path {
+    NSFileManager *manager = NSFileManager.defaultManager;
+    NSError *error = nil;
+    
+    NSArray<NSString *> *contents = [manager contentsOfDirectoryAtPath:path error:&error];
+    if (contents.count > 0 && error == nil) {
+        id comparer = ^NSComparisonResult(NSString *a, NSString *b) {
+            return [a compare:b];
+        };
+        return [contents sortedArrayUsingComparator:comparer];
+    } else {
+        return nil;
+    }
+}
+
 @end
