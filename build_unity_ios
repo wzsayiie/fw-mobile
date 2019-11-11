@@ -11,6 +11,6 @@ cmd_line="$cmd_line -quit"
 cmd_line="$cmd_line -batchmode"
 cmd_line="$cmd_line -buildTarget iOS"
 cmd_line="$cmd_line -projectPath $cur_path/app_unity"
-cmd_line="$cmd_line -executeMethod IOSBuilder.Build"
+cmd_line="$cmd_line -executeMethod IOSBuild.Build"
 cmd_line="$cmd_line -logFile"
 $cmd_line
