@@ -3,8 +3,10 @@
 #include "csgamekit.hh"
 
 struct ResPackage {
+    
     static void load();
     
-    static void startupLuaVM();
-    static std::string pathForFile(const std::string &name);
+    static std::string packagePath();
+    static std::string resourcesPath();
+    static std::string scriptsPath();
 };
