@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using UnityEditor;
 
-public static class AndroidBuilder
+public static class AndroidBuild
 {
     //configuration begin
     static readonly string AppPackageID = "domain.corp.store.flavor.name";

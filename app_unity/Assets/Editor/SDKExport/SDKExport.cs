@@ -1,7 +1,7 @@
 using System.IO;
 using UnityEditor;
 
-public static class SDKExporter
+public static class SDKExport
 {
     //configuration begin
     static readonly string[] ExportFiles = {
