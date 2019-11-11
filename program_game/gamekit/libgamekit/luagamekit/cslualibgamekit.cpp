@@ -171,11 +171,10 @@ static int32_t cs_get_xform(lua_State *state) {
 
 static int32_t cs_set_xform_pos(lua_State *state) {
     cs_xform xform = lua_check<cs_xform>(state, 1);
-    float    x     = cq_lua_check_float (state, 2);
-    float    y     = cq_lua_check_float (state, 3);
-    float    z     = cq_lua_check_float (state, 4);
+    float x = cq_lua_check_float(state, 2);
+    float y = cq_lua_check_float(state, 3);
 
-    cs_set_xform_pos(xform, x, y, z);
+    cs_set_xform_pos(xform, x, y);
 
     return cq_lua_return_void(state);
 }
@@ -190,12 +189,6 @@ static int32_t cs_xform_y(lua_State *state) {
     cs_xform xform = lua_check<cs_xform>(state, 1);
     float y = cs_xform_y(xform);
     return cq_lua_return_float(state, y);
-}
-
-static int32_t cs_xform_z(lua_State *state) {
-    cs_xform xform = lua_check<cs_xform>(state, 1);
-    float z = cs_xform_z(xform);
-    return cq_lua_return_float(state, z);
 }
 
 static int32_t cs_set_xform_parent(lua_State *state) {
@@ -300,7 +293,6 @@ void cs_lua_load_lib_gamekit() {
     register_func(cs_set_xform_pos);
     register_func(cs_xform_x      );
     register_func(cs_xform_y      );
-    register_func(cs_xform_z      );
 
     register_func(cs_set_xform_parent);
     register_func(cs_xform_parent    );

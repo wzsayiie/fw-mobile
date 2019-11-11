@@ -369,26 +369,25 @@ cs_xform cs_get_xform(cs_node node) {
     return cs_retain<cs_xform>(nullptr);
 }
 
-void cs_set_xform_pos(cs_xform xform, float x, float y, float z) {
+void cs_set_xform_pos(cs_xform xform, float x, float y) {
     csTransformRef transformObject = cs_get<csTransform>(xform);
     
     if (transformObject != nullptr) {
-        transformObject->setPosition(csVector3(x, y, z));
+        transformObject->setPosition(csVector2(x, y));
     }
 }
 
-static csVector3 cs_xform_pos(cs_xform xform) {
+static csVector2 cs_xform_pos(cs_xform xform) {
     csTransformRef transformObject = cs_get<csTransform>(xform);
     
     if (transformObject != nullptr) {
         return transformObject->position();
     }
-    return csVector3();
+    return csVector2();
 }
 
 float cs_xform_x(cs_xform xform) { return cs_xform_pos(xform).x; }
 float cs_xform_y(cs_xform xform) { return cs_xform_pos(xform).y; }
-float cs_xform_z(cs_xform xform) { return cs_xform_pos(xform).z; }
 
 void cs_set_xform_parent(cs_xform xform, cs_xform parent) {
     csTransformRef transformObject = cs_get<csTransform>(xform);

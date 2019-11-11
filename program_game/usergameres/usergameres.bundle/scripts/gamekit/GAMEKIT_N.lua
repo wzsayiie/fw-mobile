@@ -43,10 +43,9 @@ if not cs_retain then
     -- xform:
     function cs_get_xform(node) end
 
-    function cs_set_xform_pos(xform, x, y, z) end
+    function cs_set_xform_pos(xform, x, y) end
     function cs_xform_x(xform) end
     function cs_xform_y(xform) end
-    function cs_xform_z(xform) end
 
     function cs_set_xform_parent(xform, parent) end
     function cs_xform_parent(xform) end

@@ -93,10 +93,9 @@ struct cs_xform {
 //$node should be a cs_gobj or cs_comp.
 CQ_C_LINK struct cs_xform cs_get_xform(struct cs_node node);
 
-CQ_C_LINK void cs_set_xform_pos(struct cs_xform xform, float x, float y, float z);
+CQ_C_LINK void cs_set_xform_pos(struct cs_xform xform, float x, float y);
 CQ_C_LINK float cs_xform_x(struct cs_xform xform);
 CQ_C_LINK float cs_xform_y(struct cs_xform xform);
-CQ_C_LINK float cs_xform_z(struct cs_xform xform);
 
 CQ_C_LINK void cs_set_xform_parent(struct cs_xform xform, struct cs_xform parent);
 CQ_C_LINK struct cs_xform cs_xform_parent(struct cs_xform xform);

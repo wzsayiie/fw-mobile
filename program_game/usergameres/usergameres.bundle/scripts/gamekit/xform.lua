@@ -3,8 +3,8 @@
 xform = class("xform", comp, {
 })
 
-function xform:set_pos(x, y, z)
-    cs_set_xform_pos(self.native, x, y, z)
+function xform:set_pos(x, y)
+    cs_set_xform_pos(self.native, x, y)
 end
 
 function xform:x()
@@ -13,10 +13,6 @@ end
 
 function xform:y()
     return cs_xform_y(self.native)
-end
-
-function xform:z()
-    return cs_xform_z(self.native)
 end
 
 function xform:set_parent(parent)

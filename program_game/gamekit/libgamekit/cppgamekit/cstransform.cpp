@@ -1,11 +1,6 @@
 #include "cstransform.hh"
 #include "csgameobject.hh"
 
-//vector3:
-
-csVector3::csVector3(/* .... .... .... .... */): x(0), y(0), z(0) {}
-csVector3::csVector3(float x, float y, float z): x(x), y(y), z(z) {}
-
 //global data:
 
 static std::vector<csTransformRef> theActiveRoots;
@@ -18,7 +13,7 @@ std::vector<csTransformRef> csTransform::globalRoots() { return theGlobalRoots; 
 
 cq_member(csTransform) {
     
-    csVector3 position;
+    csVector2 position;
     
     csTransformWeakRef parent;
     std::vector<csTransformRef> children;
@@ -41,11 +36,11 @@ void csTransform::handleDestroy() {
 
 //properties:
 
-void csTransform::setPosition(csVector3 position) {
+void csTransform::setPosition(csVector2 position) {
     dat->position = position;
 }
 
-csVector3 csTransform::position() {
+csVector2 csTransform::position() {
     return dat->position;
 }
 
