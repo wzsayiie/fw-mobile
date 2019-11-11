@@ -223,15 +223,14 @@ cq_member(csExternalScript) {
 
 static cqClass *cs_cls_from_str(const std::string &str) {
     
-    if (str == "anim"    ) { return csAnimation  ::clazz(); }
-    if (str == "animator") { return csAnimator   ::clazz(); }
-    if (str == "camera"  ) { return csCamera     ::clazz(); }
-    if (str == "collider") { return csCollider   ::clazz(); }
-    if (str == "mfilter" ) { return csMapFilter  ::clazz(); }
-    if (str == "mrender" ) { return csMapRenderer::clazz(); }
-    if (str == "rigid"   ) { return csRigidBody  ::clazz(); }
-    if (str == "script"  ) { return csScript     ::clazz(); }
-    if (str == "xform"   ) { return csTransform  ::clazz(); }
+    if (str == "anim"    ) { return csAnimation     ::clazz(); }
+    if (str == "animator") { return csAnimator      ::clazz(); }
+    if (str == "camera"  ) { return csCamera        ::clazz(); }
+    if (str == "collider") { return csCollider2D    ::clazz(); }
+    if (str == "srender" ) { return csSpriteRenderer::clazz(); }
+    if (str == "rigid"   ) { return csRigidBody2D   ::clazz(); }
+    if (str == "script"  ) { return csScript        ::clazz(); }
+    if (str == "xform"   ) { return csTransform     ::clazz(); }
     
     //regard unknown name as external script.
     return csExternalScript::clazz();

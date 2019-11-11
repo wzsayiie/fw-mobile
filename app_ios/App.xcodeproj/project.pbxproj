@@ -91,13 +91,17 @@
 		CE749FB22351C9E200E4FCEE /* CommandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE749FB02351C9E100E4FCEE /* CommandViewController.m */; };
 		CE749FB72351CB9B00E4FCEE /* CommandViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE749FB62351CB9B00E4FCEE /* CommandViewController.xib */; };
 		CE749FB92351CD3800E4FCEE /* BlankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE749FB82351CD3800E4FCEE /* BlankViewController.xib */; };
-		CEA9857A233FC08000246B9E /* csmapfilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA9856E233FC07F00246B9E /* csmapfilter.cpp */; };
+		CE8AF73E237961190022AA59 /* cstexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE8AF739237961180022AA59 /* cstexture.cpp */; };
+		CE8AF73F237961190022AA59 /* cssprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE8AF73B237961190022AA59 /* cssprite.cpp */; };
+		CE8AF740237961190022AA59 /* cstexture2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE8AF73D237961190022AA59 /* cstexture2d.cpp */; };
+		CE8AF743237963B20022AA59 /* csgeometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE8AF741237963B20022AA59 /* csgeometry.cpp */; };
+		CE8AF7462379679D0022AA59 /* csresources.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE8AF7442379679D0022AA59 /* csresources.cpp */; };
 		CEA9857B233FC08000246B9E /* csrenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA9856F233FC07F00246B9E /* csrenderer.cpp */; };
-		CEA9857C233FC08000246B9E /* cscollider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA98570233FC07F00246B9E /* cscollider.cpp */; };
-		CEA9857D233FC08000246B9E /* csmaprenderder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA98573233FC07F00246B9E /* csmaprenderder.cpp */; };
+		CEA9857C233FC08000246B9E /* cscollider2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA98570233FC07F00246B9E /* cscollider2d.cpp */; };
+		CEA9857D233FC08000246B9E /* csspriterenderder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA98573233FC07F00246B9E /* csspriterenderder.cpp */; };
 		CEA9857E233FC08000246B9E /* csanimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA98574233FC07F00246B9E /* csanimation.cpp */; };
 		CEA9857F233FC08000246B9E /* csanimator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA98577233FC08000246B9E /* csanimator.cpp */; };
-		CEA98582233FC19900246B9E /* csrigidbody.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA98581233FC19900246B9E /* csrigidbody.cpp */; };
+		CEA98582233FC19900246B9E /* csrigidbody2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA98581233FC19900246B9E /* csrigidbody2d.cpp */; };
 		CEC4E54E237558E1000B3218 /* doc.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC4E54B237558E1000B3218 /* doc.png */; };
 		CEC4E54F237558E1000B3218 /* xls.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC4E54C237558E1000B3218 /* xls.png */; };
 		CEC4E550237558E1000B3218 /* ppt.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC4E54D237558E1000B3218 /* ppt.png */; };
@@ -305,20 +309,28 @@
 		CE749FB02351C9E100E4FCEE /* CommandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandViewController.m; sourceTree = "<group>"; };
 		CE749FB62351CB9B00E4FCEE /* CommandViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommandViewController.xib; sourceTree = "<group>"; };
 		CE749FB82351CD3800E4FCEE /* BlankViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlankViewController.xib; sourceTree = "<group>"; };
-		CEA9856E233FC07F00246B9E /* csmapfilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csmapfilter.cpp; sourceTree = "<group>"; };
+		CE8AF738237961180022AA59 /* cssprite.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cssprite.hh; sourceTree = "<group>"; };
+		CE8AF739237961180022AA59 /* cstexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cstexture.cpp; sourceTree = "<group>"; };
+		CE8AF73A237961180022AA59 /* cstexture.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cstexture.hh; sourceTree = "<group>"; };
+		CE8AF73B237961190022AA59 /* cssprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cssprite.cpp; sourceTree = "<group>"; };
+		CE8AF73C237961190022AA59 /* cstexture2d.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cstexture2d.hh; sourceTree = "<group>"; };
+		CE8AF73D237961190022AA59 /* cstexture2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cstexture2d.cpp; sourceTree = "<group>"; };
+		CE8AF741237963B20022AA59 /* csgeometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csgeometry.cpp; sourceTree = "<group>"; };
+		CE8AF742237963B20022AA59 /* csgeometry.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csgeometry.hh; sourceTree = "<group>"; };
+		CE8AF7442379679D0022AA59 /* csresources.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csresources.cpp; sourceTree = "<group>"; };
+		CE8AF7452379679D0022AA59 /* csresources.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csresources.hh; sourceTree = "<group>"; };
 		CEA9856F233FC07F00246B9E /* csrenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csrenderer.cpp; sourceTree = "<group>"; };
-		CEA98570233FC07F00246B9E /* cscollider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cscollider.cpp; sourceTree = "<group>"; };
-		CEA98571233FC07F00246B9E /* cscollider.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cscollider.hh; sourceTree = "<group>"; };
-		CEA98572233FC07F00246B9E /* csmapfilter.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csmapfilter.hh; sourceTree = "<group>"; };
-		CEA98573233FC07F00246B9E /* csmaprenderder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csmaprenderder.cpp; sourceTree = "<group>"; };
+		CEA98570233FC07F00246B9E /* cscollider2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cscollider2d.cpp; sourceTree = "<group>"; };
+		CEA98571233FC07F00246B9E /* cscollider2d.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cscollider2d.hh; sourceTree = "<group>"; };
+		CEA98573233FC07F00246B9E /* csspriterenderder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csspriterenderder.cpp; sourceTree = "<group>"; };
 		CEA98574233FC07F00246B9E /* csanimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csanimation.cpp; sourceTree = "<group>"; };
 		CEA98575233FC07F00246B9E /* csanimator.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csanimator.hh; sourceTree = "<group>"; };
 		CEA98576233FC08000246B9E /* csanimation.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csanimation.hh; sourceTree = "<group>"; };
 		CEA98577233FC08000246B9E /* csanimator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csanimator.cpp; sourceTree = "<group>"; };
-		CEA98578233FC08000246B9E /* csmaprenderder.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csmaprenderder.hh; sourceTree = "<group>"; };
+		CEA98578233FC08000246B9E /* csspriterenderder.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csspriterenderder.hh; sourceTree = "<group>"; };
 		CEA98579233FC08000246B9E /* csrenderer.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csrenderer.hh; sourceTree = "<group>"; };
-		CEA98580233FC19900246B9E /* csrigidbody.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csrigidbody.hh; sourceTree = "<group>"; };
-		CEA98581233FC19900246B9E /* csrigidbody.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csrigidbody.cpp; sourceTree = "<group>"; };
+		CEA98580233FC19900246B9E /* csrigidbody2d.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csrigidbody2d.hh; sourceTree = "<group>"; };
+		CEA98581233FC19900246B9E /* csrigidbody2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csrigidbody2d.cpp; sourceTree = "<group>"; };
 		CEC4E54B237558E1000B3218 /* doc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doc.png; sourceTree = "<group>"; };
 		CEC4E54C237558E1000B3218 /* xls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xls.png; sourceTree = "<group>"; };
 		CEC4E54D237558E1000B3218 /* ppt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ppt.png; sourceTree = "<group>"; };
@@ -924,8 +936,8 @@
 				CE299D3E2324055600B5FC98 /* csbehaviour.hh */,
 				B4FC004823320DCA00A21B5E /* cscamera.cpp */,
 				B4FC004723320DCA00A21B5E /* cscamera.hh */,
-				CEA98570233FC07F00246B9E /* cscollider.cpp */,
-				CEA98571233FC07F00246B9E /* cscollider.hh */,
+				CEA98570233FC07F00246B9E /* cscollider2d.cpp */,
+				CEA98571233FC07F00246B9E /* cscollider2d.hh */,
 				CE299D3C2324055600B5FC98 /* cscomponent.cpp */,
 				CE299D3D2324055600B5FC98 /* cscomponent.hh */,
 				B463413523322F2300383E34 /* CSGAMEKIT_PORT.cpp */,
@@ -933,24 +945,32 @@
 				CE299D2B2323F1B500B5FC98 /* csgamekitbase.hh */,
 				CE299D242323F15B00B5FC98 /* csgameobject.cpp */,
 				CE299D252323F15B00B5FC98 /* csgameobject.hh */,
+				CE8AF741237963B20022AA59 /* csgeometry.cpp */,
+				CE8AF742237963B20022AA59 /* csgeometry.hh */,
 				CE299D2F2323F47200B5FC98 /* csluavm.cpp */,
 				CE299D302323F47200B5FC98 /* csluavm.hh */,
-				CEA9856E233FC07F00246B9E /* csmapfilter.cpp */,
-				CEA98572233FC07F00246B9E /* csmapfilter.hh */,
-				CEA98573233FC07F00246B9E /* csmaprenderder.cpp */,
-				CEA98578233FC08000246B9E /* csmaprenderder.hh */,
 				CE299D432324175A00B5FC98 /* csnode.cpp */,
 				CE299D422324175A00B5FC98 /* csnode.hh */,
 				CEA9856F233FC07F00246B9E /* csrenderer.cpp */,
 				CEA98579233FC08000246B9E /* csrenderer.hh */,
-				CEA98581233FC19900246B9E /* csrigidbody.cpp */,
-				CEA98580233FC19900246B9E /* csrigidbody.hh */,
+				CE8AF7442379679D0022AA59 /* csresources.cpp */,
+				CE8AF7452379679D0022AA59 /* csresources.hh */,
+				CEA98581233FC19900246B9E /* csrigidbody2d.cpp */,
+				CEA98580233FC19900246B9E /* csrigidbody2d.hh */,
 				CE299D222323F15B00B5FC98 /* csscene.cpp */,
 				CE299D272323F15B00B5FC98 /* csscene.hh */,
 				B4F7AE1D232A0CE400E675A8 /* csscenemanager.cpp */,
 				B4F7AE1E232A0CE500E675A8 /* csscenemanager.hh */,
 				B4FC00452332043600A21B5E /* csscript.cpp */,
 				B4FC00442332043600A21B5E /* csscript.hh */,
+				CE8AF73B237961190022AA59 /* cssprite.cpp */,
+				CE8AF738237961180022AA59 /* cssprite.hh */,
+				CEA98573233FC07F00246B9E /* csspriterenderder.cpp */,
+				CEA98578233FC08000246B9E /* csspriterenderder.hh */,
+				CE8AF739237961180022AA59 /* cstexture.cpp */,
+				CE8AF73A237961180022AA59 /* cstexture.hh */,
+				CE8AF73D237961190022AA59 /* cstexture2d.cpp */,
+				CE8AF73C237961190022AA59 /* cstexture2d.hh */,
 				B4F7AE1B2329DF9500E675A8 /* cstransform.cpp */,
 				B4F7AE1A2329DF9500E675A8 /* cstransform.hh */,
 			);
@@ -1160,6 +1180,7 @@
 				B463413623322F2300383E34 /* CSGAMEKIT_PORT.cpp in Sources */,
 				B4411556231CB83D00053BD7 /* cqview.cpp in Sources */,
 				B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */,
+				CE8AF73E237961190022AA59 /* cstexture.cpp in Sources */,
 				B4411559231CB83D00053BD7 /* cqwindow.cpp in Sources */,
 				CE299D442324175A00B5FC98 /* csnode.cpp in Sources */,
 				B44310872321FBED00FA6720 /* ToolBarViewController.m in Sources */,
@@ -1180,6 +1201,8 @@
 				B425211422842B91004FA04B /* CQHotfixManager.m in Sources */,
 				B4411554231CB83D00053BD7 /* cqviewcontroller.cpp in Sources */,
 				CEE0B1722373BF3100878DB3 /* cqimageview.cpp in Sources */,
+				CE8AF73F237961190022AA59 /* cssprite.cpp in Sources */,
+				CE8AF743237963B20022AA59 /* csgeometry.cpp in Sources */,
 				CEE0B1762373C36A00878DB3 /* cqimg.cpp in Sources */,
 				CE299D292323F15B00B5FC98 /* csgameobject.cpp in Sources */,
 				B441159D231D0DC100053BD7 /* csgamekitarche.cpp in Sources */,
@@ -1189,21 +1212,21 @@
 				B443108A2321FBED00FA6720 /* AttachViewController.m in Sources */,
 				B45C1BB821A02B19007CB374 /* AppDelegate.m in Sources */,
 				B4411552231CB83D00053BD7 /* AppAppDelegate.m in Sources */,
-				CEA9857D233FC08000246B9E /* csmaprenderder.cpp in Sources */,
+				CEA9857D233FC08000246B9E /* csspriterenderder.cpp in Sources */,
 				B4FC00362331D70A00A21B5E /* appdelegate.cpp in Sources */,
 				B475C169230100A300ED7BD3 /* NSNotificationCenter+CQ.m in Sources */,
 				CE005E9D237704B400FC80A4 /* entry.cpp in Sources */,
 				B4FC004923320DCB00A21B5E /* cscamera.cpp in Sources */,
 				B4DCD87F21F17DAE0090BFBB /* UserSetting.m in Sources */,
+				CE8AF740237961190022AA59 /* cstexture2d.cpp in Sources */,
 				B4E7CD0F2224098800122637 /* main.m in Sources */,
 				CEA9857F233FC08000246B9E /* csanimator.cpp in Sources */,
 				B4FC00372331D70A00A21B5E /* rootviewcontroller.cpp in Sources */,
 				B441155A231CB83D00053BD7 /* cqcolor.cpp in Sources */,
 				CE005E9E237704B400FC80A4 /* gamelowroot.cpp in Sources */,
-				CEA9857A233FC08000246B9E /* csmapfilter.cpp in Sources */,
 				B4CFD97321C7475000FFF4CF /* IAPDemoController.m in Sources */,
 				B4FC00462332043600A21B5E /* csscript.cpp in Sources */,
-				CEA9857C233FC08000246B9E /* cscollider.cpp in Sources */,
+				CEA9857C233FC08000246B9E /* cscollider2d.cpp in Sources */,
 				B441152F231CB7EE00053BD7 /* CQGLAppDelegate.m in Sources */,
 				CE299D402324055600B5FC98 /* cscomponent.cpp in Sources */,
 				B44310892321FBED00FA6720 /* DocViewController.m in Sources */,
@@ -1213,8 +1236,9 @@
 				B425210A22842AD3004FA04B /* UIDevice+CQ.m in Sources */,
 				B4C0584B2338AE98009D71BA /* cslualibgamekit.cpp in Sources */,
 				B425212322842BE4004FA04B /* CQSceneNavigator.m in Sources */,
-				CEA98582233FC19900246B9E /* csrigidbody.cpp in Sources */,
+				CEA98582233FC19900246B9E /* csrigidbody2d.cpp in Sources */,
 				B4411590231D0B5700053BD7 /* cqglkitarche.cpp in Sources */,
+				CE8AF7462379679D0022AA59 /* csresources.cpp in Sources */,
 				B425210B22842AD3004FA04B /* UIViewController+CQ.m in Sources */,
 				B4F7AE1C2329DF9500E675A8 /* cstransform.cpp in Sources */,
 				CE749FB22351C9E200E4FCEE /* CommandViewController.m in Sources */,
