@@ -7,8 +7,6 @@ cq_member(csTexture2D) {
 
 void csTexture2D::init() {
     super::init();
-    
-    dat->tex = nullptr;
 }
 
 void csTexture2D::init(const std::vector<uint8_t> &data) {
