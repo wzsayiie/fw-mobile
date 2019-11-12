@@ -20,11 +20,15 @@ cq_member(csTransform) {
 };
 
 void csTransform::handleCreate() {
+    super::handleCreate();
+    
     //when a transform created, it should be a active root.
     theActiveRoots.push_back(strongRef());
 }
 
 void csTransform::handleDestroy() {
+    super::handleDestroy();
+    
     if (dat->parent.lock() == nullptr) {
         return;
     }

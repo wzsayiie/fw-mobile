@@ -12,10 +12,14 @@ void csRenderer::renderAll() {
 }
 
 void csRenderer::handleCreate() {
+    super::handleCreate();
+    
     theRenderers.insert(strongRef());
 }
 
 void csRenderer::handleDestroy() {
+    super::handleDestroy();
+    
     theRenderers.erase(strongRef());
 }
 

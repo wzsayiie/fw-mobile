@@ -36,6 +36,8 @@ void csGameObject::destroy(csGameObjectRef gameObject) {
 }
 
 void csGameObject::handleCreate() {
+    super::handleCreate();
+    
     //add:
     theGameObjects.insert(strongRef());
     //add default components:
@@ -43,6 +45,8 @@ void csGameObject::handleCreate() {
 }
 
 void csGameObject::handleDestroy() {
+    super::handleDestroy();
+    
     //destroy components:
     for (csComponentRef it : dat->components) {
         it->handleDestroy();

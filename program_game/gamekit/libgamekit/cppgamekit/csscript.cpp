@@ -26,10 +26,14 @@ std::string csScript::externalName() {
 }
 
 void csScript::handleCreate() {
+    super::handleCreate();
+    
     theScripts.insert(strongRef());
 }
 
 void csScript::handleDestroy() {
+    super::handleDestroy();
+    
     onDestroy();
     theScripts.erase(strongRef());
 }
