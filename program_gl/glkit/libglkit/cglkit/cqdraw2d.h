@@ -17,6 +17,9 @@ struct cq_tex;
 CQ_C_LINK struct cq_tex *cq_new_tex    (int32_t pw, int32_t ph, const void *data);
 CQ_C_LINK struct cq_tex *cq_new_rgb_tex(int32_t pw, int32_t ph, const void *data);
 
+CQ_C_LINK int32_t cq_tex_pw(struct cq_tex *tex);
+CQ_C_LINK int32_t cq_tex_ph(struct cq_tex *tex);
+
 CQ_C_LINK void cq_del_tex(struct cq_tex *tex);
 
 //frame buffer object:
