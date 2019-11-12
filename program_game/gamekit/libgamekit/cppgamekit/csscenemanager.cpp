@@ -1,5 +1,6 @@
 #include "csscenemanager.hh"
 #include "cqglkit.h"
+#include "csrenderer.hh"
 #include "csscript.hh"
 
 //global data:
@@ -15,11 +16,12 @@ static void load(cq_wnd *wnd) {
 }
 
 static void update(cq_wnd *wnd) {
-    csScript::updateAllScripts();
+    csScript::updateAll();
 }
 
 static void gldraw(cq_wnd *wnd) {
-    cq_clear_current(0.5, 0.6, 0.9, 1.0);
+    cq_clear_current(1, 1, 1, 1);
+    csRenderer::renderAll();
 }
 
 static void initializeWndIfNeeded() {

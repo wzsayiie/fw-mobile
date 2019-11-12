@@ -2,7 +2,7 @@
 
 static std::set<csScriptRef> theScripts;
 
-void csScript::updateAllScripts() {
+void csScript::updateAll() {
     
     //NOTE: copy theScripts. it's possible to modify theScripts in handleUpdate().
     std::set<csScriptRef> scripts(theScripts);
@@ -29,6 +29,11 @@ void csScript::handleCreate() {
     theScripts.insert(strongRef());
 }
 
+void csScript::handleDestroy() {
+    onDestroy();
+    theScripts.erase(strongRef());
+}
+
 void csScript::handleUpdate() {
     //awake.
     if (dat->waitingAwake) {
@@ -42,11 +47,6 @@ void csScript::handleUpdate() {
     }
     //update.
     update();
-}
-
-void csScript::handleDestroy() {
-    onDestroy();
-    theScripts.erase(strongRef());
 }
 
 void csScript::awake    () {}
