@@ -9,18 +9,21 @@ __findable_sym void codecount_main(bool _true) {
     dirs.push_back("app_ios/App/Classes");
     dirs.push_back("app_unity/Assets");
 
+    dirs.push_back("core_xapp/xapp");
+    dirs.push_back("core_xgame/xgame");
+    
     dirs.push_back("EDITOR_CPP");
     dirs.push_back("EDITOR_CS");
 
-    dirs.push_back("library/BASIS");
-    dirs.push_back("library/ctool");
-    dirs.push_back("library/foundation");
-    dirs.push_back("library/standalone");
-    dirs.push_back("library/subsystem");
-
-    dirs.push_back("program_app");
-    dirs.push_back("program_game");
-    dirs.push_back("program_gl");
+    dirs.push_back("library0/BASIS");
+    dirs.push_back("library0/ctool");
+    dirs.push_back("library0/foundation");
+    dirs.push_back("library0/standalone");
+    dirs.push_back("library0/subsystem");
+    
+    dirs.push_back("library1/appkit");
+    dirs.push_back("library1/gamekit");
+    dirs.push_back("library1/glkit");
     
     codecount(dirs);
 }
