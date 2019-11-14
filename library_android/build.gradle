@@ -28,12 +28,12 @@ android {
     }
     sourceSets {
         main {
-            java.srcDirs += '../library/BASIS/android/java'
-            java.srcDirs += '../library/foundation/android/java'
-            java.srcDirs += '../library/standalone/android/java'
-            java.srcDirs += '../library/subsystem/android/java'
+            java.srcDirs += '../library0/BASIS/android/java'
+            java.srcDirs += '../library0/foundation/android/java'
+            java.srcDirs += '../library0/standalone/android/java'
+            java.srcDirs += '../library0/subsystem/android/java'
 
-            res.srcDirs += '../library/subsystem/androidres/res'
+            res.srcDirs += '../library0/subsystem/androidres/res'
         }
     }
     externalNativeBuild {

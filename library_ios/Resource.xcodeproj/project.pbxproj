@@ -54,7 +54,7 @@
 				B42A8D3522BCA95D00E42E75 /* Strings */,
 			);
 			name = IOSResources;
-			path = ../library/subsystem/IOSResources;
+			path = ../library0/subsystem/IOSResources;
 			sourceTree = "<group>";
 		};
 		B4EB47AD226D87C1008B5E2F = {
@@ -281,7 +281,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/../library/subsystem/IOSResources/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/../library0/subsystem/IOSResources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = me.wzsayiie.libary.resource;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -297,7 +297,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/../library/subsystem/IOSResources/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/../library0/subsystem/IOSResources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = me.wzsayiie.libary.resource;
 				PRODUCT_NAME = "$(TARGET_NAME)";
