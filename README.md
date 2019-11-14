@@ -27,6 +27,14 @@ Files without suffix name for macOS, and *.bat for Windows.
 * build_unity_android.bat
 * build_unity_ios
 
+**Portable Custom App:**
+
+Lightweight application framework.
+Developer can use them to build little, portable application.
+
+* core_xapp/
+* core_xgame/
+
 **Tools:**
 
 Tools and the projects
@@ -61,9 +69,10 @@ to **unitypackage** to *BUILD/*.
 The corss-platform source,
 that can be compiled and executed on Android and iOS.
 
-* library
-* library_android
-* library_ios
+* library_android/
+* library_ios/
+* library0/
+* library1/
 
 **Library Build Scripts:**
 
@@ -79,15 +88,6 @@ and copy them to *app_unity/Assets/Plugins*.
 
 *NOTE*: macOS and Windows build scripts are provided,
 because developer need the library possibly on Unity editor.
-
-**Portable Custom App:**
-
-Lightweight application framework.
-Developer can use them to build little, portable application.
-
-* program_app
-* program_game
-* program_gl
 
 **External Libraries from Thirds:**
 
