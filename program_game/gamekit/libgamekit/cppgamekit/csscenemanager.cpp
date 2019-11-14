@@ -20,14 +20,24 @@ static void update(cq_wnd *wnd) {
 }
 
 static void gldraw(cq_wnd *wnd) {
+    
+    float width  = cq_wnd_width (wnd);
+    float height = cq_wnd_height(wnd);
+    
+    cq_begin_draw_fbo(width, height, CQ_SCREEN_FBO);
     cq_clear_current(1, 1, 1, 1);
     csRenderer::renderAll();
+    cq_end_draw_fbo();
 }
 
 static void initializeWndIfNeeded() {
     if (theWnd != NULL) {
         return;
     }
+    
+    //NOTE: gl configuration.
+    cq_set_coord_mode(cq_coord_mode_wld);
+    cq_enable_alpha(true);
     
     cq_wndproc proc = {nullptr};
     proc.load = load;

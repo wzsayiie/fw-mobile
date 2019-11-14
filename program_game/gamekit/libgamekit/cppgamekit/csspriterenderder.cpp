@@ -1,5 +1,6 @@
 #include "csspriterenderder.hh"
 #include "cqglkit.h"
+#include "cstransform.hh"
 
 cq_member(csSpriteRenderer) {
     csSpriteRef sprite;
@@ -7,6 +8,29 @@ cq_member(csSpriteRenderer) {
 };
 
 void csSpriteRenderer::handleRender() {
+    //texture.
+    csTexture2DRef texture; {
+        if (dat->sprite != nullptr) {
+            texture = dat->sprite->texture();
+        }
+    }
+    if (texture == nullptr) {
+        return;
+    }
+    
+    //size.
+    csVector2 size = dat->size;
+    if (cq_flt_equal(size.x, 0) || cq_flt_equal(size.y, 0)) {
+        return;
+    }
+    
+    //origin.
+    csVector2 pos = getComponent<csTransform>()->position();
+    float x = pos.x - size.x / 2;
+    float y = pos.y - size.y / 2;
+    
+    //draw.
+    cq_draw_tex(x, y, size.x, size.y, (cq_tex *)texture->nativeTexture());
 }
 
 void csSpriteRenderer::setSprite(csSpriteRef sprite) {
