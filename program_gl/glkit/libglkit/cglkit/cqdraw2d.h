@@ -2,11 +2,30 @@
 
 #include "cqcbasis.h"
 
-//global:
+//configuration:
 
-CQ_C_LINK float cq_gl_x_from_ui(float w, float x);
-CQ_C_LINK float cq_gl_y_from_ui(float h, float y);
+//screen:        texture:
+// +---------+    +------+
+// |    ↑y   |    ↑y     |
+// |    |    |    |      |
+// | ---+--->|    |      |
+// |    |   x|    |      |
+// |    |    |    +----->+
+// +---------+          x
+//
+static const int32_t cq_coord_mode_wld = 1;
 
+//screen:    texture:
+// +---->+    +---->+
+// |    x|    |    x|
+// |     |    |     |
+// ↓y    |    ↓y    |
+// +-----+    +-----+
+//
+static const int32_t cq_coord_mode_pic = 2;
+
+CQ_C_LINK void cq_set_coord_mode(int32_t mode);
+CQ_C_LINK void cq_set_camera_pos(float x, float y);
 CQ_C_LINK void cq_enable_alpha(bool enabled);
 
 //texture:

@@ -4,14 +4,68 @@
 #include "cqshader2d_p.h"
 #include "cqwnd.h"
 
-//global:
+//configuration:
 
-float cq_gl_x_from_ui(float w, float x) {
-    return -1.f + (x / w * 2.f);
+static int32_t _coord_mode = 0;
+
+static float wld_scr_coord_x(float w, float x) {return (x / w * 2.f);}
+static float wld_scr_coord_y(float h, float y) {return (y / h * 2.f);}
+static float wld_tex_coord_x(float w, float x) {return (x / w * 2.f) - 1.f;}
+static float wld_tex_coord_y(float h, float y) {return (y / h * 2.f) - 1.f;}
+
+static float pic_scr_coord_x(float w, float x) {return   (x / w * 2.f) - 1.f;}
+static float pic_scr_coord_y(float h, float y) {return - (y / h * 2.f) + 1.f;}
+static float pic_tex_coord_x(float w, float x) {return   (x / w * 2.f) - 1.f;}
+static float pic_tex_coord_y(float h, float y) {return - (y / h * 2.f) + 1.f;}
+
+static float coord_x(bool scr, float w, float x) {
+    switch (_coord_mode) {
+        case cq_coord_mode_wld: return scr ? wld_scr_coord_x(w, x) : wld_tex_coord_x(w, x);
+        case cq_coord_mode_pic: return scr ? pic_scr_coord_x(w, x) : pic_tex_coord_x(w, x);
+        default: return 0;
+    }
 }
 
-float cq_gl_y_from_ui(float h, float y) {
-    return 1.f - (y / h * 2.f);
+static float coord_y(bool scr, float h, float y) {
+    switch (_coord_mode) {
+        case cq_coord_mode_wld: return scr ? wld_scr_coord_y(h, y) : wld_tex_coord_y(h, y);
+        case cq_coord_mode_pic: return scr ? pic_scr_coord_y(h, y) : pic_tex_coord_y(h, y);
+        default: return 0;
+    }
+}
+
+static void wld_tex_order(float *order) {
+    order[0] = 0.f; order[1] = 0.f;
+    order[2] = 1.f; order[3] = 0.f;
+    order[4] = 1.f; order[5] = 1.f;
+    order[6] = 0.f; order[7] = 1.f;
+}
+
+static void pic_tex_order(float *order) {
+    order[0] = 0.f; order[1] = 1.f;
+    order[2] = 1.f; order[3] = 1.f;
+    order[4] = 1.f; order[5] = 0.f;
+    order[6] = 0.f; order[7] = 0.f;
+}
+
+static void tex_order(float *order) {
+    switch (_coord_mode) {
+        case cq_coord_mode_wld: wld_tex_order(order); break;
+        case cq_coord_mode_pic: pic_tex_order(order); break;
+        default:;
+    }
+}
+
+void cq_set_coord_mode(int32_t mode) {
+    _coord_mode = mode;
+}
+
+static float _camera_x = 0;
+static float _camera_y = 0;
+
+void cq_set_camera_pos(float x, float y) {
+    _camera_x = x;
+    _camera_y = y;
 }
 
 void cq_enable_alpha(bool enabled) {
@@ -120,6 +174,7 @@ void cq_del_fbo(cq_fbo *fbo) {
 extern cq_fbo *const CQ_SCREEN_FBO = (cq_fbo *)(-1);
 
 static cq_fbo *_active_fbo = nullptr;
+static bool _active_is_scr = true;
 static float _active_fbo_w = 0;
 static float _active_fbo_h = 0;
 
@@ -144,6 +199,7 @@ void cq_begin_draw_fbo(float w, float h, cq_fbo *fbo) {
         }
     }
     _active_fbo = fbo;
+    _active_is_scr = (fbo == CQ_SCREEN_FBO);
     _active_fbo_w = w;
     _active_fbo_h = h;
 }
@@ -168,8 +224,10 @@ void cq_set_draw_color(float r, float g, float b, float a) {
 static std::vector<float> _drawing_path;
 
 static void add_drawing_point(float x, float y) {
-    _drawing_path.push_back(cq_gl_x_from_ui(_active_fbo_w, x));
-    _drawing_path.push_back(cq_gl_y_from_ui(_active_fbo_h, y));
+    float a = coord_x(_active_is_scr, _active_fbo_w, x);
+    float b = coord_y(_active_is_scr, _active_fbo_h, y);
+    _drawing_path.push_back(a);
+    _drawing_path.push_back(b);
 }
 
 static int32_t drawing_points_count() {
@@ -224,27 +282,24 @@ void cq_draw_tex(float x, float y, float w, float h, cq_tex *tex) {
     glBindTexture(GL_TEXTURE_2D, tex->tex);
     
     //assign "vecPosition".
-    float left  = cq_gl_x_from_ui(_active_fbo_w, x);
-    float right = cq_gl_x_from_ui(_active_fbo_w, x + w);
-    float top   = cq_gl_y_from_ui(_active_fbo_h, y);
-    float bott  = cq_gl_y_from_ui(_active_fbo_h, y + h);
+    float x_min = coord_x(_active_is_scr, _active_fbo_w, x);
+    float x_max = coord_x(_active_is_scr, _active_fbo_w, x + w);
+    float y_min = coord_y(_active_is_scr, _active_fbo_h, y);
+    float y_max = coord_y(_active_is_scr, _active_fbo_h, y + h);
     float vecCoord[] = {
-        left , top ,
-        right, top ,
-        right, bott,
-        left , bott,
+        x_min, y_min,
+        x_max, y_min,
+        x_max, y_max,
+        x_min, y_max,
     };
     int32_t vecPosition = cq_shader_attrib_loc("vecPosition");
     glVertexAttribPointer(vecPosition, 2, GL_FLOAT, GL_FALSE, 0, vecCoord);
     glEnableVertexAttribArray(vecPosition);
     
     //assign "texPosition".
-    float texCoord[] = {
-        0.f, 1.f,
-        1.f, 1.f,
-        1.f, 0.f,
-        0.f, 0.f,
-    };
+    float texCoord[8] = {0};
+    tex_order(texCoord);
+    
     int32_t texPosition = cq_shader_attrib_loc("texPosition");
     glVertexAttribPointer(texPosition, 2, GL_FLOAT, GL_FALSE, 0, texCoord);
     glEnableVertexAttribArray(texPosition);
