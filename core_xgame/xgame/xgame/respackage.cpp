@@ -7,14 +7,14 @@ std::string loadOnAndroid() {
     std::string path = cqPathString::append(cachesDir, "RES");
     
     cqAndroidBundleRef bundle = cqAndroidBundle::get();
-    bundle->copyAsset("usergameres.bundle", path);
+    bundle->copyAsset("xgameres.bundle", path);
     
     return path;
 }
 
 std::string loadOnIOS() {
     std::string bundlePath = cqIOSBundle::get()->bundlePath();
-    std::string path = cqPathString::append(bundlePath, "usergameres.bundle");
+    std::string path = cqPathString::append(bundlePath, "xgameres.bundle");
     return path;
 }
 
