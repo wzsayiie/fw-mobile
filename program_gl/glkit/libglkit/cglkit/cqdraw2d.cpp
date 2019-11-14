@@ -34,6 +34,32 @@ static float coord_y(bool scr, float h, float y) {
     }
 }
 
+static float wld_scr_offset_x(float w, float x) {return (x / w * 2.f);}
+static float wld_scr_offset_y(float h, float y) {return (y / h * 2.f);}
+static float wld_tex_offset_x(float w, float x) {return (x / w * 2.f);}
+static float wld_tex_offset_y(float h, float y) {return (y / h * 2.f);}
+
+static float pic_scr_offset_x(float w, float x) {return   (x / w * 2.f);}
+static float pic_scr_offset_y(float h, float y) {return - (y / h * 2.f);}
+static float pic_tex_offset_x(float w, float x) {return   (x / w * 2.f);}
+static float pic_tex_offset_y(float h, float y) {return - (y / h * 2.f);}
+
+static float offset_x(bool scr, float w, float x) {
+    switch (_coord_mode) {
+        case cq_coord_mode_wld: return scr ? wld_scr_offset_x(w, x) : wld_tex_offset_x(w, x);
+        case cq_coord_mode_pic: return scr ? pic_scr_offset_x(w, x) : pic_tex_offset_x(w, x);
+        default: return 0;
+    }
+}
+
+static float offset_y(bool scr, float h, float y) {
+    switch (_coord_mode) {
+        case cq_coord_mode_wld: return scr ? wld_scr_offset_y(h, y) : wld_tex_offset_y(h, y);
+        case cq_coord_mode_pic: return scr ? pic_scr_offset_y(h, y) : pic_tex_offset_y(h, y);
+        default: return 0;
+    }
+}
+
 static void wld_tex_order(float *order) {
     order[0] = 0.f; order[1] = 0.f;
     order[2] = 1.f; order[3] = 0.f;
@@ -248,8 +274,14 @@ void cq_draw_path_stop(float x, float y) {
     
     cq_shader_use_graph_program();
     
-    //assign "cq_ViewCenter".
-    cq_shader_set_2f("cq_ViewCenter", 0, 0);
+    //assign "cq_Offset".
+    float off_x = 0;
+    float off_y = 0;
+    if (_active_is_scr) {
+        off_x = offset_x(true, _active_fbo_w, -_camera_x);
+        off_y = offset_y(true, _active_fbo_h, -_camera_y);
+    }
+    cq_shader_set_2f("cq_Offset", off_x, off_y);
     
     //assign "color".
     cq_shader_set_4f("color", _color_r, _color_g, _color_b, _color_a);
@@ -274,8 +306,14 @@ void cq_draw_tex(float x, float y, float w, float h, cq_tex *tex) {
     
     cq_shader_use_tex_program();
     
-    //assign "cq_ViewCenter".
-    cq_shader_set_2f("cq_ViewCenter", 0, 0);
+    //assign "cq_Offset".
+    float off_x = 0;
+    float off_y = 0;
+    if (_active_is_scr) {
+        off_x = offset_x(true, _active_fbo_w, -_camera_x);
+        off_y = offset_y(true, _active_fbo_h, -_camera_y);
+    }
+    cq_shader_set_2f("cq_Offset", off_x, off_y);
     
     //assign "texSimple".
     glActiveTexture(GL_TEXTURE0);
