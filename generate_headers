@@ -35,7 +35,7 @@ function generate_headers() {
 }
 
 clean_geneated
+generate_headers core_xapp/xapp
+generate_headers core_xgame/xgame
 generate_headers library0
-generate_headers program_app
-generate_headers program_game
-generate_headers program_gl
+generate_headers library1

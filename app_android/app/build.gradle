@@ -47,15 +47,15 @@ android {
 
     sourceSets {
         main {
-//            manifest.srcFile '../../program_app/appkit/androidres/AndroidManifest.xml'
-//            manifest.srcFile '../../program_game/gamekit/androidres/AndroidManifest.xml'
+//            manifest.srcFile '../../library1/appkit/androidres/AndroidManifest.xml'
+//            manifest.srcFile '../../library1/gamekit/androidres/AndroidManifest.xml'
 
-            java.srcDirs += '../../program_app/appkit/android/java'
-            java.srcDirs += '../../program_game/gamekit/android/java'
-            java.srcDirs += '../../program_gl/glkit/android/java'
+            java.srcDirs += '../../library1/appkit/android/java'
+            java.srcDirs += '../../library1/gamekit/android/java'
+            java.srcDirs += '../../library1/glkit/android/java'
 
-            assets.srcDirs += "../../program_app/userappres"
-            assets.srcDirs += "../../program_game/usergameres"
+            assets.srcDirs += "../../core_xapp/xappres"
+            assets.srcDirs += "../../core_xgame/xgameres"
 
             jniLibs.srcDirs += '../../thirds_android/jniLibs'
         }

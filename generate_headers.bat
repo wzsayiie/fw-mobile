@@ -12,19 +12,19 @@ mkdir %destination%
 
 set error=0
 
+set source="core_xapp/xapp"
+call :generate
+if not %error% == 0 (goto end)
+
+set source="core_xgame/xgame"
+call :generate
+if not %error% == 0 (goto end)
+
 set source="library0"
 call :generate
 if not %error% == 0 (goto end)
 
-set source="program_app"
-call :generate
-if not %error% == 0 (goto end)
-
-set source="program_game"
-call :generate
-if not %error% == 0 (goto end)
-
-set source="program_gl"
+set source="library1"
 call :generate
 if not %error% == 0 (goto end)
 
