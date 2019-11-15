@@ -8,7 +8,7 @@ _CSGAMEKIT_BEGIN_VERSION_NS
 
 cq_class(csSpriteRenderer, csRenderer) {
     
-    void handleRender() override;
+    void handleRender(csVector2 offset) override;
     
     virtual void setSprite(csSpriteRef sprite);
     virtual csSpriteRef sprite();

@@ -26,7 +26,8 @@ static void gldraw(cq_wnd *wnd) {
     
     cq_begin_draw_fbo(width, height, CQ_SCREEN_FBO);
     cq_clear_current(1, 1, 1, 1);
-    csRenderer::renderAll();
+    csRenderer::renderAll(csTransform::globalRoots());
+    csRenderer::renderAll(csTransform::activeRoots());
     cq_end_draw_fbo();
 }
 

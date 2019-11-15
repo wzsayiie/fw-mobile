@@ -1,17 +1,14 @@
 #pragma once
 
-#include "cscomponent.hh"
+#include "cstransform.hh"
 
 _CSGAMEKIT_BEGIN_VERSION_NS
 
 cq_class(csRenderer, csComponent) {
     
-    static void renderAll();
+    static void renderAll(const std::vector<csTransformRef> &roots);
     
-    void handleCreate () override;
-    void handleDestroy() override;
-    
-    virtual void handleRender();
+    virtual void handleRender(csVector2 offset);
 };
 
 _CSGAMEKIT_END_VERSION_NS

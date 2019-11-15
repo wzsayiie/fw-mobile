@@ -7,7 +7,7 @@ cq_member(csSpriteRenderer) {
     csVector2 size;
 };
 
-void csSpriteRenderer::handleRender() {
+void csSpriteRenderer::handleRender(csVector2 offset) {
     //texture.
     csTexture2DRef texture; {
         if (dat->sprite != nullptr) {
@@ -26,8 +26,8 @@ void csSpriteRenderer::handleRender() {
     
     //origin.
     csVector2 pos = getComponent<csTransform>()->position();
-    float x = pos.x - size.x / 2;
-    float y = pos.y - size.y / 2;
+    float x = offset.x + pos.x - size.x / 2;
+    float y = offset.y + pos.y - size.y / 2;
     
     //draw.
     cq_draw_tex(x, y, size.x, size.y, (cq_tex *)texture->nativeTexture());
