@@ -69,11 +69,9 @@ cq_class(cqLayer, cqObject) {
     virtual bool clipsToBounds();
     
     virtual void setNeedsDisplay();
+    virtual void displayIfNeeded();
     
-    //return true means superview needs update.
-    virtual bool displayIfNeeded();
-    
-    virtual void displayOnScreen(float w, float h);
+    virtual void renderAllOnScreen(cqSize screenSize);
     
     //hierarchy:
     virtual cqLayerRef superlayer();

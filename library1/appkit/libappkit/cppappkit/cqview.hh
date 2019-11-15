@@ -34,7 +34,7 @@ cq_class(cqView, cqResponder_LayerDelegate) {
     void drawLayerInContext(cqLayerRef layer, cqContext context) override;
     virtual void drawRect(cqRect rect);
     
-    virtual void displayOnScreen(float w, float h);
+    virtual void renderAllOnScreen(cqSize screenSize);
     
     //hierarchy:
     virtual cqWindowRef window();

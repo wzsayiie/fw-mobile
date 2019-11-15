@@ -84,8 +84,8 @@ void cqView::drawLayerInContext(cqLayerRef layer, cqContext context) {
 void cqView::drawRect(cqRect rect) {
 }
 
-void cqView::displayOnScreen(float w, float h) {
-    dat->layer->displayOnScreen(w, h);
+void cqView::renderAllOnScreen(cqSize screenSize) {
+    dat->layer->renderAllOnScreen(screenSize);
 }
 
 //hierarchy:

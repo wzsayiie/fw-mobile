@@ -53,12 +53,8 @@ cq_member(cqLayer) {
     
     cqColor backgroundColor;
     bool clipsToBounds = false;
-    bool needsSuperDisplay = true;
     bool needsDisplay = true;
-    
     cq_fbo *fbo = nullptr;
-    float fw = 0;
-    float fh = 0;
     
     cqLayerWeakRef superlayer;
     std::vector<cqLayerRef> sublayers;
@@ -83,8 +79,6 @@ cqLayerDelegate cqLayer::delegate() {
 void cqLayer::setFrame(cqRect frame) {
     if (dat->frame.size != frame.size) {
         setNeedsDisplay();
-    } else if (dat->frame.origin != frame.origin) {
-        dat->needsSuperDisplay = true;
     }
     dat->frame = frame;
 }
@@ -113,7 +107,8 @@ cqColor cqLayer::backgroundColor() {
 void cqLayer::setClipsToBounds(bool clipsToBounds) {
     if (dat->clipsToBounds != clipsToBounds) {
         dat->clipsToBounds = clipsToBounds;
-        setNeedsDisplay();
+        //currently this function is unimplemented.
+        //setNeedsDisplay();
     }
 }
 
@@ -125,95 +120,76 @@ void cqLayer::setNeedsDisplay() {
     dat->needsDisplay = true;
 }
 
-static void mergeLayers(float x, float y, cqLayerRef layer) {
-    cqRect f = layer->frame();
-    float sx = f.origin.x + x;
-    float sy = f.origin.y + y;
-    float sw = f.size.width;
-    float sh = f.size.height;
-    
-    cq_tex *tex = cq_fbo_tex(layer->dat->fbo);
-    cq_draw_tex(sx, sy, sw, sh, tex);
-    
-    if (layer->clipsToBounds()) {
+void cqLayer::displayIfNeeded() {
+    if (!dat->needsDisplay) {
         return;
     }
-    for (auto &it : layer->sublayers()) {
-        mergeLayers(sx, sy, it);
-    }
-}
-
-bool cqLayer::displayIfNeeded() {
-    
-    //sublayers drawn.
-    bool sublayersDrawn = false;
-    for (auto &it : dat->sublayers) {
-        if (it->displayIfNeeded()) {
-            sublayersDrawn = true;
-        }
-    }
-    
-    bool needsSuperDisplay = dat->needsSuperDisplay;
-    bool needsDisplay = dat->needsDisplay;
-    dat->needsSuperDisplay = false;
     dat->needsDisplay = false;
     
-    if (sublayersDrawn && dat->clipsToBounds) {
-        //need display cause sublayers' change.
-    } else if (needsDisplay) {
-        //need display cause own change.
-    } else {
-        return sublayersDrawn || needsSuperDisplay;
-    }
-    
     //remove deprecated fbo if needed.
-    float w = dat->frame.size.width ;
+    float w = dat->frame.size.width;
     float h = dat->frame.size.height;
-    if (w != dat->fw || h != dat->fh) {
-        cq_del_fbo(dat->fbo);
-        dat->fbo = nullptr;
+    auto pw = (int32_t)(w * cq_wnd_scale());
+    auto ph = (int32_t)(h * cq_wnd_scale());
+    
+    if (dat->fbo != nullptr) {
+        cq_tex *tex = cq_fbo_tex(dat->fbo);
+        int32_t opw = cq_tex_pw(tex);
+        int32_t oph = cq_tex_ph(tex);
         
-        dat->fw = w;
-        dat->fh = h;
+        if (pw != opw || ph != oph) {
+            cq_del_fbo(dat->fbo);
+            dat->fbo = nullptr;
+        }
     }
     
     //new fbo if needed.
-    if (dat->fbo == nullptr && w > 0 && h > 0) {
-        //make clearer with pixel size.
-        float scale = cq_wnd_scale();
-        dat->fbo = cq_new_fbo(w * scale, h *scale, NULL);
+    if (dat->fbo == nullptr) {
+        dat->fbo = cq_new_fbo(pw, ph, NULL);
     }
     
-    //draw:
+    //draw.
     if (dat->fbo == nullptr) {
-        return true;
+        return;
     }
     cq_begin_draw_fbo(w, h, dat->fbo);
     
-    //1. background.
     cqColor color = dat->backgroundColor;
     cq_clear_current(color.red, color.green, color.blue, color.alpha);
-    
-    //2. self.
     dat->delegate.drawLayerInContext(strongRef(), cqContext());
     
-    //3. sublayers.
-    if (dat->clipsToBounds) {
-        for (auto &it : dat->sublayers) {
-            mergeLayers(0, 0, it);
-        }
-    }
-    
     cq_end_draw_fbo();
-    return true;
 }
 
-void cqLayer::displayOnScreen(float w, float h) {
-    displayIfNeeded();
+static void displayRecursively(cqLayerRef layer) {
+    //self.
+    layer->displayIfNeeded();
     
-    cq_begin_draw_fbo(w, h, CQ_SCREEN_FBO);
+    //sublayers.
+    for (auto &it : layer->sublayers()) {
+        displayRecursively(it);
+    }
+}
+
+static void renderRecursively(cqPoint offset, cqLayerRef layer) {
+    //self.
+    cqPoint off = layer->frame().origin + offset;
+    cqSize size = layer->frame().size;
+    cq_tex *tex = cq_fbo_tex(layer->dat->fbo);
+    cq_draw_tex(off.x, off.y, size.width, size.height, tex);
+    
+    //sublayers.
+    for (auto &it : layer->sublayers()) {
+        renderRecursively(off, it);
+    }
+}
+
+void cqLayer::renderAllOnScreen(cqSize screenSize) {
+    displayRecursively(strongRef());
+    
+    cq_begin_draw_fbo(screenSize.width, screenSize.height, CQ_SCREEN_FBO);
     cq_clear_current(1, 1, 1, 1);
-    cq_draw_tex(0, 0, w, h, cq_fbo_tex(dat->fbo));
+    renderRecursively(cqPoint(), strongRef());
     cq_end_draw_fbo();
 }
 
@@ -238,10 +214,6 @@ void cqLayer::addSublayer(cqLayerRef sublayer) {
     sublayer->removeFromSuperlayer();
     sublayer->dat->superlayer = weakRef();
     dat->sublayers.push_back(sublayer);
-    
-    if (dat->clipsToBounds) {
-        setNeedsDisplay();
-    }
 }
 
 void cqLayer::removeFromSuperlayer() {
@@ -249,9 +221,5 @@ void cqLayer::removeFromSuperlayer() {
     if (superlayer != nullptr) {
         cqVector::erase(&superlayer->dat->sublayers, strongRef());
         dat->superlayer.reset();
-        
-        if (superlayer->clipsToBounds()) {
-            superlayer->setNeedsDisplay();
-        }
     }
 }

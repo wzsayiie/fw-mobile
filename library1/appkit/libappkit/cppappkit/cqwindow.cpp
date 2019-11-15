@@ -16,9 +16,6 @@ void cqWindow::init() {
 
 void cqWindow::init(cqRect frame) {
     super::init(frame);
-    
-    //NOTE: make sublayers renderered to the window's layer.
-    setClipsToBounds(true);
 }
 
 void cqWindow::setRootViewController(cqViewControllerRef controller) {
@@ -74,9 +71,8 @@ static void resize(cq_wnd *wnd, float width, float height) {
 static void gldraw(cq_wnd *wnd) {
     auto self = (cqWindow *)cq_wnd_extra(wnd);
 
-    float w = self->frame().size.width ;
-    float h = self->frame().size.height;
-    self->displayOnScreen(w, h);
+    cqSize screenSize = self->frame().size;
+    self->renderAllOnScreen(screenSize);
 }
 
 static void pbegan(cq_wnd *wnd, float x, float y) {
