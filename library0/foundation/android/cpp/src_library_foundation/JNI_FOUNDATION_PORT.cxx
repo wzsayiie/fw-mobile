@@ -39,6 +39,10 @@ const char *cq_ios_bundle_path() {
     return nullptr;
 }
 
+const char *cq_ios_bundle_res_path(const char *, const char *) {
+    return nullptr;
+}
+
 uint8_t *cq_ios_bundle_res(int32_t *len, const char *, const char *) {
     if (len != nullptr) {
         *len = 0;

@@ -43,6 +43,11 @@ std::string cqIOSBundle::bundlePath() {
     return cqString::make(path);
 }
 
+std::string cqIOSBundle::resourcePath(const std::string &type, const std::string &name) {
+    const char *path = cq_ios_bundle_res_path(type.c_str(), name.c_str());
+    return cqString::make(path);
+}
+
 std::vector<uint8_t> cqIOSBundle::resource(const std::string &type, const std::string &name) {
     int32_t len = 0;
     uint8_t *bytes = cq_ios_bundle_res(&len, type.c_str(), name.c_str());

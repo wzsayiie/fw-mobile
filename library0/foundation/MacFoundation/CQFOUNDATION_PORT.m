@@ -18,6 +18,11 @@ const char *cq_ios_bundle_path(void) {
     return cq_store_str(path.UTF8String);
 }
 
+const char *cq_ios_bundle_res_path(const char *type, const char *name) {
+    NSString *path = [CQBundle.mainBundle resourcePathForType:@(type) name:@(name)];
+    return cq_store_str(path.UTF8String);
+}
+
 uint8_t *cq_ios_bundle_res(int32_t *len, const char *type, const char *name) {
     NSData *data = [CQBundle.mainBundle resourceForType:@(type) name:@(name)];
     if (data.length > 0) {

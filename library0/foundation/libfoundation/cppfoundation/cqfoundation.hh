@@ -34,6 +34,7 @@ cq_class(cqIOSBundle, cqObject) {
     static cqIOSBundleRef get();
     
     virtual std::string bundlePath();
+    virtual std::string resourcePath(const std::string &type, const std::string &name);
     virtual std::vector<uint8_t> resource(const std::string &type, const std::string &name);
 };
 
