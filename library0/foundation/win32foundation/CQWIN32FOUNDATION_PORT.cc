@@ -105,6 +105,7 @@ bool cq_open_dir(const char *path)
 
 const char *cq_read_dir()
 {
+    return NULL;
 }
 
 void cq_close_dir()
