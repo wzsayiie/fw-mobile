@@ -84,7 +84,7 @@ cqRect::cqRect(): origin(0, 0), size(0, 0) {
 cqRect::cqRect(float x, float y, float w, float h): origin(x, y), size(w, h) {
 }
 
-cqRect::cqRect(cqPoint orig, cqSize size): origin(orig), size(size) {
+cqRect::cqRect(cqPoint origin, cqSize size): origin(origin), size(size) {
 }
 
 float cqRect::minX() const {return origin.x;}

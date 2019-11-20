@@ -11,7 +11,7 @@ cq_declare(cqLayer);
 
 cq_class(cqLayerDelegate, cqProxy) {
     
-    virtual void drawLayerInContext(cqLayerRef layer, cqContext context) {}
+    virtual void drawLayerInContext(cqLayerRef layer, cqContextRef context) {}
 };
 
 //layer:

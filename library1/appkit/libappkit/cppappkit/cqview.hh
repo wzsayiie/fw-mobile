@@ -60,7 +60,7 @@ cq_class(cqViewLayerDelegate, cqLayerDelegate) {
     
     cq_as_proxy_of(cqView)
     
-    void drawLayerInContext(cqLayerRef layer, cqContext context) override;
+    void drawLayerInContext(cqLayerRef layer, cqContextRef context) override;
 };
 
 _CQAPPKIT_END_VERSION_NS

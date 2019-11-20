@@ -230,8 +230,10 @@ bool cqView::pointInside(cqPoint point, cqEventRef event) {
 cq_member(cqViewLayerDelegate) {
 };
 
-void cqViewLayerDelegate::drawLayerInContext(cqLayerRef layer, cqContext context) {
+void cqViewLayerDelegate::drawLayerInContext(cqLayerRef layer, cqContextRef context) {
     if (auto view = castCore()) {
+        cqContext::pushContext(context);
         view->drawRect(view->bounds());
+        cqContext::popContext();
     }
 }

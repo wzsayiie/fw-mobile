@@ -118,7 +118,9 @@ void cqLayer::displayIfNeeded() {
     
     cqColor color = dat->backgroundColor;
     cq_clear_current(color.red, color.green, color.blue, color.alpha);
-    dat->delegate->drawLayerInContext(strongRef(), cqContext());
+    
+    cqContextRef context = cqContext::create();
+    dat->delegate->drawLayerInContext(strongRef(), context);
     
     cq_end_draw_fbo();
 }
