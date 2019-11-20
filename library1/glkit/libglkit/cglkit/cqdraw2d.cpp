@@ -260,17 +260,28 @@ static int32_t drawing_points_count() {
     return (int32_t)_drawing_path.size() / 2;
 }
 
-void cq_draw_path_start(float x, float y) {
+void cq_draw_path_start() {
     _drawing_path.clear();
+}
+
+void cq_draw_path_start_at(float x, float y) {
+    cq_draw_path_start();
     add_drawing_point(x, y);
 }
 
-void cq_draw_path_add(float x, float y) {
+void cq_draw_path_add_at(float x, float y) {
     add_drawing_point(x, y);
 }
 
-void cq_draw_path_stop(float x, float y) {
+void cq_draw_path_stop_at(float x, float y) {
     add_drawing_point(x, y);
+    cq_draw_path_stop();
+}
+
+void cq_draw_path_stop() {
+    if (_drawing_path.empty()) {
+        return;
+    }
     
     cq_shader_use_graph_program();
     

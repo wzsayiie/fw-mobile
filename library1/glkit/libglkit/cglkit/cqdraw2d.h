@@ -65,9 +65,11 @@ CQ_C_LINK void cq_clear_current(float r, float g, float b, float a);
 CQ_C_LINK void cq_set_draw_color(float r, float g, float b, float a);
 
 //draw polygon on fbo:
-CQ_C_LINK void cq_draw_path_start(float x, float y);
-CQ_C_LINK void cq_draw_path_add  (float x, float y);
-CQ_C_LINK void cq_draw_path_stop (float x, float y);
+CQ_C_LINK void cq_draw_path_start   (void);
+CQ_C_LINK void cq_draw_path_start_at(float x, float y);
+CQ_C_LINK void cq_draw_path_add_at  (float x, float y);
+CQ_C_LINK void cq_draw_path_stop_at (float x, float y);
+CQ_C_LINK void cq_draw_path_stop    (void);
 
 //draw texture on fbo:
 CQ_C_LINK void cq_draw_tex(float x, float y, float w, float h, struct cq_tex *tex);
