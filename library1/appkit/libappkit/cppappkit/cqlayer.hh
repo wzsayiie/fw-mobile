@@ -7,43 +7,17 @@ _CQAPPKIT_BEGIN_VERSION_NS
 
 //context:
 
-cq_declare(cqLayer);
-
 struct cqContext {
-};
-
-struct cqGraphics {
     static cqContext currentContext();
 };
 
 //layer delegate:
 
-cq_class(cqObject_LayerDelegate, cqObject) {
+cq_declare(cqLayer);
+
+cq_class(cqLayerDelegate, cqProxy) {
     
     virtual void drawLayerInContext(cqLayerRef layer, cqContext context) {}
-};
-
-cq_class(cqResponder_LayerDelegate, cqResponder) {
-    
-    virtual void drawLayerInContext(cqLayerRef layer, cqContext context) {}
-};
-
-struct cqLayerDelegate {
-    
-    enum class Type {
-        Null      = 0,
-        Object    = 1,
-        Responder = 2,
-    };
-    
-    Type _type;
-    cqObjectWeakRef _object;
-    
-    cqLayerDelegate();
-    cqLayerDelegate(cqObject_LayerDelegateRef object);
-    cqLayerDelegate(cqResponder_LayerDelegateRef object);
-    
-    void drawLayerInContext(cqLayerRef layer, cqContext context);
 };
 
 //layer:
@@ -53,8 +27,8 @@ cq_class(cqLayer, cqObject) {
     ~cqLayer();
     
     //delegate:
-    virtual void setDelegate(cqLayerDelegate delegate);
-    virtual cqLayerDelegate delegate();
+    virtual void setDelegate(cqLayerDelegateRef delegate);
+    virtual cqLayerDelegateRef delegate();
     
     //position:
     virtual void setFrame(cqRect frame);

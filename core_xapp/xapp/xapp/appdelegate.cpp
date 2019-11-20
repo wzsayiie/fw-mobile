@@ -7,21 +7,30 @@ cq_member(AppDelegate) {
     cqWindowRef window;
 };
 
-void AppDelegate::applicationDidFinishLaunching() {
-    auto controller = RootViewController::create();
+cq_member(AppDelegateProxy) {
+};
+
+void AppDelegateProxy::applicationDidFinishLaunching() {
+    if (auto object = castCore()) {
+        
+        auto controller = RootViewController::create();
     
-    dat->window = cqWindow::create();
-    dat->window->setRootViewController(controller);
-    dat->window->makeKeyAndVisible();
+        object->dat->window = cqWindow::create();
+        object->dat->window->setRootViewController(controller);
+        object->dat->window->makeKeyAndVisible();
+    }
 }
 
-void AppDelegate::applicationWillEnterForeground() {
+void AppDelegateProxy::applicationWillEnterForeground() {
 }
 
-void AppDelegate::applicationDidEnterBackground() {
+void AppDelegateProxy::applicationDidEnterBackground() {
 }
 
 extern "C" void _cq_app_entry() {
-    AppDelegateRef delegate = AppDelegate::create();
-    cqApplication::main(delegate);
+    //NOTE: hold a strong reference of AppDelegate.
+    static AppDelegateRef delegate = AppDelegate::create();
+    
+    AppDelegateProxyRef proxy = AppDelegateProxy::create(delegate);
+    cqApplication::main(proxy);
 }

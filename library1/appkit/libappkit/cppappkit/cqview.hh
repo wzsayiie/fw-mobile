@@ -7,7 +7,7 @@ _CQAPPKIT_BEGIN_VERSION_NS
 cq_declare(cqViewController);
 cq_declare(cqWindow);
 
-cq_class(cqView, cqResponder_LayerDelegate) {
+cq_class(cqView, cqResponder) {
     
     void init();
     void init(cqRect frame);
@@ -31,7 +31,6 @@ cq_class(cqView, cqResponder_LayerDelegate) {
     
     virtual void setNeedsDisplay();
     
-    void drawLayerInContext(cqLayerRef layer, cqContext context) override;
     virtual void drawRect(cqRect rect);
     
     virtual void renderAllOnScreen(cqSize screenSize);
@@ -54,6 +53,13 @@ cq_class(cqView, cqResponder_LayerDelegate) {
     
     virtual cqViewRef hitTest(cqPoint point, cqEventRef event);
     virtual bool pointInside(cqPoint point, cqEventRef event);
+};
+
+cq_class(cqViewLayerDelegate, cqLayerDelegate) {
+    
+    cq_as_proxy_of(cqView)
+    
+    void drawLayerInContext(cqLayerRef layer, cqContext context) override;
 };
 
 _CQAPPKIT_END_VERSION_NS

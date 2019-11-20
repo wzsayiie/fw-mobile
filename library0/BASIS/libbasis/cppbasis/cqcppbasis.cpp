@@ -39,6 +39,8 @@ bool cqClass::isKindOfClass(cqClass *cls) const {
     return false;
 }
 
+//object:
+
 cq_member(cqObject) {
 };
 
@@ -51,4 +53,28 @@ bool cqObject::isMemberOfClass(cqClass *cls) {
         return false;
     }
     return dynamicClass() == cls;
+}
+
+//proxy:
+
+cq_member(cqProxy) {
+    cqObjectWeakRef core;
+};
+
+void cqProxy::init() {
+    init(nullptr);
+}
+
+void cqProxy::init(cqObjectRef core) {
+    super::init();
+    
+    setCore(core);
+}
+
+void cqProxy::setCore(cqObjectRef core) {
+    dat->core = core;
+}
+
+cqObjectRef cqProxy::core() {
+    return dat->core.lock();
 }

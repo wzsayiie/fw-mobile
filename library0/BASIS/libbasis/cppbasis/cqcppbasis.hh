@@ -182,6 +182,8 @@ template<class T> cqClass *_cqClassGet(const char *name) {
 /**/    }\
 /**/    template<> struct _cqSandWich<CLASS, CLASS::super>::Dat
 
+//object:
+
 cq_class(cqObject, _cqBaseObject) {
     
     virtual bool isKindOfClass(cqClass *cls);
@@ -193,7 +195,23 @@ cq_class(cqObject, _cqBaseObject) {
     }
 };
 
-//static object
+//proxy:
+
+cq_class(cqProxy, cqObject) {
+    
+    void init();
+    void init(cqObjectRef core);
+    
+    virtual void setCore(cqObjectRef core);
+    virtual cqObjectRef core();
+};
+
+#define cq_as_proxy_of(CLASS)\
+/**/    cqRef<CLASS>::Strong castCore() {\
+/**/        return cqObject::cast<CLASS>(core());\
+/**/    }
+
+//static object:
 
 template<class T, int = 0> typename cqRef<T>::Strong cqStaticObject() {
     cq_synchronize({

@@ -2,6 +2,8 @@
 #include "cqviewcontroller.hh"
 #include "cqwindow.hh"
 
+//view:
+
 cq_member(cqView) {
     cqLayerRef layer;
     
@@ -18,7 +20,7 @@ void cqView::init(cqRect frame) {
     super::init();
     
     dat->layer = cqLayer::create();
-    dat->layer->setDelegate(cqLayerDelegate(strongRef()));
+    dat->layer->setDelegate(cqViewLayerDelegate::create(strongRef()));
     
     setFrame(frame);
 }
@@ -75,10 +77,6 @@ bool cqView::clipsToBounds() {
 
 void cqView::setNeedsDisplay() {
     dat->layer->setNeedsDisplay();
-}
-
-void cqView::drawLayerInContext(cqLayerRef layer, cqContext context) {
-    drawRect(bounds());
 }
 
 void cqView::drawRect(cqRect rect) {
@@ -225,4 +223,15 @@ cqViewRef cqView::hitTest(cqPoint point, cqEventRef event) {
 
 bool cqView::pointInside(cqPoint point, cqEventRef event) {
     return bounds().contains(point);
+}
+
+//view's layer delegate:
+
+cq_member(cqViewLayerDelegate) {
+};
+
+void cqViewLayerDelegate::drawLayerInContext(cqLayerRef layer, cqContext context) {
+    if (auto view = castCore()) {
+        view->drawRect(view->bounds());
+    }
 }

@@ -4,11 +4,11 @@
 
 _CQAPPKIT_BEGIN_VERSION_NS
 
-cq_class(cqApplicationDelegate, cqResponder) {
+cq_class(cqApplicationDelegate, cqProxy) {
     
-    virtual void applicationDidFinishLaunching ();
-    virtual void applicationWillEnterForeground();
-    virtual void applicationDidEnterBackground ();
+    virtual void applicationDidFinishLaunching () {}
+    virtual void applicationWillEnterForeground() {}
+    virtual void applicationDidEnterBackground () {}
 };
 
 cq_class(cqApplication, cqResponder) {

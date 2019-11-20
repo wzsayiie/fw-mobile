@@ -3,10 +3,6 @@
 cq_member(cqApplicationDelegate) {
 };
 
-void cqApplicationDelegate::applicationDidFinishLaunching () {}
-void cqApplicationDelegate::applicationWillEnterForeground() {}
-void cqApplicationDelegate::applicationDidEnterBackground () {}
-
 cq_member(cqApplication) {
     cqApplicationDelegateRef delegate;
 };
@@ -24,7 +20,14 @@ cqApplicationDelegateRef cqApplication::delegate() {
 }
 
 cqResponderRef cqApplication::nextResponder() {
-    return dat->delegate;
+    cqApplicationDelegateRef delegate = dat->delegate;
+    if (delegate != nullptr) {
+        cqObjectRef core = delegate->core();
+        if (core->isKindOfClass(cqResponder::clazz())) {
+            return cqObject::cast<cqResponder>(core);
+        }
+    }
+    return nullptr;
 }
 
 void cqApplication::main(cqApplicationDelegateRef delegate) {

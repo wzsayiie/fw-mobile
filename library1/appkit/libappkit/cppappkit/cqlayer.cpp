@@ -3,51 +3,19 @@
 
 //context:
 
-cqContext cqGraphics::currentContext() {
+cqContext cqContext::currentContext() {
     return cqContext();
 }
 
 //layer delegate:
 
-cq_member(cqObject_LayerDelegate) {
+cq_member(cqLayerDelegate) {
 };
-
-cq_member(cqResponder_LayerDelegate) {
-};
-
-cqLayerDelegate::cqLayerDelegate() {
-    _type = Type::Null;
-    //_object = nullptr;
-}
-
-cqLayerDelegate::cqLayerDelegate(cqObject_LayerDelegateRef object) {
-    _type = Type::Object;
-    _object = object;
-}
-
-cqLayerDelegate::cqLayerDelegate(cqResponder_LayerDelegateRef object) {
-    _type = Type::Responder;
-    _object = object;
-}
-
-void cqLayerDelegate::drawLayerInContext(cqLayerRef layer, cqContext context) {
-
-    cqObject_LayerDelegateRef    obj;
-    cqResponder_LayerDelegateRef rep;
-    switch (_type) {
-        case Type::Object   : obj = cqObject::cast<cqObject_LayerDelegate   >(_object.lock()); break;
-        case Type::Responder: rep = cqObject::cast<cqResponder_LayerDelegate>(_object.lock()); break;
-        default:;
-    }
-    
-    if /**/ (obj) { obj->drawLayerInContext(layer, context); }
-    else if (rep) { rep->drawLayerInContext(layer, context); }
-}
 
 //layer:
 
 cq_member(cqLayer) {
-    cqLayerDelegate delegate;
+    cqLayerDelegateRef delegate;
     
     cqRect frame;
     
@@ -66,11 +34,11 @@ cqLayer::~cqLayer() {
 
 //delegate:
 
-void cqLayer::setDelegate(cqLayerDelegate delegate) {
+void cqLayer::setDelegate(cqLayerDelegateRef delegate) {
     dat->delegate = delegate;
 }
 
-cqLayerDelegate cqLayer::delegate() {
+cqLayerDelegateRef cqLayer::delegate() {
     return dat->delegate;
 }
 
@@ -156,7 +124,7 @@ void cqLayer::displayIfNeeded() {
     
     cqColor color = dat->backgroundColor;
     cq_clear_current(color.red, color.green, color.blue, color.alpha);
-    dat->delegate.drawLayerInContext(strongRef(), cqContext());
+    dat->delegate->drawLayerInContext(strongRef(), cqContext());
     
     cq_end_draw_fbo();
 }
