@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cqlayer.hh"
+#include "cqresponder.hh"
 
 _CQAPPKIT_BEGIN_VERSION_NS
 

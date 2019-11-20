@@ -112,6 +112,7 @@
 		CEC44100237D5B9200361447 /* xls.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC440FD237D5B9200361447 /* xls.png */; };
 		CEC44101237D5B9200361447 /* ppt.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC440FE237D5B9200361447 /* ppt.png */; };
 		CEEB261C2300655C001FD8D6 /* CQNetStatusListener.m in Sources */ = {isa = PBXBuildFile; fileRef = CEEB261B2300655C001FD8D6 /* CQNetStatusListener.m */; };
+		CEF20D1E238539B100004461 /* cqcontext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF20D1C238539B100004461 /* cqcontext.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -348,6 +349,8 @@
 		CEC440FE237D5B9200361447 /* ppt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ppt.png; sourceTree = "<group>"; };
 		CEEB261A2300655C001FD8D6 /* CQNetStatusListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQNetStatusListener.h; sourceTree = "<group>"; };
 		CEEB261B2300655C001FD8D6 /* CQNetStatusListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQNetStatusListener.m; sourceTree = "<group>"; };
+		CEF20D1C238539B100004461 /* cqcontext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqcontext.cpp; sourceTree = "<group>"; };
+		CEF20D1D238539B100004461 /* cqcontext.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqcontext.hh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -956,6 +959,8 @@
 				CEC440D0237D59E400361447 /* cqapplication.hh */,
 				CEC440CA237D59E400361447 /* cqcolor.cpp */,
 				CEC440CE237D59E400361447 /* cqcolor.hh */,
+				CEF20D1C238539B100004461 /* cqcontext.cpp */,
+				CEF20D1D238539B100004461 /* cqcontext.hh */,
 				CEC440D2237D59E400361447 /* cqevent.cpp */,
 				CEC440CC237D59E400361447 /* cqevent.hh */,
 				CEC440BE237D59E400361447 /* cqgeometry.cpp */,
@@ -1178,6 +1183,7 @@
 				CEC440DB237D59E400361447 /* cqresponder.cpp in Sources */,
 				CEC440A7237D599500361447 /* csscenemanager.cpp in Sources */,
 				B467ECE1231000100045E2DC /* NSString+CQ.m in Sources */,
+				CEF20D1E238539B100004461 /* cqcontext.cpp in Sources */,
 				B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */,
 				B44310872321FBED00FA6720 /* ToolBarViewController.m in Sources */,
 				CEC4409E237D599500361447 /* csrigidbody2d.cpp in Sources */,

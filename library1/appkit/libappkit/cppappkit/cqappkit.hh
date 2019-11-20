@@ -2,6 +2,7 @@
 
 #include "cqapplication.hh"
 #include "cqcolor.hh"
+#include "cqcontext.hh"
 #include "cqevent.hh"
 #include "cqgeometry.hh"
 #include "cqimage.hh"

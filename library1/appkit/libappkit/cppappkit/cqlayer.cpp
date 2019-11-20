@@ -1,12 +1,6 @@
 #include "cqlayer.hh"
 #include "cqglkit.h"
 
-//context:
-
-cqContext cqContext::currentContext() {
-    return cqContext();
-}
-
 //layer delegate:
 
 cq_member(cqLayerDelegate) {

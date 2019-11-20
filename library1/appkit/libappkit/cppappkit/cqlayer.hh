@@ -1,15 +1,9 @@
 #pragma once
 
-#include "cqresponder.hh"
-#include "cqcolor.hh"
+#include "cqcontext.hh"
+#include "cqgeometry.hh"
 
 _CQAPPKIT_BEGIN_VERSION_NS
-
-//context:
-
-struct cqContext {
-    static cqContext currentContext();
-};
 
 //layer delegate:
 
