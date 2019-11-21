@@ -55,7 +55,7 @@
 		CE749FB92351CD3800E4FCEE /* BlankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE749FB82351CD3800E4FCEE /* BlankViewController.xib */; };
 		CEC44053237D593500361447 /* cqglkitarche.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44030237D593500361447 /* cqglkitarche.cpp */; };
 		CEC44054237D593500361447 /* cqwnd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44034237D593500361447 /* cqwnd.cpp */; };
-		CEC44055237D593500361447 /* cqfont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44037237D593500361447 /* cqfont.cpp */; };
+		CEC44055237D593500361447 /* cqttf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44037237D593500361447 /* cqttf.cpp */; };
 		CEC44056237D593500361447 /* cqimg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44039237D593500361447 /* cqimg.cpp */; };
 		CEC44057237D593500361447 /* cqshader2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC4403A237D593500361447 /* cqshader2d.cpp */; };
 		CEC44058237D593500361447 /* cqopengl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC4403C237D593500361447 /* cqopengl.cpp */; };
@@ -228,11 +228,11 @@
 		CEC4402D237D593500361447 /* _CQGLKIT_VERSION.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = _CQGLKIT_VERSION.hh; path = ../library1/glkit/_CQGLKIT_VERSION.hh; sourceTree = "<group>"; };
 		CEC44030237D593500361447 /* cqglkitarche.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqglkitarche.cpp; sourceTree = "<group>"; };
 		CEC44031237D593500361447 /* cqglkitarche.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqglkitarche.h; sourceTree = "<group>"; };
-		CEC44033237D593500361447 /* cqfont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqfont.h; sourceTree = "<group>"; };
+		CEC44033237D593500361447 /* cqttf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqttf.h; sourceTree = "<group>"; };
 		CEC44034237D593500361447 /* cqwnd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqwnd.cpp; sourceTree = "<group>"; };
 		CEC44035237D593500361447 /* shader2d_tex_vsh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shader2d_tex_vsh.h; sourceTree = "<group>"; };
 		CEC44036237D593500361447 /* shader2d_tex_fsh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shader2d_tex_fsh.h; sourceTree = "<group>"; };
-		CEC44037237D593500361447 /* cqfont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqfont.cpp; sourceTree = "<group>"; };
+		CEC44037237D593500361447 /* cqttf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqttf.cpp; sourceTree = "<group>"; };
 		CEC44038237D593500361447 /* cqimg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqimg.h; sourceTree = "<group>"; };
 		CEC44039237D593500361447 /* cqimg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqimg.cpp; sourceTree = "<group>"; };
 		CEC4403A237D593500361447 /* cqshader2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqshader2d.cpp; sourceTree = "<group>"; };
@@ -799,8 +799,6 @@
 			children = (
 				CEC4403E237D593500361447 /* cqdraw2d.cpp */,
 				CEC44041237D593500361447 /* cqdraw2d.h */,
-				CEC44037237D593500361447 /* cqfont.cpp */,
-				CEC44033237D593500361447 /* cqfont.h */,
 				CEC44043237D593500361447 /* cqglkit.h */,
 				CEC44039237D593500361447 /* cqimg.cpp */,
 				CEC44038237D593500361447 /* cqimg.h */,
@@ -808,6 +806,8 @@
 				CEC4403C237D593500361447 /* cqopengl.cpp */,
 				CEC4403D237D593500361447 /* cqshader2d_p.h */,
 				CEC4403A237D593500361447 /* cqshader2d.cpp */,
+				CEC44037237D593500361447 /* cqttf.cpp */,
+				CEC44033237D593500361447 /* cqttf.h */,
 				CEC44034237D593500361447 /* cqwnd.cpp */,
 				CEC44040237D593500361447 /* cqwnd.h */,
 				CEC44042237D593500361447 /* shader2d_graph_fsh.h */,
@@ -1194,7 +1194,7 @@
 				CE749FB12351C9E200E4FCEE /* BlankViewController.m in Sources */,
 				CEC4409A237D599500361447 /* csgameobject.cpp in Sources */,
 				CEC44099237D599500361447 /* csgamekitarche.cpp in Sources */,
-				CEC44055237D593500361447 /* cqfont.cpp in Sources */,
+				CEC44055237D593500361447 /* cqttf.cpp in Sources */,
 				CEC440A9237D599500361447 /* csbehaviour.cpp in Sources */,
 				CEEB261C2300655C001FD8D6 /* CQNetStatusListener.m in Sources */,
 				CEC440FA237D5B7200361447 /* rootviewcontroller.cpp in Sources */,
