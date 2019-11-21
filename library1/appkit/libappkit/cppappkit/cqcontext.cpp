@@ -30,10 +30,12 @@ void cqContext::setFillColor(cqColor color) {
 }
 
 void cqContext::fillRect(cqRect rect) {
-    cq_draw_path_start_at(rect.minX(), rect.minY());
-    cq_draw_path_add_at  (rect.maxX(), rect.minY());
-    cq_draw_path_add_at  (rect.maxX(), rect.maxY());
-    cq_draw_path_stop_at (rect.minX(), rect.maxY());
+    cq_draw_path_start();
+    cq_draw_path_add(rect.minX(), rect.minY());
+    cq_draw_path_add(rect.maxX(), rect.minY());
+    cq_draw_path_add(rect.maxX(), rect.maxY());
+    cq_draw_path_add(rect.minX(), rect.maxY());
+    cq_draw_path_stop();
 }
 
 void cqContext::fillEllipseInRect(cqRect rect) {
