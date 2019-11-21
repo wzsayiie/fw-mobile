@@ -264,18 +264,8 @@ void cq_draw_path_start() {
     _drawing_path.clear();
 }
 
-void cq_draw_path_start_at(float x, float y) {
-    cq_draw_path_start();
+void cq_draw_path_add(float x, float y) {
     add_drawing_point(x, y);
-}
-
-void cq_draw_path_add_at(float x, float y) {
-    add_drawing_point(x, y);
-}
-
-void cq_draw_path_stop_at(float x, float y) {
-    add_drawing_point(x, y);
-    cq_draw_path_stop();
 }
 
 void cq_draw_path_stop() {

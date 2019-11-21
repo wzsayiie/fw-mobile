@@ -49,10 +49,10 @@ void cqContext::fillEllipseInRect(cqRect rect) {
     
     cq_draw_path_start();
     
-    for (float i = xs; i > 0 ; i -= 1) cq_draw_path_add_at(xc - i, yc - f(xs, i));
-    for (float i = 0 ; i < xs; i += 1) cq_draw_path_add_at(xc + i, yc - f(xs, i));
-    for (float i = xs; i > 0 ; i -= 1) cq_draw_path_add_at(xc + i, yc + f(xs, i));
-    for (float i = 0 ; i < xs; i += 1) cq_draw_path_add_at(xc - i, yc + f(xs, i));
+    for (float i = xs; i > 0 ; i -= 1) cq_draw_path_add(xc - i, yc - f(xs, i));
+    for (float i = 0 ; i < xs; i += 1) cq_draw_path_add(xc + i, yc - f(xs, i));
+    for (float i = xs; i > 0 ; i -= 1) cq_draw_path_add(xc + i, yc + f(xs, i));
+    for (float i = 0 ; i < xs; i += 1) cq_draw_path_add(xc - i, yc + f(xs, i));
     
     cq_draw_path_stop();
 }
@@ -61,11 +61,12 @@ void cqContext::beginPath() {
 }
 
 void cqContext::moveToPoint(float x, float y) {
-    cq_draw_path_start_at(x, y);
+    cq_draw_path_start();
+    cq_draw_path_add(x, y);
 }
 
 void cqContext::addLineToPoint(float x, float y) {
-    cq_draw_path_add_at(x, y);
+    cq_draw_path_add(x, y);
 }
 
 void cqContext::fillPath() {
