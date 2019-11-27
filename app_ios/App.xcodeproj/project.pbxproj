@@ -53,6 +53,9 @@
 		CE749FB22351C9E200E4FCEE /* CommandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE749FB02351C9E100E4FCEE /* CommandViewController.m */; };
 		CE749FB72351CB9B00E4FCEE /* CommandViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE749FB62351CB9B00E4FCEE /* CommandViewController.xib */; };
 		CE749FB92351CD3800E4FCEE /* BlankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE749FB82351CD3800E4FCEE /* BlankViewController.xib */; };
+		CE988DB8238ED2F70088A66E /* cqlabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE988DB3238ED2F70088A66E /* cqlabel.cpp */; };
+		CE988DB9238ED2F70088A66E /* cqfont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE988DB6238ED2F70088A66E /* cqfont.cpp */; };
+		CE988DBA238ED2F70088A66E /* cqattributedstring.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE988DB7238ED2F70088A66E /* cqattributedstring.cpp */; };
 		CEC44053237D593500361447 /* cqglkitarche.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44030237D593500361447 /* cqglkitarche.cpp */; };
 		CEC44054237D593500361447 /* cqwnd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44034237D593500361447 /* cqwnd.cpp */; };
 		CEC44055237D593500361447 /* cqttf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44037237D593500361447 /* cqttf.cpp */; };
@@ -225,6 +228,12 @@
 		CE749FB02351C9E100E4FCEE /* CommandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandViewController.m; sourceTree = "<group>"; };
 		CE749FB62351CB9B00E4FCEE /* CommandViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommandViewController.xib; sourceTree = "<group>"; };
 		CE749FB82351CD3800E4FCEE /* BlankViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlankViewController.xib; sourceTree = "<group>"; };
+		CE988DB2238ED2F70088A66E /* cqfont.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqfont.hh; sourceTree = "<group>"; };
+		CE988DB3238ED2F70088A66E /* cqlabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqlabel.cpp; sourceTree = "<group>"; };
+		CE988DB4238ED2F70088A66E /* cqlabel.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqlabel.hh; sourceTree = "<group>"; };
+		CE988DB5238ED2F70088A66E /* cqattributedstring.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqattributedstring.hh; sourceTree = "<group>"; };
+		CE988DB6238ED2F70088A66E /* cqfont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqfont.cpp; sourceTree = "<group>"; };
+		CE988DB7238ED2F70088A66E /* cqattributedstring.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqattributedstring.cpp; sourceTree = "<group>"; };
 		CEC4402D237D593500361447 /* _CQGLKIT_VERSION.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = _CQGLKIT_VERSION.hh; path = ../library1/glkit/_CQGLKIT_VERSION.hh; sourceTree = "<group>"; };
 		CEC44030237D593500361447 /* cqglkitarche.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqglkitarche.cpp; sourceTree = "<group>"; };
 		CEC44031237D593500361447 /* cqglkitarche.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqglkitarche.h; sourceTree = "<group>"; };
@@ -957,18 +966,24 @@
 				CEC440D1237D59E400361447 /* cqappkitbase.hh */,
 				CEC440D3237D59E400361447 /* cqapplication.cpp */,
 				CEC440D0237D59E400361447 /* cqapplication.hh */,
+				CE988DB7238ED2F70088A66E /* cqattributedstring.cpp */,
+				CE988DB5238ED2F70088A66E /* cqattributedstring.hh */,
 				CEC440CA237D59E400361447 /* cqcolor.cpp */,
 				CEC440CE237D59E400361447 /* cqcolor.hh */,
 				CEF20D1C238539B100004461 /* cqcontext.cpp */,
 				CEF20D1D238539B100004461 /* cqcontext.hh */,
 				CEC440D2237D59E400361447 /* cqevent.cpp */,
 				CEC440CC237D59E400361447 /* cqevent.hh */,
+				CE988DB6238ED2F70088A66E /* cqfont.cpp */,
+				CE988DB2238ED2F70088A66E /* cqfont.hh */,
 				CEC440BE237D59E400361447 /* cqgeometry.cpp */,
 				CEC440BB237D59E400361447 /* cqgeometry.hh */,
 				CEC440C2237D59E400361447 /* cqimage.cpp */,
 				CEC440C9237D59E400361447 /* cqimage.hh */,
 				CEC440CF237D59E400361447 /* cqimageview.cpp */,
 				CEC440CD237D59E400361447 /* cqimageview.hh */,
+				CE988DB3238ED2F70088A66E /* cqlabel.cpp */,
+				CE988DB4238ED2F70088A66E /* cqlabel.hh */,
 				CEC440C7237D59E400361447 /* cqlayer.cpp */,
 				CEC440C0237D59E400361447 /* cqlayer.hh */,
 				CEC440C3237D59E400361447 /* cqresponder.cpp */,
@@ -1206,6 +1221,7 @@
 				B475C16A230100A300ED7BD3 /* CQGCD.m in Sources */,
 				CEC440E4237D59E400361447 /* cqtouchesevent.cpp in Sources */,
 				CEC440DA237D59E400361447 /* cqimage.cpp in Sources */,
+				CE988DB9238ED2F70088A66E /* cqfont.cpp in Sources */,
 				CEC440DD237D59E400361447 /* cqlayer.cpp in Sources */,
 				CEC44057237D593500361447 /* cqshader2d.cpp in Sources */,
 				CEC440A1237D599500361447 /* CSGAMEKIT_PORT.cpp in Sources */,
@@ -1252,12 +1268,14 @@
 				B425212322842BE4004FA04B /* CQSceneNavigator.m in Sources */,
 				B425210B22842AD3004FA04B /* UIViewController+CQ.m in Sources */,
 				CE749FB22351C9E200E4FCEE /* CommandViewController.m in Sources */,
+				CE988DB8238ED2F70088A66E /* cqlabel.cpp in Sources */,
 				CEC440A8237D599500361447 /* csanimation.cpp in Sources */,
 				B425212222842BE4004FA04B /* CQCrashListener.m in Sources */,
 				CEC440F1237D5B1400361447 /* gamelowroot.cpp in Sources */,
 				CEC44056237D593500361447 /* cqimg.cpp in Sources */,
 				B443108B2321FBED00FA6720 /* TitleBarViewController.m in Sources */,
 				CEC440EF237D5B1400361447 /* respackage.cpp in Sources */,
+				CE988DBA238ED2F70088A66E /* cqattributedstring.cpp in Sources */,
 				CE749FAA2351C7D600E4FCEE /* DailyViewController.m in Sources */,
 				B425210822842AD3004FA04B /* UIView+CQ.m in Sources */,
 				CEC4409D237D599500361447 /* cstexture.cpp in Sources */,

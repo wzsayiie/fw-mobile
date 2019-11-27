@@ -1,12 +1,15 @@
 #pragma once
 
 #include "cqapplication.hh"
+#include "cqattributedstring.hh"
 #include "cqcolor.hh"
 #include "cqcontext.hh"
 #include "cqevent.hh"
+#include "cqfont.hh"
 #include "cqgeometry.hh"
 #include "cqimage.hh"
 #include "cqimageview.hh"
+#include "cqlabel.hh"
 #include "cqlayer.hh"
 #include "cqresponder.hh"
 #include "cqtouch.hh"
