@@ -8,6 +8,8 @@ cq_class(cqFont, cqObject) {
     
     static cqFontRef systemFontOfSize(float size);
     
+    virtual float pointSize();
+    
     virtual void *nativeFont();
 };
 
