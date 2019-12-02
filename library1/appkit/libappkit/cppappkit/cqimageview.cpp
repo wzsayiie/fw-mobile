@@ -20,6 +20,7 @@ void cqImageView::init(cqImageRef image) {
 
 void cqImageView::setImage(cqImageRef image) {
     dat->image = image;
+    setNeedsDisplay();
 }
 
 cqImageRef cqImageView::image() {

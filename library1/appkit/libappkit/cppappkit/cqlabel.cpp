@@ -19,6 +19,7 @@ void cqLabel::init(cqRect frame) {
 
 void cqLabel::setText(const std::string &text) {
     dat->text = text;
+    setNeedsDisplay();
 }
 
 std::string cqLabel::text() {
@@ -27,6 +28,7 @@ std::string cqLabel::text() {
 
 void cqLabel::setTextColor(cqColor color) {
     dat->textColor = color;
+    setNeedsDisplay();
 }
 
 cqColor cqLabel::textColor() {
@@ -35,6 +37,7 @@ cqColor cqLabel::textColor() {
 
 void cqLabel::setFont(cqFontRef font) {
     dat->font = font;
+    setNeedsDisplay();
 }
 
 cqFontRef cqLabel::font() {
