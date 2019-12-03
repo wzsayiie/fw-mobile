@@ -2,8 +2,10 @@
 
 #include "cqapplication.hh"
 #include "cqattributedstring.hh"
+#include "cqbutton.hh"
 #include "cqcolor.hh"
 #include "cqcontext.hh"
+#include "cqcontrol.hh"
 #include "cqevent.hh"
 #include "cqfont.hh"
 #include "cqgeometry.hh"

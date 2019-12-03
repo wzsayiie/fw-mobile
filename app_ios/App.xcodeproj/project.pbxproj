@@ -53,6 +53,8 @@
 		CE749FB22351C9E200E4FCEE /* CommandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE749FB02351C9E100E4FCEE /* CommandViewController.m */; };
 		CE749FB72351CB9B00E4FCEE /* CommandViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE749FB62351CB9B00E4FCEE /* CommandViewController.xib */; };
 		CE749FB92351CD3800E4FCEE /* BlankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE749FB82351CD3800E4FCEE /* BlankViewController.xib */; };
+		CE843178239578A2005A6CF8 /* cqcontrol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE843175239578A1005A6CF8 /* cqcontrol.cpp */; };
+		CE843179239578A2005A6CF8 /* cqbutton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE843176239578A2005A6CF8 /* cqbutton.cpp */; };
 		CE988DB8238ED2F70088A66E /* cqlabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE988DB3238ED2F70088A66E /* cqlabel.cpp */; };
 		CE988DB9238ED2F70088A66E /* cqfont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE988DB6238ED2F70088A66E /* cqfont.cpp */; };
 		CE988DBA238ED2F70088A66E /* cqattributedstring.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE988DB7238ED2F70088A66E /* cqattributedstring.cpp */; };
@@ -228,6 +230,10 @@
 		CE749FB02351C9E100E4FCEE /* CommandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandViewController.m; sourceTree = "<group>"; };
 		CE749FB62351CB9B00E4FCEE /* CommandViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommandViewController.xib; sourceTree = "<group>"; };
 		CE749FB82351CD3800E4FCEE /* BlankViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlankViewController.xib; sourceTree = "<group>"; };
+		CE843174239578A1005A6CF8 /* cqbutton.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqbutton.hh; sourceTree = "<group>"; };
+		CE843175239578A1005A6CF8 /* cqcontrol.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqcontrol.cpp; sourceTree = "<group>"; };
+		CE843176239578A2005A6CF8 /* cqbutton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqbutton.cpp; sourceTree = "<group>"; };
+		CE843177239578A2005A6CF8 /* cqcontrol.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqcontrol.hh; sourceTree = "<group>"; };
 		CE988DB2238ED2F70088A66E /* cqfont.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqfont.hh; sourceTree = "<group>"; };
 		CE988DB3238ED2F70088A66E /* cqlabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqlabel.cpp; sourceTree = "<group>"; };
 		CE988DB4238ED2F70088A66E /* cqlabel.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqlabel.hh; sourceTree = "<group>"; };
@@ -968,10 +974,14 @@
 				CEC440D0237D59E400361447 /* cqapplication.hh */,
 				CE988DB7238ED2F70088A66E /* cqattributedstring.cpp */,
 				CE988DB5238ED2F70088A66E /* cqattributedstring.hh */,
+				CE843176239578A2005A6CF8 /* cqbutton.cpp */,
+				CE843174239578A1005A6CF8 /* cqbutton.hh */,
 				CEC440CA237D59E400361447 /* cqcolor.cpp */,
 				CEC440CE237D59E400361447 /* cqcolor.hh */,
 				CEF20D1C238539B100004461 /* cqcontext.cpp */,
 				CEF20D1D238539B100004461 /* cqcontext.hh */,
+				CE843175239578A1005A6CF8 /* cqcontrol.cpp */,
+				CE843177239578A2005A6CF8 /* cqcontrol.hh */,
 				CEC440D2237D59E400361447 /* cqevent.cpp */,
 				CEC440CC237D59E400361447 /* cqevent.hh */,
 				CE988DB6238ED2F70088A66E /* cqfont.cpp */,
@@ -1214,6 +1224,7 @@
 				CEEB261C2300655C001FD8D6 /* CQNetStatusListener.m in Sources */,
 				CEC440FA237D5B7200361447 /* rootviewcontroller.cpp in Sources */,
 				B44310882321FBED00FA6720 /* ContentViewController.m in Sources */,
+				CE843178239578A2005A6CF8 /* cqcontrol.cpp in Sources */,
 				CEC4405B237D593500361447 /* CQGLAppDelegate.m in Sources */,
 				CEC440E2237D59E400361447 /* cqapplication.cpp in Sources */,
 				CEC440E0237D59E400361447 /* cqimageview.cpp in Sources */,
@@ -1274,6 +1285,7 @@
 				CEC440F1237D5B1400361447 /* gamelowroot.cpp in Sources */,
 				CEC44056237D593500361447 /* cqimg.cpp in Sources */,
 				B443108B2321FBED00FA6720 /* TitleBarViewController.m in Sources */,
+				CE843179239578A2005A6CF8 /* cqbutton.cpp in Sources */,
 				CEC440EF237D5B1400361447 /* respackage.cpp in Sources */,
 				CE988DBA238ED2F70088A66E /* cqattributedstring.cpp in Sources */,
 				CE749FAA2351C7D600E4FCEE /* DailyViewController.m in Sources */,
