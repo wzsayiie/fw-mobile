@@ -53,8 +53,24 @@
 		CE749FB22351C9E200E4FCEE /* CommandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE749FB02351C9E100E4FCEE /* CommandViewController.m */; };
 		CE749FB72351CB9B00E4FCEE /* CommandViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE749FB62351CB9B00E4FCEE /* CommandViewController.xib */; };
 		CE749FB92351CD3800E4FCEE /* BlankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE749FB82351CD3800E4FCEE /* BlankViewController.xib */; };
+		CE8165BC239A3CCB00735D8D /* csrecttransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE8165BB239A3CCB00735D8D /* csrecttransform.cpp */; };
 		CE843178239578A2005A6CF8 /* cqcontrol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE843175239578A1005A6CF8 /* cqcontrol.cpp */; };
 		CE843179239578A2005A6CF8 /* cqbutton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE843176239578A2005A6CF8 /* cqbutton.cpp */; };
+		CE885957239A339E000F843B /* csstandaloneinput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE88593A239A339E000F843B /* csstandaloneinput.cpp */; };
+		CE885958239A339E000F843B /* csselectable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE88593D239A339E000F843B /* csselectable.cpp */; };
+		CE885959239A339E000F843B /* csbaseinput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE885940239A339E000F843B /* csbaseinput.cpp */; };
+		CE88595A239A339E000F843B /* cspointerinput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE885941239A339E000F843B /* cspointerinput.cpp */; };
+		CE88595B239A339E000F843B /* csgraphicraycaster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE885942239A339E000F843B /* csgraphicraycaster.cpp */; };
+		CE88595C239A339E000F843B /* cstext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE885943239A339E000F843B /* cstext.cpp */; };
+		CE88595D239A339E000F843B /* cscanvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE885944239A339E000F843B /* cscanvas.cpp */; };
+		CE88595E239A339E000F843B /* cscanvasrenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE885945239A339E000F843B /* cscanvasrenderer.cpp */; };
+		CE88595F239A339E000F843B /* csuiscript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE885946239A339E000F843B /* csuiscript.cpp */; };
+		CE885960239A339E000F843B /* csimage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE88594A239A339E000F843B /* csimage.cpp */; };
+		CE885961239A339E000F843B /* csbutton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE88594B239A339E000F843B /* csbutton.cpp */; };
+		CE885962239A339E000F843B /* csmaskablegraphic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE88594E239A339E000F843B /* csmaskablegraphic.cpp */; };
+		CE885963239A339E000F843B /* csbaseraycaster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE88594F239A339E000F843B /* csbaseraycaster.cpp */; };
+		CE885964239A339E000F843B /* cseventsystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE885950239A339E000F843B /* cseventsystem.cpp */; };
+		CE885965239A339E000F843B /* csgraphic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE885953239A339E000F843B /* csgraphic.cpp */; };
 		CE988DB8238ED2F70088A66E /* cqlabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE988DB3238ED2F70088A66E /* cqlabel.cpp */; };
 		CE988DB9238ED2F70088A66E /* cqfont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE988DB6238ED2F70088A66E /* cqfont.cpp */; };
 		CE988DBA238ED2F70088A66E /* cqattributedstring.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE988DB7238ED2F70088A66E /* cqattributedstring.cpp */; };
@@ -230,10 +246,42 @@
 		CE749FB02351C9E100E4FCEE /* CommandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandViewController.m; sourceTree = "<group>"; };
 		CE749FB62351CB9B00E4FCEE /* CommandViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommandViewController.xib; sourceTree = "<group>"; };
 		CE749FB82351CD3800E4FCEE /* BlankViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlankViewController.xib; sourceTree = "<group>"; };
+		CE8165BA239A3CCB00735D8D /* csrecttransform.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csrecttransform.hh; sourceTree = "<group>"; };
+		CE8165BB239A3CCB00735D8D /* csrecttransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csrecttransform.cpp; sourceTree = "<group>"; };
 		CE843174239578A1005A6CF8 /* cqbutton.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqbutton.hh; sourceTree = "<group>"; };
 		CE843175239578A1005A6CF8 /* cqcontrol.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqcontrol.cpp; sourceTree = "<group>"; };
 		CE843176239578A2005A6CF8 /* cqbutton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqbutton.cpp; sourceTree = "<group>"; };
 		CE843177239578A2005A6CF8 /* cqcontrol.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqcontrol.hh; sourceTree = "<group>"; };
+		CE885939239A339E000F843B /* cstext.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cstext.hh; sourceTree = "<group>"; };
+		CE88593A239A339E000F843B /* csstandaloneinput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csstandaloneinput.cpp; sourceTree = "<group>"; };
+		CE88593B239A339E000F843B /* cseventsystem.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cseventsystem.hh; sourceTree = "<group>"; };
+		CE88593C239A339E000F843B /* csimage.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csimage.hh; sourceTree = "<group>"; };
+		CE88593D239A339E000F843B /* csselectable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csselectable.cpp; sourceTree = "<group>"; };
+		CE88593E239A339E000F843B /* csbaseinput.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csbaseinput.hh; sourceTree = "<group>"; };
+		CE88593F239A339E000F843B /* csselectable.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csselectable.hh; sourceTree = "<group>"; };
+		CE885940239A339E000F843B /* csbaseinput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csbaseinput.cpp; sourceTree = "<group>"; };
+		CE885941239A339E000F843B /* cspointerinput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cspointerinput.cpp; sourceTree = "<group>"; };
+		CE885942239A339E000F843B /* csgraphicraycaster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csgraphicraycaster.cpp; sourceTree = "<group>"; };
+		CE885943239A339E000F843B /* cstext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cstext.cpp; sourceTree = "<group>"; };
+		CE885944239A339E000F843B /* cscanvas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cscanvas.cpp; sourceTree = "<group>"; };
+		CE885945239A339E000F843B /* cscanvasrenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cscanvasrenderer.cpp; sourceTree = "<group>"; };
+		CE885946239A339E000F843B /* csuiscript.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csuiscript.cpp; sourceTree = "<group>"; };
+		CE885947239A339E000F843B /* csmaskablegraphic.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csmaskablegraphic.hh; sourceTree = "<group>"; };
+		CE885948239A339E000F843B /* csgraphic.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csgraphic.hh; sourceTree = "<group>"; };
+		CE885949239A339E000F843B /* csbutton.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csbutton.hh; sourceTree = "<group>"; };
+		CE88594A239A339E000F843B /* csimage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csimage.cpp; sourceTree = "<group>"; };
+		CE88594B239A339E000F843B /* csbutton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csbutton.cpp; sourceTree = "<group>"; };
+		CE88594C239A339E000F843B /* cspointerinput.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cspointerinput.hh; sourceTree = "<group>"; };
+		CE88594D239A339E000F843B /* csuiscript.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csuiscript.hh; sourceTree = "<group>"; };
+		CE88594E239A339E000F843B /* csmaskablegraphic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csmaskablegraphic.cpp; sourceTree = "<group>"; };
+		CE88594F239A339E000F843B /* csbaseraycaster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csbaseraycaster.cpp; sourceTree = "<group>"; };
+		CE885950239A339E000F843B /* cseventsystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cseventsystem.cpp; sourceTree = "<group>"; };
+		CE885951239A339E000F843B /* csgraphicraycaster.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csgraphicraycaster.hh; sourceTree = "<group>"; };
+		CE885952239A339E000F843B /* csstandaloneinput.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csstandaloneinput.hh; sourceTree = "<group>"; };
+		CE885953239A339E000F843B /* csgraphic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csgraphic.cpp; sourceTree = "<group>"; };
+		CE885954239A339E000F843B /* csbaseraycaster.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csbaseraycaster.hh; sourceTree = "<group>"; };
+		CE885955239A339E000F843B /* cscanvasrenderer.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cscanvasrenderer.hh; sourceTree = "<group>"; };
+		CE885956239A339E000F843B /* cscanvas.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cscanvas.hh; sourceTree = "<group>"; };
 		CE988DB2238ED2F70088A66E /* cqfont.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqfont.hh; sourceTree = "<group>"; };
 		CE988DB3238ED2F70088A66E /* cqlabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqlabel.cpp; sourceTree = "<group>"; };
 		CE988DB4238ED2F70088A66E /* cqlabel.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqlabel.hh; sourceTree = "<group>"; };
@@ -732,6 +780,45 @@
 			path = CommandViewController;
 			sourceTree = "<group>";
 		};
+		CE885938239A339E000F843B /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				CE885940239A339E000F843B /* csbaseinput.cpp */,
+				CE88593E239A339E000F843B /* csbaseinput.hh */,
+				CE88594F239A339E000F843B /* csbaseraycaster.cpp */,
+				CE885954239A339E000F843B /* csbaseraycaster.hh */,
+				CE88594B239A339E000F843B /* csbutton.cpp */,
+				CE885949239A339E000F843B /* csbutton.hh */,
+				CE885944239A339E000F843B /* cscanvas.cpp */,
+				CE885956239A339E000F843B /* cscanvas.hh */,
+				CE885945239A339E000F843B /* cscanvasrenderer.cpp */,
+				CE885955239A339E000F843B /* cscanvasrenderer.hh */,
+				CE885950239A339E000F843B /* cseventsystem.cpp */,
+				CE88593B239A339E000F843B /* cseventsystem.hh */,
+				CE885953239A339E000F843B /* csgraphic.cpp */,
+				CE885948239A339E000F843B /* csgraphic.hh */,
+				CE885942239A339E000F843B /* csgraphicraycaster.cpp */,
+				CE885951239A339E000F843B /* csgraphicraycaster.hh */,
+				CE88594A239A339E000F843B /* csimage.cpp */,
+				CE88593C239A339E000F843B /* csimage.hh */,
+				CE88594E239A339E000F843B /* csmaskablegraphic.cpp */,
+				CE885947239A339E000F843B /* csmaskablegraphic.hh */,
+				CE885941239A339E000F843B /* cspointerinput.cpp */,
+				CE88594C239A339E000F843B /* cspointerinput.hh */,
+				CE8165BB239A3CCB00735D8D /* csrecttransform.cpp */,
+				CE8165BA239A3CCB00735D8D /* csrecttransform.hh */,
+				CE88593D239A339E000F843B /* csselectable.cpp */,
+				CE88593F239A339E000F843B /* csselectable.hh */,
+				CE88593A239A339E000F843B /* csstandaloneinput.cpp */,
+				CE885952239A339E000F843B /* csstandaloneinput.hh */,
+				CE885943239A339E000F843B /* cstext.cpp */,
+				CE885939239A339E000F843B /* cstext.hh */,
+				CE885946239A339E000F843B /* csuiscript.cpp */,
+				CE88594D239A339E000F843B /* csuiscript.hh */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
 		CEC44027237D589D00361447 /* XApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -923,6 +1010,7 @@
 				CEC44086237D599500361447 /* cstexture2d.hh */,
 				CEC44087237D599500361447 /* cstransform.cpp */,
 				CEC4408D237D599500361447 /* cstransform.hh */,
+				CE885938239A339E000F843B /* ui */,
 			);
 			path = cppgamekit;
 			sourceTree = "<group>";
@@ -1211,9 +1299,11 @@
 				CEF20D1E238539B100004461 /* cqcontext.cpp in Sources */,
 				B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */,
 				B44310872321FBED00FA6720 /* ToolBarViewController.m in Sources */,
+				CE88595E239A339E000F843B /* cscanvasrenderer.cpp in Sources */,
 				CEC4409E237D599500361447 /* csrigidbody2d.cpp in Sources */,
 				B425210922842AD3004FA04B /* NSBundle+CQ.m in Sources */,
 				B467ECE423100B090045E2DC /* NSMutableCollections+CQ.m in Sources */,
+				CE885965239A339E000F843B /* csgraphic.cpp in Sources */,
 				CEC440AC237D599500361447 /* cscollider2d.cpp in Sources */,
 				CEC440D6237D59E400361447 /* AppAppDelegate.m in Sources */,
 				CE749FB12351C9E200E4FCEE /* BlankViewController.m in Sources */,
@@ -1229,6 +1319,7 @@
 				CEC440E2237D59E400361447 /* cqapplication.cpp in Sources */,
 				CEC440E0237D59E400361447 /* cqimageview.cpp in Sources */,
 				CEC440D9237D59E400361447 /* cqviewcontroller.cpp in Sources */,
+				CE885964239A339E000F843B /* cseventsystem.cpp in Sources */,
 				B475C16A230100A300ED7BD3 /* CQGCD.m in Sources */,
 				CEC440E4237D59E400361447 /* cqtouchesevent.cpp in Sources */,
 				CEC440DA237D59E400361447 /* cqimage.cpp in Sources */,
@@ -1237,14 +1328,17 @@
 				CEC44057237D593500361447 /* cqshader2d.cpp in Sources */,
 				CEC440A1237D599500361447 /* CSGAMEKIT_PORT.cpp in Sources */,
 				CEC44053237D593500361447 /* cqglkitarche.cpp in Sources */,
+				CE885958239A339E000F843B /* csselectable.cpp in Sources */,
 				CEC440A2237D599500361447 /* csspriterenderder.cpp in Sources */,
 				CEC440A6237D599500361447 /* csscene.cpp in Sources */,
 				B425211422842B91004FA04B /* CQHotfixManager.m in Sources */,
+				CE88595A239A339E000F843B /* cspointerinput.cpp in Sources */,
 				CEC44059237D593500361447 /* cqdraw2d.cpp in Sources */,
 				B425212A22842C8E004FA04B /* CQCommandViewController.m in Sources */,
 				CEC440A0237D599500361447 /* csresources.cpp in Sources */,
 				CEC440AD237D599500361447 /* cssprite.cpp in Sources */,
 				CEC440DF237D59E400361447 /* cqcolor.cpp in Sources */,
+				CE885959239A339E000F843B /* csbaseinput.cpp in Sources */,
 				B443108A2321FBED00FA6720 /* AttachViewController.m in Sources */,
 				B45C1BB821A02B19007CB374 /* AppDelegate.m in Sources */,
 				CEC440A4237D599500361447 /* csanimator.cpp in Sources */,
@@ -1256,6 +1350,7 @@
 				CEC440AA237D599500361447 /* cstransform.cpp in Sources */,
 				B4E7CD0F2224098800122637 /* main.m in Sources */,
 				B4CFD97321C7475000FFF4CF /* IAPDemoController.m in Sources */,
+				CE88595C239A339E000F843B /* cstext.cpp in Sources */,
 				CEC440D7237D59E400361447 /* cqappkitarche.cpp in Sources */,
 				B44310892321FBED00FA6720 /* DocViewController.m in Sources */,
 				CEC440E3237D59E400361447 /* cqtouch.cpp in Sources */,
@@ -1267,27 +1362,36 @@
 				CEC4409B237D599500361447 /* csnode.cpp in Sources */,
 				CEC440E1237D59E400361447 /* cqevent.cpp in Sources */,
 				CEC440AE237D599500361447 /* cstexture2d.cpp in Sources */,
+				CE88595B239A339E000F843B /* csgraphicraycaster.cpp in Sources */,
 				CEC44054237D593500361447 /* cqwnd.cpp in Sources */,
 				CEC440AB237D599500361447 /* csgeometry.cpp in Sources */,
+				CE885960239A339E000F843B /* csimage.cpp in Sources */,
 				CEC440F0237D5B1400361447 /* entry.cpp in Sources */,
+				CE885957239A339E000F843B /* csstandaloneinput.cpp in Sources */,
 				CEC44098237D599500361447 /* GameAppDelegate.m in Sources */,
 				B425210A22842AD3004FA04B /* UIDevice+CQ.m in Sources */,
+				CE8165BC239A3CCB00735D8D /* csrecttransform.cpp in Sources */,
+				CE88595F239A339E000F843B /* csuiscript.cpp in Sources */,
 				CEC4405A237D593500361447 /* CQGLViewController.m in Sources */,
 				CEC440DE237D59E400361447 /* cqwindow.cpp in Sources */,
 				CEC440A5237D599500361447 /* cscamera.cpp in Sources */,
 				CEC440B0237D599500361447 /* cslualibgamekit.cpp in Sources */,
 				B425212322842BE4004FA04B /* CQSceneNavigator.m in Sources */,
 				B425210B22842AD3004FA04B /* UIViewController+CQ.m in Sources */,
+				CE88595D239A339E000F843B /* cscanvas.cpp in Sources */,
 				CE749FB22351C9E200E4FCEE /* CommandViewController.m in Sources */,
 				CE988DB8238ED2F70088A66E /* cqlabel.cpp in Sources */,
 				CEC440A8237D599500361447 /* csanimation.cpp in Sources */,
 				B425212222842BE4004FA04B /* CQCrashListener.m in Sources */,
+				CE885961239A339E000F843B /* csbutton.cpp in Sources */,
 				CEC440F1237D5B1400361447 /* gamelowroot.cpp in Sources */,
 				CEC44056237D593500361447 /* cqimg.cpp in Sources */,
 				B443108B2321FBED00FA6720 /* TitleBarViewController.m in Sources */,
+				CE885963239A339E000F843B /* csbaseraycaster.cpp in Sources */,
 				CE843179239578A2005A6CF8 /* cqbutton.cpp in Sources */,
 				CEC440EF237D5B1400361447 /* respackage.cpp in Sources */,
 				CE988DBA238ED2F70088A66E /* cqattributedstring.cpp in Sources */,
+				CE885962239A339E000F843B /* csmaskablegraphic.cpp in Sources */,
 				CE749FAA2351C7D600E4FCEE /* DailyViewController.m in Sources */,
 				B425210822842AD3004FA04B /* UIView+CQ.m in Sources */,
 				CEC4409D237D599500361447 /* cstexture.cpp in Sources */,
