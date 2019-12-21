@@ -24,10 +24,10 @@ struct fmtdat {
 };
 
 void logupdat(const string &name, int deep, fmtdat fmt) {
-    newline.i(fmt.bom ?"[B ":"[  ");
-    closeto.i(fmt.rn  ? "RN": "  ");
-    closeto.i(fmt.n   ? " N": "  ");
-    closeto.i(fmt.r   ? " R": "  ");
+    newline.i(fmt.bom ?"[B ":"[- ");
+    closeto.i(fmt.rn  ? "RN": "--");
+    closeto.i(fmt.n   ? " N": " -");
+    closeto.i(fmt.r   ? " R": " -");
     closeto.i("] %s", idtname(name, deep));
 }
 
@@ -111,31 +111,41 @@ bool scandat(const vector<char> &dat, want wt, fmtdat *newfmt, vector<char> *new
 //process:
 
 void handler::proc(const vector<string> &paths) {
+    int modified = 0;
+    
     for (auto &it : paths) {
         spac(1).i("@ %s:", it.c_str());
         spac(1);
         
-        once(it);
+        modified += once(it);
     }
+    
+    spac(1).i("modified: %d files.", modified);
 }
 
-void handler::once(const string &path) {
+int handler::once(const string &path) {
+    int modified = 0;
+    
     scan(path, [&](const fitem &item, int deep) {
         if (item.isdir) {
-            adir(item.name, deep);
+            modified += adir(item.name, deep);
         } else {
-            afil(item.name, deep);
+            modified += afil(item.name, deep);
         }
     });
+    
+    return modified;
 }
 
-void handler::adir(const string &name, int deep) {
+int handler::adir(const string &name, int deep) {
     logdir(name, deep);
+    
+    return 0;
 }
 
-void handler::afil(const string &name, int deep) {
+int handler::afil(const string &name, int deep) {
     if (!codext(name)) {
-        return;
+        return 0;
     }
     
     //read file.
@@ -143,12 +153,12 @@ void handler::afil(const string &name, int deep) {
     bool okay = readf(name, &dat);
     if (!okay) {
         logferr(name, deep);
-        return;
+        return 0;
     }
     
     if (dat.empty()) {
         logempty(name, deep);
-        return;
+        return 0;
     }
     
     //scan file.
@@ -158,7 +168,7 @@ void handler::afil(const string &name, int deep) {
     okay = scandat(dat, pick(name), &newfmt, &newdat);
     if (!okay) {
         logu8err(name, deep);
-        return;
+        return 0;
     }
     
     //rewrite file if needed.
@@ -167,6 +177,12 @@ void handler::afil(const string &name, int deep) {
         logupdat(name, deep, newfmt);
     } else {
         loglodat(name, deep, newfmt);
+    }
+    
+    if (newfmt.ch) {
+        return 1;
+    } else {
+        return 0;
     }
 }
 

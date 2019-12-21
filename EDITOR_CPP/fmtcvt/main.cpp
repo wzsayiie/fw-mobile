@@ -36,6 +36,13 @@ __findable_sym void fmtcvt_main(bool _true) {
 
 namespace fmtcvt {
     want thishandler::pick(const string &name) {
-        return want::none;
+        if (name.find("WIN32") != name.npos) {
+            return want::win;
+        }
+        if (name.find("win32") != name.npos) {
+            return want::win;
+        }
+        
+        return want::unix;
     }
 }
