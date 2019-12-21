@@ -31,6 +31,8 @@ int main() {
     init();
     
     run("codecount_main");
+    run("fmtcvt_main");
+    
     run("cpp_main");
     run("objcpp_main");
 }
