@@ -12,9 +12,9 @@ bool endwith  (const string &suffix, const string &str);
 //path string:
 
 #ifdef _WIN32
-    const char *const pathdiv = "\\";
+    static const char *const pathdiv = "\\";
 #else
-    const char *const pathdiv = "/";
+    static const char *const pathdiv = "/";
 #endif
 
 vector<string> splitpath(const string &path);
