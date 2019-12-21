@@ -1,6 +1,6 @@
-﻿#ifdef _WIN32
+#ifdef _WIN32
 
-#include "dynamic.hh"
+#include "_sym.hh"
 #include <windows.h>
 
 void *findsym(const std::string &name) {

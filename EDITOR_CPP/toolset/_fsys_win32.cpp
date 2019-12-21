@@ -1,9 +1,7 @@
-﻿#ifdef _WIN32
+#ifdef _WIN32
 
-#include "fsystem.hh"
+#include "_fsys.hh"
 #include <windows.h>
-
-//directory operation:
 
 string getcwd() {
     CHAR szBuffer[512] = "\0";
@@ -14,8 +12,6 @@ string getcwd() {
 bool chdir(const string &dir) {
     return SetCurrentDirectoryA(dir.c_str());
 }
-
-//file or directory exists:
 
 bool fexists(const string &path, bool *isdir) {
     DWORD dwAttributes = GetFileAttributesA(path.c_str());
@@ -31,8 +27,6 @@ bool fexists(const string &path, bool *isdir) {
         return false;
     }
 }
-
-//subitems of directory:
 
 vector<fitem> subitems(const string &dir, bool *err) {
     if (dir.empty()) {
@@ -55,8 +49,8 @@ vector<fitem> subitems(const string &dir, bool *err) {
         //ignore ".", ".." and hidden files.
         if (!bStartsWithDot && !bHiddenFile) {
             fitem it;
-            it.name = stData.cFileName;
             it.isdir = (stData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY);
+            it.name = stData.cFileName;
             items.push_back(it);
         }
 

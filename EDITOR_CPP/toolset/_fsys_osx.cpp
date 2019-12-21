@@ -1,11 +1,9 @@
 #ifdef __APPLE__
 
-#include "fsystem.hh"
+#include "_fsys.hh"
 #include <dirent.h>
 #include <sys/stat.h>
 #include <unistd.h>
-
-//directory operation:
 
 string getcwd() {
     char buf[512] = "\0";
@@ -16,8 +14,6 @@ string getcwd() {
 bool chdir(const string &dir) {
     return chdir(dir.c_str()) == 0;
 }
-
-//file or directory exists:
 
 bool fexists(const string &path, bool *isdir) {
     struct stat info;
@@ -35,8 +31,6 @@ bool fexists(const string &path, bool *isdir) {
         return false;
     }
 }
-
-//subitems of directory:
 
 vector<fitem> subitems(const string &dir, bool *err) {
     vector<fitem> subitem;
@@ -61,8 +55,8 @@ vector<fitem> subitems(const string &dir, bool *err) {
         }
         
         fitem it;
-        it.name = ent->d_name;
         it.isdir = (ent->d_type == DT_DIR);
+        it.name = ent->d_name;
         subitem.push_back(it);
     }
     closedir(state);

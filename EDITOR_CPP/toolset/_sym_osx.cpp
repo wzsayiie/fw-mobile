@@ -1,6 +1,6 @@
 #ifdef __APPLE__
 
-#include "dynamic.hh"
+#include "_sym.hh"
 #include <dlfcn.h>
 
 void *findsym(const std::string &name) {
