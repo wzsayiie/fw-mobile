@@ -15,7 +15,7 @@ bool chdir(const string &dir) {
     return chdir(dir.c_str()) == 0;
 }
 
-bool fexists(const string &path, bool *isdir) {
+bool fexist(const string &path, bool *isdir) {
     struct stat info;
     int err = stat(path.c_str(), &info);
     

@@ -2,7 +2,7 @@
 
 namespace fmtcvt {
     struct thishandler : handler {
-        type pick(const string &name) override;
+        want pick(const string &name) override;
     };
 }
 
@@ -35,7 +35,7 @@ __findable_sym void fmtcvt_main(bool _true) {
 }
 
 namespace fmtcvt {
-    type thishandler::pick(const string &name) {
-        return type::none;
+    want thishandler::pick(const string &name) {
+        return want::none;
     }
 }

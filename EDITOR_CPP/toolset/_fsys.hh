@@ -5,7 +5,7 @@
 string getcwd();
 bool chdir(const string &dir);
 
-bool fexists(const string &path, bool *isdir);
+bool fexist(const string &path, bool *isdir);
 
 struct fitem {
     bool isdir = false;

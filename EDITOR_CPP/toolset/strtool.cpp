@@ -4,7 +4,7 @@
 
 bool startwith(const string &prefix, const char *ptr, const char *end) {
     size_t size = prefix.size();
-    if (size >= end - ptr) {
+    if (size <= end - ptr) {
         return strncmp(prefix.c_str(), ptr, size) == 0;
     } else {
         return false;
@@ -13,7 +13,7 @@ bool startwith(const string &prefix, const char *ptr, const char *end) {
 
 bool endwith(const string &suffix, const char *ptr, const char *end) {
     size_t size = suffix.size();
-    if (size >= end - ptr) {
+    if (size <= end - ptr) {
         return strncmp(suffix.c_str(), end - size, size) == 0;
     } else {
         return false;

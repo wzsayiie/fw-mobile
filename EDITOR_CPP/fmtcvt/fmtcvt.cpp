@@ -2,28 +2,6 @@
 
 namespace fmtcvt {
 
-//supported files:
-
-bool endwith(const string &suf, const string &val) {
-    size_t v = val.size();
-    size_t s = suf.size();
-    return v > s && !val.compare(v - s, s, suf);
-}
-
-bool supported(const string &name) {
-    static const vector<string> options = {
-        ".h" , ".hh" , ".cpp", ".cxx", ".cc",
-        ".m" , ".mm" ,
-        ".cs",".java", ".lua"
-    };
-    for (auto &it : options) {
-        if (endwith(it, name)) {
-            return true;
-        }
-    }
-    return false;
-}
-
 //print:
 
 const char *idtname(const string &name, int deep) {
@@ -63,8 +41,70 @@ void loglodat(const string &name, int deep, fmtdat fmt) {
 
 //scan:
 
-bool scandat(const vector<char> &dat, type tp, fmtdat *newfmt, vector<char> *newdat) {
-    //TODO
+void push(vector<char> *dat, const char *ptr, int len) {
+    dat->insert(dat->end(), ptr, ptr + len);
+}
+
+void pushbom(fmtdat *fmt, vector<char> *dat) {fmt->bom = true; push(dat, utf8bom, 3);}
+void pushrn (fmtdat *fmt, vector<char> *dat) {fmt->rn  = true; push(dat, "\r\n" , 2);}
+void pushn  (fmtdat *fmt, vector<char> *dat) {fmt->n   = true; push(dat, "\n"   , 1);}
+void pushr  (fmtdat *fmt, vector<char> *dat) {fmt->r   = true; push(dat, "\r"   , 1);}
+
+bool scandat(const vector<char> &dat, want wt, fmtdat *newfmt, vector<char> *newdat) {
+    *newfmt = fmtdat();
+    newdat->clear();
+    
+    auto ptr = dat.data();
+    auto end = dat.data() + dat.size();
+    
+    //process bom:
+    if (startwith(utf8bom, ptr, end)) {
+        /**/ if (wt == want::unix) {/*....................*/ newfmt->ch = true;}
+        else if (wt == want::win ) {pushbom(newfmt, newdat);}
+        else /*..wt == want::none*/{pushbom(newfmt, newdat);}
+        ptr += 3;
+    } else {
+        /**/ if (wt == want::unix) {}
+        else if (wt == want::win ) {pushbom(newfmt, newdat); newfmt->ch = true;}
+        else /*..wt == want::none*/{}
+    }
+    
+    //process content:
+    while (ptr < end) {
+        int size = utf8get(ptr, end);
+        
+        //not utf8 char.
+        if (size == 0) {
+            return false;
+        }
+        
+        if (size > 1) {
+            push(newdat, ptr, size);
+            ptr += size;
+            continue;
+        }
+        
+        if (startwith("\r\n", ptr, end)) {
+            /**/ if (wt == want::unix) {pushn (newfmt, newdat); newfmt->ch = true;}
+            else if (wt == want::win ) {pushrn(newfmt, newdat);}
+            else /*..wt == want::none*/{pushrn(newfmt, newdat);}
+            ptr += 2;
+        } else if (*ptr == '\n') {
+            /**/ if (wt == want::unix) {pushn (newfmt, newdat);}
+            else if (wt == want::win ) {pushrn(newfmt, newdat); newfmt->ch = true;}
+            else /*..wt == want::none*/{pushn (newfmt, newdat);}
+            ptr += 1;
+        } else if (*ptr == '\r') {
+            /**/ if (wt == want::unix) {pushn (newfmt, newdat); newfmt->ch = true;}
+            else if (wt == want::win ) {pushrn(newfmt, newdat); newfmt->ch = true;}
+            else /*..wt == want::none*/{pushr (newfmt, newdat);}
+            ptr += 1;
+        } else {
+            push(newdat, ptr, size);
+            ptr += size;
+        }
+    }
+    
     return true;
 }
 
@@ -94,7 +134,7 @@ void handler::adir(const string &name, int deep) {
 }
 
 void handler::afil(const string &name, int deep) {
-    if (!supported(name)) {
+    if (!codext(name)) {
         return;
     }
     
@@ -130,8 +170,8 @@ void handler::afil(const string &name, int deep) {
     }
 }
 
-type handler::pick(const string &name) {
-    return type::none;
+want handler::pick(const string &name) {
+    return want::none;
 }
 
 } //namespace fmtcvt

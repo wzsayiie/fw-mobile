@@ -13,7 +13,7 @@ bool chdir(const string &dir) {
     return SetCurrentDirectoryA(dir.c_str());
 }
 
-bool fexists(const string &path, bool *isdir) {
+bool fexist(const string &path, bool *isdir) {
     DWORD dwAttributes = GetFileAttributesA(path.c_str());
     if (dwAttributes != INVALID_FILE_ATTRIBUTES) {
         if (isdir != nullptr) {

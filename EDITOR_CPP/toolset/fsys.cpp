@@ -76,7 +76,7 @@ bool scan(const string &path, scanfn fn) {
     }
     
     bool isdir = false;
-    if (!fexists(path, &isdir)) {
+    if (!fexist(path, &isdir)) {
         return false;
     }
     

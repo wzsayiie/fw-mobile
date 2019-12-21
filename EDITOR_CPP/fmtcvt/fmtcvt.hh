@@ -4,7 +4,7 @@
 
 namespace fmtcvt {
 
-    enum class type {
+    enum class want {
         none, unix, win,
     };
 
@@ -13,6 +13,6 @@ namespace fmtcvt {
         virtual void once(const string &path);
         virtual void adir(const string &name, int deep);
         virtual void afil(const string &name, int deep);
-        virtual type pick(const string &name);
+        virtual want pick(const string &name);
     };
 }
