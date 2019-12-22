@@ -122,9 +122,12 @@ string joinpath(const string &dir, const string &subitem) {
 
 bool codext(const string &name) {
     static const vector<string> options = {
-        ".h" , ".hh" , ".cpp", ".cxx", ".cc",
-        ".m" , ".mm" ,
-        ".cs",".java", ".lua"
+        ".h"   , ".hh" , ".hpp",
+        ".cc"  , ".cxx", ".cpp",
+        ".m"   , ".mm" ,
+        ".cs"  ,
+        ".java",
+        ".lua" ,
     };
     for (auto &it : options) {
         if (endwith(it, name)) {
