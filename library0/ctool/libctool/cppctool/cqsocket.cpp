@@ -108,7 +108,7 @@ sockaddr_in6 *_sockaddr_in6::raw() {
 _CQCTOOL_END_VERSION_NS
 
 # if CQ_ON_WINDOWS
-#   include "cqsocket_win.hpp"
+#   include "cqsocket_win32.hpp"
 # else
 #   include "cqsocket_posix.hpp"
 # endif

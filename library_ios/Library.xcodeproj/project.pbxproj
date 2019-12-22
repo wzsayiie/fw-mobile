@@ -110,7 +110,7 @@
 		B4C5026C22C1B79F00374C6D /* cqjson.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqjson.cpp; sourceTree = "<group>"; };
 		B4C5026D22C1B79F00374C6D /* cqdispatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqdispatch.cpp; sourceTree = "<group>"; };
 		B4C5026E22C1B79F00374C6D /* cqdispatch.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqdispatch.hh; sourceTree = "<group>"; };
-		B4CB2EEA22FBD8C2006BC34A /* cqsocket_win.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqsocket_win.hpp; sourceTree = "<group>"; };
+		B4CB2EEA22FBD8C2006BC34A /* cqsocket_win32.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqsocket_win32.hpp; sourceTree = "<group>"; };
 		B4CB2EEB22FBD8C2006BC34A /* cqsocket.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqsocket.hh; sourceTree = "<group>"; };
 		B4CB2EEC22FBD8C2006BC34A /* cqsocket_posix.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqsocket_posix.hpp; sourceTree = "<group>"; };
 		B4CB2EED22FBD8C2006BC34A /* cqsocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqsocket.cpp; sourceTree = "<group>"; };
@@ -419,7 +419,7 @@
 				CEED25E022E31B20003EC18C /* cqpathstring.cpp */,
 				CEED25DF22E31B20003EC18C /* cqpathstring.hh */,
 				B4CB2EEC22FBD8C2006BC34A /* cqsocket_posix.hpp */,
-				B4CB2EEA22FBD8C2006BC34A /* cqsocket_win.hpp */,
+				B4CB2EEA22FBD8C2006BC34A /* cqsocket_win32.hpp */,
 				B4CB2EED22FBD8C2006BC34A /* cqsocket.cpp */,
 				B4CB2EEB22FBD8C2006BC34A /* cqsocket.hh */,
 				CE798DB1232FCC1F005D04DC /* cqvalue.cpp */,
@@ -464,7 +464,7 @@
 			dependencies = (
 			);
 			name = Library;
-			productName = "Library";
+			productName = Library;
 			productReference = CE219ADF21DA51FD006A27B6 /* libLibrary.a */;
 			productType = "com.apple.product-type.library.static";
 		};
