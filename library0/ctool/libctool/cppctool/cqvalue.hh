@@ -98,7 +98,7 @@ namespace cq {
         std::map<std::string, value> &as_str_map();
         std::map<int64_t    , value> &as_int_map();
 
-        //NOTE: [] operator will change value'type to type_str_map.
+        //NOTE: [] operator will change value's type to type_str_map.
         value &operator[](const std::string &k);
 
         //destruct:
