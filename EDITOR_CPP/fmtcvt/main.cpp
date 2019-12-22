@@ -1,11 +1,5 @@
 #include "fmtcvt.hh"
 
-namespace fmtcvt {
-    struct thishandler : handler {
-        want pick(const string &name) override;
-    };
-}
-
 __findable_sym void fmtcvt_main(bool _true) {
     if (_true) return;
     
@@ -31,11 +25,14 @@ __findable_sym void fmtcvt_main(bool _true) {
     dirs.push_back("library1/gamekit");
     dirs.push_back("library1/glkit");
     
-    (new fmtcvt::thishandler)->proc(dirs);
+    void fmtcvt_proc(const vector<string> &dirs);
+    fmtcvt_proc(dirs);
 }
 
 namespace fmtcvt {
-    want thishandler::pick(const string &name) {
+
+struct thishandler : handler {
+    want pick(const string &name) override {
         if (name.find("WIN32") != name.npos) {
             return want::win;
         }
@@ -45,4 +42,11 @@ namespace fmtcvt {
         
         return want::unix;
     }
+};
+
+} //namespace fmtcvt
+
+void fmtcvt_proc(const vector<string> &dirs) {
+    auto cvt = new fmtcvt::thishandler;
+    cvt->proc(dirs);
 }
