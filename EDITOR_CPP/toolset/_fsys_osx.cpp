@@ -5,42 +5,42 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-string getcwd() {
+string cur_dir() {
     char buf[512] = "\0";
     getcwd(buf, sizeof(buf));
     return buf;
 }
 
-bool chdir(const string &dir) {
+bool goto_dir(const string &dir) {
     return chdir(dir.c_str()) == 0;
 }
 
-bool fexist(const string &path, bool *isdir) {
+bool file_at(const string &path, bool *is_dir) {
     struct stat info;
     int err = stat(path.c_str(), &info);
     
     if (!err) {
-        if (isdir != nullptr) {
-            *isdir = S_ISDIR(info.st_mode);
+        if (is_dir != nullptr) {
+            *is_dir = S_ISDIR(info.st_mode);
         }
         return true;
     } else {
-        if (isdir != nullptr) {
-            *isdir = false;
+        if (is_dir != nullptr) {
+            *is_dir = false;
         }
         return false;
     }
 }
 
-vector<fitem> subitems(const string &dir, bool *err) {
-    vector<fitem> subitem;
+vector<file_info> sub_files_of(const string &dir, bool *err) {
+    vector<file_info> info_list;
     
     auto state = opendir(dir.c_str());
     if (state == nullptr) {
         if (err != nullptr) {
             *err = true;
         }
-        return subitem;
+        return info_list;
     }
     
     while (true) {
@@ -54,23 +54,23 @@ vector<fitem> subitems(const string &dir, bool *err) {
             continue;
         }
         
-        fitem it;
-        it.isdir = (ent->d_type == DT_DIR);
-        it.name = ent->d_name;
-        subitem.push_back(it);
+        file_info info;
+        info.is_dir = (ent->d_type == DT_DIR);
+        info.name = ent->d_name;
+        info_list.push_back(info);
     }
     closedir(state);
     
     //NOTE: the list that readdir() returns is not sorted.
-    auto cmp = [](const fitem &a, const fitem &b) {
+    auto cmp = [](const file_info &a, const file_info &b) {
         return a.name < b.name;
     };
-    sort(subitem.begin(), subitem.end(), cmp);
+    sort(info_list.begin(), info_list.end(), cmp);
     
     if (err != nullptr) {
         *err = false;
     }
-    return subitem;
+    return info_list;
 }
 
 #endif

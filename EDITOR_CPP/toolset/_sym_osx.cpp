@@ -3,7 +3,7 @@
 #include "_sym.hh"
 #include <dlfcn.h>
 
-void *findsym(const std::string &name) {
+void *find_sym(const std::string &name) {
     if (name.empty()) {
         return nullptr;
     }

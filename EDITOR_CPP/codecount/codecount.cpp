@@ -1,112 +1,67 @@
 #include "codecount.hh"
 
-static bool supported(const string &name) {
-    static const vector<string> options = {
-        ".h" , ".hh" , ".cpp", ".cxx", ".cc",
-        ".m" , ".mm" ,
-        ".cs",".java", ".lua"
-    };
-    for (auto &it : options) {
-        size_t n = name.size();
-        size_t i = it.size();
-        if (n > i && name.compare(n - i, i, it) == 0) {
-            return true;
-        }
-    }
-    return false;
-}
+//check if is utf8:
 
-static bool utf8tidy(const vector<char> &bytes, vector<char> *out) {
+static
+bool tidy_utf8(const vector<char> &bytes, vector<char> *out) {
     const char *ptr = bytes.data();
     const char *end = bytes.data() + bytes.size();
     
-    //skip BOM:
-    if (ptr + 3 <= end && strncmp(ptr, utf8bom, 3) == 0) {
+    //skip bom.
+    if (start_with(utf8_bom, ptr, end)) {
         ptr += 3;
     }
     
     while (ptr < end) {
-        int size = utf8get(ptr, end);
-        if (size == 1) {
-            if (*ptr == '\r') {
-                if (ptr + 1 < end && ptr[1] == '\n') {
-                    out->push_back('\n');
-                    ptr += 2;
-                } else {
-                    out->push_back('\n');
-                    ptr += 1;
-                }
-            } else {
-                out->push_back(*ptr);
-                ptr += 1;
-            }
-        } else if (size > 1) {
+        int size = utf8_get(ptr, end);
+        
+        //not utf8 char.
+        if (size == 0) {
+            return false;
+        }
+        
+        if (size > 1) {
             out->insert(out->end(), ptr, ptr + size);
             ptr += size;
-        } else /* size == 0 */ {
-            break;
+            continue;
+        }
+        
+        //size == 1:
+        if (start_with("\r\n", ptr, end)) {
+            out->push_back('\n');
+            ptr += 2;
+        } else if (*ptr == '\r') {
+            out->push_back('\n');
+            ptr += 1;
+        } else {
+            out->push_back(*ptr);
+            ptr += 1;
         }
     }
-    return ptr == end;
+    return true;
 }
 
-struct countdata {
+//scan file content:
+
+struct count_dat {
     
-    int fnumber = 0;
-    int codeln  = 0;
-    int emptyln = 0;
+    int src_files   = 0;
+    int code_lines  = 0;
+    int empty_lines = 0;
     
-    void operator+=(const countdata &that) {
-        fnumber += that.fnumber;
-        codeln  += that.codeln ;
-        emptyln += that.emptyln;
+    void operator+=(const count_dat &that) {
+        src_files   += that.src_files  ;
+        code_lines  += that.code_lines ;
+        empty_lines += that.empty_lines;
     }
     
-    int sum() const {
-        return codeln + emptyln;
+    int total_lines() const {
+        return code_lines + empty_lines;
     }
 };
 
-static const char *sumformat(int part, int sum) {
-    static char str[64];
-    
-    if (part >= 1000) {sprintf(str, "%4d,%03d", part / 1000, part % 1000);}
-    else /* < 1000 */ {sprintf(str, "%8d"     , part);}
-    
-    if (part < sum) {
-        sprintf(str + 8, " (%2d%%)", part * 100 / sum);
-    }
-    
-    return str;
-}
-
-static const char *f(const string &name, int deep) {
-    static char str[64];
-    sprintf(str, "%*s%s", deep * 2, "", name.c_str());
-    return str;
-}
-
-static void logtitle(/* .... .... .... . */) {newline.i("| sum|  code  |  empty  |");
-/* .... .... .... .... .... .... .... .. */   newline.i("|----|--------|---------|");}
-static void logferr (const string &n, int d) {newline.i("[      READ ERROR       ] %s" , f(n, d));}
-static void logu8err(const string &n, int d) {newline.i("[       NOT UTF8        ] %s" , f(n, d));}
-static void logdir  (const string &n, int d) {newline.i("[                       ] %s/", f(n, d));}
-
-static void logfile(const string &name, int deep, const countdata &i) {
-    newline.i("[%4d"       , i.sum());
-    closeto.i(" %4d/%02d%%", i.codeln , i.codeln  * 100 / i.sum());
-    closeto.i(" %4d/%02d%%", i.emptyln, i.emptyln * 100 / i.sum());
-    closeto.i(" ] %*s%s"   , deep * 2, "", name.c_str());
-}
-
-static void logsum(const countdata &d) {
-    spac(1).i("file count: %s", sumformat(d.fnumber, 0));
-    newline.i("total line: %s", sumformat(d.sum()  , 0));
-    newline.i("code line : %s", sumformat(d.codeln , d.sum()));
-    newline.i("empty line: %s", sumformat(d.emptyln, d.sum()));
-}
-
-static void count(const vector<char> &utf8, countdata *data) {
+static
+void count(const vector<char> &utf8, count_dat *dat) {
     const char *ptr = utf8.data();
     const char *end = utf8.data() + utf8.size();
     
@@ -114,75 +69,149 @@ static void count(const vector<char> &utf8, countdata *data) {
     for (; ptr < end; ++ptr) {
         if (*ptr == '\n') {
             if (coded) {
-                data->codeln += 1;
+                dat->code_lines += 1;
                 coded = false;
             } else {
-                data->emptyln += 1;
+                dat->empty_lines += 1;
             }
         } else if (*ptr != ' ' && *ptr != '\t') {
             coded = true;
         }
     }
     if (coded) {
-        data->codeln += 1;
+        dat->code_lines += 1;
     } else {
-        data->emptyln += 1;
+        dat->empty_lines += 1;
     }
 }
 
-static void onfile(const string &name, int deep, countdata *stage) {
-    if (!supported(name)) {
+//print:
+
+static
+const char *I(const string &name, int deep) {
+    static char str[64];
+    sprintf(str, "%*s%s", deep * 2, "", name.c_str());
+    return str;
+}
+
+static void log_head (/*..................*/) {new_line.i("| sum|  code  |  empty  |");
+/*........................................*/   new_line.i("|----|--------|---------|");}
+static void log_f_err(const string &n, int d) {new_line.i("[      READ ERROR       ] %s" , I(n, d));}
+static void log_not_u(const string &n, int d) {new_line.i("[       NOT UTF8        ] %s" , I(n, d));}
+static void log_dir  (const string &n, int d) {new_line.i("[                       ] %s/", I(n, d));}
+
+static
+void log_dat(const string &name, int deep, count_dat dat) {
+    int total = dat.total_lines();
+    int code  = dat.code_lines;
+    int empty = dat.empty_lines;
+    
+    new_line.i("[%4d"       , total);
+    close_to.i(" %4d/%02d%%", code , code  * 100 / total);
+    close_to.i(" %4d/%02d%%", empty, empty * 100 / total);
+    close_to.i(" ] %s"      , I(name, deep));
+}
+
+static
+const char *formated_num(int part, int total) {
+    static char str[64];
+    
+    if (part >= 1000) {
+        sprintf(str, "%4d,%03d", part / 1000, part % 1000);
+    } else {
+        sprintf(str, "%8d", part);
+    }
+    
+    if (part < total) {
+        sprintf(str + 8, " (%2d%%)", part * 100 / total);
+    }
+    
+    return str;
+}
+    
+static
+void log_total(const count_dat &dat) {
+    int files = dat.src_files;
+    int total = dat.total_lines();
+    int code  = dat.code_lines;
+    int empty = dat.empty_lines;
+    
+    space(1).i("file count: %s", formated_num(files, 0));
+    new_line.i("total line: %s", formated_num(total, 0));
+    new_line.i("code line : %s", formated_num(code , total));
+    new_line.i("empty line: %s", formated_num(empty, total));
+}
+
+//code count process:
+
+static
+void on_file(const string &name, int deep, count_dat *stage) {
+    if (!is_src_file(name)) {
         return;
     }
     
-    if (stage->fnumber % 10 == 0) {
-        logtitle();
+    if (stage->src_files % 10 == 0) {
+        log_head();
     }
     
-    countdata one;
-    one.fnumber = 1;
-    do {
-        vector<char> bytes;
-        if (!readf(name, &bytes)) {
-            logferr(name, deep);
-            break;
-        }
-        vector<char> utf8;
-        if (!utf8tidy(bytes, &utf8)) {
-            logu8err(name, deep);
-            break;
-        }
-        count(utf8, &one);
-        logfile(name, deep, one);
-    } while (0);
+    //read file.
+    vector<char> bytes;
+    bool okay = read_file(name, &bytes);
+    if (!okay) {
+        log_f_err(name, deep);
+        stage->src_files += 1;
+        return;
+    }
+    
+    //check if is utf8.
+    vector<char> utf8;
+    okay = tidy_utf8(bytes, &utf8);
+    if (!okay) {
+        log_not_u(name, deep);
+        stage->src_files += 1;
+        return;
+    }
+    
+    //count.
+    count_dat one;
+    one.src_files = 1;
+    
+    count(utf8, &one);
+    log_dat(name, deep, one);
+    
     *stage += one;
 }
 
-static void ondir(const string &name, int deep, countdata *stage) {
-    logdir(name, deep);
+static
+void for_dir(const string &name, int deep, count_dat *stage) {
+    log_dir(name, deep);
 }
 
-void codecount(const vector<string> &paths) {
+void code_count(const vector<string> &paths) {
     
-    countdata global;
+    count_dat global;
     
     for (const string &it : paths) {
-        spac(1).i("@ %s:", it.c_str());
-        spac(1);
+        space(1).i("@ %s:", it.c_str());
+        space(1);
         
-        countdata stage;
-        bool okay = scan(it, [&](const fitem &i, int deep) {
-            if (i.isdir) {ondir (i.name, deep, &stage);}
-            else/*file*/ {onfile(i.name, deep, &stage);}
+        count_dat stage;
+        bool okay = traverse(it, [&](traverse_item item) {
+            if (item.file.is_dir) {
+                for_dir(item.file.name, item.deep, &stage);
+            } else {
+                on_file(item.file.name, item.deep, &stage);
+            }
         });
         
         if (okay) {
-            logsum(stage);
+            log_total(stage);
             global += stage;
         }
     }
+    
     if (paths.size() > 1) {
-        spac(1).i("total:");
-        logsum(global);
+        space(1).i("total:");
+        log_total(global);
     }
 }

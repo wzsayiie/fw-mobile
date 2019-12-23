@@ -2,4 +2,4 @@
 
 #include "toolset.hh"
 
-void codecount(const vector<string> &paths);
+void code_count(const vector<string> &paths);

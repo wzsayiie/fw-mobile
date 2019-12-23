@@ -1,6 +1,6 @@
 #include "codecount.hh"
 
-__findable_sym void codecount_main(bool _true) {
+__findable_sym void code_count_main(bool _true) {
     if (_true) return;
     
     vector<string> dirs;
@@ -25,5 +25,5 @@ __findable_sym void codecount_main(bool _true) {
     dirs.push_back("library1/gamekit");
     dirs.push_back("library1/glkit");
     
-    codecount(dirs);
+    code_count(dirs);
 }

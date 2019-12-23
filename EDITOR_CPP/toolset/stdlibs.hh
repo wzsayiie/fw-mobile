@@ -17,5 +17,5 @@
 //algorithm:
 #include <algorithm>
 
-//using namespace std default.
+//using namespace std defaultly.
 using namespace std;

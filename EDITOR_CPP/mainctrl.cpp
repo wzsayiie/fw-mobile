@@ -1,6 +1,7 @@
 #include "toolset.hh"
 
-static void init() {
+static
+void init() {
 
     string root = "fw-mobile";
     string path = __FILE__;
@@ -8,15 +9,16 @@ static void init() {
     size_t pos = path.find(root);
     if (pos != string::npos) {
         string dir = path.substr(0, pos + root.size());
-        chdir(dir);
-        closeto.i("work path: %s", dir.c_str());
+        goto_dir(dir);
+        close_to.i("work path: %s", dir.c_str());
     } else {
-        closeto.i("failed to change the path");
+        close_to.i("failed to change the path");
     }
 }
 
-static void run(const char *name) {
-    void *sym = findsym(name);
+static
+void run(const char *name) {
+    void *sym = find_sym(name);
     if (sym == nullptr) {
         return;
     }
@@ -24,14 +26,14 @@ static void run(const char *name) {
     auto func = (void (*)(bool))sym;
     func(true);
     
-    spac(1);
+    space(1);
 }
 
 int main() {
     init();
     
-    run("codecount_main");
-    run("fmtcvt_main");
+    run("code_count_main");
+    run("fmt_cvt_main");
     
     run("cpp_main");
     run("objcpp_main");

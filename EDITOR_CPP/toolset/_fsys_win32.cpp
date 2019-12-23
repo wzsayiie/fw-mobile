@@ -1,43 +1,43 @@
-﻿#ifdef _WIN32
+#ifdef _WIN32
 
 #include "_fsys.hh"
 #include <windows.h>
 
-string getcwd() {
+string cur_dir() {
     CHAR szBuffer[512] = "\0";
     GetCurrentDirectoryA(sizeof(szBuffer), szBuffer);
     return szBuffer;
 }
 
-bool chdir(const string &dir) {
+bool goto_dir(const string &dir) {
     return SetCurrentDirectoryA(dir.c_str());
 }
 
-bool fexist(const string &path, bool *isdir) {
+bool file_at(const string &path, bool *is_dir) {
     DWORD dwAttributes = GetFileAttributesA(path.c_str());
     if (dwAttributes != INVALID_FILE_ATTRIBUTES) {
-        if (isdir != nullptr) {
-            *isdir = (dwAttributes & FILE_ATTRIBUTE_DIRECTORY);
+        if (is_dir != nullptr) {
+            *is_dir = (dwAttributes & FILE_ATTRIBUTE_DIRECTORY);
         }
         return true;
     } else {
-        if (isdir != nullptr) {
-            *isdir = false;
+        if (is_dir != nullptr) {
+            *is_dir = false;
         }
         return false;
     }
 }
 
-vector<fitem> subitems(const string &dir, bool *err) {
+vector<file_info> sub_files_of(const string &dir, bool *err) {
     if (dir.empty()) {
         if (err != nullptr) {
             *err = true;
         }
-        return vector<fitem>();
+        return vector<file_info>();
     }
 
-    string target = joinpath(dir, "*");
-    vector<fitem> items;
+    string target = join_path(dir, "*");
+    vector<file_info> info_list;
 
     WIN32_FIND_DATAA stData;
     HANDLE hState = FindFirstFileA(target.c_str(), &stData);
@@ -48,10 +48,10 @@ vector<fitem> subitems(const string &dir, bool *err) {
 
         //ignore ".", ".." and hidden files.
         if (!bStartsWithDot && !bHiddenFile) {
-            fitem it;
-            it.isdir = (stData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY);
-            it.name = stData.cFileName;
-            items.push_back(it);
+            file_info info;
+            info.is_dir = (stData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY);
+            info.name = stData.cFileName;
+            info_list.push_back(info);
         }
 
         if (!FindNextFileA(hState, &stData)) {
@@ -63,7 +63,7 @@ vector<fitem> subitems(const string &dir, bool *err) {
     if (err != nullptr) {
         *err = false;
     }
-    return items;
+    return info_list;
 }
 
 #endif

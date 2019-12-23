@@ -1,6 +1,6 @@
 #include "fmtcvt.hh"
 
-__findable_sym void fmtcvt_main(bool _true) {
+__findable_sym void fmt_cvt_main(bool _true) {
     if (_true) return;
     
     vector<string> dirs;
@@ -25,28 +25,21 @@ __findable_sym void fmtcvt_main(bool _true) {
     dirs.push_back("library1/gamekit");
     dirs.push_back("library1/glkit");
     
-    void fmtcvt_proc(const vector<string> &dirs);
-    fmtcvt_proc(dirs);
+    void fmt_cvt_process(const vector<string> &dirs);
+    fmt_cvt_process(dirs);
 }
 
-namespace fmtcvt {
-
-struct thishandler : handler {
+struct this_fmt_cvt : fmt_cvt {
     want pick(const string &name) override {
-        if (name.find("WIN32") != name.npos) {
-            return want::win;
-        }
-        if (name.find("win32") != name.npos) {
-            return want::win;
-        }
         
-        return want::unix;
+        if (name.find("WIN32") != name.npos) {return want_win;}
+        if (name.find("win32") != name.npos) {return want_win;}
+        
+        return want_unix;
     }
 };
 
-} //namespace fmtcvt
-
-void fmtcvt_proc(const vector<string> &dirs) {
-    auto cvt = new fmtcvt::thishandler;
-    cvt->proc(dirs);
+void fmt_cvt_process(const vector<string> &dirs) {
+    auto cvt = new this_fmt_cvt;
+    cvt->process(dirs);
 }

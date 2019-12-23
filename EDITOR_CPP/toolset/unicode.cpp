@@ -1,6 +1,6 @@
 #include "unicode.hh"
 
-int utf8get(const char *ptr, const char *end) {
+int utf8_get(const char *ptr, const char *end) {
     int size = 0;
     
     //check first byte

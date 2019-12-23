@@ -2,7 +2,7 @@
 
 //string prefix and suffix:
 
-bool startwith(const string &prefix, const char *ptr, const char *end) {
+bool start_with(const string &prefix, const char *ptr, const char *end) {
     size_t size = prefix.size();
     if (size <= end - ptr) {
         return strncmp(prefix.c_str(), ptr, size) == 0;
@@ -11,7 +11,7 @@ bool startwith(const string &prefix, const char *ptr, const char *end) {
     }
 }
 
-bool endwith(const string &suffix, const char *ptr, const char *end) {
+bool end_with(const string &suffix, const char *ptr, const char *end) {
     size_t size = suffix.size();
     if (size <= end - ptr) {
         return strncmp(suffix.c_str(), end - size, size) == 0;
@@ -20,34 +20,34 @@ bool endwith(const string &suffix, const char *ptr, const char *end) {
     }
 }
 
-bool startwith(const string &prefix, const string &str) {
-    return startwith(prefix, str.c_str(), str.c_str() + str.size());
+bool start_with(const string &prefix, const string &str) {
+    return start_with(prefix, str.c_str(), str.c_str() + str.size());
 }
 
-bool endwith(const string &suffix, const string &str) {
-    return endwith(suffix, str.c_str(), str.c_str() + str.size());
+bool end_with(const string &suffix, const string &str) {
+    return end_with(suffix, str.c_str(), str.c_str() + str.size());
 }
 
 //path string:
 
-static string readpitem(const char **ptr) {
-    while (**ptr == *pathdiv) {
+static string read_item(const char **ptr) {
+    while (**ptr == *path_div) {
         *ptr += 1;
     }
     
     string item;
-    while (**ptr != *pathdiv && **ptr != '\0') {
+    while (**ptr != *path_div && **ptr != '\0') {
         item.append(1, **ptr);
         *ptr += 1;
     }
     return item;
 }
 
-vector<string> splitpath(const string &path) {
+vector<string> split_path(const string &path) {
     vector<string> items;
     const char *ptr = path.c_str();
     while (true) {
-        string it = readpitem(&ptr);
+        string it = read_item(&ptr);
         if (it.empty()) {
             break;
         }
@@ -68,19 +68,31 @@ vector<string> splitpath(const string &path) {
     }
     
     //is root path?
-    if (!path.empty() && path[0] == *pathdiv) {
+    if (!path.empty() && path[0] == *path_div) {
         if (!items.empty()) {
-            items[0] = pathdiv + items[0];
+            items[0] = path_div + items[0];
         } else {
-            items.push_back(pathdiv);
+            items.push_back(path_div);
         }
     }
     
     return items;
 }
 
-string basename(const string &path) {
-    vector<string> items = splitpath(path);
+string parent_dir_of(const string &path) {
+    vector<string> items = split_path(path);
+    string dir;
+    for (auto it = items.begin(); it < items.end() - 1; ++it) {
+        if (!dir.empty()) {
+            dir.append(path_div);
+        }
+        dir.append(*it);
+    }
+    return dir;
+}
+
+string file_name_of(const string &path) {
+    vector<string> items = split_path(path);
     if (!items.empty()) {
         return items.back();
     } else {
@@ -88,39 +100,27 @@ string basename(const string &path) {
     }
 }
 
-string dirname(const string &path) {
-    vector<string> items = splitpath(path);
-    string dir;
-    for (auto it = items.begin(); it < items.end() - 1; ++it) {
-        if (!dir.empty()) {
-            dir.append(pathdiv);
-        }
-        dir.append(*it);
-    }
-    return dir;
-}
-
-string joinpath(const string &dir, const string &subitem) {
+string join_path(const string &dir, const string &item) {
     if (dir.empty()) {
-        return subitem;
+        return item;
     }
     
-    if (subitem.empty()) {
+    if (item.empty()) {
         return dir;
     }
     
     string gen = dir;
-    if (gen.back() != *pathdiv) {
-        gen.append(pathdiv);
+    if (gen.back() != *path_div) {
+        gen.append(path_div);
     }
-    gen.append(subitem);
+    gen.append(item);
     
     return gen;
 }
 
 //code source extension:
 
-bool codext(const string &name) {
+bool is_src_file(const string &name) {
     static const vector<string> options = {
         ".h"   , ".hh" , ".hpp",
         ".cc"  , ".cxx", ".cpp",
@@ -130,7 +130,7 @@ bool codext(const string &name) {
         ".lua" ,
     };
     for (auto &it : options) {
-        if (endwith(it, name)) {
+        if (end_with(it, name)) {
             return true;
         }
     }

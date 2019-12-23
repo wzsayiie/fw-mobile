@@ -9,4 +9,4 @@
 # endif
 
 //looking for the symbol in the current executable.
-void *findsym(const std::string &name);
+void *find_sym(const std::string &name);

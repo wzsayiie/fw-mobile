@@ -2,12 +2,17 @@
 
 #include "_fsys.hh"
 
-//read and write file:
+bool read_file(const string &path, vector<char> *out);
 
-bool readf (const string &path, vector<char> *out);
-bool writef(const string &path, const vector<char> &dat);
+//write file, NOTE: if $dat is empty, the file will be cleared.
+bool write_file(const string &path, const vector<char> &dat);
 
-//traverse directory:
+struct traverse_item {
+    file_info file;
+    int deep = 0;
+};
 
-typedef function<void (const fitem &it, int deep)> scanfn;
-bool scan(const string &path, scanfn fn);
+typedef function<void (traverse_item item)> traverse_fn;
+
+//traverse directory. if $path is not a directory, return false.
+bool traverse(const string &path, traverse_fn fn);

@@ -36,14 +36,14 @@ static void print(int wanted_n, const char *format, va_list args) {
     }
 }
 
-void _NEWLINE::i(_Printf_format_string_ const char *format, ...) {
+void _NEW_LINE::i(_Printf_format_string_ const char *format, ...) {
     va_list args;
     va_start(args, format);
     print(1, format, args);
     va_end(args);
 }
 
-void _CLOSETO::i(_Printf_format_string_ const char *format, ...) {
+void _CLOSE_TO::i(_Printf_format_string_ const char *format, ...) {
     va_list args;
     va_start(args, format);
     print(0, format, args);
@@ -57,10 +57,10 @@ void ii(_Printf_format_string_ const char *format, ...) {
     va_end(args);
 }
 
-_NEWLINE newline;
-_CLOSETO closeto;
+_NEW_LINE new_line;
+_CLOSE_TO close_to;
 
-_CLOSETO spac(int lines) {
+_CLOSE_TO space(int lines) {
     print(lines + 1, nullptr, nullptr);
-    return closeto;
+    return close_to;
 }

@@ -3,7 +3,7 @@
 
 //read and write file:
 
-bool readf(const string &path, vector<char> *out) {
+bool read_file(const string &path, vector<char> *out) {
     if (path.empty() || out == nullptr) {
         return false;
     }
@@ -24,7 +24,7 @@ bool readf(const string &path, vector<char> *out) {
     return true;
 }
 
-bool writef(const string &path, const vector<char> &dat) {
+bool write_file(const string &path, const vector<char> &dat) {
     if (path.empty()) {
         return false;
     }
@@ -41,58 +41,62 @@ bool writef(const string &path, const vector<char> &dat) {
 
 //traverse directory:
 
-static void onfile(const string &name, int deep, scanfn fn) {
-    fitem item;
-    item.isdir = false;
-    item.name = name;
-    fn(item, deep);
+static void on_file(const string &name, int deep, traverse_fn fn) {
+    traverse_item item; {
+        item.file.is_dir = false;
+        item.file.name = name;
+        item.deep = deep;
+    }
+    fn(item);
 }
 
-static void ondir(const string &name, int deep, scanfn fn) {
+static void for_dir(const string &name, int deep, traverse_fn fn) {
     //self:
-    fitem item;
-    item.isdir = true;
-    item.name = name;
-    fn(item, deep);
+    traverse_item item; {
+        item.file.is_dir = true;
+        item.file.name = name;
+        item.deep = deep;
+    }
+    fn(item);
     
     //subitems:
-    if (!chdir(name)) {
+    if (!goto_dir(name)) {
         return;
     }
-    vector<fitem> items = subitems(".", nullptr);
-    for (auto &it : items) {
-        if (it.isdir) {
-            ondir(it.name, deep + 1, fn);
+    vector<file_info> sub_files = sub_files_of(".", nullptr);
+    for (auto &it : sub_files) {
+        if (it.is_dir) {
+            for_dir(it.name, deep + 1, fn);
         } else {
-            onfile(it.name, deep + 1, fn);
+            on_file(it.name, deep + 1, fn);
         }
     }
-    chdir("..");
+    goto_dir("..");
 }
 
-bool scan(const string &path, scanfn fn) {
+bool traverse(const string &path, traverse_fn fn) {
     if (path.empty() || fn == nullptr) {
         return false;
     }
     
-    bool isdir = false;
-    if (!fexist(path, &isdir)) {
+    bool is_dir = false;
+    if (!file_at(path, &is_dir)) {
         return false;
     }
     
-    string origin = getcwd();
+    string origin = cur_dir();
     {
-        string parent = dirname(path);
-        string name = basename(path);
-        chdir(parent);
+        string parent = parent_dir_of(path);
+        goto_dir(parent);
         
-        if (isdir) {
-            ondir(name, 0, fn);
+        string name = file_name_of(path);
+        if (is_dir) {
+            for_dir(name, 0, fn);
         } else {
-            onfile(name, 0, fn);
+            on_file(name, 0, fn);
         }
     }
-    chdir(origin);
+    goto_dir(origin);
     
     return true;
 }

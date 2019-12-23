@@ -2,17 +2,18 @@
 
 #include "toolset.hh"
 
-namespace fmtcvt {
-
-    enum class want {
-        none, unix, win,
+struct fmt_cvt {
+    
+    virtual void process(const vector<string> &paths);
+    
+    virtual int a_stage(const string &path);
+    virtual int for_dir(const string &name, int deep);
+    virtual int on_file(const string &name, int deep);
+    
+    enum want {
+        want_none,
+        want_unix,
+        want_win ,
     };
-
-    struct handler {
-        virtual void proc(const vector<string> &paths);
-        virtual int  once(const string &path);
-        virtual int  adir(const string &name, int deep);
-        virtual int  afil(const string &name, int deep);
-        virtual want pick(const string &name);
-    };
-}
+    virtual want pick(const string &name);
+};

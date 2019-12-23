@@ -2,7 +2,7 @@
 
 #include "stdlibs.hh"
 
-static const char *const utf8bom = "\xEF\xBB\xBF";
+static const char *const utf8_bom = "\xEF\xBB\xBF";
 
 //return size of character; if not utf8 character, return 0.
-int utf8get(const char *ptr, const char *end);
+int utf8_get(const char *ptr, const char *end);

@@ -1,21 +1,20 @@
 #include "fmtcvt.hh"
 
-namespace fmtcvt {
-
 //print:
 
-const char *idtname(const string &name, int deep) {
+static
+const char *indented(const string &name, int deep) {
     static char str[64];
     sprintf(str, "%*s%s", deep * 2, "", name.c_str());
     return str;
 }
 
-void logdir  (const string &n, int d) {newline.i("|        | %s/", idtname(n, d));}
-void logferr (const string &n, int d) {newline.i("[FILE ERR] %s" , idtname(n, d));}
-void logempty(const string &n, int d) {newline.i("[ EMPTY  ] %s" , idtname(n, d));}
-void logu8err(const string &n, int d) {newline.i("[UTF8 ERR] %s" , idtname(n, d));}
+static void log_dir  (const string &n, int d) {new_line.i("|        | %s/", indented(n, d));}
+static void log_f_err(const string &n, int d) {new_line.i("[FILE ERR] %s" , indented(n, d));}
+static void log_empty(const string &n, int d) {new_line.i("[ EMPTY  ] %s" , indented(n, d));}
+static void log_not_u(const string &n, int d) {new_line.i("[NOT UTF8] %s" , indented(n, d));}
 
-struct fmtdat {
+struct fmt_info {
     bool ch  = false;
     bool bom = false;
     bool rn  = false;
@@ -23,55 +22,59 @@ struct fmtdat {
     bool r   = false;
 };
 
-void logupdat(const string &name, int deep, fmtdat fmt) {
-    newline.i(fmt.bom ?"[B ":"[- ");
-    closeto.i(fmt.rn  ? "RN": "--");
-    closeto.i(fmt.n   ? " N": " -");
-    closeto.i(fmt.r   ? " R": " -");
-    closeto.i("] %s", idtname(name, deep));
+static
+void log_up_fmt(const string &name, int deep, fmt_info fmt) {
+    new_line.i(fmt.bom ?"[B ":"[- ");
+    close_to.i(fmt.rn  ? "RN": "--");
+    close_to.i(fmt.n   ? " N": " -");
+    close_to.i(fmt.r   ? " R": " -");
+    close_to.i("] %s", indented(name, deep));
 }
 
-void loglodat(const string &name, int deep, fmtdat fmt) {
-    newline.i(fmt.bom ?"[b ":"[  ");
-    closeto.i(fmt.rn  ? "rn": "  ");
-    closeto.i(fmt.n   ? " n": "  ");
-    closeto.i(fmt.r   ? " r": "  ");
-    closeto.i("] %s", idtname(name, deep));
+static
+void log_lo_fmt(const string &name, int deep, fmt_info fmt) {
+    new_line.i(fmt.bom ?"[b ":"[  ");
+    close_to.i(fmt.rn  ? "rn": "  ");
+    close_to.i(fmt.n   ? " n": "  ");
+    close_to.i(fmt.r   ? " r": "  ");
+    close_to.i("] %s", indented(name, deep));
 }
 
 //scan:
 
+static
 void push(vector<char> *dat, const char *ptr, int len) {
     dat->insert(dat->end(), ptr, ptr + len);
 }
 
-void pushbom(fmtdat *fmt, vector<char> *dat) {fmt->bom = true; push(dat, utf8bom, 3);}
-void pushrn (fmtdat *fmt, vector<char> *dat) {fmt->rn  = true; push(dat, "\r\n" , 2);}
-void pushn  (fmtdat *fmt, vector<char> *dat) {fmt->n   = true; push(dat, "\n"   , 1);}
-void pushr  (fmtdat *fmt, vector<char> *dat) {fmt->r   = true; push(dat, "\r"   , 1);}
+static void push_bom(fmt_info *f, vector<char> *d) {f->bom = true; push(d, utf8_bom, 3);}
+static void push_rn (fmt_info *f, vector<char> *d) {f->rn  = true; push(d, "\r\n"  , 2);}
+static void push_n  (fmt_info *f, vector<char> *d) {f->n   = true; push(d, "\n"    , 1);}
+static void push_r  (fmt_info *f, vector<char> *d) {f->r   = true; push(d, "\r"    , 1);}
 
-bool scandat(const vector<char> &dat, want wt, fmtdat *newfmt, vector<char> *newdat) {
-    *newfmt = fmtdat();
-    newdat->clear();
+static
+bool scan(const vector<char> &dat, fmt_cvt::want wt, fmt_info *fmt, vector<char> *out) {
+    *fmt = fmt_info();
+    out->clear();
     
     auto ptr = dat.data();
     auto end = dat.data() + dat.size();
     
     //process bom:
-    if (startwith(utf8bom, ptr, end)) {
-        /**/ if (wt == want::unix) {/*....................*/ newfmt->ch = true;}
-        else if (wt == want::win ) {pushbom(newfmt, newdat);}
-        else /*..wt == want::none*/{pushbom(newfmt, newdat);}
+    if (start_with(utf8_bom, ptr, end)) {
+        /**/ if (wt == fmt_cvt::want_unix) {/*...............*/ fmt->ch = true;}
+        else if (wt == fmt_cvt::want_win ) {push_bom(fmt, out);}
+        else /*.........................*/ {push_bom(fmt, out);}
         ptr += 3;
     } else {
-        /**/ if (wt == want::unix) {}
-        else if (wt == want::win ) {pushbom(newfmt, newdat); newfmt->ch = true;}
-        else /*..wt == want::none*/{}
+        /**/ if (wt == fmt_cvt::want_unix) {}
+        else if (wt == fmt_cvt::want_win ) {push_bom(fmt, out); fmt->ch = true;}
+        else /*.........................*/ {}
     }
     
     //process content:
     while (ptr < end) {
-        int size = utf8get(ptr, end);
+        int size = utf8_get(ptr, end);
         
         //not utf8 char.
         if (size == 0) {
@@ -79,28 +82,28 @@ bool scandat(const vector<char> &dat, want wt, fmtdat *newfmt, vector<char> *new
         }
         
         if (size > 1) {
-            push(newdat, ptr, size);
+            push(out, ptr, size);
             ptr += size;
             continue;
         }
         
-        if (startwith("\r\n", ptr, end)) {
-            /**/ if (wt == want::unix) {pushn (newfmt, newdat); newfmt->ch = true;}
-            else if (wt == want::win ) {pushrn(newfmt, newdat);}
-            else /*..wt == want::none*/{pushrn(newfmt, newdat);}
+        if (start_with("\r\n", ptr, end)) {
+            /**/ if (wt == fmt_cvt::want_unix) {push_n (fmt, out); fmt->ch = true;}
+            else if (wt == fmt_cvt::want_win ) {push_rn(fmt, out);}
+            else /*.........................*/ {push_rn(fmt, out);}
             ptr += 2;
         } else if (*ptr == '\n') {
-            /**/ if (wt == want::unix) {pushn (newfmt, newdat);}
-            else if (wt == want::win ) {pushrn(newfmt, newdat); newfmt->ch = true;}
-            else /*..wt == want::none*/{pushn (newfmt, newdat);}
+            /**/ if (wt == fmt_cvt::want_unix) {push_n (fmt, out);}
+            else if (wt == fmt_cvt::want_win ) {push_rn(fmt, out); fmt->ch = true;}
+            else /*.........................*/ {push_n (fmt, out);}
             ptr += 1;
         } else if (*ptr == '\r') {
-            /**/ if (wt == want::unix) {pushn (newfmt, newdat); newfmt->ch = true;}
-            else if (wt == want::win ) {pushrn(newfmt, newdat); newfmt->ch = true;}
-            else /*..wt == want::none*/{pushr (newfmt, newdat);}
+            /**/ if (wt == fmt_cvt::want_unix) {push_n (fmt, out); fmt->ch = true;}
+            else if (wt == fmt_cvt::want_win ) {push_rn(fmt, out); fmt->ch = true;}
+            else /*.........................*/ {push_r (fmt, out);}
             ptr += 1;
         } else {
-            push(newdat, ptr, size);
+            push(out, ptr, size);
             ptr += size;
         }
     }
@@ -110,84 +113,82 @@ bool scandat(const vector<char> &dat, want wt, fmtdat *newfmt, vector<char> *new
 
 //process:
 
-void handler::proc(const vector<string> &paths) {
+void fmt_cvt::process(const vector<string> &paths) {
     int modified = 0;
     
     for (auto &it : paths) {
-        spac(1).i("@ %s:", it.c_str());
-        spac(1);
+        space(1).i("@ %s:", it.c_str());
+        space(1);
         
-        modified += once(it);
+        modified += a_stage(it);
     }
     
-    spac(1).i("modified: %d files.", modified);
+    space(1).i("modified: %d files.", modified);
 }
 
-int handler::once(const string &path) {
+int fmt_cvt::a_stage(const string &path) {
     int modified = 0;
     
-    scan(path, [&](const fitem &item, int deep) {
-        if (item.isdir) {
-            modified += adir(item.name, deep);
+    traverse(path, [&](traverse_item item) {
+        if (item.file.is_dir) {
+            modified += for_dir(item.file.name, item.deep);
         } else {
-            modified += afil(item.name, deep);
+            modified += on_file(item.file.name, item.deep);
         }
     });
     
     return modified;
 }
 
-int handler::adir(const string &name, int deep) {
-    logdir(name, deep);
+int fmt_cvt::for_dir(const string &name, int deep) {
+    log_dir(name, deep);
     
     return 0;
 }
 
-int handler::afil(const string &name, int deep) {
-    if (!codext(name)) {
+int fmt_cvt::on_file(const string &name, int deep) {
+    if (!is_src_file(name)) {
         return 0;
     }
     
     //read file.
     vector<char> dat;
-    bool okay = readf(name, &dat);
+    bool okay = read_file(name, &dat);
     if (!okay) {
-        logferr(name, deep);
+        log_f_err(name, deep);
         return 0;
     }
     
     if (dat.empty()) {
-        logempty(name, deep);
+        log_empty(name, deep);
         return 0;
     }
     
     //scan file.
-    fmtdat newfmt;
-    vector<char> newdat;
+    fmt_info fmt;
+    vector<char> out;
     
-    okay = scandat(dat, pick(name), &newfmt, &newdat);
+    okay = scan(dat, pick(name), &fmt, &out);
     if (!okay) {
-        logu8err(name, deep);
+        log_not_u(name, deep);
         return 0;
     }
     
     //rewrite file if needed.
-    if (newfmt.ch) {
-        writef(name, newdat);
-        logupdat(name, deep, newfmt);
+    if (fmt.ch) {
+        write_file(name, out);
+        log_up_fmt(name, deep, fmt);
     } else {
-        loglodat(name, deep, newfmt);
+        log_lo_fmt(name, deep, fmt);
     }
     
-    if (newfmt.ch) {
+    if (fmt.ch) {
         return 1;
     } else {
         return 0;
     }
 }
 
-want handler::pick(const string &name) {
-    return want::none;
+fmt_cvt::want fmt_cvt::pick(const string &name) {
+    return want_none;
 }
-
-} //namespace fmtcvt
