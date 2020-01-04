@@ -32,6 +32,7 @@ void run(const char *name) {
 int main() {
     init();
     
+    run("bridge_main");
     run("code_count_main");
     run("fmt_cvt_main");
     

@@ -1,11 +1,17 @@
 #include "CLSDEF.hh"
-#include "clspicker.hh"
+#include "metapicker.hh"
 
-void java_pkg(const char *name) {set_java_pkg(name);}
-void objc_fix(const char *name) {set_objc_fix(name);}
-void w32_fix (const char *name) {set_w32_fix (name);}
-void cpp_fix (const char *name) {set_cpp_fix (name);}
-void lua_fix (const char *name) {set_lua_fix (name);}
+void java_source(const char *dir ) {set_java_source(dir );}
+void java_native(const char *file) {set_java_native(file);}
+void objc_header(const char *file) {set_objc_header(file);}
+void objc_source(const char *file) {set_objc_source(file);}
+void w32_header (const char *file) {set_w32_header (file);}
+void w32_source (const char *file) {set_w32_source (file);}
+void cpp_header (const char *file) {set_cpp_header (file);}
+void cpp_source (const char *file) {set_cpp_source (file);}
+void lua_cpp_h  (const char *file) {set_lua_cpp_h  (file);}
+void lua_cpp_s  (const char *file) {set_lua_cpp_s  (file);}
+void lua_script (const char *file) {set_lua_script (file);}
 
 static bool _loc_flag = false;
 static bool _cpp_flag = false;

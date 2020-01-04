@@ -2,15 +2,22 @@
 
 //CLASS DEFINISION LANGUAGE.
 
-//specify package name of class prefix of generated code:
+//specify location of generated files:
 //
-//| java_pkg("src.library.foundation");
+//| cpp_header("foundation.hh");
+//| cpp_source("foundation.cpp");
 //
-void java_pkg(const char *name);
-void objc_fix(const char *name);
-void w32_fix (const char *name);
-void cpp_fix (const char *name);
-void lua_fix (const char *name);
+void java_source(const char *dir );
+void java_native(const char *file);
+void objc_header(const char *file);
+void objc_source(const char *file);
+void w32_header (const char *file);
+void w32_source (const char *file);
+void cpp_header (const char *file);
+void cpp_source (const char *file);
+void lua_cpp_h  (const char *file);
+void lua_cpp_s  (const char *file);
+void lua_script (const char *file);
 
 enum _type_id {
     _type_id_null,
