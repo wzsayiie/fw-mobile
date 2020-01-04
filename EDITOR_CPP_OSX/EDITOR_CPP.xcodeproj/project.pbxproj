@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		B499A310221E72510060165A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B499A30F221E72500060165A /* main.cpp */; };
 		B4B19642221EB6C7007D4146 /* codecount.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B19636221EB6C7007D4146 /* codecount.cpp */; };
+		CE0DD0EE23BE786500A03EB4 /* clspicker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE0DD0EC23BE786500A03EB4 /* clspicker.cpp */; };
+		CE0DD0F023BE7B9F00A03EB4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE0DD0EF23BE7B9F00A03EB4 /* main.cpp */; };
+		CE0DD0F323BE806900A03EB4 /* CLSDEF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE0DD0F123BE806900A03EB4 /* CLSDEF.cpp */; };
 		CE1BAAAC234871B900DAD494 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE1BAAAA234871B900DAD494 /* main.mm */; };
 		CE1BAAAD234871B900DAD494 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE1BAAAB234871B900DAD494 /* main.cpp */; };
 		CE1BAAB82348A34B00DAD494 /* _sym_osx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE1BAAB62348A34B00DAD494 /* _sym_osx.cpp */; };
@@ -41,6 +44,11 @@
 		B499A30F221E72500060165A /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B4B19636221EB6C7007D4146 /* codecount.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = codecount.cpp; sourceTree = "<group>"; };
 		B4B19640221EB6C7007D4146 /* codecount.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = codecount.hh; sourceTree = "<group>"; };
+		CE0DD0EC23BE786500A03EB4 /* clspicker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clspicker.cpp; sourceTree = "<group>"; };
+		CE0DD0ED23BE786500A03EB4 /* clspicker.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = clspicker.hh; sourceTree = "<group>"; };
+		CE0DD0EF23BE7B9F00A03EB4 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		CE0DD0F123BE806900A03EB4 /* CLSDEF.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLSDEF.cpp; sourceTree = "<group>"; };
+		CE0DD0F223BE806900A03EB4 /* CLSDEF.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CLSDEF.hh; sourceTree = "<group>"; };
 		CE1BAAAA234871B900DAD494 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		CE1BAAAB234871B900DAD494 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		CE1BAAB52348A34B00DAD494 /* _sym.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = _sym.hh; sourceTree = "<group>"; };
@@ -92,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				CE21BE9522085E4B00AED03F /* mainctrl.cpp */,
+				CE0DD0EA23BE786500A03EB4 /* bridge */,
 				B499A30E221E72500060165A /* codecount */,
 				CE1BAAA9234871B900DAD494 /* demo */,
 				CE7FD92023AD2E3E00888AFA /* fmtcvt */,
@@ -99,6 +108,18 @@
 			);
 			name = EDITOR_CPP;
 			path = ../EDITOR_CPP;
+			sourceTree = "<group>";
+		};
+		CE0DD0EA23BE786500A03EB4 /* bridge */ = {
+			isa = PBXGroup;
+			children = (
+				CE0DD0F123BE806900A03EB4 /* CLSDEF.cpp */,
+				CE0DD0F223BE806900A03EB4 /* CLSDEF.hh */,
+				CE0DD0EC23BE786500A03EB4 /* clspicker.cpp */,
+				CE0DD0ED23BE786500A03EB4 /* clspicker.hh */,
+				CE0DD0EF23BE7B9F00A03EB4 /* main.cpp */,
+			);
+			path = bridge;
 			sourceTree = "<group>";
 		};
 		CE1BAAA9234871B900DAD494 /* demo */ = {
@@ -217,8 +238,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE0DD0F323BE806900A03EB4 /* CLSDEF.cpp in Sources */,
 				B4B19642221EB6C7007D4146 /* codecount.cpp in Sources */,
 				CE7FD92423AD2E3E00888AFA /* fmtcvt.cpp in Sources */,
+				CE0DD0F023BE7B9F00A03EB4 /* main.cpp in Sources */,
 				CE21BEAF2208620300AED03F /* _fsys_osx.cpp in Sources */,
 				CE8168AA23ADECB700A5F690 /* strtool.cpp in Sources */,
 				B499A310221E72510060165A /* main.cpp in Sources */,
@@ -232,6 +255,7 @@
 				CE21BEAE2208620300AED03F /* fsystem.cpp in Sources */,
 				CE4B65D32347913F00C4FB1E /* _fsys_win32.cpp in Sources */,
 				CE21BEA322085E4B00AED03F /* mainctrl.cpp in Sources */,
+				CE0DD0EE23BE786500A03EB4 /* clspicker.cpp in Sources */,
 				CE21BEA622085E4B00AED03F /* stdlibs.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,0 +1,147 @@
+#pragma once
+
+//CLASS DEFINISION LANGUAGE.
+
+//specify package name of class prefix of generated code:
+//
+//| java_pkg("src.library.foundation");
+//
+void java_pkg(const char *name);
+void objc_fix(const char *name);
+void w32_fix (const char *name);
+void cpp_fix (const char *name);
+void lua_fix (const char *name);
+
+enum _type_id {
+    _type_id_null,
+    
+    _type_id_bool,
+    
+    _type_id_int8 ,
+    _type_id_int16,
+    _type_id_int32,
+    _type_id_int64,
+    
+    _type_id_float ,
+    _type_id_double,
+    
+    _type_id_string,
+    
+    //byte block data.
+    //like vector<int8_t> in c++ and byte[] in java.
+    _type_id_bytes,
+    
+    _type_id_cls,
+    _type_id_loc_cls,
+    _type_id_cpp_cls,
+};
+
+struct _type {
+    _type() {
+        iden = _type_id_null;
+        name = "";
+    }
+    _type(_type_id i, const char *n) {
+        iden = i;
+        name = n;
+    }
+    
+    _type_id iden;
+    
+    //if $iden is a cls, loc_cls or cpp cls,
+    //use $name specify the class name.
+    const char *name;
+};
+
+//available basic data types:
+static _type Void  (_type_id_null  , "");
+static _type Bool  (_type_id_bool  , "");
+static _type Int8  (_type_id_int8  , "");
+static _type Int16 (_type_id_int16 , "");
+static _type Int32 (_type_id_int32 , "");
+static _type Int64 (_type_id_int64 , "");
+static _type Float (_type_id_float , "");
+static _type Double(_type_id_double, "");
+static _type String(_type_id_string, "");
+static _type Bytes (_type_id_bytes , "");
+
+//use keyword "cls" to declare a class:
+//
+//| cls("FileManager");
+
+struct _cls : _type {
+    _cls(const char *name): _type(_type_id_cls, name) {}
+};
+
+#define cls(name) _cls name(""#name)
+
+//use keyword "def" to define a class that does not need to be implemented:
+//
+//| def("FileManager"); {
+//| }
+//
+//define a class that need to be implemented by native api:
+//
+//| loc def("FileManager"); {
+//| }
+//
+//define a class that need to be implemented by c++:
+//
+//| cpp def("FileManager"); {
+//| }
+
+void _loc();
+void _cpp();
+
+#define loc _loc();
+#define cpp _cpp();
+
+struct _def : _type {
+    _def(const char *name);
+};
+
+#define def(name) _def name(""#name)
+
+//use keyword "func" to define a function:
+//
+//| def(FileManager); {
+//|     func("createDirectory")("path", String) >> Bool;
+//| }
+//
+//use "statical" to specify a function is class function:
+//
+//| def(FileManager); {
+//|     statical func("defaultManager")() >> FileManager;
+//| }
+
+void _statical();
+
+#define statical _statical();
+
+struct _func_back {
+
+    _func_back operator()(
+    );
+    _func_back operator()(
+        const char *name1, _type type1
+    );
+    _func_back operator()(
+        const char *name1, _type type1,
+        const char *name2, _type type2
+    );
+    _func_back operator()(
+        const char *name1, _type type1,
+        const char *name2, _type type2,
+        const char *name3, _type type3
+    );
+    _func_back operator()(
+        const char *name1, _type type1,
+        const char *name2, _type type2,
+        const char *name3, _type type3,
+        const char *name4, _type type4
+    );
+    
+    void operator>>(_type type);
+};
+
+_func_back func(const char *name);
