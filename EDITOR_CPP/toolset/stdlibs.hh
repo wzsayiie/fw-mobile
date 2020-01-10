@@ -16,6 +16,7 @@
 
 //algorithm:
 #include <algorithm>
+#include <cmath>
 
 //using namespace std defaultly.
 using namespace std;
