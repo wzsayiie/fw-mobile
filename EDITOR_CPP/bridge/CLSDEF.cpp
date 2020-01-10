@@ -13,6 +13,12 @@ void lua_cpp_h  (const char *file) {set_lua_cpp_h  (file);}
 void lua_cpp_s  (const char *file) {set_lua_cpp_s  (file);}
 void lua_script (const char *file) {set_lua_script (file);}
 
+void objc_prefix(const char *pref) {set_objc_prefix(pref);}
+void w32_prefix (const char *pref) {set_w32_prefix (pref);}
+void cpp_prefix (const char *pref) {set_cpp_prefix (pref);}
+void lua_prefix (const char *pref) {set_lua_prefix (pref);}
+void lua_load_f (const char *name) {set_lua_load_f (name);}
+
 static bool _loc_flag = false;
 static bool _cpp_flag = false;
 

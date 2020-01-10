@@ -1,16 +1,6 @@
 #pragma once
 
-#include "stdlibs.hh"
-
-# ifdef __GNUC__
-#   define _Printf_format_string_
-#   ifndef __printflike
-#   define __printflike(F, A) __attribute((format(printf, F, A)))
-#   endif
-# else
-#   include <sal.h>
-#   define __printflike(F, A)
-# endif
+#include "strtool.hh"
 
 struct _NEW_LINE {
     void i(_Printf_format_string_ const char *format, ...) __printflike(2, 3);

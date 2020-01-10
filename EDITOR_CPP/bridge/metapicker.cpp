@@ -11,13 +11,18 @@ void set_java_source(const string &dir ) {_meta.java_source = dir ;}
 void set_java_native(const string &file) {_meta.java_native = file;}
 void set_objc_header(const string &file) {_meta.objc_header = file;}
 void set_objc_source(const string &file) {_meta.objc_source = file;}
+void set_objc_prefix(const string &pref) {_meta.objc_prefix = pref;}
 void set_w32_header (const string &file) {_meta.w32_header  = file;}
 void set_w32_source (const string &file) {_meta.w32_source  = file;}
+void set_w32_prefix (const string &pref) {_meta.w32_prefix  = pref;}
 void set_cpp_header (const string &file) {_meta.cpp_header  = file;}
 void set_cpp_source (const string &file) {_meta.cpp_source  = file;}
+void set_cpp_prefix (const string &pref) {_meta.cpp_prefix  = pref;}
 void set_lua_cpp_h  (const string &file) {_meta.lua_cpp_h   = file;}
 void set_lua_cpp_s  (const string &file) {_meta.lua_cpp_s   = file;}
 void set_lua_script (const string &file) {_meta.lua_script  = file;}
+void set_lua_prefix (const string &pref) {_meta.lua_prefix  = pref;}
+void set_lua_load_f (const string &name) {_meta.lua_load_f  = name;}
 
 void append_cls(_type type) {
     cls_desc cls; {

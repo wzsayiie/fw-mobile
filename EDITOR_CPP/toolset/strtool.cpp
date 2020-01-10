@@ -1,4 +1,5 @@
 #include "strtool.hh"
+#include <cstdarg>
 
 //string prefix and suffix:
 
@@ -26,6 +27,32 @@ bool start_with(const string &prefix, const string &str) {
 
 bool end_with(const string &suffix, const string &str) {
     return end_with(suffix, str.c_str(), str.c_str() + str.size());
+}
+
+//format string:
+
+static char _buffer[1024 * 1024];
+
+#define format_args(BUFFER, SIZE, FORMAT)\
+/**/do {\
+/**/    va_list args;\
+/**/    va_start(args, FORMAT);\
+/**/    vsnprintf(BUFFER, SIZE, FORMAT, args);\
+/**/    va_end(args);\
+/**/} while (0)
+
+void append_format(string *str, const char *format, ...) {
+    if (str != nullptr) {
+        format_args(_buffer, sizeof(_buffer), format);
+        str->append(_buffer);
+    }
+}
+
+void assign_format(string *str, const char *format, ...) {
+    if (str != nullptr) {
+        format_args(_buffer, sizeof(_buffer), format);
+        str->assign(_buffer);
+    }
 }
 
 //path string:

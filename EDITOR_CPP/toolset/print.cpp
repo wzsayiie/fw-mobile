@@ -1,4 +1,5 @@
 #include "print.hh"
+#include <cstdarg>
 
 static int _left_n = 0;
 
@@ -12,7 +13,7 @@ static void print(int wanted_n, const char *format, va_list args) {
     }
     
     //print.
-    char text[256] = "\0";
+    static char text[1024 * 1024] = "\0";
     if (format != nullptr) {
         vsnprintf(text, sizeof(text), format, args);
         printf("%s", text);

@@ -19,6 +19,24 @@ void lua_cpp_h  (const char *file);
 void lua_cpp_s  (const char *file);
 void lua_script (const char *file);
 
+//specify prefix of classes:
+//
+//| objc_prefix("CQ");
+//| w32_prefix ("cqw32");
+//| cpp_prefix ("cq");
+//| lua_prefix ("cq");
+//
+void objc_prefix(const char *pref);
+void w32_prefix (const char *pref);
+void cpp_prefix (const char *pref);
+void lua_prefix (const char *pref);
+
+//specify lua script load function for c++:
+//
+//|  lua_load_f("cq_lua_lib_load_foundation");
+//
+void lua_load_f(const char *name);
+
 enum _type_id {
     _type_id_null,
     
