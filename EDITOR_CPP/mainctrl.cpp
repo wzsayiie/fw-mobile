@@ -19,18 +19,15 @@ void init() {
 static
 void run(const char *name) {
     void *sym = find_sym(name);
-    if (sym == nullptr) {
-        return;
+    if (sym != nullptr) {
+        auto func = (void (*)(bool))sym;
+        func(true);
     }
-    
-    auto func = (void (*)(bool))sym;
-    func(true);
-    
-    space(1);
 }
 
 int main() {
     init();
+    space(1);
     
     run("bridge_main");
     run("code_count_main");
@@ -38,4 +35,6 @@ int main() {
     
     run("cpp_main");
     run("objcpp_main");
+    
+    space(1);
 }

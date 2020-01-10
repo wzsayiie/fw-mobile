@@ -17,6 +17,8 @@ static void print(int wanted_n, const char *format, va_list args) {
     if (format != nullptr) {
         vsnprintf(text, sizeof(text), format, args);
         printf("%s", text);
+    } else {
+        text[0] = '\0';
     }
     
     //count '\n' of this output.
