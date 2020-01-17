@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CLSDEF.hh"
+#include "CLSDEFLANG.hh"
 #include "toolset.hh"
 
 //clear the meta infomation.

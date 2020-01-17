@@ -11,7 +11,7 @@
 		B4B19642221EB6C7007D4146 /* codecount.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4B19636221EB6C7007D4146 /* codecount.cpp */; };
 		CE0DD0EE23BE786500A03EB4 /* metapicker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE0DD0EC23BE786500A03EB4 /* metapicker.cpp */; };
 		CE0DD0F023BE7B9F00A03EB4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE0DD0EF23BE7B9F00A03EB4 /* main.cpp */; };
-		CE0DD0F323BE806900A03EB4 /* CLSDEF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE0DD0F123BE806900A03EB4 /* CLSDEF.cpp */; };
+		CE0DD0F323BE806900A03EB4 /* CLSDEFLANG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE0DD0F123BE806900A03EB4 /* CLSDEFLANG.cpp */; };
 		CE1BAAAC234871B900DAD494 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE1BAAAA234871B900DAD494 /* main.mm */; };
 		CE1BAAAD234871B900DAD494 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE1BAAAB234871B900DAD494 /* main.cpp */; };
 		CE1BAAB82348A34B00DAD494 /* _sym_osx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE1BAAB62348A34B00DAD494 /* _sym_osx.cpp */; };
@@ -48,8 +48,8 @@
 		CE0DD0EC23BE786500A03EB4 /* metapicker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = metapicker.cpp; sourceTree = "<group>"; };
 		CE0DD0ED23BE786500A03EB4 /* metapicker.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = metapicker.hh; sourceTree = "<group>"; };
 		CE0DD0EF23BE7B9F00A03EB4 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		CE0DD0F123BE806900A03EB4 /* CLSDEF.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLSDEF.cpp; sourceTree = "<group>"; };
-		CE0DD0F223BE806900A03EB4 /* CLSDEF.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CLSDEF.hh; sourceTree = "<group>"; };
+		CE0DD0F123BE806900A03EB4 /* CLSDEFLANG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLSDEFLANG.cpp; sourceTree = "<group>"; };
+		CE0DD0F223BE806900A03EB4 /* CLSDEFLANG.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CLSDEFLANG.hh; sourceTree = "<group>"; };
 		CE1BAAAA234871B900DAD494 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		CE1BAAAB234871B900DAD494 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		CE1BAAB52348A34B00DAD494 /* _sym.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = _sym.hh; sourceTree = "<group>"; };
@@ -116,8 +116,8 @@
 		CE0DD0EA23BE786500A03EB4 /* bridge */ = {
 			isa = PBXGroup;
 			children = (
-				CE0DD0F123BE806900A03EB4 /* CLSDEF.cpp */,
-				CE0DD0F223BE806900A03EB4 /* CLSDEF.hh */,
+				CE0DD0F123BE806900A03EB4 /* CLSDEFLANG.cpp */,
+				CE0DD0F223BE806900A03EB4 /* CLSDEFLANG.hh */,
 				CE0DD0EC23BE786500A03EB4 /* metapicker.cpp */,
 				CE0DD0ED23BE786500A03EB4 /* metapicker.hh */,
 				CE291B3C23C0B6E30093F1E1 /* gencpp.cpp */,
@@ -243,7 +243,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE0DD0F323BE806900A03EB4 /* CLSDEF.cpp in Sources */,
+				CE0DD0F323BE806900A03EB4 /* CLSDEFLANG.cpp in Sources */,
 				B4B19642221EB6C7007D4146 /* codecount.cpp in Sources */,
 				CE7FD92423AD2E3E00888AFA /* fmtcvt.cpp in Sources */,
 				CE0DD0F023BE7B9F00A03EB4 /* main.cpp in Sources */,

@@ -125,7 +125,7 @@ struct _def : _type {
     _def(const char *name);
 };
 
-#define def(name) _def name(""#name)
+#define def(name) _def name(""#name);
 
 //use keyword "func" to define a function:
 //
@@ -133,15 +133,15 @@ struct _def : _type {
 //|     func("createDirectory")("path", String) >> Bool;
 //| }
 //
-//use "statical" to specify a function is class function:
+//use "statik" to specify a function is class function:
 //
 //| def(FileManager); {
-//|     statical func("defaultManager")() >> FileManager;
+//|     statik func("defaultManager")() >> FileManager;
 //| }
 
-void _statical();
+void _statik();
 
-#define statical _statical();
+#define statik _statik();
 
 struct _func_back {
 

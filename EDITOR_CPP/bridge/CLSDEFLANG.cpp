@@ -1,4 +1,4 @@
-#include "CLSDEF.hh"
+#include "CLSDEFLANG.hh"
 #include "metapicker.hh"
 
 void java_source(const char *dir ) {set_java_source(dir );}
@@ -35,10 +35,10 @@ _def::_def(const char *name) {
     append_cls(*this);
 }
 
-static bool _statical_flag = false;
+static bool _statik_flag = false;
 
-void _statical() {
-    _statical_flag = true;
+void _statik() {
+    _statik_flag = true;
 }
 
 _func_back _func_back::operator()()
@@ -91,9 +91,9 @@ void _func_back::operator>>(_type type) {
 }
 
 _func_back func(const char *name) {
-    if (_statical_flag) {
+    if (_statik_flag) {
         append_cls_func(name);
-        _statical_flag = false;
+        _statik_flag = false;
     } else {
         append_obj_func(name);
     }
