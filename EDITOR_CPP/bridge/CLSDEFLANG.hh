@@ -53,7 +53,7 @@ enum _type_id {
     _type_id_string,
     
     //byte block data.
-    //like vector<int8_t> in c++ and byte[] in java.
+    //like vector<uint8_t> in c++ and byte[] in java.
     _type_id_bytes,
     
     _type_id_cls,

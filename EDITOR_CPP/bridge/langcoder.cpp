@@ -28,52 +28,55 @@ static bool is_word_letter(char c) {
     return false;
 }
 
-static string try_check_text(const char **ptr, const char *end) {
-    if (**ptr == '$') {
-        return "";
+static int check_text(const char *ptr, const char *end, string *text) {
+    if (*ptr == '$') {
+        return 0;
     }
     
-    string text;
-    while (*ptr < end && **ptr != '$') {
-        text.append(1, **ptr);
-        *ptr += 1;
+    while (ptr < end && *ptr != '$') {
+        text->append(1, *ptr);
+        ptr += 1;
     }
     
-    return text;
+    return (int)text->size();
 }
 
-static string try_check_flag(const char **ptr, const char *end, bool *loop) {
-    if (**ptr != '$') {
-        return "";
+static int check_flag(const char *ptr, const char *end, string *flag) {
+    if (*ptr != '$') {
+        return 0;
     }
     
-    string flag;
+    const char *begin = ptr;
     
     //flag is like '$(xxx)'.
-    if (*ptr + 2 < end && (*ptr)[1] == '(') {
-        *ptr += 2; //skip "$(".
+    if (ptr + 2 < end && ptr[1] == '(') {
+        ptr += 2; //skip "$(".
         
-        while (*ptr < end && **ptr != ')') {
-            flag.append(1, **ptr);
-            *ptr += 1;
+        while (ptr < end && *ptr != ')') {
+            flag->append(1, *ptr);
+            ptr += 1;
         }
-        if (*ptr < end && **ptr == ')') {
+        if (ptr < end && *ptr == ')') {
             //skip ')'.
-            *ptr += 1;
+            ptr += 1;
         }
     }
     //flag is like '$xxx'.
     else {
-        *ptr += 1; //skip "$".
+        ptr += 1; //skip "$".
         
-        while (*ptr < end && is_word_letter(**ptr)) {
-            flag.append(1, **ptr);
-            *ptr += 1;
+        while (ptr < end && is_word_letter(*ptr)) {
+            flag->append(1, *ptr);
+            ptr += 1;
         }
     }
     
-    *loop = start_with("loop_", flag);
-    return flag;
+    //ignore a newline.
+    if (ptr < end && *ptr == '\n') {
+        ptr += 1;
+    }
+    
+    return (int)(ptr - begin);
 }
 
 //==== ==== ==== ==== ==== read block ==== ==== ==== ==== ====
@@ -81,9 +84,12 @@ static string try_check_flag(const char **ptr, const char *end, bool *loop) {
 static shared_ptr<a_block> read_block(const char **ptr, const char *end);
 
 static shared_ptr<text_block> try_read_text(const char **ptr, const char *end) {
-    string text = try_check_text(ptr, end);
+    string text;
+    int len = check_text(*ptr, end, &text);
     
-    if (!text.empty()) {
+    if (len > 0) {
+        *ptr += len;
+        
         auto block = make_shared<text_block>();
         block->text = text;
         return block;
@@ -93,10 +99,12 @@ static shared_ptr<text_block> try_read_text(const char **ptr, const char *end) {
 }
 
 static shared_ptr<flag_block> try_read_flag(const char **ptr, const char *end) {
-    bool loop = false;
-    string flag = try_check_flag(ptr, end, &loop);
+    string flag;
+    int len = check_flag(*ptr, end, &flag);
     
-    if (!flag.empty() && !loop) {
+    if (len > 0 && !start_with("loop_", flag)) {
+        *ptr += len;
+        
         auto block = make_shared<flag_block>();
         block->flag = flag;
         return block;
@@ -106,18 +114,30 @@ static shared_ptr<flag_block> try_read_flag(const char **ptr, const char *end) {
 }
 
 static shared_ptr<loop_block> try_read_loop(const char **ptr, const char *end) {
-    bool loop = false;
-    string flag = try_check_flag(ptr, end, &loop);
+    string flag;
+    int len = check_flag(*ptr, end, &flag);
     
-    if (flag.empty() || !loop) {
+    //lopp struct starts with "loop_xxx".
+    if (len <= 0 || !start_with("loop_", flag)) {
         return nullptr;
     }
+    
+    *ptr += len;
     
     auto block = make_shared<loop_block>();
     block->flag = flag;
     
     while (*ptr < end) {
         shared_ptr<a_block> kid = read_block(ptr, end);
+        
+        //loop structure ends with "end".
+        if (kid->type() == type_flag) {
+            auto a = static_pointer_cast<flag_block>(kid);
+            if (a->flag == "end") {
+                break;
+            }
+        }
+        
         block->kids.push_back(kid);
     }
     
@@ -126,7 +146,7 @@ static shared_ptr<loop_block> try_read_loop(const char **ptr, const char *end) {
 
 static shared_ptr<a_block> read_block(const char **ptr, const char *end) {
     
-    shared_ptr<a_block> block = try_read_text(ptr, end);
+    shared_ptr<a_block> block = try_read_loop(ptr, end);
     if (block != nullptr) {
         return block;
     }
@@ -136,7 +156,7 @@ static shared_ptr<a_block> read_block(const char **ptr, const char *end) {
         return block;
     }
     
-    return try_read_loop(ptr, end);
+    return try_read_text(ptr, end);
 }
 
 //==== ==== ==== ==== ==== build string ==== ==== ==== ==== ====
@@ -157,13 +177,15 @@ static void string_flag(lang_coder *coder, shared_ptr<flag_block> block, string 
 }
 
 static void string_loop(lang_coder *coder, shared_ptr<loop_block> block, string *add) {
-    bool again = coder->on_loop(block->flag, nullptr);
-    if (!again) {
-        return;
-    }
-    
-    for (auto it : block->kids) {
-        string_block(coder, it, add);
+    while (true) {
+        bool again = coder->on_loop(block->flag, nullptr);
+        if (!again) {
+            break;
+        }
+        
+        for (auto it : block->kids) {
+            string_block(coder, it, add);
+        }
     }
 }
 

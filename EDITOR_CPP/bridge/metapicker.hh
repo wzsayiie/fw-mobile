@@ -4,7 +4,7 @@
 #include "toolset.hh"
 
 //clear the meta infomation.
-void meta_reset();
+void reset_meta();
 
 //set location of generated files.
 void set_java_source(const string &dir );

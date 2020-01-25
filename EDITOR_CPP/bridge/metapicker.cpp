@@ -3,7 +3,7 @@
 static meta_info _meta;
 static bool _cur_cls_func = false;
 
-void meta_reset() {
+void reset_meta() {
     _meta = meta_info();
 }
 

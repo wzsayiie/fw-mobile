@@ -21,13 +21,14 @@
 		CE21BEAE2208620300AED03F /* fsystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEAB2208620300AED03F /* fsystem.cpp */; };
 		CE21BEAF2208620300AED03F /* _fsys_osx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEAC2208620300AED03F /* _fsys_osx.cpp */; };
 		CE21BEB2220868B900AED03F /* print.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEB0220868B900AED03F /* print.cpp */; };
-		CE291B3D23C0B6E30093F1E1 /* gencpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE291B3C23C0B6E30093F1E1 /* gencpp.cpp */; };
+		CE291B3D23C0B6E30093F1E1 /* cppgen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE291B3C23C0B6E30093F1E1 /* cppgen.cpp */; };
 		CE2B47E62348D6DB001816D8 /* _sym_win32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE2B47E52348D6DB001816D8 /* _sym_win32.cpp */; };
 		CE4B65D32347913F00C4FB1E /* _fsys_win32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4B65D22347913F00C4FB1E /* _fsys_win32.cpp */; };
 		CE7FD92423AD2E3E00888AFA /* fmtcvt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE7FD92223AD2E3E00888AFA /* fmtcvt.cpp */; };
 		CE7FD92523AD2E3E00888AFA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE7FD92323AD2E3E00888AFA /* main.cpp */; };
 		CE8168AA23ADECB700A5F690 /* strtool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE8168A823ADECB700A5F690 /* strtool.cpp */; };
 		CE844339220D5874008D3F79 /* unicode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE844337220D5874008D3F79 /* unicode.cpp */; };
+		CECADE6E23D6D73F00486E76 /* objcgen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CECADE6C23D6D73F00486E76 /* objcgen.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -66,8 +67,8 @@
 		CE21BEAD2208620300AED03F /* _fsys.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = _fsys.hh; sourceTree = "<group>"; };
 		CE21BEB0220868B900AED03F /* print.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = print.cpp; sourceTree = "<group>"; };
 		CE21BEB1220868B900AED03F /* print.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = print.hh; sourceTree = "<group>"; };
-		CE291B3B23C0B6E30093F1E1 /* gencpp.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = gencpp.hh; sourceTree = "<group>"; };
-		CE291B3C23C0B6E30093F1E1 /* gencpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gencpp.cpp; sourceTree = "<group>"; };
+		CE291B3B23C0B6E30093F1E1 /* cppgen.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cppgen.hh; sourceTree = "<group>"; };
+		CE291B3C23C0B6E30093F1E1 /* cppgen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cppgen.cpp; sourceTree = "<group>"; };
 		CE2B47E52348D6DB001816D8 /* _sym_win32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _sym_win32.cpp; sourceTree = "<group>"; };
 		CE2BF73121BFF1D10013614A /* EDITOR_CPP */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EDITOR_CPP; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE4B65D22347913F00C4FB1E /* _fsys_win32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _fsys_win32.cpp; sourceTree = "<group>"; };
@@ -79,6 +80,10 @@
 		CE8168AB23ADF30000A5F690 /* fsystem.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fsystem.hh; sourceTree = "<group>"; };
 		CE844337220D5874008D3F79 /* unicode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = unicode.cpp; sourceTree = "<group>"; };
 		CE844338220D5874008D3F79 /* unicode.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = unicode.hh; sourceTree = "<group>"; };
+		CECADE6A23D6D73E00486E76 /* cppform.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cppform.hh; sourceTree = "<group>"; };
+		CECADE6B23D6D73F00486E76 /* objcform.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = objcform.hh; sourceTree = "<group>"; };
+		CECADE6C23D6D73F00486E76 /* objcgen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = objcgen.cpp; sourceTree = "<group>"; };
+		CECADE6D23D6D73F00486E76 /* objcgen.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = objcgen.hh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,13 +126,17 @@
 			children = (
 				CE0DD0F123BE806900A03EB4 /* CLSDEFLANG.cpp */,
 				CE0DD0F223BE806900A03EB4 /* CLSDEFLANG.hh */,
-				CE291B3C23C0B6E30093F1E1 /* gencpp.cpp */,
-				CE291B3B23C0B6E30093F1E1 /* gencpp.hh */,
+				CE291B3C23C0B6E30093F1E1 /* cppgen.cpp */,
+				CE291B3B23C0B6E30093F1E1 /* cppgen.hh */,
+				CECADE6A23D6D73E00486E76 /* cppform.hh */,
 				CE1D5C0F23D5B98D00F97D46 /* langcoder.cpp */,
 				CE1D5C1023D5B98D00F97D46 /* langcoder.hh */,
 				CE0DD0EF23BE7B9F00A03EB4 /* main.cpp */,
 				CE0DD0EC23BE786500A03EB4 /* metapicker.cpp */,
 				CE0DD0ED23BE786500A03EB4 /* metapicker.hh */,
+				CECADE6C23D6D73F00486E76 /* objcgen.cpp */,
+				CECADE6D23D6D73F00486E76 /* objcgen.hh */,
+				CECADE6B23D6D73F00486E76 /* objcform.hh */,
 			);
 			path = bridge;
 			sourceTree = "<group>";
@@ -250,6 +259,7 @@
 			files = (
 				CE0DD0F323BE806900A03EB4 /* CLSDEFLANG.cpp in Sources */,
 				B4B19642221EB6C7007D4146 /* codecount.cpp in Sources */,
+				CECADE6E23D6D73F00486E76 /* objcgen.cpp in Sources */,
 				CE7FD92423AD2E3E00888AFA /* fmtcvt.cpp in Sources */,
 				CE0DD0F023BE7B9F00A03EB4 /* main.cpp in Sources */,
 				CE21BEAF2208620300AED03F /* _fsys_osx.cpp in Sources */,
@@ -261,7 +271,7 @@
 				CE1BAAAC234871B900DAD494 /* main.mm in Sources */,
 				CE844339220D5874008D3F79 /* unicode.cpp in Sources */,
 				CE7FD92523AD2E3E00888AFA /* main.cpp in Sources */,
-				CE291B3D23C0B6E30093F1E1 /* gencpp.cpp in Sources */,
+				CE291B3D23C0B6E30093F1E1 /* cppgen.cpp in Sources */,
 				CE2B47E62348D6DB001816D8 /* _sym_win32.cpp in Sources */,
 				CE1BAAB82348A34B00DAD494 /* _sym_osx.cpp in Sources */,
 				CE21BEAE2208620300AED03F /* fsystem.cpp in Sources */,
