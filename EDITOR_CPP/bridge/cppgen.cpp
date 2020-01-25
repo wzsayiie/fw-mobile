@@ -59,6 +59,7 @@ struct cpp_coder : lang_coder {
     virtual void on_flag_header(string *text);
     virtual void on_flag_need  (string *text);
     virtual void on_flag_class (string *text);
+    virtual void on_flag_cppcls(string *text);
     virtual void on_flag_ret   (string *text);
     virtual void on_flag_func  (string *text);
     virtual void on_flag_params(string *text);
@@ -135,6 +136,7 @@ bool cpp_coder::on_flag(const string &name, string *text) {
     /**/ if (name == "header") {on_flag_header(text);}
     else if (name == "need"  ) {on_flag_need  (text);}
     else if (name == "class" ) {on_flag_class (text);}
+    else if (name == "cppcls") {on_flag_cppcls(text);}
     else if (name == "ret"   ) {on_flag_ret   (text);}
     else if (name == "func"  ) {on_flag_func  (text);}
     else if (name == "params") {on_flag_params(text);}
@@ -152,6 +154,10 @@ void cpp_coder::on_flag_need(string *text) {
 
 void cpp_coder::on_flag_class(string *text) {
     *text = _cls_list->at(_cls_iter).type.name;
+}
+
+void cpp_coder::on_flag_cppcls(string *text) {
+    *text = _meta.cpp_prefix + _cls_list->at(_cls_iter).type.name;
 }
 
 void cpp_coder::on_flag_ret(string *text) {

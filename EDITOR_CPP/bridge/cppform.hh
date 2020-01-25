@@ -7,7 +7,7 @@ const char *intf_header = R"OO(
 #include "cqbridgeobject.hh"
 
 $loop_class
-cq_declare(cq$class);
+cq_declare($cppcls);
 $end
 
 $need
@@ -18,7 +18,7 @@ $end
 $end
 
 $loop_class
-cq_class(cq$class, cqBridgeObject) {
+cq_class($cppcls, cqBridgeObject) {
 
 $loop_static
     static $ret $func($params);
