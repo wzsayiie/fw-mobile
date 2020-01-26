@@ -13,17 +13,17 @@ $end
 $need
 $loop_class
 $loop_static
-CQ_C_LINK $(ret)_objc_$(class)_$func($params);
+CQ_C_LINK $(cret)_objc_$(class)_$cfunc($cparams);
 $end
 $end
 
 $loop_class
 @interface $objccls : CQBridgeObject
 $loop_static
-+ ($ret)$memfunc;
++ ($memret)$memfunc;
 $end
 $loop_virtual
-- ($ret)$memfunc;
+- ($memret)$memfunc;
 $end
 @end
 

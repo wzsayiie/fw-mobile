@@ -60,9 +60,10 @@ struct objc_coder : lang_coder {
     virtual void on_flag_need   (string *text);
     virtual void on_flag_class  (string *text);
     virtual void on_flag_objccls(string *text);
-    virtual void on_flag_ret    (string *text);
-    virtual void on_flag_func   (string *text);
-    virtual void on_flag_params (string *text);
+    virtual void on_flag_cret   (string *text);
+    virtual void on_flag_cfunc  (string *text);
+    virtual void on_flag_cparams(string *text);
+    virtual void on_flag_memret (string *text);
     virtual void on_flag_memfunc(string *text);
     
     virtual void set_meta(const meta_info &meta);
@@ -138,9 +139,10 @@ bool objc_coder::on_flag(const string &name, string *text) {
     else if (name == "need"   ) {on_flag_need   (text);}
     else if (name == "class"  ) {on_flag_class  (text);}
     else if (name == "objccls") {on_flag_objccls(text);}
-    else if (name == "ret"    ) {on_flag_ret    (text);}
-    else if (name == "func"   ) {on_flag_func   (text);}
-    else if (name == "params" ) {on_flag_params (text);}
+    else if (name == "cret"   ) {on_flag_cret   (text);}
+    else if (name == "cfunc"  ) {on_flag_cfunc  (text);}
+    else if (name == "cparams") {on_flag_cparams(text);}
+    else if (name == "memret" ) {on_flag_memret (text);}
     else if (name == "memfunc") {on_flag_memfunc(text);}
     
     return true;
@@ -162,17 +164,17 @@ void objc_coder::on_flag_objccls(string *text) {
     *text = _meta.objc_prefix + _cls_list->at(_cls_iter).type.name;
 }
 
-void objc_coder::on_flag_ret(string *text) {
+void objc_coder::on_flag_cret(string *text) {
     _type type = _func_list->at(_func_iter).retv;
     
-    *text = type_string_n(_meta.objc_prefix, type);
+    *text = type_string_s(_meta.objc_prefix, type);
 }
 
-void objc_coder::on_flag_func(string *text) {
+void objc_coder::on_flag_cfunc(string *text) {
     *text = _func_list->at(_func_iter).name;
 }
 
-void objc_coder::on_flag_params(string *text) {
+void objc_coder::on_flag_cparams(string *text) {
     auto &params = _func_list->at(_func_iter).params;
     
     for (auto it = params.begin(); it != params.end(); ++it) {
@@ -182,6 +184,12 @@ void objc_coder::on_flag_params(string *text) {
         text->append(type_string_s(_meta.objc_prefix, it->type));
         text->append(it->name);
     }
+}
+
+void objc_coder::on_flag_memret(string *text) {
+    _type type = _func_list->at(_func_iter).retv;
+    
+    *text = type_string_n(_meta.objc_prefix, type);
 }
 
 void objc_coder::on_flag_memfunc(string *text) {

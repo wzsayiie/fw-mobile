@@ -13,7 +13,7 @@ $end
 $need
 $loop_class
 $loop_static
-$ret _bridge_$(class)_$func($params);
+$ret _cpp_$(class)_$func($params);
 $end
 $end
 
