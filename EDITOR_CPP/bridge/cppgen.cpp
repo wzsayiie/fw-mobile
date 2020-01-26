@@ -5,21 +5,19 @@
 
 static string ret_type_string(const std::string &pre, _type type) {
     switch (type.iden) {
-        case _type_id_null   : return "void"   ;
-        case _type_id_bool   : return "bool"   ;
-        case _type_id_int8   : return "int8_t" ;
-        case _type_id_int16  : return "int16_t";
-        case _type_id_int32  : return "int32_t";
-        case _type_id_int64  : return "int64_t";
-        case _type_id_float  : return "float"  ;
-        case _type_id_double : return "double" ;
+        case _type_id_null  : return "void"   ;
+        case _type_id_bool  : return "bool"   ;
+        case _type_id_int8  : return "int8_t" ;
+        case _type_id_int16 : return "int16_t";
+        case _type_id_int32 : return "int32_t";
+        case _type_id_int64 : return "int64_t";
+        case _type_id_float : return "float"  ;
+        case _type_id_double: return "double" ;
         
-        case _type_id_string : return "std::string";
-        case _type_id_bytes  : return "std::vector<uint8_t>";
+        case _type_id_string: return "std::string";
+        case _type_id_bytes : return "std::vector<uint8_t>";
         
-        case _type_id_cls    : return pre + type.name + "Ref";
-        case _type_id_loc_cls: return pre + type.name + "Ref";
-        case _type_id_cpp_cls: return pre + type.name + "Ref";
+        case _type_id_cls   : return pre + type.name + "Ref";
         
         default: return "";
     }
@@ -27,21 +25,19 @@ static string ret_type_string(const std::string &pre, _type type) {
 
 static string param_type_string(const std::string &pre, _type type) {
     switch (type.iden) {
-        case _type_id_null   : return "void "   ;
-        case _type_id_bool   : return "bool "   ;
-        case _type_id_int8   : return "int8_t " ;
-        case _type_id_int16  : return "int16_t ";
-        case _type_id_int32  : return "int32_t ";
-        case _type_id_int64  : return "int64_t ";
-        case _type_id_float  : return "float "  ;
-        case _type_id_double : return "double " ;
+        case _type_id_null  : return "void "   ;
+        case _type_id_bool  : return "bool "   ;
+        case _type_id_int8  : return "int8_t " ;
+        case _type_id_int16 : return "int16_t ";
+        case _type_id_int32 : return "int32_t ";
+        case _type_id_int64 : return "int64_t ";
+        case _type_id_float : return "float "  ;
+        case _type_id_double: return "double " ;
         
-        case _type_id_string : return "const std::string &";
-        case _type_id_bytes  : return "const std::vector<uint8_t> &";
+        case _type_id_string: return "const std::string &";
+        case _type_id_bytes : return "const std::vector<uint8_t> &";
         
-        case _type_id_cls    : return pre + type.name + "Ref ";
-        case _type_id_loc_cls: return pre + type.name + "Ref ";
-        case _type_id_cpp_cls: return pre + type.name + "Ref ";
+        case _type_id_cls   : return pre + type.name + "Ref ";
         
         default: return "";
     }
@@ -149,7 +145,9 @@ void cpp_coder::on_flag_header(string *text) {
 }
 
 void cpp_coder::on_flag_need(string *text) {
-    *text = "//NOTE: developer need to implement these functions:\n";
+    if (_meta.type == cpp_lib) {
+        *text = "//NOTE: developer need to implement these functions:\n";
+    }
 }
 
 void cpp_coder::on_flag_class(string *text) {

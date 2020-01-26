@@ -7,6 +7,10 @@ void reset_meta() {
     _meta = meta_info();
 }
 
+void set_lib_type(lib_type type) {
+    _meta.type = type;
+}
+
 void set_java_source(const string &dir ) {_meta.java_source = dir ;}
 void set_java_native(const string &file) {_meta.java_native = file;}
 void set_objc_header(const string &file) {_meta.objc_header = file;}

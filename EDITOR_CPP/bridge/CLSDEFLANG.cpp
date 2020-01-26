@@ -1,6 +1,9 @@
 #include "CLSDEFLANG.hh"
 #include "metapicker.hh"
 
+void def_local_lib() {set_lib_type(local_lib);}
+void def_cpp_lib  () {set_lib_type(cpp_lib  );}
+
 void java_source(const char *dir ) {set_java_source(dir );}
 void java_native(const char *file) {set_java_native(file);}
 void objc_header(const char *file) {set_objc_header(file);}
@@ -19,17 +22,8 @@ void cpp_prefix (const char *pref) {set_cpp_prefix (pref);}
 void lua_prefix (const char *pref) {set_lua_prefix (pref);}
 void lua_load_f (const char *name) {set_lua_load_f (name);}
 
-static bool _loc_flag = false;
-static bool _cpp_flag = false;
-
-void _loc() {_loc_flag = true;}
-void _cpp() {_cpp_flag = true;}
-
 _def::_def(const char *name) {
-    /**/ if (_loc_flag) {this->iden = _type_id_loc_cls; _loc_flag = false;}
-    else if (_cpp_flag) {this->iden = _type_id_cpp_cls; _cpp_flag = false;}
-    else /*..........*/ {this->iden = _type_id_cls    ;}
-    
+    this->iden = _type_id_cls;
     this->name = name;
     
     append_cls(*this);
@@ -46,15 +40,15 @@ _func_back _func_back::operator()()
     return *this;
 }
 _func_back _func_back::operator()(
-    const char * name1, _type type1)
+    const char *name1, _type type1)
 {
     append_param(type1, name1);
     
     return *this;
 }
 _func_back _func_back::operator()(
-    const char * name1, _type type1,
-    const char * name2, _type type2)
+    const char *name1, _type type1,
+    const char *name2, _type type2)
 {
     append_param(type1, name1);
     append_param(type2, name2);
@@ -62,9 +56,9 @@ _func_back _func_back::operator()(
     return *this;
 }
 _func_back _func_back::operator()(
-    const char * name1, _type type1,
-    const char * name2, _type type2,
-    const char * name3, _type type3)
+    const char *name1, _type type1,
+    const char *name2, _type type2,
+    const char *name3, _type type3)
 {
     append_param(type1, name1);
     append_param(type2, name2);
@@ -73,10 +67,10 @@ _func_back _func_back::operator()(
     return *this;
 }
 _func_back _func_back::operator()(
-    const char * name1, _type type1,
-    const char * name2, _type type2,
-    const char * name3, _type type3,
-    const char * name4, _type type4)
+    const char *name1, _type type1,
+    const char *name2, _type type2,
+    const char *name3, _type type3,
+    const char *name4, _type type4)
 {
     append_param(type1, name1);
     append_param(type2, name2);

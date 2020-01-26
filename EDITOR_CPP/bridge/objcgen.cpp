@@ -18,21 +18,19 @@ static string initial_capital(const string &word) {
 static string type_string(const string &pre, _type type, bool gap) {
     string ret;
     switch (type.iden) {
-        case _type_id_null   : ret = "void"   ; break;
-        case _type_id_bool   : ret = "BOOL"   ; break;
-        case _type_id_int8   : ret = "int8_t" ; break;
-        case _type_id_int16  : ret = "int16_t"; break;
-        case _type_id_int32  : ret = "int32_t"; break;
-        case _type_id_int64  : ret = "int64_t"; break;
-        case _type_id_float  : ret = "float"  ; break;
-        case _type_id_double : ret = "double" ; break;
+        case _type_id_null  : ret = "void"   ; break;
+        case _type_id_bool  : ret = "BOOL"   ; break;
+        case _type_id_int8  : ret = "int8_t" ; break;
+        case _type_id_int16 : ret = "int16_t"; break;
+        case _type_id_int32 : ret = "int32_t"; break;
+        case _type_id_int64 : ret = "int64_t"; break;
+        case _type_id_float : ret = "float"  ; break;
+        case _type_id_double: ret = "double" ; break;
         
-        case _type_id_string : ret = "NSString *"; break;
-        case _type_id_bytes  : ret = "NSMutableString *"; break;
+        case _type_id_string: ret = "NSString *"; break;
+        case _type_id_bytes : ret = "NSMutableString *"; break;
         
-        case _type_id_cls    : ret = pre + type.name + " *"; break;
-        case _type_id_loc_cls: ret = pre + type.name + " *"; break;
-        case _type_id_cpp_cls: ret = pre + type.name + " *"; break;
+        case _type_id_cls   : ret = pre + type.name + " *"; break;
         
         default:;
     }
@@ -153,7 +151,9 @@ void objc_coder::on_flag_header(string *text) {
 }
 
 void objc_coder::on_flag_need(string *text) {
-    *text = "//NOTE: developer need to implement these functions:\n";
+    if (_meta.type == local_lib) {
+        *text = "//NOTE: developer need to implement these functions:\n";
+    }
 }
 
 void objc_coder::on_flag_class(string *text) {

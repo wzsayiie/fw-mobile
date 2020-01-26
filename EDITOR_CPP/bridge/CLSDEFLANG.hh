@@ -2,6 +2,13 @@
 
 //CLASS DEFINISION LANGUAGE.
 
+//specify library type:
+//
+//| def_local_lib();
+//
+void def_local_lib();
+void def_cpp_lib();
+
 //specify location of generated files:
 //
 //| cpp_header("foundation.hh");
@@ -57,8 +64,6 @@ enum _type_id {
     _type_id_bytes,
     
     _type_id_cls,
-    _type_id_loc_cls,
-    _type_id_cpp_cls,
 };
 
 struct _type {
@@ -73,8 +78,7 @@ struct _type {
     
     _type_id iden;
     
-    //if $iden is a cls, loc_cls or cpp cls,
-    //use $name specify the class name.
+    //if $iden is a cls, use $name specify the class name.
     const char *name;
 };
 
@@ -93,7 +97,7 @@ static _type Bytes (_type_id_bytes , "");
 //use keyword "cls" to declare a class:
 //
 //| cls("FileManager");
-
+//
 struct _cls : _type {
     _cls(const char *name): _type(_type_id_cls, name) {}
 };
@@ -102,25 +106,9 @@ struct _cls : _type {
 
 //use keyword "def" to define a class that does not need to be implemented:
 //
-//| def("FileManager"); {
+//| def("FileManager") {
 //| }
 //
-//define a class that need to be implemented by native api:
-//
-//| loc def("FileManager"); {
-//| }
-//
-//define a class that need to be implemented by c++:
-//
-//| cpp def("FileManager"); {
-//| }
-
-void _loc();
-void _cpp();
-
-#define loc _loc();
-#define cpp _cpp();
-
 struct _def : _type {
     _def(const char *name);
 };

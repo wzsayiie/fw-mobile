@@ -6,6 +6,12 @@
 //clear the meta infomation.
 void reset_meta();
 
+enum lib_type {
+    local_lib,
+    cpp_lib,
+};
+void set_lib_type(lib_type type);
+
 //set location of generated files.
 void set_java_source(const string &dir );
 void set_java_native(const string &file);
@@ -54,6 +60,9 @@ void append_retv(_type type);
 //get the meta information:
 
 struct meta_info {
+    //local library is default.
+    lib_type type = local_lib;
+    
     string java_source;
     string java_native;
 
