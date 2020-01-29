@@ -13,18 +13,17 @@ static void print(int wanted_n, const char *format, va_list args) {
     }
     
     //print.
-    static char text[1024 * 1024] = "\0";
     if (format != nullptr) {
-        vsnprintf(text, sizeof(text), format, args);
-        printf("%s", text);
+        vsnprintf(BYTE_BUF, BYTE_BUF_SIZE, format, args);
+        printf("%s", BYTE_BUF);
     } else {
-        text[0] = '\0';
+        BYTE_BUF[0] = '\0';
     }
     
     //count '\n' of this output.
-    int len = (int)strlen(text);
+    int len = (int)strlen(BYTE_BUF);
     int count = 0;
-    for (const char *it = text + len - 1; it >= text; --it) {
+    for (const char *it = BYTE_BUF + len - 1; it >= BYTE_BUF; --it) {
         if (*it == '\n') {
             count += 1;
         } else {
@@ -32,7 +31,7 @@ static void print(int wanted_n, const char *format, va_list args) {
         }
     }
     if (count == len) {
-        //all chars are '\n'
+        //all chars are '\n'.
         _left_n += count;
     } else {
         _left_n = count;
