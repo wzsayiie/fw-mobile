@@ -1,37 +1,33 @@
 #include "strtool.hh"
 #include <cstdarg>
 
-//string prefix and suffix:
+char BYTE_BUF[BYTE_BUF_SIZE];
 
-bool start_with(const string &prefix, const char *ptr, const char *end) {
-    size_t size = prefix.size();
+bool start_with(const string &word, const char *ptr, const char *end) {
+    size_t size = word.size();
     if (size <= end - ptr) {
-        return strncmp(prefix.c_str(), ptr, size) == 0;
+        return strncmp(word.c_str(), ptr, size) == 0;
     } else {
         return false;
     }
 }
 
-bool end_with(const string &suffix, const char *ptr, const char *end) {
-    size_t size = suffix.size();
+bool end_with(const string &word, const char *ptr, const char *end) {
+    size_t size = word.size();
     if (size <= end - ptr) {
-        return strncmp(suffix.c_str(), end - size, size) == 0;
+        return strncmp(word.c_str(), end - size, size) == 0;
     } else {
         return false;
     }
 }
 
-bool start_with(const string &prefix, const string &str) {
-    return start_with(prefix, str.c_str(), str.c_str() + str.size());
+bool start_with(const string &word, const string &str) {
+    return start_with(word, str.c_str(), str.c_str() + str.size());
 }
 
-bool end_with(const string &suffix, const string &str) {
-    return end_with(suffix, str.c_str(), str.c_str() + str.size());
+bool end_with(const string &word, const string &str) {
+    return end_with(word, str.c_str(), str.c_str() + str.size());
 }
-
-//format string:
-
-static char _buffer[1024 * 1024];
 
 #define format_args(BUFFER, SIZE, FORMAT)\
 /**/do {\
@@ -43,27 +39,25 @@ static char _buffer[1024 * 1024];
 
 void append_format(string *str, const char *format, ...) {
     if (str != nullptr) {
-        format_args(_buffer, sizeof(_buffer), format);
-        str->append(_buffer);
+        format_args(BYTE_BUF, BYTE_BUF_SIZE, format);
+        str->append(BYTE_BUF);
     }
 }
 
 void assign_format(string *str, const char *format, ...) {
     if (str != nullptr) {
-        format_args(_buffer, sizeof(_buffer), format);
-        str->assign(_buffer);
+        format_args(BYTE_BUF, BYTE_BUF_SIZE, format);
+        str->assign(BYTE_BUF);
     }
 }
 
-//path string:
-
-static string read_item(const char **ptr) {
-    while (**ptr == *path_div) {
+static string read_path_item(const char **ptr) {
+    while (**ptr == *PATH_SEP) {
         *ptr += 1;
     }
     
     string item;
-    while (**ptr != *path_div && **ptr != '\0') {
+    while (**ptr != *PATH_SEP && **ptr != '\0') {
         item.append(1, **ptr);
         *ptr += 1;
     }
@@ -71,10 +65,11 @@ static string read_item(const char **ptr) {
 }
 
 vector<string> split_path(const string &path) {
-    vector<string> items;
     const char *ptr = path.c_str();
+    
+    vector<string> items;
     while (true) {
-        string it = read_item(&ptr);
+        string it = read_path_item(&ptr);
         if (it.empty()) {
             break;
         }
@@ -83,48 +78,62 @@ vector<string> split_path(const string &path) {
             if (items.empty()) {
                 items.push_back(".");
             }
+            
         } else if (it == "..") {
-            if (!items.empty() && items.back() != "." && items.back() != "..") {
+            if (items.size() > 0
+             && items.back() != ".."
+             && items.back() != ".")
+            {
                 items.pop_back();
-            } else {
+            }
+            else
+            {
                 items.push_back("..");
             }
+            
         } else {
             items.push_back(it);
         }
     }
     
-    //is root path?
-    if (!path.empty() && path[0] == *path_div) {
-        if (!items.empty()) {
-            items[0] = path_div + items[0];
-        } else {
-            items.push_back(path_div);
+    //is the path start with root?
+    IF_ON_POSIX({
+        if (!path.empty() && path[0] == '/') {
+            items.insert(items.begin(), "/");
         }
-    }
+    });
     
     return items;
 }
 
-string parent_dir_of(const string &path) {
-    vector<string> items = split_path(path);
-    string dir;
-    for (auto it = items.begin(); it < items.end() - 1; ++it) {
-        if (!dir.empty()) {
-            dir.append(path_div);
-        }
-        dir.append(*it);
+static const char *last_item_of(const string &path) {
+    const char *head = path.c_str();
+    const char *ptr  = path.c_str() + path.size() - 1;
+    
+    //skip the separators at end.
+    while (ptr > head && *ptr == *PATH_SEP) {
+        ptr -= 1;
     }
-    return dir;
+    
+    //find the last separator.
+    while (ptr > head && ptr[-1] != *PATH_SEP) {
+        ptr -= 1;
+    }
+    
+    return ptr;
+}
+
+string parent_dir_of(const string &path) {
+    const char *item = last_item_of(path);
+    
+    //NOTE: keep the separator at parent's tail. parent of "/usr" is "/".
+    return string(path.c_str(), item);
 }
 
 string file_name_of(const string &path) {
-    vector<string> items = split_path(path);
-    if (!items.empty()) {
-        return items.back();
-    } else {
-        return "";
-    }
+    const char *item = last_item_of(path);
+    
+    return string(item);
 }
 
 string join_path(const string &dir, const string &item) {
@@ -136,30 +145,22 @@ string join_path(const string &dir, const string &item) {
         return dir;
     }
     
-    string gen = dir;
-    if (gen.back() != *path_div) {
-        gen.append(path_div);
+    string ret = dir;
+    if (ret.back() != *PATH_SEP) {
+        ret.append(PATH_SEP);
     }
-    gen.append(item);
+    ret.append(item);
     
-    return gen;
+    return ret;
 }
 
-//code source extension:
-
 bool is_src_file(const string &name) {
-    static const vector<string> options = {
-        ".h"   , ".hh" , ".hpp",
-        ".cc"  , ".cxx", ".cpp",
-        ".m"   , ".mm" ,
-        ".cs"  ,
-        ".java",
-        ".lua" ,
-    };
-    for (auto &it : options) {
-        if (end_with(it, name)) {
+    const char **ext = SRC_FILE_EXT;
+    for (; *ext != nullptr; ++ext) {
+        if (name.size() > strlen(*ext) && end_with(*ext, name)) {
             return true;
         }
     }
+    
     return false;
 }
