@@ -14,11 +14,11 @@
 		CE0DD0F323BE806900A03EB4 /* CLSDEFLANG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE0DD0F123BE806900A03EB4 /* CLSDEFLANG.cpp */; };
 		CE1BAAAC234871B900DAD494 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE1BAAAA234871B900DAD494 /* main.mm */; };
 		CE1BAAAD234871B900DAD494 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE1BAAAB234871B900DAD494 /* main.cpp */; };
-		CE1BAAB82348A34B00DAD494 /* _sym_osx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE1BAAB62348A34B00DAD494 /* _sym_osx.cpp */; };
+		CE1BAAB82348A34B00DAD494 /* _sym_posix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE1BAAB62348A34B00DAD494 /* _sym_posix.cpp */; };
 		CE1D5C1123D5B98D00F97D46 /* langcoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE1D5C0F23D5B98D00F97D46 /* langcoder.cpp */; };
 		CE21BEA322085E4B00AED03F /* mainctrl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE9522085E4B00AED03F /* mainctrl.cpp */; };
 		CE21BEAE2208620300AED03F /* fsystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEAB2208620300AED03F /* fsystem.cpp */; };
-		CE21BEAF2208620300AED03F /* _fsys_osx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEAC2208620300AED03F /* _fsys_osx.cpp */; };
+		CE21BEAF2208620300AED03F /* _fsys_posix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEAC2208620300AED03F /* _fsys_posix.cpp */; };
 		CE21BEB2220868B900AED03F /* print.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEB0220868B900AED03F /* print.cpp */; };
 		CE291B3D23C0B6E30093F1E1 /* cppgen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE291B3C23C0B6E30093F1E1 /* cppgen.cpp */; };
 		CE2B47E62348D6DB001816D8 /* _sym_win32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE2B47E52348D6DB001816D8 /* _sym_win32.cpp */; };
@@ -54,14 +54,14 @@
 		CE1BAAAA234871B900DAD494 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		CE1BAAAB234871B900DAD494 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		CE1BAAB52348A34B00DAD494 /* _sym.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = _sym.hh; sourceTree = "<group>"; };
-		CE1BAAB62348A34B00DAD494 /* _sym_osx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _sym_osx.cpp; sourceTree = "<group>"; };
+		CE1BAAB62348A34B00DAD494 /* _sym_posix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _sym_posix.cpp; sourceTree = "<group>"; };
 		CE1D5C0F23D5B98D00F97D46 /* langcoder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = langcoder.cpp; sourceTree = "<group>"; };
 		CE1D5C1023D5B98D00F97D46 /* langcoder.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = langcoder.hh; sourceTree = "<group>"; };
 		CE21BE9522085E4B00AED03F /* mainctrl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mainctrl.cpp; sourceTree = "<group>"; };
 		CE21BE9C22085E4B00AED03F /* stdlibs.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = stdlibs.hh; sourceTree = "<group>"; };
 		CE21BEA122085E4B00AED03F /* toolset.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = toolset.hh; sourceTree = "<group>"; };
 		CE21BEAB2208620300AED03F /* fsystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fsystem.cpp; sourceTree = "<group>"; };
-		CE21BEAC2208620300AED03F /* _fsys_osx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _fsys_osx.cpp; sourceTree = "<group>"; };
+		CE21BEAC2208620300AED03F /* _fsys_posix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _fsys_posix.cpp; sourceTree = "<group>"; };
 		CE21BEAD2208620300AED03F /* _fsys.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = _fsys.hh; sourceTree = "<group>"; };
 		CE21BEB0220868B900AED03F /* print.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = print.cpp; sourceTree = "<group>"; };
 		CE21BEB1220868B900AED03F /* print.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = print.hh; sourceTree = "<group>"; };
@@ -152,10 +152,10 @@
 		CE21BE9722085E4B00AED03F /* toolset */ = {
 			isa = PBXGroup;
 			children = (
-				CE21BEAC2208620300AED03F /* _fsys_osx.cpp */,
+				CE21BEAC2208620300AED03F /* _fsys_posix.cpp */,
 				CE4B65D22347913F00C4FB1E /* _fsys_win32.cpp */,
 				CE21BEAD2208620300AED03F /* _fsys.hh */,
-				CE1BAAB62348A34B00DAD494 /* _sym_osx.cpp */,
+				CE1BAAB62348A34B00DAD494 /* _sym_posix.cpp */,
 				CE2B47E52348D6DB001816D8 /* _sym_win32.cpp */,
 				CE1BAAB52348A34B00DAD494 /* _sym.hh */,
 				CE21BEAB2208620300AED03F /* fsystem.cpp */,
@@ -261,7 +261,7 @@
 				CECADE6E23D6D73F00486E76 /* objcgen.cpp in Sources */,
 				CE7FD92423AD2E3E00888AFA /* fmtcvt.cpp in Sources */,
 				CE0DD0F023BE7B9F00A03EB4 /* main.cpp in Sources */,
-				CE21BEAF2208620300AED03F /* _fsys_osx.cpp in Sources */,
+				CE21BEAF2208620300AED03F /* _fsys_posix.cpp in Sources */,
 				CE8168AA23ADECB700A5F690 /* strtool.cpp in Sources */,
 				B499A310221E72510060165A /* main.cpp in Sources */,
 				CE21BEB2220868B900AED03F /* print.cpp in Sources */,
@@ -272,7 +272,7 @@
 				CE7FD92523AD2E3E00888AFA /* main.cpp in Sources */,
 				CE291B3D23C0B6E30093F1E1 /* cppgen.cpp in Sources */,
 				CE2B47E62348D6DB001816D8 /* _sym_win32.cpp in Sources */,
-				CE1BAAB82348A34B00DAD494 /* _sym_osx.cpp in Sources */,
+				CE1BAAB82348A34B00DAD494 /* _sym_posix.cpp in Sources */,
 				CE21BEAE2208620300AED03F /* fsystem.cpp in Sources */,
 				CE4B65D32347913F00C4FB1E /* _fsys_win32.cpp in Sources */,
 				CE21BEA322085E4B00AED03F /* mainctrl.cpp in Sources */,
