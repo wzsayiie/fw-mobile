@@ -17,7 +17,6 @@
 		CE1BAAB82348A34B00DAD494 /* _sym_osx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE1BAAB62348A34B00DAD494 /* _sym_osx.cpp */; };
 		CE1D5C1123D5B98D00F97D46 /* langcoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE1D5C0F23D5B98D00F97D46 /* langcoder.cpp */; };
 		CE21BEA322085E4B00AED03F /* mainctrl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE9522085E4B00AED03F /* mainctrl.cpp */; };
-		CE21BEA622085E4B00AED03F /* stdlibs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE9B22085E4B00AED03F /* stdlibs.cpp */; };
 		CE21BEAE2208620300AED03F /* fsystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEAB2208620300AED03F /* fsystem.cpp */; };
 		CE21BEAF2208620300AED03F /* _fsys_osx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEAC2208620300AED03F /* _fsys_osx.cpp */; };
 		CE21BEB2220868B900AED03F /* print.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE21BEB0220868B900AED03F /* print.cpp */; };
@@ -59,7 +58,6 @@
 		CE1D5C0F23D5B98D00F97D46 /* langcoder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = langcoder.cpp; sourceTree = "<group>"; };
 		CE1D5C1023D5B98D00F97D46 /* langcoder.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = langcoder.hh; sourceTree = "<group>"; };
 		CE21BE9522085E4B00AED03F /* mainctrl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mainctrl.cpp; sourceTree = "<group>"; };
-		CE21BE9B22085E4B00AED03F /* stdlibs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stdlibs.cpp; sourceTree = "<group>"; };
 		CE21BE9C22085E4B00AED03F /* stdlibs.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = stdlibs.hh; sourceTree = "<group>"; };
 		CE21BEA122085E4B00AED03F /* toolset.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = toolset.hh; sourceTree = "<group>"; };
 		CE21BEAB2208620300AED03F /* fsystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fsystem.cpp; sourceTree = "<group>"; };
@@ -165,7 +163,6 @@
 				CE5817D323E1651100E8EE76 /* macro.hh */,
 				CE21BEB0220868B900AED03F /* print.cpp */,
 				CE21BEB1220868B900AED03F /* print.hh */,
-				CE21BE9B22085E4B00AED03F /* stdlibs.cpp */,
 				CE21BE9C22085E4B00AED03F /* stdlibs.hh */,
 				CE8168A823ADECB700A5F690 /* strtool.cpp */,
 				CE8168A923ADECB700A5F690 /* strtool.hh */,
@@ -280,7 +277,6 @@
 				CE4B65D32347913F00C4FB1E /* _fsys_win32.cpp in Sources */,
 				CE21BEA322085E4B00AED03F /* mainctrl.cpp in Sources */,
 				CE0DD0EE23BE786500A03EB4 /* metapicker.cpp in Sources */,
-				CE21BEA622085E4B00AED03F /* stdlibs.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
