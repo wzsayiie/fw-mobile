@@ -47,7 +47,7 @@ void push(vector<char> *dat, const char *ptr, int len) {
     dat->insert(dat->end(), ptr, ptr + len);
 }
 
-static void push_bom(fmt_info *f, vector<char> *d) {f->bom = true; push(d, utf8_bom, 3);}
+static void push_bom(fmt_info *f, vector<char> *d) {f->bom = true; push(d, UTF8_BOM, 3);}
 static void push_rn (fmt_info *f, vector<char> *d) {f->rn  = true; push(d, "\r\n"  , 2);}
 static void push_n  (fmt_info *f, vector<char> *d) {f->n   = true; push(d, "\n"    , 1);}
 static void push_r  (fmt_info *f, vector<char> *d) {f->r   = true; push(d, "\r"    , 1);}
@@ -61,11 +61,11 @@ bool scan(const vector<char> &dat, fmt_cvt::want wt, fmt_info *fmt, vector<char>
     auto end = dat.data() + dat.size();
     
     //process bom:
-    if (start_with(utf8_bom, ptr, end)) {
+    if (start_with(UTF8_BOM, ptr, end)) {
         /**/ if (wt == fmt_cvt::want_unix) {/*...............*/ fmt->ch = true;}
         else if (wt == fmt_cvt::want_win ) {push_bom(fmt, out);}
         else /*.........................*/ {push_bom(fmt, out);}
-        ptr += 3;
+        ptr += UTF8_BOM_SIZE;
     } else {
         /**/ if (wt == fmt_cvt::want_unix) {}
         else if (wt == fmt_cvt::want_win ) {push_bom(fmt, out); fmt->ch = true;}
@@ -74,7 +74,7 @@ bool scan(const vector<char> &dat, fmt_cvt::want wt, fmt_info *fmt, vector<char>
     
     //process content:
     while (ptr < end) {
-        int size = utf8_get(ptr, end);
+        int size = check_utf8(ptr, end);
         
         //not utf8 char.
         if (size == 0) {

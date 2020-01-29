@@ -1,9 +1,9 @@
 #include "unicode.hh"
 
-int utf8_get(const char *ptr, const char *end) {
+int check_utf8(const char *ptr, const char *end) {
     int size = 0;
     
-    //check first byte
+    //check first byte:
     if (ptr == nullptr) {
         return 0;
     }
@@ -18,7 +18,7 @@ int utf8_get(const char *ptr, const char *end) {
         return 0;
     }
     
-    //check followed bytes
+    //check followed bytes:
     for (const char *it = ptr + 1; it < ptr + size; ++it) {
         if ((*it & 0b11'00'0000) != 0b10'00'0000) {
             return 0;

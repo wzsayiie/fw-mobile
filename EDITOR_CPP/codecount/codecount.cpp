@@ -8,12 +8,12 @@ bool tidy_utf8(const vector<char> &bytes, vector<char> *out) {
     const char *end = bytes.data() + bytes.size();
     
     //skip bom.
-    if (start_with(utf8_bom, ptr, end)) {
-        ptr += 3;
+    if (start_with(UTF8_BOM, ptr, end)) {
+        ptr += UTF8_BOM_SIZE;
     }
     
     while (ptr < end) {
-        int size = utf8_get(ptr, end);
+        int size = check_utf8(ptr, end);
         
         //not utf8 char.
         if (size == 0) {
