@@ -72,6 +72,7 @@
 		CE2B47E52348D6DB001816D8 /* _sym_win32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _sym_win32.cpp; sourceTree = "<group>"; };
 		CE2BF73121BFF1D10013614A /* EDITOR_CPP */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EDITOR_CPP; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE4B65D22347913F00C4FB1E /* _fsys_win32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _fsys_win32.cpp; sourceTree = "<group>"; };
+		CE5817D323E1651100E8EE76 /* macro.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = macro.hh; sourceTree = "<group>"; };
 		CE7FD92123AD2E3E00888AFA /* fmtcvt.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fmtcvt.hh; sourceTree = "<group>"; };
 		CE7FD92223AD2E3E00888AFA /* fmtcvt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fmtcvt.cpp; sourceTree = "<group>"; };
 		CE7FD92323AD2E3E00888AFA /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -161,6 +162,7 @@
 				CE1BAAB52348A34B00DAD494 /* _sym.hh */,
 				CE21BEAB2208620300AED03F /* fsystem.cpp */,
 				CE8168AB23ADF30000A5F690 /* fsystem.hh */,
+				CE5817D323E1651100E8EE76 /* macro.hh */,
 				CE21BEB0220868B900AED03F /* print.cpp */,
 				CE21BEB1220868B900AED03F /* print.hh */,
 				CE21BE9B22085E4B00AED03F /* stdlibs.cpp */,

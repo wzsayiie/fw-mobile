@@ -4,6 +4,7 @@
 #include "_sym.hh"
 
 #include "fsystem.hh"
+#include "macro.hh"
 #include "print.hh"
 #include "stdlibs.hh"
 #include "strtool.hh"
