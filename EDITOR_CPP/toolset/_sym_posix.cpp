@@ -1,9 +1,10 @@
-#ifdef __APPLE__
-
 #include "_sym.hh"
+
+#if ON_POSIX()
+
 #include <dlfcn.h>
 
-void *find_sym(const std::string &name) {
+void *find_sym(const string &name) {
     if (name.empty()) {
         return nullptr;
     }

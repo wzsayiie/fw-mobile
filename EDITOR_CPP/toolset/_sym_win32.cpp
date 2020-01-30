@@ -1,9 +1,10 @@
-﻿#ifdef _WIN32
+﻿#include "_sym.hh"
 
-#include "_sym.hh"
+#if ON_WIN32()
+
 #include <windows.h>
 
-void *find_sym(const std::string &name) {
+void *find_sym(const string &name) {
     if (name.empty()) {
         return nullptr;
     }

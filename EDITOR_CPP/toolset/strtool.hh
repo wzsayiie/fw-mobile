@@ -1,7 +1,7 @@
 #pragma once
 
-#include "stdlibs.hh"
 #include "macro.hh"
+#include "stdlibs.hh"
 
 //default byte buffer which developer can use to avoid "new" and "delete".
 const int BYTE_BUF_SIZE = 1024 * 1024;
