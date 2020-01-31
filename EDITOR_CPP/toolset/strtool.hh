@@ -3,10 +3,6 @@
 #include "macro.hh"
 #include "stdlibs.hh"
 
-//default byte buffer which developer can use to avoid "new" and "delete".
-const int BYTE_BUF_SIZE = 1024 * 1024;
-extern char BYTE_BUF[];
-
 //test whether a string has a certain prefix(or suffix).
 //NOTE: if the prefix(or suffix) is same as the string being tested, return true.
 bool start_with(const string &word, const char *ptr, const char *end);

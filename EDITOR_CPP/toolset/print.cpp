@@ -13,17 +13,18 @@ static void print(int wanted_n, const char *format, va_list args) {
     }
     
     //print.
+    static char buf[1024 * 1024];
     if (format != nullptr) {
-        vsnprintf(BYTE_BUF, BYTE_BUF_SIZE, format, args);
-        printf("%s", BYTE_BUF);
+        vsnprintf(buf, sizeof(buf), format, args);
+        printf("%s", buf);
     } else {
-        BYTE_BUF[0] = '\0';
+        buf[0] = '\0';
     }
     
     //count '\n' of this output.
-    int len = (int)strlen(BYTE_BUF);
+    int len = (int)strlen(buf);
     int count = 0;
-    for (const char *it = BYTE_BUF + len - 1; it >= BYTE_BUF; --it) {
+    for (const char *it = buf + len - 1; it >= buf; --it) {
         if (*it == '\n') {
             count += 1;
         } else {

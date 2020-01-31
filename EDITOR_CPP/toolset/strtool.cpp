@@ -1,8 +1,6 @@
 #include "strtool.hh"
 #include <cstdarg>
 
-char BYTE_BUF[BYTE_BUF_SIZE];
-
 bool start_with(const string &word, const char *ptr, const char *end) {
     size_t size = word.size();
     if (size <= end - ptr) {
@@ -37,17 +35,19 @@ bool end_with(const string &word, const string &str) {
 /**/    va_end(args);\
 /**/} while (0)
 
+static char _format_buf[1024 * 1024];
+
 void append_format(string *str, const char *format, ...) {
     if (str != nullptr) {
-        format_args(BYTE_BUF, BYTE_BUF_SIZE, format);
-        str->append(BYTE_BUF);
+        format_args(_format_buf, sizeof(_format_buf), format);
+        str->append(_format_buf);
     }
 }
 
 void assign_format(string *str, const char *format, ...) {
     if (str != nullptr) {
-        format_args(BYTE_BUF, BYTE_BUF_SIZE, format);
-        str->assign(BYTE_BUF);
+        format_args(_format_buf, sizeof(_format_buf), format);
+        str->assign(_format_buf);
     }
 }
 
