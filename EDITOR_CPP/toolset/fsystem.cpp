@@ -84,7 +84,7 @@ bool traverse(const string &path, traverse_fn fn) {
         return false;
     }
     
-    string origin = cur_dir();
+    string origin = work_dir();
     {
         string parent = parent_dir_of(path);
         goto_dir(parent);

@@ -1,11 +1,13 @@
-#ifdef __APPLE__
-
 #include "_fsys.hh"
+#include "macro.hh"
+
+#if ON_POSIX()
+
 #include <dirent.h>
 #include <sys/stat.h>
 #include <unistd.h>
 
-string cur_dir() {
+string work_dir() {
     char buf[512] = "\0";
     getcwd(buf, sizeof(buf));
     return buf;

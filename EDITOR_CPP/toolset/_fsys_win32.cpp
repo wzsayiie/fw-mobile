@@ -1,9 +1,11 @@
-﻿#ifdef _WIN32
+﻿#include "_fsys.hh"
+#include "macro.hh"
 
-#include "_fsys.hh"
+#if ON_WIN32()
+
 #include <windows.h>
 
-string cur_dir() {
+string work_dir() {
     CHAR szBuffer[512] = "\0";
     GetCurrentDirectoryA(sizeof(szBuffer), szBuffer);
     return szBuffer;
@@ -41,8 +43,14 @@ vector<file_info> sub_files_of(const string &dir, bool *err) {
 
     WIN32_FIND_DATAA stData;
     HANDLE hState = FindFirstFileA(target.c_str(), &stData);
-    while (hState != INVALID_HANDLE_VALUE) {
+    if (hState == INVALID_HANDLE_VALUE) {
+        if (err != nullptr) {
+            *err = true;
+        }
+        return info_list;
+    }
 
+    while (TRUE) {
         BOOL bStartsWithDot = (stData.cFileName[0] == '.');
         BOOL bHiddenFile = (stData.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN);
 
