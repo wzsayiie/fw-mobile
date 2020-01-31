@@ -3,34 +3,40 @@
 #include "CLSDEFLANG.hh"
 #include "toolset.hh"
 
-//clear the meta infomation.
+//clear the meta infomation:
 void reset_meta();
 
-enum lib_type {
+//use "set_xx()" to set configuration items:
+
+enum target_lib_type {
     local_lib,
     cpp_lib,
 };
-void set_lib_type(lib_type type);
+void set_lib_type(target_lib_type type);
 
-//set location of generated files.
-void set_java_source(const string &dir );
-void set_java_native(const string &file);
-void set_objc_header(const string &file);
-void set_objc_source(const string &file);
-void set_objc_prefix(const string &pref);
-void set_w32_header (const string &file);
-void set_w32_source (const string &file);
-void set_w32_prefix (const string &pref);
-void set_cpp_header (const string &file);
-void set_cpp_source (const string &file);
-void set_cpp_prefix (const string &pref);
-void set_lua_cpp_h  (const string &file);
-void set_lua_cpp_s  (const string &file);
-void set_lua_script (const string &file);
-void set_lua_prefix (const string &pref);
-void set_lua_load_f (const string &name);
+void set_java_source(const string &dir   );
+void set_java_native(const string &file  );
+void set_java_pkg   (const string &pkg   );
 
-//append meta information:
+void set_objc_header(const string &file  );
+void set_objc_source(const string &file  );
+void set_objc_prefix(const string &prefix);
+
+void set_w32_header (const string &file  );
+void set_w32_source (const string &file  );
+void set_w32_prefix (const string &prefix);
+
+void set_cpp_header (const string &file  );
+void set_cpp_source (const string &file  );
+void set_cpp_prefix (const string &prefix);
+
+void set_lua_cpp_h  (const string &file  );
+void set_lua_cpp_s  (const string &file  );
+void set_lua_script (const string &file  );
+void set_lua_prefix (const string &prefix);
+void set_lua_load_f (const string &name  );
+
+//use "append_xx()" to add classes and functions:
 
 struct param_desc {
     _type  type;
@@ -60,11 +66,11 @@ void append_retv(_type type);
 //get the meta information:
 
 struct meta_info {
-    //local library is default.
-    lib_type type = local_lib;
+    target_lib_type lib_type = cpp_lib;
     
     string java_source;
     string java_native;
+    string java_pkg;
 
     string objc_header;
     string objc_source;

@@ -151,7 +151,7 @@ void objc_coder::on_flag_header(string *text) {
 }
 
 void objc_coder::on_flag_need(string *text) {
-    if (_meta.type == local_lib) {
+    if (_meta.lib_type == local_lib) {
         *text = "//NOTE: developer need to implement these functions:\n";
     }
 }

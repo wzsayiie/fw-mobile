@@ -1,32 +1,33 @@
 #include "metapicker.hh"
 
 static meta_info _meta;
-static bool _cur_cls_func = false;
+static func_desc *_on_func = nullptr;
 
 void reset_meta() {
     _meta = meta_info();
 }
 
-void set_lib_type(lib_type type) {
-    _meta.type = type;
+void set_lib_type(target_lib_type type) {
+    _meta.lib_type = type;
 }
 
-void set_java_source(const string &dir ) {_meta.java_source = dir ;}
-void set_java_native(const string &file) {_meta.java_native = file;}
-void set_objc_header(const string &file) {_meta.objc_header = file;}
-void set_objc_source(const string &file) {_meta.objc_source = file;}
-void set_objc_prefix(const string &pref) {_meta.objc_prefix = pref;}
-void set_w32_header (const string &file) {_meta.w32_header  = file;}
-void set_w32_source (const string &file) {_meta.w32_source  = file;}
-void set_w32_prefix (const string &pref) {_meta.w32_prefix  = pref;}
-void set_cpp_header (const string &file) {_meta.cpp_header  = file;}
-void set_cpp_source (const string &file) {_meta.cpp_source  = file;}
-void set_cpp_prefix (const string &pref) {_meta.cpp_prefix  = pref;}
-void set_lua_cpp_h  (const string &file) {_meta.lua_cpp_h   = file;}
-void set_lua_cpp_s  (const string &file) {_meta.lua_cpp_s   = file;}
-void set_lua_script (const string &file) {_meta.lua_script  = file;}
-void set_lua_prefix (const string &pref) {_meta.lua_prefix  = pref;}
-void set_lua_load_f (const string &name) {_meta.lua_load_f  = name;}
+void set_java_source(const string &a) {_meta.java_source = a;}
+void set_java_native(const string &a) {_meta.java_native = a;}
+void set_java_pkg   (const string &a) {_meta.java_pkg    = a;}
+void set_objc_header(const string &a) {_meta.objc_header = a;}
+void set_objc_source(const string &a) {_meta.objc_source = a;}
+void set_objc_prefix(const string &a) {_meta.objc_prefix = a;}
+void set_w32_header (const string &a) {_meta.w32_header  = a;}
+void set_w32_source (const string &a) {_meta.w32_source  = a;}
+void set_w32_prefix (const string &a) {_meta.w32_prefix  = a;}
+void set_cpp_header (const string &a) {_meta.cpp_header  = a;}
+void set_cpp_source (const string &a) {_meta.cpp_source  = a;}
+void set_cpp_prefix (const string &a) {_meta.cpp_prefix  = a;}
+void set_lua_cpp_h  (const string &a) {_meta.lua_cpp_h   = a;}
+void set_lua_cpp_s  (const string &a) {_meta.lua_cpp_s   = a;}
+void set_lua_script (const string &a) {_meta.lua_script  = a;}
+void set_lua_prefix (const string &a) {_meta.lua_prefix  = a;}
+void set_lua_load_f (const string &a) {_meta.lua_load_f  = a;}
 
 void append_cls(_type type) {
     cls_desc cls; {
@@ -35,85 +36,46 @@ void append_cls(_type type) {
     _meta.cls_list.push_back(cls);
 }
 
-static
-void append_func(vector<func_desc> *fs, const string &name) {
+static void append_func(bool is_cls_func, const string &name) {
+    if (_meta.cls_list.empty()) {
+        return;
+    }
+    
     func_desc func; {
         func.name = name;
     }
-    fs->push_back(func);
-}
-
-void append_cls_func(const string &name) {
-    if (_meta.cls_list.empty()) {
-        return;
-    }
-     
+    
     cls_desc &cls = _meta.cls_list.back();
-    append_func(&cls.cls_fs, name);
-    
-    _cur_cls_func = true;
+    if (is_cls_func) {
+        cls.cls_fs.push_back(func);
+        _on_func = &cls.cls_fs.back();
+    } else {
+        cls.obj_fs.push_back(func);
+        _on_func = &cls.obj_fs.back();
+    }
 }
 
-void append_obj_func(const string &name) {
-    if (_meta.cls_list.empty()) {
-        return;
-    }
-     
-    cls_desc &cls = _meta.cls_list.back();
-    append_func(&cls.obj_fs, name);
-    
-    _cur_cls_func = false;
-}
+void append_cls_func(const string &n) {append_func(true , n);}
+void append_obj_func(const string &n) {append_func(false, n);}
 
-static
-void append_param(vector<func_desc> *fs, _type type, const string &name) {
-    if (fs->empty()) {
+void append_param(_type type, const string &name) {
+    if (_on_func == nullptr) {
         return;
     }
-    
-    func_desc &func = fs->back();
     
     param_desc param; {
         param.type = type;
         param.name = name;
     }
-    func.params.push_back(param);
-}
-
-void append_param(_type type, const string &name) {
-    if (_meta.cls_list.empty()) {
-        return;
-    }
-    
-    cls_desc &cls = _meta.cls_list.back();
-    if (_cur_cls_func) {
-        append_param(&cls.cls_fs, type, name);
-    } else {
-        append_param(&cls.obj_fs, type, name);
-    }
-}
-
-static
-void append_retv(vector<func_desc> *fs, _type type) {
-    if (fs->empty()) {
-        return;
-    }
-    
-    func_desc &func = fs->back();
-    func.retv = type;
+    _on_func->params.push_back(param);
 }
 
 void append_retv(_type type) {
-    if (_meta.cls_list.empty()) {
+    if (_on_func == nullptr) {
         return;
     }
     
-    cls_desc &cls = _meta.cls_list.back();
-    if (_cur_cls_func) {
-        append_retv(&cls.cls_fs, type);
-    } else {
-        append_retv(&cls.obj_fs, type);
-    }
+    _on_func->retv = type;
 }
 
 meta_info get_meta() {

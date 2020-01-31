@@ -4,23 +4,25 @@
 void def_local_lib() {set_lib_type(local_lib);}
 void def_cpp_lib  () {set_lib_type(cpp_lib  );}
 
-void java_source(const char *dir ) {set_java_source(dir );}
-void java_native(const char *file) {set_java_native(file);}
-void objc_header(const char *file) {set_objc_header(file);}
-void objc_source(const char *file) {set_objc_source(file);}
-void w32_header (const char *file) {set_w32_header (file);}
-void w32_source (const char *file) {set_w32_source (file);}
-void cpp_header (const char *file) {set_cpp_header (file);}
-void cpp_source (const char *file) {set_cpp_source (file);}
-void lua_cpp_h  (const char *file) {set_lua_cpp_h  (file);}
-void lua_cpp_s  (const char *file) {set_lua_cpp_s  (file);}
-void lua_script (const char *file) {set_lua_script (file);}
+void java_source(const char *a) {set_java_source(a);}
+void java_native(const char *a) {set_java_native(a);}
+void objc_header(const char *a) {set_objc_header(a);}
+void objc_source(const char *a) {set_objc_source(a);}
+void w32_header (const char *a) {set_w32_header (a);}
+void w32_source (const char *a) {set_w32_source (a);}
+void cpp_header (const char *a) {set_cpp_header (a);}
+void cpp_source (const char *a) {set_cpp_source (a);}
+void lua_cpp_h  (const char *a) {set_lua_cpp_h  (a);}
+void lua_cpp_s  (const char *a) {set_lua_cpp_s  (a);}
+void lua_script (const char *a) {set_lua_script (a);}
 
-void objc_prefix(const char *pref) {set_objc_prefix(pref);}
-void w32_prefix (const char *pref) {set_w32_prefix (pref);}
-void cpp_prefix (const char *pref) {set_cpp_prefix (pref);}
-void lua_prefix (const char *pref) {set_lua_prefix (pref);}
-void lua_load_f (const char *name) {set_lua_load_f (name);}
+void java_pkg   (const char *a) {set_java_pkg   (a);}
+void objc_prefix(const char *a) {set_objc_prefix(a);}
+void w32_prefix (const char *a) {set_w32_prefix (a);}
+void cpp_prefix (const char *a) {set_cpp_prefix (a);}
+void lua_prefix (const char *a) {set_lua_prefix (a);}
+
+void lua_load_f (const char *a) {set_lua_load_f (a);}
 
 _def::_def(const char *name) {
     this->iden = _type_id_cls;

@@ -28,15 +28,17 @@ void lua_script (const char *file);
 
 //specify prefix of classes:
 //
+//| java_pkg   ("src.library.foundation");
 //| objc_prefix("CQ");
 //| w32_prefix ("cqw32");
 //| cpp_prefix ("cq");
 //| lua_prefix ("cq");
 //
-void objc_prefix(const char *pref);
-void w32_prefix (const char *pref);
-void cpp_prefix (const char *pref);
-void lua_prefix (const char *pref);
+void java_pkg   (const char *pkg   );
+void objc_prefix(const char *prefix);
+void w32_prefix (const char *prefix);
+void cpp_prefix (const char *prefix);
+void lua_prefix (const char *prefix);
 
 //specify lua script load function for c++:
 //
@@ -96,7 +98,7 @@ static _type Bytes (_type_id_bytes , "");
 
 //use keyword "cls" to declare a class:
 //
-//| cls("FileManager");
+//| cls(FileManager);
 //
 struct _cls : _type {
     _cls(const char *name): _type(_type_id_cls, name) {}
@@ -106,7 +108,7 @@ struct _cls : _type {
 
 //use keyword "def" to define a class that does not need to be implemented:
 //
-//| def("FileManager") {
+//| def(FileManager) {
 //| }
 //
 struct _def : _type {

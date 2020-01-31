@@ -145,7 +145,7 @@ void cpp_coder::on_flag_header(string *text) {
 }
 
 void cpp_coder::on_flag_need(string *text) {
-    if (_meta.type == cpp_lib) {
+    if (_meta.lib_type == cpp_lib) {
         *text = "//NOTE: developer need to implement these functions:\n";
     }
 }
