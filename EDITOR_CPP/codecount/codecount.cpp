@@ -196,11 +196,11 @@ void code_count(const vector<string> &paths) {
         space(1);
         
         count_dat stage;
-        bool okay = traverse(it, [&](traverse_item item) {
-            if (item.file.is_dir) {
-                for_dir(item.file.name, item.deep, &stage);
+        bool okay = traverse(it, [&](const file_info &file, int deep) {
+            if (file.is_dir) {
+                for_dir(file.name, deep, &stage);
             } else {
-                on_file(item.file.name, item.deep, &stage);
+                on_file(file.name, deep, &stage);
             }
         });
         

@@ -129,11 +129,11 @@ void fmt_cvt::process(const vector<string> &paths) {
 int fmt_cvt::a_stage(const string &path) {
     int modified = 0;
     
-    traverse(path, [&](traverse_item item) {
-        if (item.file.is_dir) {
-            modified += for_dir(item.file.name, item.deep);
+    traverse(path, [&](const file_info &file, int deep) {
+        if (file.is_dir) {
+            modified += for_dir(file.name, deep);
         } else {
-            modified += on_file(item.file.name, item.deep);
+            modified += on_file(file.name, deep);
         }
     });
     
