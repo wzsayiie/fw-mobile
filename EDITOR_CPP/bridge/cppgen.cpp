@@ -41,28 +41,40 @@ struct cpp_coder : lang_coder {
     void on_flag(const string &name, string *out) override;
     
     virtual void on_flag_header(string *out);
+    virtual void on_flag_source(string *out);
     virtual void on_flag_need  (string *out);
     virtual void on_flag_class (string *out);
     virtual void on_flag_cppcls(string *out);
     virtual void on_flag_ret   (string *out);
     virtual void on_flag_func  (string *out);
+    virtual void on_flag_return(string *out);
     virtual void on_flag_params(string *out);
+    virtual void on_flag_values(string *out);
 };
 
 void cpp_coder::on_flag(const string &name, string *out) {
     /**/ if (name == "header") {on_flag_header(out);}
+    else if (name == "source") {on_flag_source(out);}
     else if (name == "need"  ) {on_flag_need  (out);}
     else if (name == "class" ) {on_flag_class (out);}
     else if (name == "cppcls") {on_flag_cppcls(out);}
     else if (name == "ret"   ) {on_flag_ret   (out);}
     else if (name == "func"  ) {on_flag_func  (out);}
+    else if (name == "return") {on_flag_return(out);}
     else if (name == "params") {on_flag_params(out);}
+    else if (name == "values") {on_flag_values(out);}
 }
 
 void cpp_coder::on_flag_header(string *out) {
     auto &header = get_meta().cpp_header;
     
     *out = file_name_of(header);
+}
+
+void cpp_coder::on_flag_source(string *out) {
+    auto &source = get_meta().cpp_source;
+    
+    *out = file_name_of(source);
 }
 
 void cpp_coder::on_flag_need(string *out) {
@@ -95,6 +107,14 @@ void cpp_coder::on_flag_func(string *out) {
     *out = current_func()->name;
 }
 
+void cpp_coder::on_flag_return(string *out) {
+    auto &type = current_func()->retv;
+    
+    if (type.iden != _type_id_null) {
+        *out = "return ";
+    }
+}
+
 void cpp_coder::on_flag_params(string *text) {
     auto &params = current_func()->params;
     auto &prefix = get_meta().cpp_prefix;
@@ -104,6 +124,17 @@ void cpp_coder::on_flag_params(string *text) {
             text->append(", ");
         }
         text->append(param_type_string(prefix, it->type));
+        text->append(it->name);
+    }
+}
+
+void cpp_coder::on_flag_values(string *text) {
+    auto &params = current_func()->params;
+
+    for (auto it = params.begin(); it != params.end(); ++it) {
+        if (it != params.begin()) {
+            text->append(", ");
+        }
         text->append(it->name);
     }
 }
@@ -119,5 +150,11 @@ void cpp_gen_header(const meta_info &meta) {
     ii("%s", text.c_str());
 }
 
-void cpp_gen_source(const meta_info &meta, bool to_stdout) {
+void cpp_gen_source(const meta_info &meta) {
+    
+    auto coder = make_shared<cpp_coder>();
+    string text = coder->process(F_SOURCE, meta);
+    
+    ii("===== cpp source =====");
+    ii("%s", text.c_str());
 }
