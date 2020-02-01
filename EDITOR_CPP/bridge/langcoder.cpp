@@ -1,23 +1,13 @@
 #include "langcoder.hh"
 
-//==== ==== ==== ==== ==== block type ==== ==== ==== ==== ====
+static bool is_blank(char c) {
+    if (c == ' ' ) {return true;}
+    if (c == '\t') {return true;}
+    if (c == '\r') {return true;}
+    if (c == '\n') {return true;}
 
-enum block_type {
-    type_text,
-    type_flag,
-    type_loop,
-};
-
-struct a_block {
-    virtual block_type type() = 0;
-    virtual ~a_block() {}
-};
-
-struct text_block: a_block    {block_type type(){return type_text;} string text;};
-struct flag_block: a_block    {block_type type(){return type_flag;} string flag;};
-struct loop_block: flag_block {block_type type(){return type_loop;} vector<shared_ptr<a_block>> kids;};
-
-//==== ==== ==== ==== ==== check text or flag ==== ==== ==== ==== ====
+    return false;
+}
 
 static bool is_word_letter(char c) {
     if ('a' <= c && c <= 'z') {return true;}
@@ -79,41 +69,41 @@ static int check_flag(const char *ptr, const char *end, string *flag) {
     return (int)(ptr - begin);
 }
 
-//==== ==== ==== ==== ==== read block ==== ==== ==== ==== ====
-
-static shared_ptr<a_block> read_block(const char **ptr, const char *end);
-
-static shared_ptr<text_block> try_read_text(const char **ptr, const char *end) {
+static string_block *read_text_block(const char **ptr, const char *end) {
     string text;
     int len = check_text(*ptr, end, &text);
     
     if (len > 0) {
         *ptr += len;
         
-        auto block = make_shared<text_block>();
-        block->text = text;
+        auto block = new string_block(type_text);
+        block->value = text;
         return block;
+        
     } else {
         return nullptr;
     }
 }
 
-static shared_ptr<flag_block> try_read_flag(const char **ptr, const char *end) {
+static string_block *read_flag_block(const char **ptr, const char *end) {
     string flag;
     int len = check_flag(*ptr, end, &flag);
     
     if (len > 0 && !start_with("loop_", flag)) {
         *ptr += len;
         
-        auto block = make_shared<flag_block>();
-        block->flag = flag;
+        auto block = new string_block(type_flag);
+        block->value = flag;
         return block;
+        
     } else {
         return nullptr;
     }
 }
 
-static shared_ptr<loop_block> try_read_loop(const char **ptr, const char *end) {
+static string_block *read_block(const char **ptr, const char *end);
+
+static string_block *read_loop_block(const char **ptr, const char *end) {
     string flag;
     int len = check_flag(*ptr, end, &flag);
     
@@ -124,18 +114,16 @@ static shared_ptr<loop_block> try_read_loop(const char **ptr, const char *end) {
     
     *ptr += len;
     
-    auto block = make_shared<loop_block>();
-    block->flag = flag;
+    auto block = new string_block(type_loop);
+    block->value = flag;
     
     while (*ptr < end) {
-        shared_ptr<a_block> kid = read_block(ptr, end);
+        string_block *kid = read_block(ptr, end);
         
         //loop structure ends with "end".
-        if (kid->type() == type_flag) {
-            auto a = static_pointer_cast<flag_block>(kid);
-            if (a->flag == "end") {
-                break;
-            }
+        if (kid->type == type_flag && kid->value == "end") {
+            delete kid;
+            break;
         }
         
         block->kids.push_back(kid);
@@ -144,75 +132,39 @@ static shared_ptr<loop_block> try_read_loop(const char **ptr, const char *end) {
     return block;
 }
 
-static shared_ptr<a_block> read_block(const char **ptr, const char *end) {
+static string_block *read_block(const char **ptr, const char *end) {
     
-    shared_ptr<a_block> block = try_read_loop(ptr, end);
+    string_block *block = read_loop_block(ptr, end);
     if (block != nullptr) {
         return block;
     }
     
-    block = try_read_flag(ptr, end);
+    block = read_flag_block(ptr, end);
     if (block != nullptr) {
         return block;
     }
     
-    return try_read_text(ptr, end);
+    return read_text_block(ptr, end);
 }
 
-//==== ==== ==== ==== ==== build string ==== ==== ==== ==== ====
-
-static void string_block(lang_coder *coder, shared_ptr<a_block> a, string *add);
-
-static void string_text(lang_coder *coder, shared_ptr<text_block> block, string *add) {
-    add->append(block->text);
-}
-
-static void string_flag(lang_coder *coder, shared_ptr<flag_block> block, string *add) {
-    string out;
-    bool okay = coder->on_flag(block->flag, &out);
+static void delete_blocks(vector<string_block *> *blocks) {
+    if (blocks->empty()) {
+        return;
+    }
     
-    if (okay) {
-        add->append(out);
+    for (auto &it : *blocks) {
+        delete_blocks(&it->kids);
+        delete it;
     }
+    blocks->clear();
 }
 
-static void string_loop(lang_coder *coder, shared_ptr<loop_block> block, string *add) {
-    while (true) {
-        bool again = coder->on_loop(block->flag, nullptr);
-        if (!again) {
-            break;
-        }
-        
-        for (auto it : block->kids) {
-            string_block(coder, it, add);
-        }
-    }
-}
-
-static void string_block(lang_coder *coder, shared_ptr<a_block> a, string *add) {
-    switch (a->type()) {
-        case type_text: string_text(coder, static_pointer_cast<text_block>(a), add); break;
-        case type_flag: string_flag(coder, static_pointer_cast<flag_block>(a), add); break;
-        case type_loop: string_loop(coder, static_pointer_cast<loop_block>(a), add); break;
-        default:;
-    }
-}
-
-//==== ==== ==== ==== ==== language coder ==== ==== ==== ==== ====
-
-static bool is_blank(char c) {
-    if (c == ' ' ) {return true;}
-    if (c == '\t') {return true;}
-    if (c == '\r') {return true;}
-    if (c == '\n') {return true;}
-
-    return false;
-}
-
-string lang_coder::process(const string &tl) {
+string lang_coder::process(const string &form, const meta_info &meta) {
     
-    const char *ptr = tl.c_str();
-    const char *end = tl.c_str() + tl.size();
+    _meta = meta;
+    
+    const char *ptr = form.c_str();
+    const char *end = form.c_str() + form.size();
     
     //skip leading whitespace.
     while (ptr < end && is_blank(*ptr)) {
@@ -220,17 +172,125 @@ string lang_coder::process(const string &tl) {
     }
     
     //structuring.
-    vector<shared_ptr<a_block>> blocks;
+    vector<string_block *> blocks;
     while (ptr < end) {
-        shared_ptr<a_block> it = read_block(&ptr, end);
+        string_block *it = read_block(&ptr, end);
         blocks.push_back(it);
     }
     
     //to string.
-    string add;
+    string added;
     for (auto it : blocks) {
-        string_block(this, it, &add);
+        handle_block(it, &added);
     }
     
-    return add;
+    delete_blocks(&blocks);
+    
+    return added;
+}
+
+void lang_coder::handle_block(string_block *block, string *added) {
+    switch (block->type) {
+        case type_text: handle_text_block(block, added); break;
+        case type_flag: handle_flag_block(block, added); break;
+        case type_loop: handle_loop_block(block, added); break;
+        default:;
+    }
+}
+
+void lang_coder::handle_text_block(string_block *block, string *added) {
+    added->append(block->value);
+}
+
+void lang_coder::handle_flag_block(string_block *block, string *added) {
+    string text;
+    on_flag(block->value, &text);
+    
+    added->append(text);
+}
+
+void lang_coder::handle_loop_block(string_block *block, string *added) {
+    if (block->value == "loop_cls") {
+        
+        if (_meta.cls_list.empty()) {
+            return;
+        }
+        for (auto &cls : _meta.cls_list) {
+            _current_cls = &cls;
+            on_begin_cls();
+            
+            for (auto &it : block->kids) {
+                handle_block(it, added);
+            }
+            
+            on_end_cls();
+            _current_cls = nullptr;
+        }
+        
+    } else if (block->value == "loop_cls_func") {
+        
+        if (_current_cls == nullptr) {
+            return;
+        }
+        for (auto &func : _current_cls->cls_fs) {
+            _current_cls_func = &func;
+            on_begin_cls_func();
+            
+            for (auto &it : block->kids) {
+                handle_block(it, added);
+            }
+            
+            on_end_cls_func();
+            _current_cls_func = nullptr;
+        }
+        
+    } else if (block->value == "loop_obj_func") {
+        
+        if (_current_cls == nullptr) {
+            return;
+        }
+        for (auto &func : _current_cls->obj_fs) {
+            _current_obj_func = &func;
+            on_begin_obj_func();
+            
+            for (auto &it : block->kids) {
+                handle_block(it, added);
+            }
+            
+            on_end_obj_func();
+            _current_obj_func = nullptr;
+        }
+    }
+}
+
+void lang_coder::on_begin_cls() {}
+void lang_coder::on_end_cls  () {}
+
+void lang_coder::on_begin_cls_func() {}
+void lang_coder::on_end_cls_func  () {}
+
+void lang_coder::on_begin_obj_func() {}
+void lang_coder::on_end_obj_func  () {}
+
+bool lang_coder::is_on_cls     () {return _current_cls      != nullptr;}
+bool lang_coder::is_on_cls_func() {return _current_cls_func != nullptr;}
+bool lang_coder::is_on_obj_func() {return _current_obj_func != nullptr;}
+
+const meta_info &lang_coder::get_meta() {
+    return _meta;
+}
+
+cls_desc *lang_coder::current_cls() {
+    return _current_cls;
+}
+
+func_desc *lang_coder::current_func() {
+    if (_current_cls_func != nullptr) {
+        return _current_cls_func;
+    } else {
+        return _current_obj_func;
+    }
+}
+
+void lang_coder::on_flag(const string &name, string *out) {
 }

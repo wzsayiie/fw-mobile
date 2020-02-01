@@ -1,9 +1,7 @@
 #include "cppgen.hh"
 #include "langcoder.hh"
 
-//==== ==== ==== ==== ==== c++ types ==== ==== ==== ==== ====
-
-static string ret_type_string(const std::string &pre, _type type) {
+static string ret_type_string(const std::string &prefix, _type type) {
     switch (type.iden) {
         case _type_id_null  : return "void"   ;
         case _type_id_bool  : return "bool"   ;
@@ -13,17 +11,15 @@ static string ret_type_string(const std::string &pre, _type type) {
         case _type_id_int64 : return "int64_t";
         case _type_id_float : return "float"  ;
         case _type_id_double: return "double" ;
-        
         case _type_id_string: return "std::string";
         case _type_id_bytes : return "std::vector<uint8_t>";
-        
-        case _type_id_cls   : return pre + type.name + "Ref";
+        case _type_id_cls   : return prefix + type.name + "Ref";
         
         default: return "";
     }
 }
 
-static string param_type_string(const std::string &pre, _type type) {
+static string param_type_string(const std::string &prefix, _type type) {
     switch (type.iden) {
         case _type_id_null  : return "void "   ;
         case _type_id_bool  : return "bool "   ;
@@ -33,173 +29,94 @@ static string param_type_string(const std::string &pre, _type type) {
         case _type_id_int64 : return "int64_t ";
         case _type_id_float : return "float "  ;
         case _type_id_double: return "double " ;
-        
         case _type_id_string: return "const std::string &";
         case _type_id_bytes : return "const std::vector<uint8_t> &";
-        
-        case _type_id_cls   : return pre + type.name + "Ref ";
+        case _type_id_cls   : return prefix + type.name + "Ref ";
         
         default: return "";
     }
 }
 
-//==== ==== ==== ==== ==== cpp_coder ==== ==== ==== ==== ====
-
 struct cpp_coder : lang_coder {
-    bool on_loop(const string &name, string *text) override;
-    bool on_flag(const string &name, string *text) override;
+    void on_flag(const string &name, string *out) override;
     
-    virtual bool on_loop_cls();
-    virtual bool on_loop_func(vector<func_desc> *list);
-    
-    virtual void on_flag_header(string *text);
-    virtual void on_flag_need  (string *text);
-    virtual void on_flag_class (string *text);
-    virtual void on_flag_cppcls(string *text);
-    virtual void on_flag_ret   (string *text);
-    virtual void on_flag_func  (string *text);
-    virtual void on_flag_params(string *text);
-    
-    virtual void set_meta(const meta_info &meta);
-    
-private:
-    meta_info _meta;
-    
-    vector<cls_desc> *_cls_list = nullptr;
-    int _cls_iter = 0;
-    
-    vector<func_desc> *_func_list = nullptr;
-    int _func_iter = 0;
+    virtual void on_flag_header(string *out);
+    virtual void on_flag_need  (string *out);
+    virtual void on_flag_class (string *out);
+    virtual void on_flag_cppcls(string *out);
+    virtual void on_flag_ret   (string *out);
+    virtual void on_flag_func  (string *out);
+    virtual void on_flag_params(string *out);
 };
 
-bool cpp_coder::on_loop(const string &name, string *text) {
-    /**/ if (name == "loop_class"  ) {return on_loop_cls();}
-    else if (name == "loop_static" ) {return on_loop_func(&_cls_list->at(_cls_iter).cls_fs);}
-    else if (name == "loop_virtual") {return on_loop_func(&_cls_list->at(_cls_iter).obj_fs);}
-    
-    return false;
+void cpp_coder::on_flag(const string &name, string *out) {
+    /**/ if (name == "header") {on_flag_header(out);}
+    else if (name == "need"  ) {on_flag_need  (out);}
+    else if (name == "class" ) {on_flag_class (out);}
+    else if (name == "cppcls") {on_flag_cppcls(out);}
+    else if (name == "ret"   ) {on_flag_ret   (out);}
+    else if (name == "func"  ) {on_flag_func  (out);}
+    else if (name == "params") {on_flag_params(out);}
 }
 
-bool cpp_coder::on_loop_cls() {
-    if (_cls_list == nullptr) {
-        //iterate begin.
-        if (_meta.cls_list.size() > 0) {
-            _cls_list = &_meta.cls_list;
-            _cls_iter = 0;
-            return true;
-        } else {
-            return false;
-        }
-        
-    } else if (_cls_iter + 1 < _cls_list->size()) {
-        //iterate continue.
-        _cls_iter += 1;
-        return true;
-        
-    } else {
-        //iterate end.
-        _cls_list = nullptr;
-        _cls_iter = 0;
-        return false;
+void cpp_coder::on_flag_header(string *out) {
+    auto &header = get_meta().cpp_header;
+    
+    *out = file_name_of(header);
+}
+
+void cpp_coder::on_flag_need(string *out) {
+    target_lib_type lib_type = get_meta().lib_type;
+    
+    if (lib_type == cpp_lib) {
+        *out = "//NOTE: developer need to implement these functions:\n";
     }
 }
 
-bool cpp_coder::on_loop_func(vector<func_desc> *list) {
-    if (_func_list == nullptr) {
-        //iterate begin.
-        if (list->size() > 0) {
-            _func_list = list;
-            _func_iter = 0;
-            return true;
-        } else {
-            return false;
-        }
-        
-    } else if (_func_iter + 1 < _func_list->size()) {
-        //iterate continue.
-        _func_iter += 1;
-        return true;
-        
-    } else {
-        //iterate end.
-        _func_list = nullptr;
-        _func_iter = 0;
-        return false;
-    }
+void cpp_coder::on_flag_class(string *out) {
+    *out = current_cls()->type.name;
 }
 
-bool cpp_coder::on_flag(const string &name, string *text) {
-    /**/ if (name == "header") {on_flag_header(text);}
-    else if (name == "need"  ) {on_flag_need  (text);}
-    else if (name == "class" ) {on_flag_class (text);}
-    else if (name == "cppcls") {on_flag_cppcls(text);}
-    else if (name == "ret"   ) {on_flag_ret   (text);}
-    else if (name == "func"  ) {on_flag_func  (text);}
-    else if (name == "params") {on_flag_params(text);}
+void cpp_coder::on_flag_cppcls(string *out) {
+    auto &prefix = get_meta().cpp_prefix;
+    auto &cls_name = current_cls()->type.name;
     
-    return true;
+    *out = prefix + cls_name;
 }
 
-void cpp_coder::on_flag_header(string *text) {
-    *text = file_name_of(_meta.cpp_header);
-}
-
-void cpp_coder::on_flag_need(string *text) {
-    if (_meta.lib_type == cpp_lib) {
-        *text = "//NOTE: developer need to implement these functions:\n";
-    }
-}
-
-void cpp_coder::on_flag_class(string *text) {
-    *text = _cls_list->at(_cls_iter).type.name;
-}
-
-void cpp_coder::on_flag_cppcls(string *text) {
-    *text = _meta.cpp_prefix + _cls_list->at(_cls_iter).type.name;
-}
-
-void cpp_coder::on_flag_ret(string *text) {
-    _type type = _func_list->at(_func_iter).retv;
+void cpp_coder::on_flag_ret(string *out) {
+    auto &prefix = get_meta().cpp_prefix;
+    auto &type = current_func()->retv;
     
-    *text = ret_type_string(_meta.cpp_prefix, type);
+    *out = ret_type_string(prefix, type);
 }
 
-void cpp_coder::on_flag_func(string *text) {
-    *text = _func_list->at(_func_iter).name;
+void cpp_coder::on_flag_func(string *out) {
+    *out = current_func()->name;
 }
 
 void cpp_coder::on_flag_params(string *text) {
-    auto &params = _func_list->at(_func_iter).params;
+    auto &params = current_func()->params;
+    auto &prefix = get_meta().cpp_prefix;
     
     for (auto it = params.begin(); it != params.end(); ++it) {
         if (it != params.begin()) {
             text->append(", ");
         }
-        text->append(param_type_string(_meta.cpp_prefix, it->type));
+        text->append(param_type_string(prefix, it->type));
         text->append(it->name);
     }
 }
 
-void cpp_coder::set_meta(const meta_info &meta) {
-    _meta = meta;
-}
-
-//==== ==== ==== ==== ==== generator ==== ==== ==== ==== ====
-
 #include "cppform.hh"
 
-void cpp_gen_header(const meta_info &meta, bool to_stdout) {
+void cpp_gen_header(const meta_info &meta) {
     
     auto coder = make_shared<cpp_coder>();
-    coder->set_meta(meta);
+    string text = coder->process(F_HEADER, meta);
     
-    string text = coder->process(intf_header);
-    
-    if (to_stdout) {
-        ii("===== cpp header =====\n%s", text.c_str());
-    } else {
-        //
-    }
+    ii("===== cpp header =====");
+    ii("%s", text.c_str());
 }
 
 void cpp_gen_source(const meta_info &meta, bool to_stdout) {

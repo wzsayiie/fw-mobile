@@ -1,8 +1,6 @@
 #include "objcgen.hh"
 #include "langcoder.hh"
 
-//==== ==== ==== ==== ==== assist ==== ==== ==== ==== ====
-
 static string initial_capital(const string &word) {
     string ret = word;
     
@@ -13,191 +11,131 @@ static string initial_capital(const string &word) {
     return ret;
 }
 
-//==== ==== ==== ==== ==== objc types ==== ==== ==== ==== ====
-
-static string type_string(const string &pre, _type type, bool gap) {
-    string ret;
+static string c_type_string(const string &prefix, _type type) {
     switch (type.iden) {
-        case _type_id_null  : ret = "void"   ; break;
-        case _type_id_bool  : ret = "BOOL"   ; break;
-        case _type_id_int8  : ret = "int8_t" ; break;
-        case _type_id_int16 : ret = "int16_t"; break;
-        case _type_id_int32 : ret = "int32_t"; break;
-        case _type_id_int64 : ret = "int64_t"; break;
-        case _type_id_float : ret = "float"  ; break;
-        case _type_id_double: ret = "double" ; break;
+        case _type_id_null  : return "void "   ;
+        case _type_id_bool  : return "BOOL "   ;
+        case _type_id_int8  : return "int8_t " ;
+        case _type_id_int16 : return "int16_t ";
+        case _type_id_int32 : return "int32_t ";
+        case _type_id_int64 : return "int64_t ";
+        case _type_id_float : return "float "  ;
+        case _type_id_double: return "double " ;
+        case _type_id_string: return "NSString *";
+        case _type_id_bytes : return "NSMutableString *";
+        case _type_id_cls   : return prefix + type.name + " *";
         
-        case _type_id_string: ret = "NSString *"; break;
-        case _type_id_bytes : ret = "NSMutableString *"; break;
-        
-        case _type_id_cls   : ret = pre + type.name + " *"; break;
-        
-        default:;
+        default: return "";
     }
-    
-    if (gap && ret.back() != '*') {
-        ret.append(" ");
-    }
-    
-    return ret;
 }
 
-static string type_string_n(const string &p, _type t) {return type_string(p, t, false);}
-static string type_string_s(const string &p, _type t) {return type_string(p, t, true );}
-
-//==== ==== ==== ==== ==== objc_coder ==== ==== ==== ==== ====
+static string objc_type_string(const string &prefix, _type type) {
+    switch (type.iden) {
+        case _type_id_null  : return "void"   ;
+        case _type_id_bool  : return "BOOL"   ;
+        case _type_id_int8  : return "int8_t" ;
+        case _type_id_int16 : return "int16_t";
+        case _type_id_int32 : return "int32_t";
+        case _type_id_int64 : return "int64_t";
+        case _type_id_float : return "float"  ;
+        case _type_id_double: return "double" ;
+        case _type_id_string: return "NSString *";
+        case _type_id_bytes : return "NSMutableString *";
+        case _type_id_cls   : return prefix + type.name + " *";
+        
+        default: return "";
+    }
+}
 
 struct objc_coder : lang_coder {
-    bool on_loop(const string &name, string *text) override;
-    bool on_flag(const string &name, string *text) override;
+    void on_flag(const string &name, string *out) override;
     
-    virtual bool on_loop_cls();
-    virtual bool on_loop_func(vector<func_desc> *list);
-    
-    virtual void on_flag_header (string *text);
-    virtual void on_flag_need   (string *text);
-    virtual void on_flag_class  (string *text);
-    virtual void on_flag_objccls(string *text);
-    virtual void on_flag_cret   (string *text);
-    virtual void on_flag_cfunc  (string *text);
-    virtual void on_flag_cparams(string *text);
-    virtual void on_flag_memret (string *text);
-    virtual void on_flag_memfunc(string *text);
-    
-    virtual void set_meta(const meta_info &meta);
-    
-private:
-    meta_info _meta;
-    
-    vector<cls_desc> *_cls_list = nullptr;
-    int _cls_iter = 0;
-    
-    vector<func_desc> *_func_list = nullptr;
-    int _func_iter = 0;
+    virtual void on_flag_header  (string *out);
+    virtual void on_flag_need    (string *out);
+    virtual void on_flag_class   (string *out);
+    virtual void on_flag_objccls (string *out);
+    virtual void on_flag_cret    (string *out);
+    virtual void on_flag_cfunc   (string *out);
+    virtual void on_flag_cparams (string *out);
+    virtual void on_flag_objcret (string *out);
+    virtual void on_flag_objcfunc(string *out);
 };
 
-bool objc_coder::on_loop(const string &name, string *text) {
-    /**/ if (name == "loop_class"  ) {return on_loop_cls();}
-    else if (name == "loop_static" ) {return on_loop_func(&_cls_list->at(_cls_iter).cls_fs);}
-    else if (name == "loop_virtual") {return on_loop_func(&_cls_list->at(_cls_iter).obj_fs);}
-    
-    return false;
+void objc_coder::on_flag(const string &name, string *out) {
+    /**/ if (name == "header"  ) {on_flag_header  (out);}
+    else if (name == "need"    ) {on_flag_need    (out);}
+    else if (name == "class"   ) {on_flag_class   (out);}
+    else if (name == "objccls" ) {on_flag_objccls (out);}
+    else if (name == "cret"    ) {on_flag_cret    (out);}
+    else if (name == "cfunc"   ) {on_flag_cfunc   (out);}
+    else if (name == "cparams" ) {on_flag_cparams (out);}
+    else if (name == "objcret" ) {on_flag_objcret (out);}
+    else if (name == "objcfunc") {on_flag_objcfunc(out);}
 }
 
-bool objc_coder::on_loop_cls() {
-    if (_cls_list == nullptr) {
-        //iterate begin.
-        if (_meta.cls_list.size() > 0) {
-            _cls_list = &_meta.cls_list;
-            _cls_iter = 0;
-            return true;
-        } else {
-            return false;
-        }
-        
-    } else if (_cls_iter + 1 < _cls_list->size()) {
-        //iterate continue.
-        _cls_iter += 1;
-        return true;
-        
-    } else {
-        //iterate end.
-        _cls_list = nullptr;
-        _cls_iter = 0;
-        return false;
+void objc_coder::on_flag_header(string *out) {
+    auto &header = get_meta().objc_header;
+    
+    *out = file_name_of(header);
+}
+
+void objc_coder::on_flag_need(string *out) {
+    target_lib_type lib_type = get_meta().lib_type;
+    
+    if (lib_type == local_lib) {
+        *out = "//NOTE: developer need to implement these functions:\n";
     }
 }
 
-bool objc_coder::on_loop_func(vector<func_desc> *list) {
-    if (_func_list == nullptr) {
-        //iterate begin.
-        if (list->size() > 0) {
-            _func_list = list;
-            _func_iter = 0;
-            return true;
-        } else {
-            return false;
-        }
-        
-    } else if (_func_iter + 1 < _func_list->size()) {
-        //iterate continue.
-        _func_iter += 1;
-        return true;
-        
-    } else {
-        //iterate end.
-        _func_list = nullptr;
-        _func_iter = 0;
-        return false;
-    }
+void objc_coder::on_flag_class(string *out) {
+    *out = current_cls()->type.name;
 }
 
-bool objc_coder::on_flag(const string &name, string *text) {
-    /**/ if (name == "header" ) {on_flag_header (text);}
-    else if (name == "need"   ) {on_flag_need   (text);}
-    else if (name == "class"  ) {on_flag_class  (text);}
-    else if (name == "objccls") {on_flag_objccls(text);}
-    else if (name == "cret"   ) {on_flag_cret   (text);}
-    else if (name == "cfunc"  ) {on_flag_cfunc  (text);}
-    else if (name == "cparams") {on_flag_cparams(text);}
-    else if (name == "memret" ) {on_flag_memret (text);}
-    else if (name == "memfunc") {on_flag_memfunc(text);}
+void objc_coder::on_flag_objccls(string *out) {
+    auto &prefix = get_meta().objc_prefix;
+    auto &cls_name = current_cls()->type.name;
     
-    return true;
+    *out = prefix + cls_name;
 }
 
-void objc_coder::on_flag_header(string *text) {
-    *text = file_name_of(_meta.objc_header);
-}
-
-void objc_coder::on_flag_need(string *text) {
-    if (_meta.lib_type == local_lib) {
-        *text = "//NOTE: developer need to implement these functions:\n";
-    }
-}
-
-void objc_coder::on_flag_class(string *text) {
-    *text = _cls_list->at(_cls_iter).type.name;
-}
-
-void objc_coder::on_flag_objccls(string *text) {
-    *text = _meta.objc_prefix + _cls_list->at(_cls_iter).type.name;
-}
-
-void objc_coder::on_flag_cret(string *text) {
-    _type type = _func_list->at(_func_iter).retv;
+void objc_coder::on_flag_cret(string *out) {
+    auto &prefix = get_meta().objc_prefix;
+    auto &type = current_func()->retv;
     
-    *text = type_string_s(_meta.objc_prefix, type);
+    *out = c_type_string(prefix, type);
 }
 
-void objc_coder::on_flag_cfunc(string *text) {
-    *text = _func_list->at(_func_iter).name;
+void objc_coder::on_flag_cfunc(string *out) {
+    *out = current_func()->name;
 }
 
-void objc_coder::on_flag_cparams(string *text) {
-    auto &params = _func_list->at(_func_iter).params;
+void objc_coder::on_flag_cparams(string *out) {
+    auto &params = current_func()->params;
+    auto &prefix = get_meta().objc_prefix;
     
     for (auto it = params.begin(); it != params.end(); ++it) {
         if (it != params.begin()) {
-            text->append(", ");
+            out->append(", ");
         }
-        text->append(type_string_s(_meta.objc_prefix, it->type));
-        text->append(it->name);
+        out->append(c_type_string(prefix, it->type));
+        out->append(it->name);
     }
 }
 
-void objc_coder::on_flag_memret(string *text) {
-    _type type = _func_list->at(_func_iter).retv;
+void objc_coder::on_flag_objcret(string *out) {
+    auto &prefix = get_meta().objc_prefix;
+    auto &type = current_func()->retv;
     
-    *text = type_string_n(_meta.objc_prefix, type);
+    *out = objc_type_string(prefix, type);
 }
 
-void objc_coder::on_flag_memfunc(string *text) {
-    auto &name   = _func_list->at(_func_iter).name;
-    auto &params = _func_list->at(_func_iter).params;
+void objc_coder::on_flag_objcfunc(string *out) {
+    auto &prefix = get_meta().objc_prefix;
+    auto &name   = current_func()->name;
+    auto &params = current_func()->params;
     
     //function name.
-    text->append(name);
+    out->append(name);
     
     //first parameter.
     if (params.size() > 0) {
@@ -205,13 +143,13 @@ void objc_coder::on_flag_memfunc(string *text) {
         
         string upper = initial_capital(first.name);
         if (!end_with(upper, name)) {
-            text->append("With");
-            text->append(upper);
+            out->append("With");
+            out->append(upper);
         }
-        text->append(":(");
-        text->append(type_string_n(_meta.objc_prefix, first.type));
-        text->append(")");
-        text->append(first.name);
+        out->append(":(");
+        out->append(objc_type_string(prefix, first.type));
+        out->append(")");
+        out->append(first.name);
     }
     
     //followed parameters.
@@ -219,36 +157,25 @@ void objc_coder::on_flag_memfunc(string *text) {
         return;
     }
     for (auto it = params.begin() + 1; it != params.end(); ++it) {
-        text->append(" ");
-        text->append(it->name);
-        text->append(":(");
-        text->append(type_string_n(_meta.objc_prefix, it->type));
-        text->append(")");
-        text->append(it->name);
+        out->append(" ");
+        out->append(it->name);
+        out->append(":(");
+        out->append(objc_type_string(prefix, it->type));
+        out->append(")");
+        out->append(it->name);
     }
 }
-
-void objc_coder::set_meta(const meta_info &meta) {
-    _meta = meta;
-}
-
-//==== ==== ==== ==== ==== generator ==== ==== ==== ==== ====
 
 #include "objcform.hh"
 
-void objc_gen_header(const meta_info &meta, bool to_stdout) {
+void objc_gen_header(const meta_info &meta) {
     
     auto coder = make_shared<objc_coder>();
-    coder->set_meta(meta);
+    string text = coder->process(F_HEADER, meta);
     
-    string text = coder->process(intf_header);
-    
-    if (to_stdout) {
-        ii("===== objc header =====\n%s", text.c_str());
-    } else {
-        //
-    }
+    ii("===== objc header =====");
+    ii("%s", text.c_str());
 }
 
-void objc_gen_source(const meta_info &meta, bool to_stdout) {
+void objc_gen_source(const meta_info &meta) {
 }
