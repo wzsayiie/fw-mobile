@@ -27,6 +27,7 @@
 		CE7FD92523AD2E3E00888AFA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE7FD92323AD2E3E00888AFA /* main.cpp */; };
 		CE8168AA23ADECB700A5F690 /* strtool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE8168A823ADECB700A5F690 /* strtool.cpp */; };
 		CE844339220D5874008D3F79 /* unicode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE844337220D5874008D3F79 /* unicode.cpp */; };
+		CEA1257A23E6D3E00078C4BB /* typestring.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA1257923E6D3DF0078C4BB /* typestring.cpp */; };
 		CECADE6E23D6D73F00486E76 /* objcgen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CECADE6C23D6D73F00486E76 /* objcgen.cpp */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +80,8 @@
 		CE8168AB23ADF30000A5F690 /* fsystem.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fsystem.hh; sourceTree = "<group>"; };
 		CE844337220D5874008D3F79 /* unicode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = unicode.cpp; sourceTree = "<group>"; };
 		CE844338220D5874008D3F79 /* unicode.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = unicode.hh; sourceTree = "<group>"; };
+		CEA1257823E6D3DF0078C4BB /* typestring.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = typestring.hh; sourceTree = "<group>"; };
+		CEA1257923E6D3DF0078C4BB /* typestring.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = typestring.cpp; sourceTree = "<group>"; };
 		CECADE6A23D6D73E00486E76 /* cppform.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cppform.hh; sourceTree = "<group>"; };
 		CECADE6B23D6D73F00486E76 /* objcform.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = objcform.hh; sourceTree = "<group>"; };
 		CECADE6C23D6D73F00486E76 /* objcgen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = objcgen.cpp; sourceTree = "<group>"; };
@@ -125,17 +128,19 @@
 			children = (
 				CE0DD0F123BE806900A03EB4 /* CLSDEFLANG.cpp */,
 				CE0DD0F223BE806900A03EB4 /* CLSDEFLANG.hh */,
+				CECADE6A23D6D73E00486E76 /* cppform.hh */,
 				CE291B3C23C0B6E30093F1E1 /* cppgen.cpp */,
 				CE291B3B23C0B6E30093F1E1 /* cppgen.hh */,
-				CECADE6A23D6D73E00486E76 /* cppform.hh */,
 				CE1D5C0F23D5B98D00F97D46 /* langcoder.cpp */,
 				CE1D5C1023D5B98D00F97D46 /* langcoder.hh */,
 				CE0DD0EF23BE7B9F00A03EB4 /* main.cpp */,
 				CE0DD0EC23BE786500A03EB4 /* metapicker.cpp */,
 				CE0DD0ED23BE786500A03EB4 /* metapicker.hh */,
+				CECADE6B23D6D73F00486E76 /* objcform.hh */,
 				CECADE6C23D6D73F00486E76 /* objcgen.cpp */,
 				CECADE6D23D6D73F00486E76 /* objcgen.hh */,
-				CECADE6B23D6D73F00486E76 /* objcform.hh */,
+				CEA1257923E6D3DF0078C4BB /* typestring.cpp */,
+				CEA1257823E6D3DF0078C4BB /* typestring.hh */,
 			);
 			path = bridge;
 			sourceTree = "<group>";
@@ -256,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEA1257A23E6D3E00078C4BB /* typestring.cpp in Sources */,
 				CE0DD0F323BE806900A03EB4 /* CLSDEFLANG.cpp in Sources */,
 				B4B19642221EB6C7007D4146 /* codecount.cpp in Sources */,
 				CECADE6E23D6D73F00486E76 /* objcgen.cpp in Sources */,
