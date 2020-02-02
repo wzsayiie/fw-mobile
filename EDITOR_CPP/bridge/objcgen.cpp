@@ -11,6 +11,24 @@ static string initial_capital(const string &word) {
     return ret;
 }
 
+static string cpp_type_string(const string &prefix, _type type) {
+    switch (type.iden) {
+        case _type_id_null  : return "void "   ;
+        case _type_id_bool  : return "BOOL "   ;
+        case _type_id_int8  : return "int8_t " ;
+        case _type_id_int16 : return "int16_t ";
+        case _type_id_int32 : return "int32_t ";
+        case _type_id_int64 : return "int64_t ";
+        case _type_id_float : return "float "  ;
+        case _type_id_double: return "double " ;
+        case _type_id_string: return "std::string ";
+        case _type_id_bytes : return "std::vector<uint8> ";
+        case _type_id_cls   : return prefix + type.name + "Ref ";
+        
+        default: return "";
+    }
+}
+
 static string c_type_string(const string &prefix, _type type) {
     switch (type.iden) {
         case _type_id_null  : return "void "   ;
@@ -50,31 +68,49 @@ static string objc_type_string(const string &prefix, _type type) {
 struct objc_coder : lang_coder {
     void on_flag(const string &name, string *out) override;
     
-    virtual void on_flag_header  (string *out);
-    virtual void on_flag_need    (string *out);
-    virtual void on_flag_class   (string *out);
-    virtual void on_flag_objccls (string *out);
-    virtual void on_flag_cret    (string *out);
-    virtual void on_flag_cfunc   (string *out);
-    virtual void on_flag_cparams (string *out);
-    virtual void on_flag_objcret (string *out);
-    virtual void on_flag_objcfunc(string *out);
+    virtual void on_flag_header   (string *out);
+    virtual void on_flag_source   (string *out);
+    virtual void on_flag_need     (string *out);
+    virtual void on_flag_class    (string *out);
+    virtual void on_flag_objccls  (string *out);
+    virtual void on_flag_cppcls   (string *out);
+    virtual void on_flag_cret     (string *out);
+    virtual void on_flag_cppret   (string *out);
+    virtual void on_flag_cfunc    (string *out);
+    virtual void on_flag_return   (string *out);
+    virtual void on_flag_cparams  (string *out);
+    virtual void on_flag_cppparams(string *out);
+    virtual void on_flag_cvalues  (string *out);
+    virtual void on_flag_objcret  (string *out);
+    virtual void on_flag_objcfunc (string *out);
 };
 
 void objc_coder::on_flag(const string &name, string *out) {
-    /**/ if (name == "header"  ) {on_flag_header  (out);}
-    else if (name == "need"    ) {on_flag_need    (out);}
-    else if (name == "class"   ) {on_flag_class   (out);}
-    else if (name == "objccls" ) {on_flag_objccls (out);}
-    else if (name == "cret"    ) {on_flag_cret    (out);}
-    else if (name == "cfunc"   ) {on_flag_cfunc   (out);}
-    else if (name == "cparams" ) {on_flag_cparams (out);}
-    else if (name == "objcret" ) {on_flag_objcret (out);}
-    else if (name == "objcfunc") {on_flag_objcfunc(out);}
+    /**/ if (name == "header"   ) {on_flag_header   (out);}
+    else if (name == "source"   ) {on_flag_source   (out);}
+    else if (name == "need"     ) {on_flag_need     (out);}
+    else if (name == "class"    ) {on_flag_class    (out);}
+    else if (name == "objccls"  ) {on_flag_objccls  (out);}
+    else if (name == "cppcls"   ) {on_flag_cppcls   (out);}
+    else if (name == "cret"     ) {on_flag_cret     (out);}
+    else if (name == "cppret"   ) {on_flag_cppret   (out);}
+    else if (name == "cfunc"    ) {on_flag_cfunc    (out);}
+    else if (name == "return"   ) {on_flag_return   (out);}
+    else if (name == "cparams"  ) {on_flag_cparams  (out);}
+    else if (name == "cppparams") {on_flag_cppparams(out);}
+    else if (name == "cvalues"  ) {on_flag_cvalues  (out);}
+    else if (name == "objcret"  ) {on_flag_objcret  (out);}
+    else if (name == "objcfunc" ) {on_flag_objcfunc (out);}
 }
 
 void objc_coder::on_flag_header(string *out) {
     auto &header = get_meta().objc_header;
+    
+    *out = file_name_of(header);
+}
+
+void objc_coder::on_flag_source(string *out) {
+    auto &header = get_meta().objc_source;
     
     *out = file_name_of(header);
 }
@@ -98,6 +134,13 @@ void objc_coder::on_flag_objccls(string *out) {
     *out = prefix + cls_name;
 }
 
+void objc_coder::on_flag_cppcls(string *out) {
+    auto &prefix = get_meta().cpp_prefix;
+    auto &cls_name = current_cls()->type.name;
+    
+    *out = prefix + cls_name;
+}
+
 void objc_coder::on_flag_cret(string *out) {
     auto &prefix = get_meta().objc_prefix;
     auto &type = current_func()->retv;
@@ -105,8 +148,23 @@ void objc_coder::on_flag_cret(string *out) {
     *out = c_type_string(prefix, type);
 }
 
+void objc_coder::on_flag_cppret(string *out) {
+    auto &prefix = get_meta().cpp_prefix;
+    auto &type = current_func()->retv;
+    
+    *out = cpp_type_string(prefix, type);
+}
+
 void objc_coder::on_flag_cfunc(string *out) {
     *out = current_func()->name;
+}
+
+void objc_coder::on_flag_return(string *out) {
+    _type type = current_func()->retv;
+    
+    if (type.iden != _type_id_null) {
+        *out = "return ";
+    }
 }
 
 void objc_coder::on_flag_cparams(string *out) {
@@ -118,6 +176,30 @@ void objc_coder::on_flag_cparams(string *out) {
             out->append(", ");
         }
         out->append(c_type_string(prefix, it->type));
+        out->append(it->name);
+    }
+}
+
+void objc_coder::on_flag_cppparams(string *out) {
+    auto &params = current_func()->params;
+    auto &prefix = get_meta().cpp_prefix;
+    
+    for (auto it = params.begin(); it != params.end(); ++it) {
+        if (it != params.begin()) {
+            out->append(", ");
+        }
+        out->append(cpp_type_string(prefix, it->type));
+        out->append(it->name);
+    }
+}
+
+void objc_coder::on_flag_cvalues(string *out) {
+    auto &params = current_func()->params;
+    
+    for (auto it = params.begin(); it != params.end(); ++it) {
+        if (it != params.begin()) {
+            out->append(", ");
+        }
         out->append(it->name);
     }
 }
@@ -178,4 +260,10 @@ void objc_gen_header(const meta_info &meta) {
 }
 
 void objc_gen_source(const meta_info &meta) {
+    
+    auto coder = make_shared<objc_coder>();
+    string text = coder->process(F_LOCAL_SOURCE, meta);
+    
+    ii("===== objc source =====");
+    ii("%s", text.c_str());
 }
