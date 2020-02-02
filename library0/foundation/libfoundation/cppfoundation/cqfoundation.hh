@@ -34,16 +34,16 @@ cq_class(cqIOSBundle, cqObject) {
     static cqIOSBundleRef get();
     
     virtual std::string bundlePath();
-    virtual std::string resourcePath(const std::string &type, const std::string &name);
-    virtual std::vector<uint8_t> resource(const std::string &type, const std::string &name);
+    virtual std::string resourcePath(const std::string &name, const std::string &type);
+    virtual std::vector<uint8_t> resource(const std::string &name, const std::string &type);
 };
 
 cq_class(cqAndroidBundle, cqObject) {
     
     static cqAndroidBundleRef get();
     
-    virtual bool copyAsset(const std::string &fromPath, const std::string &toPath);
     virtual std::vector<uint8_t> asset(const std::string &name);
+    virtual bool copyAsset(const std::string &fromPath, const std::string &toPath);
 };
 
 //file access:

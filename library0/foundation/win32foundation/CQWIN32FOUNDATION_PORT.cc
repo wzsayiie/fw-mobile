@@ -26,27 +26,17 @@ const char *cq_ios_bundle_path()
     return NULL;
 }
 
-const char *cq_ios_bundle_res_path(const char *type, const char *name)
+const char *cq_ios_bundle_res_path(const char *name, const char *type)
 {
     return NULL;
 }
 
-uint8_t *cq_ios_bundle_res(int32_t *len, const char *type, const char *name)
+void cq_ios_bundle_res_to(cq_ios_bundle_res_writer writer, void *user, const char *name, const char *type)
 {
-    if (len != NULL)
-    {
-        *len = 0;
-    }
-    return NULL;
 }
 
-uint8_t *cq_andr_asset(int32_t *len, const char *name)
+void cq_andr_asset_to(cq_andr_asset_writer writer, void *user, const char *name)
 {
-    if (len != NULL)
-    {
-        *len = 0;
-    }
-    return NULL;
 }
 
 bool cq_andr_copy_asset(const char *from_path, const char *to_path)

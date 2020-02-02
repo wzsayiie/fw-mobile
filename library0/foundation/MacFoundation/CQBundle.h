@@ -6,7 +6,7 @@
 
 @property (nonatomic, readonly) NSString *bundlePath;
 
-- (NSString *)resourcePathForType:(NSString *)type name:(NSString *)name;
-- (NSData *)resourceForType:(NSString *)type name:(NSString *)name;
+- (NSString *)resourcePathForName:(NSString *)name type:(NSString *)type;
+- (NSData *)resourceForName:(NSString *)name type:(NSString *)type;
 
 @end

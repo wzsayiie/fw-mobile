@@ -18,33 +18,20 @@ const char *cq_ios_bundle_path(void) {
     return cq_store_str(path.UTF8String);
 }
 
-const char *cq_ios_bundle_res_path(const char *type, const char *name) {
-    NSString *path = [CQBundle.mainBundle resourcePathForType:@(type) name:@(name)];
+const char *cq_ios_bundle_res_path(const char *name, const char *type) {
+    NSString *path = [CQBundle.mainBundle resourcePathForName:@(name) type:@(type)];
     return cq_store_str(path.UTF8String);
 }
 
-uint8_t *cq_ios_bundle_res(int32_t *len, const char *type, const char *name) {
-    NSData *data = [CQBundle.mainBundle resourceForType:@(type) name:@(name)];
-    if (data.length > 0) {
-        uint8_t *bytes = malloc(data.length);
-        memcpy(bytes, data.bytes, data.length);
-        if (len != NULL) {
-            *len = (int32_t)data.length;
-        }
-        return bytes;
-    } else {
-        if (len != NULL) {
-            *len = 0;
-        }
-        return NULL;
+void cq_ios_bundle_res_to(cq_ios_bundle_res_writer writer, void *user, const char *name, const char *type) {
+    NSData *data = [CQBundle.mainBundle resourceForName:@(type) type:@(type)];
+    
+    if (data.length > 0 && writer != NULL) {
+        writer(user, data.bytes, (int32_t)data.length);
     }
 }
 
-uint8_t *cq_andr_asset(int32_t *len, const char *name) {
-    if (len != NULL) {
-        *len = 0;
-    }
-    return NULL;
+void cq_andr_asset_to(cq_andr_asset_writer writer, void *user, const char *name) {
 }
 
 bool cq_andr_copy_asset(const char *from_path, const char *to_path) {

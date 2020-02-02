@@ -43,57 +43,30 @@ const char *cq_ios_bundle_res_path(const char *, const char *) {
     return nullptr;
 }
 
-uint8_t *cq_ios_bundle_res(int32_t *len, const char *, const char *) {
-    if (len != nullptr) {
-        *len = 0;
-    }
-    return nullptr;
+void cq_ios_bundle_res_to(cq_ios_bundle_res_writer, void *, const char *, const char *) {
 }
 
-uint8_t *cq_andr_asset(int32_t *len, const char *name) {
+void cq_andr_asset_to(cq_andr_asset_writer writer, void *user, const char *name) {
     static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_andr_asset_to");
 
-    //1. get method.
-    JNIEnv *env = cqJNIGetEnv();
-    jclass cls = clazz();
-    if (methodID == nullptr) {
-        const char *signature = "(Ljava/lang/String;)[B";
-        cqJNIGetStatic(&methodID, env, cls, "cq_andr_asset", signature);
-    }
-    if (methodID == nullptr) {
-        return nullptr;
-    }
+    method.push((jlong)writer);
+    method.push((jlong)user);
+    method.push(name);
 
-    //2. call.
-    jbyteArray jData = nullptr; {
-        jstring jName = cqJNIStringFromU8(env, name);
-        jData = (jbyteArray) env->CallStaticObjectMethod(cls, methodID, jName);
-        env->DeleteLocalRef(jName);
-    }
-    if (jData == nullptr) {
-        return nullptr;
-    }
+    method.callVoid();
+}
 
-    //3. convert.
-    jbyte *jBytes = env->GetByteArrayElements(jData, nullptr);
-    int32_t jLen = env->GetArrayLength(jData);
-    if (jBytes == nullptr || jLen <= 0) {
-        env->DeleteLocalRef(jData);
-        if (len != nullptr) {
-            *len = 0;
-        }
-        return nullptr;
-    }
+extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_PORT_bundleWriteAsset
+    (JNIEnv *env, jclass, jlong writer, jlong userData, jbyteArray asset)
+{
+    auto func = (cq_andr_asset_writer)writer;
+    jbyte *bytes = env->GetByteArrayElements(asset, nullptr);
+    jsize length = env->GetArrayLength(asset);
 
-    auto bytes = (uint8_t *)malloc((size_t)jLen);
-    memcpy(bytes, jBytes, (size_t)jLen);
-    env->ReleaseByteArrayElements(jData, jBytes, 0);
-    env->DeleteLocalRef(jData);
+    func((void *)userData, bytes, (int32_t)length);
 
-    if (len != nullptr) {
-        *len = (int32_t)jLen;
-    }
-    return bytes;
+    env->ReleaseByteArrayElements(asset, bytes, JNI_ABORT);
 }
 
 bool cq_andr_copy_asset(const char *from_path, const char *to_path) {

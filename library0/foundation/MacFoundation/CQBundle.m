@@ -20,11 +20,11 @@
     return self.core.bundlePath;
 }
 
-- (NSString *)resourcePathForType:(NSString *)type name:(NSString *)name {
+- (NSString *)resourcePathForName:(NSString *)name type:(NSString *)type {
     return [self.core pathForResource:name ofType:type];
 }
 
-- (NSData *)resourceForType:(NSString *)type name:(NSString *)name {
+- (NSData *)resourceForName:(NSString *)name type:(NSString *)type {
     NSString *path = [self.core pathForResource:name ofType:type];
     if (path.length > 0) {
         return [NSData dataWithContentsOfFile:path];

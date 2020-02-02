@@ -24,12 +24,15 @@ public class PORT {
 
     //app bundle resource:
 
-    public static boolean cq_andr_copy_asset(String fromPath, String toPath) {
-        return AssetAssist.copyAsset(fromPath, toPath);
+    public static void cq_andr_asset_to(long writer, long userData, String name) {
+        byte[] asset = AssetAssist.getAsset(name);
+        bundleWriteAsset(writer, userData, asset);
     }
 
-    public static byte[] cq_andr_asset(String name) {
-        return AssetAssist.getAsset(name);
+    private static native void bundleWriteAsset(long writer, long userData, byte[] asset);
+
+    public static boolean cq_andr_copy_asset(String fromPath, String toPath) {
+        return AssetAssist.copyAsset(fromPath, toPath);
     }
 
     //file access:

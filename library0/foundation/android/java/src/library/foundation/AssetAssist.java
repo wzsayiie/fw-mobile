@@ -15,6 +15,37 @@ import src.library.basis.W;
 @SuppressWarnings({W.LIB_OMIT_0, W.LIB_OMIT_1, W.LIB_OMIT_2, W.LIB_OMIT_3})
 public class AssetAssist {
 
+    public static byte[] getAsset(String name) {
+        if (StringUtil.isEmpty(name)) {
+            return null;
+        }
+
+        Application app = AppContextAssist.getApp();
+        if (app == null) {
+            return null;
+        }
+
+        try {
+            InputStream input = app.getAssets().open(name);
+            ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = input.read(buffer)) > 0) {
+                output.write(buffer, 0, length);
+            }
+            byte[] data = output.toByteArray();
+
+            output.close();
+            input.close();
+
+            return data;
+
+        } catch (IOException ignored) {
+            return null;
+        }
+    }
+
     private static void copyAssetItem(AssetManager manager, String from, String to) {
         try {
             String[] subFiles = manager.list(from);
@@ -65,36 +96,5 @@ public class AssetAssist {
 
         copyAssetItem(app.getAssets(), fromPath, toPath);
         return true;
-    }
-
-    public static byte[] getAsset(String name) {
-        if (StringUtil.isEmpty(name)) {
-            return null;
-        }
-
-        Application app = AppContextAssist.getApp();
-        if (app == null) {
-            return null;
-        }
-
-        try {
-            InputStream input = app.getAssets().open(name);
-            ByteArrayOutputStream output = new ByteArrayOutputStream();
-
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = input.read(buffer)) > 0) {
-                output.write(buffer, 0, length);
-            }
-            byte[] data = output.toByteArray();
-
-            output.close();
-            input.close();
-
-            return data;
-
-        } catch (IOException ignored) {
-            return null;
-        }
     }
 }
