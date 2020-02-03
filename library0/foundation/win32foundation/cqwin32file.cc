@@ -143,4 +143,76 @@ VOID CQRemovePathA(CONST CQSTR &szPath)
     CQRemovePathW(szPathW);
 }
 
+CQVEC<CQWSTR> CQSubFilesOfDirectoryW(CONST CQWSTR &szPath, BOOL *pError)
+{
+    if (szPath.empty())
+    {
+        if (pError != NULL)
+        {
+            *pError = TRUE;
+        }
+        return CQVEC<CQWSTR>();
+    }
+
+    CQWSTR szTarget = szPath;
+    if (szTarget.back() != L'\\')
+    {
+        szTarget.append(L"\\*");
+    }
+    else
+    {
+        szTarget.append(L"*");
+    }
+
+    WIN32_FIND_DATAW stData;
+    HANDLE hState = FindFirstFileW(szTarget.c_str(), &stData);
+    if (hState == INVALID_HANDLE_VALUE)
+    {
+        if (pError != NULL)
+        {
+            *pError = TRUE;
+        }
+        return CQVEC<CQWSTR>();
+    }
+
+    CQVEC<CQWSTR> vcFiles;
+    while (TRUE)
+    {
+        BOOL bStartsWithDot = (stData.cFileName[0] == '.');
+        BOOL bHiddenFile = (stData.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN);
+
+        //ignore ".", ".." and hidden files.
+        if (!bStartsWithDot && !bHiddenFile)
+        {
+            vcFiles.push_back(stData.cFileName);
+        }
+
+        if (!FindNextFileW(hState, &stData))
+        {
+            break;
+        }
+    }
+    FindClose(hState);
+
+    if (pError != NULL)
+    {
+        *pError = FALSE;
+    }
+    return vcFiles;
+}
+
+CQVEC<CQSTR> CQSubFilesOfDirectoryA(CONST CQSTR &szPath, BOOL *pError)
+{
+    CQWSTR szPathW = CQWStr_FromStr(szPath);
+
+    CQVEC<CQWSTR> vcFilesW = CQSubFilesOfDirectoryW(szPathW, pError);
+
+    CQVEC<CQSTR> vcFiles;
+    for (auto &sz : vcFilesW)
+    {
+        vcFiles.push_back(CQStr_From(sz));
+    }
+    return vcFiles;
+}
+
 _CQFOUNDATION_END_VERSION_NS

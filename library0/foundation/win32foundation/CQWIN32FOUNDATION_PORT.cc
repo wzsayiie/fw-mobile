@@ -88,18 +88,47 @@ void cq_remove_path(const char *path)
     CQRemovePathW(szPath);
 }
 
+static std::vector<std::string> sTraverseItems;
+static size_t sTraverseIndex = 0;
+
 bool cq_open_dir(const char *path)
 {
-    return false;
+    cq_close_dir();
+
+    CQWSTR szPath = CQWStr_FromU8S(path);
+    BOOL bError = TRUE;
+
+    CQVEC<CQWSTR> vcFiles = CQSubFilesOfDirectoryW(szPath, &bError);
+    if (!bError)
+    {
+        for (auto &sz : vcFiles)
+        {
+            sTraverseItems.push_back(CQU8Str_From(sz));
+        }
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 const char *cq_read_dir()
 {
-    return NULL;
+    if (sTraverseItems.size() > sTraverseIndex)
+    {
+        return sTraverseItems[sTraverseItems++].c_str();
+    }
+    else
+    {
+        return NULL;
+    }
 }
 
 void cq_close_dir()
 {
+    sTraverseItems.clear();
+    sTraverseIndex = 0;
 }
 
 //thread:

@@ -38,4 +38,13 @@ VOID CQRemovePathA(CONST CQSTR  &szPath);
 #   define CQRemovePath      CQRemovePathA
 # endif
 
+CQVEC<CQWSTR> CQSubFilesOfDirectoryW(CONST CQWSTR &szPath, BOOL *pError);
+CQVEC<CQSTR>  CQSubFilesOfDirectoryA(CONST CQSTR  &szPath, BOOL *pError);
+
+# ifdef UNICODE
+#   define CQSubFilesOfDirectory CQSubFilesOfDirectoryW
+# else
+#   define CQSubFilesOfDirectory CQSubFilesOfDirectoryA
+# endif
+
 _CQFOUNDATION_END_VERSION_NS
