@@ -19,6 +19,23 @@ std::string cqJNIU8StringFromJNI(JNIEnv *env, jstring src);
 //return a local reference.
 jstring cqJNIStringFromU8(JNIEnv *env, const char *src);
 
+struct cqJNIByteArrayHelper {
+
+    cqJNIByteArrayHelper(JNIEnv *env, jbyteArray data);
+    ~cqJNIByteArrayHelper();
+
+    const void *bytes() const;
+    int32_t length() const;
+
+    void write(int32_t begin, const void *bytes, int32_t length);
+
+private:
+    JNIEnv *_env;
+    jbyteArray _data;
+    jbyte *_bytes;
+    jsize _length;
+};
+
 struct cqJNIStaticMethod {
 
     cqJNIStaticMethod(jclass clazz, jmethodID *prefer, const char *name);

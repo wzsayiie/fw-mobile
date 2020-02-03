@@ -115,6 +115,40 @@ jstring cqJNIStringFromU8(JNIEnv *env, const char *src) {
     }
 }
 
+cqJNIByteArrayHelper::cqJNIByteArrayHelper(JNIEnv *env, jbyteArray data) {
+    if (env != nullptr && data != nullptr) {
+        _env    = env;
+        _data   = data;
+        _length = env->GetArrayLength(data);
+        _bytes  = env->GetByteArrayElements(data, nullptr);
+    } else {
+        _env    = nullptr;
+        _data   = nullptr;
+        _length = 0;
+        _bytes  = nullptr;
+    }
+}
+
+cqJNIByteArrayHelper::~cqJNIByteArrayHelper() {
+    if (_env != nullptr) {
+        _env->ReleaseByteArrayElements(_data, _bytes, JNI_ABORT);
+    }
+}
+
+const void *cqJNIByteArrayHelper::bytes() const {
+    return (const void *)_bytes;
+}
+
+int32_t cqJNIByteArrayHelper::length() const {
+    return (int32_t)_length;
+}
+
+void cqJNIByteArrayHelper::write(int32_t begin, const void *bytes, int32_t length) {
+    if (_env != nullptr) {
+        _env->SetByteArrayRegion(_data, (jsize)begin, (jsize)length, (const jbyte *)bytes);
+    }
+}
+
 cqJNIStaticMethod::cqJNIStaticMethod(jclass clazz, jmethodID *prefer, const char *name) {
 
     _env       = cqJNIGetEnv();

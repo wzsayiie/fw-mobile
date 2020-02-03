@@ -58,15 +58,12 @@ void cq_andr_asset_to(cq_andr_asset_writer writer, void *user, const char *name)
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_PORT_bundleWriteAsset
-    (JNIEnv *env, jclass, jlong writer, jlong userData, jbyteArray asset)
+    (JNIEnv *env, jclass, jlong _writer, jlong userData, jbyteArray _asset)
 {
-    auto func = (cq_andr_asset_writer)writer;
-    jbyte *bytes = env->GetByteArrayElements(asset, nullptr);
-    jsize length = env->GetArrayLength(asset);
+    auto writer = (cq_andr_asset_writer)_writer;
+    cqJNIByteArrayHelper asset(env, _asset);
 
-    func((void *)userData, bytes, (int32_t)length);
-
-    env->ReleaseByteArrayElements(asset, bytes, JNI_ABORT);
+    writer((void *)userData, asset.bytes(), asset.length());
 }
 
 bool cq_andr_copy_asset(const char *from_path, const char *to_path) {
@@ -179,11 +176,11 @@ void cq_thread_run(void (*task)(void *), void *data) {
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_PORT_threadBody
-    (JNIEnv *, jclass, jlong task, jlong data)
+    (JNIEnv *, jclass, jlong _task, jlong _data)
 {
-    auto taskFunc = (void (*)(void *))task;
-    auto dataRef = (void *)data;
-    taskFunc(dataRef);
+    auto task = (void (*)(void *))_task;
+    auto data = (void *)_data;
+    task(data);
 }
 
 void cq_thread_sleep(float seconds) {
@@ -326,47 +323,42 @@ const char *cq_http_error(cq_http *http) {
 }
 
 extern "C" JNIEXPORT jint JNICALL Java_src_library_foundation_PORT_httpReadRequestBody
-    (JNIEnv *env, jclass, jlong reader, jlong userData, jbyteArray buffer)
+    (JNIEnv *env, jclass, jlong _reader, jlong userData, jbyteArray _buffer)
 {
-    auto func = (cq_http_body_reader)reader;
+    auto reader = (cq_http_body_reader)_reader;
+    cqJNIByteArrayHelper buffer(env, _buffer);
 
-    jsize len = env->GetArrayLength(buffer);
-    std::vector<jbyte> data((size_t)len);
+    std::vector<jbyte> data((size_t)buffer.length());
+    int32_t readLen = reader((void *)userData, data.data(), (int32_t)data.size());
 
-    int32_t readLen = func((void *)userData, data.data(), len);
     if (readLen > 0) {
-        env->SetByteArrayRegion(buffer, 0, readLen, data.data());
+        buffer.write(0, data.data(), readLen);
     }
     return readLen;
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_PORT_httpWriteResponseCode
-    (JNIEnv *, jclass, jlong writer, jlong userData, jint responseCode)
+    (JNIEnv *, jclass, jlong _writer, jlong userData, jint responseCode)
 {
-    auto func = (cq_http_code_writer)writer;
-    func((void *)userData, (int32_t)responseCode);
+    auto writer = (cq_http_code_writer)_writer;
+    writer((void *)userData, (int32_t)responseCode);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_PORT_httpWriteResponseHeader
-    (JNIEnv *env, jclass, jlong writer, jlong userData, jstring field, jstring value)
+    (JNIEnv *env, jclass, jlong _writer, jlong userData, jstring _field, jstring _value)
 {
-    auto func = (cq_http_header_writer)writer;
-    std::string f = cqJNIU8StringFromJNI(env, field);
-    std::string v = cqJNIU8StringFromJNI(env, value);
+    auto writer = (cq_http_header_writer)_writer;
+    std::string field = cqJNIU8StringFromJNI(env, _field);
+    std::string value = cqJNIU8StringFromJNI(env, _value);
 
-    func((void *)userData, f.c_str(), v.c_str());
+    writer((void *)userData, field.c_str(), value.c_str());
 }
 
 extern "C" JNIEXPORT jboolean JNICALL Java_src_library_foundation_PORT_httpWriteResponseBody
-    (JNIEnv *env, jclass, jlong writer, jlong userData, jbyteArray data)
+    (JNIEnv *env, jclass, jlong _writer, jlong userData, jbyteArray _data)
 {
-    auto func = (cq_http_body_writer)writer;
-    jbyte *bytes = env->GetByteArrayElements(data, nullptr);
-    jsize length = env->GetArrayLength(data);
+    auto writer = (cq_http_body_writer)_writer;
+    cqJNIByteArrayHelper data(env, _data);
 
-    auto ret = (jboolean)func((void *)userData, bytes, (int32_t)length);
-
-    env->ReleaseByteArrayElements(data, bytes, JNI_ABORT);
-
-    return ret;
+    return (jboolean)writer((void *)userData, data.bytes(), data.length());
 }
