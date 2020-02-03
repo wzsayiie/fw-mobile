@@ -75,9 +75,10 @@ public class PORT {
             return false;
         }
 
-        ArrayList<String> items = FileAssist.listSubItems(path);
+        boolean[] error = new boolean[1];
+        ArrayList<String> items = FileAssist.listSubItems(path, error);
 
-        if (items != null && items.size() > 0) {
+        if (!error[0]) {
             _traverse_items = items;
             _traverse_index = 0;
             return true;

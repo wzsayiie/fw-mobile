@@ -12,6 +12,6 @@ NSString *CQTemporaryDirectory(void);
 - (BOOL)fileExistsAtPath:(NSString *)path;
 - (BOOL)createDirectoryAtPath:(NSString *)path intermediate:(BOOL)intermediate;
 - (void)removeItemAtPath:(NSString *)path;
-- (NSArray<NSString *> *)contentsOfDirectoryAtPath:(NSString *)path;
+- (NSArray<NSString *> *)contentsOfDirectoryAtPath:(NSString *)path error:(BOOL *)error;
 
 @end

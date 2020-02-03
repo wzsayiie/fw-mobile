@@ -85,21 +85,34 @@ public class FileAssist {
         }
     }
 
-    public static ArrayList<String> listSubItems(String path) {
+    public static ArrayList<String> listSubItems(String path, boolean[] error) {
         if (StringUtil.isEmpty(path)) {
+            if (error != null && error.length > 0) {
+                error[0] = true;
+            }
             return null;
         }
 
         File file = new File(path);
+        if (!file.exists() || !file.isDirectory()) {
+            if (error != null && error.length > 0) {
+                error[0] = true;
+            }
+            return null;
+        }
+
         File[] subFiles = file.listFiles();
 
-        ArrayList<String> subItems = null;
+        ArrayList<String> subItems = new ArrayList<>();
         if (subFiles != null && subFiles.length > 0) {
-            subItems = new ArrayList<>();
             for (File it : subFiles) {
                 subItems.add(it.getName());
             }
             Collections.sort(subItems);
+        }
+
+        if (error != null && error.length > 0) {
+            error[0] = false;
         }
         return subItems;
     }

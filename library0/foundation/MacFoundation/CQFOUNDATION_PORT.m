@@ -83,9 +83,11 @@ bool cq_open_dir(const char *path) {
     }
     
     CQFileManager *manager = CQFileManager.sharedObject;
-    NSArray<NSString *> *items = [manager contentsOfDirectoryAtPath:@(path)];
+    BOOL error = true;
     
-    if (items.count > 0) {
+    NSArray<NSString *> *items = [manager contentsOfDirectoryAtPath:@(path) error:&error];
+    
+    if (!error) {
         _traverse_items = items;
         _traverse_index = 0;
         return true;
