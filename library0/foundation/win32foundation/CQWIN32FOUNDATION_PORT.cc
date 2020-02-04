@@ -117,7 +117,7 @@ const char *cq_read_dir()
 {
     if (sTraverseItems.size() > sTraverseIndex)
     {
-        return sTraverseItems[sTraverseItems++].c_str();
+        return sTraverseItems[sTraverseIndex++].c_str();
     }
     else
     {

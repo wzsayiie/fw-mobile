@@ -1,5 +1,6 @@
 ﻿#include "_fsys.hh"
 #include "macro.hh"
+#include "strtool.hh"
 
 #if ON_WIN32()
 

@@ -556,7 +556,7 @@ VOID CQHttpSyncResume(CQHTTP *lpHttp)
             break;
         }
 
-        BOOL bRequestOkay = WinHttpSendRequest(hRequest, NULL, 0, NULL, 0, 0, NULL);
+        BOOL bRequestOkay = WinHttpSendRequest(hRequest, NULL, 0, NULL, 0, 0, 0);
         if (!bRequestOkay)
         {
             break;
