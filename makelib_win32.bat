@@ -29,10 +29,6 @@ set source="library/foundation"
 call :compile
 if not %error% == 0 (goto end)
 
-set source="library/standalone"
-call :compile
-if not %error% == 0 (goto end)
-
 ::4 link
 set out=BUILD
 set exe=windows

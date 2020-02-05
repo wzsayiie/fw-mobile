@@ -15,7 +15,6 @@ list(APPEND inc_path ../GENERATED_HEADERS)
 list(APPEND src_aims ../library0/BASIS/*.c[xp][xp])
 list(APPEND src_aims ../library0/ctool/*.c[xp][xp])
 list(APPEND src_aims ../library0/foundation/*.c[xp][xp])
-list(APPEND src_aims ../library0/standalone/*.c[xp][xp])
 list(APPEND src_aims ../library0/subsystem/*.c[xp][xp])
 
 #list(APPEND sys_libs xx)

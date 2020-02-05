@@ -12,12 +12,10 @@ cpp_dir=""
 cpp_dir="$cpp_dir library/BASIS/libbasis"
 cpp_dir="$cpp_dir library/ctool/libctool"
 cpp_dir="$cpp_dir library/foundation/libfoundation"
-cpp_dir="$cpp_dir library/standalone/libstandalone"
 
 obc_dir=""
 obc_dir="$obc_dir library/BASIS/MacBasis"
 obc_dir="$obc_dir library/foundation/MacFoundation"
-obc_dir="$obc_dir library/standalone/MacStandalone"
 
 sh generate_headers
 ### configutation end

@@ -25,10 +25,7 @@
 		B439E5932266CCDE00B66285 /* cqfoundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B439E58E2266CCDE00B66285 /* cqfoundation.cpp */; };
 		B45B13E022E7F53100FC71B8 /* CQHTTPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = B45B13DF22E7F53100FC71B8 /* CQHTTPSession.m */; };
 		B473DC4022A5232A00218901 /* CQFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B473DC3E22A5232A00218901 /* CQFileManager.m */; };
-		B474FB5722D47B6E004627C6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B474FB5622D47B6E004627C6 /* main.cpp */; };
 		B48ECB4322B0900C00F7DE77 /* CQObjcBasis.m in Sources */ = {isa = PBXBuildFile; fileRef = B48ECB4222B0900C00F7DE77 /* CQObjcBasis.m */; };
-		B4AB963622D73FEF00A01060 /* CQSTANDALONE_PORT.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AB963522D73FEF00A01060 /* CQSTANDALONE_PORT.m */; };
-		B4AB963A22D73FF900A01060 /* cqstandalonearche.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4AB963822D73FF900A01060 /* cqstandalonearche.cpp */; };
 		B4C5027022C1B79F00374C6D /* cqctoolarche.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4C5026722C1B79F00374C6D /* cqctoolarche.cpp */; };
 		B4C5027122C1B79F00374C6D /* CQCTOOL_PORT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4C5026B22C1B79F00374C6D /* CQCTOOL_PORT.cpp */; };
 		B4C5027222C1B79F00374C6D /* cqjson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4C5026C22C1B79F00374C6D /* cqjson.cpp */; };
@@ -89,7 +86,6 @@
 		B45B13DF22E7F53100FC71B8 /* CQHTTPSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQHTTPSession.m; sourceTree = "<group>"; };
 		B473DC3E22A5232A00218901 /* CQFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQFileManager.m; sourceTree = "<group>"; };
 		B473DC3F22A5232A00218901 /* CQFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQFileManager.h; sourceTree = "<group>"; };
-		B474FB5622D47B6E004627C6 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B48ECB4122B0900C00F7DE77 /* CQObjcBasis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQObjcBasis.h; sourceTree = "<group>"; };
 		B48ECB4222B0900C00F7DE77 /* CQObjcBasis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQObjcBasis.m; sourceTree = "<group>"; };
 		B4954B3F22F2BE7000B66C0F /* _CQBASIS_VERSION.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _CQBASIS_VERSION.h; path = ../library0/BASIS/_CQBASIS_VERSION.h; sourceTree = "<group>"; };
@@ -98,10 +94,6 @@
 		B4954B4222F2C26300B66C0F /* _CQFOUNDATION_VERSION.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _CQFOUNDATION_VERSION.h; path = ../library0/foundation/_CQFOUNDATION_VERSION.h; sourceTree = "<group>"; };
 		B4954B4322F2C37800B66C0F /* _CQSUBSYSTEM_VERSION.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _CQSUBSYSTEM_VERSION.h; path = ../library0/subsystem/_CQSUBSYSTEM_VERSION.h; sourceTree = "<group>"; };
 		B4A2A2132268723E00D3D800 /* CQSubsystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQSubsystem.h; sourceTree = "<group>"; };
-		B4AB963422D73FEF00A01060 /* CQStandalone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQStandalone.h; sourceTree = "<group>"; };
-		B4AB963522D73FEF00A01060 /* CQSTANDALONE_PORT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQSTANDALONE_PORT.m; sourceTree = "<group>"; };
-		B4AB963822D73FF900A01060 /* cqstandalonearche.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqstandalonearche.cpp; sourceTree = "<group>"; };
-		B4AB963922D73FF900A01060 /* cqstandalonearche.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqstandalonearche.h; sourceTree = "<group>"; };
 		B4C5026622C1B79F00374C6D /* cqctoolarche.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqctoolarche.h; sourceTree = "<group>"; };
 		B4C5026722C1B79F00374C6D /* cqctoolarche.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqctoolarche.cpp; sourceTree = "<group>"; };
 		B4C5026922C1B79F00374C6D /* cqjson.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqjson.hh; sourceTree = "<group>"; };
@@ -316,33 +308,6 @@
 			path = cppfoundation;
 			sourceTree = "<group>";
 		};
-		B474FB5322D47B45004627C6 /* Standalone */ = {
-			isa = PBXGroup;
-			children = (
-				B4AB963322D73FEF00A01060 /* MacStandalone */,
-				B474FB5422D47B6E004627C6 /* libstandalone */,
-			);
-			name = Standalone;
-			sourceTree = "<group>";
-		};
-		B474FB5422D47B6E004627C6 /* libstandalone */ = {
-			isa = PBXGroup;
-			children = (
-				B4AB963722D73FF900A01060 /* archetype */,
-				B474FB5522D47B6E004627C6 /* cppstandalone */,
-			);
-			name = libstandalone;
-			path = ../library0/standalone/libstandalone;
-			sourceTree = "<group>";
-		};
-		B474FB5522D47B6E004627C6 /* cppstandalone */ = {
-			isa = PBXGroup;
-			children = (
-				B474FB5622D47B6E004627C6 /* main.cpp */,
-			);
-			path = cppstandalone;
-			sourceTree = "<group>";
-		};
 		B48ECB4022B0900C00F7DE77 /* MacBasis */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,25 +316,6 @@
 			);
 			name = MacBasis;
 			path = ../library0/BASIS/MacBasis;
-			sourceTree = "<group>";
-		};
-		B4AB963322D73FEF00A01060 /* MacStandalone */ = {
-			isa = PBXGroup;
-			children = (
-				B4AB963522D73FEF00A01060 /* CQSTANDALONE_PORT.m */,
-				B4AB963422D73FEF00A01060 /* CQStandalone.h */,
-			);
-			name = MacStandalone;
-			path = ../library0/standalone/MacStandalone;
-			sourceTree = "<group>";
-		};
-		B4AB963722D73FF900A01060 /* archetype */ = {
-			isa = PBXGroup;
-			children = (
-				B4AB963822D73FF900A01060 /* cqstandalonearche.cpp */,
-				B4AB963922D73FF900A01060 /* cqstandalonearche.h */,
-			);
-			path = archetype;
 			sourceTree = "<group>";
 		};
 		B4C5026322C1B77C00374C6D /* CTool */ = {
@@ -434,7 +380,6 @@
 				B439E56C2266CC4E00B66285 /* BASIS */,
 				B4C5026322C1B77C00374C6D /* CTool */,
 				B439E56D2266CC5A00B66285 /* Foundation */,
-				B474FB5322D47B45004627C6 /* Standalone */,
 				B425059D226744930035F91A /* Subsystem */,
 				CE219AE021DA51FD006A27B6 /* Products */,
 			);
@@ -510,7 +455,6 @@
 				B4189E2522CB05E80072CFC5 /* cqdata.cpp in Sources */,
 				B42505B2226744B10035F91A /* cqsubsystem.cpp in Sources */,
 				B4E2EC5322AE694C00577D62 /* CQThread.m in Sources */,
-				B4AB963A22D73FF900A01060 /* cqstandalonearche.cpp in Sources */,
 				B4C5027022C1B79F00374C6D /* cqctoolarche.cpp in Sources */,
 				B42505B1226744B10035F91A /* cqlualibsubsystem.cpp in Sources */,
 				B4CB2EEE22FBD8C2006BC34A /* cqsocket.cpp in Sources */,
@@ -518,7 +462,6 @@
 				B4C5027322C1B79F00374C6D /* cqdispatch.cpp in Sources */,
 				B45B13E022E7F53100FC71B8 /* CQHTTPSession.m in Sources */,
 				CEED25E122E31B20003EC18C /* cqpathstring.cpp in Sources */,
-				B474FB5722D47B6E004627C6 /* main.cpp in Sources */,
 				B42505B0226744B10035F91A /* cqsubsystemarche.cpp in Sources */,
 				B439E57C2266CC7500B66285 /* cqcppbasis.cpp in Sources */,
 				B439E5922266CCDE00B66285 /* cqlualibfoundation.cpp in Sources */,
@@ -531,7 +474,6 @@
 				B434F98F226EBA2D0081BBAA /* CQSUBSYSTEM_PORT.m in Sources */,
 				B42505AF226744B10035F91A /* CQSubsystemManager.m in Sources */,
 				B439E5912266CCDE00B66285 /* cqfoundationarche.cpp in Sources */,
-				B4AB963622D73FEF00A01060 /* CQSTANDALONE_PORT.m in Sources */,
 				B4C5027222C1B79F00374C6D /* cqjson.cpp in Sources */,
 				CE798DB2232FCC1F005D04DC /* cqvalue.cpp in Sources */,
 				B434F98D226EB06F0081BBAA /* CQFOUNDATION_PORT.m in Sources */,

@@ -30,7 +30,6 @@ android {
         main {
             java.srcDirs += '../library0/BASIS/android/java'
             java.srcDirs += '../library0/foundation/android/java'
-            java.srcDirs += '../library0/standalone/android/java'
             java.srcDirs += '../library0/subsystem/android/java'
 
             res.srcDirs += '../library0/subsystem/androidres/res'
