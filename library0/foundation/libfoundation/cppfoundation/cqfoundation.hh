@@ -72,6 +72,15 @@ struct cqThread {
     static void sleep(float seconds);
 };
 
+//main run loop:
+
+cq_class(cqRunLoop, cqObject) {
+    
+    static cqRunLoopRef mainRunLoop();
+    
+    virtual void perform(std::function<void ()> task);
+};
+
 //http(s):
 
 cq_class(cqHTTPSession, cqObject) {

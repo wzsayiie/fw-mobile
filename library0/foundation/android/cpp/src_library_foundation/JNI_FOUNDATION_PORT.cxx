@@ -192,6 +192,26 @@ void cq_thread_sleep(float seconds) {
     method.callVoid();
 }
 
+//main run loop:
+
+void cq_main_loop_post(void (*task)(void *), void *data) {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_main_loop_post");
+
+    method.push((jlong)task);
+    method.push((jlong)data);
+
+    method.callVoid();
+}
+
+extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_PORT_looperTaskBody
+        (JNIEnv *, jclass, jlong _task, jlong _data)
+{
+    auto task = (void (*)(void *))_task;
+    auto data = (void *)_data;
+    task(data);
+}
+
 //http(s):
 
 cq_http *cq_http_create() {

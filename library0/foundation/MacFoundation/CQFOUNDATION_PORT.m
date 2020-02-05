@@ -127,6 +127,14 @@ void cq_thread_sleep(float seconds) {
     CQThreadSleep(seconds);
 }
 
+//main run loop:
+
+void cq_main_loop_post(void (*task)(void *), void * data) {
+    if (task != NULL) {
+        [CQRunLoop.mainRunLoop performBlock:^{ task(data); }];
+    }
+}
+
 //http(s):
 
 @interface CQHTTPSessionPortObject : CQHTTPSession <CQHTTPSessionDelegate>

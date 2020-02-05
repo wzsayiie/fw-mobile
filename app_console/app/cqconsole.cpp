@@ -2,6 +2,8 @@
 
 int main(int argc, const char *argv[]) {
 
+    cqDispatch::setUserControlEnabled(true);
+
     launch(argc, argv);
 
     while (true) {

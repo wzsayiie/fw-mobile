@@ -168,6 +168,26 @@ void cqThread::sleep(float seconds) {
     cq_thread_sleep(seconds);
 }
 
+//main run loop:
+
+cq_member(cqRunLoop) {
+};
+
+cqRunLoopRef cqRunLoop::mainRunLoop() {
+    return cqStaticObject<cqRunLoop>();
+}
+
+static void cqRunLoop_perform(void *data) {
+    auto ref = (std::function<void ()> *)data;
+    (*ref)();
+    delete ref;
+}
+
+void cqRunLoop::perform(std::function<void ()> task) {
+    auto ref = new std::function<void ()>(task);
+    cq_main_loop_post(cqRunLoop_perform, ref);
+}
+
 //http(s):
 
 cq_member(cqHTTPSession) {

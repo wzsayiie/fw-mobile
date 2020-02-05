@@ -117,6 +117,14 @@ public class PORT {
     public static void cq_thread_sleep(float seconds) {
         ThreadAssist.sleepForSeconds(seconds);
     }
+
+    //main run loop:
+
+    public static void cq_main_loop_post(long task, long data) {
+        LooperAssist.runOnMainLoop(() -> looperTaskBody(task, data));
+    }
+
+    private static native void looperTaskBody(long task, long data);
     
     //http:
     

@@ -81,12 +81,22 @@ void cqDispatch::asyncOnGlobal(std::function<void ()> task) {
 
 //main queue:
 
+static std::atomic_bool sUserControlEnabled(false);
+
 static cqDispatchQueueRef mainQueue() {
     return cqStaticObject<cqDispatchQueue, __LINE__>();
 }
 
 void cqDispatch::asyncOnMain(std::function<void ()> task) {
-    mainQueue()->post(task);
+    if (sUserControlEnabled) {
+        mainQueue()->post(task);
+    } else {
+        cqRunLoop::mainRunLoop()->perform(task);
+    }
+}
+
+void cqDispatch::setUserControlEnabled(bool enabled) {
+    sUserControlEnabled = enabled;
 }
 
 bool cqDispatch::mainQueueEmpty() {

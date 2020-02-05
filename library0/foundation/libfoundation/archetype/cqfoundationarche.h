@@ -39,6 +39,10 @@ CQ_C_LINK void cq_close_dir(void);
 CQ_C_LINK void cq_thread_run(void (*task)(void *), void *data);
 CQ_C_LINK void cq_thread_sleep(float seconds);
 
+//main run loop:
+
+CQ_C_LINK void cq_main_loop_post(void (*task)(void *), void *data);
+
 //http(s):
 
 typedef int32_t (*cq_http_body_reader  )(void *user, void *buffer, int32_t length);
