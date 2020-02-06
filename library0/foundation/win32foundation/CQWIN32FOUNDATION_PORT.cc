@@ -146,6 +146,12 @@ void cq_thread_sleep(float seconds)
     CQThreadSleepSeconds(seconds);
 }
 
+//main run loop:
+
+void cq_main_loop_post(void (*task)(void *), void *data)
+{
+}
+
 //http(s):
 
 struct cq_http {
