@@ -38,7 +38,7 @@ NSString *CQStringFromNetStatus(CQNetStatus status) {
 - (BOOL)WiFiAvailable { return self.WiFiIPv4.length > 0 || self.WiFiIPv6LinkLocal.length > 0; }
 
 + (instancetype)sharedObject {
-    CQ_SHARED_OBJECT(self);
+    CQ_SHARED_OBJECT_OF_SELF();
 }
 
 - (instancetype)init {

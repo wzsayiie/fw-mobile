@@ -30,12 +30,23 @@ id CQGetProperty(id object, const void *key);
 
 //shared singleton:
 
-#define CQ_SHARED_OBJECT(CLASS)\
+#define CQ_SHARED_OBJECT(CLASS, OBJECT, CODE)\
+/**/    do {\
+/**/        static CLASS *OBJECT = nil;\
+/**/        static dispatch_once_t token = 0;\
+/**/        dispatch_once(&token, ^{\
+/**/            OBJECT = [[CLASS alloc] init];\
+/**/            CODE\
+/**/        });\
+/**/        return OBJECT;\
+/**/    } while (0)
+
+#define CQ_SHARED_OBJECT_OF_SELF()\
 /**/    do {\
 /**/        static id object = nil;\
 /**/        static dispatch_once_t token = 0;\
 /**/        dispatch_once(&token, ^{\
-/**/            object = [[CLASS alloc] init];\
+/**/            object = [[self alloc] init];\
 /**/        });\
 /**/        return object;\
 /**/    } while (0)

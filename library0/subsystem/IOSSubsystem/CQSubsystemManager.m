@@ -9,7 +9,7 @@
 @implementation CQSubsystemManager
 
 + (instancetype)sharedObject {
-    CQ_SHARED_OBJECT(self);
+    CQ_SHARED_OBJECT_OF_SELF();
 }
 
 - (void)startSubsystem {

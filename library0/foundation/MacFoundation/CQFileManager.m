@@ -17,7 +17,7 @@ NSString *CQTemporaryDirectory(void) {
 @implementation CQFileManager
 
 + (instancetype)sharedObject {
-    CQ_SHARED_OBJECT(self);
+    CQ_SHARED_OBJECT_OF_SELF();
 }
 
 - (BOOL)directoryExistsAtPath:(NSString *)path {

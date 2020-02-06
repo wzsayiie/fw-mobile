@@ -7,13 +7,9 @@
 @implementation CQRunLoop
 
 + (instancetype)mainRunLoop {
-    static dispatch_once_t token = 0;
-    static CQRunLoop *runLoop = nil;
-    dispatch_once(&token, ^{
-        runLoop = [[CQRunLoop alloc] init];
-        runLoop.core = NSRunLoop.mainRunLoop;
+    CQ_SHARED_OBJECT(CQRunLoop, object, {
+        object.core = NSRunLoop.mainRunLoop;
     });
-    return runLoop;
 }
 
 - (void)performBlock:(void (^)(void))block {

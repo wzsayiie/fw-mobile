@@ -7,13 +7,9 @@
 @implementation CQBundle
 
 + (instancetype)mainBundle {
-    static dispatch_once_t token = 0;
-    static CQBundle *bundle = nil;
-    dispatch_once(&token, ^{
-        bundle = [[CQBundle alloc] init];
-        bundle.core = NSBundle.mainBundle;
+    CQ_SHARED_OBJECT(CQBundle, object, {
+        object.core = NSBundle.mainBundle;
     });
-    return bundle;
 }
 
 - (NSString *)bundlePath {

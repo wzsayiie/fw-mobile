@@ -3,7 +3,7 @@
 @implementation CQCrashListener
 
 + (instancetype)sharedObject {
-    CQ_SHARED_OBJECT(self);
+    CQ_SHARED_OBJECT_OF_SELF();
 }
 
 - (instancetype)init {
