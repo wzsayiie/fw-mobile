@@ -10,15 +10,15 @@ CQ_C_LINK void cq_log_error(const char *file, int32_t line, const char *message)
 //app bundle resource:
 
 CQ_C_LINK const char *cq_ios_bundle_path(void);
-CQ_C_LINK const char *cq_ios_bundle_res_path(const char *name, const char *type);
+CQ_C_LINK const char *cq_ios_resource_path(const char *name, const char *type);
 
-typedef void (*cq_ios_bundle_res_writer)(void *user, const void *bytes, int32_t length);
-typedef void (*cq_andr_asset_writer    )(void *user, const void *bytes, int32_t length);
+typedef void (*cq_ios_resource_writer )(void *user, const void *bytes, int32_t length);
+typedef void (*cq_android_asset_writer)(void *user, const void *bytes, int32_t length);
 
-CQ_C_LINK void cq_ios_bundle_res_to(cq_ios_bundle_res_writer writer, void *user, const char *name, const char *type);
-CQ_C_LINK void cq_andr_asset_to    (cq_andr_asset_writer     writer, void *user, const char *name);
+CQ_C_LINK void cq_ios_resource_to (cq_ios_resource_writer  writer, void *user, const char *name, const char *type);
+CQ_C_LINK void cq_android_asset_to(cq_android_asset_writer writer, void *user, const char *name);
 
-CQ_C_LINK bool cq_andr_copy_asset(const char *from_path, const char *to_path);
+CQ_C_LINK bool cq_android_copy_asset(const char *from_path, const char *to_path);
 
 //file access:
 

@@ -39,16 +39,16 @@ const char *cq_ios_bundle_path() {
     return nullptr;
 }
 
-const char *cq_ios_bundle_res_path(const char *, const char *) {
+const char *cq_ios_resource_path(const char *, const char *) {
     return nullptr;
 }
 
-void cq_ios_bundle_res_to(cq_ios_bundle_res_writer, void *, const char *, const char *) {
+void cq_ios_resource_to(cq_ios_resource_writer, void *, const char *, const char *) {
 }
 
-void cq_andr_asset_to(cq_andr_asset_writer writer, void *user, const char *name) {
+void cq_android_asset_to(cq_android_asset_writer writer, void *user, const char *name) {
     static jmethodID methodID = nullptr;
-    cqJNIStaticMethod method(clazz(), &methodID, "cq_andr_asset_to");
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_android_asset_to");
 
     method.push((jlong)writer);
     method.push((jlong)user);
@@ -57,18 +57,18 @@ void cq_andr_asset_to(cq_andr_asset_writer writer, void *user, const char *name)
     method.callVoid();
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_PORT_bundleWriteAsset
+extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_PORT_writeAsset
     (JNIEnv *env, jclass, jlong _writer, jlong userData, jbyteArray _asset)
 {
-    auto writer = (cq_andr_asset_writer)_writer;
+    auto writer = (cq_android_asset_writer)_writer;
     cqJNIByteArrayHelper asset(env, _asset);
 
     writer((void *)userData, asset.bytes(), asset.length());
 }
 
-bool cq_andr_copy_asset(const char *from_path, const char *to_path) {
+bool cq_android_copy_asset(const char *from_path, const char *to_path) {
     static jmethodID methodID = nullptr;
-    cqJNIStaticMethod method(clazz(), &methodID, "cq_andr_copy_asset");
+    cqJNIStaticMethod method(clazz(), &methodID, "cq_android_copy_asset");
 
     method.push(from_path);
     method.push(to_path);

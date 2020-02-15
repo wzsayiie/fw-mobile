@@ -45,7 +45,7 @@ static int32_t IOSResourcePath(lua_State *state) {
     const char *name = cq_lua_check_string(state, 1);
     const char *type = cq_lua_check_string(state, 2);
     
-    const char *path = cq_ios_bundle_res_path(name, type);
+    const char *path = cq_ios_resource_path(name, type);
     
     return cq_lua_return_string(state, path);
 }
@@ -54,7 +54,7 @@ static int32_t AndroidCopyAsset(lua_State *state) {
     const char *from = cq_lua_check_string(state, 1);
     const char *to   = cq_lua_check_string(state, 2);
     
-    bool success = cq_andr_copy_asset(from, to);
+    bool success = cq_android_copy_asset(from, to);
     
     return cq_lua_return_bool(state, success);
 }

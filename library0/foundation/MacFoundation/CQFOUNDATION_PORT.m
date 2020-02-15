@@ -18,12 +18,12 @@ const char *cq_ios_bundle_path(void) {
     return cq_store_str(path.UTF8String);
 }
 
-const char *cq_ios_bundle_res_path(const char *name, const char *type) {
+const char *cq_ios_resource_path(const char *name, const char *type) {
     NSString *path = [CQBundle.mainBundle resourcePathForName:@(name) type:@(type)];
     return cq_store_str(path.UTF8String);
 }
 
-void cq_ios_bundle_res_to(cq_ios_bundle_res_writer writer, void *user, const char *name, const char *type) {
+void cq_ios_resource_to(cq_ios_resource_writer writer, void *user, const char *name, const char *type) {
     NSData *data = [CQBundle.mainBundle resourceForName:@(type) type:@(type)];
     
     if (data.length > 0 && writer != NULL) {
@@ -31,10 +31,10 @@ void cq_ios_bundle_res_to(cq_ios_bundle_res_writer writer, void *user, const cha
     }
 }
 
-void cq_andr_asset_to(cq_andr_asset_writer writer, void *user, const char *name) {
+void cq_android_asset_to(cq_android_asset_writer writer, void *user, const char *name) {
 }
 
-bool cq_andr_copy_asset(const char *from_path, const char *to_path) {
+bool cq_android_copy_asset(const char *from_path, const char *to_path) {
     return false;
 }
 
