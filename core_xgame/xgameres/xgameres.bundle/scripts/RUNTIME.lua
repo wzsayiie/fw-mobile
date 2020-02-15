@@ -1,6 +1,3 @@
---object.
-Object = {}
-
 --extern classes and functions.
 require "LIBRARY"
 
