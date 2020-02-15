@@ -22,8 +22,8 @@ void GameLowRoot::onAwake() {
     cq_lua_load_lib_foundation();
     cq_lua_load_lib_subsystem();
     cs_lua_load_lib_gamekit();
-
-    cq_lua_do_string("require 'runtime'");
+    
+    cq_lua_do_string("require 'RUNTIME'");
 }
 
 void GameLowRoot::onStart() {
