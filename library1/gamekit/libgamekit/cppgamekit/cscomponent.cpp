@@ -19,11 +19,11 @@ csGameObjectRef csComponent::gameObject() {
 
 //brother components:
 
-std::vector<csComponentRef> csComponent::getComponents(cqClass *clazz) {
+std::vector<csComponentRef> csComponent::listComponents(cqClass *clazz) {
     csGameObjectRef object = gameObject();
     
     if (object != nullptr) {
-        return object->getComponents(clazz);
+        return object->listComponents(clazz);
     }
     return std::vector<csComponentRef>();
 }

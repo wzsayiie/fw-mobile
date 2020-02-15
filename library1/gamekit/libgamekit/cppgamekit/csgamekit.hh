@@ -4,7 +4,6 @@
 #include "cscamera.hh"
 #include "cscomponent.hh"
 #include "csgameobject.hh"
-#include "cqgeometry.hh"
 #include "csluavm.hh"
 #include "csnode.hh"
 #include "csrenderer.hh"

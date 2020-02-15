@@ -92,7 +92,7 @@ void csGameObject::removeComponent(csComponentRef component) {
     cqVector::erase(&dat->components, component);
 }
 
-std::vector<csComponentRef> csGameObject::getComponents(cqClass *clazz) {
+std::vector<csComponentRef> csGameObject::listComponents(cqClass *clazz) {
     if (clazz == nullptr) {
         return std::vector<csComponentRef>();
     }

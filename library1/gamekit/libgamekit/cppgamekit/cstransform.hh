@@ -1,7 +1,6 @@
 #pragma once
 
 #include "cscomponent.hh"
-#include "csgeometry.hh"
 
 _CSGAMEKIT_BEGIN_VERSION_NS
 
@@ -14,8 +13,9 @@ cq_class(csTransform, csComponent) {
     void handleDestroy() override;
     
     //properties:
-    virtual void setPosition(csVector2 position);
-    virtual csVector2 position();
+    virtual void setPosition(float x, float y);
+    virtual float positionX();
+    virtual float positionY();
     
     //hierarchy:
     virtual void asActiveRoot();

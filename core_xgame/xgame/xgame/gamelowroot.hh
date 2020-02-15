@@ -4,7 +4,7 @@
 
 cq_class(GameLowRoot, csScript) {
     
-    void awake () override;
-    void start () override;
-    void update() override;
+    void onAwake () override;
+    void onStart () override;
+    void onUpdate() override;
 };

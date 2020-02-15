@@ -27,18 +27,20 @@ cq_class(csGameObject, csNode) {
         return cqObject::cast<T>(addComponent(T::clazz()));
     }
     
-    virtual std::vector<csComponentRef> getComponents(cqClass *clazz);
+    virtual std::vector<csComponentRef> listComponents(cqClass *clazz);
     virtual csComponentRef getComponent(cqClass *clazz);
     
-    template<class T> typename std::vector<typename cqRef<T>::Strong> getComponents() {
+    template<class T>
+    typename std::vector<typename cqRef<T>::Strong> listComponents() {
         typename std::vector<typename cqRef<T>::Strong> vector;
-        for (csComponentRef it : getComponents(T::clazz())) {
+        for (csComponentRef it : listComponents(T::clazz())) {
             vector.push_back(cqObject::cast<T>(it));
         }
         return vector;
     }
     
-    template<class T> typename cqRef<T>::Strong getComponent() {
+    template<class T>
+    typename cqRef<T>::Strong getComponent() {
         return cqObject::cast<T>(getComponent(T::clazz()));
     }
     

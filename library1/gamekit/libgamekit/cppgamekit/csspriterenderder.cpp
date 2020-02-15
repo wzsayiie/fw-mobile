@@ -4,10 +4,12 @@
 
 cq_member(csSpriteRenderer) {
     csSpriteRef sprite;
-    csVector2 size;
+    
+    float width  = 0;
+    float height = 0;
 };
 
-void csSpriteRenderer::handleRender(csVector2 offset) {
+void csSpriteRenderer::handleRender(float offsetX, float offsetY) {
     //texture.
     csTexture2DRef texture; {
         if (dat->sprite != nullptr) {
@@ -19,31 +21,34 @@ void csSpriteRenderer::handleRender(csVector2 offset) {
     }
     
     //size.
-    csVector2 size = dat->size;
-    if (cq_flt_equal(size.x, 0) || cq_flt_equal(size.y, 0)) {
+    float width  = dat->width ;
+    float height = dat->height;
+    if (cq_flt_equal(width, 0) || cq_flt_equal(height, 0)) {
         return;
     }
     
     //origin.
-    csVector2 pos = getComponent<csTransform>()->position();
-    float x = offset.x + pos.x - size.x / 2;
-    float y = offset.y + pos.y - size.y / 2;
+    auto transform = getComponent<csTransform>();
+    float posX = transform->positionX();
+    float posY = transform->positionY();
+    float x = offsetX + posX - width  / 2;
+    float y = offsetY + posY - height / 2;
     
     //draw.
-    cq_draw_tex(x, y, size.x, size.y, (cq_tex *)texture->nativeTexture());
+    cq_draw_tex(x, y, width, height, (cq_tex *)texture->nativeTexture());
 }
 
 void csSpriteRenderer::setSprite(csSpriteRef sprite) {
     dat->sprite = sprite;
     
-    if (cq_flt_equal(dat->size.x, 0) || cq_flt_equal(dat->size.y, 0)) {
+    if (cq_flt_equal(dat->width, 0) || cq_flt_equal(dat->height, 0)) {
         csTexture2DRef texture;
         if (sprite != nullptr) {
             texture = sprite->texture();
         }
         if (texture != nullptr) {
-            dat->size.x = texture->width () / cq_wnd_scale();
-            dat->size.y = texture->height() / cq_wnd_scale();
+            dat->width  = texture->width () / cq_wnd_scale();
+            dat->height = texture->height() / cq_wnd_scale();
         }
     }
 }
@@ -52,10 +57,10 @@ csSpriteRef csSpriteRenderer::sprite() {
     return dat->sprite;
 }
 
-void csSpriteRenderer::setSize(csVector2 size) {
-    dat->size = size;
+void csSpriteRenderer::setSize(float width, float height) {
+    dat->width  = width ;
+    dat->height = height;
 }
 
-csVector2 csSpriteRenderer::size() {
-    return dat->size;
-}
+float csSpriteRenderer::width () {return dat->width ;}
+float csSpriteRenderer::height() {return dat->height;}

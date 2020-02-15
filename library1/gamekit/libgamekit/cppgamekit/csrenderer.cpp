@@ -3,24 +3,26 @@
 cq_member(csRenderer) {
 };
 
-static void renderOne(csVector2 offset, csTransformRef transform) {
-    auto renderers = transform->getComponents<csRenderer>();
+static void renderOne(float offsetX, float offsetY, csTransformRef transform) {
+    auto renderers = transform->listComponents<csRenderer>();
     for (auto &it : renderers) {
-        it->handleRender(offset);
+        it->handleRender(offsetX, offsetY);
     }
     
-    auto childOffset = transform->position() + offset;
-    auto children = transform->children();
+    float childX = transform->positionX() + offsetX;
+    float childY = transform->positionY() + offsetY;
+    
+    std::vector<csTransformRef> children = transform->children();
     for (auto &it : children) {
-        renderOne(childOffset, it);
+        renderOne(childX, childY, it);
     }
 }
 
 void csRenderer::renderAll(const std::vector<csTransformRef> &roots) {
     for (auto &it : roots) {
-        renderOne(csVector2(), it);
+        renderOne(0, 0, it);
     }
 }
 
-void csRenderer::handleRender(csVector2 offset) {
+void csRenderer::handleRender(float offsetX, float offsetY) {
 }

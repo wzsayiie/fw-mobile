@@ -17,9 +17,9 @@ cq_class(csScript, csBehaviour) {
     virtual void handleUpdate();
     
     //user-oriented lifecycle events:
-    virtual void awake();
-    virtual void start();
-    virtual void update();
+    virtual void onAwake();
+    virtual void onStart();
+    virtual void onUpdate();
     virtual void onDestroy();
 };
 

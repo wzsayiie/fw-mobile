@@ -12,8 +12,8 @@ std::vector<csTransformRef> csTransform::globalRoots() { return theGlobalRoots; 
 //transform:
 
 cq_member(csTransform) {
-    
-    csVector2 position;
+    float positionX = 0;
+    float positionY = 0;
     
     csTransformWeakRef parent;
     std::vector<csTransformRef> children;
@@ -40,13 +40,13 @@ void csTransform::handleDestroy() {
 
 //properties:
 
-void csTransform::setPosition(csVector2 position) {
-    dat->position = position;
+void csTransform::setPosition(float x, float y) {
+    dat->positionX = x;
+    dat->positionY = y;
 }
 
-csVector2 csTransform::position() {
-    return dat->position;
-}
+float csTransform::positionX() {return dat->positionX;}
+float csTransform::positionY() {return dat->positionY;}
 
 //hierarchy:
 

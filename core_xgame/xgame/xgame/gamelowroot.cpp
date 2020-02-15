@@ -8,7 +8,7 @@
 cq_member(GameLowRoot) {
 };
 
-void GameLowRoot::awake() {
+void GameLowRoot::onAwake() {
     ResPackage::load();
     
     //resources directory.
@@ -26,8 +26,8 @@ void GameLowRoot::awake() {
     cq_lua_do_string("require 'runtime'");
 }
 
-void GameLowRoot::start() {
+void GameLowRoot::onStart() {
 }
 
-void GameLowRoot::update() {
+void GameLowRoot::onUpdate() {
 }

@@ -83,7 +83,6 @@
 		CEC440A7237D599500361447 /* csscenemanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44080237D599500361447 /* csscenemanager.cpp */; };
 		CEC440A9237D599500361447 /* csbehaviour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44085237D599500361447 /* csbehaviour.cpp */; };
 		CEC440AA237D599500361447 /* cstransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44087237D599500361447 /* cstransform.cpp */; };
-		CEC440AB237D599500361447 /* csgeometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC4408C237D599500361447 /* csgeometry.cpp */; };
 		CEC440AD237D599500361447 /* cssprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC4408F237D599500361447 /* cssprite.cpp */; };
 		CEC440AE237D599500361447 /* cstexture2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44090237D599500361447 /* cstexture2d.cpp */; };
 		CEC440AF237D599500361447 /* csscript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44093237D599500361447 /* csscript.cpp */; };
@@ -275,7 +274,6 @@
 		CEC44070237D599500361447 /* csrenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csrenderer.cpp; sourceTree = "<group>"; };
 		CEC44071237D599500361447 /* csresources.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csresources.cpp; sourceTree = "<group>"; };
 		CEC44073237D599500361447 /* csgamekit.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csgamekit.hh; sourceTree = "<group>"; };
-		CEC44074237D599500361447 /* csgeometry.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csgeometry.hh; sourceTree = "<group>"; };
 		CEC44075237D599500361447 /* CSGAMEKIT_PORT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSGAMEKIT_PORT.cpp; sourceTree = "<group>"; };
 		CEC44076237D599500361447 /* csspriterenderder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csspriterenderder.cpp; sourceTree = "<group>"; };
 		CEC44077237D599500361447 /* cscomponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cscomponent.cpp; sourceTree = "<group>"; };
@@ -295,7 +293,6 @@
 		CEC44089237D599500361447 /* csresources.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csresources.hh; sourceTree = "<group>"; };
 		CEC4408A237D599500361447 /* csscenemanager.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csscenemanager.hh; sourceTree = "<group>"; };
 		CEC4408B237D599500361447 /* csscript.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csscript.hh; sourceTree = "<group>"; };
-		CEC4408C237D599500361447 /* csgeometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csgeometry.cpp; sourceTree = "<group>"; };
 		CEC4408D237D599500361447 /* cstransform.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cstransform.hh; sourceTree = "<group>"; };
 		CEC4408F237D599500361447 /* cssprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cssprite.cpp; sourceTree = "<group>"; };
 		CEC44090237D599500361447 /* cstexture2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cstexture2d.cpp; sourceTree = "<group>"; };
@@ -877,8 +874,6 @@
 				CEC4406B237D599500361447 /* csgamekitbase.hh */,
 				CEC44068237D599500361447 /* csgameobject.cpp */,
 				CEC4406C237D599500361447 /* csgameobject.hh */,
-				CEC4408C237D599500361447 /* csgeometry.cpp */,
-				CEC44074237D599500361447 /* csgeometry.hh */,
 				CEC4406D237D599500361447 /* csluavm.cpp */,
 				CEC4406A237D599500361447 /* csluavm.hh */,
 				CEC44069237D599500361447 /* csnode.cpp */,
@@ -1245,7 +1240,6 @@
 				CEC440E1237D59E400361447 /* cqevent.cpp in Sources */,
 				CEC440AE237D599500361447 /* cstexture2d.cpp in Sources */,
 				CEC44054237D593500361447 /* cqwnd.cpp in Sources */,
-				CEC440AB237D599500361447 /* csgeometry.cpp in Sources */,
 				CEC440F0237D5B1400361447 /* entry.cpp in Sources */,
 				CEC44098237D599500361447 /* GameAppDelegate.m in Sources */,
 				B425210A22842AD3004FA04B /* UIDevice+CQ.m in Sources */,

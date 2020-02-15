@@ -42,18 +42,18 @@ void csScript::handleUpdate() {
     //awake.
     if (dat->waitingAwake) {
         dat->waitingAwake = false;
-        awake();
+        onAwake();
     }
     //start.
     if (dat->waitingStart) {
         dat->waitingStart = false;
-        start();
+        onStart();
     }
     //update.
-    update();
+    onUpdate();
 }
 
-void csScript::awake    () {}
-void csScript::start    () {}
-void csScript::update   () {}
+void csScript::onAwake  () {}
+void csScript::onStart  () {}
+void csScript::onUpdate () {}
 void csScript::onDestroy() {}
