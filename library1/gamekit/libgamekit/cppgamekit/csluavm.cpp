@@ -12,18 +12,15 @@
 
 static lua_State *_state = nullptr;
 
-static void register_func(const char *name, int32_t (*func)(lua_State *)) {
-    if (_state == nullptr) {
-        return;
-    }
-    if (cq_str_empty(name)) {
+static void register_func(const char *tab, const char *meta, const char *func, lua_CFunction ptr) {
+    if (_state == nullptr || cq_str_empty(func)) {
         return;
     }
     if (func == nullptr) {
         return;
     }
     
-    lua_register(_state, name, func);
+    lua_register(_state, func, ptr);
 }
 
 static int traceback(lua_State *state) {

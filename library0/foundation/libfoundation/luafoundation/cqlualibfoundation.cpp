@@ -3,7 +3,7 @@
 
 //host os:
 
-static int32_t cq_host_os(lua_State *state) {
+static int32_t HostOS(lua_State *state) {
     
     CQ_IF_ON_ANDROID(return cq_lua_return_string(state, "android"));
     CQ_IF_ON_IOS    (return cq_lua_return_string(state, "ios"    ));
@@ -11,45 +11,19 @@ static int32_t cq_host_os(lua_State *state) {
     CQ_IF_ON_OSX    (return cq_lua_return_string(state, "osx"    ));
 }
 
-//app bundle resource:
-
-static int32_t cq_ios_bundle_path(lua_State *state) {
-    const char *path = cq_ios_bundle_path();
-    
-    return cq_lua_return_string(state, path);
-}
-
-static int32_t cq_ios_bundle_res_path(lua_State *state) {
-    const char *name = cq_lua_check_string(state, 1);
-    const char *type = cq_lua_check_string(state, 2);
-    
-    const char *path = cq_ios_bundle_res_path(name, type);
-    
-    return cq_lua_return_string(state, path);
-}
-
-static int32_t cq_andr_copy_asset(lua_State *state) {
-    const char *from = cq_lua_check_string(state, 1);
-    const char *to   = cq_lua_check_string(state, 2);
-    
-    bool success = cq_andr_copy_asset(from, to);
-    
-    return cq_lua_return_bool(state, success);
-}
-
 //log:
 
-static int32_t cq_log_info(lua_State *state) {
+static int32_t LogInfo(lua_State *state) {
     const char *file = cq_lua_check_string(state, 1);
     int32_t     line = cq_lua_check_int32 (state, 2);
     const char *text = cq_lua_check_string(state, 3);
     
     cq_log_info(file, line, text);
     
-    return 0;
+    return cq_lua_return_void(state);
 }
 
-static int32_t cq_log_error(lua_State *state) {
+static int32_t LogError(lua_State *state) {
     const char *file = cq_lua_check_string(state, 1);
     int32_t     line = cq_lua_check_int32 (state, 2);
     const char *text = cq_lua_check_string(state, 3);
@@ -59,39 +33,65 @@ static int32_t cq_log_error(lua_State *state) {
     return cq_lua_return_void(state);
 }
 
+//app bundle resource:
+
+static int32_t IOSBundlePath(lua_State *state) {
+    const char *path = cq_ios_bundle_path();
+    
+    return cq_lua_return_string(state, path);
+}
+
+static int32_t IOSResourcePath(lua_State *state) {
+    const char *name = cq_lua_check_string(state, 1);
+    const char *type = cq_lua_check_string(state, 2);
+    
+    const char *path = cq_ios_bundle_res_path(name, type);
+    
+    return cq_lua_return_string(state, path);
+}
+
+static int32_t AndroidCopyAsset(lua_State *state) {
+    const char *from = cq_lua_check_string(state, 1);
+    const char *to   = cq_lua_check_string(state, 2);
+    
+    bool success = cq_andr_copy_asset(from, to);
+    
+    return cq_lua_return_bool(state, success);
+}
+
 //file access:
 
-static int32_t cq_document_directory(lua_State *state) {
+static int32_t DocumentDirectory(lua_State *state) {
     const char *directory = cq_document_directory();
     
     return cq_lua_return_string(state, directory);
 }
 
-static int32_t cq_caches_directory(lua_State *state) {
+static int32_t CachesDirectory(lua_State *state) {
     const char *directory = cq_caches_directory();
     
     return cq_lua_return_string(state, directory);
 }
 
-static int32_t cq_temporary_directory(lua_State *state) {
+static int32_t TemporaryDirectory(lua_State *state) {
     const char *directory = cq_temporary_directory();
     
     return cq_lua_return_string(state, directory);
 }
 
-static int32_t cq_directory_exists(lua_State *state) {
+static int32_t DirectoryExists(lua_State *state) {
     const char *path = cq_lua_check_string(state, 1);
     bool success = cq_directory_exists(path);
     return cq_lua_return_bool(state, success);
 }
 
-static int32_t cq_file_exists(lua_State *state) {
+static int32_t FileExists(lua_State *state) {
     const char *path = cq_lua_check_string(state, 1);
     bool success = cq_file_exists(path);
     return cq_lua_return_bool(state, success);
 }
 
-static int32_t cq_create_directory(lua_State *state) {
+static int32_t CreateDirectory(lua_State *state) {
     const char *path  = cq_lua_check_string(state, 1);
     bool intermediate = cq_lua_check_bool  (state, 2);
     
@@ -100,7 +100,7 @@ static int32_t cq_create_directory(lua_State *state) {
     return cq_lua_return_bool(state, success);
 }
 
-static int32_t cq_remove_path(lua_State *state) {
+static int32_t RemovePath(lua_State *state) {
     const char *path = cq_lua_check_string(state, 1);
     cq_remove_path(path);
     return cq_lua_return_void(state);
@@ -130,31 +130,31 @@ static int32_t cq_close_dir(lua_State *state) {
 
 void cq_lua_load_lib_foundation() {
     
-#define register_func(name) cq_lua_register_func(#name, name)
+#define register_func(name) cq_lua_register_func(nullptr, nullptr, #name, name)
     
     //host os:
-    register_func(cq_host_os);
+    register_func(HostOS);
     
     //log:
     
-    register_func(cq_log_info );
-    register_func(cq_log_error);
+    register_func(LogInfo );
+    register_func(LogError);
     
     //app bundle resource:
 
-    register_func(cq_ios_bundle_path    );
-    register_func(cq_ios_bundle_res_path);
-    register_func(cq_andr_copy_asset    );
+    register_func(IOSBundlePath   );
+    register_func(IOSResourcePath );
+    register_func(AndroidCopyAsset);
     
     //file access:
     
-    register_func(cq_document_directory );
-    register_func(cq_caches_directory   );
-    register_func(cq_temporary_directory);
-    register_func(cq_directory_exists   );
-    register_func(cq_file_exists        );
-    register_func(cq_create_directory   );
-    register_func(cq_remove_path        );
+    register_func(DocumentDirectory );
+    register_func(CachesDirectory   );
+    register_func(TemporaryDirectory);
+    register_func(DirectoryExists   );
+    register_func(FileExists        );
+    register_func(CreateDirectory   );
+    register_func(RemovePath        );
     
     register_func(cq_open_dir );
     register_func(cq_read_dir );

@@ -5,7 +5,7 @@
 struct lua_State;
 typedef int32_t (*lua_CFunction)(struct lua_State *);
 
-CQ_C_LINK void cq_lua_register_func(const char *name, lua_CFunction func);
+CQ_C_LINK void cq_lua_register_func(const char *tab, const char *meta, const char *func, lua_CFunction ptr);
 CQ_C_LINK void cq_lua_do_string(const char *code);
 
 CQ_C_LINK bool    cq_lua_check_bool  (struct lua_State *state, int32_t index);
@@ -33,7 +33,7 @@ CQ_C_LINK int32_t cq_lua_return_string(struct lua_State *state, const char *valu
 
 struct _cq_lua_handlers {
     
-    void (*register_func)(const char *name, lua_CFunction);
+    void (*register_func)(const char *tab, const char *meta, const char *func, lua_CFunction ptr);
     void (*do_string    )(const char *code);
     
     int64_t (*check_integer)(struct lua_State *state, int32_t index);

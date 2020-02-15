@@ -11,8 +11,8 @@ template<class F, class... A> auto call(F func, A... args) -> decltype(func(args
     }
 }
 
-void cq_lua_register_func(const char *name, int (*func)(lua_State *)) {
-    return call(_h.register_func, name, func);
+void cq_lua_register_func(const char *tab, const char *meta, const char *func, lua_CFunction ptr) {
+    return call(_h.register_func, tab, meta, func, ptr);
 }
 
 void cq_lua_do_string(const char *code) {
