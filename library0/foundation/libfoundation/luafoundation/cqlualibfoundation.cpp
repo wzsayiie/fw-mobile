@@ -130,7 +130,7 @@ static int32_t cq_close_dir(lua_State *state) {
 
 void cq_lua_load_lib_foundation() {
     
-#define register_func(name) cq_lua_register_func(nullptr, nullptr, #name, name)
+#define register_func(name) cq_lua_register_func(nullptr, #name, name)
     
     //host os:
     register_func(HostOS);
