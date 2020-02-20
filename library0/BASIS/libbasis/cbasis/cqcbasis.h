@@ -66,42 +66,25 @@
 #   define CQ_IF_ON_OSX(    CODE) CODE
 # endif
 
-//mac don't provide "uchar.h"
-#ifndef __cplusplus
-typedef uint16_t char16_t;
-#endif
-
 # ifdef __cplusplus
 #   define CQ_C_LINK extern "C"
 # else
 #   define CQ_C_LINK
 # endif
 
-//data:
-
-struct _cq_data {
-    void  *items;   //ends with '\0' as the last item
-    size_t size ;   //size of every item
-    size_t count;   //item count, don't contain the last item('\0')
-};
-
-CQ_C_LINK void _cq_assign_data(struct _cq_data *data, const void *items, size_t size, size_t count);
-CQ_C_LINK void _cq_clear_data(struct _cq_data *data);
-CQ_C_LINK void _cq_resize_data(struct _cq_data *data, size_t size, size_t count);
-
-//float number comparision
-
+//float number comparision.
 CQ_C_LINK bool cq_flt_equal(float  a, float  b);
 CQ_C_LINK bool cq_dbl_equal(double a, double b);
 
 //string:
 
+//mac don't provide "uchar.h"
+#ifndef __cplusplus
+typedef uint16_t char16_t;
+#endif
+
 CQ_C_LINK bool cq_str_empty(const char *string);
 CQ_C_LINK bool cq_u16str_empty(const char16_t *string);
-
-//the return value needed to free().
-CQ_C_LINK char *cq_copy_str(const char *string);
-CQ_C_LINK char16_t *cq_copy_u16str(const char16_t *string);
 
 //storing values on current thread, until call of cq_store_xx again on same thread.
 CQ_C_LINK const char *cq_store_str(const char *string);

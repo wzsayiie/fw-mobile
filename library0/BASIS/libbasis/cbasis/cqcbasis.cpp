@@ -1,102 +1,34 @@
 #include "cqcbasis.h"
-#include <cassert>
 #include <cfloat>
 #include <cmath>
 #include <string>
-#include <vector>
 
-//data:
-
-void _cq_assign_data(_cq_data *data, const void *items, size_t size, size_t count) {
-    if (data == nullptr) {
-        return;
-    }
-    
-    if (items != nullptr && size > 0 && count > 0) {
-        _cq_resize_data(data, size, count);
-        memcpy(data->items, items, size * count);
-    } else {
-        _cq_clear_data(data);
-    }
-}
-
-void _cq_clear_data(_cq_data *data) {
-    if (data != nullptr) {
-        free(data->items);
-        data->items = nullptr;
-        data->size  = 0;
-        data->count = 0;
-    }
-}
-
-void _cq_resize_data(_cq_data *data, size_t size, size_t count) {
-    if (data == nullptr) {
-        return;
-    }
-    
-    if (size > 0 && count > 0) {
-        {
-            //think that realloc() always successful. the use of assert() is just to
-            //suppress a warning on visual c++ default configuration.
-            void *items = realloc(data->items, size * (count + 1));
-            assert(items != nullptr);
-            data->items = items;
-        }
-        memcpy((char *)data->items + size * count, "\0\0\0\0\0\0\0\0", size);
-        data->size = size;
-        data->count = count;
-    } else {
-        _cq_clear_data(data);
-    }
-}
-
-//float number comparision
-
-bool cq_flt_equal(float a, float b) {
-    return fabsf(a - b) < FLT_EPSILON;
-}
-
-bool cq_dbl_equal(double a, double b) {
-    return fabs(a - b) < DBL_EPSILON;
-}
+//float number comparision.
+bool cq_flt_equal(float  a, float  b) {return fabsf(a - b) < FLT_EPSILON;}
+bool cq_dbl_equal(double a, double b) {return fabs (a - b) < DBL_EPSILON;}
 
 //string:
 
 bool cq_str_empty   (const char     *s) {return s == nullptr || *s == '\0';}
 bool cq_u16str_empty(const char16_t *s) {return s == nullptr || *s == '\0';}
 
-template<class T> T *cq_copy_str(const T *src) {
-    if (src != nullptr) {
-        size_t len = std::char_traits<T>::length(src);
-        T *dst = (T *)malloc(sizeof(T) * (len + 1));
-        
-        //think that malloc() always successful. the use of assert() is just to
-        //suppress a warning on visual c++ default configuration.
-        assert(dst != nullptr);
-        
-        std::char_traits<T>::copy(dst, src, len);
-        dst[len] = '\0';
-        return dst;
+template<class T> const T *store_str(const T *string) {
+    static thread_local std::basic_string<T> *object = nullptr;
+    if (object == nullptr) {
+        object = new std::basic_string<T>;
     }
-    return nullptr;
-}
-
-char     *cq_copy_str   (const char     *s) {return cq_copy_str<char    >(s);}
-char16_t *cq_copy_u16str(const char16_t *s) {return cq_copy_str<char16_t>(s);}
-
-template<class T> const T *cq_store_str(const T *string) {
-    static thread_local _cq_data store = {nullptr, 0, 0};
     
-    size_t count = 0;
     if (string != nullptr) {
-        count = std::char_traits<T>::length(string);
+        *object = string;
+    } else {
+        object->clear();
     }
-    _cq_assign_data(&store, string, sizeof(T), count);
-    return (const T *)store.items;
+    
+    return object->c_str();
 }
 
-const char     *cq_store_str   (const char     *s) {return cq_store_str<char    >(s);}
-const char16_t *cq_store_u16str(const char16_t *s) {return cq_store_str<char16_t>(s);}
+const char     *cq_store_str   (const char     *s) {return store_str<char    >(s);}
+const char16_t *cq_store_u16str(const char16_t *s) {return store_str<char16_t>(s);}
 
 //unicode:
 
