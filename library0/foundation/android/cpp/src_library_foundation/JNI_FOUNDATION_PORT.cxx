@@ -57,7 +57,13 @@ cq_bytes *cq_android_asset(const char *name) {
 }
 
 bool cq_android_copy_asset(const char *from_path, const char *to_path) {
-    return false;
+    static jmethodID methodID = nullptr;
+    cqJNIStatic method(clazz(), &methodID, "cq_android_copy_asset");
+
+    method.push(from_path);
+    method.push(to_path);
+
+    return method.callBool();
 }
 
 //file access:

@@ -78,6 +78,11 @@ struct cqJNIStatic {
     void push(const char *param);
     void push(const void *param);
 
+    //NOTE: function pointer can not match "const void *".
+    template<class T> void push(T param) {
+        push((const void *)param);
+    }
+
     void        callVoid    () { return call("V", &JNIEnv::CallStaticVoidMethodA   ); }
     bool        callBool    () { return call("Z", &JNIEnv::CallStaticBooleanMethodA); }
     int8_t      callInt8    () { return call("B", &JNIEnv::CallStaticByteMethodA   ); }
