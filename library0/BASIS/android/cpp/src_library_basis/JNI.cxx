@@ -1,3 +1,4 @@
+#include "JNI.hh"
 #include "cqjnihelper.hh"
 
 static jclass clazz() {

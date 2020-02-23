@@ -1,4 +1,5 @@
 #include "cqjnihelper.hh"
+#include "CPtr.hh"
 
 static JavaVM *sJavaVM = nullptr;
 static int sJNIVersion = 0;
@@ -144,35 +145,12 @@ jbyteArray cqJNIByteArrayFromData(JNIEnv *env, const std::vector<uint8_t> &src) 
     return dst;
 }
 
-//NOTE: store c pointer with java long type.
-static_assert(sizeof(jlong) >= sizeof(void *));
-
-static jclass ptr_clazz() {
-    static jclass clazz = nullptr;
-    if (clazz == nullptr) {
-        cqJNIFindClass(&clazz, cqJNIGetEnv(), "src/library/basis/CPtr");
-    }
-    return clazz;
-}
-
 void *_cqJNIPtrFromJNI(jobject ptr) {
-    JNIEnv *env = cqJNIGetEnv();
-    jclass clazz = ptr_clazz();
-
-    static jmethodID method = nullptr;
-    cqJNIGetStatic(&method, env, clazz, "valueFromObject", "(Lsrc/library/basis/CPtr;)J");
-
-    return (void *)env->CallStaticLongMethod(clazz, method, ptr);
+    return CPtr_valueFromObject(ptr);
 }
 
 jobject cqJNIJavaPtrFromPtr(const void *ptr) {
-    JNIEnv *env = cqJNIGetEnv();
-    jclass clazz = ptr_clazz();
-
-    static jmethodID method = nullptr;
-    cqJNIGetStatic(&method, env, clazz, "objectFromValue", "(J)Lsrc/library/basis/CPtr;");
-
-    return env->CallStaticObjectMethod(clazz, method, (jlong)ptr);
+    return CPtr_objectFromValue(ptr);
 }
 
 cqJNIByteArrayHelper::cqJNIByteArrayHelper(JNIEnv *env, jbyteArray data) {
