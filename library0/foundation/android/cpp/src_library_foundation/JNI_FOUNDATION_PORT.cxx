@@ -56,11 +56,6 @@ cq_bytes *cq_android_asset(const char *name) {
     return method.callPtr<cq_bytes *>();
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_PORT_writeAsset
-    (JNIEnv *env, jclass, jlong _writer, jlong userData, jbyteArray _asset)
-{
-}
-
 bool cq_android_copy_asset(const char *from_path, const char *to_path) {
     return false;
 }
@@ -139,22 +134,14 @@ cq_strings *cq_sub_files(const char *path) {
 
 //thread:
 
-void cq_thread_run(void (*task)(void *), void *data) {
+void cq_thread_run(cq_runnable runnable, void *data) {
     static jmethodID methodID = nullptr;
     cqJNIStatic method(clazz(), &methodID, "cq_thread_run");
 
-    method.push((jlong)task);
-    method.push((jlong)data);
+    method.push(runnable);
+    method.push(data);
 
     method.callVoid();
-}
-
-extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_PORT_threadBody
-    (JNIEnv *, jclass, jlong _task, jlong _data)
-{
-    auto task = (void (*)(void *))_task;
-    auto data = (void *)_data;
-    task(data);
 }
 
 void cq_thread_sleep(float seconds) {
@@ -168,22 +155,14 @@ void cq_thread_sleep(float seconds) {
 
 //main run loop:
 
-void cq_main_loop_post(void (*task)(void *), void *data) {
+void cq_main_loop_post(cq_runnable runnable, void *data) {
     static jmethodID methodID = nullptr;
     cqJNIStatic method(clazz(), &methodID, "cq_main_loop_post");
 
-    method.push((jlong)task);
-    method.push((jlong)data);
+    method.push(runnable);
+    method.push(data);
 
     method.callVoid();
-}
-
-extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_PORT_looperTaskBody
-    (JNIEnv *, jclass, jlong _task, jlong _data)
-{
-    auto task = (void (*)(void *))_task;
-    auto data = (void *)_data;
-    task(data);
 }
 
 //http(s):

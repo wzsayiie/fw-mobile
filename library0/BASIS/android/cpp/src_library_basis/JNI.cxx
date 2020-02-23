@@ -189,3 +189,14 @@ extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_JNI_makeSSMapStore
 
     return cqJNIType::jniPtr(ret);
 }
+
+extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_run
+    (JNIEnv *, jclass, jobject _runnable, jobject _data)
+{
+    auto runnable = cqJNIType::ptr<cq_runnable>(_runnable);
+    auto data     = cqJNIType::ptr<void *>(_data);
+
+    if (runnable != nullptr) {
+        runnable(data);
+    }
+}

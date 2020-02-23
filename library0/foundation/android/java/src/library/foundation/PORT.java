@@ -72,11 +72,9 @@ public class PORT {
 
     //thread:
 
-    public static void cq_thread_run(long task, long data) {
-        ThreadAssist.run(() -> threadBody(task, data));
+    public static void cq_thread_run(CPtr runnable, CPtr data) {
+        ThreadAssist.run(() -> JNI.run(runnable, data));
     }
-
-    private static native void threadBody(long task, long data);
 
     public static void cq_thread_sleep(float seconds) {
         ThreadAssist.sleepForSeconds(seconds);
@@ -84,12 +82,10 @@ public class PORT {
 
     //main run loop:
 
-    public static void cq_main_loop_post(long task, long data) {
-        LooperAssist.runOnMainLoop(() -> looperTaskBody(task, data));
+    public static void cq_main_loop_post(CPtr runnable, CPtr data) {
+        LooperAssist.runOnMainLoop(() -> JNI.run(runnable, data));
     }
 
-    private static native void looperTaskBody(long task, long data);
-    
     //http:
     
     private static class HttpSessionPort extends HttpSession {

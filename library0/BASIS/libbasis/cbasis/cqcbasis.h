@@ -104,6 +104,10 @@ typedef char _char8_t;
 CQ_C_LINK const char16_t *cq_u16s_from8s(const _char8_t *src);
 CQ_C_LINK const _char8_t *cq_u8s_from16s(const char16_t *src);
 
+//runable:
+
+typedef void (*cq_runnable)(void *);
+
 //multiplex structures:
 
 struct cq_bytes  ;

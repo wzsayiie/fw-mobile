@@ -134,4 +134,6 @@ public class JNI {
     private static native CPtr makeLongsStore  ();
     private static native CPtr makeStringsStore();
     private static native CPtr makeSSMapStore  ();
+
+    public static native void run(CPtr runnable, CPtr data);
 }

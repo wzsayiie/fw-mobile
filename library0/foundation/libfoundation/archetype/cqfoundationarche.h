@@ -29,12 +29,12 @@ CQ_C_LINK struct cq_strings *cq_sub_files(const char *path);
 
 //thread:
 
-CQ_C_LINK void cq_thread_run(void (*task)(void *), void *data);
+CQ_C_LINK void cq_thread_run(cq_runnable runnable, void *data);
 CQ_C_LINK void cq_thread_sleep(float seconds);
 
 //main run loop:
 
-CQ_C_LINK void cq_main_loop_post(void (*task)(void *), void *data);
+CQ_C_LINK void cq_main_loop_post(cq_runnable runnable, void *data);
 
 //http(s):
 
