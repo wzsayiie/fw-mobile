@@ -115,6 +115,66 @@ jstring cqJNIStringFromU8(JNIEnv *env, const char *src) {
     }
 }
 
+std::vector<uint8_t> cqJNIDataFromJNI(JNIEnv *env, jbyteArray src) {
+    std::vector<uint8_t> dst;
+
+    if (env && src) {
+        jbyte *bytes = env->GetByteArrayElements(src, nullptr);
+        jsize  len   = env->GetArrayLength(src);
+
+        dst.insert(dst.end(), (uint8_t *)bytes, (uint8_t *)bytes + len);
+
+        env->ReleaseByteArrayElements(src, bytes, JNI_ABORT);
+    }
+
+    return dst;
+}
+
+jbyteArray cqJNIByteArrayFromData(JNIEnv *env, const std::vector<uint8_t> &src) {
+    if (env == nullptr) {
+        return nullptr;
+    }
+
+    auto bytes = (jbyte *)src.data();
+    auto len = (jsize)src.size();
+
+    jbyteArray dst = env->NewByteArray(len);
+    env->SetByteArrayRegion(dst, 0, len, bytes);
+
+    return dst;
+}
+
+//NOTE: store c pointer with java long type.
+static_assert(sizeof(jlong) >= sizeof(void *));
+
+static jclass ptr_clazz() {
+    static jclass clazz = nullptr;
+    if (clazz == nullptr) {
+        cqJNIFindClass(&clazz, cqJNIGetEnv(), "src/library/basis/CPtr");
+    }
+    return clazz;
+}
+
+void *_cqJNIPtrFromJNI(jobject ptr) {
+    JNIEnv *env = cqJNIGetEnv();
+    jclass clazz = ptr_clazz();
+
+    static jmethodID method = nullptr;
+    cqJNIGetStatic(&method, env, clazz, "valueFromObject", "(Lsrc/library/basis/CPtr;)J");
+
+    return (void *)env->CallStaticLongMethod(clazz, method, ptr);
+}
+
+jobject cqJNIJavaPtrFromPtr(const void *ptr) {
+    JNIEnv *env = cqJNIGetEnv();
+    jclass clazz = ptr_clazz();
+
+    static jmethodID method = nullptr;
+    cqJNIGetStatic(&method, env, clazz, "objectFromValue", "(J)Lsrc/library/basis/CPtr;");
+
+    return env->CallStaticObjectMethod(clazz, method, (jlong)ptr);
+}
+
 cqJNIByteArrayHelper::cqJNIByteArrayHelper(JNIEnv *env, jbyteArray data) {
     if (env != nullptr && data != nullptr) {
         _env    = env;
@@ -183,6 +243,19 @@ void cqJNIStaticMethod::push(const char *param) {
     _objects.push_back(value.l);
 }
 
+void cqJNIStaticMethod::push(const void *param) {
+    if (_env == nullptr) {
+        return;
+    }
+
+    jvalue value;
+    value.l = cqJNIJavaPtrFromPtr(param);
+
+    _signature.append("Lsrc/library/basis/CPtr;");
+    _params.push_back(value);
+    _objects.push_back(value.l);
+}
+
 std::string cqJNIStaticMethod::callString() {
     if (_env == nullptr) {
         return "";
@@ -193,14 +266,30 @@ std::string cqJNIStaticMethod::callString() {
         return "";
     }
 
-    auto jString = (jstring)_env->CallStaticObjectMethodA(_clazz, *_methodID, _params.data());
+    cqJNILocalRef<jstring> string = (jstring)_env->CallStaticObjectMethodA(_clazz, *_methodID, _params.data());
     if (cqJNIException(_env)) {
         return "";
     }
 
-    std::string ret = cqJNIU8StringFromJNI(_env, jString);
-    _env->DeleteLocalRef(jString);
-    return ret;
+    return cqJNIU8StringFromJNI(_env, string.get());
+}
+
+void *cqJNIStaticMethod::_callPtr() {
+    if (_env == nullptr) {
+        return nullptr;
+    }
+
+    _signature.append(")Lsrc/library/basis/CPtr;");
+    if (!check()) {
+        return nullptr;
+    }
+
+    cqJNILocalRef<jobject> ptr = _env->CallStaticObjectMethodA(_clazz, *_methodID, _params.data());
+    if (cqJNIException(_env)) {
+        return nullptr;
+    }
+
+    return _cqJNIPtrFromJNI(ptr.get());
 }
 
 void cqJNIStaticMethod::push(const char *type, jvalue value) {

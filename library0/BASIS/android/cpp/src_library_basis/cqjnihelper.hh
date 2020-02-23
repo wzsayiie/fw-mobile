@@ -15,9 +15,38 @@ jclass cqJNIFindClass(jclass *prefer, JNIEnv *env, const char *name);
 jmethodID cqJNIGetStatic(jmethodID *prefer, JNIEnv *env, jclass clazz, const char *name, const char *signature);
 
 std::string cqJNIU8StringFromJNI(JNIEnv *env, jstring src);
+jstring cqJNIStringFromU8(JNIEnv *env, const char *src); //return a local reference.
 
-//return a local reference.
-jstring cqJNIStringFromU8(JNIEnv *env, const char *src);
+std::vector<uint8_t> cqJNIDataFromJNI(JNIEnv *env, jbyteArray src);
+jbyteArray cqJNIByteArrayFromData(JNIEnv *env, const std::vector<uint8_t> &src); //return a local reference.
+
+void *_cqJNIPtrFromJNI(jobject ptr);
+jobject cqJNIJavaPtrFromPtr(const void *ptr);
+
+template<class T> T cqJNIPtrFromJNI(jobject ptr) {
+    return (T)_cqJNIPtrFromJNI(ptr);
+}
+
+template<class T> struct cqJNILocalRef {
+
+    cqJNILocalRef(T ref) {
+        _ref = ref;
+    }
+
+    ~cqJNILocalRef() {
+        JNIEnv *env = cqJNIGetEnv();
+        if (env && _ref) {
+            env->DeleteLocalRef(_ref);
+        }
+    }
+
+    T get() const {
+        return _ref;
+    }
+
+private:
+    T _ref;
+};
 
 struct cqJNIByteArrayHelper {
 
@@ -62,8 +91,14 @@ struct cqJNIStaticMethod {
     double  callDouble() { return call("D", &JNIEnv::CallStaticDoubleMethodA ); }
 
     void push(const char *param);
+    void push(const void *param);
 
     std::string callString();
+    void *_callPtr();
+
+    template<class T> T callPtr() {
+        return (T)_callPtr();
+    }
 
 private:
 

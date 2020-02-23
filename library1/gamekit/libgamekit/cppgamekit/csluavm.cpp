@@ -146,19 +146,112 @@ static void do_string(const char *code) {
     lua_pcall(_state, 0, 0, -2);
 }
 
-static int64_t check_integer(lua_State *s, int32_t i) {return luaL_checkinteger(s, i);}
-static double  check_double (lua_State *s, int32_t i) {return luaL_checknumber (s, i);}
+static int64_t     check_integer(lua_State *s, int32_t i) {return luaL_checkinteger(s, i);}
+static double      check_double (lua_State *s, int32_t i) {return luaL_checknumber (s, i);}
+static const char *check_string (lua_State *s, int32_t i) {return luaL_checkstring (s, i);}
 
-static const char *check_string(lua_State *state, int32_t indent) {
-    return luaL_checkstring(state, indent);
+static cq_int64s *check_integers(lua_State *state, int32_t index) {
+    lua_stack_guard guard(state);
+    
+    if (lua_isnil(state, index)) {
+        return cq_store_int64s(nullptr, nullptr);
+    }
+    
+    std::vector<int64_t> object;
+    
+    lua_pushnil(state); //lua_next() will pop the last key at the first.
+    while (lua_next(state, index)) {
+        int64_t it = lua_tonumber(state, -1);
+        object.push_back(it);
+        
+        lua_pop(state, 1);
+    }
+    
+    return cq_cpp::store(object);
 }
 
-static void push_bool   (lua_State *s, bool    v) {lua_pushboolean(s, v);}
-static void push_integer(lua_State *s, int64_t v) {lua_pushinteger(s, v);}
-static void push_double (lua_State *s, double  v) {lua_pushnumber (s, v);}
+static cq_strings *check_strings(lua_State *state, int32_t index) {
+    lua_stack_guard guard(state);
+    
+    if (lua_isnil(state, index)) {
+        return cq_store_strings(nullptr, nullptr);
+    }
+    
+    std::vector<std::string> object;
+    
+    lua_pushnil(state);
+    while (lua_next(state, index)) {
+        const char *it = lua_tostring(state, -1);
+        object.push_back(it);
+        
+        lua_pop(state, 1);
+    }
+    
+    return cq_cpp::store(object);
+}
 
-static void push_string(lua_State *state, const char *value) {
-    lua_pushstring(state, value);
+static cq_ss_map *check_ss_table(lua_State *state, int32_t index) {
+    lua_stack_guard guard(state);
+    
+    if (lua_isnil(state, index)) {
+        return cq_store_ss_map(nullptr, nullptr);
+    }
+    
+    std::map<std::string, std::string> object;
+    
+    lua_pushnil(state);
+    while (lua_next(state, index)) {
+        const char *val = lua_tostring(state, -1);
+        const char *key = lua_tostring(state, -2);
+        object[key] = val;
+        
+        lua_pop(state, 1);
+    }
+    
+    return cq_cpp::store(object);
+}
+
+static void push_bool   (lua_State *s, bool        v) {lua_pushboolean(s, v);}
+static void push_integer(lua_State *s, int64_t     v) {lua_pushinteger(s, v);}
+static void push_double (lua_State *s, double      v) {lua_pushnumber (s, v);}
+static void push_string (lua_State *s, const char *v) {lua_pushstring (s, v);}
+
+static void push_integers(lua_State *state, cq_int64s_send send, cq_int64s *value) {
+    std::vector<int64_t> object = cq_cpp::from(send, value);
+    
+    lua_newtable(state);
+    
+    int index = 1; //lua table's index begins with 1.
+    for (auto &it : object) {
+        lua_pushnumber(state, index++);
+        lua_pushnumber(state, it);
+        lua_settable(state, -3);
+    }
+}
+
+static void push_strings(lua_State *state, cq_strings_send send, cq_strings *value) {
+    std::vector<std::string> object = cq_cpp::from(send, value);
+    
+    lua_newtable(state);
+    
+    int index = 1;
+    for (auto &it : object) {
+        lua_pushnumber(state, index++);
+        lua_pushstring(state, it.c_str());
+        lua_settable(state, -3);
+    }
+}
+
+static void push_ss_table(lua_State *state, cq_ss_map_send send, cq_ss_map *value) {
+    std::map<std::string, std::string> object = cq_cpp::from(send, value);
+    
+    lua_newtable(state);
+    
+    for (auto &cp : object) {
+        lua_pushstring(state, cp.first .c_str());
+        lua_pushstring(state, cp.second.c_str());
+        lua_settable(state, -3);
+    }
 }
 
 static void collectSubDirectories(std::vector<std::string> *added, const std::string &directory) {
@@ -200,16 +293,24 @@ void csLuaVM::open(const std::string &directory) {
     
     //register handlers.
     _cq_lua_handlers handlers = {nullptr}; {
-        handlers.register_tab  = register_tab ;
-        handlers.register_func = register_func;
-        handlers.do_string     = do_string    ;
-        handlers.check_integer = check_integer;
-        handlers.check_double  = check_double ;
-        handlers.check_string  = check_string ;
-        handlers.push_bool     = push_bool    ;
-        handlers.push_integer  = push_integer ;
-        handlers.push_double   = push_double  ;
-        handlers.push_string   = push_string  ;
+        handlers.register_tab   = register_tab  ;
+        handlers.register_func  = register_func ;
+        handlers.do_string      = do_string     ;
+        
+        handlers.check_integer  = check_integer ;
+        handlers.check_double   = check_double  ;
+        handlers.check_string   = check_string  ;
+        handlers.check_integers = check_integers;
+        handlers.check_strings  = check_strings ;
+        handlers.check_ss_table = check_ss_table;
+        
+        handlers.push_bool      = push_bool     ;
+        handlers.push_integer   = push_integer  ;
+        handlers.push_double    = push_double   ;
+        handlers.push_string    = push_string   ;
+        handlers.push_integers  = push_integers ;
+        handlers.push_strings   = push_strings  ;
+        handlers.push_ss_table  = push_ss_table ;
     }
     _cq_lua_set_handlers(&handlers);
 }

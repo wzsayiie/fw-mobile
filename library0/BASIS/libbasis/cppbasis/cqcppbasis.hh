@@ -223,4 +223,39 @@ template<class T, int = 0> typename cqRef<T>::Strong cqStaticObject() {
     });
 }
 
+//interfaces for interaction with c:
+
+struct cq_cpp {
+    
+    static cq_bytes   *bytes  (const std::vector<uint8_t>               &object);
+    static cq_int64s  *int64s (const std::vector<int64_t>               &object);
+    static cq_strings *strings(const std::vector<std::string>           &object);
+    static cq_ss_map  *ss_map (const std::map<std::string, std::string> &object);
+    
+    static void bytes_recv  (cq_bytes   *dst, const void *ptr, int32_t len);
+    static void int64s_recv (cq_int64s  *dst, int64_t     val);
+    static void strings_recv(cq_strings *dst, const char *val);
+    static void ss_map_recv (cq_ss_map  *dst, const char *key, const char *val);
+    
+    static void bytes_send  (cq_bytes   *src, cq_bytes_recv   recv, cq_bytes   *dst);
+    static void int64s_send (cq_int64s  *src, cq_int64s_recv  recv, cq_int64s  *dst);
+    static void strings_send(cq_strings *src, cq_strings_recv recv, cq_strings *dst);
+    static void ss_map_send (cq_ss_map  *src, cq_ss_map_recv  recv, cq_ss_map  *dst);
+    
+    static std::vector<uint8_t>               from(cq_bytes_send   send, cq_bytes   *src);
+    static std::vector<int64_t>               from(cq_int64s_send  send, cq_int64s  *src);
+    static std::vector<std::string>           from(cq_strings_send send, cq_strings *src);
+    static std::map<std::string, std::string> from(cq_ss_map_send  send, cq_ss_map  *src);
+    
+    static void send(const std::vector<uint8_t>               &src, cq_bytes_recv   recv, cq_bytes   *dst);
+    static void send(const std::vector<int64_t>               &src, cq_int64s_recv  recv, cq_int64s  *dst);
+    static void send(const std::vector<std::string>           &src, cq_strings_recv recv, cq_strings *dst);
+    static void send(const std::map<std::string, std::string> &src, cq_ss_map_recv  recv, cq_ss_map  *dst);
+    
+    static cq_bytes   *store(const std::vector<uint8_t>               &object);
+    static cq_int64s  *store(const std::vector<int64_t>               &object);
+    static cq_strings *store(const std::vector<std::string>           &object);
+    static cq_ss_map  *store(const std::map<std::string, std::string> &object);
+};
+
 _CQBASIS_END_VERSION_NS
