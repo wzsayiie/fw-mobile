@@ -25,10 +25,7 @@ CQ_C_LINK bool cq_directory_exists(const char *path);
 CQ_C_LINK bool cq_file_exists(const char *path);
 CQ_C_LINK bool cq_create_directory(const char *path, bool intermediate);
 CQ_C_LINK void cq_remove_path(const char *path);
-
-CQ_C_LINK bool cq_open_dir(const char *path);
-CQ_C_LINK const char *cq_read_dir(void);
-CQ_C_LINK void cq_close_dir(void);
+CQ_C_LINK struct cq_strings *cq_sub_files(const char *path);
 
 //thread:
 

@@ -62,7 +62,7 @@ cq_class(cqFileManager, cqObject) {
     virtual bool fileExists(const std::string &path);
     virtual bool createDirectory(const std::string &path, bool intermediate);
     virtual void removePath(const std::string &path);
-    virtual std::vector<std::string> contentsOfDirectoryAtPath(const std::string &path);
+    virtual std::vector<std::string> contentsOfDirectoryAtPath(const std::string &path, bool *error);
 };
 
 //thread:

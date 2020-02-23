@@ -111,24 +111,19 @@ void cqFileManager::removePath(const std::string &path) {
     cq_remove_path(path.c_str());
 }
 
-std::vector<std::string> cqFileManager::contentsOfDirectoryAtPath(const std::string &path) {
-    std::vector<std::string> contents;
-    
-    bool opened = cq_open_dir(path.c_str());
-    if (!opened) {
-        return contents;
-    }
-    
-    while (true) {
-        const char *it = cq_read_dir();
-        if (cq_str_empty(it)) {
-            break;
+std::vector<std::string> cqFileManager::contentsOfDirectoryAtPath(const std::string &path, bool *error) {
+    if (cq_directory_exists(path.c_str())) {
+        if (error != nullptr) {
+            *error = true;
         }
-        contents.push_back(it);
+        cq_strings *contents = cq_sub_files(path.c_str());
+        return cq_cpp::from(cq_c_strings_send, contents);
+    } else {
+        if (error != nullptr) {
+            *error = false;
+        }
+        return std::vector<std::string>();
     }
-    cq_close_dir();
-    
-    return contents;
 }
 
 //thread:

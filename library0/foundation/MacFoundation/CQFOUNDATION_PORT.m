@@ -70,47 +70,10 @@ void cq_remove_path(const char *path) {
     [CQFileManager.sharedObject removeItemAtPath:@(path)];
 }
 
-static NSArray<NSString *> *_traverse_items = nil;
-static NSUInteger _traverse_index = 0;
-
-bool cq_open_dir(const char *path) {
-    cq_close_dir();
-    
-    if (cq_str_empty(path)) {
-        return false;
-    }
-    
+struct cq_strings *cq_sub_files(const char *path) {
     CQFileManager *manager = CQFileManager.sharedObject;
-    BOOL error = true;
-    
-    NSArray<NSString *> *items = [manager contentsOfDirectoryAtPath:@(path) error:&error];
-    
-    if (!error) {
-        _traverse_items = items;
-        _traverse_index = 0;
-        return true;
-    } else {
-        return false;
-    }
-}
-
-const char *cq_read_dir() {
-    if (_traverse_items == nil) {
-        return NULL;
-    }
-    if (_traverse_index >= _traverse_items.count) {
-        return NULL;
-    }
-    
-    NSString *item = [_traverse_items objectAtIndex:_traverse_index];
-    _traverse_index += 1;
-    
-    return cq_store_str(item.UTF8String);
-}
-
-void cq_close_dir() {
-    _traverse_items = nil;
-    _traverse_index = 0;
+    NSArray<NSString *> *items = [manager contentsOfDirectoryAtPath:@(path) error:NULL];
+    return CQStoreStrings(items);
 }
 
 //thread:

@@ -257,7 +257,7 @@ static void push_ss_table(lua_State *state, cq_ss_map_send send, cq_ss_map *valu
 static void collectSubDirectories(std::vector<std::string> *added, const std::string &directory) {
     added->push_back(directory);
     
-    auto items = cqFileManager::get()->contentsOfDirectoryAtPath(directory);
+    auto items = cqFileManager::get()->contentsOfDirectoryAtPath(directory, nullptr);
     for (auto &it : items) {
         std::string path = cqPathString::append(directory, it);
         if (cqFileManager::get()->directoryExists(path)) {

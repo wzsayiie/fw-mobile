@@ -106,24 +106,10 @@ static int32_t RemovePath(lua_State *state) {
     return cq_lua_return_void(state);
 }
 
-static int32_t cq_open_dir(lua_State *state) {
+static int32_t SubFiles(lua_State *state) {
     const char *path = cq_lua_check_string(state, 1);
-    
-    bool sucess = cq_open_dir(path);
-    
-    return cq_lua_return_bool(state, sucess);
-}
-
-static int32_t cq_read_dir(lua_State *state) {
-    const char *item = cq_read_dir();
-    
-    return cq_lua_return_string(state, item);
-}
-
-static int32_t cq_close_dir(lua_State *state) {
-    cq_close_dir();
-    
-    return cq_lua_return_void(state);
+    cq_strings *files = cq_sub_files(path);
+    return cq_lua_return_strings(state, cq_c_strings_send, files);
 }
 
 //register
@@ -155,8 +141,5 @@ void cq_lua_load_lib_foundation() {
     register_func(FileExists        );
     register_func(CreateDirectory   );
     register_func(RemovePath        );
-    
-    register_func(cq_open_dir );
-    register_func(cq_read_dir );
-    register_func(cq_close_dir);
+    register_func(SubFiles          );
 }

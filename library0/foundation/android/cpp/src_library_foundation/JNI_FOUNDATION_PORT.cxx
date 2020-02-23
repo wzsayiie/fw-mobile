@@ -128,28 +128,13 @@ void cq_remove_path(const char *path) {
     method.callVoid();
 }
 
-bool cq_open_dir(const char *path) {
+cq_strings *cq_sub_files(const char *path) {
     static jmethodID methodID = nullptr;
-    cqJNIStatic method(clazz(), &methodID, "cq_open_dir");
+    cqJNIStatic method(clazz(), &methodID, "cq_sub_files");
 
     method.push(path);
 
-    return method.callBool();
-}
-
-const char *cq_read_dir() {
-    static jmethodID methodID = nullptr;
-    cqJNIStatic method(clazz(), &methodID, "cq_read_dir");
-
-    std::string ret = method.callString();
-    return cq_store_str(ret.c_str());
-}
-
-void cq_close_dir() {
-    static jmethodID methodID = nullptr;
-    cqJNIStatic method(clazz(), &methodID, "cq_close_dir");
-
-    method.callVoid();
+    return method.callPtr<cq_strings *>();
 }
 
 //thread:

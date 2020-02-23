@@ -18,6 +18,7 @@ if HostOS == nil then
     function DirectoryExists(path) end -->boolean
     function FileExists     (path) end -->boolean
     function RemovePath     (path) end -->void
+    function SubFiles       (path) end -->{string...}
 
     function CreateDirectory(path, intermediate) end -->boolean
 
