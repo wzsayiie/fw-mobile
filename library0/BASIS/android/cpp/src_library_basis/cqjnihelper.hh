@@ -43,12 +43,22 @@ template<class T> struct cqJNILocal {
         _ref = ref;
     }
 
+    cqJNILocal(cqJNILocal &&that) {
+        this->_ref = that._ref;
+        that. _ref = nullptr;
+    }
+
     ~cqJNILocal() {
         JNIEnv *env = cqJNIEnv::env();
         if (env && _ref) {
             env->DeleteLocalRef(_ref);
         }
     }
+
+    cqJNILocal    (const cqJNILocal &) = delete;
+    void operator=(const cqJNILocal &) = delete;
+    void *operator new[](size_t) = delete;
+    void *operator new  (size_t) = delete;
 
     T get() const {
         return _ref;
