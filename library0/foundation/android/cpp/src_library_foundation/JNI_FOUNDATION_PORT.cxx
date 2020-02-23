@@ -43,18 +43,17 @@ const char *cq_ios_resource_path(const char *, const char *) {
     return nullptr;
 }
 
-void cq_ios_resource_to(cq_ios_resource_writer, void *, const char *, const char *) {
+cq_bytes *cq_ios_resource(const char *, const char *) {
+    return nullptr;
 }
 
-void cq_android_asset_to(cq_android_asset_writer writer, void *user, const char *name) {
+cq_bytes *cq_android_asset(const char *name) {
     static jmethodID methodID = nullptr;
-    cqJNIStatic method(clazz(), &methodID, "cq_android_asset_to");
+    cqJNIStatic method(clazz(), &methodID, "cq_android_asset");
 
-    method.push((jlong)writer);
-    method.push((jlong)user);
     method.push(name);
 
-    method.callVoid();
+    return method.callPtr<cq_bytes *>();
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_PORT_writeAsset

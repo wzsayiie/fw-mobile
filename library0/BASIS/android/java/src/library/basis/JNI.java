@@ -90,11 +90,11 @@ public class JNI {
         makeSSMapSend(receive, dst);
     }
 
-    public static long storeBytes(byte[] object) {
+    public static CPtr storeBytes(byte[] object) {
         return makeBytesStore(object);
     }
 
-    public static long storeLongs(ArrayList<Long> object) {
+    public static CPtr storeLongs(ArrayList<Long> object) {
         if (object != null) {
             for (Long it : object) {
                 makeLongsAdd(it);
@@ -103,7 +103,7 @@ public class JNI {
         return makeLongsStore();
     }
 
-    public static long storeStrings(ArrayList<String> object) {
+    public static CPtr storeStrings(ArrayList<String> object) {
         if (object != null) {
             for (String it : object) {
                 makeStringsAdd(it);
@@ -112,7 +112,7 @@ public class JNI {
         return makeStringsStore();
     }
 
-    public static long storeSSMap(HashMap<String, String> object) {
+    public static CPtr storeSSMap(HashMap<String, String> object) {
         if (object != null) {
             for (HashMap.Entry<String, String> cp : object.entrySet()) {
                 makeSSMapAdd(cp.getKey(), cp.getValue());
@@ -125,13 +125,13 @@ public class JNI {
     private static native void makeStringsAdd(String value);
     private static native void makeSSMapAdd  (String key, String value);
 
-    private static native long makeBytesSend  (byte[] value, CPtr receive, CPtr dst);
-    private static native long makeLongsSend  (CPtr receive, CPtr dst);
-    private static native long makeStringsSend(CPtr receive, CPtr dst);
-    private static native long makeSSMapSend  (CPtr receive, CPtr dst);
+    private static native void makeBytesSend  (byte[] value, CPtr receive, CPtr dst);
+    private static native void makeLongsSend  (CPtr receive, CPtr dst);
+    private static native void makeStringsSend(CPtr receive, CPtr dst);
+    private static native void makeSSMapSend  (CPtr receive, CPtr dst);
 
-    private static native long makeBytesStore  (byte[] value);
-    private static native long makeLongsStore  ();
-    private static native long makeStringsStore();
-    private static native long makeSSMapStore  ();
+    private static native CPtr makeBytesStore  (byte[] value);
+    private static native CPtr makeLongsStore  ();
+    private static native CPtr makeStringsStore();
+    private static native CPtr makeSSMapStore  ();
 }

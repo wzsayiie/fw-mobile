@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
+import src.library.basis.CPtr;
+import src.library.basis.JNI;
 import src.library.basis.StringUtil;
 import src.library.basis.W;
 
@@ -24,12 +26,10 @@ public class PORT {
 
     //app bundle resource:
 
-    public static void cq_android_asset_to(long writer, long userData, String name) {
+    public static CPtr cq_android_asset(String name) {
         byte[] asset = AssetAssist.getAsset(name);
-        writeAsset(writer, userData, asset);
+        return JNI.storeBytes(asset);
     }
-
-    private static native void writeAsset(long writer, long userData, byte[] asset);
 
     public static boolean cq_android_copy_asset(String fromPath, String toPath) {
         return AssetAssist.copyAsset(fromPath, toPath);

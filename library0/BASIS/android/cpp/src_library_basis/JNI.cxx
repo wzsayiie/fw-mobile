@@ -151,33 +151,41 @@ extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeSSMapSend
     object->clear();
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeBytesStore
+extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_JNI_makeBytesStore
     (JNIEnv *env, jclass, jbyteArray bytes)
 {
     std::vector<uint8_t> object = cqJNIType::data(env, bytes);
-    cq_cpp::store(object);
+    cq_bytes *ret = cq_cpp::store(object);
+
+    return cqJNIType::jniPtr(ret);
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeLongsStore
+extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_JNI_makeLongsStore
     (JNIEnv *, jclass)
 {
     std::vector<int64_t> *object = cached_int64s();
-    cq_cpp::store(*object);
+    cq_int64s *ret = cq_cpp::store(*object);
     object->clear();
+
+    return cqJNIType::jniPtr(ret);
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeStringsStore
+extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_JNI_makeStringsStore
     (JNIEnv *, jclass)
 {
     std::vector<std::string> *object = cached_strings();
-    cq_cpp::store(*object);
+    cq_strings *ret = cq_cpp::store(*object);
     object->clear();
+
+    return cqJNIType::jniPtr(ret);
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeSSMapStore
+extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_JNI_makeSSMapStore
     (JNIEnv *, jclass)
 {
     std::map<std::string, std::string> *object = cached_ss_map();
-    cq_cpp::store(*object);
+    cq_ss_map *ret = cq_cpp::store(*object);
     object->clear();
+
+    return cqJNIType::jniPtr(ret);
 }

@@ -49,19 +49,9 @@ std::string cqIOSBundle::resourcePath(const std::string &name, const std::string
     return cqString::make(path);
 }
 
-void cqIOSBundle_OnWriteResource(void *user, const void *bytes, int32_t length) {
-    auto bundle = (cqIOSBundle *)user;
-    
-    std::vector<uint8_t> &buffer = bundle->dat->resourceBuffer;
-    buffer.insert(buffer.end(), (uint8_t *)bytes, (uint8_t *)bytes + length);
-}
-
 std::vector<uint8_t> cqIOSBundle::resource(const std::string &name, const std::string &type) {
-    cq_ios_resource_to(cqIOSBundle_OnWriteResource, this, name.c_str(), type.c_str());
-    
-    std::vector<uint8_t> resource;
-    resource.swap(dat->resourceBuffer);
-    return resource;
+    cq_bytes *data = cq_ios_resource(name.c_str(), type.c_str());
+    return cq_cpp::from(cq_c_bytes_send, data);
 }
 
 cq_member(cqAndroidBundle) {
@@ -72,19 +62,9 @@ cqAndroidBundleRef cqAndroidBundle::get() {
     return cqStaticObject<cqAndroidBundle>();
 }
 
-void cqAndroidBundle_OnWriteAsset(void *user, const void *bytes, int32_t length) {
-    auto bundle = (cqAndroidBundle *)user;
-    
-    std::vector<uint8_t> &buffer = bundle->dat->resourceBuffer;
-    buffer.insert(buffer.end(), (uint8_t *)bytes, (uint8_t *)bytes + length);
-}
-
 std::vector<uint8_t> cqAndroidBundle::asset(const std::string &name) {
-    cq_android_asset_to(cqAndroidBundle_OnWriteAsset, this, name.c_str());
-    
-    std::vector<uint8_t> resource;
-    resource.swap(dat->resourceBuffer);
-    return resource;
+    cq_bytes *data = cq_android_asset(name.c_str());
+    return cq_cpp::from(cq_c_bytes_send, data);
 }
 
 bool cqAndroidBundle::copyAsset(const std::string &fromPath, const std::string &toPath) {
