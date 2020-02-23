@@ -4,19 +4,19 @@
 static jclass clazz() {
     static jclass clazz = nullptr;
     if (clazz == nullptr) {
-        cqJNIFindClass(&clazz, cqJNIGetEnv(), "src/library/subsystem/PORT");
+        cqJNIEnv::findClass(&clazz, cqJNIEnv::env(), "src/library/subsystem/PORT");
     }
     return clazz;
 }
 
 void cq_subsystem_start() {
     static jmethodID methodID = nullptr;
-    cqJNIStaticMethod method(clazz(), &methodID, "cq_subsystem_start");
+    cqJNIStatic method(clazz(), &methodID, "cq_subsystem_start");
     method.callVoid();
 }
 
 void cq_subsystem_stop() {
     static jmethodID methodID = nullptr;
-    cqJNIStaticMethod method(clazz(), &methodID, "cq_subsystem_stop");
+    cqJNIStatic method(clazz(), &methodID, "cq_subsystem_stop");
     method.callVoid();
 }

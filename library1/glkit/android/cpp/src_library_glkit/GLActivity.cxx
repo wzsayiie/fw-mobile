@@ -4,7 +4,7 @@
 static jclass clazz() {
     static jclass clazz = nullptr;
     if (clazz == nullptr) {
-        cqJNIFindClass(&clazz, cqJNIGetEnv(), "src/library/glkit/GLActivity");
+        cqJNIEnv::findClass(&clazz, cqJNIEnv::env(), "src/library/glkit/GLActivity");
     }
     return clazz;
 }
@@ -12,21 +12,21 @@ static jclass clazz() {
 static float wnd_scale() {
     static jmethodID methodID = nullptr;
 
-    cqJNIStaticMethod method(clazz(), &methodID, "windowScale");
+    cqJNIStatic method(clazz(), &methodID, "windowScale");
     return method.callFloat();
 }
 
 static int64_t new_wnd() {
     static jmethodID methodID = nullptr;
 
-    cqJNIStaticMethod method(clazz(), &methodID, "createWindow");
+    cqJNIStatic method(clazz(), &methodID, "createWindow");
     return method.callInt64();
 }
 
 static void show_wnd(int64_t wid) {
     static jmethodID methodID = nullptr;
 
-    cqJNIStaticMethod method(clazz(), &methodID, "showWindow");
+    cqJNIStatic method(clazz(), &methodID, "showWindow");
     method.push(wid);
     return method.callVoid();
 }

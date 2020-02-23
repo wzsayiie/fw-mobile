@@ -3,38 +3,48 @@
 #include "cqcppbasis.hh"
 #include <jni.h>
 
-JNIEnv *cqJNIGetEnv();
+#include "_CQBASIS_VERSION.h"
+_CQBASIS_BEGIN_VERSION_NS
 
-//if there was a java exception, remove it and return true.
-bool cqJNIException(JNIEnv *env);
+struct cqJNIEnv {
 
-//if *prefer != null then return *prefer, else find the class and assign *prefer.
-jclass cqJNIFindClass(jclass *prefer, JNIEnv *env, const char *name);
+    //current thread JNI env.
+    static JNIEnv *env();
 
-//if *prefer != null then return *prefer, else get the methodID and assign *prefer.
-jmethodID cqJNIGetStatic(jmethodID *prefer, JNIEnv *env, jclass clazz, const char *name, const char *signature);
+    //if there was a java exception, remove it and return true.
+    static bool checkException(JNIEnv *env);
 
-std::string cqJNIU8StringFromJNI(JNIEnv *env, jstring src);
-jstring cqJNIStringFromU8(JNIEnv *env, const char *src); //return a local reference.
+    //if *prefer != null then return *prefer, else find the class and assign *prefer.
+    static jclass findClass(jclass *prefer, JNIEnv *env, const char *name);
 
-std::vector<uint8_t> cqJNIDataFromJNI(JNIEnv *env, jbyteArray src);
-jbyteArray cqJNIByteArrayFromData(JNIEnv *env, const std::vector<uint8_t> &src); //return a local reference.
+    //if *prefer != null then return *prefer, else get the methodID and assign *prefer.
+    static jmethodID staticMethod(jmethodID *prefer, JNIEnv *env, jclass clazz, const char *name, const char *signature);
+};
 
-void *_cqJNIPtrFromJNI(jobject ptr);
-jobject cqJNIJavaPtrFromPtr(const void *ptr);
+struct cqJNIType {
 
-template<class T> T cqJNIPtrFromJNI(jobject ptr) {
-    return (T)_cqJNIPtrFromJNI(ptr);
-}
+    static std::string string(JNIEnv *env, jstring src);
+    static jstring jniString(JNIEnv *env, const char *src);
 
-template<class T> struct cqJNILocalRef {
+    static std::vector<uint8_t> data(JNIEnv *env, jbyteArray src);
+    static jbyteArray jniData(JNIEnv *env, const std::vector<uint8_t> &src);
 
-    cqJNILocalRef(T ref) {
+    static void *ptr_void(jobject ptr);
+    static jobject jniPtr(const void *ptr);
+
+    template<class T> static T ptr(jobject ptr) {
+        return (T)ptr_void(ptr);
+    }
+};
+
+template<class T> struct cqJNILocal {
+
+    cqJNILocal(T ref) {
         _ref = ref;
     }
 
-    ~cqJNILocalRef() {
-        JNIEnv *env = cqJNIGetEnv();
+    ~cqJNILocal() {
+        JNIEnv *env = cqJNIEnv::env();
         if (env && _ref) {
             env->DeleteLocalRef(_ref);
         }
@@ -48,56 +58,39 @@ private:
     T _ref;
 };
 
-struct cqJNIByteArrayHelper {
+struct cqJNIStatic {
 
-    cqJNIByteArrayHelper(JNIEnv *env, jbyteArray data);
-    ~cqJNIByteArrayHelper();
+    cqJNIStatic(jclass clazz, jmethodID *prefer, const char *name);
+    ~cqJNIStatic();
 
-    const void *bytes() const;
-    int32_t length() const;
+    cqJNIStatic   (const cqJNIStatic &) = delete;
+    void operator=(const cqJNIStatic &) = delete;
+    void *operator new[](size_t) = delete;
+    void *operator new  (size_t) = delete;
 
-    void write(int32_t begin, const void *bytes, int32_t length);
-
-private:
-    JNIEnv *_env;
-    jbyteArray _data;
-    jbyte *_bytes;
-    jsize _length;
-};
-
-struct cqJNIStaticMethod {
-
-    cqJNIStaticMethod(jclass clazz, jmethodID *prefer, const char *name);
-    ~cqJNIStaticMethod();
-
-    cqJNIStaticMethod(const cqJNIStaticMethod &) = delete;
-    void operator=(const cqJNIStaticMethod &) = delete;
-
-    void push(bool    param) { push("Z", from(param)); }
-    void push(int8_t  param) { push("B", from(param)); }
-    void push(int16_t param) { push("S", from(param)); }
-    void push(int32_t param) { push("I", from(param)); }
-    void push(int64_t param) { push("J", from(param)); }
-    void push(float   param) { push("F", from(param)); }
-    void push(double  param) { push("D", from(param)); }
-
-    void    callVoid  () { return call("V", &JNIEnv::CallStaticVoidMethodA   ); }
-    bool    callBool  () { return call("Z", &JNIEnv::CallStaticBooleanMethodA); }
-    int8_t  callInt8  () { return call("B", &JNIEnv::CallStaticByteMethodA   ); }
-    int16_t callInt16 () { return call("S", &JNIEnv::CallStaticShortMethodA  ); }
-    int32_t callInt32 () { return call("I", &JNIEnv::CallStaticIntMethodA    ); }
-    int64_t callInt64 () { return call("J", &JNIEnv::CallStaticLongMethodA   ); }
-    float   callFloat () { return call("F", &JNIEnv::CallStaticFloatMethodA  ); }
-    double  callDouble() { return call("D", &JNIEnv::CallStaticDoubleMethodA ); }
-
+    void push(bool        param) { push("Z", from(param)); }
+    void push(int8_t      param) { push("B", from(param)); }
+    void push(int16_t     param) { push("S", from(param)); }
+    void push(int32_t     param) { push("I", from(param)); }
+    void push(int64_t     param) { push("J", from(param)); }
+    void push(float       param) { push("F", from(param)); }
+    void push(double      param) { push("D", from(param)); }
     void push(const char *param);
     void push(const void *param);
 
-    std::string callString();
-    void *_callPtr();
+    void        callVoid    () { return call("V", &JNIEnv::CallStaticVoidMethodA   ); }
+    bool        callBool    () { return call("Z", &JNIEnv::CallStaticBooleanMethodA); }
+    int8_t      callInt8    () { return call("B", &JNIEnv::CallStaticByteMethodA   ); }
+    int16_t     callInt16   () { return call("S", &JNIEnv::CallStaticShortMethodA  ); }
+    int32_t     callInt32   () { return call("I", &JNIEnv::CallStaticIntMethodA    ); }
+    int64_t     callInt64   () { return call("J", &JNIEnv::CallStaticLongMethodA   ); }
+    float       callFloat   () { return call("F", &JNIEnv::CallStaticFloatMethodA  ); }
+    double      callDouble  () { return call("D", &JNIEnv::CallStaticDoubleMethodA ); }
+    std::string callString  ();
+    void *      callPtr_void();
 
     template<class T> T callPtr() {
-        return (T)_callPtr();
+        return (T)callPtr_void();
     }
 
 private:
@@ -140,3 +133,5 @@ private:
     std::vector<jvalue> _params;
     std::vector<jobject> _objects;
 };
+
+_CQBASIS_END_VERSION_NS

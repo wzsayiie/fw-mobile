@@ -10,7 +10,7 @@ jint JNI_OnLoad(JavaVM *vm, void *) {
     return sJNIVersion;
 }
 
-JNIEnv *cqJNIGetEnv() {
+JNIEnv *cqJNIEnv::env() {
     if (sJavaVM != nullptr) {
         JNIEnv *env = nullptr;
         sJavaVM->GetEnv((void **)&env, sJNIVersion);
@@ -20,7 +20,7 @@ JNIEnv *cqJNIGetEnv() {
     }
 }
 
-bool cqJNIException(JNIEnv *env) {
+bool cqJNIEnv::checkException(JNIEnv *env) {
     if (env != nullptr && env->ExceptionCheck()) {
         env->ExceptionDescribe();
         env->ExceptionClear();
@@ -30,7 +30,7 @@ bool cqJNIException(JNIEnv *env) {
     }
 }
 
-jclass cqJNIFindClass(jclass *prefer, JNIEnv *env, const char *name) {
+jclass cqJNIEnv::findClass(jclass *prefer, JNIEnv *env, const char *name) {
     if (prefer != nullptr && *prefer != nullptr) {
         return *prefer;
     }
@@ -44,11 +44,11 @@ jclass cqJNIFindClass(jclass *prefer, JNIEnv *env, const char *name) {
 
     jclass globalRef = nullptr; {
         jclass localRef = env->FindClass(name);
-        if (!cqJNIException(env)) {
+        if (!cqJNIEnv::checkException(env)) {
             globalRef = (jclass)env->NewGlobalRef(localRef);
-            cqJNIException(env);
+            cqJNIEnv::checkException(env);
             env->DeleteLocalRef(localRef);
-            cqJNIException(env);
+            cqJNIEnv::checkException(env);
         }
     };
 
@@ -58,7 +58,7 @@ jclass cqJNIFindClass(jclass *prefer, JNIEnv *env, const char *name) {
     return globalRef;
 }
 
-jmethodID cqJNIGetStatic(jmethodID *prefer, JNIEnv *env, jclass clazz, const char *name, const char *signature) {
+jmethodID cqJNIEnv::staticMethod(jmethodID *prefer, JNIEnv *env, jclass clazz, const char *name, const char *signature) {
     if (prefer != nullptr && *prefer != nullptr) {
         return *prefer;
     }
@@ -77,7 +77,7 @@ jmethodID cqJNIGetStatic(jmethodID *prefer, JNIEnv *env, jclass clazz, const cha
     }
 
     jmethodID methodID = env->GetStaticMethodID(clazz, name, signature);
-    if (cqJNIException(env)) {
+    if (cqJNIEnv::checkException(env)) {
         return nullptr;
     }
 
@@ -87,7 +87,7 @@ jmethodID cqJNIGetStatic(jmethodID *prefer, JNIEnv *env, jclass clazz, const cha
     return methodID;
 }
 
-std::string cqJNIU8StringFromJNI(JNIEnv *env, jstring src) {
+std::string cqJNIType::string(JNIEnv *env, jstring src) {
     if (env == nullptr) {
         return "";
     }
@@ -95,8 +95,9 @@ std::string cqJNIU8StringFromJNI(JNIEnv *env, jstring src) {
         return "";
     }
 
+    //NOTE: get the utf8 string.
     auto middle = env->GetStringUTFChars(src, nullptr);
-    if (cqJNIException(env)) {
+    if (cqJNIEnv::checkException(env)) {
         return "";
     }
     if (middle == nullptr) {
@@ -108,7 +109,7 @@ std::string cqJNIU8StringFromJNI(JNIEnv *env, jstring src) {
     return dst;
 }
 
-jstring cqJNIStringFromU8(JNIEnv *env, const char *src) {
+jstring cqJNIType::jniString(JNIEnv *env, const char *src) {
     if (env != nullptr && src != nullptr) {
         return env->NewStringUTF(src);
     } else {
@@ -116,7 +117,7 @@ jstring cqJNIStringFromU8(JNIEnv *env, const char *src) {
     }
 }
 
-std::vector<uint8_t> cqJNIDataFromJNI(JNIEnv *env, jbyteArray src) {
+std::vector<uint8_t> cqJNIType::data(JNIEnv *env, jbyteArray src) {
     std::vector<uint8_t> dst;
 
     if (env && src) {
@@ -131,7 +132,7 @@ std::vector<uint8_t> cqJNIDataFromJNI(JNIEnv *env, jbyteArray src) {
     return dst;
 }
 
-jbyteArray cqJNIByteArrayFromData(JNIEnv *env, const std::vector<uint8_t> &src) {
+jbyteArray cqJNIType::jniData(JNIEnv *env, const std::vector<uint8_t> &src) {
     if (env == nullptr) {
         return nullptr;
     }
@@ -145,51 +146,17 @@ jbyteArray cqJNIByteArrayFromData(JNIEnv *env, const std::vector<uint8_t> &src) 
     return dst;
 }
 
-void *_cqJNIPtrFromJNI(jobject ptr) {
+void *cqJNIType::ptr_void(jobject ptr) {
     return CPtr_valueFromObject(ptr);
 }
 
-jobject cqJNIJavaPtrFromPtr(const void *ptr) {
+jobject cqJNIType::jniPtr(const void *ptr) {
     return CPtr_objectFromValue(ptr);
 }
 
-cqJNIByteArrayHelper::cqJNIByteArrayHelper(JNIEnv *env, jbyteArray data) {
-    if (env != nullptr && data != nullptr) {
-        _env    = env;
-        _data   = data;
-        _length = env->GetArrayLength(data);
-        _bytes  = env->GetByteArrayElements(data, nullptr);
-    } else {
-        _env    = nullptr;
-        _data   = nullptr;
-        _length = 0;
-        _bytes  = nullptr;
-    }
-}
+cqJNIStatic::cqJNIStatic(jclass clazz, jmethodID *prefer, const char *name) {
 
-cqJNIByteArrayHelper::~cqJNIByteArrayHelper() {
-    if (_env != nullptr) {
-        _env->ReleaseByteArrayElements(_data, _bytes, JNI_ABORT);
-    }
-}
-
-const void *cqJNIByteArrayHelper::bytes() const {
-    return (const void *)_bytes;
-}
-
-int32_t cqJNIByteArrayHelper::length() const {
-    return (int32_t)_length;
-}
-
-void cqJNIByteArrayHelper::write(int32_t begin, const void *bytes, int32_t length) {
-    if (_env != nullptr) {
-        _env->SetByteArrayRegion(_data, (jsize)begin, (jsize)length, (const jbyte *)bytes);
-    }
-}
-
-cqJNIStaticMethod::cqJNIStaticMethod(jclass clazz, jmethodID *prefer, const char *name) {
-
-    _env       = cqJNIGetEnv();
+    _env       = cqJNIEnv::env();
     _clazz     = clazz;
     _methodID  = prefer ? prefer : &_METHOD_ID;
     _METHOD_ID = nullptr;
@@ -198,7 +165,7 @@ cqJNIStaticMethod::cqJNIStaticMethod(jclass clazz, jmethodID *prefer, const char
     _signature.append("(");
 }
 
-cqJNIStaticMethod::~cqJNIStaticMethod() {
+cqJNIStatic::~cqJNIStatic() {
     if (_env == nullptr) {
         return;
     }
@@ -208,33 +175,33 @@ cqJNIStaticMethod::~cqJNIStaticMethod() {
     }
 }
 
-void cqJNIStaticMethod::push(const char *param) {
+void cqJNIStatic::push(const char *param) {
     if (_env == nullptr) {
         return;
     }
 
     jvalue value;
-    value.l = cqJNIStringFromU8(_env, param);
+    value.l = cqJNIType::jniString(_env, param);
 
     _signature.append("Ljava/lang/String;");
     _params.push_back(value);
     _objects.push_back(value.l);
 }
 
-void cqJNIStaticMethod::push(const void *param) {
+void cqJNIStatic::push(const void *param) {
     if (_env == nullptr) {
         return;
     }
 
     jvalue value;
-    value.l = cqJNIJavaPtrFromPtr(param);
+    value.l = cqJNIType::jniPtr(param);
 
     _signature.append("Lsrc/library/basis/CPtr;");
     _params.push_back(value);
     _objects.push_back(value.l);
 }
 
-std::string cqJNIStaticMethod::callString() {
+std::string cqJNIStatic::callString() {
     if (_env == nullptr) {
         return "";
     }
@@ -244,15 +211,15 @@ std::string cqJNIStaticMethod::callString() {
         return "";
     }
 
-    cqJNILocalRef<jstring> string = (jstring)_env->CallStaticObjectMethodA(_clazz, *_methodID, _params.data());
-    if (cqJNIException(_env)) {
+    cqJNILocal<jstring> string = (jstring)_env->CallStaticObjectMethodA(_clazz, *_methodID, _params.data());
+    if (cqJNIEnv::checkException(_env)) {
         return "";
     }
 
-    return cqJNIU8StringFromJNI(_env, string.get());
+    return cqJNIType::string(_env, string.get());
 }
 
-void *cqJNIStaticMethod::_callPtr() {
+void *cqJNIStatic::callPtr_void() {
     if (_env == nullptr) {
         return nullptr;
     }
@@ -262,26 +229,26 @@ void *cqJNIStaticMethod::_callPtr() {
         return nullptr;
     }
 
-    cqJNILocalRef<jobject> ptr = _env->CallStaticObjectMethodA(_clazz, *_methodID, _params.data());
-    if (cqJNIException(_env)) {
+    cqJNILocal<jobject> ptr = _env->CallStaticObjectMethodA(_clazz, *_methodID, _params.data());
+    if (cqJNIEnv::checkException(_env)) {
         return nullptr;
     }
 
-    return _cqJNIPtrFromJNI(ptr.get());
+    return cqJNIType::ptr_void(ptr.get());
 }
 
-void cqJNIStaticMethod::push(const char *type, jvalue value) {
+void cqJNIStatic::push(const char *type, jvalue value) {
     _signature.append(type);
     _params.push_back(value);
 }
 
-bool cqJNIStaticMethod::check() {
+bool cqJNIStatic::check() {
     if (_env == nullptr) {
         return false;
     }
     if (_clazz == nullptr) {
         return false;
     }
-    cqJNIGetStatic(_methodID, _env, _clazz, _name.c_str(), _signature.c_str());
+    cqJNIEnv::staticMethod(_methodID, _env, _clazz, _name.c_str(), _signature.c_str());
     return *_methodID != nullptr;
 }

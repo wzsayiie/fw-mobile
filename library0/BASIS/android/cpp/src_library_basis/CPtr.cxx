@@ -9,27 +9,27 @@ static_assert(sizeof(jlong) >= sizeof(void *), "");
 static jclass clazz() {
     static jclass clazz = nullptr;
     if (clazz == nullptr) {
-        cqJNIFindClass(&clazz, cqJNIGetEnv(), CLS);
+        cqJNIEnv::findClass(&clazz, cqJNIEnv::env(), CLS);
     }
     return clazz;
 }
 
 void *CPtr_valueFromObject(jobject object) {
-    JNIEnv *env = cqJNIGetEnv();
+    JNIEnv *env = cqJNIEnv::env();
     jclass  cls = clazz();
 
     static jmethodID method = nullptr;
-    cqJNIGetStatic(&method, env, cls, "valueFromObject", "(L" CLS ";)J");
+    cqJNIEnv::staticMethod(&method, env, cls, "valueFromObject", "(L" CLS ";)J");
 
     return (void *)env->CallStaticLongMethod(cls, method, object);
 }
 
 jobject CPtr_objectFromValue(const void *value) {
-    JNIEnv *env = cqJNIGetEnv();
+    JNIEnv *env = cqJNIEnv::env();
     jclass  cls = clazz();
 
     static jmethodID method = nullptr;
-    cqJNIGetStatic(&method, env, cls, "objectFromValue", "(J)L" CLS ";");
+    cqJNIEnv::staticMethod(&method, env, cls, "objectFromValue", "(J)L" CLS ";");
 
     return env->CallStaticObjectMethod(cls, method, (jlong)value);
 }
