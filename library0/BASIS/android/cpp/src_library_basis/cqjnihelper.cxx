@@ -146,7 +146,7 @@ jbyteArray cqJNIType::jniData(JNIEnv *env, const std::vector<uint8_t> &src) {
     return dst;
 }
 
-void *cqJNIType::ptr_void(jobject ptr) {
+void *cqJNIType::voidPtr(jobject ptr) {
     return CPtr_valueFromObject(ptr);
 }
 
@@ -154,7 +154,7 @@ jobject cqJNIType::jniPtr(const void *ptr) {
     return CPtr_objectFromValue(ptr);
 }
 
-cqJNIStatic::cqJNIStatic(jclass clazz, jmethodID *prefer, const char *name) {
+cqJNIStaticMethod::cqJNIStaticMethod(jclass clazz, jmethodID *prefer, const char *name) {
 
     _env       = cqJNIEnv::env();
     _clazz     = clazz;
@@ -165,7 +165,7 @@ cqJNIStatic::cqJNIStatic(jclass clazz, jmethodID *prefer, const char *name) {
     _signature.append("(");
 }
 
-cqJNIStatic::~cqJNIStatic() {
+cqJNIStaticMethod::~cqJNIStaticMethod() {
     if (_env == nullptr) {
         return;
     }
@@ -175,7 +175,7 @@ cqJNIStatic::~cqJNIStatic() {
     }
 }
 
-void cqJNIStatic::push(const char *param) {
+void cqJNIStaticMethod::push(const char *param) {
     if (_env == nullptr) {
         return;
     }
@@ -188,7 +188,7 @@ void cqJNIStatic::push(const char *param) {
     _objects.push_back(value.l);
 }
 
-void cqJNIStatic::push(const void *param) {
+void cqJNIStaticMethod::push(const void *param) {
     if (_env == nullptr) {
         return;
     }
@@ -201,7 +201,7 @@ void cqJNIStatic::push(const void *param) {
     _objects.push_back(value.l);
 }
 
-std::string cqJNIStatic::callString() {
+std::string cqJNIStaticMethod::callString() {
     if (_env == nullptr) {
         return "";
     }
@@ -219,7 +219,7 @@ std::string cqJNIStatic::callString() {
     return cqJNIType::string(_env, string.get());
 }
 
-void *cqJNIStatic::callPtr_void() {
+void *cqJNIStaticMethod::callPtr() {
     if (_env == nullptr) {
         return nullptr;
     }
@@ -234,15 +234,15 @@ void *cqJNIStatic::callPtr_void() {
         return nullptr;
     }
 
-    return cqJNIType::ptr_void(ptr.get());
+    return cqJNIType::voidPtr(ptr.get());
 }
 
-void cqJNIStatic::push(const char *type, jvalue value) {
+void cqJNIStaticMethod::push(const char *type, jvalue value) {
     _signature.append(type);
     _params.push_back(value);
 }
 
-bool cqJNIStatic::check() {
+bool cqJNIStaticMethod::check() {
     if (_env == nullptr) {
         return false;
     }

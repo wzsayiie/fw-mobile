@@ -1,34 +1,21 @@
 #include "cqjnihelper.hh"
 #include "cqwnd.h"
 
-static jclass clazz() {
-    static jclass clazz = nullptr;
-    if (clazz == nullptr) {
-        cqJNIEnv::findClass(&clazz, cqJNIEnv::env(), "src/library/glkit/GLActivity");
-    }
-    return clazz;
-}
+CQ_JNI_CLASS(GLActivity, "src/library/glkit/GLActivity");
 
 static float wnd_scale() {
-    static jmethodID methodID = nullptr;
-
-    cqJNIStatic method(clazz(), &methodID, "windowScale");
-    return method.callFloat();
+    CQ_JNI_STATIC_METHOD(GLActivity, method, "windowScale");
+    return method.fn<float>();
 }
 
 static int64_t new_wnd() {
-    static jmethodID methodID = nullptr;
-
-    cqJNIStatic method(clazz(), &methodID, "createWindow");
-    return method.callInt64();
+    CQ_JNI_STATIC_METHOD(GLActivity, method, "createWindow");
+    return method.fn<int64_t>();
 }
 
 static void show_wnd(int64_t wid) {
-    static jmethodID methodID = nullptr;
-
-    cqJNIStatic method(clazz(), &methodID, "showWindow");
-    method.push(wid);
-    return method.callVoid();
+    CQ_JNI_STATIC_METHOD(GLActivity, method, "showWindow");
+    return method.fn<void>(wid);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_glkit_GLActivity_initWindowPort
@@ -81,7 +68,7 @@ extern "C" JNIEXPORT void JNICALL Java_src_library_glkit_GLActivity_windowSize
 extern "C" JNIEXPORT void JNICALL Java_src_library_glkit_GLActivity_windowUpdate
     (JNIEnv *, jclass, jlong wid)
 {
-    _cq_wnd_update (wid);
+    _cq_wnd_update(wid);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_glkit_GLActivity_windowGLDraw

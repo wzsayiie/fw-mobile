@@ -29,11 +29,11 @@ struct cqJNIType {
     static std::vector<uint8_t> data(JNIEnv *env, jbyteArray src);
     static jbyteArray jniData(JNIEnv *env, const std::vector<uint8_t> &src);
 
-    static void *ptr_void(jobject ptr);
+    static void *voidPtr(jobject ptr);
     static jobject jniPtr(const void *ptr);
 
     template<class T> static T ptr(jobject ptr) {
-        return (T)ptr_void(ptr);
+        return (T)voidPtr(ptr);
     }
 };
 
@@ -68,13 +68,13 @@ private:
     T _ref;
 };
 
-struct cqJNIStatic {
+struct cqJNIStaticMethod {
 
-    cqJNIStatic(jclass clazz, jmethodID *prefer, const char *name);
-    ~cqJNIStatic();
+    cqJNIStaticMethod(jclass clazz, jmethodID *prefer, const char *name);
+    ~cqJNIStaticMethod();
 
-    cqJNIStatic   (const cqJNIStatic &) = delete;
-    void operator=(const cqJNIStatic &) = delete;
+    cqJNIStaticMethod(const cqJNIStaticMethod &) = delete;
+    void operator=   (const cqJNIStaticMethod &) = delete;
     void *operator new[](size_t) = delete;
     void *operator new  (size_t) = delete;
 
@@ -93,19 +93,40 @@ struct cqJNIStatic {
         push((const void *)param);
     }
 
-    void        callVoid    () { return call("V", &JNIEnv::CallStaticVoidMethodA   ); }
-    bool        callBool    () { return call("Z", &JNIEnv::CallStaticBooleanMethodA); }
-    int8_t      callInt8    () { return call("B", &JNIEnv::CallStaticByteMethodA   ); }
-    int16_t     callInt16   () { return call("S", &JNIEnv::CallStaticShortMethodA  ); }
-    int32_t     callInt32   () { return call("I", &JNIEnv::CallStaticIntMethodA    ); }
-    int64_t     callInt64   () { return call("J", &JNIEnv::CallStaticLongMethodA   ); }
-    float       callFloat   () { return call("F", &JNIEnv::CallStaticFloatMethodA  ); }
-    double      callDouble  () { return call("D", &JNIEnv::CallStaticDoubleMethodA ); }
-    std::string callString  ();
-    void *      callPtr_void();
+    void push() {
+    }
+    template<class A, class... B> void push(A a, B... b) {
+        push(a);
+        push(b...);
+    }
 
-    template<class T> T callPtr() {
-        return (T)callPtr_void();
+    void        callVoid  () { return call("V", &JNIEnv::CallStaticVoidMethodA   ); }
+    bool        callBool  () { return call("Z", &JNIEnv::CallStaticBooleanMethodA); }
+    int8_t      callInt8  () { return call("B", &JNIEnv::CallStaticByteMethodA   ); }
+    int16_t     callInt16 () { return call("S", &JNIEnv::CallStaticShortMethodA  ); }
+    int32_t     callInt32 () { return call("I", &JNIEnv::CallStaticIntMethodA    ); }
+    int64_t     callInt64 () { return call("J", &JNIEnv::CallStaticLongMethodA   ); }
+    float       callFloat () { return call("F", &JNIEnv::CallStaticFloatMethodA  ); }
+    double      callDouble() { return call("D", &JNIEnv::CallStaticDoubleMethodA ); }
+    std::string callString();
+    void *      callPtr   ();
+
+    template<class T> T call() {
+        return (T)callPtr(); //pointer type is default.
+    }
+    template<> void        call<void       >() {return callVoid  ();}
+    template<> bool        call<bool       >() {return callBool  ();}
+    template<> int8_t      call<int8_t     >() {return callInt8  ();}
+    template<> int16_t     call<int16_t    >() {return callInt16 ();}
+    template<> int32_t     call<int32_t    >() {return callInt32 ();}
+    template<> int64_t     call<int64_t    >() {return callInt64 ();}
+    template<> float       call<float      >() {return callFloat ();}
+    template<> double      call<double     >() {return callDouble();}
+    template<> std::string call<std::string>() {return callString();}
+
+    template<class R, class... A> R fn(A... args) {
+        push(args...);
+        return call<R>();
     }
 
 private:
@@ -148,5 +169,18 @@ private:
     std::vector<jvalue> _params;
     std::vector<jobject> _objects;
 };
+
+#define CQ_JNI_CLASS(CLS, PATH)\
+/**/    static jclass CLS() {\
+/**/        static jclass cls = nullptr;\
+/**/        if (cls == nullptr) {\
+/**/            cqJNIEnv::findClass(&cls, cqJNIEnv::env(), PATH);\
+/**/        }\
+/**/        return cls;\
+/**/    }
+
+#define CQ_JNI_STATIC_METHOD(CLS, METHOD, NAME)\
+/**/    static jmethodID __methodID = nullptr;\
+/**/    cqJNIStaticMethod METHOD(CLS(), &__methodID, NAME)
 
 _CQBASIS_END_VERSION_NS

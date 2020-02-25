@@ -1,19 +1,13 @@
 #include "JNI.hh"
 #include "cqjnihelper.hh"
 
-static jclass clazz() {
-    static jclass clazz = nullptr;
-    if (clazz == nullptr) {
-        cqJNIEnv::findClass(&clazz, cqJNIEnv::env(), "src/library/basis/JNI");
-    }
-    return clazz;
-}
+CQ_JNI_CLASS(JNI, "src/library/basis/JNI");
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeBytesSuck
     (JNIEnv *env, jclass, jobject _send, jobject _src)
 {
     static jmethodID method = nullptr;
-    cqJNIEnv::staticMethod(&method, env, clazz(), "onBytesSuck", "([B)V");
+    cqJNIEnv::staticMethod(&method, env, JNI(), "onBytesSuck", "([B)V");
 
     auto send = cqJNIType::ptr<cq_bytes_send>(_send);
     auto src  = cqJNIType::ptr<cq_bytes *   >(_src );
@@ -21,55 +15,54 @@ extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeBytesSuck
     std::vector<uint8_t>   object = cq_cpp::from(send, src);
     cqJNILocal<jbyteArray> array  = cqJNIType::jniData(env, object);
 
-    env->CallStaticVoidMethod(clazz(), method, array.get());
+    env->CallStaticVoidMethod(JNI(), method, array.get());
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeLongsSuck
-    (JNIEnv *, jclass, jobject _send, jobject _src)
+    (JNIEnv *env, jclass, jobject _send, jobject _src)
 {
-    static jmethodID methodID = nullptr;
-    cqJNIStatic method(clazz(), &methodID, "onLongsSuck");
+    static jmethodID method = nullptr;
+    cqJNIEnv::staticMethod(&method, env, JNI(), "onLongsSuck", "(J)V");
 
     auto send = cqJNIType::ptr<cq_int64s_send>(_send);
     auto src  = cqJNIType::ptr<cq_int64s *   >(_src );
 
     std::vector<int64_t> object = cq_cpp::from(send, src);
     for (auto &it : object) {
-        method.push(it);
-        method.callVoid();
+        env->CallStaticVoidMethod(JNI(), method, (jlong)it);
     }
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeStringsSuck
-    (JNIEnv *, jclass, jobject _send, jobject _src)
+    (JNIEnv *env, jclass, jobject _send, jobject _src)
 {
-    static jmethodID methodID = nullptr;
-    cqJNIStatic method(clazz(), &methodID, "onStringsSuck");
+    static jmethodID method = nullptr;
+    cqJNIEnv::staticMethod(&method, env, JNI(), "onStringsSuck", "(Ljava/lang/String;)V");
 
     auto send = cqJNIType::ptr<cq_strings_send>(_send);
     auto src  = cqJNIType::ptr<cq_strings *   >(_src );
 
     std::vector<std::string> object = cq_cpp::from(send, src);
     for (auto &it : object) {
-        method.push(it.c_str());
-        method.callVoid();
+        jstring string = cqJNIType::jniString(env, it.c_str());
+        env->CallStaticVoidMethod(JNI(), method, string);
     }
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeSSMapSuck
-    (JNIEnv *, jclass, jobject _send, jobject _src)
+    (JNIEnv *env, jclass, jobject _send, jobject _src)
 {
-    static jmethodID methodID = nullptr;
-    cqJNIStatic method(clazz(), &methodID, "onSSMapSuck");
+    static jmethodID method = nullptr;
+    cqJNIEnv::staticMethod(&method, env, JNI(), "onSSMapSuck", "(Ljava/lang/String;Ljava/lang/String;)V");
 
     auto send = cqJNIType::ptr<cq_ss_map_send>(_send);
     auto src  = cqJNIType::ptr<cq_ss_map *   >(_src );
 
     std::map<std::string, std::string> object = cq_cpp::from(send, src);
     for (auto &cp : object) {
-        method.push(cp.first .c_str());
-        method.push(cp.second.c_str());
-        method.callVoid();
+        jstring key = cqJNIType::jniString(env, cp.first .c_str());
+        jstring val = cqJNIType::jniString(env, cp.second.c_str());
+        env->CallStaticVoidMethod(JNI(), method, key, val);
     }
 }
 

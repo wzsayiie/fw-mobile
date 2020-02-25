@@ -1,22 +1,14 @@
 #include "cqsubsystemarche.h"
 #include "cqjnihelper.hh"
 
-static jclass clazz() {
-    static jclass clazz = nullptr;
-    if (clazz == nullptr) {
-        cqJNIEnv::findClass(&clazz, cqJNIEnv::env(), "src/library/subsystem/PORT");
-    }
-    return clazz;
-}
+CQ_JNI_CLASS(PORT, "src/library/subsystem/PORT");
 
 void cq_subsystem_start() {
-    static jmethodID methodID = nullptr;
-    cqJNIStatic method(clazz(), &methodID, "cq_subsystem_start");
-    method.callVoid();
+    CQ_JNI_STATIC_METHOD(PORT, method, "cq_subsystem_start");
+    method.fn<void>();
 }
 
 void cq_subsystem_stop() {
-    static jmethodID methodID = nullptr;
-    cqJNIStatic method(clazz(), &methodID, "cq_subsystem_stop");
-    method.callVoid();
+    CQ_JNI_STATIC_METHOD(PORT, method, "cq_subsystem_stop");
+    method.fn<void>();
 }
