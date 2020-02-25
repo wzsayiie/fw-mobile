@@ -1,9 +1,10 @@
 cmake_minimum_required(VERSION 3.4.1)
 
+## NOTE: these paths are different for different Android Studio versions. the followed starts from 3.6 .
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
-    set(built_jni_subpath build/intermediates/intermediate-jars/release/jni/${ANDROID_ABI})
+    set(built_jni_subpath build/intermediates/library_jni/release/jni/${ANDROID_ABI})
 else()
-    set(built_jni_subpath build/intermediates/intermediate-jars/debug/jni/${ANDROID_ABI})
+    set(built_jni_subpath build/intermediates/library_jni/debug/jni/${ANDROID_ABI})
 endif()
 
 function(get_absolute_paths paths)
