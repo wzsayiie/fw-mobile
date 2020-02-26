@@ -12,8 +12,8 @@ extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeBytesSuck
     auto send = cqJNIType::ptr<cq_bytes_send>(_send);
     auto src  = cqJNIType::ptr<cq_bytes *   >(_src );
 
-    std::vector<uint8_t>   object = cq_cpp::from(send, src);
-    cqJNILocal<jbyteArray> array  = cqJNIType::jniData(env, object);
+    std::vector<uint8_t> object = cq_cpp::from(send, src);
+    cqJNIRef<jbyteArray> array = cqJNIType::jniDataAuto(env, object);
 
     env->CallStaticVoidMethod(JNI(), method, array.get());
 }
@@ -44,8 +44,8 @@ extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeStringsSuck
 
     std::vector<std::string> object = cq_cpp::from(send, src);
     for (auto &it : object) {
-        jstring string = cqJNIType::jniString(env, it.c_str());
-        env->CallStaticVoidMethod(JNI(), method, string);
+        cqJNIRef<jstring> string = cqJNIType::jniStringAuto(env, it.c_str());
+        env->CallStaticVoidMethod(JNI(), method, string.get());
     }
 }
 
@@ -60,9 +60,9 @@ extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeSSMapSuck
 
     std::map<std::string, std::string> object = cq_cpp::from(send, src);
     for (auto &cp : object) {
-        jstring key = cqJNIType::jniString(env, cp.first .c_str());
-        jstring val = cqJNIType::jniString(env, cp.second.c_str());
-        env->CallStaticVoidMethod(JNI(), method, key, val);
+        cqJNIRef<jstring> key = cqJNIType::jniStringAuto(env, cp.first .c_str());
+        cqJNIRef<jstring> val = cqJNIType::jniStringAuto(env, cp.second.c_str());
+        env->CallStaticVoidMethod(JNI(), method, key.get(), val.get());
     }
 }
 

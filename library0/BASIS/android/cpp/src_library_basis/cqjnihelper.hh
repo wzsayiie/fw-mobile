@@ -21,51 +21,40 @@ struct cqJNIEnv {
     static jmethodID staticMethod(jmethodID *prefer, JNIEnv *env, jclass clazz, const char *name, const char *signature);
 };
 
+template<class T> struct __cqJNIRefPointedStruct {
+    using Type = typename std::remove_reference<decltype(*(T)nullptr)>::type;
+};
+template<class T> using cqJNIRef = std::shared_ptr<typename __cqJNIRefPointedStruct<T>::Type>;
+
+struct cqJNIRefTransfer {
+
+    static void deleteGlobalRef(jobject ref);
+    static void deleteLocalRef (jobject ref);
+
+    template<class T> static cqJNIRef<T> global(T ref) {return cqJNIRef<T>(ref, deleteGlobalRef);}
+    template<class T> static cqJNIRef<T> local (T ref) {return cqJNIRef<T>(ref, deleteLocalRef );}
+};
+
 struct cqJNIType {
 
+    //NOTE: the std::string retained is a utf8 encoded string.
     static std::string string(JNIEnv *env, jstring src);
-    static jstring jniString(JNIEnv *env, const char *src);
+    static cqJNIRef<jstring> jniStringAuto(JNIEnv *env, const char *src);
 
     static std::vector<uint8_t> data(JNIEnv *env, jbyteArray src);
-    static jbyteArray jniData(JNIEnv *env, const std::vector<uint8_t> &src);
+    static cqJNIRef<jbyteArray> jniDataAuto(JNIEnv *env, const std::vector<uint8_t> &src);
 
     static void *voidPtr(jobject ptr);
-    static jobject jniPtr(const void *ptr);
+    static cqJNIRef<jobject> jniPtrAuto(const void *ptr);
 
     template<class T> static T ptr(jobject ptr) {
         return (T)voidPtr(ptr);
     }
-};
 
-template<class T> struct cqJNILocal {
-
-    cqJNILocal(T ref) {
-        _ref = ref;
-    }
-
-    cqJNILocal(cqJNILocal &&that) {
-        this->_ref = that._ref;
-        that. _ref = nullptr;
-    }
-
-    ~cqJNILocal() {
-        JNIEnv *env = cqJNIEnv::env();
-        if (env && _ref) {
-            env->DeleteLocalRef(_ref);
-        }
-    }
-
-    cqJNILocal    (const cqJNILocal &) = delete;
-    void operator=(const cqJNILocal &) = delete;
-    void *operator new[](size_t) = delete;
-    void *operator new  (size_t) = delete;
-
-    T get() const {
-        return _ref;
-    }
-
-private:
-    T _ref;
+    //these functions return local reference.
+    static jstring    jniString(JNIEnv *env, const char *src);
+    static jbyteArray jniData  (JNIEnv *env, const std::vector<uint8_t> &src);
+    static jobject    jniPtr   (const void *ptr);
 };
 
 struct cqJNIStaticMethod {
