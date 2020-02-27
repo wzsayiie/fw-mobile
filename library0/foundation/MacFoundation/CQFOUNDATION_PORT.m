@@ -169,7 +169,7 @@ static CQHTTPSessionPortDict *CQHTTPSessionPortStore(void) {
     return dict;
 }
 
-static CQHTTPSessionPortObject *CQHTTPSessionPortGet(struct cq_http *http) {
+static CQHTTPSessionPortObject *CQHTTPSessionPortGet(cq_http *http) {
     if (http != NULL) {
         CQHTTPSessionPortDict *dict = CQHTTPSessionPortStore();
         NSNumber *hash = @((NSUInteger)http);
@@ -179,9 +179,9 @@ static CQHTTPSessionPortObject *CQHTTPSessionPortGet(struct cq_http *http) {
     }
 }
 
-struct cq_http *cq_http_create(void) {
+cq_http *cq_http_create(void) {
     CQHTTPSessionPortObject *port = [[CQHTTPSessionPortObject alloc] init];
-    struct cq_http *hash = (struct cq_http *)port.hash;
+    cq_http *hash = (cq_http *)port.hash;
     
     CQHTTPSessionPortDict *dict = CQHTTPSessionPortStore();
     dict[@(port.hash)] = port;
@@ -189,19 +189,19 @@ struct cq_http *cq_http_create(void) {
     return hash;
 }
 
-void cq_http_destroy(struct cq_http *http) {
+void cq_http_destroy(cq_http *http) {
     CQHTTPSessionPortDict *dict = CQHTTPSessionPortStore();
     NSNumber *hash = @((NSUInteger)http);
     [dict removeObjectForKey:hash];
 }
 
-void cq_http_timeout(struct cq_http *http, float seconds) {
+void cq_http_timeout(cq_http *http, float seconds) {
     CQHTTPSessionPortObject *port = CQHTTPSessionPortGet(http);
     
     port.timeoutSeconds = seconds;
 }
 
-void cq_http_send_method(struct cq_http *http, const char *method) {
+void cq_http_send_method(cq_http *http, const char *method) {
     CQHTTPSessionPortObject *port = CQHTTPSessionPortGet(http);
     
     if (!cq_str_empty(method)) {
@@ -211,7 +211,7 @@ void cq_http_send_method(struct cq_http *http, const char *method) {
     }
 }
 
-void cq_http_send_url(struct cq_http *http, const char *url) {
+void cq_http_send_url(cq_http *http, const char *url) {
     CQHTTPSessionPortObject *port = CQHTTPSessionPortGet(http);
     
     if (!cq_str_empty(url)) {
@@ -221,7 +221,7 @@ void cq_http_send_url(struct cq_http *http, const char *url) {
     }
 }
 
-void cq_http_send_query(struct cq_http *http, const char *field, const char *value) {
+void cq_http_send_query(cq_http *http, const char *field, const char *value) {
     CQHTTPSessionPortObject *port = CQHTTPSessionPortGet(http);
     
     if (!cq_str_empty(field) && !cq_str_empty(value)) {
@@ -229,7 +229,7 @@ void cq_http_send_query(struct cq_http *http, const char *field, const char *val
     }
 }
 
-void cq_http_send_header(struct cq_http *http, const char *field, const char *value) {
+void cq_http_send_header(cq_http *http, const char *field, const char *value) {
     CQHTTPSessionPortObject *port = CQHTTPSessionPortGet(http);
     
     if (!cq_str_empty(field) && !cq_str_empty(value)) {
@@ -237,37 +237,37 @@ void cq_http_send_header(struct cq_http *http, const char *field, const char *va
     }
 }
 
-void cq_http_send_body_from(struct cq_http *http, cq_http_body_reader reader) {
+void cq_http_send_body_from(cq_http *http, cq_http_body_reader reader) {
     CQHTTPSessionPortObject *port = CQHTTPSessionPortGet(http);
     
     port.send_body_reader = reader;
 }
 
-void cq_http_recv_code_to(struct cq_http *http, cq_http_code_writer writer) {
+void cq_http_recv_code_to(cq_http *http, cq_http_code_writer writer) {
     CQHTTPSessionPortObject *port = CQHTTPSessionPortGet(http);
     
     port.recv_code_writer = writer;
 }
 
-void cq_http_recv_header_to(struct cq_http *http, cq_http_header_writer writer) {
+void cq_http_recv_header_to(cq_http *http, cq_http_header_writer writer) {
     CQHTTPSessionPortObject *port = CQHTTPSessionPortGet(http);
     
     port.recv_header_writer = writer;
 }
 
-void cq_http_recv_body_to(struct cq_http *http, cq_http_body_writer writer) {
+void cq_http_recv_body_to(cq_http *http, cq_http_body_writer writer) {
     CQHTTPSessionPortObject *port = CQHTTPSessionPortGet(http);
     
     port.recv_body_writer = writer;
 }
 
-void cq_http_sync(struct cq_http *http, void *user) {
+void cq_http_sync(cq_http *http, void *user) {
     CQHTTPSessionPortObject *port = CQHTTPSessionPortGet(http);
     
     [port syncResumeWithUserData:user];
 }
 
-const char *cq_http_error(struct cq_http *http) {
+const char *cq_http_error(cq_http *http) {
     CQHTTPSessionPortObject *port = CQHTTPSessionPortGet(http);
     
     return cq_store_str(port.error.description.UTF8String);

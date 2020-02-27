@@ -138,8 +138,8 @@ cq_tex *cq_new_rgb_tex(int32_t pw, int32_t ph, const void *data) {
     return cq_new_formatted_tex(pw, ph, GL_RGB, data);
 }
 
-int32_t cq_tex_pw(struct cq_tex *tex) {return tex ? tex->pw : 0;}
-int32_t cq_tex_ph(struct cq_tex *tex) {return tex ? tex->ph : 0;}
+int32_t cq_tex_pw(cq_tex *tex) {return tex ? tex->pw : 0;}
+int32_t cq_tex_ph(cq_tex *tex) {return tex ? tex->ph : 0;}
 
 void cq_del_tex(cq_tex *tex) {
     if (tex != nullptr) {

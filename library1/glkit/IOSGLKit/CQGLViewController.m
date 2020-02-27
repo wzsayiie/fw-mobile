@@ -36,7 +36,7 @@ static void    show_wnd (int64_t i) {return [sGLViewController showWindow:i];}
     
     //install functions.
     sGLViewController = self;
-    struct _cq_wndport port = {NULL}; {
+    _cq_wndport port = {NULL}; {
         port.wnd_scale = wnd_scale;
         port.new_wnd   = new_wnd;
         port.show_wnd  = show_wnd;

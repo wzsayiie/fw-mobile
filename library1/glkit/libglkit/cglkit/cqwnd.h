@@ -17,53 +17,53 @@ CQ_C_LINK float cq_wnd_scale(void);
 //  |move   ->|-- move   ->|- move   ->|
 //  |resize ->|-- resize ->|- resize ->|
 
-struct cq_wnd;
+cq_struct(cq_wnd);
 
-struct cq_wndproc {
+cq_struct(cq_wndproc) {
     
-    void (*load     )(struct cq_wnd *wnd);
-    void (*appear   )(struct cq_wnd *wnd);
-    void (*disappear)(struct cq_wnd *wnd);
-    void (*unload   )(struct cq_wnd *wnd);
+    void (*load     )(cq_wnd *wnd);
+    void (*appear   )(cq_wnd *wnd);
+    void (*disappear)(cq_wnd *wnd);
+    void (*unload   )(cq_wnd *wnd);
     
-    void (*move  )(struct cq_wnd *wnd, float x, float y);
-    void (*resize)(struct cq_wnd *wnd, float width, float height);
-    void (*update)(struct cq_wnd *wnd);
-    void (*gldraw)(struct cq_wnd *wnd);
+    void (*move  )(cq_wnd *wnd, float x, float y);
+    void (*resize)(cq_wnd *wnd, float width, float height);
+    void (*update)(cq_wnd *wnd);
+    void (*gldraw)(cq_wnd *wnd);
     
-    void (*pbegan)(struct cq_wnd *wnd, float x, float y);
-    void (*pmoved)(struct cq_wnd *wnd, float x, float y);
-    void (*pended)(struct cq_wnd *wnd, float x, float y);
+    void (*pbegan)(cq_wnd *wnd, float x, float y);
+    void (*pmoved)(cq_wnd *wnd, float x, float y);
+    void (*pended)(cq_wnd *wnd, float x, float y);
 };
 
-CQ_C_LINK struct cq_wnd *cq_new_wnd(void);
-CQ_C_LINK void cq_show_wnd(struct cq_wnd *wnd);
+CQ_C_LINK cq_wnd *cq_new_wnd(void);
+CQ_C_LINK void cq_show_wnd(cq_wnd *wnd);
 
-CQ_C_LINK void cq_set_wndproc(struct cq_wnd *wnd, struct cq_wndproc *proc);
+CQ_C_LINK void cq_set_wndproc(cq_wnd *wnd, cq_wndproc *proc);
 
-CQ_C_LINK void cq_set_wnd_extra(struct cq_wnd *wnd, int64_t extra);
-CQ_C_LINK int64_t cq_wnd_extra(struct cq_wnd *wnd);
+CQ_C_LINK void cq_set_wnd_extra(cq_wnd *wnd, int64_t extra);
+CQ_C_LINK int64_t cq_wnd_extra(cq_wnd *wnd);
 
-CQ_C_LINK bool cq_wnd_loaded (struct cq_wnd *wnd);
-CQ_C_LINK bool cq_wnd_visible(struct cq_wnd *wnd);
+CQ_C_LINK bool cq_wnd_loaded (cq_wnd *wnd);
+CQ_C_LINK bool cq_wnd_visible(cq_wnd *wnd);
 
-CQ_C_LINK float cq_wnd_x     (struct cq_wnd *wnd);
-CQ_C_LINK float cq_wnd_y     (struct cq_wnd *wnd);
-CQ_C_LINK float cq_wnd_width (struct cq_wnd *wnd);
-CQ_C_LINK float cq_wnd_height(struct cq_wnd *wnd);
+CQ_C_LINK float cq_wnd_x     (cq_wnd *wnd);
+CQ_C_LINK float cq_wnd_y     (cq_wnd *wnd);
+CQ_C_LINK float cq_wnd_width (cq_wnd *wnd);
+CQ_C_LINK float cq_wnd_height(cq_wnd *wnd);
 
 //host need call these functions:
 //
 //NOTE: on android and ios, the functions must be called on the main thread.
 
-struct _cq_wndport {
+cq_struct(_cq_wndport) {
     
     float   (*wnd_scale)(void);
     int64_t (*new_wnd  )(void);
     void    (*show_wnd )(int64_t wid);
 };
 
-CQ_C_LINK void _cq_init_wndport(struct _cq_wndport *port);
+CQ_C_LINK void _cq_init_wndport(_cq_wndport *port);
 
 //wnd event notifications:
 //

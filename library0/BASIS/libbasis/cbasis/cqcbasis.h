@@ -104,16 +104,18 @@ typedef char _char8_t;
 CQ_C_LINK const char16_t *cq_u16s_from8s(const _char8_t *src);
 CQ_C_LINK const _char8_t *cq_u8s_from16s(const char16_t *src);
 
-//runable:
-
+//runnable.
 typedef void (*cq_runnable)(void *);
+
+//to define a struct.
+#define cq_struct(NAME) typedef struct NAME NAME; struct NAME
 
 //multiplex structures:
 
-typedef struct cq_bytes   cq_bytes  ;
-typedef struct cq_int64s  cq_int64s ;
-typedef struct cq_strings cq_strings;
-typedef struct cq_ss_map  cq_ss_map ;
+cq_struct(cq_bytes  );
+cq_struct(cq_int64s );
+cq_struct(cq_strings);
+cq_struct(cq_ss_map );
 
 typedef void (*cq_bytes_receiver  )(cq_bytes   *dst, const void *ptr, int32_t len);
 typedef void (*cq_int64s_receiver )(cq_int64s  *dst, int64_t     val);
@@ -124,6 +126,14 @@ typedef void (*cq_bytes_sender  )(cq_bytes   *src, cq_bytes_receiver   recv, cq_
 typedef void (*cq_int64s_sender )(cq_int64s  *src, cq_int64s_receiver  recv, cq_int64s  *dst);
 typedef void (*cq_strings_sender)(cq_strings *src, cq_strings_receiver recv, cq_strings *dst);
 typedef void (*cq_ss_map_sender )(cq_ss_map  *src, cq_ss_map_receiver  recv, cq_ss_map  *dst);
+
+//on implementation of c,
+//  "cq_bytes"   is a "std::vector<uint8_t>",
+//  "cq_int64s"  is a "std::vector<int64_t>",
+//  "cq_strings" is a "std::vector<std::string>",
+//  "cq_ss_map"  is a "std::map<std::string, std::string>".
+//
+//implementation of c++ can directly use cq_c_xx_receiver() and cq_c_xx_sender().
 
 CQ_C_LINK void cq_c_bytes_receiver  (cq_bytes   *dst, const void *ptr, int32_t len);
 CQ_C_LINK void cq_c_int64s_receiver (cq_int64s  *dst, int64_t     val);

@@ -41,7 +41,7 @@ cq_ttf *cq_font_ttf(cq_font *font) {
     return nullptr;
 }
 
-float cq_font_size(struct cq_font *font) {
+float cq_font_size(cq_font *font) {
     if (font != nullptr) {
         return font->size;
     }
