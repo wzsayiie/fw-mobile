@@ -6,6 +6,12 @@ import java.util.HashMap;
 @SuppressWarnings({W.LIB_OMIT_0, W.LIB_OMIT_1, W.LIB_OMIT_2, W.LIB_OMIT_3})
 public class JNI {
 
+    //runnable:
+
+    public static native void run(CPtr runnable, CPtr data);
+
+    //data structure:
+
     public static byte[] bytesFrom(CPtr send, CPtr src) {
         makeBytesSuck(send, src);
 
@@ -134,6 +140,4 @@ public class JNI {
     private static native CPtr makeLongsStore  ();
     private static native CPtr makeStringsStore();
     private static native CPtr makeSSMapStore  ();
-
-    public static native void run(CPtr runnable, CPtr data);
 }

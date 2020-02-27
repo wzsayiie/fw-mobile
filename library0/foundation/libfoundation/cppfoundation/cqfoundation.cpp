@@ -51,7 +51,7 @@ std::string cqIOSBundle::resourcePath(const std::string &name, const std::string
 
 std::vector<uint8_t> cqIOSBundle::resource(const std::string &name, const std::string &type) {
     cq_bytes *data = cq_ios_resource(name.c_str(), type.c_str());
-    return cq_cpp::from(cq_c_bytes_send, data);
+    return cq_cpp_bytes_from(cq_c_bytes_sender, data);
 }
 
 cq_member(cqAndroidBundle) {
@@ -64,7 +64,7 @@ cqAndroidBundleRef cqAndroidBundle::get() {
 
 std::vector<uint8_t> cqAndroidBundle::asset(const std::string &name) {
     cq_bytes *data = cq_android_asset(name.c_str());
-    return cq_cpp::from(cq_c_bytes_send, data);
+    return cq_cpp_bytes_from(cq_c_bytes_sender, data);
 }
 
 bool cqAndroidBundle::copyAsset(const std::string &fromPath, const std::string &toPath) {
@@ -117,7 +117,7 @@ std::vector<std::string> cqFileManager::contentsOfDirectoryAtPath(const std::str
             *error = true;
         }
         cq_strings *contents = cq_sub_files(path.c_str());
-        return cq_cpp::from(cq_c_strings_send, contents);
+        return cq_cpp_strings_from(cq_c_strings_sender, contents);
     } else {
         if (error != nullptr) {
             *error = false;

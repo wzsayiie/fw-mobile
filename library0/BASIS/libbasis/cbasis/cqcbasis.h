@@ -110,32 +110,32 @@ typedef void (*cq_runnable)(void *);
 
 //multiplex structures:
 
-struct cq_bytes  ;
-struct cq_int64s ;
-struct cq_strings;
-struct cq_ss_map ;
+typedef struct cq_bytes   cq_bytes  ;
+typedef struct cq_int64s  cq_int64s ;
+typedef struct cq_strings cq_strings;
+typedef struct cq_ss_map  cq_ss_map ;
 
-typedef void (*cq_bytes_recv  )(struct cq_bytes   *dst, const void *ptr, int32_t len);
-typedef void (*cq_int64s_recv )(struct cq_int64s  *dst, int64_t     val);
-typedef void (*cq_strings_recv)(struct cq_strings *dst, const char *val);
-typedef void (*cq_ss_map_recv )(struct cq_ss_map  *dst, const char *key, const char *val);
+typedef void (*cq_bytes_receiver  )(cq_bytes   *dst, const void *ptr, int32_t len);
+typedef void (*cq_int64s_receiver )(cq_int64s  *dst, int64_t     val);
+typedef void (*cq_strings_receiver)(cq_strings *dst, const char *val);
+typedef void (*cq_ss_map_receiver )(cq_ss_map  *dst, const char *key, const char *val);
 
-typedef void (*cq_bytes_send  )(struct cq_bytes   *src, cq_bytes_recv   recv, struct cq_bytes   *dst);
-typedef void (*cq_int64s_send )(struct cq_int64s  *src, cq_int64s_recv  recv, struct cq_int64s  *dst);
-typedef void (*cq_strings_send)(struct cq_strings *src, cq_strings_recv recv, struct cq_strings *dst);
-typedef void (*cq_ss_map_send )(struct cq_ss_map  *src, cq_ss_map_recv  recv, struct cq_ss_map  *dst);
+typedef void (*cq_bytes_sender  )(cq_bytes   *src, cq_bytes_receiver   recv, cq_bytes   *dst);
+typedef void (*cq_int64s_sender )(cq_int64s  *src, cq_int64s_receiver  recv, cq_int64s  *dst);
+typedef void (*cq_strings_sender)(cq_strings *src, cq_strings_receiver recv, cq_strings *dst);
+typedef void (*cq_ss_map_sender )(cq_ss_map  *src, cq_ss_map_receiver  recv, cq_ss_map  *dst);
 
-CQ_C_LINK void cq_c_bytes_recv  (struct cq_bytes   *dst, const void *ptr, int32_t len);
-CQ_C_LINK void cq_c_int64s_recv (struct cq_int64s  *dst, int64_t     val);
-CQ_C_LINK void cq_c_strings_recv(struct cq_strings *dst, const char *val);
-CQ_C_LINK void cq_c_ss_map_recv (struct cq_ss_map  *dst, const char *key, const char *val);
+CQ_C_LINK void cq_c_bytes_receiver  (cq_bytes   *dst, const void *ptr, int32_t len);
+CQ_C_LINK void cq_c_int64s_receiver (cq_int64s  *dst, int64_t     val);
+CQ_C_LINK void cq_c_strings_receiver(cq_strings *dst, const char *val);
+CQ_C_LINK void cq_c_ss_map_receiver (cq_ss_map  *dst, const char *key, const char *val);
 
-CQ_C_LINK void cq_c_bytes_send  (struct cq_bytes   *src, cq_bytes_recv   recv, struct cq_bytes   *dst);
-CQ_C_LINK void cq_c_int64s_send (struct cq_int64s  *src, cq_int64s_recv  recv, struct cq_int64s  *dst);
-CQ_C_LINK void cq_c_strings_send(struct cq_strings *src, cq_strings_recv recv, struct cq_strings *dst);
-CQ_C_LINK void cq_c_ss_map_send (struct cq_ss_map  *src, cq_ss_map_recv  recv, struct cq_ss_map  *dst);
+CQ_C_LINK void cq_c_bytes_sender  (cq_bytes   *src, cq_bytes_receiver   recv, cq_bytes   *dst);
+CQ_C_LINK void cq_c_int64s_sender (cq_int64s  *src, cq_int64s_receiver  recv, cq_int64s  *dst);
+CQ_C_LINK void cq_c_strings_sender(cq_strings *src, cq_strings_receiver recv, cq_strings *dst);
+CQ_C_LINK void cq_c_ss_map_sender (cq_ss_map  *src, cq_ss_map_receiver  recv, cq_ss_map  *dst);
 
-CQ_C_LINK struct cq_bytes   *cq_store_bytes  (cq_bytes_send   send, struct cq_bytes   *src);
-CQ_C_LINK struct cq_int64s  *cq_store_int64s (cq_int64s_send  send, struct cq_int64s  *src);
-CQ_C_LINK struct cq_strings *cq_store_strings(cq_strings_send send, struct cq_strings *src);
-CQ_C_LINK struct cq_ss_map  *cq_store_ss_map (cq_ss_map_send  send, struct cq_ss_map  *src);
+CQ_C_LINK cq_bytes   *cq_store_c_bytes  (cq_bytes_sender   send, cq_bytes   *src);
+CQ_C_LINK cq_int64s  *cq_store_c_int64s (cq_int64s_sender  send, cq_int64s  *src);
+CQ_C_LINK cq_strings *cq_store_c_strings(cq_strings_sender send, cq_strings *src);
+CQ_C_LINK cq_ss_map  *cq_store_c_ss_map (cq_ss_map_sender  send, cq_ss_map  *src);

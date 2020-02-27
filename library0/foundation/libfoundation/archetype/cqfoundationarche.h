@@ -11,9 +11,9 @@ CQ_C_LINK void cq_log_error(const char *file, int32_t line, const char *message)
 
 CQ_C_LINK const char *cq_ios_bundle_path(void);
 CQ_C_LINK const char *cq_ios_resource_path(const char *name, const char *type);
-CQ_C_LINK struct cq_bytes *cq_ios_resource(const char *name, const char *type);
+CQ_C_LINK cq_bytes *cq_ios_resource(const char *name, const char *type);
 
-CQ_C_LINK struct cq_bytes *cq_android_asset(const char *name);
+CQ_C_LINK cq_bytes *cq_android_asset(const char *name);
 CQ_C_LINK bool cq_android_copy_asset(const char *from_path, const char *to_path);
 
 //file access:
@@ -25,7 +25,7 @@ CQ_C_LINK bool cq_directory_exists(const char *path);
 CQ_C_LINK bool cq_file_exists(const char *path);
 CQ_C_LINK bool cq_create_directory(const char *path, bool intermediate);
 CQ_C_LINK void cq_remove_path(const char *path);
-CQ_C_LINK struct cq_strings *cq_sub_files(const char *path);
+CQ_C_LINK cq_strings *cq_sub_files(const char *path);
 
 //thread:
 

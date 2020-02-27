@@ -154,7 +154,7 @@ static cq_int64s *check_integers(lua_State *state, int32_t index) {
     lua_stack_guard guard(state);
     
     if (lua_isnil(state, index)) {
-        return cq_store_int64s(nullptr, nullptr);
+        return cq_store_c_int64s(nullptr, nullptr);
     }
     
     std::vector<int64_t> object;
@@ -167,14 +167,14 @@ static cq_int64s *check_integers(lua_State *state, int32_t index) {
         lua_pop(state, 1);
     }
     
-    return cq_cpp::store(object);
+    return cq_store_cpp_int64s(object);
 }
 
 static cq_strings *check_strings(lua_State *state, int32_t index) {
     lua_stack_guard guard(state);
     
     if (lua_isnil(state, index)) {
-        return cq_store_strings(nullptr, nullptr);
+        return cq_store_c_strings(nullptr, nullptr);
     }
     
     std::vector<std::string> object;
@@ -187,14 +187,14 @@ static cq_strings *check_strings(lua_State *state, int32_t index) {
         lua_pop(state, 1);
     }
     
-    return cq_cpp::store(object);
+    return cq_store_cpp_strings(object);
 }
 
 static cq_ss_map *check_ss_table(lua_State *state, int32_t index) {
     lua_stack_guard guard(state);
     
     if (lua_isnil(state, index)) {
-        return cq_store_ss_map(nullptr, nullptr);
+        return cq_store_c_ss_map(nullptr, nullptr);
     }
     
     std::map<std::string, std::string> object;
@@ -208,7 +208,7 @@ static cq_ss_map *check_ss_table(lua_State *state, int32_t index) {
         lua_pop(state, 1);
     }
     
-    return cq_cpp::store(object);
+    return cq_store_cpp_ss_map(object);
 }
 
 static void push_bool   (lua_State *s, bool        v) {lua_pushboolean(s, v);}
@@ -216,8 +216,8 @@ static void push_integer(lua_State *s, int64_t     v) {lua_pushinteger(s, v);}
 static void push_double (lua_State *s, double      v) {lua_pushnumber (s, v);}
 static void push_string (lua_State *s, const char *v) {lua_pushstring (s, v);}
 
-static void push_integers(lua_State *state, cq_int64s_send send, cq_int64s *value) {
-    std::vector<int64_t> object = cq_cpp::from(send, value);
+static void push_integers(lua_State *state, cq_int64s_sender send, cq_int64s *value) {
+    std::vector<int64_t> object = cq_cpp_int64s_from(send, value);
     
     lua_newtable(state);
     
@@ -229,8 +229,8 @@ static void push_integers(lua_State *state, cq_int64s_send send, cq_int64s *valu
     }
 }
 
-static void push_strings(lua_State *state, cq_strings_send send, cq_strings *value) {
-    std::vector<std::string> object = cq_cpp::from(send, value);
+static void push_strings(lua_State *state, cq_strings_sender send, cq_strings *value) {
+    std::vector<std::string> object = cq_cpp_strings_from(send, value);
     
     lua_newtable(state);
     
@@ -242,8 +242,8 @@ static void push_strings(lua_State *state, cq_strings_send send, cq_strings *val
     }
 }
 
-static void push_ss_table(lua_State *state, cq_ss_map_send send, cq_ss_map *value) {
-    std::map<std::string, std::string> object = cq_cpp::from(send, value);
+static void push_ss_table(lua_State *state, cq_ss_map_sender send, cq_ss_map *value) {
+    std::map<std::string, std::string> object = cq_cpp_ss_map_from(send, value);
     
     lua_newtable(state);
     

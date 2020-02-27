@@ -214,42 +214,42 @@ const _char8_t *cq_u8s_from16s(const char16_t *src) {
 
 //multiplex structures:
 
-void cq_c_bytes_recv(cq_bytes *dst, const void *ptr, int32_t len) {
+void cq_c_bytes_receiver(cq_bytes *dst, const void *ptr, int32_t len) {
     if (dst && ptr && len > 0) {
         auto object = (std::vector<uint8_t> *)dst;
         object->insert(object->end(), (uint8_t *)ptr, (uint8_t *)ptr + len);
     }
 }
 
-void cq_c_int64s_recv(cq_int64s *dst, int64_t value) {
+void cq_c_int64s_receiver(cq_int64s *dst, int64_t value) {
     if (dst != nullptr) {
         auto object = (std::vector<int64_t> *)dst;
         object->push_back(value);
     }
 }
 
-void cq_c_strings_recv(cq_strings *dst, const char *value) {
+void cq_c_strings_receiver(cq_strings *dst, const char *value) {
     if (dst && value) {
         auto object = (std::vector<std::string> *)dst;
         object->push_back(value);
     }
 }
 
-void cq_c_ss_map_recv(cq_ss_map *dst, const char *key, const char *value) {
+void cq_c_ss_map_receiver(cq_ss_map *dst, const char *key, const char *value) {
     if (dst && key && value) {
         auto object = (std::map<std::string, std::string> *)dst;
         (*object)[key] = value;
     }
 }
 
-void cq_c_bytes_send(cq_bytes *src, cq_bytes_recv recv, cq_bytes *dst) {
+void cq_c_bytes_sender(cq_bytes *src, cq_bytes_receiver recv, cq_bytes *dst) {
     if (src && recv) {
         auto object = (std::vector<uint8_t> *)src;
         recv(dst, object->data(), (int32_t)object->size());
     }
 }
 
-void cq_c_int64s_send(cq_int64s *src, cq_int64s_recv recv, cq_int64s *dst) {
+void cq_c_int64s_sender(cq_int64s *src, cq_int64s_receiver recv, cq_int64s *dst) {
     if (src && recv) {
         auto object = (std::vector<int64_t> *)src;
         for (auto &it : *object) {
@@ -258,7 +258,7 @@ void cq_c_int64s_send(cq_int64s *src, cq_int64s_recv recv, cq_int64s *dst) {
     }
 }
 
-void cq_c_strings_send(cq_strings *src, cq_strings_recv recv, cq_strings *dst) {
+void cq_c_strings_sender(cq_strings *src, cq_strings_receiver recv, cq_strings *dst) {
     if (src && recv) {
         auto object = (std::vector<std::string> *)src;
         for (auto &it : *object) {
@@ -267,7 +267,7 @@ void cq_c_strings_send(cq_strings *src, cq_strings_recv recv, cq_strings *dst) {
     }
 }
 
-void cq_c_ss_map_send(cq_ss_map *src, cq_ss_map_recv recv, cq_ss_map *dst) {
+void cq_c_ss_map_sender(cq_ss_map *src, cq_ss_map_receiver recv, cq_ss_map *dst) {
     if (src && recv) {
         auto object = (std::map<std::string, std::string> *)src;
         for (auto &cp : *object) {
@@ -276,66 +276,66 @@ void cq_c_ss_map_send(cq_ss_map *src, cq_ss_map_recv recv, cq_ss_map *dst) {
     }
 }
 
-cq_bytes *cq_store_bytes(cq_bytes_send send, cq_bytes *src) {
+cq_bytes *cq_store_c_bytes(cq_bytes_sender send, cq_bytes *src) {
     static thread_local std::vector<uint8_t> *object = nullptr;
     if (object == nullptr) {
         object = new std::vector<uint8_t>;
     }
     
-    auto intf = (cq_bytes *)object;
+    auto dst = (cq_bytes *)object;
     
     object->clear();
     if (send) {
-        send(src, cq_c_bytes_recv, intf);
+        send(src, cq_c_bytes_receiver, dst);
     }
     
-    return intf;
+    return dst;
 }
 
-cq_int64s *cq_store_int64s(cq_int64s_send send, cq_int64s *src) {
+cq_int64s *cq_store_c_int64s(cq_int64s_sender send, cq_int64s *src) {
     static thread_local std::vector<int64_t> *object = nullptr;
     if (object == nullptr) {
         object = new std::vector<int64_t>;
     }
     
-    auto intf = (cq_int64s *)object;
+    auto dst = (cq_int64s *)object;
     
     object->clear();
     if (send) {
-        send(src, cq_c_int64s_recv, intf);
+        send(src, cq_c_int64s_receiver, dst);
     }
     
-    return intf;
+    return dst;
 }
 
-cq_strings *cq_store_strings(cq_strings_send send, cq_strings *src) {
+cq_strings *cq_store_c_strings(cq_strings_sender send, cq_strings *src) {
     static thread_local std::vector<std::string> *object = nullptr;
     if (object == nullptr) {
         object = new std::vector<std::string>;
     }
     
-    auto intf = (cq_strings *)object;
+    auto dst = (cq_strings *)object;
     
     object->clear();
     if (send) {
-        send(src, cq_c_strings_recv, intf);
+        send(src, cq_c_strings_receiver, dst);
     }
     
-    return intf;
+    return dst;
 }
 
-cq_ss_map *cq_store_ss_map(cq_ss_map_send send, cq_ss_map *src) {
+cq_ss_map *cq_store_c_ss_map(cq_ss_map_sender send, cq_ss_map *src) {
     static thread_local std::map<std::string, std::string> *object = nullptr;
     if (object == nullptr) {
         object = new std::map<std::string, std::string>;
     }
     
-    auto intf = (cq_ss_map *)object;
+    auto dst = (cq_ss_map *)object;
     
     object->clear();
     if (send) {
-        send(src, cq_c_ss_map_recv, intf);
+        send(src, cq_c_ss_map_receiver, dst);
     }
     
-    return intf;
+    return dst;
 }

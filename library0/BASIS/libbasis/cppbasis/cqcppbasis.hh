@@ -223,39 +223,36 @@ template<class T, int = 0> typename cqRef<T>::Strong cqStaticObject() {
     });
 }
 
-//interfaces for interaction with c:
+//data interfaces for interaction with c:
 
-struct cq_cpp {
-    
-    static cq_bytes   *bytes  (const std::vector<uint8_t>               &object);
-    static cq_int64s  *int64s (const std::vector<int64_t>               &object);
-    static cq_strings *strings(const std::vector<std::string>           &object);
-    static cq_ss_map  *ss_map (const std::map<std::string, std::string> &object);
-    
-    static void bytes_recv  (cq_bytes   *dst, const void *ptr, int32_t len);
-    static void int64s_recv (cq_int64s  *dst, int64_t     val);
-    static void strings_recv(cq_strings *dst, const char *val);
-    static void ss_map_recv (cq_ss_map  *dst, const char *key, const char *val);
-    
-    static void bytes_send  (cq_bytes   *src, cq_bytes_recv   recv, cq_bytes   *dst);
-    static void int64s_send (cq_int64s  *src, cq_int64s_recv  recv, cq_int64s  *dst);
-    static void strings_send(cq_strings *src, cq_strings_recv recv, cq_strings *dst);
-    static void ss_map_send (cq_ss_map  *src, cq_ss_map_recv  recv, cq_ss_map  *dst);
-    
-    static std::vector<uint8_t>               from(cq_bytes_send   send, cq_bytes   *src);
-    static std::vector<int64_t>               from(cq_int64s_send  send, cq_int64s  *src);
-    static std::vector<std::string>           from(cq_strings_send send, cq_strings *src);
-    static std::map<std::string, std::string> from(cq_ss_map_send  send, cq_ss_map  *src);
-    
-    static void send(const std::vector<uint8_t>               &src, cq_bytes_recv   recv, cq_bytes   *dst);
-    static void send(const std::vector<int64_t>               &src, cq_int64s_recv  recv, cq_int64s  *dst);
-    static void send(const std::vector<std::string>           &src, cq_strings_recv recv, cq_strings *dst);
-    static void send(const std::map<std::string, std::string> &src, cq_ss_map_recv  recv, cq_ss_map  *dst);
-    
-    static cq_bytes   *store(const std::vector<uint8_t>               &object);
-    static cq_int64s  *store(const std::vector<int64_t>               &object);
-    static cq_strings *store(const std::vector<std::string>           &object);
-    static cq_ss_map  *store(const std::map<std::string, std::string> &object);
-};
+cq_bytes   *cq_bytes_cast_cpp  (const std::vector<uint8_t> &object);
+cq_int64s  *cq_int64s_cast_cpp (const std::vector<int64_t> &object);
+cq_strings *cq_strings_cast_cpp(const std::vector<std::string> &object);
+cq_ss_map  *cq_ss_map_cast_cpp (const std::map<std::string, std::string> &object);
+
+void cq_cpp_bytes_receiver  (cq_bytes   *dst, const void *ptr, int32_t len);
+void cq_cpp_int64s_receiver (cq_int64s  *dst, int64_t     val);
+void cq_cpp_strings_receiver(cq_strings *dst, const char *val);
+void cq_cpp_ss_map_receiver (cq_ss_map  *dst, const char *key, const char *val);
+
+void cq_cpp_bytes_sender  (cq_bytes   *src, cq_bytes_receiver   recv, cq_bytes   *dst);
+void cq_cpp_int64s_sender (cq_int64s  *src, cq_int64s_receiver  recv, cq_int64s  *dst);
+void cq_cpp_strings_sender(cq_strings *src, cq_strings_receiver recv, cq_strings *dst);
+void cq_cpp_ss_map_sender (cq_ss_map  *src, cq_ss_map_receiver  recv, cq_ss_map  *dst);
+
+std::vector<uint8_t>               cq_cpp_bytes_from  (cq_bytes_sender   send, cq_bytes   *src);
+std::vector<int64_t>               cq_cpp_int64s_from (cq_int64s_sender  send, cq_int64s  *src);
+std::vector<std::string>           cq_cpp_strings_from(cq_strings_sender send, cq_strings *src);
+std::map<std::string, std::string> cq_cpp_ss_map_from (cq_ss_map_sender  send, cq_ss_map  *src);
+
+void cq_send_cpp_bytes  (const std::vector<uint8_t>               &src, cq_bytes_receiver   recv, cq_bytes   *dst);
+void cq_send_cpp_int64s (const std::vector<int64_t>               &src, cq_int64s_receiver  recv, cq_int64s  *dst);
+void cq_send_cpp_strings(const std::vector<std::string>           &src, cq_strings_receiver recv, cq_strings *dst);
+void cq_send_cpp_ss_map (const std::map<std::string, std::string> &src, cq_ss_map_receiver  recv, cq_ss_map  *dst);
+
+cq_bytes   *cq_store_cpp_bytes  (const std::vector<uint8_t>               &object);
+cq_int64s  *cq_store_cpp_int64s (const std::vector<int64_t>               &object);
+cq_strings *cq_store_cpp_strings(const std::vector<std::string>           &object);
+cq_ss_map  *cq_store_cpp_ss_map (const std::map<std::string, std::string> &object);
 
 _CQBASIS_END_VERSION_NS

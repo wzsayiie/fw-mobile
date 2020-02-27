@@ -23,12 +23,12 @@ const char *cq_ios_resource_path(const char *name, const char *type) {
     return cq_store_str(path.UTF8String);
 }
 
-struct cq_bytes *cq_ios_resource(const char *name, const char *type) {
+cq_bytes *cq_ios_resource(const char *name, const char *type) {
     NSData *data = [CQBundle.mainBundle resourceForName:@(type) type:@(type)];
-    return cq_objc_bytes(data);
+    return cq_store_oc_bytes(data);
 }
 
-struct cq_bytes *cq_android_asset(const char *name) {
+cq_bytes *cq_android_asset(const char *name) {
     return NULL;
 }
 
@@ -70,10 +70,10 @@ void cq_remove_path(const char *path) {
     [CQFileManager.sharedObject removeItemAtPath:@(path)];
 }
 
-struct cq_strings *cq_sub_files(const char *path) {
+cq_strings *cq_sub_files(const char *path) {
     CQFileManager *manager = CQFileManager.sharedObject;
     NSArray<NSString *> *items = [manager contentsOfDirectoryAtPath:@(path) error:NULL];
-    return CQStoreStrings(items);
+    return cq_store_oc_strings(items);
 }
 
 //thread:

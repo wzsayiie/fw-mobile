@@ -79,83 +79,87 @@ cqObjectRef cqProxy::core() {
     return dat->core.lock();
 }
 
-//interfaces for interaction with c:
+_CQBASIS_BEGIN_VERSION_NS
 
-cq_bytes   *cq_cpp::bytes  (const std::vector<uint8_t>               &a) {return (cq_bytes   *)&a;}
-cq_int64s  *cq_cpp::int64s (const std::vector<int64_t>               &a) {return (cq_int64s  *)&a;}
-cq_strings *cq_cpp::strings(const std::vector<std::string>           &a) {return (cq_strings *)&a;}
-cq_ss_map  *cq_cpp::ss_map (const std::map<std::string, std::string> &a) {return (cq_ss_map  *)&a;}
+//data interfaces for interaction with c:
 
-void cq_cpp::bytes_recv  (cq_bytes   *a, const void *b, int32_t     c) {cq_c_bytes_recv  (a, b, c);}
-void cq_cpp::int64s_recv (cq_int64s  *a, int64_t     b               ) {cq_c_int64s_recv (a, b   );}
-void cq_cpp::strings_recv(cq_strings *a, const char *b               ) {cq_c_strings_recv(a, b   );}
-void cq_cpp::ss_map_recv (cq_ss_map  *a, const char *b, const char *c) {cq_c_ss_map_recv (a, b, c);}
+cq_bytes   *cq_bytes_cast_cpp  (const std::vector<uint8_t>               &a) {return (cq_bytes   *)&a;}
+cq_int64s  *cq_int64s_cast_cpp (const std::vector<int64_t>               &a) {return (cq_int64s  *)&a;}
+cq_strings *cq_strings_cast_cpp(const std::vector<std::string>           &a) {return (cq_strings *)&a;}
+cq_ss_map  *cq_ss_map_cast_cpp (const std::map<std::string, std::string> &a) {return (cq_ss_map  *)&a;}
 
-void cq_cpp::bytes_send  (cq_bytes   *a, cq_bytes_recv   b, cq_bytes   *c) {cq_c_bytes_send  (a, b, c);}
-void cq_cpp::int64s_send (cq_int64s  *a, cq_int64s_recv  b, cq_int64s  *c) {cq_c_int64s_send (a, b, c);}
-void cq_cpp::strings_send(cq_strings *a, cq_strings_recv b, cq_strings *c) {cq_c_strings_send(a, b, c);}
-void cq_cpp::ss_map_send (cq_ss_map  *a, cq_ss_map_recv  b, cq_ss_map  *c) {cq_c_ss_map_send (a, b, c);}
+void cq_cpp_bytes_receiver  (cq_bytes   *a, const void *b, int32_t     c) {cq_c_bytes_receiver  (a, b, c);}
+void cq_cpp_int64s_receiver (cq_int64s  *a, int64_t     b               ) {cq_c_int64s_receiver (a, b   );}
+void cq_cpp_strings_receiver(cq_strings *a, const char *b               ) {cq_c_strings_receiver(a, b   );}
+void cq_cpp_ss_map_receiver (cq_ss_map  *a, const char *b, const char *c) {cq_c_ss_map_receiver (a, b, c);}
 
-std::vector<uint8_t> cq_cpp::from(cq_bytes_send send, cq_bytes *src) {
+void cq_cpp_bytes_sender  (cq_bytes   *a, cq_bytes_receiver   b, cq_bytes   *c) {cq_c_bytes_sender  (a, b, c);}
+void cq_cpp_int64s_sender (cq_int64s  *a, cq_int64s_receiver  b, cq_int64s  *c) {cq_c_int64s_sender (a, b, c);}
+void cq_cpp_strings_sender(cq_strings *a, cq_strings_receiver b, cq_strings *c) {cq_c_strings_sender(a, b, c);}
+void cq_cpp_ss_map_sender (cq_ss_map  *a, cq_ss_map_receiver  b, cq_ss_map  *c) {cq_c_ss_map_sender (a, b, c);}
+
+std::vector<uint8_t> cq_cpp_bytes_from(cq_bytes_sender send, cq_bytes *src) {
     std::vector<uint8_t> object;
     if (send) {
-        send(src, bytes_recv, bytes(object));
+        send(src, cq_cpp_bytes_receiver, cq_bytes_cast_cpp(object));
     }
     return object;
 }
 
-std::vector<int64_t> cq_cpp::from(cq_int64s_send send, cq_int64s *src) {
+std::vector<int64_t> cq_cpp_int64s_from(cq_int64s_sender send, cq_int64s *src) {
     std::vector<int64_t> object;
     if (send) {
-        send(src, int64s_recv, int64s(object));
+        send(src, cq_cpp_int64s_receiver, cq_int64s_cast_cpp(object));
     }
     return object;
 }
 
-std::vector<std::string> cq_cpp::from(cq_strings_send send, cq_strings *src) {
+std::vector<std::string> cq_cpp_strings_from(cq_strings_sender send, cq_strings *src) {
     std::vector<std::string> object;
     if (send) {
-        send(src, strings_recv, strings(object));
+        send(src, cq_cpp_strings_receiver, cq_strings_cast_cpp(object));
     }
     return object;
 }
 
-std::map<std::string, std::string> cq_cpp::from(cq_ss_map_send send, cq_ss_map *src) {
+std::map<std::string, std::string> cq_cpp_ss_map_from(cq_ss_map_sender send, cq_ss_map *src) {
     std::map<std::string, std::string> object;
     if (send) {
-        send(src, ss_map_recv, ss_map(object));
+        send(src, cq_cpp_ss_map_receiver, cq_ss_map_cast_cpp(object));
     }
     return object;
 }
 
-void cq_cpp::send(const std::vector<uint8_t> &src, cq_bytes_recv recv, cq_bytes *dst) {
-    bytes_send(bytes(src), recv, dst);
+void cq_send_cpp_bytes(const std::vector<uint8_t> &src, cq_bytes_receiver recv, cq_bytes *dst) {
+    cq_cpp_bytes_sender(cq_bytes_cast_cpp(src), recv, dst);
 }
 
-void cq_cpp::send(const std::vector<int64_t> &src, cq_int64s_recv recv, cq_int64s *dst) {
-    int64s_send(int64s(src), recv, dst);
+void cq_send_cpp_int64s(const std::vector<int64_t> &src, cq_int64s_receiver recv, cq_int64s *dst) {
+    cq_cpp_int64s_sender(cq_int64s_cast_cpp(src), recv, dst);
 }
 
-void cq_cpp::send(const std::vector<std::string> &src, cq_strings_recv recv, cq_strings *dst) {
-    strings_send(strings(src), recv, dst);
+void cq_send_cpp_strings(const std::vector<std::string> &src, cq_strings_receiver recv, cq_strings *dst) {
+    cq_cpp_strings_sender(cq_strings_cast_cpp(src), recv, dst);
 }
 
-void cq_cpp::send(const std::map<std::string, std::string> &src, cq_ss_map_recv recv, cq_ss_map *dst) {
-    ss_map_send(ss_map(src), recv, dst);
+void cq_send_cpp_ss_map(const std::map<std::string, std::string> &src, cq_ss_map_receiver recv, cq_ss_map *dst) {
+    cq_cpp_ss_map_sender(cq_ss_map_cast_cpp(src), recv, dst);
 }
 
-cq_bytes *cq_cpp::store(const std::vector<uint8_t> &object) {
-    return cq_store_bytes(bytes_send, bytes(object));
+cq_bytes *cq_store_cpp_bytes(const std::vector<uint8_t> &object) {
+    return cq_store_c_bytes(cq_cpp_bytes_sender, cq_bytes_cast_cpp(object));
 }
 
-cq_int64s *cq_cpp::store(const std::vector<int64_t> &object) {
-    return cq_store_int64s(int64s_send, int64s(object));
+cq_int64s *cq_store_cpp_int64s(const std::vector<int64_t> &object) {
+    return cq_store_c_int64s(cq_cpp_int64s_sender, cq_int64s_cast_cpp(object));
 }
 
-cq_strings *cq_cpp::store(const std::vector<std::string> &object) {
-    return cq_store_strings(strings_send, strings(object));
+cq_strings *cq_store_cpp_strings(const std::vector<std::string> &object) {
+    return cq_store_c_strings(cq_cpp_strings_sender, cq_strings_cast_cpp(object));
 }
 
-cq_ss_map *cq_cpp::store(const std::map<std::string, std::string> &object) {
-    return cq_store_ss_map(ss_map_send, ss_map(object));
+cq_ss_map *cq_store_cpp_ss_map(const std::map<std::string, std::string> &object) {
+    return cq_store_c_ss_map(cq_cpp_ss_map_sender, cq_ss_map_cast_cpp(object));
 }
+
+_CQBASIS_END_VERSION_NS

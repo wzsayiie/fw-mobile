@@ -60,39 +60,39 @@ id CQGetProperty(id object, const void *key);
 
 #define CQ_WEAK(NAME, VALUE) __weak typeof(VALUE) NAME = VALUE
 
-//interfaces for interaction with c:
+//data interfaces for interaction with c:
 
-struct cq_bytes   *cq_objc_mut_bytes  (NSMutableData                               *object);
-struct cq_int64s  *cq_objc_mut_int64s (NSMutableArray<NSNumber *>                  *object);
-struct cq_strings *cq_objc_mut_strings(NSMutableArray<NSString *>                  *object);
-struct cq_ss_map  *cq_objc_mut_ss_map (NSMutableDictionary<NSString *, NSString *> *object);
+cq_bytes   *cq_bytes_cast_mut_oc  (NSMutableData *object);
+cq_int64s  *cq_int64s_cast_mut_oc (NSMutableArray<NSNumber *> *object);
+cq_strings *cq_strings_cast_mut_oc(NSMutableArray<NSString *> *object);
+cq_ss_map  *cq_ss_map_cast_mut_oc (NSMutableDictionary<NSString *, NSString *> *object);
 
-struct cq_bytes   *cq_objc_bytes  (NSData                               *object);
-struct cq_int64s  *cq_objc_int64s (NSArray<NSNumber *>                  *object);
-struct cq_strings *cq_objc_strings(NSArray<NSString *>                  *object);
-struct cq_ss_map  *cq_objc_ss_map (NSDictionary<NSString *, NSString *> *object);
+cq_bytes   *cq_bytes_cast_oc  (NSData *object);
+cq_int64s  *cq_int64s_cast_oc (NSArray<NSNumber *> *object);
+cq_strings *cq_strings_cast_oc(NSArray<NSString *> *object);
+cq_ss_map  *cq_ss_map_cast_oc (NSDictionary<NSString *, NSString *> *object);
 
-void cq_objc_bytes_recv  (struct cq_bytes   *dst, const void *ptr, int32_t len);
-void cq_objc_int64s_recv (struct cq_int64s  *dst, int64_t     val);
-void cq_objc_strings_recv(struct cq_strings *dst, const char *val);
-void cq_objc_ss_map_recv (struct cq_ss_map  *dst, const char *key, const char *val);
+void cq_oc_bytes_receiver  (cq_bytes   *dst, const void *ptr, int32_t len);
+void cq_oc_int64s_receiver (cq_int64s  *dst, int64_t     val);
+void cq_oc_strings_receiver(cq_strings *dst, const char *val);
+void cq_oc_ss_map_receiver (cq_ss_map  *dst, const char *key, const char *val);
 
-void cq_objc_bytes_send  (struct cq_bytes   *src, cq_bytes_recv   recv, struct cq_bytes   *dst);
-void cq_objc_int64s_send (struct cq_int64s  *src, cq_int64s_recv  recv, struct cq_int64s  *dst);
-void cq_objc_strings_send(struct cq_strings *src, cq_strings_recv recv, struct cq_strings *dst);
-void cq_objc_ss_map_send (struct cq_ss_map  *src, cq_ss_map_recv  recv, struct cq_ss_map  *dst);
+void cq_oc_bytes_sender  (cq_bytes   *src, cq_bytes_receiver   recv, cq_bytes   *dst);
+void cq_oc_int64s_sender (cq_int64s  *src, cq_int64s_receiver  recv, cq_int64s  *dst);
+void cq_oc_strings_sender(cq_strings *src, cq_strings_receiver recv, cq_strings *dst);
+void cq_oc_ss_map_sender (cq_ss_map  *src, cq_ss_map_receiver  recv, cq_ss_map  *dst);
 
-NSData                               *CQDataFrom   (cq_bytes_send   send, struct cq_bytes   *src);
-NSArray<NSNumber *>                  *CQInt64sFrom (cq_int64s_send  send, struct cq_int64s  *src);
-NSArray<NSString *>                  *CQStringsFrom(cq_strings_send send, struct cq_strings *src);
-NSDictionary<NSString *, NSString *> *CQSSMapFrom  (cq_ss_map_send  send, struct cq_ss_map  *src);
+NSData                               *cq_oc_bytes_from  (cq_bytes_sender   send, cq_bytes   *src);
+NSArray<NSNumber *>                  *cq_oc_int64s_from (cq_int64s_sender  send, cq_int64s  *src);
+NSArray<NSString *>                  *cq_oc_strings_from(cq_strings_sender send, cq_strings *src);
+NSDictionary<NSString *, NSString *> *cq_oc_ss_map_from (cq_ss_map_sender  send, cq_ss_map  *src);
 
-void CQSendBytes  (NSData                               *src, cq_bytes_recv   recv, struct cq_bytes   *dst);
-void CQSendInt64s (NSArray<NSNumber *>                  *src, cq_int64s_recv  recv, struct cq_int64s  *dst);
-void CQSendStrings(NSArray<NSString *>                  *src, cq_strings_recv recv, struct cq_strings *dst);
-void CQSendSSMap  (NSDictionary<NSString *, NSString *> *src, cq_ss_map_recv  recv, struct cq_ss_map  *dst);
+void cq_send_oc_bytes  (NSData                               *src, cq_bytes_receiver   recv, cq_bytes   *dst);
+void cq_send_oc_int64s (NSArray<NSNumber *>                  *src, cq_int64s_receiver  recv, cq_int64s  *dst);
+void cq_send_oc_strings(NSArray<NSString *>                  *src, cq_strings_receiver recv, cq_strings *dst);
+void cq_send_oc_ss_map (NSDictionary<NSString *, NSString *> *src, cq_ss_map_receiver  recv, cq_ss_map  *dst);
 
-struct cq_bytes   *CQStoreData   (NSData                               *object);
-struct cq_int64s  *CQStoreInt64s (NSArray<NSNumber *>                  *object);
-struct cq_strings *CQStoreStrings(NSArray<NSString *>                  *object);
-struct cq_ss_map  *CQStoreSSMap  (NSDictionary<NSString *, NSString *> *object);
+cq_bytes   *cq_store_oc_bytes  (NSData *object);
+cq_int64s  *cq_store_oc_int64s (NSArray<NSNumber *> *object);
+cq_strings *cq_store_oc_strings(NSArray<NSString *> *object);
+cq_ss_map  *cq_store_oc_ss_map (NSDictionary<NSString *, NSString *> *object);

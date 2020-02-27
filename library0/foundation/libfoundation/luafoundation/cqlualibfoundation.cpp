@@ -109,7 +109,7 @@ static int32_t RemovePath(lua_State *state) {
 static int32_t SubFiles(lua_State *state) {
     const char *path = cq_lua_check_string(state, 1);
     cq_strings *files = cq_sub_files(path);
-    return cq_lua_return_strings(state, cq_c_strings_send, files);
+    return cq_lua_return_strings(state, cq_c_strings_sender, files);
 }
 
 //register
