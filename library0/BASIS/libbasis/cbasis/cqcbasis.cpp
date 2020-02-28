@@ -1,9 +1,7 @@
 #include "cqcbasis.h"
+#include "cqcppbasis.hh"
 #include <cfloat>
 #include <cmath>
-#include <map>
-#include <string>
-#include <vector>
 
 //float number comparision.
 bool cq_flt_equal(float  a, float  b) {return fabsf(a - b) < FLT_EPSILON;}
@@ -338,4 +336,70 @@ cq_ss_map *cq_store_c_ss_map(cq_ss_map_sender send, cq_ss_map *src) {
     }
     
     return dst;
+}
+
+//object reference:
+
+struct cq_obj {
+    void *raw = nullptr;
+    void (*release)(void *) = nullptr;
+    
+    std::string cls;
+    int32_t magic = 0;
+};
+
+cq_obj *cq_retain_raw_obj(void *raw, void (*release)(void *raw)) {
+    cq_obj *obj = nullptr;
+    if (raw && release) {
+        obj = new cq_obj;
+        obj->raw = raw;
+        obj->release = release;
+    }
+    return obj;
+}
+
+//cq_obj *cq_retain_obj(cq_obj *obj) {
+//}
+
+void cq_release_obj(cq_obj *obj) {
+    if (obj != nullptr) {
+        obj->release(obj->raw);
+        delete obj;
+    }
+}
+
+void *cq_obj_raw(cq_obj *obj) {
+    if (obj != nullptr) {
+        return obj->raw;
+    } else {
+        return nullptr;
+    }
+}
+
+void cq_set_obj_cls(cq_obj *obj, const char *cls) {
+    if (obj != nullptr) {
+        obj->cls = cls ? cls : "";
+    }
+}
+
+const char *cq_obj_cls(cq_obj *obj) {
+    if (obj != nullptr) {
+        return obj->cls.c_str();
+    } else {
+        return nullptr;
+    }
+}
+
+void cq_set_obj_magic(cq_obj *obj, int32_t magic) {
+    if (obj != nullptr) {
+        obj->magic = magic;
+    }
+}
+
+int32_t cq_obj_magic(cq_obj *obj) {
+    if (obj != nullptr) {
+        return obj->magic;
+    } else {
+        return 0;
+    }
 }

@@ -162,4 +162,49 @@ cq_ss_map *cq_store_cpp_ss_map(const std::map<std::string, std::string> &object)
     return cq_store_c_ss_map(cq_cpp_ss_map_sender, cq_ss_map_cast_cpp(object));
 }
 
+//object reference:
+
+static const int32_t CPPObjectMagic = 0x432B2B; //"C++".
+
+static void release_raw_cpp(void *raw) {
+    if (raw != nullptr) {
+        delete (cqObjectRef *)raw;
+    }
+}
+
+cq_obj *cq_retain_cpp_obj(cqObjectRef object, const std::string &cls) {
+    if (object == nullptr) {
+        return nullptr;
+    }
+    
+    void *raw = new cqObjectRef(object);
+    cq_obj *ptr = cq_retain_raw_obj(raw, release_raw_cpp);
+    
+    if (!cls.empty()) {
+        cq_set_obj_cls(ptr, cls.c_str());
+    }
+    cq_set_obj_magic(ptr, CPPObjectMagic);
+    
+    return ptr;
+}
+
+cqObjectRef cq_obj_raw_cpp(cq_obj *ptr, cqClass *cls) {
+    if (ptr == nullptr) {
+        return nullptr;
+    }
+    
+    if (cq_obj_magic(ptr) != CPPObjectMagic) {
+        //it's not a c++ object.
+        return nullptr;
+    }
+    
+    auto raw = (cqObjectRef *)cq_obj_raw(ptr);
+    if (cls && raw->get()->dynamicClass() != cls) {
+        //it's not wanted class.
+        return nullptr;
+    }
+    
+    return cqObjectRef(*raw);
+}
+
 _CQBASIS_END_VERSION_NS

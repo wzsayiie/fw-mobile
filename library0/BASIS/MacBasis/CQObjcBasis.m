@@ -153,3 +153,49 @@ cq_strings *cq_store_oc_strings(NSArray<NSString *> *object) {
 cq_ss_map *cq_store_oc_ss_map(NSDictionary<NSString *, NSString *> *object) {
     return cq_store_c_ss_map(cq_oc_ss_map_sender, cq_ss_map_cast_oc(object));
 }
+
+//object reference:
+
+static const int32_t ObjcObjectMagic = 0x4F424A43; //"OBJC".
+
+static void release_raw_oc(void *raw) {
+    if (raw != NULL) {
+        CFRelease((CFTypeRef)raw);
+    }
+}
+
+cq_obj *cq_retain_oc_obj(NSObject *object, NSString *cls) {
+    if (object == nil) {
+        return NULL;
+    }
+    
+    CFTypeRef raw = CFRetain((__bridge CFTypeRef)object);
+    cq_obj *ptr = cq_retain_raw_obj((void *)raw, release_raw_oc);
+    
+    if (cls.length > 0) {
+        cq_set_obj_cls(ptr, cls.UTF8String);
+    }
+    cq_set_obj_magic(ptr, ObjcObjectMagic);
+    
+    return ptr;
+}
+
+NSObject *cq_obj_raw_oc(cq_obj *ptr, Class cls) {
+    if (ptr == NULL) {
+        return nil;
+    }
+    
+    if (cq_obj_magic(ptr) != ObjcObjectMagic) {
+        //it's not a objc object.
+        return nil;
+    }
+    
+    CFTypeRef raw = (CFTypeRef)cq_obj_raw(ptr);
+    NSObject *object = (__bridge_transfer NSObject *)CFRetain(raw);
+    if (cls && object.class != cls) {
+        //it's not a wanted class.
+        return nil;
+    }
+    
+    return object;
+}

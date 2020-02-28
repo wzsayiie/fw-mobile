@@ -197,3 +197,48 @@ extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_JNI_makeSSMapStore
 
     return cqJNIType::jniPtr(ret);
 }
+
+//object reference:
+
+static const int32_t JavaObjectMagic = 0x4A415641; //"JAVA".
+
+static void release_raw_java(void *raw) {
+    if (raw != nullptr) {
+        cqJNIEnv::env()->DeleteGlobalRef((jobject)raw);
+    }
+}
+
+extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_JNI_retainJavaObject
+    (JNIEnv *env, jclass, jobject object, jstring cls)
+{
+    if (object == nullptr) {
+        return nullptr;
+    }
+
+    void *raw = (void *)env->NewGlobalRef(object);
+    cq_obj *ptr = cq_retain_raw_obj(raw, release_raw_java);
+
+    std::string name = cqJNIType::string(env, cls);
+    if (!name.empty()) {
+        cq_set_obj_cls(ptr, name.c_str());
+    }
+    cq_set_obj_magic(ptr, JavaObjectMagic);
+
+    return cqJNIType::jniPtr(ptr);
+}
+
+extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_JNI_makeObjectReturnRaw
+    (JNIEnv *, jclass, jobject _ptr)
+{
+    auto ptr = cqJNIType::ptr<cq_obj *>(_ptr);
+    if (ptr == nullptr) {
+        return nullptr;
+    }
+
+    if (cq_obj_magic(ptr) != JavaObjectMagic) {
+        //it's not a java object.
+        return nullptr;
+    }
+
+    return (jobject)cq_obj_raw(ptr);
+}

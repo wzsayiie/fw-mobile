@@ -140,4 +140,28 @@ public class JNI {
     private static native CPtr makeLongsStore  ();
     private static native CPtr makeStringsStore();
     private static native CPtr makeSSMapStore  ();
+
+    //object reference:
+
+    //create a pointer that references $object. the pointer need to release by cq_release_obj().
+    public static native CPtr retainJavaObject(Object object, String cls);
+
+    //get the object that pointed by $ptr.
+    //if $ptr does not point a java object or that object is not a $cls, return null.
+    //it's equivalent to $cls is null and $cls is Object.class .
+    @SuppressWarnings("unchecked")
+    public static <T> T rawJavaObject(CPtr ptr, Class<T> cls) {
+        Object object = makeObjectReturnRaw(ptr);
+        if (object == null) {
+            return null;
+        }
+
+        if (cls != null && !object.getClass().equals(cls)) {
+            return null;
+        }
+
+        return (T)object;
+    }
+
+    private static native Object makeObjectReturnRaw(CPtr ptr);
 }

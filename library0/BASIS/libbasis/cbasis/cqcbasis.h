@@ -149,3 +149,18 @@ CQ_C_LINK cq_bytes   *cq_store_c_bytes  (cq_bytes_sender   send, cq_bytes   *src
 CQ_C_LINK cq_int64s  *cq_store_c_int64s (cq_int64s_sender  send, cq_int64s  *src);
 CQ_C_LINK cq_strings *cq_store_c_strings(cq_strings_sender send, cq_strings *src);
 CQ_C_LINK cq_ss_map  *cq_store_c_ss_map (cq_ss_map_sender  send, cq_ss_map  *src);
+
+//object reference:
+
+cq_struct(cq_obj);
+
+CQ_C_LINK cq_obj *cq_retain_raw_obj(void *raw, void (*release)(void *raw));
+CQ_C_LINK void cq_release_obj(cq_obj *obj);
+
+CQ_C_LINK void *cq_obj_raw(cq_obj *obj);
+
+CQ_C_LINK void cq_set_obj_cls(cq_obj *obj, const char *cls);
+CQ_C_LINK const char *cq_obj_cls(cq_obj *obj);
+
+CQ_C_LINK void cq_set_obj_magic(cq_obj *obj, int32_t magic);
+CQ_C_LINK int32_t cq_obj_magic(cq_obj *obj);

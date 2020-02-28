@@ -255,4 +255,19 @@ cq_int64s  *cq_store_cpp_int64s (const std::vector<int64_t>               &objec
 cq_strings *cq_store_cpp_strings(const std::vector<std::string>           &object);
 cq_ss_map  *cq_store_cpp_ss_map (const std::map<std::string, std::string> &object);
 
+//object reference:
+
+//create a cq_obj that references to $object.
+//the return value need to release by cq_release_obj().
+cq_obj *cq_retain_cpp_obj(cqObjectRef object, const std::string &cls);
+
+//get the object that pointed by $obj.
+//if $obj does not point a c++ object or that object is not a $cls, return null.
+//it's equivalent to $cls is null and $cls is cqObject::clazz.
+cqObjectRef cq_obj_raw_cpp(cq_obj *obj, cqClass *cls);
+
+template<class T> typename cqRef<T>::Strong cq_obj_raw_cpp(cq_obj *obj) {
+    return cqObject::cast<T>(cq_obj_raw_cpp(obj, T::clazz()));
+}
+
 _CQBASIS_END_VERSION_NS
