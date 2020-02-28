@@ -155,6 +155,9 @@ CQ_C_LINK cq_ss_map  *cq_store_c_ss_map (cq_ss_map_sender  send, cq_ss_map  *src
 cq_struct(cq_obj);
 
 CQ_C_LINK cq_obj *cq_retain_raw_obj(void *raw, void (*release)(void *raw));
+
+//cq_retain_obj() and cq_relase_obj() is thread safe.
+CQ_C_LINK cq_obj *cq_retain_obj(cq_obj *obj);
 CQ_C_LINK void cq_release_obj(cq_obj *obj);
 
 CQ_C_LINK void *cq_obj_raw(cq_obj *obj);

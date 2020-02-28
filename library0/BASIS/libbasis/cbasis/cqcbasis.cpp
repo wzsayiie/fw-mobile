@@ -344,6 +344,8 @@ struct cq_obj {
     void *raw = nullptr;
     void (*release)(void *) = nullptr;
     
+    int32_t references = 1;
+    
     std::string cls;
     int32_t magic = 0;
 };
@@ -358,14 +360,31 @@ cq_obj *cq_retain_raw_obj(void *raw, void (*release)(void *raw)) {
     return obj;
 }
 
-//cq_obj *cq_retain_obj(cq_obj *obj) {
-//}
+cq_obj *cq_retain_obj(cq_obj *obj) {
+    if (obj == nullptr) {
+        return nullptr;
+    }
+    
+    cq_synchronize_obj(obj, {
+        obj->references += 1;
+    });
+    
+    return obj;
+}
 
 void cq_release_obj(cq_obj *obj) {
-    if (obj != nullptr) {
-        obj->release(obj->raw);
-        delete obj;
+    if (obj == nullptr) {
+        return;
     }
+    
+    cq_synchronize_obj(obj, {
+        obj->references -= 1;
+        
+        if (obj->references <= 0) {
+            obj->release(obj->raw);
+            delete obj;
+        }
+    });
 }
 
 void *cq_obj_raw(cq_obj *obj) {
