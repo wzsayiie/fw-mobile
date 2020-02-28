@@ -6,20 +6,19 @@
 
 cq_member(cqDispatchQueue) {
     std::queue<std::function<void ()>> taskTable;
-    std::mutex tableMutex;
 };
 
 void cqDispatchQueue::post(std::function<void ()> task) {
     if (task == nullptr) {
         return;
     }
-    cq_synchronize_with(dat->tableMutex, {
+    cq_synchronize_obj(this, {
         dat->taskTable.push(task);
     });
 }
 
 bool cqDispatchQueue::empty() {
-    cq_synchronize_with(dat->tableMutex, {
+    cq_synchronize_obj(this, {
         return dat->taskTable.empty();
     });
 }
@@ -30,7 +29,7 @@ void cqDispatchQueue::update() {
     //tasks can be dispatched to these threads.
     
     std::function<void ()> task;
-    cq_synchronize_with(dat->tableMutex, {
+    cq_synchronize_obj(this, {
         if (!dat->taskTable.empty()) {
             task = dat->taskTable.front();
             dat->taskTable.pop();

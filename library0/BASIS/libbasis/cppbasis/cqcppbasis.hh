@@ -62,16 +62,21 @@ struct cqMap {
 
 //synchronization lock:
 
+struct cqMutex {
+    static std::mutex *random(const void *hash);
+};
+
+#define cq_synchronize_obj(HASH, BLOCK)\
+/**/    do {\
+/**/        std::mutex *__cq_mutex = cqMutex::random(HASH);\
+/**/        std::lock_guard<std::mutex> __cq_guard(*__cq_mutex);\
+/**/        BLOCK\
+/**/    } while (0)
+
 #define cq_synchronize(BLOCK)\
 /**/    do {\
 /**/        static std::mutex __cq_mutex;\
 /**/        std::lock_guard<std::mutex> __cq_guard(__cq_mutex);\
-/**/        BLOCK\
-/**/    } while (0)
-
-#define cq_synchronize_with(MUTEX, BLOCK)\
-/**/    do {\
-/**/        std::lock_guard<std::mutex> __cq_guard(MUTEX);\
 /**/        BLOCK\
 /**/    } while (0)
 

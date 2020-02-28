@@ -8,7 +8,6 @@ struct TargetItem {
 
 cq_member(cqBus) {
     std::map<cqBusEventName, std::vector<TargetItem>> targets;
-    std::mutex mutex;
 };
 
 cqBusRef cqBus::get() {
@@ -67,7 +66,7 @@ void cqBus::addObserver(
     targetItem.eventName = eventName;
     targetItem.consumer = consumer;
     
-    cq_synchronize_with(dat->mutex, {
+    cq_synchronize_obj(this, {
         dat->targets[eventName].push_back(targetItem);
         tidy(&dat->targets);
     });
@@ -81,7 +80,7 @@ void cqBus::removeObserver(cqObjectRef observer, cqBusEventName eventName) {
         return;
     }
     
-    cq_synchronize_with(dat->mutex, {
+    cq_synchronize_obj(this, {
         for (auto &entry : dat->targets) {
             erase(&entry.second, observer, eventName);
         }
@@ -94,7 +93,7 @@ void cqBus::post(cqBusEventName eventName, cqObjectRef parameter) {
     }
     
     std::vector<TargetItem> targetTable;
-    cq_synchronize_with(dat->mutex, {
+    cq_synchronize_obj(this, {
         tidy(&dat->targets);
         if (cqMap::contains(dat->targets, eventName)) {
             targetTable = dat->targets[eventName];

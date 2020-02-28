@@ -10,6 +10,22 @@ bool cqString::empty(const char *value) {
     return value == nullptr || *value == '\0';
 }
 
+//synchronization lock:
+
+const int32_t MUTEX_NUMBER = 32;
+
+std::mutex *cqMutex::random(const void *hash) {
+    static std::mutex *list = nullptr;
+    cq_synchronize({
+        if (list == nullptr) {
+            list = new std::mutex[MUTEX_NUMBER];
+        }
+    });
+    
+    int32_t local = (uintptr_t)hash % MUTEX_NUMBER;
+    return list + local;
+}
+
 //class:
 
 void _cqBaseObject::init() {
