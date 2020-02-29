@@ -248,6 +248,8 @@ static void push_object(lua_State *state, cq_obj *value) {
         return;
     }
     
+    cq_retain_obj(value);
+    
     lua_newtable(state);
     
     //use lua_Integer to hold the c pointer.
