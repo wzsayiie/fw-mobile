@@ -228,7 +228,7 @@ extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_JNI_retainJavaObject
 }
 
 extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_JNI_makeObjectReturnRaw
-    (JNIEnv *, jclass, jobject _ptr)
+    (JNIEnv *env, jclass, jobject _ptr)
 {
     auto ptr = cqJNIType::ptr<cq_obj *>(_ptr);
     if (ptr == nullptr) {
@@ -240,5 +240,6 @@ extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_JNI_makeObjectReturn
         return nullptr;
     }
 
-    return (jobject)cq_obj_raw(ptr);
+    jobject object = (jobject)cq_obj_raw(ptr);
+    return env->NewLocalRef(object);
 }
