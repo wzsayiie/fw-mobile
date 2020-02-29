@@ -17,6 +17,7 @@ CQ_C_LINK int64_t     cq_lua_check_int64  (lua_State *state, int32_t index);
 CQ_C_LINK float       cq_lua_check_float  (lua_State *state, int32_t index);
 CQ_C_LINK double      cq_lua_check_double (lua_State *state, int32_t index);
 CQ_C_LINK const char *cq_lua_check_string (lua_State *state, int32_t index);
+CQ_C_LINK cq_obj     *cq_lua_check_object (lua_State *state, int32_t index);
 CQ_C_LINK cq_int64s  *cq_lua_check_int64s (lua_State *state, int32_t index);
 CQ_C_LINK cq_strings *cq_lua_check_strings(lua_State *state, int32_t index);
 CQ_C_LINK cq_ss_map  *cq_lua_check_ss_map (lua_State *state, int32_t index);
@@ -30,6 +31,8 @@ CQ_C_LINK int32_t cq_lua_return_int64  (lua_State *state, int64_t     value);
 CQ_C_LINK int32_t cq_lua_return_float  (lua_State *state, float       value);
 CQ_C_LINK int32_t cq_lua_return_double (lua_State *state, double      value);
 CQ_C_LINK int32_t cq_lua_return_string (lua_State *state, const char *value);
+CQ_C_LINK int32_t cq_lua_return_object (lua_State *state, cq_obj     *value);
+
 CQ_C_LINK int32_t cq_lua_return_int64s (lua_State *state, cq_int64s_sender  f, cq_int64s  *v);
 CQ_C_LINK int32_t cq_lua_return_strings(lua_State *state, cq_strings_sender f, cq_strings *v);
 CQ_C_LINK int32_t cq_lua_return_ss_map (lua_State *state, cq_ss_map_sender  f, cq_ss_map  *v);
@@ -45,6 +48,7 @@ cq_struct(_cq_lua_handlers) {
     int64_t     (*check_integer )(lua_State *state, int32_t index);
     double      (*check_double  )(lua_State *state, int32_t index);
     const char *(*check_string  )(lua_State *state, int32_t index);
+    cq_obj     *(*check_object  )(lua_State *state, int32_t index);
     cq_int64s  *(*check_integers)(lua_State *state, int32_t index);
     cq_strings *(*check_strings )(lua_State *state, int32_t index);
     cq_ss_map  *(*check_ss_table)(lua_State *state, int32_t index);
@@ -53,6 +57,8 @@ cq_struct(_cq_lua_handlers) {
     void (*push_integer )(lua_State *state, int64_t     value);
     void (*push_double  )(lua_State *state, double      value);
     void (*push_string  )(lua_State *state, const char *value);
+    void (*push_object  )(lua_State *state, cq_obj     *value);
+    
     void (*push_integers)(lua_State *state, cq_int64s_sender  f, cq_int64s  *v);
     void (*push_strings )(lua_State *state, cq_strings_sender f, cq_strings *v);
     void (*push_ss_table)(lua_State *state, cq_ss_map_sender  f, cq_ss_map  *v);

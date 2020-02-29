@@ -150,10 +150,26 @@ static int64_t     check_integer(lua_State *s, int32_t i) {return luaL_checkinte
 static double      check_double (lua_State *s, int32_t i) {return luaL_checknumber (s, i);}
 static const char *check_string (lua_State *s, int32_t i) {return luaL_checkstring (s, i);}
 
+static cq_obj *check_object(lua_State *state, int32_t index) {
+    lua_stack_guard guard(state);
+    
+    if (!lua_istable(state, index)) {
+        return nullptr;
+    }
+    
+    lua_getfield(state, index, "cq_obj");
+    if (!lua_isinteger(state, -1)) {
+        return nullptr;
+    }
+    
+    lua_Integer raw = lua_tointeger(state, -1);
+    return (cq_obj *)raw;
+}
+
 static cq_int64s *check_integers(lua_State *state, int32_t index) {
     lua_stack_guard guard(state);
     
-    if (lua_isnil(state, index)) {
+    if (!lua_istable(state, index)) {
         return cq_store_c_int64s(nullptr, nullptr);
     }
     
@@ -173,7 +189,7 @@ static cq_int64s *check_integers(lua_State *state, int32_t index) {
 static cq_strings *check_strings(lua_State *state, int32_t index) {
     lua_stack_guard guard(state);
     
-    if (lua_isnil(state, index)) {
+    if (!lua_istable(state, index)) {
         return cq_store_c_strings(nullptr, nullptr);
     }
     
@@ -193,7 +209,7 @@ static cq_strings *check_strings(lua_State *state, int32_t index) {
 static cq_ss_map *check_ss_table(lua_State *state, int32_t index) {
     lua_stack_guard guard(state);
     
-    if (lua_isnil(state, index)) {
+    if (!lua_istable(state, index)) {
         return cq_store_c_ss_map(nullptr, nullptr);
     }
     
@@ -215,6 +231,53 @@ static void push_bool   (lua_State *s, bool        v) {lua_pushboolean(s, v);}
 static void push_integer(lua_State *s, int64_t     v) {lua_pushinteger(s, v);}
 static void push_double (lua_State *s, double      v) {lua_pushnumber (s, v);}
 static void push_string (lua_State *s, const char *v) {lua_pushstring (s, v);}
+
+static int32_t obj_gc(lua_State *state) {
+    lua_stack_guard guard(state);
+    
+    lua_getfield(state, -1, "cq_obj");
+    lua_Integer raw = lua_tointeger(state, -1);
+    cq_release_obj((cq_obj *)raw);
+    
+    return 0;
+}
+
+static void push_object(lua_State *state, cq_obj *value) {
+    if (value == nullptr) {
+        lua_pushnil(state);
+        return;
+    }
+    
+    lua_newtable(state);
+    
+    //use lua_Integer to hold the c pointer.
+    static_assert(sizeof(lua_Integer) >= sizeof(cq_obj *), "");
+    lua_pushstring(state, "cq_obj");
+    lua_pushinteger(state, (lua_Integer)value);
+    lua_settable(state, -3);
+    
+    //set meta table:
+    lua_newtable(state);
+    
+    //assign __index.
+    const char *cls = cq_obj_cls(value);
+    if (!cq_str_empty(cls)) {
+        lua_pushstring(state, "__index");
+        lua_getglobal(state, cls);
+        if (lua_istable(state, -1)) {
+            lua_settable(state, -3);
+        } else {
+            lua_pop(state, 2);
+        }
+    }
+    
+    //assign __gc.
+    lua_pushstring(state, "__gc");
+    lua_pushcfunction(state, obj_gc);
+    lua_settable(state, -3);
+    
+    lua_setmetatable(state, -2);
+}
 
 static void push_integers(lua_State *state, cq_int64s_sender send, cq_int64s *value) {
     std::vector<int64_t> object = cq_cpp_int64s_from(send, value);
@@ -300,6 +363,7 @@ void csLuaVM::open(const std::string &directory) {
         handlers.check_integer  = check_integer ;
         handlers.check_double   = check_double  ;
         handlers.check_string   = check_string  ;
+        handlers.check_object   = check_object  ;
         handlers.check_integers = check_integers;
         handlers.check_strings  = check_strings ;
         handlers.check_ss_table = check_ss_table;
@@ -308,6 +372,7 @@ void csLuaVM::open(const std::string &directory) {
         handlers.push_integer   = push_integer  ;
         handlers.push_double    = push_double   ;
         handlers.push_string    = push_string   ;
+        handlers.push_object    = push_object   ;
         handlers.push_integers  = push_integers ;
         handlers.push_strings   = push_strings  ;
         handlers.push_ss_table  = push_ss_table ;

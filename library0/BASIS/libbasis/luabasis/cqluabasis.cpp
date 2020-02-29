@@ -23,6 +23,7 @@ int64_t     cq_lua_check_int64  (lua_State *s, int32_t i) {return          call(
 float       cq_lua_check_float  (lua_State *s, int32_t i) {return (float  )call(_h.check_double  , s, i);}
 double      cq_lua_check_double (lua_State *s, int32_t i) {return          call(_h.check_double  , s, i);}
 const char *cq_lua_check_string (lua_State *s, int32_t i) {return          call(_h.check_string  , s, i);}
+cq_obj     *cq_lua_check_object (lua_State *s, int32_t i) {return          call(_h.check_object  , s, i);}
 cq_int64s  *cq_lua_check_int64s (lua_State *s, int32_t i) {return          call(_h.check_integers, s, i);}
 cq_strings *cq_lua_check_strings(lua_State *s, int32_t i) {return          call(_h.check_strings , s, i);}
 cq_ss_map  *cq_lua_check_ss_map (lua_State *s, int32_t i) {return          call(_h.check_ss_table, s, i);}
@@ -36,6 +37,8 @@ int32_t cq_lua_return_int64  (lua_State *s, int64_t     v) {call(_h.push_integer
 int32_t cq_lua_return_float  (lua_State *s, float       v) {call(_h.push_double , s, v); return 1;}
 int32_t cq_lua_return_double (lua_State *s, double      v) {call(_h.push_double , s, v); return 1;}
 int32_t cq_lua_return_string (lua_State *s, const char *v) {call(_h.push_string , s, v); return 1;}
+int32_t cq_lua_return_object (lua_State *s, cq_obj     *v) {call(_h.push_object , s, v); return 1;}
+
 int32_t cq_lua_return_int64s (lua_State *s, cq_int64s_sender  f, cq_int64s  *v) {call(_h.push_integers, s, f, v); return 1;}
 int32_t cq_lua_return_strings(lua_State *s, cq_strings_sender f, cq_strings *v) {call(_h.push_strings , s, f, v); return 1;}
 int32_t cq_lua_return_ss_map (lua_State *s, cq_ss_map_sender  f, cq_ss_map  *v) {call(_h.push_ss_table, s, f, v); return 1;}
