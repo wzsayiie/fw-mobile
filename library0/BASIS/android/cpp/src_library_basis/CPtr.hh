@@ -2,5 +2,5 @@
 
 #include <jni.h>
 
-void   *CPtr_valueFromObject(jobject     object);
-jobject CPtr_objectFromValue(const void *value );
+void   *CPtr_valueFromObject(JNIEnv *env, jobject     src);
+jobject CPtr_objectFromValue(JNIEnv *env, const void *src);

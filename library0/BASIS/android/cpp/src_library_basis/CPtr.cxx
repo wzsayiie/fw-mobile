@@ -7,22 +7,24 @@ static_assert(sizeof(jlong) >= sizeof(void *), "");
 #define CLS_PATH "src/library/basis/CPtr"
 CQ_JNI_CLASS(CPtr, CLS_PATH);
 
-void *CPtr_valueFromObject(jobject object) {
-    JNIEnv *env = cqJNIEnv::env();
-    jclass  cls = CPtr();
+void *CPtr_valueFromObject(JNIEnv *env, jobject src) {
+    if (env == nullptr) {
+        return nullptr;
+    }
 
     static jmethodID method = nullptr;
-    cqJNIEnv::staticMethod(&method, env, cls, "valueFromObject", "(L" CLS_PATH ";)J");
+    cqJNIEnv::staticMethod(&method, env, CPtr(), "valueFromObject", "(L" CLS_PATH ";)J");
 
-    return (void *)env->CallStaticLongMethod(cls, method, object);
+    return (void *)env->CallStaticLongMethod(CPtr(), method, src);
 }
 
-jobject CPtr_objectFromValue(const void *value) {
-    JNIEnv *env = cqJNIEnv::env();
-    jclass  cls = CPtr();
+jobject CPtr_objectFromValue(JNIEnv *env, const void *src) {
+    if (env == nullptr) {
+        return nullptr;
+    }
 
     static jmethodID method = nullptr;
-    cqJNIEnv::staticMethod(&method, env, cls, "objectFromValue", "(J)L" CLS_PATH ";");
+    cqJNIEnv::staticMethod(&method, env, CPtr(), "objectFromValue", "(J)L" CLS_PATH ";");
 
-    return env->CallStaticObjectMethod(cls, method, (jlong)value);
+    return env->CallStaticObjectMethod(CPtr(), method, (jlong)src);
 }

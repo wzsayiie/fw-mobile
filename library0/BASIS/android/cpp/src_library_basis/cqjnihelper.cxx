@@ -146,12 +146,12 @@ cqJNIRef<jbyteArray> cqJNIType::jniDataAuto(JNIEnv *env, const std::vector<uint8
     return cqJNIRefTransfer::local(ret);
 }
 
-void *cqJNIType::voidPtr(jobject ptr) {
-    return CPtr_valueFromObject(ptr);
+void *cqJNIType::voidPtr(JNIEnv *env, jobject ptr) {
+    return CPtr_valueFromObject(env, ptr);
 }
 
-cqJNIRef<jobject> cqJNIType::jniPtrAuto(const void *ptr) {
-    jobject ret = jniPtr(ptr);
+cqJNIRef<jobject> cqJNIType::jniPtrAuto(JNIEnv *env, const void *ptr) {
+    jobject ret = jniPtr(env, ptr);
     return cqJNIRefTransfer::local(ret);
 }
 
@@ -177,8 +177,8 @@ jbyteArray cqJNIType::jniData(JNIEnv *env, const std::vector<uint8_t> &src) {
     return dst;
 }
 
-jobject cqJNIType::jniPtr(const void *ptr) {
-    return CPtr_objectFromValue(ptr);
+jobject cqJNIType::jniPtr(JNIEnv *env, const void *ptr) {
+    return CPtr_objectFromValue(env, ptr);
 }
 
 cqJNIStaticMethod::cqJNIStaticMethod(jclass clazz, jmethodID *prefer, const char *name) {
@@ -221,7 +221,7 @@ void cqJNIStaticMethod::push(const void *param) {
         return;
     }
 
-    cqJNIRef<jobject> object = cqJNIType::jniPtrAuto(param);
+    cqJNIRef<jobject> object = cqJNIType::jniPtrAuto(_env, param);
     jvalue value;
     value.l = object.get();
 
@@ -265,7 +265,7 @@ void *cqJNIStaticMethod::callPtr() {
         return nullptr;
     }
 
-    void *ret = cqJNIType::voidPtr(ptr);
+    void *ret = cqJNIType::voidPtr(_env, ptr);
     _env->DeleteLocalRef(ptr);
     return ret;
 }

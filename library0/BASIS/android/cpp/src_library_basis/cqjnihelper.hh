@@ -44,17 +44,17 @@ struct cqJNIType {
     static std::vector<uint8_t> data(JNIEnv *env, jbyteArray src);
     static cqJNIRef<jbyteArray> jniDataAuto(JNIEnv *env, const std::vector<uint8_t> &src);
 
-    static void *voidPtr(jobject ptr);
-    static cqJNIRef<jobject> jniPtrAuto(const void *ptr);
+    static void *voidPtr(JNIEnv *env, jobject ptr);
+    static cqJNIRef<jobject> jniPtrAuto(JNIEnv *env, const void *ptr);
 
-    template<class T> static T ptr(jobject ptr) {
-        return (T)voidPtr(ptr);
+    template<class T> static T ptr(JNIEnv *env, jobject ptr) {
+        return (T)voidPtr(env, ptr);
     }
 
     //these functions return local reference.
     static jstring    jniString(JNIEnv *env, const char *src);
     static jbyteArray jniData  (JNIEnv *env, const std::vector<uint8_t> &src);
-    static jobject    jniPtr   (const void *ptr);
+    static jobject    jniPtr   (JNIEnv *env, const void *ptr);
 };
 
 struct cqJNIStaticMethod {
