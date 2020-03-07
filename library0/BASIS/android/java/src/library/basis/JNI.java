@@ -12,38 +12,38 @@ public class JNI {
 
     //data structure:
 
-    public static byte[] bytesFrom(CPtr send, CPtr src) {
-        makeBytesSuck(send, src);
+    public static byte[] bytesFrom(CPtr in) {
+        makeBytesSuck(in);
 
         byte[] ret = sBytes;
         sBytes = null;
         return ret;
     }
 
-    public static ArrayList<Long> longsFrom(CPtr send, CPtr src) {
-        sLongs = new ArrayList<>();
+    public static ArrayList<Long> intListFrom(CPtr in) {
+        sIntList = new ArrayList<>();
 
-        makeLongsSuck(send, src);
+        makeIntListSuck(in);
 
-        ArrayList<Long> ret = sLongs;
-        sLongs = null;
+        ArrayList<Long> ret = sIntList;
+        sIntList = null;
         return ret;
     }
 
-    public static ArrayList<String> stringsFrom(CPtr send, CPtr src) {
-        sStrings = new ArrayList<>();
+    public static ArrayList<String> strListFrom(CPtr in) {
+        sStrList = new ArrayList<>();
 
-        makeStringsSuck(send, src);
+        makeStrListSuck(in);
 
-        ArrayList<String> ret = sStrings;
-        sStrings = null;
+        ArrayList<String> ret = sStrList;
+        sStrList = null;
         return ret;
     }
 
-    public static HashMap<String, String> ssMapFrom(CPtr send, CPtr src) {
+    public static HashMap<String, String> ssMapFrom(CPtr in) {
         sSSMap = new HashMap<>();
 
-        makeStringsSuck(send, src);
+        makeSSMapSuck(in);
 
         HashMap<String, String> ret = sSSMap;
         sSSMap = null;
@@ -51,95 +51,55 @@ public class JNI {
     }
 
     private static byte[]                  sBytes  ;
-    private static ArrayList<Long>         sLongs  ;
-    private static ArrayList<String>       sStrings;
+    private static ArrayList<Long>         sIntList;
+    private static ArrayList<String>       sStrList;
     private static HashMap<String, String> sSSMap  ;
 
-    private static native void makeBytesSuck  (CPtr send, CPtr src);
-    private static native void makeLongsSuck  (CPtr send, CPtr src);
-    private static native void makeStringsSuck(CPtr send, CPtr src);
-    private static native void makeSSMapSuck  (CPtr send, CPtr src);
+    private static native void makeBytesSuck  (CPtr in);
+    private static native void makeIntListSuck(CPtr in);
+    private static native void makeStrListSuck(CPtr in);
+    private static native void makeSSMapSuck  (CPtr in);
 
     private static void onBytesSuck  (byte[]       value) { sBytes  =    value ; }
-    private static void onLongsSuck  (long         value) { sLongs  .add(value); }
-    private static void onStringsSuck(String       value) { sStrings.add(value); }
+    private static void onIntListSuck(long         value) { sIntList.add(value); }
+    private static void onStrListSuck(String       value) { sStrList.add(value); }
     private static void onSSMap      (String k, String v) { sSSMap  .put(k , v); }
 
-    public static void sendBytes(byte[] src, CPtr receive, CPtr dst) {
-        makeBytesSend(src, receive, dst);
+    public static void bytesAssign(byte[] object, CPtr out) {
+        makeBytesAssign(object, out);
     }
 
-    public static void sendLongs(ArrayList<Long> src, CPtr receive, CPtr dst) {
-        if (src != null) {
-            for (Long it : src) {
-                makeLongsAdd(it);
-            }
+    public static void intListAssign(ArrayList<Long> object, CPtr out) {
+        if (object == null) {
+            return;
         }
-        makeLongsSend(receive, dst);
-    }
-
-    public static void sendStrings(ArrayList<String> src, CPtr receive, CPtr dst) {
-        if (src != null) {
-            for (String it : src) {
-                makeStringsAdd(it);
-            }
+        for (Long it : object) {
+            makeIntListAssign(it, out);
         }
-        makeStringsSend(receive, dst);
     }
 
-    public static void sendSSMap(HashMap<String, String> src, CPtr receive, CPtr dst) {
-        if (src != null) {
-            for (HashMap.Entry<String, String> cp : src.entrySet()) {
-                makeSSMapAdd(cp.getKey(), cp.getValue());
-            }
+    public static void strListAssign(ArrayList<String> object, CPtr out) {
+        if (object == null) {
+            return;
         }
-        makeSSMapSend(receive, dst);
-    }
-
-    public static CPtr storeBytes(byte[] object) {
-        return makeBytesStore(object);
-    }
-
-    public static CPtr storeLongs(ArrayList<Long> object) {
-        if (object != null) {
-            for (Long it : object) {
-                makeLongsAdd(it);
-            }
+        for (String it : object) {
+            makeStrListAssign(it, out);
         }
-        return makeLongsStore();
     }
 
-    public static CPtr storeStrings(ArrayList<String> object) {
-        if (object != null) {
-            for (String it : object) {
-                makeStringsAdd(it);
-            }
+    public static void ssMapAssign(HashMap<String, String> object, CPtr out) {
+        if (object == null) {
+            return;
         }
-        return makeStringsStore();
-    }
-
-    public static CPtr storeSSMap(HashMap<String, String> object) {
-        if (object != null) {
-            for (HashMap.Entry<String, String> cp : object.entrySet()) {
-                makeSSMapAdd(cp.getKey(), cp.getValue());
-            }
+        for (HashMap.Entry<String, String> cp : object.entrySet()) {
+            makeSSMapAssign(cp.getKey(), cp.getValue(), out);
         }
-        return makeSSMapStore();
     }
 
-    private static native void makeLongsAdd  (long   value);
-    private static native void makeStringsAdd(String value);
-    private static native void makeSSMapAdd  (String key, String value);
-
-    private static native void makeBytesSend  (byte[] value, CPtr receive, CPtr dst);
-    private static native void makeLongsSend  (CPtr receive, CPtr dst);
-    private static native void makeStringsSend(CPtr receive, CPtr dst);
-    private static native void makeSSMapSend  (CPtr receive, CPtr dst);
-
-    private static native CPtr makeBytesStore  (byte[] value);
-    private static native CPtr makeLongsStore  ();
-    private static native CPtr makeStringsStore();
-    private static native CPtr makeSSMapStore  ();
+    private static native void makeBytesAssign  (byte[] value, CPtr out);
+    private static native void makeIntListAssign(long   value, CPtr out);
+    private static native void makeStrListAssign(String value, CPtr out);
+    private static native void makeSSMapAssign  (String key, String value, CPtr out);
 
     //object reference:
 

@@ -12,146 +12,191 @@ id CQGetProperty(id object, const void *key) {
     return objc_getAssociatedObject(object, key);
 }
 
+NSString *CQNullableString(const char *s) {return s ? @(s) : nil;}
+NSString *CQNonnullString (const char *s) {return s ? @(s) : @"";}
+
 //interfaces for interaction with c:
 
-cq_bytes   *cq_bytes_cast_mut_oc  (NSMutableData                                *a) {return (__bridge cq_bytes   *)a;}
-cq_int64s  *cq_int64s_cast_mut_oc (NSMutableArray<NSNumber *>                   *a) {return (__bridge cq_int64s  *)a;}
-cq_strings *cq_strings_cast_mut_oc(NSMutableArray<NSString *>                   *a) {return (__bridge cq_strings *)a;}
-cq_ss_map  *cq_ss_map_cast_mut_oc (NSMutableDictionary<NSString *, NSString *>  *a) {return (__bridge cq_ss_map  *)a;}
+#define BYTES    NSData
+#define INT_LIST NSArray<NSNumber *>
+#define STR_LIST NSArray<NSString *>
+#define SS_MAP   NSDictionary<NSString *, NSString *>
 
-cq_bytes   *cq_bytes_cast_oc  (NSData                                *a) {return (__bridge cq_bytes   *)a;}
-cq_int64s  *cq_int64s_cast_oc (NSArray<NSNumber *>                   *a) {return (__bridge cq_int64s  *)a;}
-cq_strings *cq_strings_cast_oc(NSArray<NSString *>                   *a) {return (__bridge cq_strings *)a;}
-cq_ss_map  *cq_ss_map_cast_oc (NSDictionary<NSString *, NSString *>  *a) {return (__bridge cq_ss_map  *)a;}
+#define M_BYTES    NSMutableData
+#define M_INT_LIST NSMutableArray<NSNumber *>
+#define M_STR_LIST NSMutableArray<NSString *>
+#define M_SS_MAP   NSMutableDictionary<NSString *, NSString *>
 
-void cq_oc_bytes_receiver(cq_bytes *dst, const void *ptr, int32_t len) {
-    if (dst != NULL) {
-        NSMutableData *object = (__bridge NSMutableData *)dst;
-        [object appendBytes:ptr length:(NSUInteger)len];
-    }
-}
+static _Thread_local CFTypeRef _dst_bytes    = NULL;
+static _Thread_local CFTypeRef _dst_int_list = NULL;
+static _Thread_local CFTypeRef _dst_str_list = NULL;
+static _Thread_local CFTypeRef _dst_ss_map   = NULL;
 
-void cq_oc_int64s_receiver(cq_int64s *dst, int64_t value) {
-    if (dst != NULL) {
-        NSMutableArray<NSNumber *> *object = (__bridge NSMutableArray *)dst;
-        [object addObject:@(value)];
-    }
-}
-
-void cq_oc_strings_receiver(cq_strings *dst, const char *value) {
-    if (dst && value) {
-        NSMutableArray<NSString *> *object = (__bridge NSMutableArray *)dst;
-        [object addObject:@(value)];
-    }
-}
-
-void cq_oc_ss_map_receiver(cq_ss_map *dst, const char *key, const char *value) {
-    if (dst && key && value) {
-        NSMutableDictionary<NSString *, NSString *> *object = (__bridge NSMutableDictionary *)dst;
-        [object setObject:@(value) forKey:@(key)];
-    }
-}
-
-void cq_oc_bytes_sender(cq_bytes *src, cq_bytes_receiver recv, cq_bytes *dst) {
-    if (src && recv) {
-        NSData *object = (__bridge NSData *)src;
-        recv(dst, object.bytes, (int32_t)object.length);
-    }
-}
-
-void cq_oc_int64s_sender(cq_int64s *src, cq_int64s_receiver recv, cq_int64s *dst) {
-    if (src && recv) {
-        NSArray<NSNumber *> *object = (__bridge NSArray *)src;
-        for (NSNumber *it in object) {
-            recv(dst, it.longLongValue);
+static void bytes_out(const void *bytes, int32_t len) {
+    if (_dst_bytes != NULL) {
+        M_BYTES *object = (__bridge M_BYTES *)_dst_bytes;
+        
+        if (bytes && len > 0) {
+            [object setData:[NSData dataWithBytes:bytes length:len]];
+        } else {
+            [object setLength:0];
         }
     }
 }
 
-void cq_oc_strings_sender(cq_strings *src, cq_strings_receiver recv, cq_strings *dst) {
-    if (src && recv) {
-        NSArray<NSString *> *object = (__bridge NSArray *)src;
-        for (NSString *it in object) {
-            recv(dst, it.UTF8String);
-        }
+static void int_list_out(int64_t item) {
+    if (_dst_int_list != NULL) {
+        M_INT_LIST *object = (__bridge M_INT_LIST *)_dst_int_list;
+        [object addObject:@(item)];
     }
 }
 
-void cq_oc_ss_map_sender(cq_ss_map *src, cq_ss_map_receiver recv, cq_ss_map *dst) {
-    if (src && recv) {
-        NSDictionary<NSString *, NSString *> *object = (__bridge NSDictionary *)src;
-        for (NSString *key in object) {
-            recv(dst, key.UTF8String, object[key].UTF8String);
-        }
+static void str_list_out(const char *item) {
+    if (_dst_str_list != NULL) {
+        M_STR_LIST *object = (__bridge M_STR_LIST *)_dst_str_list;
+        [object addObject:CQNonnullString(item)];
     }
 }
 
-NSData *cq_oc_bytes_from(cq_bytes_sender send, cq_bytes *src) {
-    NSMutableData *object = nil;
-    if (send) {
-        object = [NSMutableData data];
-        send(src, cq_oc_bytes_receiver, cq_bytes_cast_mut_oc(object));
+static void ss_map_out(const char *key, const char *value) {
+    if (_dst_ss_map && !cq_str_empty(key)) {
+        M_SS_MAP *object = (__bridge M_SS_MAP *)_dst_ss_map;
+        object[@(key)] = CQNonnullString(value);
     }
+}
+
+static _Thread_local CFTypeRef _src_bytes    = NULL;
+static _Thread_local CFTypeRef _src_int_list = NULL;
+static _Thread_local CFTypeRef _src_str_list = NULL;
+static _Thread_local CFTypeRef _src_ss_map   = NULL;
+
+static void bytes_in(cq_bytes_out out) {
+    if (!_src_bytes && !out) {
+        return;
+    }
+    BYTES *object = (__bridge BYTES *)_src_bytes;
+    out(object.bytes, (int32_t)object.length);
+}
+
+static void int_list_in(cq_int_list_out out) {
+    if (!_src_int_list && !out) {
+        return;
+    }
+    INT_LIST *object = (__bridge INT_LIST *)_src_int_list;
+    for (NSNumber *it in object) {
+        out((int64_t)it.longLongValue);
+    }
+}
+
+static void str_list_in(cq_str_list_out out) {
+    if (!_src_str_list && !out) {
+        return;
+    }
+    STR_LIST *object = (__bridge STR_LIST *)_src_str_list;
+    for (NSString *it in object) {
+        out(it.UTF8String);
+    }
+}
+
+static void ss_map_in(cq_ss_map_out out) {
+    if (!_src_ss_map && !out) {
+        return;
+    }
+    SS_MAP *object = (__bridge SS_MAP *)_src_ss_map;
+    for (NSString *key in object) {
+        out(key.UTF8String, object[key].UTF8String);
+    }
+}
+
+cq_bytes_out    cq_oc_bytes_out   (M_BYTES    *a) {_dst_bytes    = (__bridge CFTypeRef)a; return bytes_out   ;}
+cq_int_list_out cq_oc_int_list_out(M_INT_LIST *a) {_dst_int_list = (__bridge CFTypeRef)a; return int_list_out;}
+cq_str_list_out cq_oc_str_list_out(M_STR_LIST *a) {_dst_str_list = (__bridge CFTypeRef)a; return str_list_out;}
+cq_ss_map_out   cq_oc_ss_map_out  (M_SS_MAP   *a) {_dst_ss_map   = (__bridge CFTypeRef)a; return ss_map_out  ;}
+
+cq_bytes_in    cq_oc_bytes_in   (BYTES    *a) {_src_bytes    = (__bridge CFTypeRef)a; return bytes_in   ;}
+cq_int_list_in cq_oc_int_list_in(INT_LIST *a) {_src_int_list = (__bridge CFTypeRef)a; return int_list_in;}
+cq_str_list_in cq_oc_str_list_in(STR_LIST *a) {_src_str_list = (__bridge CFTypeRef)a; return str_list_in;}
+cq_ss_map_in   cq_oc_ss_map_in  (SS_MAP   *a) {_src_ss_map   = (__bridge CFTypeRef)a; return ss_map_in  ;}
+
+#define KEEP(VALUE, CODE)\
+/**/    do{\
+/**/        typeof(VALUE) __last = VALUE;\
+/**/        CODE\
+/**/        VALUE = __last;\
+/**/    } while (0)
+
+BYTES *cq_oc_bytes_from(cq_bytes_in in) {
+    if (in == NULL) {
+        return nil;
+    }
+    
+    M_BYTES *object = [NSMutableData data];
+    //NOTE: hold last value of _dst_bytes.
+    //the function shouldn't affect last cq_oc_bytes_out() call.
+    KEEP(_dst_bytes, {
+        in(cq_oc_bytes_out(object));
+    });
     return object;
 }
 
-NSArray<NSNumber *> *cq_oc_int64s_from(cq_int64s_sender send, cq_int64s *src) {
-    NSMutableArray<NSNumber *> *object = nil;
-    if (send) {
-        object = [NSMutableArray array];
-        send(src, cq_oc_int64s_receiver, cq_int64s_cast_mut_oc(object));
+INT_LIST *cq_oc_int_list_from(cq_int_list_in in) {
+    if (in == NULL) {
+        return nil;
     }
+    
+    M_INT_LIST *object = [NSMutableArray array];
+    KEEP(_dst_int_list, {
+        in(cq_oc_int_list_out(object));
+    });
     return object;
 }
 
-NSArray<NSString *> *cq_oc_strings_from(cq_strings_sender send, cq_strings *src) {
-    NSMutableArray<NSString *> *object = nil;
-    if (send) {
-        object = [NSMutableArray array];
-        send(src, cq_oc_strings_receiver, cq_strings_cast_mut_oc(object));
+STR_LIST *cq_oc_str_list_from(cq_str_list_in in) {
+    if (in == NULL) {
+        return nil;
     }
+    
+    M_STR_LIST *object = [NSMutableArray array];
+    KEEP(_dst_str_list, {
+        in(cq_oc_str_list_out(object));
+    });
     return object;
 }
 
-NSDictionary<NSString *, NSString *> *cq_oc_ss_map_from(cq_ss_map_sender send, cq_ss_map *src) {
-    NSMutableDictionary<NSString *, NSString *> *object = nil;
-    if (send) {
-        object = [NSMutableDictionary dictionary];
-        send(src, cq_oc_ss_map_receiver, cq_ss_map_cast_mut_oc(object));
+SS_MAP *cq_oc_ss_map_from(cq_ss_map_in in) {
+    if (in == NULL) {
+        return nil;
     }
+    
+    M_SS_MAP *object = [NSMutableDictionary dictionary];
+    KEEP(_dst_ss_map, {
+        in(cq_oc_ss_map_out(object));
+    });
     return object;
 }
 
-void cq_send_oc_bytes(NSData *src, cq_bytes_receiver recv, cq_bytes *dst) {
-    cq_oc_bytes_sender(cq_bytes_cast_oc(src), recv, dst);
+void cq_oc_bytes_assign(BYTES *object, cq_bytes_out out) {
+    KEEP(_src_bytes, {
+        cq_oc_bytes_in(object)(out);
+    });
 }
 
-void cq_send_oc_int64s(NSArray<NSNumber *> *src, cq_int64s_receiver recv, cq_int64s *dst) {
-    cq_oc_int64s_sender(cq_int64s_cast_oc(src), recv, dst);
+void cq_oc_int_list_assign(INT_LIST *object, cq_int_list_out out) {
+    KEEP(_src_int_list, {
+        cq_oc_int_list_in(object)(out);
+    });
 }
 
-void cq_send_oc_strings(NSArray<NSString *> *src, cq_strings_receiver recv, cq_strings *dst) {
-    cq_oc_strings_sender(cq_strings_cast_oc(src), recv, dst);
+void cq_oc_str_list_assign(STR_LIST *object, cq_str_list_out out) {
+    KEEP(_src_str_list, {
+        cq_oc_str_list_in(object)(out);
+    });
 }
 
-void cq_send_oc_ss_map(NSDictionary<NSString *, NSString *> *src, cq_ss_map_receiver recv, cq_ss_map *dst) {
-    cq_oc_ss_map_sender(cq_ss_map_cast_oc(src), recv, dst);
-}
-
-cq_bytes *cq_store_oc_bytes(NSData *object) {
-    return cq_store_c_bytes(cq_oc_bytes_sender, cq_bytes_cast_oc(object));
-}
-
-cq_int64s *cq_store_oc_int64s(NSArray<NSNumber *> *object) {
-    return cq_store_c_int64s(cq_oc_int64s_sender, cq_int64s_cast_oc(object));
-}
-
-cq_strings *cq_store_oc_strings(NSArray<NSString *> *object) {
-    return cq_store_c_strings(cq_oc_strings_sender, cq_strings_cast_oc(object));
-}
-
-cq_ss_map *cq_store_oc_ss_map(NSDictionary<NSString *, NSString *> *object) {
-    return cq_store_c_ss_map(cq_oc_ss_map_sender, cq_ss_map_cast_oc(object));
+void cq_oc_ss_map_assign(SS_MAP *object, cq_ss_map_out out) {
+    KEEP(_src_ss_map, {
+        cq_oc_ss_map_in(object)(out);
+    });
 }
 
 //object reference:

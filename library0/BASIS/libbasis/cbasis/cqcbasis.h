@@ -110,45 +110,17 @@ typedef void (*cq_runnable)(void *);
 //to define a struct.
 #define cq_struct(NAME) typedef struct NAME NAME; struct NAME
 
-//multiplex structures:
+//interfaces for multiplex structures:
 
-cq_struct(cq_bytes  );
-cq_struct(cq_int64s );
-cq_struct(cq_strings);
-cq_struct(cq_ss_map );
+typedef void (*cq_bytes_out   )(const void *bytes, int32_t len);
+typedef void (*cq_int_list_out)(int64_t item);
+typedef void (*cq_str_list_out)(const char *item);
+typedef void (*cq_ss_map_out  )(const char *key, const char *value);
 
-typedef void (*cq_bytes_receiver  )(cq_bytes   *dst, const void *ptr, int32_t len);
-typedef void (*cq_int64s_receiver )(cq_int64s  *dst, int64_t     val);
-typedef void (*cq_strings_receiver)(cq_strings *dst, const char *val);
-typedef void (*cq_ss_map_receiver )(cq_ss_map  *dst, const char *key, const char *val);
-
-typedef void (*cq_bytes_sender  )(cq_bytes   *src, cq_bytes_receiver   recv, cq_bytes   *dst);
-typedef void (*cq_int64s_sender )(cq_int64s  *src, cq_int64s_receiver  recv, cq_int64s  *dst);
-typedef void (*cq_strings_sender)(cq_strings *src, cq_strings_receiver recv, cq_strings *dst);
-typedef void (*cq_ss_map_sender )(cq_ss_map  *src, cq_ss_map_receiver  recv, cq_ss_map  *dst);
-
-//on implementation of c,
-//  "cq_bytes"   is a "std::vector<uint8_t>",
-//  "cq_int64s"  is a "std::vector<int64_t>",
-//  "cq_strings" is a "std::vector<std::string>",
-//  "cq_ss_map"  is a "std::map<std::string, std::string>".
-//
-//implementation of c++ can directly use cq_c_xx_receiver() and cq_c_xx_sender().
-
-CQ_C_LINK void cq_c_bytes_receiver  (cq_bytes   *dst, const void *ptr, int32_t len);
-CQ_C_LINK void cq_c_int64s_receiver (cq_int64s  *dst, int64_t     val);
-CQ_C_LINK void cq_c_strings_receiver(cq_strings *dst, const char *val);
-CQ_C_LINK void cq_c_ss_map_receiver (cq_ss_map  *dst, const char *key, const char *val);
-
-CQ_C_LINK void cq_c_bytes_sender  (cq_bytes   *src, cq_bytes_receiver   recv, cq_bytes   *dst);
-CQ_C_LINK void cq_c_int64s_sender (cq_int64s  *src, cq_int64s_receiver  recv, cq_int64s  *dst);
-CQ_C_LINK void cq_c_strings_sender(cq_strings *src, cq_strings_receiver recv, cq_strings *dst);
-CQ_C_LINK void cq_c_ss_map_sender (cq_ss_map  *src, cq_ss_map_receiver  recv, cq_ss_map  *dst);
-
-CQ_C_LINK cq_bytes   *cq_store_c_bytes  (cq_bytes_sender   send, cq_bytes   *src);
-CQ_C_LINK cq_int64s  *cq_store_c_int64s (cq_int64s_sender  send, cq_int64s  *src);
-CQ_C_LINK cq_strings *cq_store_c_strings(cq_strings_sender send, cq_strings *src);
-CQ_C_LINK cq_ss_map  *cq_store_c_ss_map (cq_ss_map_sender  send, cq_ss_map  *src);
+typedef void (*cq_bytes_in   )(cq_bytes_out    out);
+typedef void (*cq_int_list_in)(cq_int_list_out out);
+typedef void (*cq_str_list_in)(cq_str_list_out out);
+typedef void (*cq_ss_map_in  )(cq_ss_map_out   out);
 
 //object reference:
 

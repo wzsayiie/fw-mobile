@@ -1,5 +1,6 @@
 #include "cqlualibfoundation.h"
 #include "cqfoundationarche.h"
+#include "cqcppbasis.hh"
 
 //host os:
 
@@ -108,8 +109,11 @@ static int32_t RemovePath(lua_State *state) {
 
 static int32_t SubFiles(lua_State *state) {
     const char *path = cq_lua_check_string(state, 1);
-    cq_strings *files = cq_sub_files(path);
-    return cq_lua_return_strings(state, cq_c_strings_sender, files);
+    
+    std::vector<std::string> files;
+    cq_sub_files(path, cq_cpp_str_list_out(files));
+    
+    return cq_lua_return_str_list(state, cq_cpp_str_list_in(files));
 }
 
 //register

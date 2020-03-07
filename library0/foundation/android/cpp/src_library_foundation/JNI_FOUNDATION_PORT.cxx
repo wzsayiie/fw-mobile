@@ -25,13 +25,12 @@ const char *cq_ios_resource_path(const char *, const char *) {
     return nullptr;
 }
 
-cq_bytes *cq_ios_resource(const char *, const char *) {
-    return nullptr;
+void cq_ios_resource(const char *, const char *, cq_bytes_out) {
 }
 
-cq_bytes *cq_android_asset(const char *name) {
+void cq_android_asset(const char *name, cq_bytes_out out) {
     CQ_JNI_STATIC_METHOD(PORT, method, "cq_android_asset");
-    return method.fn<cq_bytes *>(name);
+    method.fn<void>(name, out);
 }
 
 bool cq_android_copy_asset(const char *from_path, const char *to_path) {
@@ -82,9 +81,9 @@ void cq_remove_path(const char *path) {
     method.fn<void>(path);
 }
 
-cq_strings *cq_sub_files(const char *path) {
+void cq_sub_files(const char *path, cq_str_list_out out) {
     CQ_JNI_STATIC_METHOD(PORT, method, "cq_sub_files");
-    return method.fn<cq_strings *>(path);
+    method.fn<void>(path, out);
 }
 
 //thread:

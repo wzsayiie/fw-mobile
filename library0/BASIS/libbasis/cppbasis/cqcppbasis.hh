@@ -230,35 +230,25 @@ template<class T, int = 0> typename cqRef<T>::Strong cqStaticObject() {
 
 //data interfaces for interaction with c:
 
-cq_bytes   *cq_bytes_cast_cpp  (const std::vector<uint8_t> &object);
-cq_int64s  *cq_int64s_cast_cpp (const std::vector<int64_t> &object);
-cq_strings *cq_strings_cast_cpp(const std::vector<std::string> &object);
-cq_ss_map  *cq_ss_map_cast_cpp (const std::map<std::string, std::string> &object);
+cq_bytes_out    cq_cpp_bytes_out   (std::vector<uint8_t>         &object);
+cq_int_list_out cq_cpp_int_list_out(std::vector<int64_t>         &object);
+cq_str_list_out cq_cpp_str_list_out(std::vector<std::string>     &object);
+cq_ss_map_out   cq_cpp_ss_map_out  (std::map<std::string, std::string> &);
 
-void cq_cpp_bytes_receiver  (cq_bytes   *dst, const void *ptr, int32_t len);
-void cq_cpp_int64s_receiver (cq_int64s  *dst, int64_t     val);
-void cq_cpp_strings_receiver(cq_strings *dst, const char *val);
-void cq_cpp_ss_map_receiver (cq_ss_map  *dst, const char *key, const char *val);
+cq_bytes_in    cq_cpp_bytes_in   (const std::vector<uint8_t>         &object);
+cq_int_list_in cq_cpp_int_list_in(const std::vector<int64_t>         &object);
+cq_str_list_in cq_cpp_str_list_in(const std::vector<std::string>     &object);
+cq_ss_map_in   cq_cpp_ss_map_in  (const std::map<std::string, std::string> &);
 
-void cq_cpp_bytes_sender  (cq_bytes   *src, cq_bytes_receiver   recv, cq_bytes   *dst);
-void cq_cpp_int64s_sender (cq_int64s  *src, cq_int64s_receiver  recv, cq_int64s  *dst);
-void cq_cpp_strings_sender(cq_strings *src, cq_strings_receiver recv, cq_strings *dst);
-void cq_cpp_ss_map_sender (cq_ss_map  *src, cq_ss_map_receiver  recv, cq_ss_map  *dst);
+std::vector<uint8_t>               cq_cpp_bytes_from   (cq_bytes_in    in);
+std::vector<int64_t>               cq_cpp_int_list_from(cq_int_list_in in);
+std::vector<std::string>           cq_cpp_str_list_from(cq_str_list_in in);
+std::map<std::string, std::string> cq_cpp_ss_map_from  (cq_ss_map_in   in);
 
-std::vector<uint8_t>               cq_cpp_bytes_from  (cq_bytes_sender   send, cq_bytes   *src);
-std::vector<int64_t>               cq_cpp_int64s_from (cq_int64s_sender  send, cq_int64s  *src);
-std::vector<std::string>           cq_cpp_strings_from(cq_strings_sender send, cq_strings *src);
-std::map<std::string, std::string> cq_cpp_ss_map_from (cq_ss_map_sender  send, cq_ss_map  *src);
-
-void cq_send_cpp_bytes  (const std::vector<uint8_t>               &src, cq_bytes_receiver   recv, cq_bytes   *dst);
-void cq_send_cpp_int64s (const std::vector<int64_t>               &src, cq_int64s_receiver  recv, cq_int64s  *dst);
-void cq_send_cpp_strings(const std::vector<std::string>           &src, cq_strings_receiver recv, cq_strings *dst);
-void cq_send_cpp_ss_map (const std::map<std::string, std::string> &src, cq_ss_map_receiver  recv, cq_ss_map  *dst);
-
-cq_bytes   *cq_store_cpp_bytes  (const std::vector<uint8_t>               &object);
-cq_int64s  *cq_store_cpp_int64s (const std::vector<int64_t>               &object);
-cq_strings *cq_store_cpp_strings(const std::vector<std::string>           &object);
-cq_ss_map  *cq_store_cpp_ss_map (const std::map<std::string, std::string> &object);
+void cq_cpp_bytes_assign   (const std::vector<uint8_t>         &object, cq_bytes_out    out);
+void cq_cpp_int_list_assign(const std::vector<int64_t>         &object, cq_int_list_out out);
+void cq_cpp_str_list_assign(const std::vector<std::string>     &object, cq_str_list_out out);
+void cq_cpp_ss_map_assign  (const std::map<std::string, std::string> &, cq_ss_map_out   out);
 
 //object reference:
 

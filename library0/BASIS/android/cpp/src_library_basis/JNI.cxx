@@ -19,45 +19,42 @@ extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_run
 //data structure:
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeBytesSuck
-    (JNIEnv *env, jclass, jobject _send, jobject _src)
+    (JNIEnv *env, jclass, jobject _in)
 {
     static jmethodID method = nullptr;
     cqJNIEnv::staticMethod(&method, env, JNI(), "onBytesSuck", "([B)V");
 
-    auto send = cqJNIType::ptr<cq_bytes_sender>(_send);
-    auto src  = cqJNIType::ptr<cq_bytes *     >(_src );
+    auto in = cqJNIType::ptr<cq_bytes_in>(_in);
 
-    std::vector<uint8_t> object = cq_cpp_bytes_from(send, src);
+    std::vector<uint8_t> object = cq_cpp_bytes_from(in);
     cqJNIRef<jbyteArray> array = cqJNIType::jniDataAuto(env, object);
 
     env->CallStaticVoidMethod(JNI(), method, array.get());
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeLongsSuck
-    (JNIEnv *env, jclass, jobject _send, jobject _src)
+extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeIntListSuck
+    (JNIEnv *env, jclass, jobject _in)
 {
     static jmethodID method = nullptr;
-    cqJNIEnv::staticMethod(&method, env, JNI(), "onLongsSuck", "(J)V");
+    cqJNIEnv::staticMethod(&method, env, JNI(), "onIntListSuck", "(J)V");
 
-    auto send = cqJNIType::ptr<cq_int64s_sender>(_send);
-    auto src  = cqJNIType::ptr<cq_int64s *     >(_src );
+    auto in = cqJNIType::ptr<cq_int_list_in>(_in);
 
-    std::vector<int64_t> object = cq_cpp_int64s_from(send, src);
+    std::vector<int64_t> object = cq_cpp_int_list_from(in);
     for (auto &it : object) {
         env->CallStaticVoidMethod(JNI(), method, (jlong)it);
     }
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeStringsSuck
-    (JNIEnv *env, jclass, jobject _send, jobject _src)
+extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeStrListSuck
+    (JNIEnv *env, jclass, jobject _in)
 {
     static jmethodID method = nullptr;
-    cqJNIEnv::staticMethod(&method, env, JNI(), "onStringsSuck", "(Ljava/lang/String;)V");
+    cqJNIEnv::staticMethod(&method, env, JNI(), "onStrListSuck", "(Ljava/lang/String;)V");
 
-    auto send = cqJNIType::ptr<cq_strings_sender>(_send);
-    auto src  = cqJNIType::ptr<cq_strings *     >(_src );
+    auto in = cqJNIType::ptr<cq_str_list_in>(_in);
 
-    std::vector<std::string> object = cq_cpp_strings_from(send, src);
+    std::vector<std::string> object = cq_cpp_str_list_from(in);
     for (auto &it : object) {
         cqJNIRef<jstring> string = cqJNIType::jniStringAuto(env, it.c_str());
         env->CallStaticVoidMethod(JNI(), method, string.get());
@@ -65,15 +62,14 @@ extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeStringsSuck
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeSSMapSuck
-    (JNIEnv *env, jclass, jobject _send, jobject _src)
+    (JNIEnv *env, jclass, jobject _in)
 {
     static jmethodID method = nullptr;
     cqJNIEnv::staticMethod(&method, env, JNI(), "onSSMapSuck", "(Ljava/lang/String;Ljava/lang/String;)V");
 
-    auto send = cqJNIType::ptr<cq_ss_map_sender>(_send);
-    auto src  = cqJNIType::ptr<cq_ss_map *     >(_src );
+    auto in = cqJNIType::ptr<cq_ss_map_in>(_in);
 
-    std::map<std::string, std::string> object = cq_cpp_ss_map_from(send, src);
+    std::map<std::string, std::string> object = cq_cpp_ss_map_from(in);
     for (auto &cp : object) {
         cqJNIRef<jstring> key = cqJNIType::jniStringAuto(env, cp.first .c_str());
         cqJNIRef<jstring> val = cqJNIType::jniStringAuto(env, cp.second.c_str());
@@ -81,121 +77,40 @@ extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeSSMapSuck
     }
 }
 
-template<class T> auto cached(T fn) -> decltype(fn()) {
-    static thread_local decltype(fn()) object = nullptr;
-    if (object == nullptr) {
-        object = new typename std::remove_reference<decltype(*object)>::type;
-    }
-    return object;
+extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeBytesAssign
+    (JNIEnv *env, jclass, jbyteArray _val, jobject _out)
+{
+    auto val = cqJNIType::data(env, _val);
+    auto out = cqJNIType::ptr<cq_bytes_out>(_out);
+
+    out(val.data(), (int32_t)val.size());
 }
 
-static std::vector<int64_t>               *cached_int64s () {return cached(cached_int64s );}
-static std::vector<std::string>           *cached_strings() {return cached(cached_strings);}
-static std::map<std::string, std::string> *cached_ss_map () {return cached(cached_ss_map );}
-
-extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeLongsAdd
-    (JNIEnv *, jclass, jlong _value)
+extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeIntListAssign
+    (JNIEnv *, jclass, jlong value, jobject _out)
 {
-    auto value = (int64_t)_value;
-    cached_int64s()->push_back(value);
+    auto out = cqJNIType::ptr<cq_int_list_out>(_out);
+
+    out((int64_t)value);
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeStringsAdd
-    (JNIEnv *env, jclass, jstring _value)
+extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeStrListAssign
+    (JNIEnv *env, jclass, jstring _val, jobject _out)
 {
-    std::string string = cqJNIType::string(env, _value);
-    cached_strings()->push_back(string);
+    auto val = cqJNIType::string(env, _val);
+    auto out = cqJNIType::ptr<cq_str_list_out>(_out);
+
+    out(val.c_str());
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeSSMapAdd
-    (JNIEnv *env, jclass, jstring _key, jstring _value)
+extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeSSMapAssign
+    (JNIEnv *env, jclass, jstring _key, jstring _val, jobject _out)
 {
-    std::string key   = cqJNIType::string(env, _key  );
-    std::string value = cqJNIType::string(env, _value);
+    auto key = cqJNIType::string(env, _key);
+    auto val = cqJNIType::string(env, _val);
+    auto out = cqJNIType::ptr<cq_ss_map_out>(_out);
 
-    (*cached_ss_map())[key] =value;
-}
-
-extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeBytesSend
-    (JNIEnv *env, jclass, jbyteArray _bytes, jobject _receive, jobject _dst)
-{
-    auto bytes   = cqJNIType::data(env, _bytes);
-    auto receive = cqJNIType::ptr<cq_bytes_receiver>(_receive);
-    auto dst     = cqJNIType::ptr<cq_bytes *       >(_dst    );
-
-    cq_send_cpp_bytes(bytes, receive, dst);
-}
-
-extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeLongsSend
-    (JNIEnv *, jclass, jobject _receive, jobject _dst)
-{
-    auto receive = cqJNIType::ptr<cq_int64s_receiver>(_receive);
-    auto dst     = cqJNIType::ptr<cq_int64s *       >(_dst    );
-
-    std::vector<int64_t> *object = cached_int64s();
-    cq_send_cpp_int64s(*object, receive, dst);
-    object->clear();
-}
-
-extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeStringsSend
-    (JNIEnv *, jclass, jobject _receive, jobject _dst)
-{
-    auto receive = cqJNIType::ptr<cq_strings_receiver>(_receive);
-    auto dst     = cqJNIType::ptr<cq_strings *       >(_dst    );
-
-    std::vector<std::string> *object = cached_strings();
-    cq_send_cpp_strings(*object, receive, dst);
-    object->clear();
-}
-
-extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeSSMapSend
-    (JNIEnv *, jclass, jobject _receive, jobject _dst)
-{
-    auto receive = cqJNIType::ptr<cq_ss_map_receiver>(_receive);
-    auto dst     = cqJNIType::ptr<cq_ss_map *       >(_dst    );
-
-    std::map<std::string, std::string> *object = cached_ss_map();
-    cq_send_cpp_ss_map(*object, receive, dst);
-    object->clear();
-}
-
-extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_JNI_makeBytesStore
-    (JNIEnv *env, jclass, jbyteArray bytes)
-{
-    std::vector<uint8_t> object = cqJNIType::data(env, bytes);
-    cq_bytes *ret = cq_store_cpp_bytes(object);
-
-    return cqJNIType::jniPtr(ret);
-}
-
-extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_JNI_makeLongsStore
-    (JNIEnv *, jclass)
-{
-    std::vector<int64_t> *object = cached_int64s();
-    cq_int64s *ret = cq_store_cpp_int64s(*object);
-    object->clear();
-
-    return cqJNIType::jniPtr(ret);
-}
-
-extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_JNI_makeStringsStore
-    (JNIEnv *, jclass)
-{
-    std::vector<std::string> *object = cached_strings();
-    cq_strings *ret = cq_store_cpp_strings(*object);
-    object->clear();
-
-    return cqJNIType::jniPtr(ret);
-}
-
-extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_JNI_makeSSMapStore
-    (JNIEnv *, jclass)
-{
-    std::map<std::string, std::string> *object = cached_ss_map();
-    cq_ss_map *ret = cq_store_cpp_ss_map(*object);
-    object->clear();
-
-    return cqJNIType::jniPtr(ret);
+    out(key.c_str(), val.c_str());
 }
 
 //object reference:

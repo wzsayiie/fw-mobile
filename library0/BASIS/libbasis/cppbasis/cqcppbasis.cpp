@@ -99,83 +99,167 @@ _CQBASIS_BEGIN_VERSION_NS
 
 //data interfaces for interaction with c:
 
-cq_bytes   *cq_bytes_cast_cpp  (const std::vector<uint8_t>               &a) {return (cq_bytes   *)&a;}
-cq_int64s  *cq_int64s_cast_cpp (const std::vector<int64_t>               &a) {return (cq_int64s  *)&a;}
-cq_strings *cq_strings_cast_cpp(const std::vector<std::string>           &a) {return (cq_strings *)&a;}
-cq_ss_map  *cq_ss_map_cast_cpp (const std::map<std::string, std::string> &a) {return (cq_ss_map  *)&a;}
+using Bytes    = std::vector<uint8_t>;
+using INT_LIST = std::vector<int64_t>;
+using STR_LIST = std::vector<std::string>;
+using SS_MAP   = std::map<std::string, std::string>;
 
-void cq_cpp_bytes_receiver  (cq_bytes   *a, const void *b, int32_t     c) {cq_c_bytes_receiver  (a, b, c);}
-void cq_cpp_int64s_receiver (cq_int64s  *a, int64_t     b               ) {cq_c_int64s_receiver (a, b   );}
-void cq_cpp_strings_receiver(cq_strings *a, const char *b               ) {cq_c_strings_receiver(a, b   );}
-void cq_cpp_ss_map_receiver (cq_ss_map  *a, const char *b, const char *c) {cq_c_ss_map_receiver (a, b, c);}
+static thread_local Bytes    *_dst_bytes    = nullptr;
+static thread_local INT_LIST *_dst_int_list = nullptr;
+static thread_local STR_LIST *_dst_str_list = nullptr;
+static thread_local SS_MAP   *_dst_ss_map   = nullptr;
 
-void cq_cpp_bytes_sender  (cq_bytes   *a, cq_bytes_receiver   b, cq_bytes   *c) {cq_c_bytes_sender  (a, b, c);}
-void cq_cpp_int64s_sender (cq_int64s  *a, cq_int64s_receiver  b, cq_int64s  *c) {cq_c_int64s_sender (a, b, c);}
-void cq_cpp_strings_sender(cq_strings *a, cq_strings_receiver b, cq_strings *c) {cq_c_strings_sender(a, b, c);}
-void cq_cpp_ss_map_sender (cq_ss_map  *a, cq_ss_map_receiver  b, cq_ss_map  *c) {cq_c_ss_map_sender (a, b, c);}
+static void bytes_out(const void *bytes, int32_t len) {
+    if (_dst_bytes != nullptr) {
+        auto ptr = (const uint8_t *)bytes;
+        auto dat = _dst_bytes;
+        
+        if (ptr && len > 0) {
+            dat->assign(ptr, ptr + len);
+        } else {
+            dat->clear();
+        }
+    }
+}
 
-std::vector<uint8_t> cq_cpp_bytes_from(cq_bytes_sender send, cq_bytes *src) {
-    std::vector<uint8_t> object;
-    if (send) {
-        send(src, cq_cpp_bytes_receiver, cq_bytes_cast_cpp(object));
+static void int_list_out(int64_t item) {
+    if (_dst_int_list != nullptr) {
+        _dst_int_list->push_back(item);
+    }
+}
+
+static void str_list_out(const char *item) {
+    if (_dst_str_list != nullptr) {
+        _dst_str_list->push_back(cqString::make(item));
+    }
+}
+
+static void ss_map_out(const char *key, const char *value) {
+    if (_dst_ss_map && !cq_str_empty(key)) {
+        (*_dst_ss_map)[key] = cqString::make(value);
+    }
+}
+
+static thread_local const Bytes    *_src_bytes    = nullptr;
+static thread_local const INT_LIST *_src_int_list = nullptr;
+static thread_local const STR_LIST *_src_str_list = nullptr;
+static thread_local const SS_MAP   *_src_ss_map   = nullptr;
+
+static void bytes_in(cq_bytes_out out) {
+    if (!_src_bytes && !out) {
+        return;
+    }
+    out(_src_bytes->data(), (int32_t)_src_bytes->size());
+}
+
+static void int_list_in(cq_int_list_out out) {
+    if (!_src_int_list && !out) {
+        return;
+    }
+    for (int64_t it : *_src_int_list) {
+        out(it);
+    }
+}
+
+static void str_list_in(cq_str_list_out out) {
+    if (!_src_str_list && !out) {
+        return;
+    }
+    for (const std::string &it : *_src_str_list) {
+        out(it.c_str());
+    }
+}
+
+static void ss_map_in(cq_ss_map_out out) {
+    if (!_src_ss_map && !out) {
+        return;
+    }
+    for (auto &cp : *_src_ss_map) {
+        out(cp.first.c_str(), cp.second.c_str());
+    }
+}
+
+cq_bytes_out    cq_cpp_bytes_out   (Bytes    &a) {_dst_bytes    = &a; return bytes_out   ;}
+cq_int_list_out cq_cpp_int_list_out(INT_LIST &a) {_dst_int_list = &a; return int_list_out;}
+cq_str_list_out cq_cpp_str_list_out(STR_LIST &a) {_dst_str_list = &a; return str_list_out;}
+cq_ss_map_out   cq_cpp_ss_map_out  (SS_MAP   &a) {_dst_ss_map   = &a; return ss_map_out  ;}
+
+cq_bytes_in    cq_cpp_bytes_in   (const Bytes    &a) {_src_bytes    = &a; return bytes_in   ;}
+cq_int_list_in cq_cpp_int_list_in(const INT_LIST &a) {_src_int_list = &a; return int_list_in;}
+cq_str_list_in cq_cpp_str_list_in(const STR_LIST &a) {_src_str_list = &a; return str_list_in;}
+cq_ss_map_in   cq_cpp_ss_map_in  (const SS_MAP   &a) {_src_ss_map   = &a; return ss_map_in  ;}
+
+#define KEEP(VALUE, CODE)\
+/**/    do{\
+/**/        auto __last = VALUE;\
+/**/        CODE\
+/**/        VALUE = __last;\
+/**/    } while (0)
+
+Bytes cq_cpp_bytes_from(cq_bytes_in in) {
+    Bytes object;
+    if (in != nullptr) {
+        //NOTE: hold last value of _dst_bytes.
+        //the function shouldn't affect last cq_cpp_bytes_out() call.
+        KEEP(_dst_bytes, {
+            in(cq_cpp_bytes_out(object));
+        });
     }
     return object;
 }
 
-std::vector<int64_t> cq_cpp_int64s_from(cq_int64s_sender send, cq_int64s *src) {
-    std::vector<int64_t> object;
-    if (send) {
-        send(src, cq_cpp_int64s_receiver, cq_int64s_cast_cpp(object));
+INT_LIST cq_cpp_int_list_from(cq_int_list_in in) {
+    INT_LIST object;
+    if (in != nullptr) {
+        KEEP(_dst_int_list, {
+            in(cq_cpp_int_list_out(object));
+        });
     }
     return object;
 }
 
-std::vector<std::string> cq_cpp_strings_from(cq_strings_sender send, cq_strings *src) {
-    std::vector<std::string> object;
-    if (send) {
-        send(src, cq_cpp_strings_receiver, cq_strings_cast_cpp(object));
+STR_LIST cq_cpp_str_list_from(cq_str_list_in in) {
+    STR_LIST object;
+    if (in != nullptr) {
+        KEEP(_dst_str_list, {
+            in(cq_cpp_str_list_out(object));
+        });
     }
     return object;
 }
 
-std::map<std::string, std::string> cq_cpp_ss_map_from(cq_ss_map_sender send, cq_ss_map *src) {
-    std::map<std::string, std::string> object;
-    if (send) {
-        send(src, cq_cpp_ss_map_receiver, cq_ss_map_cast_cpp(object));
+SS_MAP cq_cpp_ss_map_from(cq_ss_map_in in) {
+    SS_MAP object;
+    if (in != nullptr) {
+        KEEP(_dst_ss_map, {
+            in(cq_cpp_ss_map_out(object));
+        });
     }
     return object;
 }
 
-void cq_send_cpp_bytes(const std::vector<uint8_t> &src, cq_bytes_receiver recv, cq_bytes *dst) {
-    cq_cpp_bytes_sender(cq_bytes_cast_cpp(src), recv, dst);
+void cq_cpp_bytes_assign(const Bytes &object, cq_bytes_out out) {
+    KEEP(_src_bytes, {
+        cq_cpp_bytes_in(object)(out);
+    });
 }
 
-void cq_send_cpp_int64s(const std::vector<int64_t> &src, cq_int64s_receiver recv, cq_int64s *dst) {
-    cq_cpp_int64s_sender(cq_int64s_cast_cpp(src), recv, dst);
+void cq_cpp_int_list_assign(const INT_LIST &object, cq_int_list_out out) {
+    KEEP(_src_int_list, {
+        cq_cpp_int_list_in(object)(out);
+    });
 }
 
-void cq_send_cpp_strings(const std::vector<std::string> &src, cq_strings_receiver recv, cq_strings *dst) {
-    cq_cpp_strings_sender(cq_strings_cast_cpp(src), recv, dst);
+void cq_cpp_str_list_assign(const STR_LIST &object, cq_str_list_out out) {
+    KEEP(_src_str_list, {
+        cq_cpp_str_list_in(object)(out);
+    });
 }
 
-void cq_send_cpp_ss_map(const std::map<std::string, std::string> &src, cq_ss_map_receiver recv, cq_ss_map *dst) {
-    cq_cpp_ss_map_sender(cq_ss_map_cast_cpp(src), recv, dst);
-}
-
-cq_bytes *cq_store_cpp_bytes(const std::vector<uint8_t> &object) {
-    return cq_store_c_bytes(cq_cpp_bytes_sender, cq_bytes_cast_cpp(object));
-}
-
-cq_int64s *cq_store_cpp_int64s(const std::vector<int64_t> &object) {
-    return cq_store_c_int64s(cq_cpp_int64s_sender, cq_int64s_cast_cpp(object));
-}
-
-cq_strings *cq_store_cpp_strings(const std::vector<std::string> &object) {
-    return cq_store_c_strings(cq_cpp_strings_sender, cq_strings_cast_cpp(object));
-}
-
-cq_ss_map *cq_store_cpp_ss_map(const std::map<std::string, std::string> &object) {
-    return cq_store_c_ss_map(cq_cpp_ss_map_sender, cq_ss_map_cast_cpp(object));
+void cq_cpp_ss_map_assign(const SS_MAP &object, cq_ss_map_out out) {
+    KEEP(_src_ss_map, {
+        cq_cpp_ss_map_in(object)(out);
+    });
 }
 
 //object reference:

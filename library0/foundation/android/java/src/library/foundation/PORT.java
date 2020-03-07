@@ -8,7 +8,6 @@ import java.util.Map;
 
 import src.library.basis.CPtr;
 import src.library.basis.JNI;
-import src.library.basis.StringUtil;
 import src.library.basis.W;
 
 @SuppressWarnings({W.LIB_OMIT_0, W.LIB_OMIT_1, W.LIB_OMIT_2, W.LIB_OMIT_3})
@@ -26,9 +25,9 @@ public class PORT {
 
     //app bundle resource:
 
-    public static CPtr cq_android_asset(String name) {
+    public static void cq_android_asset(String name, CPtr out) {
         byte[] asset = AssetAssist.getAsset(name);
-        return JNI.storeBytes(asset);
+        JNI.bytesAssign(asset, out);
     }
 
     public static boolean cq_android_copy_asset(String fromPath, String toPath) {
@@ -65,9 +64,9 @@ public class PORT {
         FileAssist.removePath(path);
     }
 
-    public static CPtr cq_sub_files(String path) {
+    public static void cq_sub_files(String path, CPtr out) {
         ArrayList<String> items = FileAssist.listSubItems(path, null);
-        return JNI.storeStrings(items);
+        JNI.strListAssign(items, out);
     }
 
     //thread:
