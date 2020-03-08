@@ -78,7 +78,7 @@ static void bytes_in(cq_bytes_out out) {
     out(object.bytes, (int32_t)object.length);
 }
 
-static void int_list_in(cq_int_list_out out) {
+static void int_list_in(cq_i64_list_out out) {
     if (!_src_int_list && !out) {
         return;
     }
@@ -109,12 +109,12 @@ static void ss_map_in(cq_ss_map_out out) {
 }
 
 cq_bytes_out    cq_oc_bytes_out   (M_BYTES    *a) {_dst_bytes    = (__bridge CFTypeRef)a; return bytes_out   ;}
-cq_int_list_out cq_oc_int_list_out(M_INT_LIST *a) {_dst_int_list = (__bridge CFTypeRef)a; return int_list_out;}
+cq_i64_list_out cq_oc_i64_list_out(M_INT_LIST *a) {_dst_int_list = (__bridge CFTypeRef)a; return int_list_out;}
 cq_str_list_out cq_oc_str_list_out(M_STR_LIST *a) {_dst_str_list = (__bridge CFTypeRef)a; return str_list_out;}
 cq_ss_map_out   cq_oc_ss_map_out  (M_SS_MAP   *a) {_dst_ss_map   = (__bridge CFTypeRef)a; return ss_map_out  ;}
 
 cq_bytes_in    cq_oc_bytes_in   (BYTES    *a) {_src_bytes    = (__bridge CFTypeRef)a; return bytes_in   ;}
-cq_int_list_in cq_oc_int_list_in(INT_LIST *a) {_src_int_list = (__bridge CFTypeRef)a; return int_list_in;}
+cq_i64_list_in cq_oc_i64_list_in(INT_LIST *a) {_src_int_list = (__bridge CFTypeRef)a; return int_list_in;}
 cq_str_list_in cq_oc_str_list_in(STR_LIST *a) {_src_str_list = (__bridge CFTypeRef)a; return str_list_in;}
 cq_ss_map_in   cq_oc_ss_map_in  (SS_MAP   *a) {_src_ss_map   = (__bridge CFTypeRef)a; return ss_map_in  ;}
 
@@ -139,14 +139,14 @@ BYTES *cq_oc_bytes_from(cq_bytes_in in) {
     return object;
 }
 
-INT_LIST *cq_oc_int_list_from(cq_int_list_in in) {
+INT_LIST *cq_oc_i64_list_from(cq_i64_list_in in) {
     if (in == NULL) {
         return nil;
     }
     
     M_INT_LIST *object = [NSMutableArray array];
     KEEP(_dst_int_list, {
-        in(cq_oc_int_list_out(object));
+        in(cq_oc_i64_list_out(object));
     });
     return object;
 }
@@ -181,9 +181,9 @@ void cq_oc_bytes_assign(BYTES *object, cq_bytes_out out) {
     });
 }
 
-void cq_oc_int_list_assign(INT_LIST *object, cq_int_list_out out) {
+void cq_oc_i64_list_assign(INT_LIST *object, cq_i64_list_out out) {
     KEEP(_src_int_list, {
-        cq_oc_int_list_in(object)(out);
+        cq_oc_i64_list_in(object)(out);
     });
 }
 

@@ -83,44 +83,79 @@ CQ_C_LINK bool cq_dbl_equal(double a, double b);
 typedef uint16_t char16_t;
 #endif
 
-CQ_C_LINK bool cq_str_empty(const char *string);
-CQ_C_LINK bool cq_u16str_empty(const char16_t *string);
+//if $str == null or strlen($str) == 0, return true.
+CQ_C_LINK bool cq_str_empty(const char *str);
+CQ_C_LINK bool cq_u16str_empty(const char16_t *str);
 
 //storing values on current thread, until call of cq_store_xx again on same thread.
-CQ_C_LINK const char *cq_store_str(const char *string);
-CQ_C_LINK const char16_t *cq_store_u16str(const char16_t *string);
+CQ_C_LINK const char *cq_store_str(const char *str);
+CQ_C_LINK const char16_t *cq_store_u16str(const char16_t *str);
 
-//unicode:
+//unicode coding conversion.
+CQ_C_LINK const char16_t *cq_u16s_from_u8s(const char *src);
+CQ_C_LINK const char *cq_u8s_from_u16s(const char16_t *src);
 
-//char8_t is a new type since c++20.
-//this typedef wants that char and _char8_t is same type, to avoid type conversion.
-//
-//NOTE:
-//char8_t form c++20 is unsigned. whether char is signed or unsigned is configurable.
-//CLANG use argument '-funsigned-char' to specify char unsigned;
-//MS CL use argument '/J' to specify char unsigned.
-typedef char _char8_t;
+//define user structures:
 
-CQ_C_LINK const char16_t *cq_u16s_from8s(const _char8_t *src);
-CQ_C_LINK const _char8_t *cq_u8s_from16s(const char16_t *src);
+#define cq_struct(NAME)\
+/**/    typedef struct NAME NAME;\
+/**/    struct NAME
 
-//runnable.
-typedef void (*cq_runnable)(void *);
-
-//to define a struct.
-#define cq_struct(NAME) typedef struct NAME NAME; struct NAME
+#define cq_enum(TYPE, NAME)\
+/**/    typedef TYPE NAME;\
+/**/    enum
 
 //interfaces for multiplex structures:
 
 typedef void (*cq_bytes_out   )(const void *bytes, int32_t len);
-typedef void (*cq_int_list_out)(int64_t item);
+typedef void (*cq_i64_list_out)(int64_t item);
 typedef void (*cq_str_list_out)(const char *item);
 typedef void (*cq_ss_map_out  )(const char *key, const char *value);
 
 typedef void (*cq_bytes_in   )(cq_bytes_out    out);
-typedef void (*cq_int_list_in)(cq_int_list_out out);
+typedef void (*cq_i64_list_in)(cq_i64_list_out out);
 typedef void (*cq_str_list_in)(cq_str_list_out out);
 typedef void (*cq_ss_map_in  )(cq_ss_map_out   out);
+
+//block:
+
+//$data is user defined parameters.
+typedef void (*cq_block)(void *data);
+
+//before calling cq_run_block(), using cq_set_block_xx() to assign block parameters.
+//when the cq_block is being called, it can use cq_block_xx() to get these values.
+
+CQ_C_LINK void cq_set_block_bool  (const char *name, bool        value);
+CQ_C_LINK void cq_set_block_int64 (const char *name, int64_t     value);
+CQ_C_LINK void cq_set_block_double(const char *name, double      value);
+CQ_C_LINK void cq_set_block_str   (const char *name, const char *value);
+
+CQ_C_LINK void cq_set_block_bytes_out   (const char *name, cq_bytes_out    value);
+CQ_C_LINK void cq_set_block_i64_list_out(const char *name, cq_i64_list_out value);
+CQ_C_LINK void cq_set_block_str_list_out(const char *name, cq_str_list_out value);
+CQ_C_LINK void cq_set_block_ss_map_out  (const char *name, cq_ss_map_out   value);
+
+CQ_C_LINK void cq_set_block_bytes_in   (const char *name, cq_bytes_in    value);
+CQ_C_LINK void cq_set_block_i64_list_in(const char *name, cq_i64_list_in value);
+CQ_C_LINK void cq_set_block_str_list_in(const char *name, cq_str_list_in value);
+CQ_C_LINK void cq_set_block_ss_map_in  (const char *name, cq_ss_map_in   value);
+
+CQ_C_LINK bool        cq_block_bool  (const char *name);
+CQ_C_LINK int64_t     cq_block_int64 (const char *name);
+CQ_C_LINK double      cq_block_double(const char *name);
+CQ_C_LINK const char *cq_block_str   (const char *name);
+
+CQ_C_LINK cq_bytes_out    cq_block_bytes_out   (const char *name);
+CQ_C_LINK cq_i64_list_out cq_block_i64_list_out(const char *name);
+CQ_C_LINK cq_str_list_out cq_block_str_list_out(const char *name);
+CQ_C_LINK cq_ss_map_out   cq_block_ss_map_out  (const char *name);
+
+CQ_C_LINK cq_bytes_in    cq_block_bytes_in   (const char *name);
+CQ_C_LINK cq_i64_list_in cq_block_i64_list_in(const char *name);
+CQ_C_LINK cq_str_list_in cq_block_str_list_in(const char *name);
+CQ_C_LINK cq_ss_map_in   cq_block_ss_map_in  (const char *name);
+
+CQ_C_LINK void cq_run_block(cq_block block, void *data);
 
 //object reference:
 
@@ -129,13 +164,14 @@ cq_struct(cq_obj);
 CQ_C_LINK cq_obj *cq_retain_raw_obj(void *raw, void (*release)(void *raw));
 
 //cq_retain_obj() and cq_relase_obj() is thread safe.
-CQ_C_LINK cq_obj *cq_retain_obj(cq_obj *obj);
-CQ_C_LINK void cq_release_obj(cq_obj *obj);
+CQ_C_LINK cq_obj *cq_retain_obj (cq_obj *obj);
+CQ_C_LINK void    cq_release_obj(cq_obj *obj);
 
-CQ_C_LINK void *cq_obj_raw(cq_obj *obj);
+CQ_C_LINK void       *cq_obj_raw      (cq_obj *obj);
+CQ_C_LINK void        cq_set_obj_cls  (cq_obj *obj, const char *cls);
+CQ_C_LINK const char *cq_obj_cls      (cq_obj *obj);
+CQ_C_LINK void        cq_set_obj_magic(cq_obj *obj, int32_t magic);
+CQ_C_LINK int32_t     cq_obj_magic    (cq_obj *obj);
 
-CQ_C_LINK void cq_set_obj_cls(cq_obj *obj, const char *cls);
-CQ_C_LINK const char *cq_obj_cls(cq_obj *obj);
-
-CQ_C_LINK void cq_set_obj_magic(cq_obj *obj, int32_t magic);
-CQ_C_LINK int32_t cq_obj_magic(cq_obj *obj);
+CQ_C_LINK void cq_obj_listen_event(cq_obj *obj, int32_t event, cq_block block, void *data);
+CQ_C_LINK void cq_obj_send_event  (cq_obj *obj, int32_t event);

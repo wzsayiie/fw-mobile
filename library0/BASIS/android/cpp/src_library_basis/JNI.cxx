@@ -6,14 +6,12 @@ CQ_JNI_CLASS(JNI, "src/library/basis/JNI");
 //runnable:
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_run
-    (JNIEnv *env, jclass, jobject _runnable, jobject _data)
+    (JNIEnv *env, jclass, jobject _block, jobject _data)
 {
-    auto runnable = cqJNIType::ptr<cq_runnable>(env, _runnable);
-    auto data     = cqJNIType::ptr<void *>(env, _data);
+    auto block = cqJNIType::ptr<cq_block>(env, _block);
+    auto data  = cqJNIType::ptr<void *>(env, _data);
 
-    if (runnable != nullptr) {
-        runnable(data);
-    }
+    cq_run_block(block, data);
 }
 
 //data structure:
@@ -38,9 +36,9 @@ extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeIntListSuck
     static jmethodID method = nullptr;
     cqJNIEnv::staticMethod(&method, env, JNI(), "onIntListSuck", "(J)V");
 
-    auto in = cqJNIType::ptr<cq_int_list_in>(env, _in);
+    auto in = cqJNIType::ptr<cq_i64_list_in>(env, _in);
 
-    std::vector<int64_t> object = cq_cpp_int_list_from(in);
+    std::vector<int64_t> object = cq_cpp_i64_list_from(in);
     for (auto &it : object) {
         env->CallStaticVoidMethod(JNI(), method, (jlong)it);
     }
@@ -89,7 +87,7 @@ extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeBytesAssign
 extern "C" JNIEXPORT void JNICALL Java_src_library_basis_JNI_makeIntListAssign
     (JNIEnv *env, jclass, jlong value, jobject _out)
 {
-    auto out = cqJNIType::ptr<cq_int_list_out>(env, _out);
+    auto out = cqJNIType::ptr<cq_i64_list_out>(env, _out);
 
     out((int64_t)value);
 }

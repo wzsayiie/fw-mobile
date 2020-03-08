@@ -166,7 +166,7 @@ static cq_obj *check_object(lua_State *state, int32_t index) {
     return (cq_obj *)raw;
 }
 
-static void check_int_list(lua_State *state, int32_t index, cq_int_list_out out) {
+static void check_int_list(lua_State *state, int32_t index, cq_i64_list_out out) {
     lua_stack_guard guard(state);
     
     if (!lua_istable(state, index)) {
@@ -183,7 +183,7 @@ static void check_int_list(lua_State *state, int32_t index, cq_int_list_out out)
         lua_pop(state, 1);
     }
     
-    cq_cpp_int_list_assign(object, out);
+    cq_cpp_i64_list_assign(object, out);
 }
 
 static void check_str_list(lua_State *state, int32_t index, cq_str_list_out out) {
@@ -281,8 +281,8 @@ static void push_object(lua_State *state, cq_obj *value) {
     lua_setmetatable(state, -2);
 }
 
-static void push_int_list(lua_State *state, cq_int_list_in in) {
-    std::vector<int64_t> object = cq_cpp_int_list_from(in);
+static void push_int_list(lua_State *state, cq_i64_list_in in) {
+    std::vector<int64_t> object = cq_cpp_i64_list_from(in);
     
     lua_newtable(state);
     

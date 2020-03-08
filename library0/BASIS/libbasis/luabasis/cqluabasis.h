@@ -19,7 +19,7 @@ CQ_C_LINK double      cq_lua_check_double(lua_State *state, int32_t index);
 CQ_C_LINK const char *cq_lua_check_string(lua_State *state, int32_t index);
 CQ_C_LINK cq_obj     *cq_lua_check_object(lua_State *state, int32_t index);
 
-CQ_C_LINK void cq_lua_check_int_list(lua_State *state, int32_t index, cq_int_list_out out);
+CQ_C_LINK void cq_lua_check_int_list(lua_State *state, int32_t index, cq_i64_list_out out);
 CQ_C_LINK void cq_lua_check_str_list(lua_State *state, int32_t index, cq_str_list_out out);
 CQ_C_LINK void cq_lua_check_ss_map  (lua_State *state, int32_t index, cq_ss_map_out   out);
 
@@ -34,7 +34,7 @@ CQ_C_LINK int32_t cq_lua_return_double(lua_State *state, double      value);
 CQ_C_LINK int32_t cq_lua_return_string(lua_State *state, const char *value);
 CQ_C_LINK int32_t cq_lua_return_object(lua_State *state, cq_obj     *value);
 
-CQ_C_LINK int32_t cq_lua_return_int_list(lua_State *state, cq_int_list_in in);
+CQ_C_LINK int32_t cq_lua_return_int_list(lua_State *state, cq_i64_list_in in);
 CQ_C_LINK int32_t cq_lua_return_str_list(lua_State *state, cq_str_list_in in);
 CQ_C_LINK int32_t cq_lua_return_ss_map  (lua_State *state, cq_ss_map_in   in);
 
@@ -51,7 +51,7 @@ cq_struct(_cq_lua_handlers) {
     const char *(*check_string  )(lua_State *state, int32_t index);
     cq_obj     *(*check_object  )(lua_State *state, int32_t index);
     
-    void (*check_int_list)(lua_State *state, int32_t index, cq_int_list_out out);
+    void (*check_int_list)(lua_State *state, int32_t index, cq_i64_list_out out);
     void (*check_str_list)(lua_State *state, int32_t index, cq_str_list_out out);
     void (*check_ss_map  )(lua_State *state, int32_t index, cq_ss_map_out   out);
     
@@ -61,7 +61,7 @@ cq_struct(_cq_lua_handlers) {
     void (*push_string  )(lua_State *state, const char *value);
     void (*push_object  )(lua_State *state, cq_obj     *value);
     
-    void (*push_int_list)(lua_State *state, cq_int_list_in in);
+    void (*push_int_list)(lua_State *state, cq_i64_list_in in);
     void (*push_str_list)(lua_State *state, cq_str_list_in in);
     void (*push_ss_map  )(lua_State *state, cq_ss_map_in   in);
 };

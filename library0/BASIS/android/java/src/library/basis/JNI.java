@@ -8,7 +8,7 @@ public class JNI {
 
     //runnable:
 
-    public static native void run(CPtr runnable, CPtr data);
+    public static native void run(CPtr block, CPtr data);
 
     //data structure:
 

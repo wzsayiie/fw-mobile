@@ -88,9 +88,9 @@ void cq_sub_files(const char *path, cq_str_list_out out) {
 
 //thread:
 
-void cq_thread_run(cq_runnable runnable, void *data) {
+void cq_thread_run(cq_block block, void *data) {
     CQ_JNI_STATIC_METHOD(PORT, method, "cq_thread_run");
-    method.fn<void>(runnable, data);
+    method.fn<void>(block, data);
 }
 
 void cq_thread_sleep(float seconds) {
@@ -100,9 +100,9 @@ void cq_thread_sleep(float seconds) {
 
 //main run loop:
 
-void cq_main_loop_post(cq_runnable runnable, void *data) {
+void cq_main_loop_post(cq_block block, void *data) {
     CQ_JNI_STATIC_METHOD(PORT, method, "cq_main_loop_post");
-    method.fn<void>(runnable, data);
+    method.fn<void>(block, data);
 }
 
 //http(s):

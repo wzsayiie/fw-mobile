@@ -77,9 +77,9 @@ void cq_sub_files(const char *path, cq_str_list_out out) {
 
 //thread:
 
-void cq_thread_run(cq_runnable runnable, void *data) {
-    if (runnable != NULL) {
-        CQThreadRun(^{ runnable(data); });
+void cq_thread_run(cq_block block, void *data) {
+    if (block != NULL) {
+        CQThreadRun(^{ cq_run_block(block, data); });
     }
 }
 
@@ -89,9 +89,9 @@ void cq_thread_sleep(float seconds) {
 
 //main run loop:
 
-void cq_main_loop_post(cq_runnable runnable, void * data) {
-    if (runnable != NULL) {
-        [CQRunLoop.mainRunLoop performBlock:^{ runnable(data); }];
+void cq_main_loop_post(cq_block block, void * data) {
+    if (block != NULL) {
+        [CQRunLoop.mainRunLoop performBlock:^{ cq_run_block(block, data); }];
     }
 }
 

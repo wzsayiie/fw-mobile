@@ -132,7 +132,7 @@ std::vector<std::string> cqFileManager::contentsOfDirectoryAtPath(const std::str
 
 //thread:
 
-static void cqThread_runnableBody(void *data) {
+static void cqThread_block(void *data) {
     auto ref = (std::function<void ()> *)data;
     (*ref)();
     delete ref;
@@ -140,7 +140,7 @@ static void cqThread_runnableBody(void *data) {
 
 void cqThread::run(std::function<void ()> task) {
     auto ref = new std::function<void ()>(task);
-    cq_thread_run(cqThread_runnableBody, ref);
+    cq_thread_run(cqThread_block, ref);
 }
 
 void cqThread::sleep(float seconds) {
@@ -156,7 +156,7 @@ cqRunLoopRef cqRunLoop::mainRunLoop() {
     return cqStaticObject<cqRunLoop>();
 }
 
-static void cqRunLoop_runnableBody(void *data) {
+static void cqRunLoop_block(void *data) {
     auto ref = (std::function<void ()> *)data;
     (*ref)();
     delete ref;
@@ -164,7 +164,7 @@ static void cqRunLoop_runnableBody(void *data) {
 
 void cqRunLoop::perform(std::function<void ()> task) {
     auto ref = new std::function<void ()>(task);
-    cq_main_loop_post(cqRunLoop_runnableBody, ref);
+    cq_main_loop_post(cqRunLoop_block, ref);
 }
 
 //http(s):

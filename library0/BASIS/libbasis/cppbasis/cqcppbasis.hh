@@ -231,22 +231,22 @@ template<class T, int = 0> typename cqRef<T>::Strong cqStaticObject() {
 //data interfaces for interaction with c:
 
 cq_bytes_out    cq_cpp_bytes_out   (std::vector<uint8_t>         &object);
-cq_int_list_out cq_cpp_int_list_out(std::vector<int64_t>         &object);
+cq_i64_list_out cq_cpp_i64_list_out(std::vector<int64_t>         &object);
 cq_str_list_out cq_cpp_str_list_out(std::vector<std::string>     &object);
 cq_ss_map_out   cq_cpp_ss_map_out  (std::map<std::string, std::string> &);
 
 cq_bytes_in    cq_cpp_bytes_in   (const std::vector<uint8_t>         &object);
-cq_int_list_in cq_cpp_int_list_in(const std::vector<int64_t>         &object);
+cq_i64_list_in cq_cpp_i64_list_in(const std::vector<int64_t>         &object);
 cq_str_list_in cq_cpp_str_list_in(const std::vector<std::string>     &object);
 cq_ss_map_in   cq_cpp_ss_map_in  (const std::map<std::string, std::string> &);
 
 std::vector<uint8_t>               cq_cpp_bytes_from   (cq_bytes_in    in);
-std::vector<int64_t>               cq_cpp_int_list_from(cq_int_list_in in);
+std::vector<int64_t>               cq_cpp_i64_list_from(cq_i64_list_in in);
 std::vector<std::string>           cq_cpp_str_list_from(cq_str_list_in in);
 std::map<std::string, std::string> cq_cpp_ss_map_from  (cq_ss_map_in   in);
 
 void cq_cpp_bytes_assign   (const std::vector<uint8_t>         &object, cq_bytes_out    out);
-void cq_cpp_int_list_assign(const std::vector<int64_t>         &object, cq_int_list_out out);
+void cq_cpp_i64_list_assign(const std::vector<int64_t>         &object, cq_i64_list_out out);
 void cq_cpp_str_list_assign(const std::vector<std::string>     &object, cq_str_list_out out);
 void cq_cpp_ss_map_assign  (const std::map<std::string, std::string> &, cq_ss_map_out   out);
 
