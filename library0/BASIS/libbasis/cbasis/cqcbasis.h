@@ -107,11 +107,29 @@ CQ_C_LINK const char *cq_u8s_from_u16s(const char16_t *src);
 
 //interfaces for multiplex structures:
 
-typedef void (*cq_bytes_out   )(const void *bytes, int32_t len);
-typedef void (*cq_i64_list_out)(int64_t item);
-typedef void (*cq_str_list_out)(const char *item);
-typedef void (*cq_ss_map_out  )(const char *key, const char *value);
+typedef void (*cq_bool_out  )(bool    value);
+typedef void (*cq_int8_out  )(int8_t  value);
+typedef void (*cq_int16_out )(int16_t value);
+typedef void (*cq_int32_out )(int32_t value);
+typedef void (*cq_int64_out )(int64_t value);
+typedef void (*cq_float_out )(float   value);
+typedef void (*cq_double_out)(double  value);
 
+typedef void (*cq_str_out     )(const char *str);
+typedef void (*cq_bytes_out   )(const void *ptr, int32_t len);
+typedef void (*cq_i64_list_out)(int64_t     val);
+typedef void (*cq_str_list_out)(const char *val);
+typedef void (*cq_ss_map_out  )(const char *key, const char *val);
+
+typedef void (*cq_bool_in  )(cq_bool_out   out);
+typedef void (*cq_int8_in  )(cq_int8_out   out);
+typedef void (*cq_int16_in )(cq_int16_out  out);
+typedef void (*cq_int32_in )(cq_int32_out  out);
+typedef void (*cq_int64_in )(cq_int64_out  out);
+typedef void (*cq_float_in )(cq_float_out  out);
+typedef void (*cq_double_in)(cq_double_out out);
+
+typedef void (*cq_str_in     )(cq_str_out      out);
 typedef void (*cq_bytes_in   )(cq_bytes_out    out);
 typedef void (*cq_i64_list_in)(cq_i64_list_out out);
 typedef void (*cq_str_list_in)(cq_str_list_out out);
@@ -125,35 +143,23 @@ typedef void (*cq_block)(void *data);
 //before calling cq_run_block(), using cq_set_block_xx() to assign block parameters.
 //when the cq_block is being called, it can use cq_block_xx() to get these values.
 
-CQ_C_LINK void cq_set_block_bool  (const char *name, bool        value);
-CQ_C_LINK void cq_set_block_int64 (const char *name, int64_t     value);
-CQ_C_LINK void cq_set_block_double(const char *name, double      value);
-CQ_C_LINK void cq_set_block_str   (const char *name, const char *value);
+CQ_C_LINK void cq_block_bool_in  (const char *name, bool    value);
+CQ_C_LINK void cq_block_int8_in  (const char *name, int8_t  value);
+CQ_C_LINK void cq_block_int16_in (const char *name, int16_t value);
+CQ_C_LINK void cq_block_int32_in (const char *name, int32_t value);
+CQ_C_LINK void cq_block_int64_in (const char *name, int64_t value);
+CQ_C_LINK void cq_block_float_in (const char *name, float   value);
+CQ_C_LINK void cq_block_double_in(const char *name, double  value);
+CQ_C_LINK void cq_block_ptr_in   (const char *name, void *  value);
 
-CQ_C_LINK void cq_set_block_bytes_out   (const char *name, cq_bytes_out    value);
-CQ_C_LINK void cq_set_block_i64_list_out(const char *name, cq_i64_list_out value);
-CQ_C_LINK void cq_set_block_str_list_out(const char *name, cq_str_list_out value);
-CQ_C_LINK void cq_set_block_ss_map_out  (const char *name, cq_ss_map_out   value);
-
-CQ_C_LINK void cq_set_block_bytes_in   (const char *name, cq_bytes_in    value);
-CQ_C_LINK void cq_set_block_i64_list_in(const char *name, cq_i64_list_in value);
-CQ_C_LINK void cq_set_block_str_list_in(const char *name, cq_str_list_in value);
-CQ_C_LINK void cq_set_block_ss_map_in  (const char *name, cq_ss_map_in   value);
-
-CQ_C_LINK bool        cq_block_bool  (const char *name);
-CQ_C_LINK int64_t     cq_block_int64 (const char *name);
-CQ_C_LINK double      cq_block_double(const char *name);
-CQ_C_LINK const char *cq_block_str   (const char *name);
-
-CQ_C_LINK cq_bytes_out    cq_block_bytes_out   (const char *name);
-CQ_C_LINK cq_i64_list_out cq_block_i64_list_out(const char *name);
-CQ_C_LINK cq_str_list_out cq_block_str_list_out(const char *name);
-CQ_C_LINK cq_ss_map_out   cq_block_ss_map_out  (const char *name);
-
-CQ_C_LINK cq_bytes_in    cq_block_bytes_in   (const char *name);
-CQ_C_LINK cq_i64_list_in cq_block_i64_list_in(const char *name);
-CQ_C_LINK cq_str_list_in cq_block_str_list_in(const char *name);
-CQ_C_LINK cq_ss_map_in   cq_block_ss_map_in  (const char *name);
+CQ_C_LINK bool    cq_block_bool  (const char *name);
+CQ_C_LINK int8_t  cq_block_int8  (const char *name);
+CQ_C_LINK int16_t cq_block_int16 (const char *name);
+CQ_C_LINK int32_t cq_block_int32 (const char *name);
+CQ_C_LINK int64_t cq_block_int64 (const char *name);
+CQ_C_LINK float   cq_block_float (const char *name);
+CQ_C_LINK double  cq_block_double(const char *name);
+CQ_C_LINK void *  cq_block_ptr   (const char *name);
 
 CQ_C_LINK void cq_run_block(cq_block block, void *data);
 

@@ -25,7 +25,7 @@ const char *cq_ios_resource_path(const char *name, const char *type) {
 
 void cq_ios_resource(const char *name, const char *type, cq_bytes_out out) {
     NSData *data = [CQBundle.mainBundle resourceForName:@(type) type:@(type)];
-    cq_oc_bytes_assign(data, out);
+    cq_oc_set_bytes(data, out);
 }
 
 void cq_android_asset(const char *name, cq_bytes_out out) {
@@ -72,7 +72,7 @@ void cq_remove_path(const char *path) {
 void cq_sub_files(const char *path, cq_str_list_out out) {
     CQFileManager *manager = CQFileManager.sharedObject;
     NSArray<NSString *> *contents = [manager contentsOfDirectoryAtPath:@(path) error:NULL];
-    cq_oc_str_list_assign(contents, out);
+    cq_oc_set_str_list(contents, out);
 }
 
 //thread:

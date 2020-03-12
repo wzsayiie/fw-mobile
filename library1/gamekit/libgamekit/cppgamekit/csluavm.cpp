@@ -183,7 +183,7 @@ static void check_int_list(lua_State *state, int32_t index, cq_i64_list_out out)
         lua_pop(state, 1);
     }
     
-    cq_cpp_i64_list_assign(object, out);
+    cq_cpp_set(object, out);
 }
 
 static void check_str_list(lua_State *state, int32_t index, cq_str_list_out out) {
@@ -203,7 +203,7 @@ static void check_str_list(lua_State *state, int32_t index, cq_str_list_out out)
         lua_pop(state, 1);
     }
     
-    cq_cpp_str_list_assign(object, out);
+    cq_cpp_set(object, out);
 }
 
 static void check_ss_map(lua_State *state, int32_t index, cq_ss_map_out out) {
@@ -224,7 +224,7 @@ static void check_ss_map(lua_State *state, int32_t index, cq_ss_map_out out) {
         lua_pop(state, 1);
     }
     
-    cq_cpp_ss_map_assign(object, out);
+    cq_cpp_set(object, out);
 }
 
 static void push_bool   (lua_State *s, bool        v) {lua_pushboolean(s, v);}
@@ -282,7 +282,7 @@ static void push_object(lua_State *state, cq_obj *value) {
 }
 
 static void push_int_list(lua_State *state, cq_i64_list_in in) {
-    std::vector<int64_t> object = cq_cpp_i64_list_from(in);
+    std::vector<int64_t> object = cq_cpp_i64_list(in);
     
     lua_newtable(state);
     
@@ -295,7 +295,7 @@ static void push_int_list(lua_State *state, cq_i64_list_in in) {
 }
 
 static void push_str_list(lua_State *state, cq_str_list_in in) {
-    std::vector<std::string> object = cq_cpp_str_list_from(in);
+    std::vector<std::string> object = cq_cpp_str_list(in);
     
     lua_newtable(state);
     
@@ -308,7 +308,7 @@ static void push_str_list(lua_State *state, cq_str_list_in in) {
 }
 
 static void push_ss_map(lua_State *state, cq_ss_map_in in) {
-    std::map<std::string, std::string> object = cq_cpp_ss_map_from(in);
+    std::map<std::string, std::string> object = cq_cpp_ss_map(in);
     
     lua_newtable(state);
     

@@ -99,168 +99,261 @@ _CQBASIS_BEGIN_VERSION_NS
 
 //data interfaces for interaction with c:
 
-using Bytes    = std::vector<uint8_t>;
-using INT_LIST = std::vector<int64_t>;
-using STR_LIST = std::vector<std::string>;
-using SS_MAP   = std::map<std::string, std::string>;
+static void bool_out  (void *dst, bool    value) {if (dst) *(bool    *)dst = value;}
+static void int8_out  (void *dst, int8_t  value) {if (dst) *(int8_t  *)dst = value;}
+static void int16_out (void *dst, int16_t value) {if (dst) *(int16_t *)dst = value;}
+static void int32_out (void *dst, int32_t value) {if (dst) *(int32_t *)dst = value;}
+static void int64_out (void *dst, int64_t value) {if (dst) *(int64_t *)dst = value;}
+static void float_out (void *dst, float   value) {if (dst) *(float   *)dst = value;}
+static void double_out(void *dst, double  value) {if (dst) *(double  *)dst = value;}
 
-static thread_local Bytes    *_dst_bytes    = nullptr;
-static thread_local INT_LIST *_dst_int_list = nullptr;
-static thread_local STR_LIST *_dst_str_list = nullptr;
-static thread_local SS_MAP   *_dst_ss_map   = nullptr;
+static void str_out(void *dst, const char *str) {
+    if (dst == NULL) {
+        return;
+    }
+    auto object = (std::string *)dst;
+    object->assign(cqString::make(str));
+}
 
-static void bytes_out(const void *bytes, int32_t len) {
-    if (_dst_bytes != nullptr) {
-        auto ptr = (const uint8_t *)bytes;
-        auto dat = _dst_bytes;
-        
-        if (ptr && len > 0) {
-            dat->assign(ptr, ptr + len);
-        } else {
-            dat->clear();
+static void bytes_out(void *dst, const void *ptr, int32_t len) {
+    if (dst == NULL) {
+        return;
+    }
+    auto object = (std::vector<uint8_t> *)dst;
+    if (ptr && len > 0) {
+        object->assign((uint8_t *)ptr, (uint8_t *)ptr + len);
+    }
+}
+
+static void i64_list_out(void *dst, int64_t value) {
+    if (dst == NULL) {
+        return;
+    }
+    auto object = (std::vector<int64_t> *)dst;
+    object->push_back(value);
+}
+
+static void str_list_out(void *dst, const char *value) {
+    if (dst == NULL) {
+        return;
+    }
+    auto object = (std::vector<std::string> *)dst;
+    object->push_back(cqString::make(value));
+}
+
+static void ss_map_out(void *dst, const char *key, const char *value) {
+    if (dst == NULL) {
+        return;
+    }
+    auto object = (std::map<std::string, std::string> *)dst;
+    if (!cq_str_empty(key)) {
+        (*object)[key] = cqString::make(value);
+    }
+}
+
+#define GEN_OUT_FN(FN, PARAM, ...)\
+/**/    static thread_local void *FN##_dst_0 = NULL;\
+/**/    static thread_local void *FN##_dst_1 = NULL;\
+/**/    static thread_local void *FN##_dst_2 = NULL;\
+/**/    static thread_local void *FN##_dst_3 = NULL;\
+/**/    static void FN##_0 PARAM {FN(FN##_dst_0, __VA_ARGS__);}\
+/**/    static void FN##_1 PARAM {FN(FN##_dst_1, __VA_ARGS__);}\
+/**/    static void FN##_2 PARAM {FN(FN##_dst_2, __VA_ARGS__);}\
+/**/    static void FN##_3 PARAM {FN(FN##_dst_3, __VA_ARGS__);}
+
+GEN_OUT_FN(bool_out  , (bool    v), v)
+GEN_OUT_FN(int8_out  , (int8_t  v), v)
+GEN_OUT_FN(int16_out , (int16_t v), v)
+GEN_OUT_FN(int32_out , (int32_t v), v)
+GEN_OUT_FN(int64_out , (int64_t v), v)
+GEN_OUT_FN(float_out , (float   v), v)
+GEN_OUT_FN(double_out, (double  v), v)
+
+GEN_OUT_FN(str_out     , (const char *s               ), s   )
+GEN_OUT_FN(bytes_out   , (const void *p, int32_t     n), p, n)
+GEN_OUT_FN(i64_list_out, (int64_t     i               ), i   )
+GEN_OUT_FN(str_list_out, (const char *i               ), i   )
+GEN_OUT_FN(ss_map_out  , (const char *k, const char *v), k, v)
+
+#define RET_OUT_FN(FN, VALUE)\
+/**/    static thread_local int32_t n = 0;\
+/**/    n = (n + 1) % 4;\
+/**/    switch (n) {\
+/**/        case  0: FN##_dst_0 = VALUE; return FN##_0;\
+/**/        case  1: FN##_dst_1 = VALUE; return FN##_1;\
+/**/        case  2: FN##_dst_2 = VALUE; return FN##_2;\
+/**/        default: FN##_dst_3 = VALUE; return FN##_3;\
+/**/    }
+
+cq_bool_out   cq_cpp_out(bool    &value) {RET_OUT_FN(bool_out  , &value);}
+cq_int8_out   cq_cpp_out(int8_t  &value) {RET_OUT_FN(int8_out  , &value);}
+cq_int16_out  cq_cpp_out(int16_t &value) {RET_OUT_FN(int16_out , &value);}
+cq_int32_out  cq_cpp_out(int32_t &value) {RET_OUT_FN(int32_out , &value);}
+cq_int64_out  cq_cpp_out(int64_t &value) {RET_OUT_FN(int64_out , &value);}
+cq_float_out  cq_cpp_out(float   &value) {RET_OUT_FN(float_out , &value);}
+cq_double_out cq_cpp_out(double  &value) {RET_OUT_FN(double_out, &value);}
+
+cq_str_out      cq_cpp_out(std::string                        &v) {RET_OUT_FN(str_out     , &v);}
+cq_bytes_out    cq_cpp_out(std::vector<uint8_t>               &v) {RET_OUT_FN(bytes_out   , &v);}
+cq_i64_list_out cq_cpp_out(std::vector<int64_t>               &v) {RET_OUT_FN(i64_list_out, &v);}
+cq_str_list_out cq_cpp_out(std::vector<std::string>           &v) {RET_OUT_FN(str_list_out, &v);}
+cq_ss_map_out   cq_cpp_out(std::map<std::string, std::string> &v) {RET_OUT_FN(ss_map_out  , &v);}
+
+static void bool_in  (intmax_t src, cq_bool_out   out) {if (out) out(*(bool    *)&src);}
+static void int8_in  (intmax_t src, cq_int8_out   out) {if (out) out(*(int8_t  *)&src);}
+static void int16_in (intmax_t src, cq_int16_out  out) {if (out) out(*(int16_t *)&src);}
+static void int32_in (intmax_t src, cq_int32_out  out) {if (out) out(*(int32_t *)&src);}
+static void int64_in (intmax_t src, cq_int64_out  out) {if (out) out(*(int64_t *)&src);}
+static void float_in (intmax_t src, cq_float_out  out) {if (out) out(*(float   *)&src);}
+static void double_in(intmax_t src, cq_double_out out) {if (out) out(*(double  *)&src);}
+
+static void str_in(intmax_t src, cq_str_out out) {
+    if (src == 0) {
+        return;
+    }
+    auto object = reinterpret_cast<const std::string *>(src);
+    if (out != NULL) {
+        out(object->c_str());
+    }
+}
+
+static void bytes_in(intmax_t src, cq_bytes_out out) {
+    if (src == 0) {
+        return;
+    }
+    auto object = reinterpret_cast<const std::vector<uint8_t> *>(src);
+    if (out != NULL) {
+        out(object->data(), (int32_t)object->size());
+    }
+}
+
+static void i64_list_in(intmax_t src, cq_i64_list_out out) {
+    if (src == 0) {
+        return;
+    }
+    auto object = reinterpret_cast<const std::vector<int64_t> *>(src);
+    if (out != NULL) {
+        for (int64_t it : *object) {
+            out(it);
         }
     }
 }
 
-static void int_list_out(int64_t item) {
-    if (_dst_int_list != nullptr) {
-        _dst_int_list->push_back(item);
-    }
-}
-
-static void str_list_out(const char *item) {
-    if (_dst_str_list != nullptr) {
-        _dst_str_list->push_back(cqString::make(item));
-    }
-}
-
-static void ss_map_out(const char *key, const char *value) {
-    if (_dst_ss_map && !cq_str_empty(key)) {
-        (*_dst_ss_map)[key] = cqString::make(value);
-    }
-}
-
-static thread_local const Bytes    *_src_bytes    = nullptr;
-static thread_local const INT_LIST *_src_int_list = nullptr;
-static thread_local const STR_LIST *_src_str_list = nullptr;
-static thread_local const SS_MAP   *_src_ss_map   = nullptr;
-
-static void bytes_in(cq_bytes_out out) {
-    if (!_src_bytes && !out) {
+static void str_list_in(intmax_t src, cq_str_list_out out) {
+    if (src == 0) {
         return;
     }
-    out(_src_bytes->data(), (int32_t)_src_bytes->size());
+    auto object = reinterpret_cast<const std::vector<std::string> *>(src);
+    if (out != NULL) {
+        for (const std::string &it : *object) {
+            out(it.c_str());
+        }
+    }
 }
 
-static void int_list_in(cq_i64_list_out out) {
-    if (!_src_int_list && !out) {
+static void ss_map_in(intmax_t src, cq_ss_map_out out) {
+    if (src == 0) {
         return;
     }
-    for (int64_t it : *_src_int_list) {
-        out(it);
+    auto object = reinterpret_cast<const std::map<std::string, std::string> *>(src);
+    if (out != NULL) {
+        for (auto &cp : *object) {
+            out(cp.first.c_str(), cp.second.c_str());
+        }
     }
 }
 
-static void str_list_in(cq_str_list_out out) {
-    if (!_src_str_list && !out) {
-        return;
-    }
-    for (const std::string &it : *_src_str_list) {
-        out(it.c_str());
-    }
-}
+#define GEN_IN_FN(FN, PARAM, ...)\
+/**/    static thread_local intmax_t FN##_src_0 = 0;\
+/**/    static thread_local intmax_t FN##_src_1 = 0;\
+/**/    static thread_local intmax_t FN##_src_2 = 0;\
+/**/    static thread_local intmax_t FN##_src_3 = 0;\
+/**/    static void FN##_0 PARAM {FN(FN##_src_0, __VA_ARGS__);}\
+/**/    static void FN##_1 PARAM {FN(FN##_src_1, __VA_ARGS__);}\
+/**/    static void FN##_2 PARAM {FN(FN##_src_2, __VA_ARGS__);}\
+/**/    static void FN##_3 PARAM {FN(FN##_src_3, __VA_ARGS__);}
 
-static void ss_map_in(cq_ss_map_out out) {
-    if (!_src_ss_map && !out) {
-        return;
-    }
-    for (auto &cp : *_src_ss_map) {
-        out(cp.first.c_str(), cp.second.c_str());
-    }
-}
+GEN_IN_FN(bool_in  , (cq_bool_out   out), out)
+GEN_IN_FN(int8_in  , (cq_int8_out   out), out)
+GEN_IN_FN(int16_in , (cq_int16_out  out), out)
+GEN_IN_FN(int32_in , (cq_int32_out  out), out)
+GEN_IN_FN(int64_in , (cq_int64_out  out), out)
+GEN_IN_FN(float_in , (cq_float_out  out), out)
+GEN_IN_FN(double_in, (cq_double_out out), out)
 
-cq_bytes_out    cq_cpp_bytes_out   (Bytes    &a) {_dst_bytes    = &a; return bytes_out   ;}
-cq_i64_list_out cq_cpp_i64_list_out(INT_LIST &a) {_dst_int_list = &a; return int_list_out;}
-cq_str_list_out cq_cpp_str_list_out(STR_LIST &a) {_dst_str_list = &a; return str_list_out;}
-cq_ss_map_out   cq_cpp_ss_map_out  (SS_MAP   &a) {_dst_ss_map   = &a; return ss_map_out  ;}
+GEN_IN_FN(str_in     , (cq_str_out      out), out)
+GEN_IN_FN(bytes_in   , (cq_bytes_out    out), out)
+GEN_IN_FN(i64_list_in, (cq_i64_list_out out), out)
+GEN_IN_FN(str_list_in, (cq_str_list_out out), out)
+GEN_IN_FN(ss_map_in  , (cq_ss_map_out   out), out)
 
-cq_bytes_in    cq_cpp_bytes_in   (const Bytes    &a) {_src_bytes    = &a; return bytes_in   ;}
-cq_i64_list_in cq_cpp_i64_list_in(const INT_LIST &a) {_src_int_list = &a; return int_list_in;}
-cq_str_list_in cq_cpp_str_list_in(const STR_LIST &a) {_src_str_list = &a; return str_list_in;}
-cq_ss_map_in   cq_cpp_ss_map_in  (const SS_MAP   &a) {_src_ss_map   = &a; return ss_map_in  ;}
+#define RET_IN_FN(FN, VALUE)\
+/**/    static thread_local int32_t n = 0;\
+/**/    n = (n + 1) % 4;\
+/**/    switch (n) {\
+/**/        case  0: FN##_src_0 = *(intmax_t *)&VALUE; return FN##_0;\
+/**/        case  1: FN##_src_1 = *(intmax_t *)&VALUE; return FN##_1;\
+/**/        case  2: FN##_src_2 = *(intmax_t *)&VALUE; return FN##_2;\
+/**/        default: FN##_src_3 = *(intmax_t *)&VALUE; return FN##_3;\
+/**/    }
 
-#define KEEP(VALUE, CODE)\
-/**/    do{\
-/**/        auto __last = VALUE;\
-/**/        CODE\
-/**/        VALUE = __last;\
-/**/    } while (0)
+cq_bool_in   cq_cpp_in(bool    value) {RET_IN_FN(bool_in  , value);}
+cq_int8_in   cq_cpp_in(int8_t  value) {RET_IN_FN(int8_in  , value);}
+cq_int16_in  cq_cpp_in(int16_t value) {RET_IN_FN(int16_in , value);}
+cq_int32_in  cq_cpp_in(int32_t value) {RET_IN_FN(int32_in , value);}
+cq_int64_in  cq_cpp_in(int64_t value) {RET_IN_FN(int64_in , value);}
+cq_float_in  cq_cpp_in(float   value) {RET_IN_FN(float_in , value);}
+cq_double_in cq_cpp_in(double  value) {RET_IN_FN(double_in, value);}
 
-Bytes cq_cpp_bytes_from(cq_bytes_in in) {
-    Bytes object;
-    if (in != nullptr) {
-        //NOTE: hold last value of _dst_bytes.
-        //the function shouldn't affect last cq_cpp_bytes_out() call.
-        KEEP(_dst_bytes, {
-            in(cq_cpp_bytes_out(object));
-        });
+cq_str_in      cq_cpp_in(const std::string                        &v) {RET_IN_FN(str_in     , v);}
+cq_bytes_in    cq_cpp_in(const std::vector<uint8_t>               &v) {RET_IN_FN(bytes_in   , v);}
+cq_i64_list_in cq_cpp_in(const std::vector<int64_t>               &v) {RET_IN_FN(i64_list_in, v);}
+cq_str_list_in cq_cpp_in(const std::vector<std::string>           &v) {RET_IN_FN(str_list_in, v);}
+cq_ss_map_in   cq_cpp_in(const std::map<std::string, std::string> &v) {RET_IN_FN(ss_map_in  , v);}
+
+template<class R, class F> R cpp_v(F in) {
+    R object{};
+    if (in != NULL) {
+        in(cq_cpp_out(object));
     }
     return object;
 }
 
-INT_LIST cq_cpp_i64_list_from(cq_i64_list_in in) {
-    INT_LIST object;
-    if (in != nullptr) {
-        KEEP(_dst_int_list, {
-            in(cq_cpp_i64_list_out(object));
-        });
+bool    cq_cpp_bool  (cq_bool_in   in) {return cpp_v<bool   >(in);}
+int8_t  cq_cpp_int8  (cq_int8_in   in) {return cpp_v<int8_t >(in);}
+int16_t cq_cpp_int16 (cq_int16_in  in) {return cpp_v<int16_t>(in);}
+int32_t cq_cpp_int32 (cq_int32_in  in) {return cpp_v<int32_t>(in);}
+int64_t cq_cpp_int64 (cq_int64_in  in) {return cpp_v<int64_t>(in);}
+float   cq_cpp_float (cq_float_in  in) {return cpp_v<float  >(in);}
+double  cq_cpp_double(cq_double_in in) {return cpp_v<double >(in);}
+
+std::string                        cq_cpp_str     (cq_str_in      in) {return cpp_v<std::string                       >(in);}
+std::vector<uint8_t>               cq_cpp_bytes   (cq_bytes_in    in) {return cpp_v<std::vector<uint8_t>              >(in);}
+std::vector<int64_t>               cq_cpp_i64_list(cq_i64_list_in in) {return cpp_v<std::vector<int64_t>              >(in);}
+std::vector<std::string>           cq_cpp_str_list(cq_str_list_in in) {return cpp_v<std::vector<std::string>          >(in);}
+std::map<std::string, std::string> cq_cpp_ss_map  (cq_ss_map_in   in) {return cpp_v<std::map<std::string, std::string>>(in);}
+
+template<class T, class F> void cpp_set(T value, F out) {
+    if (out != NULL) {
+        cq_cpp_in(value)(out);
     }
-    return object;
 }
 
-STR_LIST cq_cpp_str_list_from(cq_str_list_in in) {
-    STR_LIST object;
-    if (in != nullptr) {
-        KEEP(_dst_str_list, {
-            in(cq_cpp_str_list_out(object));
-        });
-    }
-    return object;
-}
+void cq_cpp_set(bool    value, cq_bool_out   out) {cpp_set(value, out);}
+void cq_cpp_set(int8_t  value, cq_int8_out   out) {cpp_set(value, out);}
+void cq_cpp_set(int16_t value, cq_int16_out  out) {cpp_set(value, out);}
+void cq_cpp_set(int32_t value, cq_int32_out  out) {cpp_set(value, out);}
+void cq_cpp_set(int64_t value, cq_int64_out  out) {cpp_set(value, out);}
+void cq_cpp_set(float   value, cq_float_out  out) {cpp_set(value, out);}
+void cq_cpp_set(double  value, cq_double_out out) {cpp_set(value, out);}
 
-SS_MAP cq_cpp_ss_map_from(cq_ss_map_in in) {
-    SS_MAP object;
-    if (in != nullptr) {
-        KEEP(_dst_ss_map, {
-            in(cq_cpp_ss_map_out(object));
-        });
-    }
-    return object;
-}
+void cq_cpp_set(const std::string                        &value, cq_str_out      out) {cpp_set(value, out);}
+void cq_cpp_set(const std::vector<uint8_t>               &value, cq_bytes_out    out) {cpp_set(value, out);}
+void cq_cpp_set(const std::vector<int64_t>               &value, cq_i64_list_out out) {cpp_set(value, out);}
+void cq_cpp_set(const std::vector<std::string>           &value, cq_str_list_out out) {cpp_set(value, out);}
+void cq_cpp_set(const std::map<std::string, std::string> &value, cq_ss_map_out   out) {cpp_set(value, out);}
 
-void cq_cpp_bytes_assign(const Bytes &object, cq_bytes_out out) {
-    KEEP(_src_bytes, {
-        cq_cpp_bytes_in(object)(out);
-    });
-}
-
-void cq_cpp_i64_list_assign(const INT_LIST &object, cq_i64_list_out out) {
-    KEEP(_src_int_list, {
-        cq_cpp_i64_list_in(object)(out);
-    });
-}
-
-void cq_cpp_str_list_assign(const STR_LIST &object, cq_str_list_out out) {
-    KEEP(_src_str_list, {
-        cq_cpp_str_list_in(object)(out);
-    });
-}
-
-void cq_cpp_ss_map_assign(const SS_MAP &object, cq_ss_map_out out) {
-    KEEP(_src_ss_map, {
-        cq_cpp_ss_map_in(object)(out);
-    });
-}
+//block:
 
 //object reference:
 

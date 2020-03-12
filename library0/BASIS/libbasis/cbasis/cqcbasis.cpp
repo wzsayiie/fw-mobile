@@ -207,7 +207,85 @@ const char *cq_u8s_from_u16s(const char16_t *src) {
 
 //block:
 
+cq_enum(int32_t, b_v_type) {
+    B_V_TYPE_NULL  ,
+    B_V_TYPE_BOOL  ,
+    B_V_TYPE_INT8  ,
+    B_V_TYPE_INT16 ,
+    B_V_TYPE_INT32 ,
+    B_V_TYPE_INT64 ,
+    B_V_TYPE_FLOAT ,
+    B_V_TYPE_DOUBLE,
+    B_V_TYPE_PTR   ,
+};
+
+struct b_p_info {
+    b_v_type type  = B_V_TYPE_NULL;
+    intmax_t value = 0;
+};
+
+static thread_local std::map<std::string, b_p_info> *_block_values = nullptr;
+
+template<class T> void block_v_in(const char *name, b_v_type type, T value) {
+    if (cq_str_empty(name)) {
+        return;
+    }
+    
+    b_p_info info;
+    info.value = *(intmax_t *)&value;
+    info.type  = type;
+    
+    if (_block_values == nullptr) {
+        _block_values = new std::map<std::string, b_p_info>;
+    }
+    (*_block_values)[name] = info;
+}
+
+template<class T> T block_v(const char *name, b_v_type type) {
+    if (cq_str_empty(name)) {
+        return (T)0;
+    }
+    
+    if (_block_values == nullptr) {
+        return (T)0;
+    }
+    
+    if (!cqMap::contains(*_block_values, name)) {
+        return (T)0;
+    }
+    
+    b_p_info info = (*_block_values)[name];
+    if (info.type != type) {
+        return (T)0;
+    }
+    
+    return *(T *)&info.value;
+}
+
+void cq_block_bool_in  (const char *name, bool    value) {block_v_in(name, B_V_TYPE_BOOL  , value);}
+void cq_block_int8_in  (const char *name, int8_t  value) {block_v_in(name, B_V_TYPE_INT8  , value);}
+void cq_block_int16_in (const char *name, int16_t value) {block_v_in(name, B_V_TYPE_INT16 , value);}
+void cq_block_int32_in (const char *name, int32_t value) {block_v_in(name, B_V_TYPE_INT32 , value);}
+void cq_block_int64_in (const char *name, int64_t value) {block_v_in(name, B_V_TYPE_INT64 , value);}
+void cq_block_float_in (const char *name, float   value) {block_v_in(name, B_V_TYPE_FLOAT , value);}
+void cq_block_double_in(const char *name, double  value) {block_v_in(name, B_V_TYPE_DOUBLE, value);}
+void cq_block_ptr_in   (const char *name, void *  value) {block_v_in(name, B_V_TYPE_PTR   , value);}
+
+bool    cq_block_bool  (const char *name) {return block_v<bool   >(name, B_V_TYPE_BOOL  );}
+int8_t  cq_block_int8  (const char *name) {return block_v<int8_t >(name, B_V_TYPE_INT8  );}
+int16_t cq_block_int16 (const char *name) {return block_v<int16_t>(name, B_V_TYPE_INT16 );}
+int32_t cq_block_int32 (const char *name) {return block_v<int32_t>(name, B_V_TYPE_INT32 );}
+int64_t cq_block_int64 (const char *name) {return block_v<int64_t>(name, B_V_TYPE_INT64 );}
+float   cq_block_float (const char *name) {return block_v<float  >(name, B_V_TYPE_FLOAT );}
+double  cq_block_double(const char *name) {return block_v<double >(name, B_V_TYPE_DOUBLE);}
+void *  cq_block_ptr   (const char *name) {return block_v<void * >(name, B_V_TYPE_PTR   );}
+
 void cq_run_block(cq_block block, void *data) {
+    if (block != nullptr) {
+        block(data);
+    }
+    delete _block_values;
+    _block_values = nullptr;
 }
 
 //object reference:
