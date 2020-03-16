@@ -5,7 +5,7 @@
 static_assert(sizeof(jlong) >= sizeof(void *), "");
 
 #define CLS_PATH "src/library/basis/CPtr"
-CQ_JNI_CLASS(CPtr, CLS_PATH);
+CQ_JNI_CLASS(CPtr, CLS_PATH)
 
 void *CPtr_valueFromObject(JNIEnv *env, jobject src) {
     if (env == nullptr) {

@@ -43,18 +43,25 @@ struct cqJNIType {
 
     static std::vector<uint8_t> data(JNIEnv *env, jbyteArray src);
     static cqJNIRef<jbyteArray> jniDataAuto(JNIEnv *env, const std::vector<uint8_t> &src);
+    static cqJNIRef<jbyteArray> jniDataAuto(JNIEnv *env, const void *src, int32_t len);
 
-    static void *voidPtr(JNIEnv *env, jobject ptr);
-    static cqJNIRef<jobject> jniPtrAuto(JNIEnv *env, const void *ptr);
+    static void *voidPtr(JNIEnv *env, jobject src);
+    static cqJNIRef<jobject> jniPtrAuto(JNIEnv *env, const void *src);
 
-    template<class T> static T ptr(JNIEnv *env, jobject ptr) {
-        return (T)voidPtr(env, ptr);
+    template<class T> static T ptr(JNIEnv *env, jobject src) {
+        return (T)voidPtr(env, src);
     }
 
     //these functions return local reference.
     static jstring    jniString(JNIEnv *env, const char *src);
     static jbyteArray jniData  (JNIEnv *env, const std::vector<uint8_t> &src);
-    static jobject    jniPtr   (JNIEnv *env, const void *ptr);
+    static jbyteArray jniData  (JNIEnv *env, const void *src, int32_t len);
+    static jobject    jniPtr   (JNIEnv *env, const void *src);
+
+    //NOTE: function pointer can not match "const void *".
+    template<class T> static jobject jniPtr(JNIEnv *env, T src) {
+        return jniPtr(env, (const void *)src);
+    }
 };
 
 struct cqJNIStaticMethod {

@@ -146,12 +146,17 @@ cqJNIRef<jbyteArray> cqJNIType::jniDataAuto(JNIEnv *env, const std::vector<uint8
     return cqJNIRefTransfer::local(ret);
 }
 
-void *cqJNIType::voidPtr(JNIEnv *env, jobject ptr) {
-    return CPtr_valueFromObject(env, ptr);
+cqJNIRef<jbyteArray> cqJNIType::jniDataAuto(JNIEnv *env, const void *src, int32_t len) {
+    jbyteArray ret = jniData(env, src, len);
+    return cqJNIRefTransfer::local(ret);
 }
 
-cqJNIRef<jobject> cqJNIType::jniPtrAuto(JNIEnv *env, const void *ptr) {
-    jobject ret = jniPtr(env, ptr);
+void *cqJNIType::voidPtr(JNIEnv *env, jobject src) {
+    return CPtr_valueFromObject(env, src);
+}
+
+cqJNIRef<jobject> cqJNIType::jniPtrAuto(JNIEnv *env, const void *src) {
+    jobject ret = jniPtr(env, src);
     return cqJNIRefTransfer::local(ret);
 }
 
@@ -164,21 +169,28 @@ jstring cqJNIType::jniString(JNIEnv *env, const char *src) {
 }
 
 jbyteArray cqJNIType::jniData(JNIEnv *env, const std::vector<uint8_t> &src) {
+    auto ptr = (const void *)src.data();
+    auto len = (int32_t)src.size();
+
+    return jniData(env, ptr, len);
+}
+
+jbyteArray cqJNIType::jniData(JNIEnv *env, const void *src, int32_t len) {
     if (env == nullptr) {
         return nullptr;
     }
+    if (!src || len <= 0) {
+        return nullptr;
+    }
 
-    auto bytes = (jbyte *)src.data();
-    auto len = (jsize)src.size();
-
-    jbyteArray dst = env->NewByteArray(len);
-    env->SetByteArrayRegion(dst, 0, len, bytes);
+    jbyteArray dst = env->NewByteArray((jsize)len);
+    env->SetByteArrayRegion(dst, 0, len, (jbyte *)src);
 
     return dst;
 }
 
-jobject cqJNIType::jniPtr(JNIEnv *env, const void *ptr) {
-    return CPtr_objectFromValue(env, ptr);
+jobject cqJNIType::jniPtr(JNIEnv *env, const void *src) {
+    return CPtr_objectFromValue(env, src);
 }
 
 cqJNIStaticMethod::cqJNIStaticMethod(jclass clazz, jmethodID *prefer, const char *name) {
