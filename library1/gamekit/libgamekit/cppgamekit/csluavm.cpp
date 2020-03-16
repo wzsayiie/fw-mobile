@@ -166,7 +166,7 @@ static cq_obj *check_object(lua_State *state, int32_t index) {
     return (cq_obj *)raw;
 }
 
-static void check_int_list(lua_State *state, int32_t index, cq_i64_list_out out) {
+static void check_i64_list(lua_State *state, int32_t index, cq_i64_list_out out) {
     lua_stack_guard guard(state);
     
     if (!lua_istable(state, index)) {
@@ -281,7 +281,7 @@ static void push_object(lua_State *state, cq_obj *value) {
     lua_setmetatable(state, -2);
 }
 
-static void push_int_list(lua_State *state, cq_i64_list_in in) {
+static void push_i64_list(lua_State *state, cq_i64_list_in in) {
     std::vector<int64_t> object = cq_cpp_i64_list(in);
     
     lua_newtable(state);
@@ -366,7 +366,7 @@ void csLuaVM::open(const std::string &directory) {
         handlers.check_double   = check_double  ;
         handlers.check_string   = check_string  ;
         handlers.check_object   = check_object  ;
-        handlers.check_int_list = check_int_list;
+        handlers.check_i64_list = check_i64_list;
         handlers.check_str_list = check_str_list;
         handlers.check_ss_map   = check_ss_map  ;
         
@@ -375,7 +375,7 @@ void csLuaVM::open(const std::string &directory) {
         handlers.push_double    = push_double  ;
         handlers.push_string    = push_string  ;
         handlers.push_object    = push_object  ;
-        handlers.push_int_list  = push_int_list;
+        handlers.push_i64_list  = push_i64_list;
         handlers.push_str_list  = push_str_list;
         handlers.push_ss_map    = push_ss_map  ;
     }
