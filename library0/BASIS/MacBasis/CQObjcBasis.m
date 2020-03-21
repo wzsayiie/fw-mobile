@@ -247,7 +247,7 @@ NSString *cq_oc_str(cq_str_in in) {
     return object;
 }
 
-NSData *cq_oc_data(cq_bytes_in in) {
+NSData *cq_oc_bytes(cq_bytes_in in) {
     NSMutableData *object = nil;
     if (in != NULL) {
         object = [NSMutableData data];
@@ -296,6 +296,68 @@ void cq_oc_set_bytes   (NSData                               *v, cq_bytes_out   
 void cq_oc_set_i64_list(NSArray<NSNumber *>                  *v, cq_i64_list_out f) {if (v && f) cq_oc_i64_list_in(v)(f);}
 void cq_oc_set_str_list(NSArray<NSString *>                  *v, cq_str_list_out f) {if (v && f) cq_oc_str_list_in(v)(f);}
 void cq_oc_set_ss_map  (NSDictionary<NSString *, NSString *> *v, cq_ss_map_out   f) {if (v && f) cq_oc_ss_map_in  (v)(f);}
+
+//block:
+
+#define SET_BLOCK_P(NAME, TYPE, VALUE) cq_set_block_param(NAME.UTF8String, TYPE, (void *)(VALUE))
+
+void cq_oc_block_bool_in  (NSString *n, BOOL    v) {SET_BLOCK_P(n, CQ_TYPE_BOOL_IN  , cq_oc_bool_in  (v));}
+void cq_oc_block_int8_in  (NSString *n, int8_t  v) {SET_BLOCK_P(n, CQ_TYPE_INT8_IN  , cq_oc_int8_in  (v));}
+void cq_oc_block_int16_in (NSString *n, int16_t v) {SET_BLOCK_P(n, CQ_TYPE_INT16_IN , cq_oc_int16_in (v));}
+void cq_oc_block_int32_in (NSString *n, int32_t v) {SET_BLOCK_P(n, CQ_TYPE_INT32_IN , cq_oc_int32_in (v));}
+void cq_oc_block_int64_in (NSString *n, int64_t v) {SET_BLOCK_P(n, CQ_TYPE_INT64_IN , cq_oc_int64_in (v));}
+void cq_oc_block_float_in (NSString *n, float   v) {SET_BLOCK_P(n, CQ_TYPE_FLOAT_IN , cq_oc_float_in (v));}
+void cq_oc_block_double_in(NSString *n, double  v) {SET_BLOCK_P(n, CQ_TYPE_DOUBLE_IN, cq_oc_double_in(v));}
+
+void cq_oc_block_str_in     (NSString *n, NSString                             *v) {SET_BLOCK_P(n, CQ_TYPE_STR_IN     , cq_oc_str_in     (v));}
+void cq_oc_block_bytes_in   (NSString *n, NSData                               *v) {SET_BLOCK_P(n, CQ_TYPE_BYTES_IN   , cq_oc_bytes_in   (v));}
+void cq_oc_block_i64_list_in(NSString *n, NSArray<NSNumber *>                  *v) {SET_BLOCK_P(n, CQ_TYPE_I64_LIST_IN, cq_oc_i64_list_in(v));}
+void cq_oc_block_str_list_in(NSString *n, NSArray<NSString *>                  *v) {SET_BLOCK_P(n, CQ_TYPE_STR_LIST_IN, cq_oc_str_list_in(v));}
+void cq_oc_block_ss_map_in  (NSString *n, NSDictionary<NSString *, NSString *> *v) {SET_BLOCK_P(n, CQ_TYPE_SS_MAP_IN  , cq_oc_ss_map_in  (v));}
+
+void cq_oc_block_bool_out  (NSString *n, BOOL    *v) {SET_BLOCK_P(n, CQ_TYPE_BOOL_OUT  , cq_oc_bool_out  (v));}
+void cq_oc_block_int8_out  (NSString *n, int8_t  *v) {SET_BLOCK_P(n, CQ_TYPE_INT8_OUT  , cq_oc_int8_out  (v));}
+void cq_oc_block_int16_out (NSString *n, int16_t *v) {SET_BLOCK_P(n, CQ_TYPE_INT16_OUT , cq_oc_int16_out (v));}
+void cq_oc_block_int32_out (NSString *n, int32_t *v) {SET_BLOCK_P(n, CQ_TYPE_INT32_OUT , cq_oc_int32_out (v));}
+void cq_oc_block_int64_out (NSString *n, int64_t *v) {SET_BLOCK_P(n, CQ_TYPE_INT64_OUT , cq_oc_int64_out (v));}
+void cq_oc_block_float_out (NSString *n, float   *v) {SET_BLOCK_P(n, CQ_TYPE_FLOAT_OUT , cq_oc_float_out (v));}
+void cq_oc_block_double_out(NSString *n, double  *v) {SET_BLOCK_P(n, CQ_TYPE_DOUBLE_OUT, cq_oc_double_out(v));}
+
+void cq_oc_block_str_out     (NSString *n, NSMutableString                             *v) {SET_BLOCK_P(n, CQ_TYPE_STR_OUT     , cq_oc_str_out     (v));}
+void cq_oc_block_bytes_out   (NSString *n, NSMutableData                               *v) {SET_BLOCK_P(n, CQ_TYPE_BYTES_OUT   , cq_oc_bytes_out   (v));}
+void cq_oc_block_i64_list_out(NSString *n, NSMutableArray<NSNumber *>                  *v) {SET_BLOCK_P(n, CQ_TYPE_I64_LIST_OUT, cq_oc_i64_list_out(v));}
+void cq_oc_block_str_list_out(NSString *n, NSMutableArray<NSString *>                  *v) {SET_BLOCK_P(n, CQ_TYPE_STR_LIST_OUT, cq_oc_str_list_out(v));}
+void cq_oc_block_ss_map_out  (NSString *n, NSMutableDictionary<NSString *, NSString *> *v) {SET_BLOCK_P(n, CQ_TYPE_SS_MAP_OUT  , cq_oc_ss_map_out  (v));}
+
+#define BLOCK_P(CAST, NAME, TYPE) ((CAST)cq_block_param(NAME.UTF8String, TYPE))
+
+BOOL    cq_oc_block_bool  (NSString *n) {return cq_oc_bool  (BLOCK_P(cq_bool_in  , n, CQ_TYPE_BOOL_IN  ));}
+int8_t  cq_oc_block_int8  (NSString *n) {return cq_oc_int8  (BLOCK_P(cq_int8_in  , n, CQ_TYPE_INT8_IN  ));}
+int16_t cq_oc_block_int16 (NSString *n) {return cq_oc_int16 (BLOCK_P(cq_int16_in , n, CQ_TYPE_INT16_IN ));}
+int32_t cq_oc_block_int32 (NSString *n) {return cq_oc_int32 (BLOCK_P(cq_int32_in , n, CQ_TYPE_INT32_IN ));}
+int64_t cq_oc_block_int64 (NSString *n) {return cq_oc_int64 (BLOCK_P(cq_int64_in , n, CQ_TYPE_INT64_IN ));}
+float   cq_oc_block_float (NSString *n) {return cq_oc_float (BLOCK_P(cq_float_in , n, CQ_TYPE_FLOAT_IN ));}
+double  cq_oc_block_double(NSString *n) {return cq_oc_double(BLOCK_P(cq_double_in, n, CQ_TYPE_DOUBLE_IN));}
+
+NSString                             *cq_oc_block_str     (NSString *n) {return cq_oc_str     (BLOCK_P(cq_str_in     , n, CQ_TYPE_STR_IN     ));}
+NSData                               *cq_oc_block_bytes   (NSString *n) {return cq_oc_bytes   (BLOCK_P(cq_bytes_in   , n, CQ_TYPE_BYTES_IN   ));}
+NSArray<NSNumber *>                  *cq_oc_block_i64_list(NSString *n) {return cq_oc_i64_list(BLOCK_P(cq_i64_list_in, n, CQ_TYPE_I64_LIST_IN));}
+NSArray<NSString *>                  *cq_oc_block_str_list(NSString *n) {return cq_oc_str_list(BLOCK_P(cq_str_list_in, n, CQ_TYPE_STR_LIST_IN));}
+NSDictionary<NSString *, NSString *> *cq_oc_block_ss_map  (NSString *n) {return cq_oc_ss_map  (BLOCK_P(cq_ss_map_in  , n, CQ_TYPE_SS_MAP_IN  ));}
+
+void cq_oc_block_set_bool  (NSString *n, BOOL    v) {cq_oc_set_bool  (v, BLOCK_P(cq_bool_out  , n, CQ_TYPE_BOOL_OUT  ));}
+void cq_oc_block_set_int8  (NSString *n, int8_t  v) {cq_oc_set_int8  (v, BLOCK_P(cq_int8_out  , n, CQ_TYPE_INT8_OUT  ));}
+void cq_oc_block_set_int16 (NSString *n, int16_t v) {cq_oc_set_int16 (v, BLOCK_P(cq_int16_out , n, CQ_TYPE_INT16_OUT ));}
+void cq_oc_block_set_int32 (NSString *n, int32_t v) {cq_oc_set_int32 (v, BLOCK_P(cq_int32_out , n, CQ_TYPE_INT32_OUT ));}
+void cq_oc_block_set_int64 (NSString *n, int64_t v) {cq_oc_set_int64 (v, BLOCK_P(cq_int64_out , n, CQ_TYPE_INT64_OUT ));}
+void cq_oc_block_set_float (NSString *n, float   v) {cq_oc_set_float (v, BLOCK_P(cq_float_out , n, CQ_TYPE_FLOAT_OUT ));}
+void cq_oc_block_set_double(NSString *n, double  v) {cq_oc_set_double(v, BLOCK_P(cq_double_out, n, CQ_TYPE_DOUBLE_OUT));}
+
+void cq_oc_block_set_str     (NSString *n, NSString                             *v) {cq_oc_set_str     (v, BLOCK_P(cq_str_out     , n, CQ_TYPE_STR_OUT     ));}
+void cq_oc_block_set_bytes   (NSString *n, NSData                               *v) {cq_oc_set_bytes   (v, BLOCK_P(cq_bytes_out   , n, CQ_TYPE_BYTES_OUT   ));}
+void cq_oc_block_set_i64_list(NSString *n, NSArray<NSNumber *>                  *v) {cq_oc_set_i64_list(v, BLOCK_P(cq_i64_list_out, n, CQ_TYPE_I64_LIST_OUT));}
+void cq_oc_block_set_str_list(NSString *n, NSArray<NSString *>                  *v) {cq_oc_set_str_list(v, BLOCK_P(cq_str_list_out, n, CQ_TYPE_STR_LIST_OUT));}
+void cq_oc_block_set_ss_map  (NSString *n, NSDictionary<NSString *, NSString *> *v) {cq_oc_set_ss_map  (v, BLOCK_P(cq_ss_map_out  , n, CQ_TYPE_SS_MAP_OUT  ));}
 
 //object reference:
 

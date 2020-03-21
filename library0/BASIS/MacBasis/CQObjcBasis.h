@@ -103,7 +103,7 @@ float   cq_oc_float (cq_float_in  in);
 double  cq_oc_double(cq_double_in in);
 
 NSString                             *cq_oc_str     (cq_str_in      in);
-NSData                               *cq_oc_data    (cq_bytes_in    in);
+NSData                               *cq_oc_bytes   (cq_bytes_in    in);
 NSArray<NSNumber *>                  *cq_oc_i64_list(cq_i64_list_in in);
 NSArray<NSString *>                  *cq_oc_str_list(cq_str_list_in in);
 NSDictionary<NSString *, NSString *> *cq_oc_ss_map  (cq_ss_map_in   in);

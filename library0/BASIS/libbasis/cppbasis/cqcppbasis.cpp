@@ -355,6 +355,82 @@ void cq_cpp_set(const std::map<std::string, std::string> &value, cq_ss_map_out  
 
 //block:
 
+template<class T> void block_in(const std::string name, cq_type type, T value) {
+    auto ptr = (void *)cq_cpp_in(value);
+    cq_set_block_param(name.c_str(), type, ptr);
+}
+
+void cq_cpp_block_in(const std::string &n, bool    v) {block_in(n, CQ_TYPE_BOOL_IN  , v);}
+void cq_cpp_block_in(const std::string &n, int8_t  v) {block_in(n, CQ_TYPE_INT8_IN  , v);}
+void cq_cpp_block_in(const std::string &n, int16_t v) {block_in(n, CQ_TYPE_INT16_IN , v);}
+void cq_cpp_block_in(const std::string &n, int32_t v) {block_in(n, CQ_TYPE_INT32_IN , v);}
+void cq_cpp_block_in(const std::string &n, int64_t v) {block_in(n, CQ_TYPE_INT64_IN , v);}
+void cq_cpp_block_in(const std::string &n, float   v) {block_in(n, CQ_TYPE_FLOAT_IN , v);}
+void cq_cpp_block_in(const std::string &n, double  v) {block_in(n, CQ_TYPE_DOUBLE_IN, v);}
+
+void cq_cpp_block_in(const std::string &n, const std::string                        &v) {block_in(n, CQ_TYPE_STR_IN     , v);}
+void cq_cpp_block_in(const std::string &n, const std::vector<uint8_t>               &v) {block_in(n, CQ_TYPE_BYTES_IN   , v);}
+void cq_cpp_block_in(const std::string &n, const std::vector<int64_t>               &v) {block_in(n, CQ_TYPE_I64_LIST_IN, v);}
+void cq_cpp_block_in(const std::string &n, const std::vector<std::string>           &v) {block_in(n, CQ_TYPE_STR_LIST_IN, v);}
+void cq_cpp_block_in(const std::string &n, const std::map<std::string, std::string> &v) {block_in(n, CQ_TYPE_SS_MAP_IN  , v);}
+
+template<class T> void block_out(const std::string name, cq_type type, T value) {
+    auto ptr = (void *)cq_cpp_out(value);
+    cq_set_block_param(name.c_str(), type, ptr);
+}
+
+void cq_cpp_block_out(const std::string &n, bool    &v) {block_out(n, CQ_TYPE_BOOL_OUT  , v);}
+void cq_cpp_block_out(const std::string &n, int8_t  &v) {block_out(n, CQ_TYPE_INT8_OUT  , v);}
+void cq_cpp_block_out(const std::string &n, int16_t &v) {block_out(n, CQ_TYPE_INT16_OUT , v);}
+void cq_cpp_block_out(const std::string &n, int32_t &v) {block_out(n, CQ_TYPE_INT32_OUT , v);}
+void cq_cpp_block_out(const std::string &n, int64_t &v) {block_out(n, CQ_TYPE_INT64_OUT , v);}
+void cq_cpp_block_out(const std::string &n, float   &v) {block_out(n, CQ_TYPE_FLOAT_OUT , v);}
+void cq_cpp_block_out(const std::string &n, double  &v) {block_out(n, CQ_TYPE_DOUBLE_OUT, v);}
+
+void cq_cpp_block_out(const std::string &n, std::string                        &v) {block_out(n, CQ_TYPE_STR_OUT     , v);}
+void cq_cpp_block_out(const std::string &n, std::vector<uint8_t>               &v) {block_out(n, CQ_TYPE_BYTES_OUT   , v);}
+void cq_cpp_block_out(const std::string &n, std::vector<int64_t>               &v) {block_out(n, CQ_TYPE_I64_LIST_OUT, v);}
+void cq_cpp_block_out(const std::string &n, std::vector<std::string>           &v) {block_out(n, CQ_TYPE_STR_LIST_OUT, v);}
+void cq_cpp_block_out(const std::string &n, std::map<std::string, std::string> &v) {block_out(n, CQ_TYPE_SS_MAP_OUT  , v);}
+
+template<class IN, class RET> auto block_p(const std::string name, cq_type type, RET ret) -> decltype(ret(nullptr)) {
+    IN in = (IN)cq_block_param(name.c_str(), type);
+    return ret(in);
+}
+
+bool    cq_cpp_block_bool  (const std::string &n) {return block_p<cq_bool_in  >(n, CQ_TYPE_BOOL_IN  , cq_cpp_bool  );}
+int8_t  cq_cpp_block_int8  (const std::string &n) {return block_p<cq_int8_in  >(n, CQ_TYPE_INT8_IN  , cq_cpp_int8  );}
+int16_t cq_cpp_block_int16 (const std::string &n) {return block_p<cq_int16_in >(n, CQ_TYPE_INT16_IN , cq_cpp_int16 );}
+int32_t cq_cpp_block_int32 (const std::string &n) {return block_p<cq_int32_in >(n, CQ_TYPE_INT32_IN , cq_cpp_int32 );}
+int64_t cq_cpp_block_int64 (const std::string &n) {return block_p<cq_int64_in >(n, CQ_TYPE_INT64_IN , cq_cpp_int64 );}
+float   cq_cpp_block_float (const std::string &n) {return block_p<cq_float_in >(n, CQ_TYPE_FLOAT_IN , cq_cpp_float );}
+double  cq_cpp_block_double(const std::string &n) {return block_p<cq_double_in>(n, CQ_TYPE_DOUBLE_IN, cq_cpp_double);}
+
+std::string                        cq_cpp_block_str     (const std::string &n) {return block_p<cq_str_in     >(n, CQ_TYPE_STR_IN     , cq_cpp_str     );}
+std::vector<uint8_t>               cq_cpp_block_bytes   (const std::string &n) {return block_p<cq_bytes_in   >(n, CQ_TYPE_BYTES_IN   , cq_cpp_bytes   );}
+std::vector<int64_t>               cq_cpp_block_i64_list(const std::string &n) {return block_p<cq_i64_list_in>(n, CQ_TYPE_I64_LIST_IN, cq_cpp_i64_list);}
+std::vector<std::string>           cq_cpp_block_str_list(const std::string &n) {return block_p<cq_str_list_in>(n, CQ_TYPE_STR_LIST_IN, cq_cpp_str_list);}
+std::map<std::string, std::string> cq_cpp_block_ss_map  (const std::string &n) {return block_p<cq_ss_map_in  >(n, CQ_TYPE_SS_MAP_IN  , cq_cpp_ss_map  );}
+
+template<class OUT, class T> void block_set(const std::string &name, cq_type type, T value) {
+    OUT out = (OUT)cq_block_param(name.c_str(), type);
+    cq_cpp_set(value, out);
+}
+
+void cq_cpp_block_set(const std::string &n, bool    v) {block_set<cq_bool_out  >(n, CQ_TYPE_BOOL_OUT  , v);}
+void cq_cpp_block_set(const std::string &n, int8_t  v) {block_set<cq_int8_out  >(n, CQ_TYPE_INT8_OUT  , v);}
+void cq_cpp_block_set(const std::string &n, int16_t v) {block_set<cq_int16_out >(n, CQ_TYPE_INT16_OUT , v);}
+void cq_cpp_block_set(const std::string &n, int32_t v) {block_set<cq_int32_out >(n, CQ_TYPE_INT32_OUT , v);}
+void cq_cpp_block_set(const std::string &n, int64_t v) {block_set<cq_int64_out >(n, CQ_TYPE_INT64_OUT , v);}
+void cq_cpp_block_set(const std::string &n, float   v) {block_set<cq_float_out >(n, CQ_TYPE_FLOAT_OUT , v);}
+void cq_cpp_block_set(const std::string &n, double  v) {block_set<cq_double_out>(n, CQ_TYPE_DOUBLE_OUT, v);}
+
+void cq_cpp_block_set(const std::string &n, const std::string                        &v) {block_set<cq_str_out     >(n, CQ_TYPE_STR_OUT     , v);}
+void cq_cpp_block_set(const std::string &n, const std::vector<uint8_t>               &v) {block_set<cq_bytes_out   >(n, CQ_TYPE_BYTES_OUT   , v);}
+void cq_cpp_block_set(const std::string &n, const std::vector<int64_t>               &v) {block_set<cq_i64_list_out>(n, CQ_TYPE_I64_LIST_OUT, v);}
+void cq_cpp_block_set(const std::string &n, const std::vector<std::string>           &v) {block_set<cq_str_list_out>(n, CQ_TYPE_STR_LIST_OUT, v);}
+void cq_cpp_block_set(const std::string &n, const std::map<std::string, std::string> &v) {block_set<cq_ss_map_out  >(n, CQ_TYPE_SS_MAP_OUT  , v);}
+
 //object reference:
 
 static const int32_t CPPObjectMagic = 0x432B2B; //"C++".
