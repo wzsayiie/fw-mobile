@@ -15,7 +15,7 @@ public class CFunc {
     public static CPtr out(float[]   dst) {return outFloat (dst);}
     public static CPtr out(double[]  dst) {return outDouble(dst);}
 
-    public static CPtr out(StringBuffer             dst) {return outStr    (dst);}
+    public static CPtr out(StringBuilder            dst) {return outStr    (dst);}
     public static CPtr out(ByteBuffer               dst) {return outBytes  (dst);}
     public static CPtr out(long _u, ArrayList<Long> dst) {return outI64List(dst);}
     public static CPtr out(ArrayList<String>        dst) {return outStrList(dst);}
@@ -29,7 +29,7 @@ public class CFunc {
     private static native CPtr outFloat (float[]      dst);
     private static native CPtr outDouble(double[]     dst);
 
-    private static native CPtr outStr    (StringBuffer            dst);
+    private static native CPtr outStr    (StringBuilder           dst);
     private static native CPtr outBytes  (ByteBuffer              dst);
     private static native CPtr outI64List(ArrayList<Long>         dst);
     private static native CPtr outStrList(ArrayList<String>       dst);
@@ -43,7 +43,7 @@ public class CFunc {
     private static void onOutFloat (float[]   d, float   v) {if (d != null && d.length > 0) d[0] = v;}
     private static void onOutDouble(double[]  d, double  v) {if (d != null && d.length > 0) d[0] = v;}
 
-    private static void onOutStr(StringBuffer dst, String value) {
+    private static void onOutStr(StringBuilder dst, String value) {
         if (dst != null && value != null) {
             dst.append(value);
         }
@@ -135,7 +135,7 @@ public class CFunc {
     public static double  getDouble(CPtr in) { double [] r = new double [1]; assignDouble(in, out(r)); return r[0]; }
 
     public static String getStr(CPtr in) {
-        StringBuffer dst = new StringBuffer();
+        StringBuilder dst = new StringBuilder();
         assignStr(in, out(dst));
         return dst.toString();
     }
@@ -152,6 +152,11 @@ public class CFunc {
     public static ArrayList<String> getStrList(CPtr in) {
         ArrayList<String> dst = new ArrayList<>();
         assignStrList(in, out(dst));
+        return dst;
+    }
+    public static HashMap<String, String> getSSMap(CPtr in) {
+        HashMap<String, String> dst = new HashMap<>();
+        assignSSMap(in, out(dst));
         return dst;
     }
 

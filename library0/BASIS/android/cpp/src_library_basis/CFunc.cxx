@@ -24,7 +24,7 @@ static void str_out(jobject dst, const char *_value) {
 
     JNIEnv *env = cqJNIEnv::env();
     const char *func = "onOutStr";
-    const char *sign = "(Ljava/lang/StringBuffer;Ljava/lang/String;)V";
+    const char *sign = "(Ljava/lang/StringBuilder;Ljava/lang/String;)V";
     cqJNIEnv::staticMethod(&method, env, CFunc(), func, sign);
 
     jstring value = cqJNIType::jniString(env, _value);
