@@ -97,6 +97,7 @@ cq_class(cqHTTPSession, cqObject) {
     
     virtual void setRequestHeader(const std::string &field, const std::string &value);
     
+    //the reader will be called multiple times, return -1 means stop transfer.
     typedef std::function<int (void *buffer, int length)> RequestBodyReader;
     
     //if set a RequestBodyReader, the session will use it to get request body,
@@ -105,12 +106,13 @@ cq_class(cqHTTPSession, cqObject) {
     virtual void setRequestBodyData(const std::vector<uint8_t> &data);
     
     virtual void syncResume();
-    virtual const std::string &error();
+    virtual std::string error();
     
     virtual int responseCode();
     virtual std::map<std::string, std::string> responseHeader();
     
-    typedef std::function<bool (const void *bytes, int length)> ResponseBodyWriter;
+    //the writer maybe called multiple times, return false means stop transfer.
+    typedef std::function<bool (const std::vector<uint8_t> &body)> ResponseBodyWriter;
     
     //if set a ResponseBodyWriter, the session will use it to write response body,
     //else the response body stored into internal data, which can be get by responseBodyData().

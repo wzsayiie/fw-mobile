@@ -361,7 +361,7 @@ void cq_oc_block_set_ss_map  (NSString *n, NSDictionary<NSString *, NSString *> 
 
 //object reference:
 
-static const int32_t ObjcObjectMagic = 0x4F424A43; //"OBJC".
+static const int32_t OBJC_OBJECT_MAGIC = 0x4F424A43; //"OBJC".
 
 static void release_raw_oc(void *raw) {
     if (raw != NULL) {
@@ -369,28 +369,28 @@ static void release_raw_oc(void *raw) {
     }
 }
 
-cq_obj *cq_retain_oc_obj(NSObject *object, NSString *cls) {
+cq_obj *cq_obj_retain_oc(id object, NSString *cls) {
     if (object == nil) {
         return NULL;
     }
     
     CFTypeRef raw = CFRetain((__bridge CFTypeRef)object);
-    cq_obj *ptr = cq_retain_raw_obj((void *)raw, release_raw_oc);
+    cq_obj *ptr = cq_obj_retain_raw((void *)raw, release_raw_oc);
     
     if (cls.length > 0) {
-        cq_set_obj_cls(ptr, cls.UTF8String);
+        cq_obj_set_cls(ptr, cls.UTF8String);
     }
-    cq_set_obj_magic(ptr, ObjcObjectMagic);
+    cq_obj_set_magic(ptr, OBJC_OBJECT_MAGIC);
     
     return ptr;
 }
 
-NSObject *cq_obj_raw_oc(cq_obj *ptr, Class cls) {
+id cq_obj_raw_oc(cq_obj *ptr, Class cls) {
     if (ptr == NULL) {
         return nil;
     }
     
-    if (cq_obj_magic(ptr) != ObjcObjectMagic) {
+    if (cq_obj_magic(ptr) != OBJC_OBJECT_MAGIC) {
         //it's not a objc object.
         return nil;
     }

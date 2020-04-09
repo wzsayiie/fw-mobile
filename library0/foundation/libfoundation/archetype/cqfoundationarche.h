@@ -38,15 +38,16 @@ CQ_C_LINK void cq_main_loop_post(cq_block block, void *data);
 
 //http(s):
 
-typedef int32_t (*cq_http_body_reader  )(void *user, void *buffer, int32_t length);
-typedef void    (*cq_http_code_writer  )(void *user, int32_t code);
-typedef void    (*cq_http_header_writer)(void *user, const char *field, const char *value);
-typedef bool    (*cq_http_body_writer  )(void *user, const void *bytes, int32_t length);
-
 cq_struct(cq_http);
 
 CQ_C_LINK cq_http *cq_http_create(void);
-CQ_C_LINK void cq_http_destroy(cq_http *http);
+
+static inline cq_http *cq_http_retain(cq_http *http) {
+    return (cq_http *)cq_obj_retain(http);
+}
+static inline void cq_http_release(cq_http *http) {
+    cq_obj_release(http);
+}
 
 CQ_C_LINK void cq_http_timeout    (cq_http *http, float seconds);
 CQ_C_LINK void cq_http_send_method(cq_http *http, const char *method);
@@ -54,10 +55,30 @@ CQ_C_LINK void cq_http_send_url   (cq_http *http, const char *url);
 CQ_C_LINK void cq_http_send_query (cq_http *http, const char *field, const char *value);
 CQ_C_LINK void cq_http_send_header(cq_http *http, const char *field, const char *value);
 
-CQ_C_LINK void cq_http_send_body_from(cq_http *http, cq_http_body_reader   reader);
-CQ_C_LINK void cq_http_recv_code_to  (cq_http *http, cq_http_code_writer   writer);
-CQ_C_LINK void cq_http_recv_header_to(cq_http *http, cq_http_header_writer writer);
-CQ_C_LINK void cq_http_recv_body_to  (cq_http *http, cq_http_body_writer   writer);
+cq_enum(int32_t, cq_http_event) {
 
-CQ_C_LINK void cq_http_sync(cq_http *http, void *user);
-CQ_C_LINK const char *cq_http_error(cq_http *http);
+    //block parameters:
+    //  "buffer"  , a cq_bytes_out: request body buffer.
+    //  "capacity", a cq_int32_in : max byte count can be written to "body" this time.
+    //  "stop"    , a cq_bool_out : if assign true, means the request body transfer completed.
+    //
+    cq_http_e_send_body = 1,
+
+    //block parameters:
+    //  "body", a cq_bytes_in: part or all of the response body.
+    //  "stop", a cq_bool_out: if assign true, then the stop transfer.
+    //
+    cq_http_e_recv_body = 2,
+};
+static inline void cq_http_listen_event(cq_http *http, cq_http_event event, cq_block func, void *data) {
+    cq_obj_listen_event(http, event, func, data);
+}
+static inline void cq_http_emit_event(cq_http *http, cq_http_event event) {
+    cq_obj_emit_event(http, event);
+}
+
+CQ_C_LINK void cq_http_sync(cq_http *http);
+
+CQ_C_LINK const char *cq_http_error      (cq_http *http);
+CQ_C_LINK int32_t     cq_http_recv_code  (cq_http *http);
+CQ_C_LINK void        cq_http_recv_header(cq_http *http, cq_ss_map_out out);

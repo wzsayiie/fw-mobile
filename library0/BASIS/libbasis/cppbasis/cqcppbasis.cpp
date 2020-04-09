@@ -433,7 +433,7 @@ void cq_cpp_block_set(const std::string &n, const std::map<std::string, std::str
 
 //object reference:
 
-static const int32_t CPPObjectMagic = 0x432B2B; //"C++".
+static const int32_t CPP_OBJECT_MAGIC = 0x432B2B; //"C++".
 
 static void release_raw_cpp(void *raw) {
     if (raw != nullptr) {
@@ -441,18 +441,18 @@ static void release_raw_cpp(void *raw) {
     }
 }
 
-cq_obj *cq_retain_cpp_obj(cqObjectRef object, const std::string &cls) {
+cq_obj *cq_obj_retain_cpp(cqObjectRef object, const std::string &cls) {
     if (object == nullptr) {
         return nullptr;
     }
     
     void *raw = new cqObjectRef(object);
-    cq_obj *ptr = cq_retain_raw_obj(raw, release_raw_cpp);
+    cq_obj *ptr = cq_obj_retain_raw(raw, release_raw_cpp);
     
     if (!cls.empty()) {
-        cq_set_obj_cls(ptr, cls.c_str());
+        cq_obj_set_cls(ptr, cls.c_str());
     }
-    cq_set_obj_magic(ptr, CPPObjectMagic);
+    cq_obj_set_magic(ptr, CPP_OBJECT_MAGIC);
     
     return ptr;
 }
@@ -462,7 +462,7 @@ cqObjectRef cq_obj_raw_cpp(cq_obj *ptr, cqClass *cls) {
         return nullptr;
     }
     
-    if (cq_obj_magic(ptr) != CPPObjectMagic) {
+    if (cq_obj_magic(ptr) != CPP_OBJECT_MAGIC) {
         //it's not a c++ object.
         return nullptr;
     }

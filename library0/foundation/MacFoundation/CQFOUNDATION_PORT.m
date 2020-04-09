@@ -97,177 +97,119 @@ void cq_main_loop_post(cq_block block, void * data) {
 
 //http(s):
 
-@interface CQHTTPSessionPortObject : CQHTTPSession <CQHTTPSessionDelegate>
-
-@property (nonatomic) cq_http_body_reader   send_body_reader;
-@property (nonatomic) cq_http_code_writer   recv_code_writer;
-@property (nonatomic) cq_http_header_writer recv_header_writer;
-@property (nonatomic) cq_http_body_writer   recv_body_writer;
-
-@property (nonatomic) void *userData;
-@property (nonatomic) BOOL waitResponse;
-
+@interface CQHTTPSessionBridge : CQHTTPSession <CQHTTPSessionDelegate>
+@property (nonatomic) cq_http *intf;
 @end
 
-@implementation CQHTTPSessionPortObject
-
-- (void)syncResumeWithUserData:(void *)userData {
-    
-    self.userData = userData;
-    self.waitResponse = YES;
-    self.delegate = self;
-    
-    [self syncResume];
-}
+@implementation CQHTTPSessionBridge
 
 - (NSInteger)HTTPSession:(CQHTTPSession *)session
    requestBodyFromBuffer:(void *)buffer
             bufferLength:(NSInteger)bufferLength
 {
-    if (self.send_body_reader != NULL) {
-        return self.send_body_reader(self.userData, buffer, (int32_t)bufferLength);
+    NSMutableData *bufferObject = [NSMutableData data];
+    BOOL stop = NO;
+    
+    cq_oc_block_bytes_out(@"buffer", bufferObject);
+    cq_oc_block_int32_in(@"capacity", (int32_t)bufferLength);
+    cq_oc_block_bool_out(@"stop", &stop);
+    cq_http_emit_event(self.intf, cq_http_e_send_body);
+    
+    if (bufferObject.length > 0) {
+        memcpy(buffer, bufferObject.bytes, bufferObject.length);
+    }
+    
+    if (!stop) {
+        return bufferObject.length;
     } else {
         return -1;
     }
 }
 
-- (void)handleResponseHeaderFromSession:(CQHTTPSession *)session {
-    if (self.recv_code_writer != NULL) {
-        self.recv_code_writer(self.userData, (int32_t)session.responseCode);
-    }
-    if (self.recv_header_writer != NULL) {
-        for (NSString *field in session.responseHeader) {
-            NSString *value = session.responseHeader[field];
-            self.recv_header_writer(self.userData, field.UTF8String, value.UTF8String);
-        }
-    }
-}
-
 - (BOOL)HTTPSession:(CQHTTPSession *)session responseBodyData:(NSData *)data {
-    if (self.waitResponse) {
-        [self handleResponseHeaderFromSession:session];
-        self.waitResponse = NO;
-    }
+    BOOL stop = NO;
     
-    if (self.recv_body_writer != NULL) {
-        return self.recv_body_writer(self.userData, data.bytes, (int32_t)data.length);
-    } else {
+    cq_oc_block_bytes_in(@"body", data);
+    cq_oc_block_bool_out(@"stop", &stop);
+    cq_http_emit_event(self.intf, cq_http_e_recv_body);
+    
+    if (!stop) {
         return YES;
+    } else {
+        return NO;
     }
 }
 
 @end
 
-typedef NSMutableDictionary<NSNumber *, CQHTTPSessionPortObject *> CQHTTPSessionPortDict;
-
-static CQHTTPSessionPortDict *CQHTTPSessionPortStore(void) {
-    static CQHTTPSessionPortDict *dict = nil;
-    if (dict == nil) {
-        dict = [NSMutableDictionary dictionary];
-    }
-    return dict;
-}
-
-static CQHTTPSessionPortObject *CQHTTPSessionPortGet(cq_http *http) {
-    if (http != NULL) {
-        CQHTTPSessionPortDict *dict = CQHTTPSessionPortStore();
-        NSNumber *hash = @((NSUInteger)http);
-        return dict[hash];
-    } else {
-        return nil;
-    }
-}
-
 cq_http *cq_http_create(void) {
-    CQHTTPSessionPortObject *port = [[CQHTTPSessionPortObject alloc] init];
-    cq_http *hash = (cq_http *)port.hash;
+    CQHTTPSessionBridge *object = [[CQHTTPSessionBridge alloc] init];
+    cq_http *intf = cq_obj_retain_oc(object, @"HTTPSession");
     
-    CQHTTPSessionPortDict *dict = CQHTTPSessionPortStore();
-    dict[@(port.hash)] = port;
+    object.intf = intf;
     
-    return hash;
+    return intf;
 }
 
-void cq_http_destroy(cq_http *http) {
-    CQHTTPSessionPortDict *dict = CQHTTPSessionPortStore();
-    NSNumber *hash = @((NSUInteger)http);
-    [dict removeObjectForKey:hash];
-}
+#define http_session_bridge(OBJECT, INTF)\
+/**/    CQHTTPSessionBridge *OBJECT = cq_obj_raw_oc(INTF, CQHTTPSessionBridge.class);\
 
 void cq_http_timeout(cq_http *http, float seconds) {
-    CQHTTPSessionPortObject *port = CQHTTPSessionPortGet(http);
-    
-    port.timeoutSeconds = seconds;
+    http_session_bridge(object, http) {
+        object.timeoutSeconds = seconds;
+    }
 }
 
 void cq_http_send_method(cq_http *http, const char *method) {
-    CQHTTPSessionPortObject *port = CQHTTPSessionPortGet(http);
-    
-    if (!cq_str_empty(method)) {
-        port.method = @(method);
-    } else {
-        port.method = nil;
+    http_session_bridge(object, http) {
+        object.method = CQNullableString(method);
     }
 }
 
 void cq_http_send_url(cq_http *http, const char *url) {
-    CQHTTPSessionPortObject *port = CQHTTPSessionPortGet(http);
-    
-    if (!cq_str_empty(url)) {
-        port.URLString = @(url);
-    } else {
-        port.URLString = nil;
+    http_session_bridge(object, http) {
+        object.URLString = CQNullableString(url);
     }
 }
 
 void cq_http_send_query(cq_http *http, const char *field, const char *value) {
-    CQHTTPSessionPortObject *port = CQHTTPSessionPortGet(http);
-    
-    if (!cq_str_empty(field) && !cq_str_empty(value)) {
-        [port setURLQueryField:@(field) value:@(value)];
+    http_session_bridge(object, http) {
+        if (cq_str_empty(field)) {return;}
+        if (cq_str_empty(value)) {return;}
+        
+        [object setURLQueryField:@(field) value:@(value)];
     }
 }
 
 void cq_http_send_header(cq_http *http, const char *field, const char *value) {
-    CQHTTPSessionPortObject *port = CQHTTPSessionPortGet(http);
-    
-    if (!cq_str_empty(field) && !cq_str_empty(value)) {
-        [port setRequestHeaderField:@(field) value:@(value)];
+    http_session_bridge(object, http) {
+        if (cq_str_empty(field)) {return;}
+        if (cq_str_empty(value)) {return;}
+        
+        [object setRequestHeaderField:@(field) value:@(value)];
     }
 }
 
-void cq_http_send_body_from(cq_http *http, cq_http_body_reader reader) {
-    CQHTTPSessionPortObject *port = CQHTTPSessionPortGet(http);
-    
-    port.send_body_reader = reader;
-}
-
-void cq_http_recv_code_to(cq_http *http, cq_http_code_writer writer) {
-    CQHTTPSessionPortObject *port = CQHTTPSessionPortGet(http);
-    
-    port.recv_code_writer = writer;
-}
-
-void cq_http_recv_header_to(cq_http *http, cq_http_header_writer writer) {
-    CQHTTPSessionPortObject *port = CQHTTPSessionPortGet(http);
-    
-    port.recv_header_writer = writer;
-}
-
-void cq_http_recv_body_to(cq_http *http, cq_http_body_writer writer) {
-    CQHTTPSessionPortObject *port = CQHTTPSessionPortGet(http);
-    
-    port.recv_body_writer = writer;
-}
-
-void cq_http_sync(cq_http *http, void *user) {
-    CQHTTPSessionPortObject *port = CQHTTPSessionPortGet(http);
-    
-    [port syncResumeWithUserData:user];
+void cq_http_sync(cq_http *http) {
+    http_session_bridge(object, http) {
+        [object syncResume];
+    }
 }
 
 const char *cq_http_error(cq_http *http) {
-    CQHTTPSessionPortObject *port = CQHTTPSessionPortGet(http);
-    
-    return cq_store_str(port.error.description.UTF8String);
+    http_session_bridge(object, http) {
+        return cq_store_str(object.error.description.UTF8String);
+    }
+}
+
+int32_t cq_http_recv_code(cq_http *http) {
+    http_session_bridge(object, http) {
+        return (int32_t)object.responseCode;
+    }
+}
+
+void cq_http_recv_header(cq_http *http, cq_ss_map_out out) {
+    http_session_bridge(object, http) {
+        cq_oc_set_ss_map(object.responseHeader, out);
+    }
 }

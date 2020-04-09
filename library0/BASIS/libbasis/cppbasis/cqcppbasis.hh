@@ -347,8 +347,8 @@ void cq_cpp_block_set(const std::string &name, const std::map<std::string, std::
 //object reference:
 
 //create a cq_obj that references to $object.
-//the return value need to release by cq_release_obj().
-cq_obj *cq_retain_cpp_obj(cqObjectRef object, const std::string &cls);
+//the return value need to release by cq_obj_release().
+cq_obj *cq_obj_retain_cpp(cqObjectRef object, const std::string &cls);
 
 //get the object that pointed by $obj.
 //if $obj does not point a c++ object or that object is not a $cls, return null.

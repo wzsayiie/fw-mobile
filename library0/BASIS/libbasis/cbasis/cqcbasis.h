@@ -185,19 +185,19 @@ CQ_C_LINK void cq_run_block(cq_block block, void *data);
 
 //object reference:
 
-cq_struct(cq_obj);
+typedef void cq_obj;
 
-CQ_C_LINK cq_obj *cq_retain_raw_obj(void *raw, void (*release)(void *raw));
+CQ_C_LINK cq_obj *cq_obj_retain_raw(void *raw, void (*release)(void *raw));
 
-//cq_retain_obj() and cq_relase_obj() is thread safe.
-CQ_C_LINK cq_obj *cq_retain_obj (cq_obj *obj);
-CQ_C_LINK void    cq_release_obj(cq_obj *obj);
+//cq_obj_retain() and cq_obj_relase() is thread safe.
+CQ_C_LINK cq_obj *cq_obj_retain (cq_obj *obj);
+CQ_C_LINK void    cq_obj_release(cq_obj *obj);
 
 CQ_C_LINK void       *cq_obj_raw      (cq_obj *obj);
-CQ_C_LINK void        cq_set_obj_cls  (cq_obj *obj, const char *cls);
+CQ_C_LINK void        cq_obj_set_cls  (cq_obj *obj, const char *cls);
 CQ_C_LINK const char *cq_obj_cls      (cq_obj *obj);
-CQ_C_LINK void        cq_set_obj_magic(cq_obj *obj, int32_t magic);
+CQ_C_LINK void        cq_obj_set_magic(cq_obj *obj, int32_t magic);
 CQ_C_LINK int32_t     cq_obj_magic    (cq_obj *obj);
 
-CQ_C_LINK void cq_obj_listen_event(cq_obj *obj, int32_t event, cq_block block, void *data);
-CQ_C_LINK void cq_obj_send_event  (cq_obj *obj, int32_t event);
+CQ_C_LINK void cq_obj_listen_event(cq_obj *obj, int32_t event, cq_block func, void *data);
+CQ_C_LINK void cq_obj_emit_event  (cq_obj *obj, int32_t event);

@@ -183,10 +183,10 @@ void cq_oc_block_set_ss_map  (NSString *name, NSDictionary<NSString *, NSString 
 //object reference:
 
 //create a cq_obj that holds one reference count of $object.
-//the return value need to release by cq_release_obj().
-cq_obj *cq_retain_oc_obj(NSObject *object, NSString *cls);
+//the return value need to release by cq_obj_release().
+cq_obj *cq_obj_retain_oc(id object, NSString *cls);
 
 //get the object that pointed by $obj.
 //if $obj does not point a objc object or that object is not a $cls, return nil.
 //it's equivalent to $cls is Nil and $cls is NSObject.class .
-NSObject *cq_obj_raw_oc(cq_obj *obj, Class cls);
+id cq_obj_raw_oc(cq_obj *obj, Class cls);
