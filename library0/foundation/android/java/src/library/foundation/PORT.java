@@ -1,13 +1,14 @@
 package src.library.foundation;
 
-import android.util.LongSparseArray;
-
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.HashMap;
 
+import src.library.basis.CBlock;
+import src.library.basis.CFunc;
+import src.library.basis.CObject;
 import src.library.basis.CPtr;
-import src.library.basis.JNI;
 import src.library.basis.W;
 
 @SuppressWarnings({W.LIB_OMIT_0, W.LIB_OMIT_1, W.LIB_OMIT_2, W.LIB_OMIT_3})
@@ -27,7 +28,7 @@ public class PORT {
 
     public static void cq_android_asset(String name, CPtr out) {
         byte[] asset = AssetAssist.getAsset(name);
-        JNI.bytesAssign(asset, out);
+        CFunc.set(asset, out);
     }
 
     public static boolean cq_android_copy_asset(String fromPath, String toPath) {
@@ -66,13 +67,13 @@ public class PORT {
 
     public static void cq_sub_files(String path, CPtr out) {
         ArrayList<String> items = FileAssist.listSubItems(path, null);
-        JNI.strListAssign(items, out);
+        CFunc.set(items, out);
     }
 
     //thread:
 
     public static void cq_thread_run(CPtr runnable, CPtr data) {
-        ThreadAssist.run(() -> JNI.run(runnable, data));
+        ThreadAssist.run(() -> CBlock.run(runnable, data));
     }
 
     public static void cq_thread_sleep(float seconds) {
@@ -82,191 +83,147 @@ public class PORT {
     //main run loop:
 
     public static void cq_main_loop_post(CPtr runnable, CPtr data) {
-        LooperAssist.runOnMainLoop(() -> JNI.run(runnable, data));
+        LooperAssist.runOnMainLoop(() -> CBlock.run(runnable, data));
     }
 
     //http:
     
-    private static class HttpSessionPort extends HttpSession {
-        
-        private long mRequestBodyReader;
-        private long mResponseCodeWriter;
-        private long mResponseHeaderWriter;
-        private long mResponseBodyWriter;
+    private static class HttpSessionBridge extends HttpSession {
 
-        private boolean mWaitResponse;
-        private long mUserData;
+        private CPtr mPort;
         private String mError;
 
-        void setRequestBodyReader(long reader) {
-            mRequestBodyReader = reader;
-        }
-
-        void setResponseCodeWriter(long writer) {
-            mResponseCodeWriter = writer;
-        }
-
-        void setResponseHeaderWriter(long writer) {
-            mResponseHeaderWriter = writer;
-        }
-
-        void setResponseBodyWriter(long writer) {
-            mResponseBodyWriter = writer;
-        }
-        
-        void syncResume(long userData) {
-
-            mWaitResponse = true;
-            mUserData = userData;
-            mError = null;
-
-            setRequestBodyReader(this::onReadRequestBody);
+        public HttpSessionBridge() {
+            setRequestBodyReader (this::onReadRequestBody  );
             setResponseBodyWriter(this::onWriteResponseBody);
-
-            try {
-                syncResume();
-            } catch (IOException e) {
-                mError = e.toString();
-            }
         }
 
-        int onReadRequestBody(HttpSession session, byte[] buffer) {
-            if (mRequestBodyReader != 0) {
-                return httpReadRequestBody(mRequestBodyReader, mUserData, buffer);
+        public void setPort(CPtr port) {
+            mPort = port;
+        }
+
+        public void setError(String error) {
+            mError = error;
+        }
+
+        public String getError() {
+            return mError;
+        }
+
+        private int onReadRequestBody(HttpSession session, byte[] buffer) {
+
+            ByteBuffer byteBuffer = ByteBuffer.allocate(0);
+            boolean[] stop = new boolean[1];
+
+            CBlock.out("buffer", byteBuffer);
+            CBlock.in("capacity", buffer.length);
+            CBlock.out("stop", stop);
+            CObject.emit(mPort, 1 /* cq_http_e_send_body */);
+
+            byte[] byteData = byteBuffer.array();
+            int    byteSize = byteBuffer.array().length;
+
+            if (byteSize > 0) {
+                System.arraycopy(byteData, 0, buffer, 0, byteSize);
+            }
+
+            if (!stop[0]) {
+                return byteSize;
             } else {
                 return -1;
             }
         }
 
-        void onWriteResponseHeader(HttpSession session) {
-            if (mResponseCodeWriter != 0) {
-                int responseCode = session.getResponseCode();
-                httpWriteResponseCode(mResponseCodeWriter, mUserData, responseCode);
+        private boolean onWriteResponseBody(HttpSession session, byte[] data) {
+            boolean[] stop = new boolean[1];
+
+            CBlock.in("body", data);
+            CBlock.out("stop", stop);
+            CObject.emit(mPort, 2 /* cq_http_e_recv_body */);
+
+            return !stop[0];
+        }
+    }
+
+    public static CPtr cq_http_create() {
+        HttpSessionBridge object = new HttpSessionBridge();
+        CPtr port = CObject.retain(object, "HTTPSession");
+
+        object.setPort(port);
+
+        return port;
+    }
+
+    public static void cq_http_timeout(CPtr http, float seconds) {
+        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        if (object != null) {
+            object.setTimeoutSeconds(seconds);
+        }
+    }
+
+    public static void cq_http_send_method(CPtr http, String method) {
+        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        if (object != null) {
+            object.setMethod(method);
+        }
+    }
+
+    public static void cq_http_send_url(CPtr http, String url) {
+        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        if (object != null) {
+            object.setURLString(url);
+        }
+    }
+
+    public static void cq_http_send_query(CPtr http, String field, String value) {
+        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        if (object != null) {
+            object.setURLQuery(field, value);
+        }
+    }
+
+    public static void cq_http_send_header(CPtr http, String field, String value) {
+        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        if (object != null) {
+            object.setRequestHeader(field, value);
+        }
+    }
+
+    public static void cq_http_sync(CPtr http) {
+        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        if (object != null) {
+            try {
+                object.setError(null);
+                object.syncResume();
+            } catch (IOException e) {
+                object.setError(e.toString());
             }
-
-            if (mResponseHeaderWriter != 0) {
-                for (Map.Entry<String, String> cp : session.getResponseHeader().entrySet()) {
-                    String field = cp.getKey();
-                    String value = cp.getValue();
-                    httpWriteResponseHeader(mResponseHeaderWriter, mUserData, field, value);
-                }
-            }
-        }
-
-        boolean onWriteResponseBody(HttpSession session, byte[] data) {
-            if (mWaitResponse) {
-                onWriteResponseHeader(session);
-                mWaitResponse = false;
-            }
-
-            if (mResponseBodyWriter != 0) {
-                return httpWriteResponseBody(mResponseBodyWriter, mUserData, data);
-            } else {
-                return true;
-            }
-        }
-
-        String getError() {
-            return mError;
         }
     }
 
-    private static native int     httpReadRequestBody    (long reader, long userData, byte[] buffer);
-    private static native void    httpWriteResponseCode  (long writer, long userData, int responseCode);
-    private static native void    httpWriteResponseHeader(long writer, long userData, String field, String value);
-    private static native boolean httpWriteResponseBody  (long writer, long userData, byte[] data);
-
-    private static LongSparseArray<HttpSessionPort> sHttpSessionPortArray = null;
-    
-    private static LongSparseArray<HttpSessionPort> getHttpSessionPortArray() {
-        if (sHttpSessionPortArray == null) {
-            sHttpSessionPortArray = new LongSparseArray<>();
-        }
-        return sHttpSessionPortArray;
-    }
-
-    public static long cq_http_create() {
-        HttpSessionPort port = new HttpSessionPort();
-        getHttpSessionPortArray().put(port.hashCode(), port);
-        return port.hashCode();
-    }
-
-    public static void cq_http_destroy(long http) {
-        getHttpSessionPortArray().remove(http);
-    }
-
-    public static void cq_http_timeout(long http, float seconds) {
-        HttpSessionPort port = getHttpSessionPortArray().get(http);
-        if (port != null) {
-            port.setTimeoutSeconds(seconds);
+    public static String cq_http_error(CPtr http) {
+        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        if (object != null) {
+            return object.getError();
+        } else {
+            return null;
         }
     }
 
-    public static void cq_http_send_method(long http, String method) {
-        HttpSessionPort port = getHttpSessionPortArray().get(http);
-        if (port != null) {
-            port.setMethod(method);
+    public static int cq_http_recv_code(CPtr http) {
+        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        if (object != null) {
+            return object.getResponseCode();
+        } else {
+            return 0;
         }
     }
 
-    public static void cq_http_send_url(long http, String url) {
-        HttpSessionPort port = getHttpSessionPortArray().get(http);
-        if (port != null) {
-            port.setURLString(url);
+    public static void cq_http_recv_header(CPtr http, CPtr out) {
+        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        if (object != null) {
+            HashMap<String, String> header = object.getResponseHeader();
+            CFunc.set(header, out);
         }
-    }
-
-    public static void cq_http_send_query(long http, String field, String value) {
-        HttpSessionPort port = getHttpSessionPortArray().get(http);
-        if (port != null) {
-            port.setURLQuery(field, value);
-        }
-    }
-
-    public static void cq_http_send_header(long http, String field, String value) {
-        HttpSessionPort port = getHttpSessionPortArray().get(http);
-        if (port != null) {
-            port.setRequestHeader(field, value);
-        }
-    }
-
-    public static void cq_http_send_body_from(long http, long reader) {
-        HttpSessionPort port = getHttpSessionPortArray().get(http);
-        if (port != null) {
-            port.setRequestBodyReader(reader);
-        }
-    }
-
-    public static void cq_http_recv_code_to(long http, long writer) {
-        HttpSessionPort port = getHttpSessionPortArray().get(http);
-        if (port != null) {
-            port.setResponseCodeWriter(writer);
-        }
-    }
-
-    public static void cq_http_recv_header_to(long http, long writer) {
-        HttpSessionPort port = getHttpSessionPortArray().get(http);
-        if (port != null) {
-            port.setResponseHeaderWriter(writer);
-        }
-    }
-
-    public static void cq_http_recv_body_to(long http, long writer) {
-        HttpSessionPort port = getHttpSessionPortArray().get(http);
-        if (port != null) {
-            port.setResponseBodyWriter(writer);
-        }
-    }
-
-    public static void cq_http_sync(long http, long user) {
-        HttpSessionPort port = getHttpSessionPortArray().get(http);
-        if (port != null) {
-            port.syncResume(user);
-        }
-    }
-
-    public static String cq_http_error(long http) {
-        HttpSessionPort port = getHttpSessionPortArray().get(http);
-        return port != null ? port.getError() : null;
     }
 }

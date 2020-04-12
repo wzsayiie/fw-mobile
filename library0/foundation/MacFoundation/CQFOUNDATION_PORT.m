@@ -103,6 +103,13 @@ void cq_main_loop_post(cq_block block, void * data) {
 
 @implementation CQHTTPSessionBridge
 
+- (instancetype)init {
+    if (self = [super init]) {
+        self.delegate = self;
+    }
+    return self;
+}
+
 - (NSInteger)HTTPSession:(CQHTTPSession *)session
    requestBodyFromBuffer:(void *)buffer
             bufferLength:(NSInteger)bufferLength

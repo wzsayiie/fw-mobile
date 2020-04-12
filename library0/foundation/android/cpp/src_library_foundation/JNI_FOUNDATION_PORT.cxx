@@ -111,23 +111,14 @@ cq_http *cq_http_create() {
     static jmethodID methodID = nullptr;
     cqJNIStaticMethod method(PORT(), &methodID, "cq_http_create");
 
-    return (cq_http *)method.callInt64();
-}
-
-void cq_http_destroy(cq_http *http) {
-    static jmethodID methodID = nullptr;
-    cqJNIStaticMethod method(PORT(), &methodID, "cq_http_destroy");
-
-    method.push((jlong)http);
-
-    method.callVoid();
+    return method.call<cq_http *>();
 }
 
 void cq_http_timeout(cq_http *http, float seconds) {
     static jmethodID methodID = nullptr;
     cqJNIStaticMethod method(PORT(), &methodID, "cq_http_timeout");
 
-    method.push((jlong)http);
+    method.push(http);
     method.push(seconds);
 
     method.callVoid();
@@ -137,7 +128,7 @@ void cq_http_send_method(cq_http *http, const char *httpMethod) {
     static jmethodID methodID = nullptr;
     cqJNIStaticMethod method(PORT(), &methodID, "cq_http_send_method");
 
-    method.push((jlong)http);
+    method.push(http);
     method.push(httpMethod);
 
     method.callVoid();
@@ -147,7 +138,7 @@ void cq_http_send_url(cq_http *http, const char *url) {
     static jmethodID methodID = nullptr;
     cqJNIStaticMethod method(PORT(), &methodID, "cq_http_send_url");
 
-    method.push((jlong)http);
+    method.push(http);
     method.push(url);
 
     method.callVoid();
@@ -157,7 +148,7 @@ void cq_http_send_query(cq_http *http, const char *field, const char *value) {
     static jmethodID methodID = nullptr;
     cqJNIStaticMethod method(PORT(), &methodID, "cq_http_send_query");
 
-    method.push((jlong)http);
+    method.push(http);
     method.push(field);
     method.push(value);
 
@@ -168,59 +159,18 @@ void cq_http_send_header(cq_http *http, const char *field, const char *value) {
     static jmethodID methodID = nullptr;
     cqJNIStaticMethod method(PORT(), &methodID, "cq_http_send_header");
 
-    method.push((jlong)http);
+    method.push(http);
     method.push(field);
     method.push(value);
 
     method.callVoid();
 }
 
-void cq_http_send_body_from(cq_http *http, cq_http_body_reader reader) {
-    static jmethodID methodID = nullptr;
-    cqJNIStaticMethod method(PORT(), &methodID, "cq_http_send_body_from");
-
-    method.push((jlong)http);
-    method.push((jlong)reader);
-
-    method.callVoid();
-}
-
-void cq_http_recv_code_to(cq_http *http, cq_http_code_writer writer) {
-    static jmethodID methodID = nullptr;
-    cqJNIStaticMethod method(PORT(), &methodID, "cq_http_recv_code_to");
-
-    method.push((jlong)http);
-    method.push((jlong)writer);
-
-    method.callVoid();
-}
-
-void cq_http_recv_header_to(cq_http *http, cq_http_header_writer writer) {
-    static jmethodID methodID = nullptr;
-    cqJNIStaticMethod method(PORT(), &methodID, "cq_http_recv_header_to");
-
-    method.push((jlong)http);
-    method.push((jlong)writer);
-
-    method.callVoid();
-}
-
-void cq_http_recv_body_to(cq_http *http, cq_http_body_writer writer) {
-    static jmethodID methodID = nullptr;
-    cqJNIStaticMethod method(PORT(), &methodID, "cq_http_recv_body_to");
-
-    method.push((jlong)http);
-    method.push((jlong)writer);
-
-    method.callVoid();
-}
-
-void cq_http_sync(cq_http *http, void *user) {
+void cq_http_sync(cq_http *http) {
     static jmethodID methodID = nullptr;
     cqJNIStaticMethod method(PORT(), &methodID, "cq_http_sync");
 
-    method.push((jlong)http);
-    method.push((jlong)user);
+    method.push(http);
 
     method.callVoid();
 }
@@ -229,37 +179,27 @@ const char *cq_http_error(cq_http *http) {
     static jmethodID methodID = nullptr;
     cqJNIStaticMethod method(PORT(), &methodID, "cq_http_error");
 
-    method.push((jlong)http);
+    method.push(http);
 
     std::string ret = method.callString();
     return cq_store_str(ret.c_str());
 }
 
-extern "C" JNIEXPORT jint JNICALL Java_src_library_foundation_PORT_httpReadRequestBody
-    (JNIEnv *env, jclass, jlong _reader, jlong userData, jbyteArray _buffer)
-{
-    return 0;
+int32_t cq_http_recv_code(cq_http *http) {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(PORT(), &methodID, "cq_http_recv_code");
+
+    method.push(http);
+
+    return method.callInt32();
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_PORT_httpWriteResponseCode
-    (JNIEnv *, jclass, jlong _writer, jlong userData, jint responseCode)
-{
-    auto writer = (cq_http_code_writer)_writer;
-    writer((void *)userData, (int32_t)responseCode);
-}
+void cq_http_recv_header(cq_http *http, cq_ss_map_out out) {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(PORT(), &methodID, "cq_http_recv_header");
 
-extern "C" JNIEXPORT void JNICALL Java_src_library_foundation_PORT_httpWriteResponseHeader
-    (JNIEnv *env, jclass, jlong _writer, jlong userData, jstring _field, jstring _value)
-{
-    auto writer = (cq_http_header_writer)_writer;
-    std::string field = cqJNIType::string(env, _field);
-    std::string value = cqJNIType::string(env, _value);
+    method.push(http);
+    method.push(out);
 
-    writer((void *)userData, field.c_str(), value.c_str());
-}
-
-extern "C" JNIEXPORT jboolean JNICALL Java_src_library_foundation_PORT_httpWriteResponseBody
-    (JNIEnv *env, jclass, jlong _writer, jlong userData, jbyteArray _data)
-{
-    return JNI_FALSE;
+    method.callVoid();
 }
