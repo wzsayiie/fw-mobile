@@ -220,49 +220,54 @@ void cqHTTPSession::setRequestBodyData(const std::vector<uint8_t> &data) {
 
 static void cqHTTPSession_OnSendRequestBody(void *_self) {
     auto self = (cqHTTPSession *)_self;
+    auto http = self->dat->http;
     
-    int32_t capacity = cq_cpp_block_int32("capacity");
-    std::vector<uint8_t> buffer(capacity);
+    int32_t capacity = cq_http_send_body_cap(http);
     
     if (self->dat->requestBodyReader != nullptr) {
+        std::vector<uint8_t> buffer(capacity);
         int length = self->dat->requestBodyReader(buffer.data(), capacity);
+        
         if (length > 0) {
             buffer.resize(length);
-            cq_cpp_block_set("buffer", buffer);
+            cq_http_send_body(http, cq_cpp_in(buffer), false);
         }
-        
         if (length == -1) {
             //NOTE: -1 means stop transfer.
-            cq_cpp_block_set("stop", true);
+            cq_http_send_body(http, nullptr, true);
         }
         
     } else {
-        std::vector<uint8_t> &data = self->dat->responseBodyData;
-        size_t &cursor = self->dat->requestBodyDataCursor;
+        uint8_t *data = self->dat->responseBodyData.data();
+        size_t   size = self->dat->responseBodyData.size();
+        size_t  &iter = self->dat->requestBodyDataCursor;
         
-        if (cursor < data.size()) {
-            size_t length = std::min(data.size() - cursor, (size_t)capacity);
+        if (iter < size) {
+            int32_t length = std::min((int32_t)(size - iter), capacity);
             
-            buffer.assign(data.begin(), data.begin() + length);
-            cq_cpp_block_set("buffer", buffer);
+            std::vector<uint8_t> split;
+            split.assign(data + iter, data + length);
+            cq_http_send_body(http, cq_cpp_in(split), false);
             
-            cursor += length;
+            iter += length;
             
         } else {
-            cq_cpp_block_set("stop", true);
+            cq_http_send_body(http, nullptr, true);
         }
     }
 }
 
 static void cqHTTPSession_OnReceiveResponseBody(void *_self) {
     auto self = (cqHTTPSession *)_self;
+    auto http = self->dat->http;
     
-    std::vector<uint8_t> body = cq_cpp_block_bytes("body");
+    std::vector<uint8_t> body;
+    cq_http_recv_body(http, cq_cpp_out(body));
     
     if (self->dat->responseBodyWriter != nullptr) {
         bool continuous = self->dat->responseBodyWriter(body);
         if (!continuous) {
-            cq_cpp_block_set("stop", true);
+            cq_http_recv_body_stop(http, true);
         }
         
     } else {
@@ -274,8 +279,8 @@ static void cqHTTPSession_OnReceiveResponseBody(void *_self) {
 void cqHTTPSession::syncResume() {
     
     //reset:
-    cq_http_listen_event(dat->http, cq_http_e_send_body, cqHTTPSession_OnSendRequestBody    , this);
-    cq_http_listen_event(dat->http, cq_http_e_recv_body, cqHTTPSession_OnReceiveResponseBody, this);
+    cq_http_listen(dat->http, CQ_HTTP_SEND_BODY, cqHTTPSession_OnSendRequestBody    , this);
+    cq_http_listen(dat->http, CQ_HTTP_RECV_BODY, cqHTTPSession_OnReceiveResponseBody, this);
     
     dat->responseBodyData.clear();
     

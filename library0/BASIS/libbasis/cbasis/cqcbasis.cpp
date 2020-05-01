@@ -359,7 +359,7 @@ int32_t cq_obj_magic(cq_obj *obj) {
     }
 }
 
-void cq_obj_listen_event(cq_obj *obj, int32_t event, cq_block func, void *data) {
+void cq_obj_listen(cq_obj *obj, int32_t event, cq_block func, void *data) {
     if (obj == nullptr) {
         return;
     }
@@ -377,7 +377,7 @@ void cq_obj_listen_event(cq_obj *obj, int32_t event, cq_block func, void *data) 
     stc->events[event] = fn;
 }
 
-void cq_obj_emit_event(cq_obj *obj, int32_t event) {
+void cq_obj_emit(cq_obj *obj, int32_t event) {
     if (!obj || event == 0) {
         return;
     }

@@ -1,7 +1,6 @@
 package src.library.foundation;
 
 import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -90,58 +89,71 @@ public class PORT {
     
     private static class HttpSessionBridge extends HttpSession {
 
-        private CPtr mPort;
-        private String mError;
+        private static final int SEND_BODY = 1;
+        private static final int RECV_BODY = 2;
+
+        public CPtr   Port;
+        public String Error;
+
+        public boolean SendBodyFinish;
+        public byte[]  SendBodyBuffer;
+        public int     SendBodyLength;
+
+        public byte[]  ReceiveBodyData;
+        public boolean ReceiveBodyStop;
 
         public HttpSessionBridge() {
             setRequestBodyReader (this::onReadRequestBody  );
             setResponseBodyWriter(this::onWriteResponseBody);
         }
 
-        public void setPort(CPtr port) {
-            mPort = port;
-        }
-
-        public void setError(String error) {
-            mError = error;
-        }
-
-        public String getError() {
-            return mError;
+        public void syncResume() {
+            try {
+                SendBodyFinish = false;
+                Error = null;
+                super.syncResume();
+            } catch (IOException e) {
+                Error = e.toString();
+            }
         }
 
         private int onReadRequestBody(HttpSession session, byte[] buffer) {
-
-            ByteBuffer byteBuffer = ByteBuffer.allocate(0);
-            boolean[] stop = new boolean[1];
-
-            CBlock.out("buffer", byteBuffer);
-            CBlock.in("capacity", buffer.length);
-            CBlock.out("stop", stop);
-            CObject.emit(mPort, 1 /* cq_http_e_send_body */);
-
-            byte[] byteData = byteBuffer.array();
-            int    byteSize = byteBuffer.array().length;
-
-            if (byteSize > 0) {
-                System.arraycopy(byteData, 0, buffer, 0, byteSize);
+            //NOTE: if transfer finished, return -1.
+            if (SendBodyFinish) {
+                return -1;
             }
 
-            if (!stop[0]) {
-                return byteSize;
-            } else {
+            SendBodyBuffer = buffer;
+            SendBodyLength = 0;
+            CObject.emit(Port, SEND_BODY);
+
+            //REMEMBER: assign the reference to null.
+            SendBodyBuffer = null;
+
+            if (SendBodyLength > 0) {
+                return SendBodyLength;
+            }
+
+            if (SendBodyFinish) {
                 return -1;
+            } else {
+                //no data this time.
+                return 0;
             }
         }
 
         private boolean onWriteResponseBody(HttpSession session, byte[] data) {
-            boolean[] stop = new boolean[1];
+            ReceiveBodyData = data;
+            ReceiveBodyStop = false;
+            CObject.emit(Port, RECV_BODY);
 
-            CBlock.in("body", data);
-            CBlock.out("stop", stop);
-            CObject.emit(mPort, 2 /* cq_http_e_recv_body */);
+            //REMEMBER: assign reference to null.
+            ReceiveBodyData = null;
 
-            return !stop[0];
+            //NOTE:
+            //  boolean continue = !ReceiveBodyStop;
+            //  return continue;
+            return !ReceiveBodyStop;
         }
     }
 
@@ -149,7 +161,7 @@ public class PORT {
         HttpSessionBridge object = new HttpSessionBridge();
         CPtr port = CObject.retain(object, "HTTPSession");
 
-        object.setPort(port);
+        object.Port = port;
 
         return port;
     }
@@ -192,19 +204,46 @@ public class PORT {
     public static void cq_http_sync(CPtr http) {
         HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
         if (object != null) {
-            try {
-                object.setError(null);
-                object.syncResume();
-            } catch (IOException e) {
-                object.setError(e.toString());
-            }
+            object.syncResume();
+        }
+    }
+
+    public static int cq_http_send_body_cap(CPtr http) {
+        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        if (object != null) {
+            return object.SendBodyBuffer.length;
+        } else {
+            return 0;
+        }
+    }
+
+    public static void cq_http_send_body(CPtr http, CPtr bytesIn, boolean finish) {
+        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        if (object != null) {
+            byte[] data = CFunc.getBytes(bytesIn);
+            System.arraycopy(data, 0, object.SendBodyBuffer, 0, data.length);
+            object.SendBodyFinish = finish;
+        }
+    }
+
+    public static void cq_http_recv_body(CPtr http, CPtr bytesOut) {
+        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        if (object != null) {
+            CFunc.set(object.ReceiveBodyData, bytesOut);
+        }
+    }
+
+    public static void cq_http_recv_stop(CPtr http, boolean stop) {
+        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        if (object != null) {
+            object.ReceiveBodyStop = stop;
         }
     }
 
     public static String cq_http_error(CPtr http) {
         HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
         if (object != null) {
-            return object.getError();
+            return object.Error;
         } else {
             return null;
         }

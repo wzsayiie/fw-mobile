@@ -50,6 +50,6 @@ extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CObject_emit
 {
     auto ptr = cqJNIType::ptr<cq_obj *>(env, _ptr);
     if (ptr != nullptr) {
-        cq_obj_emit_event(ptr, (int32_t)event);
+        cq_obj_emit(ptr, (int32_t)event);
     }
 }

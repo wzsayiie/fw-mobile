@@ -199,5 +199,19 @@ CQ_C_LINK const char *cq_obj_cls      (cq_obj *obj);
 CQ_C_LINK void        cq_obj_set_magic(cq_obj *obj, int32_t magic);
 CQ_C_LINK int32_t     cq_obj_magic    (cq_obj *obj);
 
-CQ_C_LINK void cq_obj_listen_event(cq_obj *obj, int32_t event, cq_block func, void *data);
-CQ_C_LINK void cq_obj_emit_event  (cq_obj *obj, int32_t event);
+CQ_C_LINK void cq_obj_listen(cq_obj *obj, int32_t event, cq_block func, void *data);
+CQ_C_LINK void cq_obj_emit  (cq_obj *obj, int32_t event);
+
+#define CQ_OBJ_EX(TYPE)\
+/**/    static inline TYPE *TYPE##_retain(TYPE *obj) {\
+/**/        return (TYPE *)cq_obj_retain(obj);\
+/**/    }\
+/**/    static inline void TYPE##_release(TYPE *obj) {\
+/**/        return cq_obj_release(obj);\
+/**/    }\
+/**/    static inline void TYPE##_listen(TYPE *obj, int32_t event, cq_block func, void *data) {\
+/**/        cq_obj_listen(obj, event, func, data);\
+/**/    }\
+/**/    static inline void TYPE##_emit(TYPE *obj, int32_t event) {\
+/**/        cq_obj_emit(obj, event);\
+/**/    }

@@ -99,6 +99,14 @@ void cq_main_loop_post(cq_block block, void * data) {
 
 @interface CQHTTPSessionBridge : CQHTTPSession <CQHTTPSessionDelegate>
 @property (nonatomic) cq_http *intf;
+
+@property (nonatomic) BOOL    sendBodyFinish;
+@property (nonatomic) void   *sendBodyBuffer;
+@property (nonatomic) int32_t sendBodyBufferLength;
+@property (nonatomic) int32_t sendBodyLength;
+
+@property (nonatomic) NSData *receiveBodyData;
+@property (nonatomic) BOOL    receiveBodyStop;
 @end
 
 @implementation CQHTTPSessionBridge
@@ -110,41 +118,47 @@ void cq_main_loop_post(cq_block block, void * data) {
     return self;
 }
 
+- (void)syncResume {
+    self.sendBodyFinish = NO;
+    [super syncResume];
+}
+
 - (NSInteger)HTTPSession:(CQHTTPSession *)session
    requestBodyFromBuffer:(void *)buffer
             bufferLength:(NSInteger)bufferLength
 {
-    NSMutableData *bufferObject = [NSMutableData data];
-    BOOL stop = NO;
-    
-    cq_oc_block_bytes_out(@"buffer", bufferObject);
-    cq_oc_block_int32_in(@"capacity", (int32_t)bufferLength);
-    cq_oc_block_bool_out(@"stop", &stop);
-    cq_http_emit_event(self.intf, cq_http_e_send_body);
-    
-    if (bufferObject.length > 0) {
-        memcpy(buffer, bufferObject.bytes, bufferObject.length);
+    //NOTE: if transfer finished, return -1.
+    if (self.sendBodyFinish) {
+        return -1;
     }
     
-    if (!stop) {
-        return bufferObject.length;
-    } else {
+    self.sendBodyBuffer = buffer;
+    self.sendBodyBufferLength = (int32_t)bufferLength;
+    self.sendBodyLength = 0;
+    cq_http_emit(self.intf, CQ_HTTP_SEND_BODY);
+    
+    if (self.sendBodyLength > 0) {
+        return self.sendBodyLength;
+    }
+    
+    if (self.sendBodyFinish) {
         return -1;
+    } else {
+        //no data this time.
+        return 0;
     }
 }
 
 - (BOOL)HTTPSession:(CQHTTPSession *)session responseBodyData:(NSData *)data {
-    BOOL stop = NO;
+    self.receiveBodyData = data;
+    self.receiveBodyStop = NO;
+    cq_http_emit(self.intf, CQ_HTTP_RECV_BODY);
     
-    cq_oc_block_bytes_in(@"body", data);
-    cq_oc_block_bool_out(@"stop", &stop);
-    cq_http_emit_event(self.intf, cq_http_e_recv_body);
+    //REMEMBER: assign the reference to nil.
+    self.receiveBodyData = nil;
     
-    if (!stop) {
-        return YES;
-    } else {
-        return NO;
-    }
+    BOOL continuous = !self.receiveBodyStop;
+    return continuous;
 }
 
 @end
@@ -200,6 +214,34 @@ void cq_http_send_header(cq_http *http, const char *field, const char *value) {
 void cq_http_sync(cq_http *http) {
     http_session_bridge(object, http) {
         [object syncResume];
+    }
+}
+
+int32_t cq_http_send_body_cap(cq_http *http) {
+    http_session_bridge(object, http) {
+        return object.sendBodyBufferLength;
+    }
+}
+
+void cq_http_send_body(cq_http *http, cq_bytes_in data, bool finish) {
+    http_session_bridge(object, http) {
+        NSData *body = cq_oc_bytes(data);
+        if (body != nil) {
+            memcpy(object.sendBodyBuffer, body.bytes, body.length);
+        }
+        object.sendBodyFinish = finish;
+    }
+}
+
+void cq_http_recv_body(cq_http *http, cq_bytes_out out) {
+    http_session_bridge(object, http) {
+        cq_oc_set_bytes(object.receiveBodyData, out);
+    }
+}
+
+void cq_http_recv_body_stop(cq_http *http, bool stop) {
+    http_session_bridge(object, http) {
+        object.receiveBodyStop = stop;
     }
 }
 

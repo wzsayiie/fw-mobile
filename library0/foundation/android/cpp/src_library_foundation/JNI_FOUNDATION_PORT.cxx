@@ -175,6 +175,46 @@ void cq_http_sync(cq_http *http) {
     method.callVoid();
 }
 
+int32_t cq_http_send_body_cap(cq_http *http) {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(PORT(), &methodID, "cq_http_send_body_cap");
+
+    method.push(http);
+
+    return method.callInt32();
+}
+
+void cq_http_send_body(cq_http *http, cq_bytes_in data, bool finish) {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(PORT(), &methodID, "cq_http_send_body");
+
+    method.push(http);
+    method.push(data);
+    method.push(finish);
+
+    return method.callVoid();
+}
+
+void cq_http_recv_body(cq_http *http, cq_bytes_out out) {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(PORT(), &methodID, "cq_http_recv_body");
+
+    method.push(http);
+    method.push(out);
+
+    return method.callVoid();
+}
+
+void cq_http_recv_body_stop(cq_http *http, bool stop) {
+    static jmethodID methodID = nullptr;
+    cqJNIStaticMethod method(PORT(), &methodID, "cq_http_recv_body_stop");
+
+    method.push(http);
+    method.push(stop);
+
+    return method.callVoid();
+}
+
 const char *cq_http_error(cq_http *http) {
     static jmethodID methodID = nullptr;
     cqJNIStaticMethod method(PORT(), &methodID, "cq_http_error");
