@@ -230,119 +230,25 @@ template<class T, int = 0> typename cqRef<T>::Strong cqStaticObject() {
 
 //data interfaces for interaction with c:
 
-cq_bool_out   cq_cpp_out(bool    &value);
-cq_int8_out   cq_cpp_out(int8_t  &value);
-cq_int16_out  cq_cpp_out(int16_t &value);
-cq_int32_out  cq_cpp_out(int32_t &value);
-cq_int64_out  cq_cpp_out(int64_t &value);
-cq_float_out  cq_cpp_out(float   &value);
-cq_double_out cq_cpp_out(double  &value);
-
-cq_str_out      cq_cpp_out(std::string &value);
 cq_bytes_out    cq_cpp_out(std::vector<uint8_t> &value);
 cq_i64_list_out cq_cpp_out(std::vector<int64_t> &value);
 cq_str_list_out cq_cpp_out(std::vector<std::string> &value);
 cq_ss_map_out   cq_cpp_out(std::map<std::string, std::string> &value);
 
-cq_bool_in   cq_cpp_in(bool    value);
-cq_int8_in   cq_cpp_in(int8_t  value);
-cq_int16_in  cq_cpp_in(int16_t value);
-cq_int32_in  cq_cpp_in(int32_t value);
-cq_int64_in  cq_cpp_in(int64_t value);
-cq_float_in  cq_cpp_in(float   value);
-cq_double_in cq_cpp_in(double  value);
-
-cq_str_in      cq_cpp_in(const std::string &value);
 cq_bytes_in    cq_cpp_in(const std::vector<uint8_t> &value);
 cq_i64_list_in cq_cpp_in(const std::vector<int64_t> &value);
 cq_str_list_in cq_cpp_in(const std::vector<std::string> &value);
 cq_ss_map_in   cq_cpp_in(const std::map<std::string, std::string> &value);
 
-bool    cq_cpp_bool  (cq_bool_in   in);
-int8_t  cq_cpp_int8  (cq_int8_in   in);
-int16_t cq_cpp_int16 (cq_int16_in  in);
-int32_t cq_cpp_int32 (cq_int32_in  in);
-int64_t cq_cpp_int64 (cq_int64_in  in);
-float   cq_cpp_float (cq_float_in  in);
-double  cq_cpp_double(cq_double_in in);
-
-auto cq_cpp_str     (cq_str_in      in) -> std::string;
 auto cq_cpp_bytes   (cq_bytes_in    in) -> std::vector<uint8_t>;
 auto cq_cpp_i64_list(cq_i64_list_in in) -> std::vector<int64_t>;
 auto cq_cpp_str_list(cq_str_list_in in) -> std::vector<std::string>;
 auto cq_cpp_ss_map  (cq_ss_map_in   in) -> std::map<std::string, std::string>;
 
-void cq_cpp_set(bool    value, cq_bool_out   out);
-void cq_cpp_set(int8_t  value, cq_int8_out   out);
-void cq_cpp_set(int16_t value, cq_int16_out  out);
-void cq_cpp_set(int32_t value, cq_int32_out  out);
-void cq_cpp_set(int64_t value, cq_int64_out  out);
-void cq_cpp_set(float   value, cq_float_out  out);
-void cq_cpp_set(double  value, cq_double_out out);
-
-void cq_cpp_set(const std::string                   &value, cq_str_out      out);
 void cq_cpp_set(const std::vector<uint8_t>          &value, cq_bytes_out    out);
 void cq_cpp_set(const std::vector<int64_t>          &value, cq_i64_list_out out);
 void cq_cpp_set(const std::vector<std::string>      &value, cq_str_list_out out);
 void cq_cpp_set(const std::map<std::string, std::string> &, cq_ss_map_out   out);
-
-//block:
-
-void cq_cpp_block_in(const std::string &name, bool    value);
-void cq_cpp_block_in(const std::string &name, int8_t  value);
-void cq_cpp_block_in(const std::string &name, int16_t value);
-void cq_cpp_block_in(const std::string &name, int32_t value);
-void cq_cpp_block_in(const std::string &name, int64_t value);
-void cq_cpp_block_in(const std::string &name, float   value);
-void cq_cpp_block_in(const std::string &name, double  value);
-
-void cq_cpp_block_in(const std::string &name, const std::string &value);
-void cq_cpp_block_in(const std::string &name, const std::vector<uint8_t> &value);
-void cq_cpp_block_in(const std::string &name, const std::vector<int64_t> &value);
-void cq_cpp_block_in(const std::string &name, const std::vector<std::string> &value);
-void cq_cpp_block_in(const std::string &name, const std::map<std::string, std::string> &value);
-
-void cq_cpp_block_out(const std::string &name, bool    &value);
-void cq_cpp_block_out(const std::string &name, int8_t  &value);
-void cq_cpp_block_out(const std::string &name, int16_t &value);
-void cq_cpp_block_out(const std::string &name, int32_t &value);
-void cq_cpp_block_out(const std::string &name, int64_t &value);
-void cq_cpp_block_out(const std::string &name, float   &value);
-void cq_cpp_block_out(const std::string &name, double  &value);
-
-void cq_cpp_block_out(const std::string &name, std::string &value);
-void cq_cpp_block_out(const std::string &name, std::vector<uint8_t> &value);
-void cq_cpp_block_out(const std::string &name, std::vector<int64_t> &value);
-void cq_cpp_block_out(const std::string &name, std::vector<std::string> &value);
-void cq_cpp_block_out(const std::string &name, std::map<std::string, std::string> &value);
-
-bool    cq_cpp_block_bool  (const std::string &name);
-int8_t  cq_cpp_block_int8  (const std::string &name);
-int16_t cq_cpp_block_int16 (const std::string &name);
-int32_t cq_cpp_block_int32 (const std::string &name);
-int64_t cq_cpp_block_int64 (const std::string &name);
-float   cq_cpp_block_float (const std::string &name);
-double  cq_cpp_block_double(const std::string &name);
-
-auto cq_cpp_block_str     (const std::string &name) -> std::string;
-auto cq_cpp_block_bytes   (const std::string &name) -> std::vector<uint8_t>;
-auto cq_cpp_block_i64_list(const std::string &name) -> std::vector<int64_t>;
-auto cq_cpp_block_str_list(const std::string &name) -> std::vector<std::string>;
-auto cq_cpp_block_ss_map  (const std::string &name) -> std::map<std::string, std::string>;
-
-void cq_cpp_block_set(const std::string &name, bool    value);
-void cq_cpp_block_set(const std::string &name, int8_t  value);
-void cq_cpp_block_set(const std::string &name, int16_t value);
-void cq_cpp_block_set(const std::string &name, int32_t value);
-void cq_cpp_block_set(const std::string &name, int64_t value);
-void cq_cpp_block_set(const std::string &name, float   value);
-void cq_cpp_block_set(const std::string &name, double  value);
-
-void cq_cpp_block_set(const std::string &name, const std::string &value);
-void cq_cpp_block_set(const std::string &name, const std::vector<uint8_t> &value);
-void cq_cpp_block_set(const std::string &name, const std::vector<int64_t> &value);
-void cq_cpp_block_set(const std::string &name, const std::vector<std::string> &value);
-void cq_cpp_block_set(const std::string &name, const std::map<std::string, std::string> &value);
 
 //object reference:
 

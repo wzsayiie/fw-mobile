@@ -207,57 +207,10 @@ const char *cq_u8s_from_u16s(const char16_t *src) {
 
 //block:
 
-struct block_param {
-    cq_type type = CQ_TYPE_NULL;
-    void *value = nullptr;
-};
-
-static thread_local std::map<std::string, block_param> *_block_params = nullptr;
-
-void cq_set_block_param(const char *name, cq_type type, void *value) {
-    if (cq_str_empty(name)) {
-        return;
-    }
-    if (value == nullptr) {
-        return;
-    }
-    
-    if (_block_params == nullptr) {
-        _block_params = new std::map<std::string, block_param>;
-    }
-    
-    block_param param; {
-        param.type  = type ;
-        param.value = value;
-    }
-    (*_block_params)[name] = param;
-}
-
-void *cq_block_param(const char *name, cq_type type) {
-    if (cq_str_empty(name)) {
-        return nullptr;
-    }
-    if (_block_params == nullptr) {
-        return nullptr;
-    }
-    if (cqMap::dontContain(*_block_params, name)) {
-        return nullptr;
-    }
-    
-    block_param param = (*_block_params)[name];
-    if (param.type != type) {
-        return nullptr;
-    }
-    
-    return param.value;
-}
-
 void cq_run_block(cq_block block, void *data) {
     if (block != nullptr) {
         block(data);
     }
-    delete _block_params;
-    _block_params = nullptr;
 }
 
 //object reference:

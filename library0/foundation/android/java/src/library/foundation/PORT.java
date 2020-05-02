@@ -66,7 +66,7 @@ public class PORT {
 
     public static void cq_sub_files(String path, CPtr out) {
         ArrayList<String> items = FileAssist.listSubItems(path, null);
-        CFunc.set(items, out);
+        CFunc.setStringList(items, out);
     }
 
     //thread:
