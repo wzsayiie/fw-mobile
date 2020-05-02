@@ -250,19 +250,15 @@ void cq_cpp_set(const std::vector<int64_t>          &value, cq_i64_list_out out)
 void cq_cpp_set(const std::vector<std::string>      &value, cq_str_list_out out);
 void cq_cpp_set(const std::map<std::string, std::string> &, cq_ss_map_out   out);
 
-//object reference:
+//cpp block.
+cq_block *cq_block_retain_cpp(std::function<void ()> func);
 
-//create a cq_obj that references to $object.
-//the return value need to release by cq_obj_release().
-cq_obj *cq_obj_retain_cpp(cqObjectRef object, const std::string &cls);
+//bridged cpp object:
+cq_bridge *cq_bridge_retain_cpp(cqObjectRef object, const std::string &cls);
+cqObjectRef cq_bridge_cpp(cq_bridge *bridge, cqClass *cls);
 
-//get the object that pointed by $obj.
-//if $obj does not point a c++ object or that object is not a $cls, return null.
-//it's equivalent to $cls is null and $cls is cqObject::clazz.
-cqObjectRef cq_obj_raw_cpp(cq_obj *obj, cqClass *cls);
-
-template<class T> typename cqRef<T>::Strong cq_obj_raw_cpp(cq_obj *obj) {
-    return cqObject::cast<T>(cq_obj_raw_cpp(obj, T::clazz()));
+template<class T> typename cqRef<T>::Strong cq_bridge_cpp(cq_bridge *bridge) {
+    return cqObject::cast<T>(cq_bridge_cpp(bridge, T::clazz()));
 }
 
 _CQBASIS_END_VERSION_NS

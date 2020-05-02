@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import src.library.basis.CBlock;
+import src.library.basis.CBridge;
 import src.library.basis.CFunc;
-import src.library.basis.CObject;
 import src.library.basis.CPtr;
 import src.library.basis.W;
 
@@ -71,8 +71,16 @@ public class PORT {
 
     //thread:
 
-    public static void cq_thread_run(CPtr runnable, CPtr data) {
-        ThreadAssist.run(() -> CBlock.run(runnable, data));
+    public static void cq_thread_run(CPtr block) {
+        if (block == null) {
+            return;
+        }
+
+        CBlock.retain(block);
+        ThreadAssist.run(() -> {
+            CBlock.run(block);
+            CBlock.release(block);
+        });
     }
 
     public static void cq_thread_sleep(float seconds) {
@@ -81,8 +89,16 @@ public class PORT {
 
     //main run loop:
 
-    public static void cq_main_loop_post(CPtr runnable, CPtr data) {
-        LooperAssist.runOnMainLoop(() -> CBlock.run(runnable, data));
+    public static void cq_main_loop_post(CPtr block) {
+        if (block == null) {
+            return;
+        }
+
+        CBlock.retain(block);
+        LooperAssist.runOnMainLoop(() -> {
+            CBlock.run(block);
+            CBlock.release(block);
+        });
     }
 
     //http:
@@ -92,7 +108,7 @@ public class PORT {
         private static final int SEND_BODY = 1;
         private static final int RECV_BODY = 2;
 
-        public CPtr   Port;
+        public CPtr   Bridge;
         public String Error;
 
         public boolean SendBodyFinish;
@@ -125,7 +141,7 @@ public class PORT {
 
             SendBodyBuffer = buffer;
             SendBodyLength = 0;
-            CObject.emit(Port, SEND_BODY);
+            CBridge.emit(Bridge, SEND_BODY);
 
             //REMEMBER: assign the reference to null.
             SendBodyBuffer = null;
@@ -145,7 +161,7 @@ public class PORT {
         private boolean onWriteResponseBody(HttpSession session, byte[] data) {
             ReceiveBodyData = data;
             ReceiveBodyStop = false;
-            CObject.emit(Port, RECV_BODY);
+            CBridge.emit(Bridge, RECV_BODY);
 
             //REMEMBER: assign reference to null.
             ReceiveBodyData = null;
@@ -159,57 +175,57 @@ public class PORT {
 
     public static CPtr cq_http_create() {
         HttpSessionBridge object = new HttpSessionBridge();
-        CPtr port = CObject.retain(object, "HTTPSession");
+        CPtr bridge = CBridge.retainRaw(object, "HTTPSession");
 
-        object.Port = port;
+        object.Bridge = bridge;
 
-        return port;
+        return bridge;
     }
 
     public static void cq_http_timeout(CPtr http, float seconds) {
-        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        HttpSessionBridge object = CBridge.raw(http, HttpSessionBridge.class);
         if (object != null) {
             object.setTimeoutSeconds(seconds);
         }
     }
 
     public static void cq_http_send_method(CPtr http, String method) {
-        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        HttpSessionBridge object = CBridge.raw(http, HttpSessionBridge.class);
         if (object != null) {
             object.setMethod(method);
         }
     }
 
     public static void cq_http_send_url(CPtr http, String url) {
-        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        HttpSessionBridge object = CBridge.raw(http, HttpSessionBridge.class);
         if (object != null) {
             object.setURLString(url);
         }
     }
 
     public static void cq_http_send_query(CPtr http, String field, String value) {
-        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        HttpSessionBridge object = CBridge.raw(http, HttpSessionBridge.class);
         if (object != null) {
             object.setURLQuery(field, value);
         }
     }
 
     public static void cq_http_send_header(CPtr http, String field, String value) {
-        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        HttpSessionBridge object = CBridge.raw(http, HttpSessionBridge.class);
         if (object != null) {
             object.setRequestHeader(field, value);
         }
     }
 
     public static void cq_http_sync(CPtr http) {
-        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        HttpSessionBridge object = CBridge.raw(http, HttpSessionBridge.class);
         if (object != null) {
             object.syncResume();
         }
     }
 
     public static int cq_http_send_body_cap(CPtr http) {
-        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        HttpSessionBridge object = CBridge.raw(http, HttpSessionBridge.class);
         if (object != null) {
             return object.SendBodyBuffer.length;
         } else {
@@ -218,7 +234,7 @@ public class PORT {
     }
 
     public static void cq_http_send_body(CPtr http, CPtr bytesIn, boolean finish) {
-        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        HttpSessionBridge object = CBridge.raw(http, HttpSessionBridge.class);
         if (object != null) {
             byte[] data = CFunc.getBytes(bytesIn);
             System.arraycopy(data, 0, object.SendBodyBuffer, 0, data.length);
@@ -227,21 +243,21 @@ public class PORT {
     }
 
     public static void cq_http_recv_body(CPtr http, CPtr bytesOut) {
-        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        HttpSessionBridge object = CBridge.raw(http, HttpSessionBridge.class);
         if (object != null) {
             CFunc.set(object.ReceiveBodyData, bytesOut);
         }
     }
 
     public static void cq_http_recv_stop(CPtr http, boolean stop) {
-        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        HttpSessionBridge object = CBridge.raw(http, HttpSessionBridge.class);
         if (object != null) {
             object.ReceiveBodyStop = stop;
         }
     }
 
     public static String cq_http_error(CPtr http) {
-        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        HttpSessionBridge object = CBridge.raw(http, HttpSessionBridge.class);
         if (object != null) {
             return object.Error;
         } else {
@@ -250,7 +266,7 @@ public class PORT {
     }
 
     public static int cq_http_recv_code(CPtr http) {
-        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        HttpSessionBridge object = CBridge.raw(http, HttpSessionBridge.class);
         if (object != null) {
             return object.getResponseCode();
         } else {
@@ -259,7 +275,7 @@ public class PORT {
     }
 
     public static void cq_http_recv_header(CPtr http, CPtr out) {
-        HttpSessionBridge object = CObject.raw(http, HttpSessionBridge.class);
+        HttpSessionBridge object = CBridge.raw(http, HttpSessionBridge.class);
         if (object != null) {
             HashMap<String, String> header = object.getResponseHeader();
             CFunc.set(header, out);

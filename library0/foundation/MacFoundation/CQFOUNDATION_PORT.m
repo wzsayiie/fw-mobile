@@ -77,10 +77,16 @@ void cq_sub_files(const char *path, cq_str_list_out out) {
 
 //thread:
 
-void cq_thread_run(cq_block block, void *data) {
-    if (block != NULL) {
-        CQThreadRun(^{ cq_run_block(block, data); });
+void cq_thread_run(cq_block *block) {
+    if (block == NULL) {
+        return;
     }
+    
+    cq_block_retain(block);
+    CQThreadRun(^{
+        cq_block_run(block);
+        cq_block_release(block);
+    });
 }
 
 void cq_thread_sleep(float seconds) {
@@ -89,16 +95,22 @@ void cq_thread_sleep(float seconds) {
 
 //main run loop:
 
-void cq_main_loop_post(cq_block block, void * data) {
-    if (block != NULL) {
-        [CQRunLoop.mainRunLoop performBlock:^{ cq_run_block(block, data); }];
+void cq_main_loop_post(cq_block *block) {
+    if (block == NULL) {
+        return;
     }
+    
+    cq_block_retain(block);
+    [CQRunLoop.mainRunLoop performBlock:^{
+        cq_block_run(block);
+        cq_block_release(block);
+    }];
 }
 
 //http(s):
 
 @interface CQHTTPSessionBridge : CQHTTPSession <CQHTTPSessionDelegate>
-@property (nonatomic) cq_http *intf;
+@property (nonatomic) cq_http *bridge;
 
 @property (nonatomic) BOOL    sendBodyFinish;
 @property (nonatomic) void   *sendBodyBuffer;
@@ -135,7 +147,7 @@ void cq_main_loop_post(cq_block block, void * data) {
     self.sendBodyBuffer = buffer;
     self.sendBodyBufferLength = (int32_t)bufferLength;
     self.sendBodyLength = 0;
-    cq_http_emit(self.intf, CQ_HTTP_SEND_BODY);
+    cq_http_emit(self.bridge, CQ_HTTP_SEND_BODY);
     
     if (self.sendBodyLength > 0) {
         return self.sendBodyLength;
@@ -152,7 +164,7 @@ void cq_main_loop_post(cq_block block, void * data) {
 - (BOOL)HTTPSession:(CQHTTPSession *)session responseBodyData:(NSData *)data {
     self.receiveBodyData = data;
     self.receiveBodyStop = NO;
-    cq_http_emit(self.intf, CQ_HTTP_RECV_BODY);
+    cq_http_emit(self.bridge, CQ_HTTP_RECV_BODY);
     
     //REMEMBER: assign the reference to nil.
     self.receiveBodyData = nil;
@@ -165,15 +177,15 @@ void cq_main_loop_post(cq_block block, void * data) {
 
 cq_http *cq_http_create(void) {
     CQHTTPSessionBridge *object = [[CQHTTPSessionBridge alloc] init];
-    cq_http *intf = cq_obj_retain_oc(object, @"HTTPSession");
+    cq_http *bridge = (cq_http *)cq_bridge_retain_oc(object, @"HTTPSession");
     
-    object.intf = intf;
+    object.bridge = bridge;
     
-    return intf;
+    return bridge;
 }
 
-#define http_session_bridge(OBJECT, INTF)\
-/**/    CQHTTPSessionBridge *OBJECT = cq_obj_raw_oc(INTF, CQHTTPSessionBridge.class);\
+#define http_session_bridge(OBJECT, BRIDGE)\
+/**/    CQHTTPSessionBridge *OBJECT = cq_bridge_oc((cq_bridge *)BRIDGE, CQHTTPSessionBridge.class);\
 
 void cq_http_timeout(cq_http *http, float seconds) {
     http_session_bridge(object, http) {

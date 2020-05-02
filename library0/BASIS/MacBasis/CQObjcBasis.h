@@ -86,13 +86,9 @@ void cq_oc_set_i64_list(NSArray<NSNumber *>             *value, cq_i64_list_out 
 void cq_oc_set_str_list(NSArray<NSString *>             *value, cq_str_list_out out);
 void cq_oc_set_ss_map  (NSDictionary<NSString *, NSString *> *, cq_ss_map_out   out);
 
-//object reference:
+//oc block.
+cq_block *cq_block_retain_oc(void (^block)(void));
 
-//create a cq_obj that holds one reference count of $object.
-//the return value need to release by cq_obj_release().
-cq_obj *cq_obj_retain_oc(id object, NSString *cls);
-
-//get the object that pointed by $obj.
-//if $obj does not point a objc object or that object is not a $cls, return nil.
-//it's equivalent to $cls is Nil and $cls is NSObject.class .
-id cq_obj_raw_oc(cq_obj *obj, Class cls);
+//bridged oc object:
+cq_bridge *cq_bridge_retain_oc(id object, NSString *cls);
+id cq_bridge_oc(cq_bridge *bridge, Class cls);

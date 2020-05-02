@@ -132,15 +132,10 @@ std::vector<std::string> cqFileManager::contentsOfDirectoryAtPath(const std::str
 
 //thread:
 
-static void cqThread_block(void *data) {
-    auto ref = (std::function<void ()> *)data;
-    (*ref)();
-    delete ref;
-}
-
 void cqThread::run(std::function<void ()> task) {
-    auto ref = new std::function<void ()>(task);
-    cq_thread_run(cqThread_block, ref);
+    cq_block *block = cq_block_retain_cpp(task);
+    cq_thread_run(block);
+    cq_block_release(block);
 }
 
 void cqThread::sleep(float seconds) {
@@ -156,15 +151,10 @@ cqRunLoopRef cqRunLoop::mainRunLoop() {
     return cqStaticObject<cqRunLoop>();
 }
 
-static void cqRunLoop_block(void *data) {
-    auto ref = (std::function<void ()> *)data;
-    (*ref)();
-    delete ref;
-}
-
 void cqRunLoop::perform(std::function<void ()> task) {
-    auto ref = new std::function<void ()>(task);
-    cq_main_loop_post(cqRunLoop_block, ref);
+    cq_block *block = cq_block_retain_cpp(task);
+    cq_main_loop_post(block);
+    cq_block_release(block);
 }
 
 //http(s):
@@ -279,8 +269,12 @@ static void cqHTTPSession_OnReceiveResponseBody(void *_self) {
 void cqHTTPSession::syncResume() {
     
     //reset:
-    cq_http_listen(dat->http, CQ_HTTP_SEND_BODY, cqHTTPSession_OnSendRequestBody    , this);
-    cq_http_listen(dat->http, CQ_HTTP_RECV_BODY, cqHTTPSession_OnReceiveResponseBody, this);
+    auto sender = cq_block_retain_cpp([=]{ cqHTTPSession_OnSendRequestBody    (this); });
+    auto recver = cq_block_retain_cpp([=]{ cqHTTPSession_OnReceiveResponseBody(this); });
+    cq_http_listen(dat->http, CQ_HTTP_SEND_BODY, sender);
+    cq_http_listen(dat->http, CQ_HTTP_RECV_BODY, recver);
+    cq_block_release(sender);
+    cq_block_release(recver);
     
     dat->responseBodyData.clear();
     

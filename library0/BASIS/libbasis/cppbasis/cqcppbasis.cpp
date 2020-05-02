@@ -265,43 +265,55 @@ void cq_cpp_set(const std::vector<int64_t>               &value, cq_i64_list_out
 void cq_cpp_set(const std::vector<std::string>           &value, cq_str_list_out out) {cpp_set(value, out);}
 void cq_cpp_set(const std::map<std::string, std::string> &value, cq_ss_map_out   out) {cpp_set(value, out);}
 
-//object reference:
+//cpp block:
+
+static void run_block(void *raw) {
+    if (raw != nullptr) {
+        auto func = (std::function<void ()> *)raw;
+        (*func)();
+    }
+}
+
+static void del_block(void *raw) {
+    auto func = (std::function<void ()> *)raw;
+    delete func;
+}
+
+cq_block *cq_block_retain_cpp(std::function<void ()> func) {
+    if (func != nullptr) {
+        auto raw = new std::function<void ()>(func);
+        return cq_block_retain_raw(raw, run_block, del_block);
+    }
+    return nullptr;
+}
+
+//bridged cpp object:
 
 static const int32_t CPP_OBJECT_MAGIC = 0x432B2B; //"C++".
 
-static void release_raw_cpp(void *raw) {
-    if (raw != nullptr) {
-        delete (cqObjectRef *)raw;
-    }
+static void del_bridge(void *raw) {
+    delete (cqObjectRef *)raw;
 }
 
-cq_obj *cq_obj_retain_cpp(cqObjectRef object, const std::string &cls) {
-    if (object == nullptr) {
+cq_bridge *cq_bridge_retain_cpp(cqObjectRef object, const std::string &cls) {
+    if (object != nullptr) {
+        void *raw = new cqObjectRef(object);
+        return cq_bridge_retain_raw(raw, cls.c_str(), CPP_OBJECT_MAGIC, del_bridge);
+    }
+    return nullptr;
+}
+
+cqObjectRef cq_bridge_cpp(cq_bridge *bridge, cqClass *cls) {
+    if (bridge == nullptr) {
         return nullptr;
     }
     
-    void *raw = new cqObjectRef(object);
-    cq_obj *ptr = cq_obj_retain_raw(raw, release_raw_cpp);
-    
-    if (!cls.empty()) {
-        cq_obj_set_cls(ptr, cls.c_str());
-    }
-    cq_obj_set_magic(ptr, CPP_OBJECT_MAGIC);
-    
-    return ptr;
-}
-
-cqObjectRef cq_obj_raw_cpp(cq_obj *ptr, cqClass *cls) {
-    if (ptr == nullptr) {
-        return nullptr;
-    }
-    
-    if (cq_obj_magic(ptr) != CPP_OBJECT_MAGIC) {
+    if (cq_bridge_magic(bridge) != CPP_OBJECT_MAGIC) {
         //it's not a c++ object.
         return nullptr;
     }
     
-    auto raw = (cqObjectRef *)cq_obj_raw(ptr);
+    auto raw = (cqObjectRef *)cq_bridge_raw(bridge);
     if (cls && raw->get()->dynamicClass() != cls) {
         //it's not wanted class.
         return nullptr;

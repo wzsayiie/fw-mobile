@@ -29,17 +29,16 @@ CQ_C_LINK void cq_sub_files(const char *path, cq_str_list_out out);
 
 //thread:
 
-CQ_C_LINK void cq_thread_run(cq_block block, void *data);
+CQ_C_LINK void cq_thread_run(cq_block *block);
 CQ_C_LINK void cq_thread_sleep(float seconds);
 
 //main run loop:
 
-CQ_C_LINK void cq_main_loop_post(cq_block block, void *data);
+CQ_C_LINK void cq_main_loop_post(cq_block *block);
 
 //http(s):
 
-cq_struct(cq_http);
-CQ_OBJ_EX(cq_http)
+cq_bridged_struct(cq_http);
 
 CQ_C_LINK cq_http *cq_http_create(void);
 

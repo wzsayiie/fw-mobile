@@ -200,44 +200,59 @@ void cq_oc_set_i64_list(NSArray<NSNumber *>                  *v, cq_i64_list_out
 void cq_oc_set_str_list(NSArray<NSString *>                  *v, cq_str_list_out f) {if (v && f) cq_oc_str_list_in(v)(f);}
 void cq_oc_set_ss_map  (NSDictionary<NSString *, NSString *> *v, cq_ss_map_out   f) {if (v && f) cq_oc_ss_map_in  (v)(f);}
 
-//object reference:
+//oc block:
 
-static const int32_t OBJC_OBJECT_MAGIC = 0x4F424A43; //"OBJC".
+static void run_block(void *raw) {
+    if (raw != NULL) {
+        void (^block)(void) = (__bridge_transfer id)CFRetain(raw);
+        block();
+    }
+}
 
-static void release_raw_oc(void *raw) {
+static void del_block(void *raw) {
     if (raw != NULL) {
         CFRelease((CFTypeRef)raw);
     }
 }
 
-cq_obj *cq_obj_retain_oc(id object, NSString *cls) {
-    if (object == nil) {
-        return NULL;
+cq_block *cq_block_retain_oc(void (^block)(void)) {
+    if (block != nil) {
+        CFTypeRef raw = CFRetain((__bridge CFTypeRef)block);
+        return cq_block_retain_raw((void *)raw, run_block, del_block);
     }
-    
-    CFTypeRef raw = CFRetain((__bridge CFTypeRef)object);
-    cq_obj *ptr = cq_obj_retain_raw((void *)raw, release_raw_oc);
-    
-    if (cls.length > 0) {
-        cq_obj_set_cls(ptr, cls.UTF8String);
-    }
-    cq_obj_set_magic(ptr, OBJC_OBJECT_MAGIC);
-    
-    return ptr;
+    return NULL;
 }
 
-id cq_obj_raw_oc(cq_obj *ptr, Class cls) {
-    if (ptr == NULL) {
+//bridged oc object:
+
+static const int32_t OBJC_OBJECT_MAGIC = 0x4F424A43; //"OBJC".
+
+static void del_bridge(void *raw) {
+    if (raw != NULL) {
+        CFRelease((CFTypeRef)raw);
+    }
+}
+
+cq_bridge *cq_bridge_retain_oc(id object, NSString *cls) {
+    if (object != nil) {
+        CFTypeRef raw = CFRetain((__bridge CFTypeRef)object);
+        return cq_bridge_retain_raw((void *)raw, cls.UTF8String, OBJC_OBJECT_MAGIC, del_bridge);
+    }
+    return NULL;
+}
+
+id cq_bridge_oc(cq_bridge *bridge, Class cls) {
+    if (bridge == NULL) {
         return nil;
     }
     
-    if (cq_obj_magic(ptr) != OBJC_OBJECT_MAGIC) {
+    if (cq_bridge_magic(bridge) != OBJC_OBJECT_MAGIC) {
         //it's not a objc object.
         return nil;
     }
     
-    CFTypeRef raw = (CFTypeRef)cq_obj_raw(ptr);
-    NSObject *object = (__bridge_transfer NSObject *)CFRetain(raw);
+    CFTypeRef raw = (CFTypeRef)cq_bridge_raw(bridge);
+    NSObject *object = (__bridge_transfer id)CFRetain(raw);
     if (cls && object.class != cls) {
         //it's not a wanted class.
         return nil;

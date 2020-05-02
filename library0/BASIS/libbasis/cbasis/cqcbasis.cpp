@@ -205,52 +205,29 @@ const char *cq_u8s_from_u16s(const char16_t *src) {
     return cq_store_str(dst.c_str());
 }
 
-//block:
-
-void cq_run_block(cq_block block, void *data) {
-    if (block != nullptr) {
-        block(data);
-    }
-}
-
 //object reference:
 
-struct event_fn {
-    cq_block func = nullptr;
-    void    *data = nullptr;
-};
-
-struct cq_obj_stc {
-    int32_t references = 1;
-    
-    void (*release)(void *) = nullptr;
+struct cq_obj {
+    int32_t ref_count = 1;
     void *raw = nullptr;
+    void (*del)(void *) = nullptr;
     
-    std::map<int32_t, event_fn> events;
-    int32_t magic = 0;
-    std::string cls;
+    virtual ~cq_obj();
 };
 
-cq_obj *cq_obj_retain_raw(void *raw, void (*release)(void *raw)) {
-    cq_obj_stc *obj = nullptr;
-    if (raw && release) {
-        obj = new cq_obj_stc;
-        obj->release = release;
-        obj->raw = raw;
+cq_obj::~cq_obj() {
+    if (del && raw) {
+        del(raw);
     }
-    return (cq_obj *)obj;
 }
 
 cq_obj *cq_obj_retain(cq_obj *obj) {
     if (obj == nullptr) {
         return nullptr;
     }
-    
     cq_synchronize_obj(obj, {
-        auto stc = (cq_obj_stc *)obj;
-        stc->references += 1;
+        obj->ref_count += 1;
     });
-    
     return obj;
 }
 
@@ -258,86 +235,137 @@ void cq_obj_release(cq_obj *obj) {
     if (obj == nullptr) {
         return;
     }
-    
     cq_synchronize_obj(obj, {
-        auto stc = (cq_obj_stc *)obj;
-        
-        if (stc->references <= 1) {
-            stc->release(stc->raw);
-            delete stc;
-        } else {
-            stc->references -= 1;
+        if (--obj->ref_count <= 0) {
+            delete obj;
         }
     });
 }
 
-void *cq_obj_raw(cq_obj *obj) {
-    if (obj != nullptr) {
-        auto stc = (cq_obj_stc *)obj;
-        return stc->raw;
-    } else {
+//block:
+
+struct cq_block : cq_obj {
+    void (*run)(void *raw) = nullptr;
+};
+
+cq_block *cq_block_retain_raw(void *raw, void (*run)(void *raw), void (*del)(void *raw)) {
+    if (!raw || !run) {
         return nullptr;
     }
+    
+    cq_block *block = new cq_block; {
+        block->raw = raw;
+        block->run = run;
+        block->del = del;
+    }
+    return block;
 }
 
-void cq_obj_set_cls(cq_obj *obj, const char *cls) {
-    if (obj != nullptr) {
-        auto stc = (cq_obj_stc *)obj;
-        stc->cls = cqString::make(cls);
+cq_block *cq_block_retain(cq_block *block) {
+    cq_obj_retain(block);
+    return block;
+}
+
+void cq_block_release(cq_block *block) {
+    cq_obj_release(block);
+}
+
+void cq_block_run(cq_block *block) {
+    if (block == nullptr) {
+        return;
+    }
+    if (block->run && block->raw) {
+        block->run(block->raw);
     }
 }
 
-const char *cq_obj_cls(cq_obj *obj) {
-    if (obj != nullptr) {
-        auto stc = (cq_obj_stc *)obj;
-        return stc->cls.c_str();
-    } else {
+//bridged object:
+
+struct cq_bridge : cq_obj {
+    std::map<int32_t, cq_block *> blocks;
+    int32_t magic = 0;
+    std::string cls;
+    
+    ~cq_bridge();
+};
+
+cq_bridge::~cq_bridge() {
+    for (auto cp : blocks) {
+        cq_block_release(cp.second);
+    }
+}
+
+cq_bridge *cq_bridge_retain_raw(void *raw, const char *cls, int32_t magic, void (*del)(void *raw)) {
+    if (!raw || !del) {
         return nullptr;
     }
-}
-
-void cq_obj_set_magic(cq_obj *obj, int32_t magic) {
-    if (obj != nullptr) {
-        auto stc = (cq_obj_stc *)obj;
-        stc->magic = magic;
+    
+    cq_bridge *bridge = new cq_bridge; {
+        bridge->raw   = raw;
+        bridge->cls   = cqString::make(cls);
+        bridge->magic = magic;
+        bridge->del   = del;
     }
+    return bridge;
 }
 
-int32_t cq_obj_magic(cq_obj *obj) {
-    if (obj != nullptr) {
-        auto stc = (cq_obj_stc *)obj;
-        return stc->magic;
-    } else {
-        return 0;
+cq_bridge *cq_bridge_retain(cq_bridge *bridge) {
+    cq_obj_retain(bridge);
+    return bridge;
+}
+
+void cq_bridge_release(cq_bridge *bridge) {
+    cq_obj_release(bridge);
+}
+
+void *cq_bridge_raw(cq_bridge *bridge) {
+    if (bridge != nullptr) {
+        return bridge->raw;
     }
+    return nullptr;
 }
 
-void cq_obj_listen(cq_obj *obj, int32_t event, cq_block func, void *data) {
-    if (obj == nullptr) {
+const char *cq_bridge_cls(cq_bridge *bridge) {
+    if (bridge != nullptr) {
+        return bridge->cls.c_str();
+    }
+    return nullptr;
+}
+
+int32_t cq_bridge_magic(cq_bridge *bridge) {
+    if (bridge != nullptr) {
+        return bridge->magic;
+    }
+    return 0;
+}
+
+void cq_bridge_listen(cq_bridge *bridge, int32_t event, cq_block *block) {
+    if (bridge == nullptr) {
         return;
     }
     
-    //NOTE: ignore that event is 0, 0 is reserved.
-    if (event == 0 || !func) {
-        return;
+    //release old value.
+    if (cqMap::contains(bridge->blocks, event)) {
+        cq_block *old = bridge->blocks[event];
+        cq_block_release(old);
+        bridge->blocks.erase(event);
     }
     
-    event_fn fn; {
-        fn.func = func;
-        fn.data = data;
+    //retain new value.
+    if (block != nullptr) {
+        cq_block_retain(block);
+        bridge->blocks[event] = block;
     }
-    auto stc = (cq_obj_stc *)obj;
-    stc->events[event] = fn;
 }
 
-void cq_obj_emit(cq_obj *obj, int32_t event) {
-    if (!obj || event == 0) {
+void cq_bridge_emit(cq_bridge *bridge, int32_t event) {
+    if (bridge == nullptr) {
+        return;
+    }
+    if (cqMap::dontContain(bridge->blocks, event)) {
         return;
     }
     
-    auto stc = (cq_obj_stc *)obj;
-    if (cqMap::contains(stc->events, event)) {
-        event_fn fn = stc->events[event];
-        cq_run_block(fn.func, fn.data);
-    }
+    cq_block *block = bridge->blocks[event];
+    cq_block_run(block);
 }
