@@ -291,29 +291,29 @@ cq_block *cq_block_retain_cpp(std::function<void ()> func) {
 
 static const int32_t CPP_OBJECT_MAGIC = 0x432B2B; //"C++".
 
-static void del_bridge(void *raw) {
+static void del_cpp_object(void *raw) {
     delete (cqObjectRef *)raw;
 }
 
-cq_bridge *cq_bridge_retain_cpp(cqObjectRef object, const std::string &cls) {
+cq_object *cq_object_retain_cpp(cqObjectRef object, const std::string &cls) {
     if (object != nullptr) {
         void *raw = new cqObjectRef(object);
-        return cq_bridge_retain_raw(raw, cls.c_str(), CPP_OBJECT_MAGIC, del_bridge);
+        return cq_object_retain_raw(raw, cls.c_str(), CPP_OBJECT_MAGIC, del_cpp_object);
     }
     return nullptr;
 }
 
-cqObjectRef cq_bridge_cpp(cq_bridge *bridge, cqClass *cls) {
-    if (bridge == nullptr) {
+cqObjectRef cq_object_cpp(cq_object *object, cqClass *cls) {
+    if (object == nullptr) {
         return nullptr;
     }
     
-    if (cq_bridge_magic(bridge) != CPP_OBJECT_MAGIC) {
+    if (cq_object_magic(object) != CPP_OBJECT_MAGIC) {
         //it's not a c++ object.
         return nullptr;
     }
     
-    auto raw = (cqObjectRef *)cq_bridge_raw(bridge);
+    auto raw = (cqObjectRef *)cq_object_raw(object);
     if (cls && raw->get()->dynamicClass() != cls) {
         //it's not wanted class.
         return nullptr;

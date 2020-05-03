@@ -119,11 +119,11 @@ typedef void (*cq_ss_map_in  )(cq_ss_map_out   out);
 
 //object reference:
 
-cq_struct(cq_obj);
+cq_struct(cq_ref);
 
-//cq_obj_retain() and cq_obj_relase() is thread safe.
-CQ_C_LINK cq_obj *cq_obj_retain(cq_obj *obj);
-CQ_C_LINK void cq_obj_release(cq_obj *obj);
+//cq_ref_retain() and cq_ref_relase() is thread safe.
+CQ_C_LINK cq_ref *cq_ref_retain(cq_ref *ref);
+CQ_C_LINK void cq_ref_release(cq_ref *ref);
 
 //block:
 
@@ -136,22 +136,22 @@ CQ_C_LINK void cq_block_run(cq_block *block);
 
 //bridged object:
 
-cq_struct(cq_bridge);
+cq_struct(cq_object);
 
-CQ_C_LINK cq_bridge *cq_bridge_retain_raw(void *raw, const char *cls, int32_t magic, void (*del)(void *raw));
-CQ_C_LINK cq_bridge *cq_bridge_retain(cq_bridge *bridge);
-CQ_C_LINK void cq_bridge_release(cq_bridge *bridge);
+CQ_C_LINK cq_object *cq_object_retain_raw(void *raw, const char *cls, int32_t magic, void (*del)(void *raw));
+CQ_C_LINK cq_object *cq_object_retain(cq_object *object);
+CQ_C_LINK void cq_object_release(cq_object *object);
 
-CQ_C_LINK void       *cq_bridge_raw  (cq_bridge *bridge);
-CQ_C_LINK const char *cq_bridge_cls  (cq_bridge *bridge);
-CQ_C_LINK int32_t     cq_bridge_magic(cq_bridge *bridge);
+CQ_C_LINK void       *cq_object_raw  (cq_object *object);
+CQ_C_LINK const char *cq_object_cls  (cq_object *object);
+CQ_C_LINK int32_t     cq_object_magic(cq_object *object);
 
-CQ_C_LINK void cq_bridge_listen(cq_bridge *bridge, int32_t event, cq_block *block);
-CQ_C_LINK void cq_bridge_emit  (cq_bridge *bridge, int32_t event);
+CQ_C_LINK void cq_object_listen(cq_object *object, int32_t event, cq_block *block);
+CQ_C_LINK void cq_object_emit  (cq_object *object, int32_t event);
 
-#define cq_bridged_struct(N)\
+#define cq_def_object(N)\
 /**/    cq_struct(N);\
-/**/    static inline N *  N##_retain (N *a                        ) {return (N *)cq_bridge_retain ((cq_bridge *)a      );}\
-/**/    static inline void N##_release(N *a                        ) {return      cq_bridge_release((cq_bridge *)a      );}\
-/**/    static inline void N##_listen (N *a, int32_t e, cq_block *b) {return      cq_bridge_listen ((cq_bridge *)a, e, b);}\
-/**/    static inline void N##_emit   (N *a, int32_t e             ) {return      cq_bridge_emit   ((cq_bridge *)a, e   );}
+/**/    static inline N *  N##_retain (N *a                        ) {return (N *)cq_object_retain ((cq_object *)a      );}\
+/**/    static inline void N##_release(N *a                        ) {return      cq_object_release((cq_object *)a      );}\
+/**/    static inline void N##_listen (N *a, int32_t e, cq_block *b) {return      cq_object_listen ((cq_object *)a, e, b);}\
+/**/    static inline void N##_emit   (N *a, int32_t e             ) {return      cq_object_emit   ((cq_object *)a, e   );}

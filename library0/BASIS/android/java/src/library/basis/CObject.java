@@ -1,11 +1,11 @@
 package src.library.basis;
 
 @SuppressWarnings({W.LIB_OMIT_0, W.LIB_OMIT_1, W.LIB_OMIT_2, W.LIB_OMIT_3})
-public class CBridge {
+public class CObject {
 
     public static native CPtr retainRaw(Object object, String className);
-    public static native CPtr retain(CPtr bridge);
-    public static native void release(CPtr bridge);
+    public static native CPtr retain(CPtr object);
+    public static native void release(CPtr object);
 
     @SuppressWarnings("unchecked")
     public static <T> T raw(CPtr ptr, Class<T> cls) {
@@ -22,12 +22,12 @@ public class CBridge {
     }
     private static native Object raw(CPtr raw);
 
-    public static void listen(CPtr bridge, int event, Runnable runnable) {
+    public static void listen(CPtr object, int event, Runnable runnable) {
         CPtr block = CBlock.retainRaw(runnable);
-        listen(bridge, event, block);
+        listen(object, event, block);
         CBlock.release(block);
     }
-    private static native void listen(CPtr bridge, int event, CPtr block);
+    private static native void listen(CPtr object, int event, CPtr block);
 
-    public static native void emit(CPtr bridge, int event);
+    public static native void emit(CPtr object, int event);
 }

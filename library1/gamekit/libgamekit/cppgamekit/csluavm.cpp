@@ -150,20 +150,20 @@ static int64_t     check_integer(lua_State *s, int32_t i) {return luaL_checkinte
 static double      check_double (lua_State *s, int32_t i) {return luaL_checknumber (s, i);}
 static const char *check_string (lua_State *s, int32_t i) {return luaL_checkstring (s, i);}
 
-static cq_bridge *check_object(lua_State *state, int32_t index) {
+static cq_object *check_object(lua_State *state, int32_t index) {
     lua_stack_guard guard(state);
     
     if (!lua_istable(state, index)) {
         return nullptr;
     }
     
-    lua_getfield(state, index, "cq_bridge");
+    lua_getfield(state, index, "cq_object");
     if (!lua_isinteger(state, -1)) {
         return nullptr;
     }
     
     lua_Integer raw = lua_tointeger(state, -1);
-    return (cq_bridge *)raw;
+    return (cq_object *)raw;
 }
 
 static void check_i64_list(lua_State *state, int32_t index, cq_i64_list_out out) {
@@ -235,26 +235,26 @@ static void push_string (lua_State *s, const char *v) {lua_pushstring (s, v);}
 static int32_t obj_gc(lua_State *state) {
     lua_stack_guard guard(state);
     
-    lua_getfield(state, -1, "cq_bridge");
+    lua_getfield(state, -1, "cq_object");
     lua_Integer raw = lua_tointeger(state, -1);
-    cq_bridge_release((cq_bridge *)raw);
+    cq_object_release((cq_object *)raw);
     
     return 0;
 }
 
-static void push_object(lua_State *state, cq_bridge *value) {
+static void push_object(lua_State *state, cq_object *value) {
     if (value == nullptr) {
         lua_pushnil(state);
         return;
     }
     
-    cq_bridge_retain(value);
+    cq_object_retain(value);
     
     lua_newtable(state);
     
     //use lua_Integer to hold the c pointer.
     static_assert(sizeof(lua_Integer) >= sizeof(void *), "");
-    lua_pushstring(state, "cq_bridge");
+    lua_pushstring(state, "cq_object");
     lua_pushinteger(state, (lua_Integer)value);
     lua_settable(state, -3);
     
@@ -262,7 +262,7 @@ static void push_object(lua_State *state, cq_bridge *value) {
     lua_newtable(state);
     
     //assign __index.
-    const char *cls = cq_bridge_cls(value);
+    const char *cls = cq_object_cls(value);
     if (!cq_str_empty(cls)) {
         lua_pushstring(state, "__index");
         lua_getglobal(state, cls);

@@ -38,7 +38,7 @@ CQ_C_LINK void cq_main_loop_post(cq_block *block);
 
 //http(s):
 
-cq_bridged_struct(cq_http);
+cq_def_object(cq_http);
 
 CQ_C_LINK cq_http *cq_http_create(void);
 

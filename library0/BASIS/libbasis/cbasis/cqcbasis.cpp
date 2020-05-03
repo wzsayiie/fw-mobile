@@ -207,44 +207,44 @@ const char *cq_u8s_from_u16s(const char16_t *src) {
 
 //object reference:
 
-struct cq_obj {
+struct cq_ref {
     int32_t ref_count = 1;
     void *raw = nullptr;
     void (*del)(void *) = nullptr;
     
-    virtual ~cq_obj();
+    virtual ~cq_ref();
 };
 
-cq_obj::~cq_obj() {
+cq_ref::~cq_ref() {
     if (del && raw) {
         del(raw);
     }
 }
 
-cq_obj *cq_obj_retain(cq_obj *obj) {
-    if (obj == nullptr) {
+cq_ref *cq_ref_retain(cq_ref *ref) {
+    if (ref == nullptr) {
         return nullptr;
     }
-    cq_synchronize_obj(obj, {
-        obj->ref_count += 1;
+    cq_synchronize_obj(ref, {
+        ref->ref_count += 1;
     });
-    return obj;
+    return ref;
 }
 
-void cq_obj_release(cq_obj *obj) {
-    if (obj == nullptr) {
+void cq_ref_release(cq_ref *ref) {
+    if (ref == nullptr) {
         return;
     }
-    cq_synchronize_obj(obj, {
-        if (--obj->ref_count <= 0) {
-            delete obj;
+    cq_synchronize_obj(ref, {
+        if (--ref->ref_count <= 0) {
+            delete ref;
         }
     });
 }
 
 //block:
 
-struct cq_block : cq_obj {
+struct cq_block : cq_ref {
     void (*run)(void *raw) = nullptr;
 };
 
@@ -262,12 +262,12 @@ cq_block *cq_block_retain_raw(void *raw, void (*run)(void *raw), void (*del)(voi
 }
 
 cq_block *cq_block_retain(cq_block *block) {
-    cq_obj_retain(block);
+    cq_ref_retain(block);
     return block;
 }
 
 void cq_block_release(cq_block *block) {
-    cq_obj_release(block);
+    cq_ref_release(block);
 }
 
 void cq_block_run(cq_block *block) {
@@ -281,91 +281,91 @@ void cq_block_run(cq_block *block) {
 
 //bridged object:
 
-struct cq_bridge : cq_obj {
+struct cq_object : cq_ref {
     std::map<int32_t, cq_block *> blocks;
     int32_t magic = 0;
     std::string cls;
     
-    ~cq_bridge();
+    ~cq_object();
 };
 
-cq_bridge::~cq_bridge() {
+cq_object::~cq_object() {
     for (auto cp : blocks) {
         cq_block_release(cp.second);
     }
 }
 
-cq_bridge *cq_bridge_retain_raw(void *raw, const char *cls, int32_t magic, void (*del)(void *raw)) {
+cq_object *cq_object_retain_raw(void *raw, const char *cls, int32_t magic, void (*del)(void *raw)) {
     if (!raw || !del) {
         return nullptr;
     }
     
-    cq_bridge *bridge = new cq_bridge; {
-        bridge->raw   = raw;
-        bridge->cls   = cqString::make(cls);
-        bridge->magic = magic;
-        bridge->del   = del;
+    cq_object *object = new cq_object; {
+        object->raw   = raw;
+        object->cls   = cqString::make(cls);
+        object->magic = magic;
+        object->del   = del;
     }
-    return bridge;
+    return object;
 }
 
-cq_bridge *cq_bridge_retain(cq_bridge *bridge) {
-    cq_obj_retain(bridge);
-    return bridge;
+cq_object *cq_object_retain(cq_object *object) {
+    cq_ref_retain(object);
+    return object;
 }
 
-void cq_bridge_release(cq_bridge *bridge) {
-    cq_obj_release(bridge);
+void cq_object_release(cq_object *object) {
+    cq_ref_release(object);
 }
 
-void *cq_bridge_raw(cq_bridge *bridge) {
-    if (bridge != nullptr) {
-        return bridge->raw;
-    }
-    return nullptr;
-}
-
-const char *cq_bridge_cls(cq_bridge *bridge) {
-    if (bridge != nullptr) {
-        return bridge->cls.c_str();
+void *cq_object_raw(cq_object *object) {
+    if (object != nullptr) {
+        return object->raw;
     }
     return nullptr;
 }
 
-int32_t cq_bridge_magic(cq_bridge *bridge) {
-    if (bridge != nullptr) {
-        return bridge->magic;
+const char *cq_object_cls(cq_object *object) {
+    if (object != nullptr) {
+        return object->cls.c_str();
+    }
+    return nullptr;
+}
+
+int32_t cq_object_magic(cq_object *object) {
+    if (object != nullptr) {
+        return object->magic;
     }
     return 0;
 }
 
-void cq_bridge_listen(cq_bridge *bridge, int32_t event, cq_block *block) {
-    if (bridge == nullptr) {
+void cq_object_listen(cq_object *object, int32_t event, cq_block *block) {
+    if (object == nullptr) {
         return;
     }
     
     //release old value.
-    if (cqMap::contains(bridge->blocks, event)) {
-        cq_block *old = bridge->blocks[event];
+    if (cqMap::contains(object->blocks, event)) {
+        cq_block *old = object->blocks[event];
         cq_block_release(old);
-        bridge->blocks.erase(event);
+        object->blocks.erase(event);
     }
     
     //retain new value.
     if (block != nullptr) {
         cq_block_retain(block);
-        bridge->blocks[event] = block;
+        object->blocks[event] = block;
     }
 }
 
-void cq_bridge_emit(cq_bridge *bridge, int32_t event) {
-    if (bridge == nullptr) {
+void cq_object_emit(cq_object *object, int32_t event) {
+    if (object == nullptr) {
         return;
     }
-    if (cqMap::dontContain(bridge->blocks, event)) {
+    if (cqMap::dontContain(object->blocks, event)) {
         return;
     }
     
-    cq_block *block = bridge->blocks[event];
+    cq_block *block = object->blocks[event];
     cq_block_run(block);
 }

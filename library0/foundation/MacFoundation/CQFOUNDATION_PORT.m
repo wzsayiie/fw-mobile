@@ -109,8 +109,8 @@ void cq_main_loop_post(cq_block *block) {
 
 //http(s):
 
-@interface CQHTTPSessionBridge : CQHTTPSession <CQHTTPSessionDelegate>
-@property (nonatomic) cq_http *bridge;
+@interface CQHTTPSessionEntity : CQHTTPSession <CQHTTPSessionDelegate>
+@property (nonatomic) cq_http *handle;
 
 @property (nonatomic) BOOL    sendBodyFinish;
 @property (nonatomic) void   *sendBodyBuffer;
@@ -121,7 +121,7 @@ void cq_main_loop_post(cq_block *block) {
 @property (nonatomic) BOOL    receiveBodyStop;
 @end
 
-@implementation CQHTTPSessionBridge
+@implementation CQHTTPSessionEntity
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -147,7 +147,7 @@ void cq_main_loop_post(cq_block *block) {
     self.sendBodyBuffer = buffer;
     self.sendBodyBufferLength = (int32_t)bufferLength;
     self.sendBodyLength = 0;
-    cq_http_emit(self.bridge, CQ_HTTP_SEND_BODY);
+    cq_http_emit(self.handle, CQ_HTTP_SEND_BODY);
     
     if (self.sendBodyLength > 0) {
         return self.sendBodyLength;
@@ -164,7 +164,7 @@ void cq_main_loop_post(cq_block *block) {
 - (BOOL)HTTPSession:(CQHTTPSession *)session responseBodyData:(NSData *)data {
     self.receiveBodyData = data;
     self.receiveBodyStop = NO;
-    cq_http_emit(self.bridge, CQ_HTTP_RECV_BODY);
+    cq_http_emit(self.handle, CQ_HTTP_RECV_BODY);
     
     //REMEMBER: assign the reference to nil.
     self.receiveBodyData = nil;
@@ -176,37 +176,37 @@ void cq_main_loop_post(cq_block *block) {
 @end
 
 cq_http *cq_http_create(void) {
-    CQHTTPSessionBridge *object = [[CQHTTPSessionBridge alloc] init];
-    cq_http *bridge = (cq_http *)cq_bridge_retain_oc(object, @"HTTPSession");
+    CQHTTPSessionEntity *entity = [[CQHTTPSessionEntity alloc] init];
+    cq_http *handle = (cq_http *)cq_object_retain_oc(entity, @"HTTPSession");
     
-    object.bridge = bridge;
+    entity.handle = handle;
     
-    return bridge;
+    return handle;
 }
 
-#define http_session_bridge(OBJECT, BRIDGE)\
-/**/    CQHTTPSessionBridge *OBJECT = cq_bridge_oc((cq_bridge *)BRIDGE, CQHTTPSessionBridge.class);\
+#define http_session_cast(ENTITY, HANDLE)\
+/**/    CQHTTPSessionEntity *ENTITY = cq_object_oc((cq_object *)HANDLE, CQHTTPSessionEntity.class);\
 
 void cq_http_timeout(cq_http *http, float seconds) {
-    http_session_bridge(object, http) {
+    http_session_cast(object, http) {
         object.timeoutSeconds = seconds;
     }
 }
 
 void cq_http_send_method(cq_http *http, const char *method) {
-    http_session_bridge(object, http) {
+    http_session_cast(object, http) {
         object.method = CQNullableString(method);
     }
 }
 
 void cq_http_send_url(cq_http *http, const char *url) {
-    http_session_bridge(object, http) {
+    http_session_cast(object, http) {
         object.URLString = CQNullableString(url);
     }
 }
 
 void cq_http_send_query(cq_http *http, const char *field, const char *value) {
-    http_session_bridge(object, http) {
+    http_session_cast(object, http) {
         if (cq_str_empty(field)) {return;}
         if (cq_str_empty(value)) {return;}
         
@@ -215,7 +215,7 @@ void cq_http_send_query(cq_http *http, const char *field, const char *value) {
 }
 
 void cq_http_send_header(cq_http *http, const char *field, const char *value) {
-    http_session_bridge(object, http) {
+    http_session_cast(object, http) {
         if (cq_str_empty(field)) {return;}
         if (cq_str_empty(value)) {return;}
         
@@ -224,19 +224,19 @@ void cq_http_send_header(cq_http *http, const char *field, const char *value) {
 }
 
 void cq_http_sync(cq_http *http) {
-    http_session_bridge(object, http) {
+    http_session_cast(object, http) {
         [object syncResume];
     }
 }
 
 int32_t cq_http_send_body_cap(cq_http *http) {
-    http_session_bridge(object, http) {
+    http_session_cast(object, http) {
         return object.sendBodyBufferLength;
     }
 }
 
 void cq_http_send_body(cq_http *http, cq_bytes_in data, bool finish) {
-    http_session_bridge(object, http) {
+    http_session_cast(object, http) {
         NSData *body = cq_oc_bytes(data);
         if (body != nil) {
             memcpy(object.sendBodyBuffer, body.bytes, body.length);
@@ -246,31 +246,31 @@ void cq_http_send_body(cq_http *http, cq_bytes_in data, bool finish) {
 }
 
 void cq_http_recv_body(cq_http *http, cq_bytes_out out) {
-    http_session_bridge(object, http) {
+    http_session_cast(object, http) {
         cq_oc_set_bytes(object.receiveBodyData, out);
     }
 }
 
 void cq_http_recv_body_stop(cq_http *http, bool stop) {
-    http_session_bridge(object, http) {
+    http_session_cast(object, http) {
         object.receiveBodyStop = stop;
     }
 }
 
 const char *cq_http_error(cq_http *http) {
-    http_session_bridge(object, http) {
+    http_session_cast(object, http) {
         return cq_store_str(object.error.description.UTF8String);
     }
 }
 
 int32_t cq_http_recv_code(cq_http *http) {
-    http_session_bridge(object, http) {
+    http_session_cast(object, http) {
         return (int32_t)object.responseCode;
     }
 }
 
 void cq_http_recv_header(cq_http *http, cq_ss_map_out out) {
-    http_session_bridge(object, http) {
+    http_session_cast(object, http) {
         cq_oc_set_ss_map(object.responseHeader, out);
     }
 }

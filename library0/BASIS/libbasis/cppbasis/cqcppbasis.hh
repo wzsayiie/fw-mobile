@@ -254,11 +254,11 @@ void cq_cpp_set(const std::map<std::string, std::string> &, cq_ss_map_out   out)
 cq_block *cq_block_retain_cpp(std::function<void ()> func);
 
 //bridged cpp object:
-cq_bridge *cq_bridge_retain_cpp(cqObjectRef object, const std::string &cls);
-cqObjectRef cq_bridge_cpp(cq_bridge *bridge, cqClass *cls);
+cq_object *cq_object_retain_cpp(cqObjectRef object, const std::string &cls);
+cqObjectRef cq_object_cpp(cq_object *object, cqClass *cls);
 
-template<class T> typename cqRef<T>::Strong cq_bridge_cpp(cq_bridge *bridge) {
-    return cqObject::cast<T>(cq_bridge_cpp(bridge, T::clazz()));
+template<class T> typename cqRef<T>::Strong cq_object_cpp(cq_object *object) {
+    return cqObject::cast<T>(cq_object_cpp(object, T::clazz()));
 }
 
 _CQBASIS_END_VERSION_NS

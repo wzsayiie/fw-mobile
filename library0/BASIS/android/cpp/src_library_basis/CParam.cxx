@@ -1,7 +1,7 @@
-#include "CFunc.hh"
+#include "CParam.hh"
 #include "cqjnihelper.hh"
 
-CQ_JNI_CLASS(CFunc, "src/library/basis/CFunc")
+CQ_JNI_CLASS(CParam, "src/library/basis/CParam")
 
 static void bytes_out(jobject dst, const void *bytes, int32_t len) {
     static jmethodID method = nullptr;
@@ -9,10 +9,10 @@ static void bytes_out(jobject dst, const void *bytes, int32_t len) {
     JNIEnv *env = cqJNIEnv::env();
     const char *func = "onOutBytes";
     const char *sign = "(Ljava/nio/ByteBuffer;[Z)V";
-    cqJNIEnv::staticMethod(&method, env, CFunc(), func, sign);
+    cqJNIEnv::staticMethod(&method, env, CParam(), func, sign);
 
     jbyteArray value = cqJNIType::jniData(env, bytes, len);
-    env->CallStaticVoidMethod(CFunc(), method, dst, value);
+    env->CallStaticVoidMethod(CParam(), method, dst, value);
 }
 
 static void i64_list_out(jobject dst, int64_t item) {
@@ -21,9 +21,9 @@ static void i64_list_out(jobject dst, int64_t item) {
     JNIEnv *env = cqJNIEnv::env();
     const char *func = "onOutI64List";
     const char *sign = "(Ljava/util/ArrayList;J)V";
-    cqJNIEnv::staticMethod(&method, env, CFunc(), func, sign);
+    cqJNIEnv::staticMethod(&method, env, CParam(), func, sign);
 
-    env->CallStaticVoidMethod(CFunc(), method, dst, item);
+    env->CallStaticVoidMethod(CParam(), method, dst, item);
 }
 
 static void str_list_out(jobject dst, const char *_item) {
@@ -32,10 +32,10 @@ static void str_list_out(jobject dst, const char *_item) {
     JNIEnv *env = cqJNIEnv::env();
     const char *func = "onOutStrList";
     const char *sign = "(Ljava/util/ArrayList;Ljava/lang/String;)V";
-    cqJNIEnv::staticMethod(&method, env, CFunc(), func, sign);
+    cqJNIEnv::staticMethod(&method, env, CParam(), func, sign);
 
     jstring item = cqJNIType::jniString(env, _item);
-    env->CallStaticVoidMethod(CFunc(), method, dst, item);
+    env->CallStaticVoidMethod(CParam(), method, dst, item);
 }
 
 static void ss_map_out(jobject dst, const char *_key, const char *_val) {
@@ -44,11 +44,11 @@ static void ss_map_out(jobject dst, const char *_key, const char *_val) {
     JNIEnv *env = cqJNIEnv::env();
     const char *func = "onOutSSMap";
     const char *sign = "(Ljava/util/HashMap;Ljava/lang/String;Ljava/lang/String;)V";
-    cqJNIEnv::staticMethod(&method, env, CFunc(), func, sign);
+    cqJNIEnv::staticMethod(&method, env, CParam(), func, sign);
 
     jstring key = cqJNIType::jniString(env, _key);
     jstring val = cqJNIType::jniString(env, _val);
-    env->CallStaticVoidMethod(CFunc(), method, dst, key, val);
+    env->CallStaticVoidMethod(CParam(), method, dst, key, val);
 }
 
 #define GEN_OUT_FN(FN, PARAM, ...)\
@@ -81,10 +81,10 @@ static cq_i64_list_out cq_java_i64_list_out(jobject dst) {RET_OUT_FN(i64_list_ou
 static cq_str_list_out cq_java_str_list_out(jobject dst) {RET_OUT_FN(str_list_out, dst)}
 static cq_ss_map_out   cq_java_ss_map_out  (jobject dst) {RET_OUT_FN(ss_map_out  , dst)}
 
-extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CFunc_outBytes  (JNIEnv *e, jclass, _jobject *d) {return cqJNIType::jniPtr(e, cq_java_bytes_out   (d));}
-extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CFunc_outI64List(JNIEnv *e, jclass, _jobject *d) {return cqJNIType::jniPtr(e, cq_java_i64_list_out(d));}
-extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CFunc_outStrList(JNIEnv *e, jclass, _jobject *d) {return cqJNIType::jniPtr(e, cq_java_str_list_out(d));}
-extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CFunc_outSSMap  (JNIEnv *e, jclass, _jobject *d) {return cqJNIType::jniPtr(e, cq_java_ss_map_out  (d));}
+extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CParam_outBytes  (JNIEnv *e, jclass, _jobject *d) {return cqJNIType::jniPtr(e, cq_java_bytes_out   (d));}
+extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CParam_outI64List(JNIEnv *e, jclass, _jobject *d) {return cqJNIType::jniPtr(e, cq_java_i64_list_out(d));}
+extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CParam_outStrList(JNIEnv *e, jclass, _jobject *d) {return cqJNIType::jniPtr(e, cq_java_str_list_out(d));}
+extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CParam_outSSMap  (JNIEnv *e, jclass, _jobject *d) {return cqJNIType::jniPtr(e, cq_java_ss_map_out  (d));}
 
 static void bytes_in(jobject _src, cq_bytes_out out) {
     if (_src == nullptr || out == nullptr) {
@@ -104,10 +104,10 @@ static void bytes_in(jobject _src, cq_bytes_out out) {
 /**/        \
 /**/        static jmethodID method = nullptr;\
 /**/        JNIEnv *env = cqJNIEnv::env();\
-/**/        cqJNIEnv::staticMethod(&method, env, CFunc(), J_NAME, J_SIGN);\
+/**/        cqJNIEnv::staticMethod(&method, env, CParam(), J_NAME, J_SIGN);\
 /**/        \
 /**/        jobject out = cqJNIType::jniPtr(env, _out);\
-/**/        env->CallStaticVoidMethod(CFunc(), method, src, out);\
+/**/        env->CallStaticVoidMethod(CParam(), method, src, out);\
 /**/    }
 
 GEN_EVERY_IN_FN(i64_list_in, cq_i64_list_out, "onInI64List", "(Ljava/util/ArrayList;" "Lsrc/library/basis/CPtr;)V")
@@ -144,12 +144,12 @@ static cq_i64_list_in cq_java_i64_list_in(jobject src) {RET_IN_FN(i64_list_in, s
 static cq_str_list_in cq_java_str_list_in(jobject src) {RET_IN_FN(str_list_in, src)}
 static cq_ss_map_in   cq_java_ss_map_in  (jobject src) {RET_IN_FN(ss_map_in  , src)}
 
-extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CFunc_inBytes  (JNIEnv *e, jclass, jbyteArray v) {return cqJNIType::jniPtr(e, cq_java_bytes_in   (v));}
-extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CFunc_inI64List(JNIEnv *e, jclass, _jobject  *v) {return cqJNIType::jniPtr(e, cq_java_i64_list_in(v));}
-extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CFunc_inStrList(JNIEnv *e, jclass, _jobject  *v) {return cqJNIType::jniPtr(e, cq_java_str_list_in(v));}
-extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CFunc_inSSMap  (JNIEnv *e, jclass, _jobject  *v) {return cqJNIType::jniPtr(e, cq_java_ss_map_in  (v));}
+extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CParam_inBytes  (JNIEnv *e, jclass, jbyteArray v) {return cqJNIType::jniPtr(e, cq_java_bytes_in   (v));}
+extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CParam_inI64List(JNIEnv *e, jclass, _jobject  *v) {return cqJNIType::jniPtr(e, cq_java_i64_list_in(v));}
+extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CParam_inStrList(JNIEnv *e, jclass, _jobject  *v) {return cqJNIType::jniPtr(e, cq_java_str_list_in(v));}
+extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CParam_inSSMap  (JNIEnv *e, jclass, _jobject  *v) {return cqJNIType::jniPtr(e, cq_java_ss_map_in  (v));}
 
-extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CFunc_appendI64List
+extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CParam_appendI64List
     (JNIEnv *env, jclass, jlong val, jobject _out)
 {
     if (_out != nullptr) {
@@ -158,7 +158,7 @@ extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CFunc_appendI64List
     }
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CFunc_appendStrList
+extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CParam_appendStrList
     (JNIEnv *env, jclass, jstring _val, jobject _out)
 {
     if (_val && _out) {
@@ -168,7 +168,7 @@ extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CFunc_appendStrList
     }
 }
 
-extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CFunc_appendSSMap
+extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CParam_appendSSMap
     (JNIEnv *env, jclass, jstring _key, jstring _val, jobject _out)
 {
     if (_key && _val && _out) {
@@ -186,7 +186,7 @@ extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CFunc_appendSSMap
 /**/        __in(__out);\
 /**/    }
 
-extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CFunc_assignBytes  (JNIEnv *e, jclass, jobject in, jobject out) {ASSIGN(e, cq_bytes_in   , in, cq_bytes_out   , out)}
-extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CFunc_assignI64List(JNIEnv *e, jclass, jobject in, jobject out) {ASSIGN(e, cq_i64_list_in, in, cq_i64_list_out, out)}
-extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CFunc_assignStrList(JNIEnv *e, jclass, jobject in, jobject out) {ASSIGN(e, cq_str_list_in, in, cq_str_list_out, out)}
-extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CFunc_assignSSMap  (JNIEnv *e, jclass, jobject in, jobject out) {ASSIGN(e, cq_ss_map_in  , in, cq_ss_map_out  , out)}
+extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CParam_assignBytes  (JNIEnv *e, jclass, jobject in, jobject out) {ASSIGN(e, cq_bytes_in   , in, cq_bytes_out   , out)}
+extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CParam_assignI64List(JNIEnv *e, jclass, jobject in, jobject out) {ASSIGN(e, cq_i64_list_in, in, cq_i64_list_out, out)}
+extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CParam_assignStrList(JNIEnv *e, jclass, jobject in, jobject out) {ASSIGN(e, cq_str_list_in, in, cq_str_list_out, out)}
+extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CParam_assignSSMap  (JNIEnv *e, jclass, jobject in, jobject out) {ASSIGN(e, cq_ss_map_in  , in, cq_ss_map_out  , out)}

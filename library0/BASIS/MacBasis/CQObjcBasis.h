@@ -90,5 +90,5 @@ void cq_oc_set_ss_map  (NSDictionary<NSString *, NSString *> *, cq_ss_map_out   
 cq_block *cq_block_retain_oc(void (^block)(void));
 
 //bridged oc object:
-cq_bridge *cq_bridge_retain_oc(id object, NSString *cls);
-id cq_bridge_oc(cq_bridge *bridge, Class cls);
+cq_object *cq_object_retain_oc(id object, NSString *cls);
+id cq_object_oc(cq_object *object, Class cls);
