@@ -52,10 +52,10 @@ static void ss_map_out(jobject dst, const char *_key, const char *_val) {
 }
 
 #define GEN_OUT_FN(FN, PARAM, ...)\
-/**/    static thread_local jobject FN##_dst_0 = NULL;\
-/**/    static thread_local jobject FN##_dst_1 = NULL;\
-/**/    static thread_local jobject FN##_dst_2 = NULL;\
-/**/    static thread_local jobject FN##_dst_3 = NULL;\
+/**/    static thread_local jobject FN##_dst_0 = nullptr;\
+/**/    static thread_local jobject FN##_dst_1 = nullptr;\
+/**/    static thread_local jobject FN##_dst_2 = nullptr;\
+/**/    static thread_local jobject FN##_dst_3 = nullptr;\
 /**/    static void FN##_0 PARAM {FN(FN##_dst_0, __VA_ARGS__);}\
 /**/    static void FN##_1 PARAM {FN(FN##_dst_1, __VA_ARGS__);}\
 /**/    static void FN##_2 PARAM {FN(FN##_dst_2, __VA_ARGS__);}\
@@ -115,10 +115,10 @@ GEN_EVERY_IN_FN(str_list_in, cq_str_list_out, "onInStrList", "(Ljava/util/ArrayL
 GEN_EVERY_IN_FN(ss_map_in  , cq_ss_map_out  , "onInSSMap"  , "(Ljava/util/HashMap;"   "Lsrc/library/basis/CPtr;)V")
 
 #define GEN_IN_FN(FN, PARAM, ...)\
-/**/    static thread_local jobject FN##_src_0 = 0;\
-/**/    static thread_local jobject FN##_src_1 = 0;\
-/**/    static thread_local jobject FN##_src_2 = 0;\
-/**/    static thread_local jobject FN##_src_3 = 0;\
+/**/    static thread_local jobject FN##_src_0 = nullptr;\
+/**/    static thread_local jobject FN##_src_1 = nullptr;\
+/**/    static thread_local jobject FN##_src_2 = nullptr;\
+/**/    static thread_local jobject FN##_src_3 = nullptr;\
 /**/    static void FN##_0 PARAM {FN(FN##_src_0, __VA_ARGS__);}\
 /**/    static void FN##_1 PARAM {FN(FN##_src_1, __VA_ARGS__);}\
 /**/    static void FN##_2 PARAM {FN(FN##_src_2, __VA_ARGS__);}\

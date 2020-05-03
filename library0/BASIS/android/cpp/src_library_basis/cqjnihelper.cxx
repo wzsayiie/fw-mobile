@@ -219,9 +219,8 @@ void cqJNIStaticMethod::push(const char *param) {
         return;
     }
 
-    cqJNIRef<jstring> string = cqJNIType::jniStringAuto(_env, param);
     jvalue value;
-    value.l = string.get();
+    value.l = cqJNIType::jniString(_env, param);
 
     _signature.append("Ljava/lang/String;");
     _params.push_back(value);
@@ -233,9 +232,8 @@ void cqJNIStaticMethod::push(const void *param) {
         return;
     }
 
-    cqJNIRef<jobject> object = cqJNIType::jniPtrAuto(_env, param);
     jvalue value;
-    value.l = object.get();
+    value.l = cqJNIType::jniPtr(_env, param);
 
     _signature.append("Lsrc/library/basis/CPtr;");
     _params.push_back(value);
