@@ -5,15 +5,15 @@ require "LIBRARY"
 setmetatable(_G, {__index = function(tab, key)
     local okay, msg = pcall(require, string.lower(key))
     if okay then
-        I("required: " .. key)
+        i("required: " .. key)
         return tab[key]
     else
         local stack = debug.traceback()
-        E("require error: " .. msg)
-        E("error stack: " .. stack)
+        e("require error: " .. msg)
+        e("error stack: " .. stack)
         return nil
     end
 end})
 
 --app entry.
-Entry()
+entry()

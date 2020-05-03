@@ -1,2 +1,2 @@
-function Entry()
+function entry()
 end
