@@ -1,13 +1,14 @@
 package src.library.foundation;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import src.library.basis.CBlock;
 import src.library.basis.CObject;
-import src.library.basis.CParam;
 import src.library.basis.CPtr;
+import src.library.basis.CStruct;
 import src.library.basis.W;
 
 @SuppressWarnings({W.LIB_OMIT_0, W.LIB_OMIT_1, W.LIB_OMIT_2, W.LIB_OMIT_3})
@@ -25,9 +26,9 @@ public class PORT {
 
     //app bundle resource:
 
-    public static void cq_android_asset(String name, CPtr out) {
+    public static void cq_android_asset(String name, CPtr outBytes) {
         byte[] asset = AssetAssist.getAsset(name);
-        CParam.set(asset, out);
+        CStruct.bytesAssign(outBytes, asset);
     }
 
     public static boolean cq_android_copy_asset(String fromPath, String toPath) {
@@ -64,9 +65,9 @@ public class PORT {
         FileAssist.removePath(path);
     }
 
-    public static void cq_sub_files(String path, CPtr out) {
+    public static void cq_sub_files(String path, CPtr outStrList) {
         ArrayList<String> items = FileAssist.listSubItems(path, null);
-        CParam.setStringList(items, out);
+        CStruct.strListAssign(outStrList, items);
     }
 
     //thread:
@@ -233,19 +234,21 @@ public class PORT {
         }
     }
 
-    public static void cq_http_send_body(CPtr http, CPtr bytesIn, boolean finish) {
+    public static void cq_http_send_body(CPtr http, CPtr bytes, boolean finish) {
         HttpSessionEntity object = CObject.raw(http, HttpSessionEntity.class);
         if (object != null) {
-            byte[] data = CParam.getBytes(bytesIn);
-            System.arraycopy(data, 0, object.SendBodyBuffer, 0, data.length);
+            ByteBuffer data = ByteBuffer.allocate(0);
+            CStruct.bytesAssign(data, bytes);
+
+            object.SendBodyBuffer = data.array();
             object.SendBodyFinish = finish;
         }
     }
 
-    public static void cq_http_recv_body(CPtr http, CPtr bytesOut) {
+    public static void cq_http_recv_body(CPtr http, CPtr outBytes) {
         HttpSessionEntity object = CObject.raw(http, HttpSessionEntity.class);
         if (object != null) {
-            CParam.set(object.ReceiveBodyData, bytesOut);
+            CStruct.bytesAssign(outBytes, object.ReceiveBodyData);
         }
     }
 
@@ -274,11 +277,11 @@ public class PORT {
         }
     }
 
-    public static void cq_http_recv_header(CPtr http, CPtr out) {
+    public static void cq_http_recv_header(CPtr http, CPtr outMap) {
         HttpSessionEntity object = CObject.raw(http, HttpSessionEntity.class);
         if (object != null) {
             HashMap<String, String> header = object.getResponseHeader();
-            CParam.set(header, out);
+            CStruct.ssMapAssign(outMap, header);
         }
     }
 }

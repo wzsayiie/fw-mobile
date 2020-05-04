@@ -9,7 +9,7 @@ public class CBlock {
 
     public static native void run(CPtr block);
 
-    private static void runRaw(Runnable runnable) {
+    private static void run_block(Runnable runnable) {
         if (runnable != null) {
             runnable.run();
         }

@@ -22,24 +22,24 @@ extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CObject_retainRaw
 }
 
 extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CObject_retain
-    (JNIEnv *env, jclass, jobject _object)
+    (JNIEnv *env, jclass, jobject _j_object)
 {
-    auto object = cqJNIType::ptr<cq_object *>(env, _object);
+    auto object = cqJNIType::ptr<cq_object *>(env, _j_object);
     cq_object_retain(object);
-    return _object;
+    return _j_object;
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CObject_release
-    (JNIEnv *env, jclass, jobject _object)
+    (JNIEnv *env, jclass, jobject _j_object)
 {
-    auto object = cqJNIType::ptr<cq_object *>(env, _object);
+    auto object = cqJNIType::ptr<cq_object *>(env, _j_object);
     cq_object_release(object);
 }
 
 extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CObject_raw
-    (JNIEnv *env, jclass, jobject _raw)
+    (JNIEnv *env, jclass, jobject _j_raw)
 {
-    auto raw = cqJNIType::ptr<cq_object *>(env, _raw);
+    auto raw = cqJNIType::ptr<cq_object *>(env, _j_raw);
     if (raw == nullptr) {
         return nullptr;
     }
@@ -54,17 +54,17 @@ extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CObject_raw
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CObject_listen
-    (JNIEnv *env, jclass, jobject _object, jint event, jobject _block)
+    (JNIEnv *env, jclass, jobject _j_object, jint event, jobject _j_block)
 {
-    auto object = cqJNIType::ptr<cq_object *>(env, _object);
-    auto block  = cqJNIType::ptr<cq_block  *>(env, _block );
+    auto object = cqJNIType::ptr<cq_object *>(env, _j_object);
+    auto block  = cqJNIType::ptr<cq_block  *>(env, _j_block );
 
     cq_object_listen(object, (int32_t)event, block);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CObject_emit
-    (JNIEnv *env, jclass, jobject _object, jint event)
+    (JNIEnv *env, jclass, jobject _j_object, jint event)
 {
-    auto object = cqJNIType::ptr<cq_object *>(env, _object);
+    auto object = cqJNIType::ptr<cq_object *>(env, _j_object);
     cq_object_emit(object, (int32_t)event);
 }

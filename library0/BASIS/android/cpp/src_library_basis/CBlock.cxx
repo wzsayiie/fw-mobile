@@ -11,9 +11,7 @@ static void run_block(void *raw) {
     static jmethodID method = nullptr;
 
     JNIEnv *env = cqJNIEnv::env();
-    const char *func = "runRaw";
-    const char *sign = "(Ljava/lang/Runnable;)V";
-    cqJNIEnv::staticMethod(&method, env, CBlock(), func, sign);
+    cqJNIEnv::staticMethod(&method, env, CBlock(), __func__, "(Ljava/lang/Runnable;)V");
 
     env->CallStaticVoidMethod(CBlock(), method, (jobject)raw);
 }
@@ -36,23 +34,23 @@ extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CBlock_retainRaw
 }
 
 extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CBlock_retain
-    (JNIEnv *env, jclass, jobject _block)
+    (JNIEnv *env, jclass, jobject _j_block)
 {
-    auto block = cqJNIType::ptr<cq_block *>(env, _block);
+    auto block = cqJNIType::ptr<cq_block *>(env, _j_block);
     cq_block_retain(block);
-    return _block;
+    return _j_block;
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CBlock_release
-    (JNIEnv *env, jclass, jobject _block)
+    (JNIEnv *env, jclass, jobject _j_block)
 {
-    auto block = cqJNIType::ptr<cq_block *>(env, _block);
+    auto block = cqJNIType::ptr<cq_block *>(env, _j_block);
     cq_block_release(block);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CBlock_run
-    (JNIEnv *env, jclass, jobject _block)
+    (JNIEnv *env, jclass, jobject _j_block)
 {
-    auto block = cqJNIType::ptr<cq_block *>(env, _block);
+    auto block = cqJNIType::ptr<cq_block *>(env, _j_block);
     cq_block_run(block);
 }

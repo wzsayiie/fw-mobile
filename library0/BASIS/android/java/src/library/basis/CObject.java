@@ -14,11 +14,10 @@ public class CObject {
             return null;
         }
 
-        if (cls == null || !object.getClass().equals(cls)) {
-            return null;
+        if (cls != null && object.getClass().equals(cls)) {
+            return (T)object;
         }
-
-        return (T)object;
+        return null;
     }
     private static native Object raw(CPtr raw);
 

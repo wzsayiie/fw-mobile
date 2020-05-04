@@ -82,12 +82,8 @@ struct cqJNIStaticMethod {
     void push(float       param) { push("F", from(param)); }
     void push(double      param) { push("D", from(param)); }
     void push(const char *param);
+    void push(const std::string &param);
     void push(const void *param);
-
-    //NOTE: function pointer can not match "const void *".
-    template<class T> void push(T param) {
-        push((const void *)param);
-    }
 
     void push() {
     }
@@ -108,7 +104,7 @@ struct cqJNIStaticMethod {
     void *      callPtr   ();
 
     template<class T> T call() {
-        return (T)callPtr(); //pointer type is default.
+        return (T)callPtr(); //pointer type is default. thus operation "call<xx *>()" is legal.
     }
     template<> void        call<void       >() {return callVoid  ();}
     template<> bool        call<bool       >() {return callBool  ();}

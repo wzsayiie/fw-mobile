@@ -227,6 +227,10 @@ void cqJNIStaticMethod::push(const char *param) {
     _objects.push_back(value.l);
 }
 
+void cqJNIStaticMethod::push(const std::string &param) {
+    push(param.c_str());
+}
+
 void cqJNIStaticMethod::push(const void *param) {
     if (_env == nullptr) {
         return;
