@@ -17,188 +17,136 @@ NSString *CQNonnullString (const char *s) {return s ? @(s) : @"";}
 
 //interfaces for interaction with c:
 
-static void bytes_out(void *dst, const void *ptr, int32_t len) {
-    if (dst == NULL) {
-        return;
-    }
-    NSMutableData *object = (__bridge NSMutableData *)dst;
-    if (ptr && len > 0) {
-        [object appendBytes:ptr length:(NSUInteger)len];
+static void bytes_clear     (void *d) { NSMutableData       *a = (__bridge id)d; [a setLength:0]     ; }
+static void int64_list_clear(void *d) { NSMutableArray      *a = (__bridge id)d; [a removeAllObjects]; }
+static void str_list_clear  (void *d) { NSMutableArray      *a = (__bridge id)d; [a removeAllObjects]; }
+static void ss_map_clear    (void *d) { NSMutableDictionary *a = (__bridge id)d; [a removeAllObjects]; }
+
+static void bytes_recv(void *dst, const void *bytes, int32_t length) {
+    NSMutableData *object = (__bridge id)dst;
+    
+    if (bytes && length > 0) {
+        [object appendBytes:bytes length:(NSUInteger)length];
     }
 }
 
-static void i64_list_out(void *dst, int64_t value) {
-    if (dst == NULL) {
-        return;
-    }
-    NSMutableArray<NSNumber *> *object = (__bridge NSMutableArray *)dst;
-    [object addObject:@(value)];
+static void int64_list_recv(void *dst, int64_t item) {
+    NSMutableArray<NSNumber *> *object = (__bridge id)dst;
+    
+    [object addObject:@(item)];
 }
 
-static void str_list_out(void *dst, const char *value) {
-    if (dst == NULL) {
-        return;
-    }
-    NSMutableArray<NSString *> *object = (__bridge NSMutableArray *)dst;
-    [object addObject:CQNonnullString(value)];
+static void str_list_recv(void *dst, const char *item) {
+    NSMutableArray<NSString *> *object = (__bridge id)dst;
+    
+    [object addObject:CQNonnullString(item)];
 }
 
-static void ss_map_out(void *dst, const char *key, const char *value) {
-    if (dst == NULL) {
-        return;
-    }
-    NSMutableDictionary<NSString *, NSString *> *object = (__bridge NSMutableDictionary *)dst;
+static void ss_map_recv(void *dst, const char *key, const char *value) {
+    NSMutableDictionary<NSString *, NSString *> *object = (__bridge id)dst;
+    
     if (!cq_str_empty(key)) {
         object[@(key)] = CQNonnullString(value);
     }
 }
 
-#define GEN_OUT_FN(FN, PARAM, ...)\
-/**/    static _Thread_local void *FN##_dst_0 = NULL;\
-/**/    static _Thread_local void *FN##_dst_1 = NULL;\
-/**/    static _Thread_local void *FN##_dst_2 = NULL;\
-/**/    static _Thread_local void *FN##_dst_3 = NULL;\
-/**/    static void FN##_0 PARAM {FN(FN##_dst_0, __VA_ARGS__);}\
-/**/    static void FN##_1 PARAM {FN(FN##_dst_1, __VA_ARGS__);}\
-/**/    static void FN##_2 PARAM {FN(FN##_dst_2, __VA_ARGS__);}\
-/**/    static void FN##_3 PARAM {FN(FN##_dst_3, __VA_ARGS__);}
+static void bytes_send(void *src, cq_bytes *dst) {
+    NSData *object = (__bridge id)src;
+    
+    dst->recv(dst->ref, object.bytes, (int32_t)object.length);
+}
 
-GEN_OUT_FN(bytes_out   , (const void *p, int32_t     n), p, n)
-GEN_OUT_FN(i64_list_out, (int64_t     i               ), i   )
-GEN_OUT_FN(str_list_out, (const char *i               ), i   )
-GEN_OUT_FN(ss_map_out  , (const char *k, const char *v), k, v)
-
-#define RET_OUT_FN(FN, VALUE)\
-/**/    static _Thread_local int32_t n = 0;\
-/**/    n = (n + 1) % 4;\
-/**/    switch (n) {\
-/**/        case  0: FN##_dst_0 = VALUE; return FN##_0;\
-/**/        case  1: FN##_dst_1 = VALUE; return FN##_1;\
-/**/        case  2: FN##_dst_2 = VALUE; return FN##_2;\
-/**/        default: FN##_dst_3 = VALUE; return FN##_3;\
-/**/    }
-
-cq_bytes_out    cq_oc_bytes_out   (NSMutableData                               *v) {RET_OUT_FN(bytes_out   , (__bridge void *)v);}
-cq_i64_list_out cq_oc_i64_list_out(NSMutableArray<NSNumber *>                  *v) {RET_OUT_FN(i64_list_out, (__bridge void *)v);}
-cq_str_list_out cq_oc_str_list_out(NSMutableArray<NSString *>                  *v) {RET_OUT_FN(str_list_out, (__bridge void *)v);}
-cq_ss_map_out   cq_oc_ss_map_out  (NSMutableDictionary<NSString *, NSString *> *v) {RET_OUT_FN(ss_map_out  , (__bridge void *)v);}
-
-static void bytes_in(void *src, cq_bytes_out out) {
-    if (src == 0) {
-        return;
-    }
-    NSData *object = (__bridge NSData *)src;
-    if (out != NULL) {
-        out(object.bytes, (int32_t)object.length);
+static void int64_list_send(void *src, cq_int64_list *dst) {
+    NSArray<NSNumber *> *object = (__bridge id)src;
+    
+    for (NSNumber *it in object) {
+        dst->recv(dst->ref, (int64_t)it.longLongValue);
     }
 }
 
-static void i64_list_in(void *src, cq_i64_list_out out) {
-    if (src == 0) {
-        return;
-    }
-    NSArray<NSNumber *> *object = (__bridge NSArray *)src;
-    if (out != NULL) {
-        for (NSNumber *it in object) {
-            out((int64_t)it.longLongValue);
-        }
+static void str_list_send(void *src, cq_str_list *dst) {
+    NSArray<NSString *> *object = (__bridge id)src;
+    
+    for (NSString *it in object) {
+        dst->recv(dst->ref, it.UTF8String);
     }
 }
 
-static void str_list_in(void *src, cq_str_list_out out) {
-    if (src == 0) {
-        return;
-    }
-    NSArray<NSString *> *object = (__bridge NSArray *)src;
-    if (out != NULL) {
-        for (NSString *it in object) {
-            out(it.UTF8String);
-        }
+static void ss_map_send(void *src, cq_ss_map *dst) {
+    NSDictionary<NSString *, NSString *> *object = (__bridge id)src;
+    
+    for (NSString *key in object) {
+        dst->recv(dst->ref, key.UTF8String, object[key].UTF8String);
     }
 }
 
-static void ss_map_in(void *src, cq_ss_map_out out) {
-    if (src == 0) {
-        return;
+cq_bytes *cq_oc_bytes(NSData *object) {
+    if (object == nil) {
+        return NULL;
     }
-    NSDictionary<NSString *, NSString *> *object = (__bridge NSDictionary *)src;
-    if (out != NULL) {
-        for (NSString *key in object) {
-            out(key.UTF8String, object[key].UTF8String);
-        }
-    }
+    
+    BOOL mutable = [object isKindOfClass:NSMutableData.class];
+    
+    cq_bytes *ptr = auto_alloc(sizeof(cq_bytes));
+    
+    ptr->clear = mutable ? bytes_clear : NULL;
+    ptr->recv  = mutable ? bytes_recv  : NULL;
+    ptr->send  = bytes_send;
+    ptr->ref   = (__bridge void *)object;
+    
+    return ptr;
 }
 
-#define GEN_IN_FN(FN, PARAM, ...)\
-/**/    static _Thread_local void *FN##_src_0 = 0;\
-/**/    static _Thread_local void *FN##_src_1 = 0;\
-/**/    static _Thread_local void *FN##_src_2 = 0;\
-/**/    static _Thread_local void *FN##_src_3 = 0;\
-/**/    static void FN##_0 PARAM {FN(FN##_src_0, __VA_ARGS__);}\
-/**/    static void FN##_1 PARAM {FN(FN##_src_1, __VA_ARGS__);}\
-/**/    static void FN##_2 PARAM {FN(FN##_src_2, __VA_ARGS__);}\
-/**/    static void FN##_3 PARAM {FN(FN##_src_3, __VA_ARGS__);}
-
-GEN_IN_FN(bytes_in   , (cq_bytes_out    out), out)
-GEN_IN_FN(i64_list_in, (cq_i64_list_out out), out)
-GEN_IN_FN(str_list_in, (cq_str_list_out out), out)
-GEN_IN_FN(ss_map_in  , (cq_ss_map_out   out), out)
-
-#define RET_IN_FN(FN, VALUE)\
-/**/    static _Thread_local int32_t n = 0;\
-/**/    n = (n + 1) % 4;\
-/**/    switch (n) {\
-/**/        case  0: FN##_src_0 = VALUE; return FN##_0;\
-/**/        case  1: FN##_src_1 = VALUE; return FN##_1;\
-/**/        case  2: FN##_src_2 = VALUE; return FN##_2;\
-/**/        default: FN##_src_3 = VALUE; return FN##_3;\
-/**/    }
-
-cq_bytes_in    cq_oc_bytes_in   (NSData                               *v) {RET_IN_FN(bytes_in   , (__bridge void *)v)}
-cq_i64_list_in cq_oc_i64_list_in(NSArray<NSNumber *>                  *v) {RET_IN_FN(i64_list_in, (__bridge void *)v)}
-cq_str_list_in cq_oc_str_list_in(NSArray<NSString *>                  *v) {RET_IN_FN(str_list_in, (__bridge void *)v)}
-cq_ss_map_in   cq_oc_ss_map_in  (NSDictionary<NSString *, NSString *> *v) {RET_IN_FN(ss_map_in  , (__bridge void *)v)}
-
-NSData *cq_oc_bytes(cq_bytes_in in) {
-    NSMutableData *object = nil;
-    if (in != NULL) {
-        object = [NSMutableData data];
-        in(cq_oc_bytes_out(object));
+cq_int64_list *cq_oc_int64_list(NSArray<NSNumber *> *object) {
+    if (object == nil) {
+        return NULL;
     }
-    return object;
+    
+    BOOL mutable = [object isKindOfClass:NSMutableArray.class];
+    
+    cq_int64_list *ptr = auto_alloc(sizeof(cq_int64_list));
+    
+    ptr->clear = mutable ? int64_list_clear : NULL;
+    ptr->recv  = mutable ? int64_list_recv  : NULL;
+    ptr->send  = int64_list_send;
+    ptr->ref   = (__bridge void *)object;
+    
+    return ptr;
 }
 
-NSArray<NSNumber *> *cq_oc_i64_list(cq_i64_list_in in) {
-    NSMutableArray<NSNumber *> *object = nil;
-    if (in != NULL) {
-        object = [NSMutableArray array];
-        in(cq_oc_i64_list_out(object));
+cq_str_list *cq_oc_str_list(NSArray<NSString *> *object) {
+    if (object == nil) {
+        return NULL;
     }
-    return object;
+    
+    BOOL mutable = [object isKindOfClass:NSMutableArray.class];
+    
+    cq_str_list *ptr = auto_alloc(sizeof(cq_str_list));
+    
+    ptr->clear = mutable ? str_list_clear : NULL;
+    ptr->recv  = mutable ? str_list_recv  : NULL;
+    ptr->send  = str_list_send;
+    ptr->ref   = (__bridge void *)object;
+    
+    return ptr;
 }
 
-NSArray<NSString *> *cq_oc_str_list(cq_str_list_in in) {
-    NSMutableArray<NSString *> *object = nil;
-    if (in != NULL) {
-        object = [NSMutableArray array];
-        in(cq_oc_str_list_out(object));
+cq_ss_map *cq_oc_ss_map(NSDictionary<NSString *, NSString *> *object) {
+    if (object == nil) {
+        return NULL;
     }
-    return object;
+    
+    BOOL mutable = [object isKindOfClass:NSMutableDictionary.class];
+    
+    cq_ss_map *ptr = auto_alloc(sizeof(cq_ss_map));
+    
+    ptr->clear = mutable ? ss_map_clear : NULL;
+    ptr->recv  = mutable ? ss_map_recv  : NULL;
+    ptr->send  = ss_map_send;
+    ptr->ref   = (__bridge void *)object;
+    
+    return ptr;
 }
-
-NSDictionary<NSString *, NSString *> *cq_oc_ss_map(cq_ss_map_in in) {
-    NSMutableDictionary<NSString *, NSString *> *object = nil;
-    if (in != NULL) {
-        object = [NSMutableDictionary dictionary];
-        in(cq_oc_ss_map_out(object));
-    }
-    return object;
-}
-
-void cq_oc_set_bytes   (NSData                               *v, cq_bytes_out    f) {if (v && f) cq_oc_bytes_in   (v)(f);}
-void cq_oc_set_i64_list(NSArray<NSNumber *>                  *v, cq_i64_list_out f) {if (v && f) cq_oc_i64_list_in(v)(f);}
-void cq_oc_set_str_list(NSArray<NSString *>                  *v, cq_str_list_out f) {if (v && f) cq_oc_str_list_in(v)(f);}
-void cq_oc_set_ss_map  (NSDictionary<NSString *, NSString *> *v, cq_ss_map_out   f) {if (v && f) cq_oc_ss_map_in  (v)(f);}
 
 //oc block:
 

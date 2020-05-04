@@ -66,25 +66,10 @@ NSString *CQNonnullString(const char *string);
 
 //data interfaces for interaction with c:
 
-cq_bytes_out    cq_oc_bytes_out   (NSMutableData *value);
-cq_i64_list_out cq_oc_i64_list_out(NSMutableArray<NSNumber *> *value);
-cq_str_list_out cq_oc_str_list_out(NSMutableArray<NSString *> *value);
-cq_ss_map_out   cq_oc_ss_map_out  (NSMutableDictionary<NSString *, NSString *> *value);
-
-cq_bytes_in    cq_oc_bytes_in   (NSData *value);
-cq_i64_list_in cq_oc_i64_list_in(NSArray<NSNumber *> *value);
-cq_str_list_in cq_oc_str_list_in(NSArray<NSString *> *value);
-cq_ss_map_in   cq_oc_ss_map_in  (NSDictionary<NSString *, NSString *> *value);
-
-NSData                               *cq_oc_bytes   (cq_bytes_in    in);
-NSArray<NSNumber *>                  *cq_oc_i64_list(cq_i64_list_in in);
-NSArray<NSString *>                  *cq_oc_str_list(cq_str_list_in in);
-NSDictionary<NSString *, NSString *> *cq_oc_ss_map  (cq_ss_map_in   in);
-
-void cq_oc_set_bytes   (NSData                          *value, cq_bytes_out    out);
-void cq_oc_set_i64_list(NSArray<NSNumber *>             *value, cq_i64_list_out out);
-void cq_oc_set_str_list(NSArray<NSString *>             *value, cq_str_list_out out);
-void cq_oc_set_ss_map  (NSDictionary<NSString *, NSString *> *, cq_ss_map_out   out);
+cq_bytes      *cq_oc_bytes     (NSData                               *object);
+cq_int64_list *cq_oc_int64_list(NSArray<NSNumber *>                  *object);
+cq_str_list   *cq_oc_str_list  (NSArray<NSString *>                  *object);
+cq_ss_map     *cq_oc_ss_map    (NSDictionary<NSString *, NSString *> *object);
 
 //oc block.
 cq_block *cq_block_retain_oc(void (^block)(void));

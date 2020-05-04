@@ -205,6 +205,69 @@ const char *cq_u8s_from_u16s(const char16_t *src) {
     return cq_store_str(dst.c_str());
 }
 
+//automatically allocate:
+
+void *auto_alloc(int32_t size) {
+    static int8_t begin[512];
+    static int8_t *end = begin + sizeof(begin);
+    static int8_t *cur = begin;
+    
+    if (size > sizeof(begin)) {
+        return nullptr;
+    }
+    
+    int8_t *ptr = nullptr;
+    
+    cq_synchronize({
+        if (cur + size <= end) {
+            ptr = cur;
+        } else {
+            ptr = begin;
+        }
+        cur = ptr + size;
+    });
+    
+    memset(ptr, 0, size);
+    
+    return ptr;
+}
+
+//interfaces for multiplex structures:
+
+template<class DST> void cq_x_clear(DST dst) {
+    if (dst && dst->clear && dst->ref) {
+        dst->clear(dst->ref);
+    }
+}
+
+void cq_bytes_clear     (cq_bytes      *dst) { cq_x_clear(dst); }
+void cq_int64_list_clear(cq_int64_list *dst) { cq_x_clear(dst); }
+void cq_str_list_clear  (cq_str_list   *dst) { cq_x_clear(dst); }
+void cq_ss_map_clear    (cq_ss_map     *dst) { cq_x_clear(dst); }
+
+template<class DST, class SRC> void cq_x_append(DST dst, SRC src) {
+    if (src && src->send && src->ref
+     && dst && dst->recv && dst->ref)
+    {
+        src->send(src->ref, dst);
+    }
+}
+
+void cq_bytes_append     (cq_bytes      *dst, cq_bytes      *src) { cq_x_append(dst, src); }
+void cq_int64_list_append(cq_int64_list *dst, cq_int64_list *src) { cq_x_append(dst, src); }
+void cq_str_list_append  (cq_str_list   *dst, cq_str_list   *src) { cq_x_append(dst, src); }
+void cq_ss_map_append    (cq_ss_map     *dst, cq_ss_map     *src) { cq_x_append(dst, src); }
+
+template<class DST, class SRC> void cq_x_assign(DST dst, SRC src) {
+    cq_x_clear(dst);
+    cq_x_append(dst, src);
+}
+
+void cq_bytes_assign     (cq_bytes      *dst, cq_bytes      *src) { cq_x_assign(dst, src); }
+void cq_int64_list_assign(cq_int64_list *dst, cq_int64_list *src) { cq_x_assign(dst, src); }
+void cq_str_list_assign  (cq_str_list   *dst, cq_str_list   *src) { cq_x_assign(dst, src); }
+void cq_ss_map_assign    (cq_ss_map     *dst, cq_ss_map     *src) { cq_x_assign(dst, src); }
+
 //object reference:
 
 struct cq_ref {

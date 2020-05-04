@@ -19,9 +19,9 @@ CQ_C_LINK double      cq_lua_check_double(lua_State *state, int32_t index);
 CQ_C_LINK const char *cq_lua_check_string(lua_State *state, int32_t index);
 CQ_C_LINK cq_object  *cq_lua_check_object(lua_State *state, int32_t index);
 
-CQ_C_LINK void cq_lua_check_i64_list(lua_State *state, int32_t index, cq_i64_list_out out);
-CQ_C_LINK void cq_lua_check_str_list(lua_State *state, int32_t index, cq_str_list_out out);
-CQ_C_LINK void cq_lua_check_ss_map  (lua_State *state, int32_t index, cq_ss_map_out   out);
+CQ_C_LINK void cq_lua_check_int64_list(lua_State *state, int32_t index, cq_int64_list *out);
+CQ_C_LINK void cq_lua_check_str_list  (lua_State *state, int32_t index, cq_str_list   *out);
+CQ_C_LINK void cq_lua_check_ss_map    (lua_State *state, int32_t index, cq_ss_map     *out);
 
 CQ_C_LINK int32_t cq_lua_return_void  (lua_State *state);
 CQ_C_LINK int32_t cq_lua_return_bool  (lua_State *state, bool        value);
@@ -34,9 +34,9 @@ CQ_C_LINK int32_t cq_lua_return_double(lua_State *state, double      value);
 CQ_C_LINK int32_t cq_lua_return_string(lua_State *state, const char *value);
 CQ_C_LINK int32_t cq_lua_return_object(lua_State *state, cq_object  *value);
 
-CQ_C_LINK int32_t cq_lua_return_i64_list(lua_State *state, cq_i64_list_in in);
-CQ_C_LINK int32_t cq_lua_return_str_list(lua_State *state, cq_str_list_in in);
-CQ_C_LINK int32_t cq_lua_return_ss_map  (lua_State *state, cq_ss_map_in   in);
+CQ_C_LINK int32_t cq_lua_return_int64_list(lua_State *state, cq_int64_list *value);
+CQ_C_LINK int32_t cq_lua_return_str_list  (lua_State *state, cq_str_list   *value);
+CQ_C_LINK int32_t cq_lua_return_ss_map    (lua_State *state, cq_ss_map     *value);
 
 //host need set these handlers ->
 
@@ -51,9 +51,9 @@ cq_struct(_cq_lua_handlers) {
     const char *(*check_string  )(lua_State *state, int32_t index);
     cq_object  *(*check_object  )(lua_State *state, int32_t index);
     
-    void (*check_i64_list)(lua_State *state, int32_t index, cq_i64_list_out out);
-    void (*check_str_list)(lua_State *state, int32_t index, cq_str_list_out out);
-    void (*check_ss_map  )(lua_State *state, int32_t index, cq_ss_map_out   out);
+    void (*check_int64_list)(lua_State *state, int32_t index, cq_int64_list *out);
+    void (*check_str_list  )(lua_State *state, int32_t index, cq_str_list   *out);
+    void (*check_ss_map    )(lua_State *state, int32_t index, cq_ss_map     *out);
     
     void (*push_bool    )(lua_State *state, bool        value);
     void (*push_integer )(lua_State *state, int64_t     value);
@@ -61,9 +61,9 @@ cq_struct(_cq_lua_handlers) {
     void (*push_string  )(lua_State *state, const char *value);
     void (*push_object  )(lua_State *state, cq_object  *value);
     
-    void (*push_i64_list)(lua_State *state, cq_i64_list_in in);
-    void (*push_str_list)(lua_State *state, cq_str_list_in in);
-    void (*push_ss_map  )(lua_State *state, cq_ss_map_in   in);
+    void (*push_int64_list)(lua_State *state, cq_int64_list *value);
+    void (*push_str_list  )(lua_State *state, cq_str_list   *value);
+    void (*push_ss_map    )(lua_State *state, cq_ss_map     *value);
 };
 
 CQ_C_LINK void _cq_lua_set_handlers(_cq_lua_handlers *handlers);

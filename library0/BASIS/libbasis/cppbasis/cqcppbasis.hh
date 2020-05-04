@@ -230,25 +230,15 @@ template<class T, int = 0> typename cqRef<T>::Strong cqStaticObject() {
 
 //data interfaces for interaction with c:
 
-cq_bytes_out    cq_cpp_out(std::vector<uint8_t> &value);
-cq_i64_list_out cq_cpp_out(std::vector<int64_t> &value);
-cq_str_list_out cq_cpp_out(std::vector<std::string> &value);
-cq_ss_map_out   cq_cpp_out(std::map<std::string, std::string> &value);
+cq_bytes      *cq_cpp_bytes     (std::vector<uint8_t>               &object);
+cq_int64_list *cq_cpp_int64_list(std::vector<int64_t>               &object);
+cq_str_list   *cq_cpp_str_list  (std::vector<std::string>           &object);
+cq_ss_map     *cq_cpp_ss_map    (std::map<std::string, std::string> &object);
 
-cq_bytes_in    cq_cpp_in(const std::vector<uint8_t> &value);
-cq_i64_list_in cq_cpp_in(const std::vector<int64_t> &value);
-cq_str_list_in cq_cpp_in(const std::vector<std::string> &value);
-cq_ss_map_in   cq_cpp_in(const std::map<std::string, std::string> &value);
-
-auto cq_cpp_bytes   (cq_bytes_in    in) -> std::vector<uint8_t>;
-auto cq_cpp_i64_list(cq_i64_list_in in) -> std::vector<int64_t>;
-auto cq_cpp_str_list(cq_str_list_in in) -> std::vector<std::string>;
-auto cq_cpp_ss_map  (cq_ss_map_in   in) -> std::map<std::string, std::string>;
-
-void cq_cpp_set(const std::vector<uint8_t>          &value, cq_bytes_out    out);
-void cq_cpp_set(const std::vector<int64_t>          &value, cq_i64_list_out out);
-void cq_cpp_set(const std::vector<std::string>      &value, cq_str_list_out out);
-void cq_cpp_set(const std::map<std::string, std::string> &, cq_ss_map_out   out);
+cq_bytes      *cq_cpp_bytes     (const std::vector<uint8_t>               &object);
+cq_int64_list *cq_cpp_int64_list(const std::vector<int64_t>               &object);
+cq_str_list   *cq_cpp_str_list  (const std::vector<std::string>           &object);
+cq_ss_map     *cq_cpp_ss_map    (const std::map<std::string, std::string> &object);
 
 //cpp block.
 cq_block *cq_block_retain_cpp(std::function<void ()> func);

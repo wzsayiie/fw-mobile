@@ -105,17 +105,54 @@ CQ_C_LINK const char *cq_u8s_from_u16s(const char16_t *src);
 /**/    typedef TYPE NAME;\
 /**/    enum
 
+//allocating a small memory block(that will be assigned 0) from a recycled block.
+//$size should be a relatively small value, and the return value does not need to be released.
+CQ_C_LINK void *auto_alloc(int32_t size);
+
 //interfaces for multiplex structures:
 
-typedef void (*cq_bytes_out   )(const void *ptr, int32_t len);
-typedef void (*cq_i64_list_out)(int64_t     val);
-typedef void (*cq_str_list_out)(const char *val);
-typedef void (*cq_ss_map_out  )(const char *key, const char *val);
+cq_struct(cq_bytes) {
+    void (*clear)(void *ref);
+    void (*recv )(void *ref, const void *bytes, int32_t length);
+    void (*send )(void *ref, cq_bytes *dst);
+    void *ref;
+};
 
-typedef void (*cq_bytes_in   )(cq_bytes_out    out);
-typedef void (*cq_i64_list_in)(cq_i64_list_out out);
-typedef void (*cq_str_list_in)(cq_str_list_out out);
-typedef void (*cq_ss_map_in  )(cq_ss_map_out   out);
+cq_struct(cq_int64_list) {
+    void (*clear)(void *ref);
+    void (*recv )(void *ref, int64_t item);
+    void (*send )(void *ref, cq_int64_list *dst);
+    void *ref;
+};
+
+cq_struct(cq_str_list) {
+    void (*clear)(void *ref);
+    void (*recv )(void *ref, const char *item);
+    void (*send )(void *ref, cq_str_list *dst);
+    void *ref;
+};
+
+cq_struct(cq_ss_map) {
+    void (*clear)(void *ref);
+    void (*recv )(void *ref, const char *key, const char *value);
+    void (*send )(void *ref, cq_ss_map *dst);
+    void *ref;
+};
+
+CQ_C_LINK void cq_bytes_clear     (cq_bytes      *dst);
+CQ_C_LINK void cq_int64_list_clear(cq_int64_list *dst);
+CQ_C_LINK void cq_str_list_clear  (cq_str_list   *dst);
+CQ_C_LINK void cq_ss_map_clear    (cq_ss_map     *dst);
+
+CQ_C_LINK void cq_bytes_append     (cq_bytes      *dst, cq_bytes      *src);
+CQ_C_LINK void cq_int64_list_append(cq_int64_list *dst, cq_int64_list *src);
+CQ_C_LINK void cq_str_list_append  (cq_str_list   *dst, cq_str_list   *src);
+CQ_C_LINK void cq_ss_map_append    (cq_ss_map     *dst, cq_ss_map     *src);
+
+CQ_C_LINK void cq_bytes_assign     (cq_bytes      *dst, cq_bytes      *src);
+CQ_C_LINK void cq_int64_list_assign(cq_int64_list *dst, cq_int64_list *src);
+CQ_C_LINK void cq_str_list_assign  (cq_str_list   *dst, cq_str_list   *src);
+CQ_C_LINK void cq_ss_map_assign    (cq_ss_map     *dst, cq_ss_map     *src);
 
 //object reference:
 

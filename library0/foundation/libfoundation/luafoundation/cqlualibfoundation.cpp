@@ -111,9 +111,9 @@ static int32_t sub_files(lua_State *state) {
     const char *path = cq_lua_check_string(state, 1);
     
     std::vector<std::string> files;
-    cq_sub_files(path, cq_cpp_out(files));
+    cq_sub_files(path, cq_cpp_str_list(files));
     
-    return cq_lua_return_str_list(state, cq_cpp_in(files));
+    return cq_lua_return_str_list(state, cq_cpp_str_list(files));
 }
 
 //register

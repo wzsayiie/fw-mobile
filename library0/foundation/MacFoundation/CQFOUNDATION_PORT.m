@@ -23,12 +23,12 @@ const char *cq_ios_resource_path(const char *name, const char *type) {
     return cq_store_str(path.UTF8String);
 }
 
-void cq_ios_resource(const char *name, const char *type, cq_bytes_out out) {
+void cq_ios_resource(const char *name, const char *type, cq_bytes *out) {
     NSData *data = [CQBundle.mainBundle resourceForName:@(type) type:@(type)];
-    cq_oc_set_bytes(data, out);
+    cq_bytes_assign(out, cq_oc_bytes(data));
 }
 
-void cq_android_asset(const char *name, cq_bytes_out out) {
+void cq_android_asset(const char *name, cq_bytes *out) {
 }
 
 bool cq_android_copy_asset(const char *from_path, const char *to_path) {
@@ -69,10 +69,10 @@ void cq_remove_path(const char *path) {
     [CQFileManager.sharedObject removeItemAtPath:@(path)];
 }
 
-void cq_sub_files(const char *path, cq_str_list_out out) {
+void cq_sub_files(const char *path, cq_str_list *out) {
     CQFileManager *manager = CQFileManager.sharedObject;
     NSArray<NSString *> *contents = [manager contentsOfDirectoryAtPath:@(path) error:NULL];
-    cq_oc_set_str_list(contents, out);
+    cq_str_list_assign(out, cq_oc_str_list(contents));
 }
 
 //thread:
@@ -235,19 +235,20 @@ int32_t cq_http_send_body_cap(cq_http *http) {
     }
 }
 
-void cq_http_send_body(cq_http *http, cq_bytes_in data, bool finish) {
+void cq_http_send_body(cq_http *http, cq_bytes *data, bool finish) {
     http_session_cast(object, http) {
-        NSData *body = cq_oc_bytes(data);
-        if (body != nil) {
-            memcpy(object.sendBodyBuffer, body.bytes, body.length);
-        }
+        NSMutableData *body = [NSMutableData data];
+        cq_bytes_assign(cq_oc_bytes(body), data);
+        
+        memcpy(object.sendBodyBuffer, body.bytes, body.length);
+        
         object.sendBodyFinish = finish;
     }
 }
 
-void cq_http_recv_body(cq_http *http, cq_bytes_out out) {
+void cq_http_recv_body(cq_http *http, cq_bytes *out) {
     http_session_cast(object, http) {
-        cq_oc_set_bytes(object.receiveBodyData, out);
+        cq_bytes_assign(out, cq_oc_bytes(object.receiveBodyData));
     }
 }
 
@@ -269,8 +270,8 @@ int32_t cq_http_recv_code(cq_http *http) {
     }
 }
 
-void cq_http_recv_header(cq_http *http, cq_ss_map_out out) {
+void cq_http_recv_header(cq_http *http, cq_ss_map *out) {
     http_session_cast(object, http) {
-        cq_oc_set_ss_map(object.responseHeader, out);
+        cq_ss_map_assign(out, cq_oc_ss_map(object.responseHeader));
     }
 }

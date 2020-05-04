@@ -166,7 +166,7 @@ static cq_object *check_object(lua_State *state, int32_t index) {
     return (cq_object *)raw;
 }
 
-static void check_i64_list(lua_State *state, int32_t index, cq_i64_list_out out) {
+static void check_int64_list(lua_State *state, int32_t index, cq_int64_list *out) {
     lua_stack_guard guard(state);
     
     if (!lua_istable(state, index)) {
@@ -183,10 +183,10 @@ static void check_i64_list(lua_State *state, int32_t index, cq_i64_list_out out)
         lua_pop(state, 1);
     }
     
-    cq_cpp_set(object, out);
+    cq_int64_list_assign(out, cq_cpp_int64_list(object));
 }
 
-static void check_str_list(lua_State *state, int32_t index, cq_str_list_out out) {
+static void check_str_list(lua_State *state, int32_t index, cq_str_list *out) {
     lua_stack_guard guard(state);
     
     if (!lua_istable(state, index)) {
@@ -203,10 +203,10 @@ static void check_str_list(lua_State *state, int32_t index, cq_str_list_out out)
         lua_pop(state, 1);
     }
     
-    cq_cpp_set(object, out);
+    cq_str_list_assign(out, cq_cpp_str_list(object));
 }
 
-static void check_ss_map(lua_State *state, int32_t index, cq_ss_map_out out) {
+static void check_ss_map(lua_State *state, int32_t index, cq_ss_map *out) {
     lua_stack_guard guard(state);
     
     if (!lua_istable(state, index)) {
@@ -224,7 +224,7 @@ static void check_ss_map(lua_State *state, int32_t index, cq_ss_map_out out) {
         lua_pop(state, 1);
     }
     
-    cq_cpp_set(object, out);
+    cq_ss_map_assign(out, cq_cpp_ss_map(object));
 }
 
 static void push_bool   (lua_State *s, bool        v) {lua_pushboolean(s, v);}
@@ -232,7 +232,7 @@ static void push_integer(lua_State *s, int64_t     v) {lua_pushinteger(s, v);}
 static void push_double (lua_State *s, double      v) {lua_pushnumber (s, v);}
 static void push_string (lua_State *s, const char *v) {lua_pushstring (s, v);}
 
-static int32_t obj_gc(lua_State *state) {
+static int32_t object_gc(lua_State *state) {
     lua_stack_guard guard(state);
     
     lua_getfield(state, -1, "cq_object");
@@ -275,14 +275,15 @@ static void push_object(lua_State *state, cq_object *value) {
     
     //assign __gc.
     lua_pushstring(state, "__gc");
-    lua_pushcfunction(state, obj_gc);
+    lua_pushcfunction(state, object_gc);
     lua_settable(state, -3);
     
     lua_setmetatable(state, -2);
 }
 
-static void push_i64_list(lua_State *state, cq_i64_list_in in) {
-    std::vector<int64_t> object = cq_cpp_i64_list(in);
+static void push_int64_list(lua_State *state, cq_int64_list *value) {
+    std::vector<int64_t> object;
+    cq_int64_list_assign(cq_cpp_int64_list(object), value);
     
     lua_newtable(state);
     
@@ -294,8 +295,9 @@ static void push_i64_list(lua_State *state, cq_i64_list_in in) {
     }
 }
 
-static void push_str_list(lua_State *state, cq_str_list_in in) {
-    std::vector<std::string> object = cq_cpp_str_list(in);
+static void push_str_list(lua_State *state, cq_str_list* value) {
+    std::vector<std::string> object;
+    cq_str_list_assign(cq_cpp_str_list(object), value);
     
     lua_newtable(state);
     
@@ -307,8 +309,9 @@ static void push_str_list(lua_State *state, cq_str_list_in in) {
     }
 }
 
-static void push_ss_map(lua_State *state, cq_ss_map_in in) {
-    std::map<std::string, std::string> object = cq_cpp_ss_map(in);
+static void push_ss_map(lua_State *state, cq_ss_map *value) {
+    std::map<std::string, std::string> object;
+    cq_ss_map_assign(cq_cpp_ss_map(object), value);
     
     lua_newtable(state);
     
@@ -362,22 +365,22 @@ void csLuaVM::open(const std::string &directory) {
         handlers.register_func  = register_func ;
         handlers.do_string      = do_string     ;
         
-        handlers.check_integer  = check_integer ;
-        handlers.check_double   = check_double  ;
-        handlers.check_string   = check_string  ;
-        handlers.check_object   = check_object  ;
-        handlers.check_i64_list = check_i64_list;
-        handlers.check_str_list = check_str_list;
-        handlers.check_ss_map   = check_ss_map  ;
+        handlers.check_integer    = check_integer   ;
+        handlers.check_double     = check_double    ;
+        handlers.check_string     = check_string    ;
+        handlers.check_object     = check_object    ;
+        handlers.check_int64_list = check_int64_list;
+        handlers.check_str_list   = check_str_list  ;
+        handlers.check_ss_map     = check_ss_map    ;
         
-        handlers.push_bool      = push_bool    ;
-        handlers.push_integer   = push_integer ;
-        handlers.push_double    = push_double  ;
-        handlers.push_string    = push_string  ;
-        handlers.push_object    = push_object  ;
-        handlers.push_i64_list  = push_i64_list;
-        handlers.push_str_list  = push_str_list;
-        handlers.push_ss_map    = push_ss_map  ;
+        handlers.push_bool       = push_bool      ;
+        handlers.push_integer    = push_integer   ;
+        handlers.push_double     = push_double    ;
+        handlers.push_string     = push_string    ;
+        handlers.push_object     = push_object    ;
+        handlers.push_int64_list = push_int64_list;
+        handlers.push_str_list   = push_str_list  ;
+        handlers.push_ss_map     = push_ss_map    ;
     }
     _cq_lua_set_handlers(&handlers);
 }

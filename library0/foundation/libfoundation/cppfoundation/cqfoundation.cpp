@@ -51,7 +51,7 @@ std::string cqIOSBundle::resourcePath(const std::string &name, const std::string
 
 std::vector<uint8_t> cqIOSBundle::resource(const std::string &name, const std::string &type) {
     std::vector<uint8_t> data;
-    cq_ios_resource(name.c_str(), type.c_str(), cq_cpp_out(data));
+    cq_ios_resource(name.c_str(), type.c_str(), cq_cpp_bytes(data));
     return data;
 }
 
@@ -65,7 +65,7 @@ cqAndroidBundleRef cqAndroidBundle::get() {
 
 std::vector<uint8_t> cqAndroidBundle::asset(const std::string &name) {
     std::vector<uint8_t> data;
-    cq_android_asset(name.c_str(), cq_cpp_out(data));
+    cq_android_asset(name.c_str(), cq_cpp_bytes(data));
     return data;
 }
 
@@ -120,7 +120,7 @@ std::vector<std::string> cqFileManager::contentsOfDirectoryAtPath(const std::str
         if (error != nullptr) {
             *error = true;
         }
-        cq_sub_files(path.c_str(), cq_cpp_out(contents));
+        cq_sub_files(path.c_str(), cq_cpp_str_list(contents));
     } else {
         if (error != nullptr) {
             *error = false;
@@ -220,7 +220,7 @@ static void cqHTTPSession_OnSendRequestBody(void *_self) {
         
         if (length > 0) {
             buffer.resize(length);
-            cq_http_send_body(http, cq_cpp_in(buffer), false);
+            cq_http_send_body(http, cq_cpp_bytes(buffer), false);
         }
         if (length == -1) {
             //NOTE: -1 means stop transfer.
@@ -237,7 +237,7 @@ static void cqHTTPSession_OnSendRequestBody(void *_self) {
             
             std::vector<uint8_t> split;
             split.assign(data + iter, data + length);
-            cq_http_send_body(http, cq_cpp_in(split), false);
+            cq_http_send_body(http, cq_cpp_bytes(split), false);
             
             iter += length;
             
@@ -252,7 +252,7 @@ static void cqHTTPSession_OnReceiveResponseBody(void *_self) {
     auto http = self->dat->http;
     
     std::vector<uint8_t> body;
-    cq_http_recv_body(http, cq_cpp_out(body));
+    cq_http_recv_body(http, cq_cpp_bytes(body));
     
     if (self->dat->responseBodyWriter != nullptr) {
         bool continuous = self->dat->responseBodyWriter(body);
@@ -293,7 +293,7 @@ int cqHTTPSession::responseCode() {
 
 std::map<std::string, std::string> cqHTTPSession::responseHeader() {
     std::map<std::string, std::string> header;
-    cq_http_recv_header(dat->http, cq_cpp_out(header));
+    cq_http_recv_header(dat->http, cq_cpp_ss_map(header));
     return header;
 }
 
