@@ -6,10 +6,6 @@ std::string cqString::make(const char *value) {
     return value ? value : "";
 }
 
-bool cqString::empty(const char *value) {
-    return value == nullptr || *value == '\0';
-}
-
 //synchronization lock:
 
 const int32_t MUTEX_NUMBER = 32;
@@ -132,7 +128,7 @@ static void str_list_recv(void *dst, const char *item) {
 static void ss_map_recv(void *dst, const char *key, const char *value) {
     auto object = (std::map<std::string, std::string> *)dst;
     
-    if (!cq_str_empty(key)) {
+    if (cq_str_non_empty(key)) {
         (*object)[key] = cqString::make(value);
     }
 }

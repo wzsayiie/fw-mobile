@@ -150,7 +150,7 @@ public class HttpSession {
         connection.setReadTimeout((int)(mTimeoutSeconds * 1000));
 
         //"GET" is default
-        if (!StringUtil.isEmpty(mMethod)) {
+        if (StringUtil.isNonEmpty(mMethod)) {
             connection.setRequestMethod(mMethod.toUpperCase());
         } else {
             connection.setRequestMethod("GET");

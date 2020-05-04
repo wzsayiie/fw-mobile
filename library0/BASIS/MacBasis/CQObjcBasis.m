@@ -45,7 +45,7 @@ static void str_list_recv(void *dst, const char *item) {
 static void ss_map_recv(void *dst, const char *key, const char *value) {
     NSMutableDictionary<NSString *, NSString *> *object = (__bridge id)dst;
     
-    if (!cq_str_empty(key)) {
+    if (cq_str_non_empty(key)) {
         object[@(key)] = CQNonnullString(value);
     }
 }

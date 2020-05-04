@@ -114,7 +114,7 @@ void cq_shader_use_tex_program(void) {
 //get attribute variable:
 
 int32_t cq_shader_attrib_loc(const char *name) {
-    if (_active_program != 0 && !cq_str_empty(name)) {
+    if (_active_program != 0 && cq_str_non_empty(name)) {
         return glGetAttribLocation(_active_program, name);
     } else {
         return -1;
@@ -124,7 +124,7 @@ int32_t cq_shader_attrib_loc(const char *name) {
 //set uniform variable:
 
 static int uniform_loc(const char *name) {
-    if (_active_program != 0 && !cq_str_empty(name)) {
+    if (_active_program != 0 && cq_str_non_empty(name)) {
         return glGetUniformLocation(_active_program, name);
     } else {
         return -1;

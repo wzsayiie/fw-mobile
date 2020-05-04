@@ -3,9 +3,8 @@ package src.library.basis;
 @SuppressWarnings({W.LIB_OMIT_0, W.LIB_OMIT_1, W.LIB_OMIT_2, W.LIB_OMIT_3})
 public class StringUtil {
 
-    public static boolean isEmpty(String string) {
-        return string == null || string.isEmpty();
-    }
+    public static boolean isEmpty   (String s) { return s == null || s.length() == 0; }
+    public static boolean isNonEmpty(String s) { return s != null && s.length() != 0; }
 
     public static boolean isEqual(String a, String b) {
         if (a != null) {

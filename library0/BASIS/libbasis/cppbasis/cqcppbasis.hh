@@ -28,7 +28,6 @@ _CQBASIS_BEGIN_VERSION_NS
 
 struct cqString {
     static std::string make(const char *value);
-    static bool empty(const char *value);
 };
 
 struct cqVector {

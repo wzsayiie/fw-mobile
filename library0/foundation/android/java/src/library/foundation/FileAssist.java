@@ -31,7 +31,7 @@ public class FileAssist {
     }
 
     public static boolean directoryExists(String path) {
-        if (!StringUtil.isEmpty(path)) {
+        if (StringUtil.isNonEmpty(path)) {
             File file = new File(path);
             return file.exists() && file.isDirectory();
         } else {
@@ -40,7 +40,7 @@ public class FileAssist {
     }
 
     public static boolean fileExists(String path) {
-        if (!StringUtil.isEmpty(path)) {
+        if (StringUtil.isNonEmpty(path)) {
             File file = new File(path);
             return file.exists() && !file.isDirectory();
         } else {

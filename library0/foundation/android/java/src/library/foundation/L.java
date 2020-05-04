@@ -17,7 +17,7 @@ public class L {
     }
 
     private static String merge(String file, int line, String message) {
-        if (!StringUtil.isEmpty(file) && line > 0) {
+        if (StringUtil.isNonEmpty(file) && line > 0) {
             //get file name from path.
             file = file.substring(file.lastIndexOf("/") + 1);
 

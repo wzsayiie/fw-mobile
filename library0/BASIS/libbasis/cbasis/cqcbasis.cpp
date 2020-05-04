@@ -9,8 +9,11 @@ bool cq_dbl_equal(double a, double b) {return fabs (a - b) < DBL_EPSILON;}
 
 //string:
 
-bool cq_str_empty   (const char     *s) {return s == nullptr || *s == '\0';}
-bool cq_u16str_empty(const char16_t *s) {return s == nullptr || *s == '\0';}
+bool cq_str_empty    (const char *s) {return s == nullptr || *s == '\0';}
+bool cq_str_non_empty(const char *s) {return s != nullptr && *s != '\0';}
+
+bool cq_u16str_empty    (const char16_t *s) {return s == nullptr || *s == '\0';}
+bool cq_u16str_non_empty(const char16_t *s) {return s != nullptr && *s != '\0';}
 
 template<class T> const T *store_str(const T *string) {
     static thread_local std::basic_string<T> *object = nullptr;

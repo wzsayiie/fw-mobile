@@ -83,9 +83,11 @@ CQ_C_LINK bool cq_dbl_equal(double a, double b);
 typedef uint16_t char16_t;
 #endif
 
-//if $str == null or strlen($str) == 0, return true.
+//if $str == null or strlen($str) == 0, the $str is regarded as "empty".
 CQ_C_LINK bool cq_str_empty(const char *str);
+CQ_C_LINK bool cq_str_non_empty(const char *str);
 CQ_C_LINK bool cq_u16str_empty(const char16_t *str);
+CQ_C_LINK bool cq_u16str_non_empty(const char16_t *str);
 
 //storing values on current thread, until call of cq_store_xx again on same thread.
 CQ_C_LINK const char *cq_store_str(const char *str);

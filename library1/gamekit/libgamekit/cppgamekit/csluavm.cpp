@@ -75,7 +75,7 @@ static void register_tab(const char *tab, const char *base) {
         return;
     }
     
-    if (!cq_str_empty(tab)) {
+    if (cq_str_non_empty(tab)) {
         add_global_tab(_state, tab, base);
     }
 }
@@ -88,7 +88,7 @@ static void register_func(const char *tab, const char *func, lua_CFunction ptr) 
         return;
     }
     
-    if (!cq_str_empty(tab)) {
+    if (cq_str_non_empty(tab)) {
         //register a class member function.
         add_global_tab(_state, tab, nullptr);
         add_table_func(_state, tab, func, ptr);
@@ -263,7 +263,7 @@ static void push_object(lua_State *state, cq_object *value) {
     
     //assign __index.
     const char *cls = cq_object_cls(value);
-    if (!cq_str_empty(cls)) {
+    if (cq_str_non_empty(cls)) {
         lua_pushstring(state, "__index");
         lua_getglobal(state, cls);
         if (lua_istable(state, -1)) {

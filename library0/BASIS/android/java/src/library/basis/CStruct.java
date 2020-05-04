@@ -113,7 +113,7 @@ public class CStruct {
             return;
         }
 
-        if (!StringUtil.isEmpty(key)) {
+        if (StringUtil.isNonEmpty(key)) {
             dst.put(key, value);
         }
     }
