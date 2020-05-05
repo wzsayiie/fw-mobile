@@ -11,9 +11,11 @@ template<class F, class... A> auto call(F func, A... args) -> decltype(func(args
     }
 }
 
-void cq_lua_register_tab (const char *a, const char *b                 ) {return call(_h.register_tab , a, b   );}
-void cq_lua_register_func(const char *a, const char *b, lua_CFunction c) {return call(_h.register_func, a, b, c);}
-void cq_lua_do_string    (const char *a                                ) {return call(_h.do_string    , a      );}
+void cq_lua_register_table   (const char *a, const char *b                 ) {return call(_h.register_table   , a, b   );}
+void cq_lua_register_function(const char *a, const char *b, lua_CFunction c) {return call(_h.register_function, a, b, c);}
+void cq_lua_register_integer (const char *a, const char *b, int64_t       c) {return call(_h.register_integer , a, b, c);}
+
+void cq_lua_do_string(const char *a) {return call(_h.do_string, a);}
 
 bool        cq_lua_check_bool  (lua_State *s, int32_t i) {return (bool   )call(_h.check_integer , s, i);}
 int8_t      cq_lua_check_int8  (lua_State *s, int32_t i) {return (int8_t )call(_h.check_integer , s, i);}

@@ -5,9 +5,11 @@
 cq_struct(lua_State);
 typedef int32_t (*lua_CFunction)(lua_State *);
 
-CQ_C_LINK void cq_lua_register_tab (const char *tab, const char *base);
-CQ_C_LINK void cq_lua_register_func(const char *tab, const char *func, lua_CFunction ptr);
-CQ_C_LINK void cq_lua_do_string    (const char *str);
+CQ_C_LINK void cq_lua_register_table   (const char *tab, const char *base);
+CQ_C_LINK void cq_lua_register_function(const char *tab, const char *func, lua_CFunction ptr);
+CQ_C_LINK void cq_lua_register_integer (const char *tab, const char *member, int64_t value);
+
+CQ_C_LINK void cq_lua_do_string(const char *str);
 
 CQ_C_LINK bool        cq_lua_check_bool  (lua_State *state, int32_t index);
 CQ_C_LINK int8_t      cq_lua_check_int8  (lua_State *state, int32_t index);
@@ -42,9 +44,11 @@ CQ_C_LINK int32_t cq_lua_return_ss_map    (lua_State *state, cq_ss_map     *valu
 
 cq_struct(_cq_lua_handlers) {
     
-    void (*register_tab )(const char *tab, const char *base);
-    void (*register_func)(const char *tab, const char *func, lua_CFunction ptr);
-    void (*do_string    )(const char *str);
+    void (*register_table   )(const char *tab, const char *base);
+    void (*register_function)(const char *tab, const char *func, lua_CFunction ptr);
+    void (*register_integer )(const char *tab, const char *member, int64_t value);
+    
+    void (*do_string)(const char *str);
     
     int64_t     (*check_integer )(lua_State *state, int32_t index);
     double      (*check_double  )(lua_State *state, int32_t index);

@@ -27,7 +27,7 @@ private:
     int _top;
 };
 
-static void add_global_tab(lua_State *state, const char *tab, const char *base) {
+static void set_global_table(lua_State *state, const char *tab, const char *base) {
     lua_stack_guard gurad(state);
     
     //create table.
@@ -59,28 +59,54 @@ static void add_global_tab(lua_State *state, const char *tab, const char *base) 
     lua_setmetatable(state, -2);
 }
 
-static void add_table_func(lua_State *state, const char *tab, const char *func, lua_CFunction ptr) {
+static void set_tab_function(lua_State *state, const char *tab, const char *func, lua_CFunction ptr) {
     lua_stack_guard gurad(state);
     
+    if (cq_str_empty(tab) || cq_str_empty(func) || !ptr) {
+        return;
+    }
+    
     lua_getglobal(state, tab);
+    if (lua_isnil(state, -1)) {
+        //the table is not exist.
+        return;
+    }
     
     luaL_Reg list[] = {func, ptr, nullptr, nullptr};
     luaL_setfuncs(state, list, 0);
 }
 
+static void set_tab_integer(lua_State *state, const char *tab, const char *name, int64_t value) {
+    lua_stack_guard guard(state);
+    
+    if (cq_str_empty(tab) || cq_str_empty(name)) {
+        return;
+    }
+    
+    lua_getglobal(state, tab);
+    if (lua_isnil(state, -1)) {
+        //the table is not exist.
+        return;
+    }
+    
+    lua_pushstring(state, name);
+    lua_pushinteger(state, value);
+    lua_settable(state, -3);
+}
+
 static lua_State *_state = nullptr;
 
-static void register_tab(const char *tab, const char *base) {
+static void register_table(const char *tab, const char *base) {
     if (_state == nullptr) {
         return;
     }
     
     if (cq_str_non_empty(tab)) {
-        add_global_tab(_state, tab, base);
+        set_global_table(_state, tab, base);
     }
 }
 
-static void register_func(const char *tab, const char *func, lua_CFunction ptr) {
+static void register_function(const char *tab, const char *func, lua_CFunction ptr) {
     if (_state == nullptr) {
         return;
     }
@@ -90,12 +116,30 @@ static void register_func(const char *tab, const char *func, lua_CFunction ptr) 
     
     if (cq_str_non_empty(tab)) {
         //register a class member function.
-        add_global_tab(_state, tab, nullptr);
-        add_table_func(_state, tab, func, ptr);
+        set_global_table(_state, tab, nullptr);
+        set_tab_function(_state, tab, func, ptr);
     } else {
         //register a global function.
         lua_register(_state, func, ptr);
     }
+}
+
+static void register_integer(const char *tab, const char *member, int64_t value) {
+    if (_state == nullptr) {
+        return;
+    }
+    if (cq_str_empty(member)) {
+        return;
+    }
+    
+    if (cq_str_empty(tab)) {
+        //if no table name was specified, register the value as global.
+        tab = "_G";
+    } else {
+        set_global_table(_state, tab, nullptr);
+    }
+    
+    set_tab_integer(_state, tab, member, value);
 }
 
 static int traceback(lua_State *state) {
@@ -361,9 +405,11 @@ void csLuaVM::open(const std::string &directory) {
     
     //register handlers.
     _cq_lua_handlers handlers = {nullptr}; {
-        handlers.register_tab   = register_tab  ;
-        handlers.register_func  = register_func ;
-        handlers.do_string      = do_string     ;
+        handlers.register_table    = register_table   ;
+        handlers.register_function = register_function;
+        handlers.register_integer  = register_integer ;
+        
+        handlers.do_string = do_string;
         
         handlers.check_integer    = check_integer   ;
         handlers.check_double     = check_double    ;

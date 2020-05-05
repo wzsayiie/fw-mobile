@@ -120,30 +120,30 @@ static int32_t sub_files(lua_State *state) {
 
 void cq_lua_load_lib_foundation() {
     
-#define register_func(name) cq_lua_register_func(nullptr, #name, name)
+#define lua_func(name) cq_lua_register_function(nullptr, #name, name)
     
     //host os:
-    register_func(host_os);
+    lua_func(host_os);
     
     //log:
     
-    register_func(log_info );
-    register_func(log_error);
+    lua_func(log_info );
+    lua_func(log_error);
     
     //app bundle resource:
 
-    register_func(ios_bundle_path   );
-    register_func(ios_resource_path );
-    register_func(android_copy_asset);
+    lua_func(ios_bundle_path   );
+    lua_func(ios_resource_path );
+    lua_func(android_copy_asset);
     
     //file access:
     
-    register_func(document_directory );
-    register_func(caches_directory   );
-    register_func(temporary_directory);
-    register_func(directory_exists   );
-    register_func(file_exists        );
-    register_func(create_directory   );
-    register_func(remove_path        );
-    register_func(sub_files          );
+    lua_func(document_directory );
+    lua_func(caches_directory   );
+    lua_func(temporary_directory);
+    lua_func(directory_exists   );
+    lua_func(file_exists        );
+    lua_func(create_directory   );
+    lua_func(remove_path        );
+    lua_func(sub_files          );
 }
