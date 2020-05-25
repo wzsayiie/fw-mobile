@@ -9,31 +9,16 @@ static void del_java_object(void *raw) {
     }
 }
 
-extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CObject_retainRaw
+extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CObject_retain
     (JNIEnv *env, jclass, jobject object, jstring cls)
 {
     if (object != nullptr) {
         std::string name = cqJNIType::string(env, cls);
         void *raw = (void *)env->NewGlobalRef(object);
-        cq_object *ptr = cq_object_retain_raw(raw, name.c_str(), JAVA_OBJECT_MAGIC, del_java_object);
+        cq_object *ptr = cq_object_retain(raw, name.c_str(), JAVA_OBJECT_MAGIC, del_java_object);
         return cqJNIType::jniPtr(env, ptr);
     }
     return nullptr;
-}
-
-extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CObject_retain
-    (JNIEnv *env, jclass, jobject _j_object)
-{
-    auto object = cqJNIType::ptr<cq_object *>(env, _j_object);
-    cq_object_retain(object);
-    return _j_object;
-}
-
-extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CObject_release
-    (JNIEnv *env, jclass, jobject _j_object)
-{
-    auto object = cqJNIType::ptr<cq_object *>(env, _j_object);
-    cq_object_release(object);
 }
 
 extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CObject_raw

@@ -82,10 +82,10 @@ void cq_thread_run(cq_block *block) {
         return;
     }
     
-    cq_block_retain(block);
+    cq_retain(block);
     CQThreadRun(^{
         cq_block_run(block);
-        cq_block_release(block);
+        cq_release(block);
     });
 }
 
@@ -100,10 +100,10 @@ void cq_main_loop_post(cq_block *block) {
         return;
     }
     
-    cq_block_retain(block);
+    cq_retain(block);
     [CQRunLoop.mainRunLoop performBlock:^{
         cq_block_run(block);
-        cq_block_release(block);
+        cq_release(block);
     }];
 }
 

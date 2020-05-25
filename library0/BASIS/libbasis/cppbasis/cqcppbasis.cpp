@@ -260,7 +260,7 @@ static void del_block(void *raw) {
 cq_block *cq_block_retain_cpp(std::function<void ()> func) {
     if (func != nullptr) {
         auto raw = new std::function<void ()>(func);
-        return cq_block_retain_raw(raw, run_block, del_block);
+        return cq_block_retain(raw, run_block, del_block);
     }
     return nullptr;
 }
@@ -276,7 +276,7 @@ static void del_cpp_object(void *raw) {
 cq_object *cq_object_retain_cpp(cqObjectRef object, const std::string &cls) {
     if (object != nullptr) {
         void *raw = new cqObjectRef(object);
-        return cq_object_retain_raw(raw, cls.c_str(), CPP_OBJECT_MAGIC, del_cpp_object);
+        return cq_object_retain(raw, cls.c_str(), CPP_OBJECT_MAGIC, del_cpp_object);
     }
     return nullptr;
 }

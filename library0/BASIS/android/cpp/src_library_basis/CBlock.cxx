@@ -22,30 +22,15 @@ static void del_block(void *raw) {
     }
 }
 
-extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CBlock_retainRaw
+extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CBlock_retain
     (JNIEnv *env, jclass, jobject runnable)
 {
     if (runnable != nullptr) {
         auto raw = (void *)env->NewGlobalRef(runnable);
-        auto ptr = cq_block_retain_raw(raw, run_block, del_block);
+        auto ptr = cq_block_retain(raw, run_block, del_block);
         return cqJNIType::jniPtr(env, ptr);
     }
     return nullptr;
-}
-
-extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CBlock_retain
-    (JNIEnv *env, jclass, jobject _j_block)
-{
-    auto block = cqJNIType::ptr<cq_block *>(env, _j_block);
-    cq_block_retain(block);
-    return _j_block;
-}
-
-extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CBlock_release
-    (JNIEnv *env, jclass, jobject _j_block)
-{
-    auto block = cqJNIType::ptr<cq_block *>(env, _j_block);
-    cq_block_release(block);
 }
 
 extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CBlock_run

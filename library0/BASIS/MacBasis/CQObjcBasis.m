@@ -166,7 +166,7 @@ static void del_block(void *raw) {
 cq_block *cq_block_retain_oc(void (^block)(void)) {
     if (block != nil) {
         CFTypeRef raw = CFRetain((__bridge CFTypeRef)block);
-        return cq_block_retain_raw((void *)raw, run_block, del_block);
+        return cq_block_retain((void *)raw, run_block, del_block);
     }
     return NULL;
 }
@@ -184,7 +184,7 @@ static void del_oc_object(void *raw) {
 cq_object *cq_object_retain_oc(id object, NSString *cls) {
     if (object != nil) {
         CFTypeRef raw = CFRetain((__bridge CFTypeRef)object);
-        return cq_object_retain_raw((void *)raw, cls.UTF8String, OBJC_OBJECT_MAGIC, del_oc_object);
+        return cq_object_retain((void *)raw, cls.UTF8String, OBJC_OBJECT_MAGIC, del_oc_object);
     }
     return NULL;
 }

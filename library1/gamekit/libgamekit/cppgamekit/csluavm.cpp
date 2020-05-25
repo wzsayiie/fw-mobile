@@ -281,7 +281,7 @@ static int32_t object_gc(lua_State *state) {
     
     lua_getfield(state, -1, "cq_object");
     lua_Integer raw = lua_tointeger(state, -1);
-    cq_object_release((cq_object *)raw);
+    cq_release((cq_object *)raw);
     
     return 0;
 }
@@ -292,7 +292,7 @@ static void push_object(lua_State *state, cq_object *value) {
         return;
     }
     
-    cq_object_retain(value);
+    cq_retain(value);
     
     lua_newtable(state);
     

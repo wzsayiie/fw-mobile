@@ -273,48 +273,50 @@ void cq_ss_map_assign    (cq_ss_map     *dst, cq_ss_map     *src) { cq_x_assign(
 
 //object reference:
 
-struct cq_ref {
+struct cq_ref_t {
     int32_t ref_count = 1;
     void *raw = nullptr;
     void (*del)(void *) = nullptr;
     
-    virtual ~cq_ref();
+    virtual ~cq_ref_t();
 };
 
-cq_ref::~cq_ref() {
+cq_ref_t::~cq_ref_t() {
     if (del && raw) {
         del(raw);
     }
 }
 
-cq_ref *cq_ref_retain(cq_ref *ref) {
+cq_ref *cq_retain(cq_ref *ref) {
     if (ref == nullptr) {
         return nullptr;
     }
     cq_synchronize_obj(ref, {
-        ref->ref_count += 1;
+        auto ptr = (cq_ref_t *)ref;
+        ptr->ref_count += 1;
     });
     return ref;
 }
 
-void cq_ref_release(cq_ref *ref) {
+void cq_release(cq_ref *ref) {
     if (ref == nullptr) {
         return;
     }
     cq_synchronize_obj(ref, {
-        if (--ref->ref_count <= 0) {
-            delete ref;
+        auto ptr = (cq_ref_t *)ref;
+        if (--ptr->ref_count <= 0) {
+            delete ptr;
         }
     });
 }
 
 //block:
 
-struct cq_block : cq_ref {
+struct cq_block : cq_ref_t {
     void (*run)(void *raw) = nullptr;
 };
 
-cq_block *cq_block_retain_raw(void *raw, void (*run)(void *raw), void (*del)(void *raw)) {
+cq_block *cq_block_retain(void *raw, void (*run)(void *raw), void (*del)(void *raw)) {
     if (!raw || !run) {
         return nullptr;
     }
@@ -325,15 +327,6 @@ cq_block *cq_block_retain_raw(void *raw, void (*run)(void *raw), void (*del)(voi
         block->del = del;
     }
     return block;
-}
-
-cq_block *cq_block_retain(cq_block *block) {
-    cq_ref_retain(block);
-    return block;
-}
-
-void cq_block_release(cq_block *block) {
-    cq_ref_release(block);
 }
 
 void cq_block_run(cq_block *block) {
@@ -347,7 +340,7 @@ void cq_block_run(cq_block *block) {
 
 //bridged object:
 
-struct cq_object : cq_ref {
+struct cq_object : cq_ref_t {
     std::map<int32_t, cq_block *> blocks;
     int32_t magic = 0;
     std::string cls;
@@ -357,11 +350,11 @@ struct cq_object : cq_ref {
 
 cq_object::~cq_object() {
     for (auto cp : blocks) {
-        cq_block_release(cp.second);
+        cq_release(cp.second);
     }
 }
 
-cq_object *cq_object_retain_raw(void *raw, const char *cls, int32_t magic, void (*del)(void *raw)) {
+cq_object *cq_object_retain(void *raw, const char *cls, int32_t magic, void (*del)(void *raw)) {
     if (!raw || !del) {
         return nullptr;
     }
@@ -373,15 +366,6 @@ cq_object *cq_object_retain_raw(void *raw, const char *cls, int32_t magic, void 
         object->del   = del;
     }
     return object;
-}
-
-cq_object *cq_object_retain(cq_object *object) {
-    cq_ref_retain(object);
-    return object;
-}
-
-void cq_object_release(cq_object *object) {
-    cq_ref_release(object);
 }
 
 void *cq_object_raw(cq_object *object) {
@@ -413,13 +397,13 @@ void cq_object_listen(cq_object *object, int32_t event, cq_block *block) {
     //release old value.
     if (cqMap::contains(object->blocks, event)) {
         cq_block *old = object->blocks[event];
-        cq_block_release(old);
+        cq_release(old);
         object->blocks.erase(event);
     }
     
     //retain new value.
     if (block != nullptr) {
-        cq_block_retain(block);
+        cq_retain(block);
         object->blocks[event] = block;
     }
 }

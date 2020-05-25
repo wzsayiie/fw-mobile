@@ -135,7 +135,7 @@ std::vector<std::string> cqFileManager::contentsOfDirectoryAtPath(const std::str
 void cqThread::run(std::function<void ()> task) {
     cq_block *block = cq_block_retain_cpp(task);
     cq_thread_run(block);
-    cq_block_release(block);
+    cq_release(block);
 }
 
 void cqThread::sleep(float seconds) {
@@ -154,7 +154,7 @@ cqRunLoopRef cqRunLoop::mainRunLoop() {
 void cqRunLoop::perform(std::function<void ()> task) {
     cq_block *block = cq_block_retain_cpp(task);
     cq_main_loop_post(block);
-    cq_block_release(block);
+    cq_release(block);
 }
 
 //http(s):
@@ -176,7 +176,7 @@ cqHTTPSession::cqHTTPSession() {
 }
 
 cqHTTPSession::~cqHTTPSession() {
-    cq_http_release(dat->http);
+    cq_release(dat->http);
 }
 
 void cqHTTPSession::setTimeout(float seconds) {
@@ -273,8 +273,8 @@ void cqHTTPSession::syncResume() {
     auto recver = cq_block_retain_cpp([=]{ cqHTTPSession_OnReceiveResponseBody(this); });
     cq_http_listen(dat->http, CQ_HTTP_SEND_BODY, sender);
     cq_http_listen(dat->http, CQ_HTTP_RECV_BODY, recver);
-    cq_block_release(sender);
-    cq_block_release(recver);
+    cq_release(sender);
+    cq_release(recver);
     
     dat->responseBodyData.clear();
     

@@ -8,6 +8,7 @@ import java.util.HashMap;
 import src.library.basis.CBlock;
 import src.library.basis.CObject;
 import src.library.basis.CPtr;
+import src.library.basis.CRef;
 import src.library.basis.CStruct;
 import src.library.basis.W;
 
@@ -77,10 +78,10 @@ public class PORT {
             return;
         }
 
-        CBlock.retain(block);
+        CRef.retain(block);
         ThreadAssist.run(() -> {
             CBlock.run(block);
-            CBlock.release(block);
+            CRef.release(block);
         });
     }
 
@@ -95,10 +96,10 @@ public class PORT {
             return;
         }
 
-        CBlock.retain(block);
+        CRef.retain(block);
         LooperAssist.runOnMainLoop(() -> {
             CBlock.run(block);
-            CBlock.release(block);
+            CRef.release(block);
         });
     }
 
@@ -176,7 +177,7 @@ public class PORT {
 
     public static CPtr cq_http_create() {
         HttpSessionEntity object = new HttpSessionEntity();
-        CPtr handle = CObject.retainRaw(object, "HTTPSession");
+        CPtr handle = CObject.retain(object, "HTTPSession");
 
         object.Handle = handle;
 

@@ -158,28 +158,24 @@ CQ_C_LINK void cq_ss_map_assign    (cq_ss_map     *dst, cq_ss_map     *src);
 
 //object reference:
 
-cq_struct(cq_ref);
+typedef void cq_ref;
 
-//cq_ref_retain() and cq_ref_relase() is thread safe.
-CQ_C_LINK cq_ref *cq_ref_retain(cq_ref *ref);
-CQ_C_LINK void cq_ref_release(cq_ref *ref);
+//cq_retain() and cq_relase() is thread safe.
+CQ_C_LINK cq_ref *cq_retain(cq_ref *ref);
+CQ_C_LINK void cq_release(cq_ref *ref);
 
 //block:
 
 cq_struct(cq_block);
 
-CQ_C_LINK cq_block *cq_block_retain_raw(void *raw, void (*run)(void *raw), void (*del)(void *raw));
-CQ_C_LINK cq_block *cq_block_retain(cq_block *block);
-CQ_C_LINK void cq_block_release(cq_block *block);
+CQ_C_LINK cq_block *cq_block_retain(void *raw, void (*run)(void *raw), void (*del)(void *raw));
 CQ_C_LINK void cq_block_run(cq_block *block);
 
 //bridged object:
 
 cq_struct(cq_object);
 
-CQ_C_LINK cq_object *cq_object_retain_raw(void *raw, const char *cls, int32_t magic, void (*del)(void *raw));
-CQ_C_LINK cq_object *cq_object_retain(cq_object *object);
-CQ_C_LINK void cq_object_release(cq_object *object);
+CQ_C_LINK cq_object *cq_object_retain(void *raw, const char *cls, int32_t magic, void (*del)(void *raw));
 
 CQ_C_LINK void       *cq_object_raw  (cq_object *object);
 CQ_C_LINK const char *cq_object_cls  (cq_object *object);
@@ -190,7 +186,5 @@ CQ_C_LINK void cq_object_emit  (cq_object *object, int32_t event);
 
 #define cq_def_object(N)\
 /**/    cq_struct(N);\
-/**/    static inline N *  N##_retain (N *a                        ) {return (N *)cq_object_retain ((cq_object *)a      );}\
-/**/    static inline void N##_release(N *a                        ) {return      cq_object_release((cq_object *)a      );}\
-/**/    static inline void N##_listen (N *a, int32_t e, cq_block *b) {return      cq_object_listen ((cq_object *)a, e, b);}\
-/**/    static inline void N##_emit   (N *a, int32_t e             ) {return      cq_object_emit   ((cq_object *)a, e   );}
+/**/    static inline void N##_listen (N *a, int32_t e, cq_block *b) {return cq_object_listen((cq_object *)a, e, b);}\
+/**/    static inline void N##_emit   (N *a, int32_t e             ) {return cq_object_emit  ((cq_object *)a, e   );}
