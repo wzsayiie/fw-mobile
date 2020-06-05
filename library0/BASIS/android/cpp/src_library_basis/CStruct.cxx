@@ -200,3 +200,19 @@ extern "C" JNIEXPORT void JNICALL Java_src_library_basis_CStruct_assign
         default:;
     }
 }
+
+extern "C" JNIEXPORT jobject JNICALL Java_src_library_basis_CStruct_store
+    (JNIEnv *env, jclass, jobject _j_val, jint type)
+{
+    auto val = cqJNIType::ptr<void *>(env, _j_val);
+
+    switch (type) {
+        case BYTES     : cq_bytes_store     ((cq_bytes      *)val); break;
+        case INT64_LIST: cq_int64_list_store((cq_int64_list *)val); break;
+        case STR_LIST  : cq_str_list_store  ((cq_str_list   *)val); break;
+        case SS_MAP    : cq_ss_map_store    ((cq_ss_map     *)val); break;
+        default:;
+    }
+
+    return _j_val;
+}

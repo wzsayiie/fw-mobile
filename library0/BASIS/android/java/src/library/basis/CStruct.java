@@ -248,7 +248,14 @@ public class CStruct {
     public static void strListAssign  (CPtr dst, ArrayList<String>       src) { assign(dst, strList  (src), STR_LIST  ); }
     public static void ssMapAssign    (CPtr dst, HashMap<String, String> src) { assign(dst, ssMap    (src), SS_MAP    ); }
 
+    public static void bytesStore    (ByteBuffer              val) { store(bytes    (val), BYTES     ); }
+    public static void bytesStore    (byte[]                  val) { store(bytes    (val), BYTES     ); }
+    public static void int64ListStore(ArrayList<Long>         val) { store(int64List(val), INT64_LIST); }
+    public static void strListStore  (ArrayList<String>       val) { store(strList  (val), STR_LIST  ); }
+    public static void ssMapStore    (HashMap<String, String> val) { store(ssMap    (val), SS_MAP    ); }
+
     private static native void clear (CPtr dst, int type);
     private static native void append(CPtr dst, CPtr src, int type);
     private static native void assign(CPtr dst, CPtr src, int type);
+    private static native CPtr store (CPtr val, int type);
 }

@@ -156,6 +156,13 @@ CQ_C_LINK void cq_int64_list_assign(cq_int64_list *dst, cq_int64_list *src);
 CQ_C_LINK void cq_str_list_assign  (cq_str_list   *dst, cq_str_list   *src);
 CQ_C_LINK void cq_ss_map_assign    (cq_ss_map     *dst, cq_ss_map     *src);
 
+//storing the data on current thread,
+//until call of cq_store_xx again on same thread.
+CQ_C_LINK cq_bytes      *cq_bytes_store     (cq_bytes      *value);
+CQ_C_LINK cq_int64_list *cq_int64_list_store(cq_int64_list *value);
+CQ_C_LINK cq_str_list   *cq_str_list_store  (cq_str_list   *value);
+CQ_C_LINK cq_ss_map     *cq_ss_map_store    (cq_ss_map     *value);
+
 //object reference:
 
 typedef void cq_ref;

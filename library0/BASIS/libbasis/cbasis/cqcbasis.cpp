@@ -271,6 +271,27 @@ void cq_int64_list_assign(cq_int64_list *dst, cq_int64_list *src) { cq_x_assign(
 void cq_str_list_assign  (cq_str_list   *dst, cq_str_list   *src) { cq_x_assign(dst, src); }
 void cq_ss_map_assign    (cq_ss_map     *dst, cq_ss_map     *src) { cq_x_assign(dst, src); }
 
+cq_bytes      *cq_cpp_x(std::vector<uint8_t>               &a) { return cq_cpp_bytes     (a); }
+cq_int64_list *cq_cpp_x(std::vector<int64_t>               &a) { return cq_cpp_int64_list(a); }
+cq_str_list   *cq_cpp_x(std::vector<std::string>           &a) { return cq_cpp_str_list  (a); }
+cq_ss_map     *cq_cpp_x(std::map<std::string, std::string> &a) { return cq_cpp_ss_map    (a); }
+
+template<class OBJ, class REF> REF cq_x_store(REF value) {
+    static thread_local OBJ *storage = nullptr;
+    if (storage == nullptr) {
+        storage = new OBJ;
+    }
+    
+    REF ref = cq_cpp_x(*storage);
+    cq_x_assign(ref, value);
+    return ref;
+}
+
+cq_bytes      *cq_bytes_store     (cq_bytes      *a) { return cq_x_store<std::vector<uint8_t              >>(a); }
+cq_int64_list *cq_int64_list_store(cq_int64_list *a) { return cq_x_store<std::vector<int64_t              >>(a); }
+cq_str_list   *cq_str_list_store  (cq_str_list   *a) { return cq_x_store<std::vector<std::string          >>(a); }
+cq_ss_map     *cq_ss_map_store    (cq_ss_map     *a) { return cq_x_store<std::map<std::string, std::string>>(a); }
+
 //object reference:
 
 struct cq_ref_t {
