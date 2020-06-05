@@ -44,21 +44,21 @@ const char *cq_document_directory() {
     CQ_JNI_STATIC_METHOD(PORT, method, __func__);
 
     std::string ret = method.fn<std::string>();
-    return cq_store_str(ret.data());
+    return cq_str_store(ret.data());
 }
 
 const char *cq_caches_directory() {
     CQ_JNI_STATIC_METHOD(PORT, method, __func__);
 
     std::string ret = method.fn<std::string>();
-    return cq_store_str(ret.data());
+    return cq_str_store(ret.data());
 }
 
 const char *cq_temporary_directory() {
     CQ_JNI_STATIC_METHOD(PORT, method, __func__);
 
     std::string ret = method.fn<std::string>();
-    return cq_store_str(ret.data());
+    return cq_str_store(ret.data());
 }
 
 bool cq_directory_exists(const char *path) {
@@ -222,7 +222,7 @@ const char *cq_http_error(cq_http *http) {
     method.push(http);
 
     std::string ret = method.callString();
-    return cq_store_str(ret.c_str());
+    return cq_str_store(ret.c_str());
 }
 
 int32_t cq_http_recv_code(cq_http *http) {

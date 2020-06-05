@@ -124,7 +124,7 @@ const char *_sockerr() {
         msg.append(strerror(code));
     }
     
-    return cq_store_str(msg.c_str());
+    return cq_str_store(msg.c_str());
 }
 
 _CQCTOOL_END_VERSION_NS

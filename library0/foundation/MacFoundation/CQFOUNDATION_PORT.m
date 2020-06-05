@@ -15,12 +15,12 @@ void cq_log_error(const char *file, int32_t line, const char *message) {
 
 const char *cq_ios_bundle_path(void) {
     NSString *path = CQBundle.mainBundle.bundlePath;
-    return cq_store_str(path.UTF8String);
+    return cq_str_store(path.UTF8String);
 }
 
 const char *cq_ios_resource_path(const char *name, const char *type) {
     NSString *path = [CQBundle.mainBundle resourcePathForName:@(name) type:@(type)];
-    return cq_store_str(path.UTF8String);
+    return cq_str_store(path.UTF8String);
 }
 
 void cq_ios_resource(const char *name, const char *type, cq_bytes *out) {
@@ -39,17 +39,17 @@ bool cq_android_copy_asset(const char *from_path, const char *to_path) {
 
 const char *cq_document_directory(void) {
     NSString *directory = CQDocumentDirectory();
-    return cq_store_str(directory.UTF8String);
+    return cq_str_store(directory.UTF8String);
 }
 
 const char *cq_caches_directory(void) {
     NSString *directory = CQCachesDirectory();
-    return cq_store_str(directory.UTF8String);
+    return cq_str_store(directory.UTF8String);
 }
 
 const char *cq_temporary_directory(void) {
     NSString *directory = CQTemporaryDirectory();
-    return cq_store_str(directory.UTF8String);
+    return cq_str_store(directory.UTF8String);
 }
 
 bool cq_directory_exists(const char *path) {
@@ -260,7 +260,7 @@ void cq_http_recv_body_stop(cq_http *http, bool stop) {
 
 const char *cq_http_error(cq_http *http) {
     http_session_cast(object, http) {
-        return cq_store_str(object.error.description.UTF8String);
+        return cq_str_store(object.error.description.UTF8String);
     }
 }
 

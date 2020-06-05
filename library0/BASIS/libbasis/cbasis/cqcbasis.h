@@ -90,8 +90,8 @@ CQ_C_LINK bool cq_u16str_empty(const char16_t *str);
 CQ_C_LINK bool cq_u16str_non_empty(const char16_t *str);
 
 //storing values on current thread, until call of cq_store_xx again on same thread.
-CQ_C_LINK const char *cq_store_str(const char *str);
-CQ_C_LINK const char16_t *cq_store_u16str(const char16_t *str);
+CQ_C_LINK const char *cq_str_store(const char *str);
+CQ_C_LINK const char16_t *cq_u16str_store(const char16_t *str);
 
 //unicode coding conversion.
 CQ_C_LINK const char16_t *cq_u16s_from_u8s(const char *src);

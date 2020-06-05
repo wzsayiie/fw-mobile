@@ -15,7 +15,7 @@ bool cq_str_non_empty(const char *s) {return s != nullptr && *s != '\0';}
 bool cq_u16str_empty    (const char16_t *s) {return s == nullptr || *s == '\0';}
 bool cq_u16str_non_empty(const char16_t *s) {return s != nullptr && *s != '\0';}
 
-template<class T> const T *store_str(const T *string) {
+template<class T> const T *str_store(const T *string) {
     static thread_local std::basic_string<T> *object = nullptr;
     if (object == nullptr) {
         object = new std::basic_string<T>;
@@ -30,8 +30,8 @@ template<class T> const T *store_str(const T *string) {
     return object->c_str();
 }
 
-const char     *cq_store_str   (const char     *s) {return store_str<char    >(s);}
-const char16_t *cq_store_u16str(const char16_t *s) {return store_str<char16_t>(s);}
+const char     *cq_str_store   (const char     *s) {return str_store<char    >(s);}
+const char16_t *cq_u16str_store(const char16_t *s) {return str_store<char16_t>(s);}
 
 //unicode:
 
@@ -158,7 +158,7 @@ static u8encoded u8e_from_u32c(char32_t src) {
 
 const char16_t *cq_u16s_from_u8s(const char *src) {
     if (src == nullptr) {
-        return cq_store_u16str(nullptr);
+        return cq_u16str_store(nullptr);
     }
     
     std::u16string dst;
@@ -179,12 +179,12 @@ const char16_t *cq_u16s_from_u8s(const char *src) {
             break;
         }
     }
-    return cq_store_u16str(dst.c_str());
+    return cq_u16str_store(dst.c_str());
 }
 
 const char *cq_u8s_from_u16s(const char16_t *src) {
     if (src == nullptr) {
-        return cq_store_str(nullptr);
+        return cq_str_store(nullptr);
     }
     
     std::string dst;
@@ -205,7 +205,7 @@ const char *cq_u8s_from_u16s(const char16_t *src) {
             break;
         }
     }
-    return cq_store_str(dst.c_str());
+    return cq_str_store(dst.c_str());
 }
 
 //automatically allocate:
