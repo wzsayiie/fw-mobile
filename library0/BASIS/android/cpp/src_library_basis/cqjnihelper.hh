@@ -85,11 +85,13 @@ struct cqJNIStaticMethod {
     void push(const std::string &param);
     void push(const void *param);
 
-    void push() {
-    }
-    template<class A, class... B> void push(A a, B... b) {
+    //NOTE: this function must have two non-void parameters, to prevent it from matching itself.
+    template<class A, class B, class... C> void push(A a, B b, C... c) {
         push(a);
-        push(b...);
+        push(b);
+        push(c...);
+    }
+    void push() {
     }
 
     void        callVoid  () { return call("V", &JNIEnv::CallStaticVoidMethodA   ); }
