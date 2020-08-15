@@ -37,18 +37,6 @@ Developer can use them to build little, portable application.
 
 **Tools:**
 
-Tools and the projects
-(created by `Xcode`, `Visual Studio` and `Visutal Studio for Mac`)
-can build them,
-developer can use them to edit source files and project files.
-
-* EDITOR_CPP/
-* EDITOR_CPP_OSX/
-* EDITOR_CPP_WIN32/
-* EDITOR_CS/
-* EDITOR_CS_OSX/
-* EDITOR_CS_WIN32/
-
 These scripts traverse headers and create new homonymic headers
 which reference former to *GENERATED_HEADERS/*.
 It will avoid developer adding vast header search paths tediously.
@@ -56,7 +44,7 @@ It will avoid developer adding vast header search paths tediously.
 * generate_headers
 * generate_headers.bat
 
-**Unity Package Export Scripts**
+**Unity Package Export Scripts:**
 
 These scripts will export the generic part of *app_unity/Assets*
 to **unitypackage** to *BUILD/*.
