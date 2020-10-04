@@ -1,83 +1,48 @@
-## Introduction
+# Introduction
 
 This is a framework and demonstration for mobile development.
+Currently developing by **Xcode** and **Android Studio** are supported.
 
-Currently developing by
-*Xcode*, *Android Studio* and *Unity* are supported.
+# Directory Structure
 
-## Directories Structure
+## App Projects
 
-**App Projects:**
+These are **Android Studio** and **Xcode** projects.
 
-These are `Android Studio`, `Xcode` and `Unity` projects,
+- app_android/
+- app_ios/
 
-* app_android/
-* app_ios/
-* app_unity/
+## App Build Scripts
 
-**App Build Scripts:**
+For building **Android** and **iOS** app, and placing them to *BUILD/*.
 
-For building Android and iOS app, and placing them to *BUILD/*.
-Files without suffix name for macOS, and *.bat for Windows.
+- build_android
+- build_android.bat
+- build_ios
 
-* build_android
-* build_android.bat
-* build_ios
-* build_unity_android
-* build_unity_android.bat
-* build_unity_ios
-
-**Portable Custom App:**
-
-Lightweight application framework.
-Developer can use them to build little, portable application.
-
-* core_xapp/
-* core_xgame/
-
-**Tools:**
+## Tools
 
 These scripts traverse headers and create new homonymic headers
 which reference former to *GENERATED_HEADERS/*.
 It will avoid developer adding vast header search paths tediously.
 
-* generate_headers
-* generate_headers.bat
+- generate_headers
+- generate_headers.bat
 
-**Unity Package Export Scripts:**
+## Portable Libraries
 
-These scripts will export the generic part of *app_unity/Assets*
-to **unitypackage** to *BUILD/*.
+The corss-platform source and platform-related projects.
+the source can be compiled and execute on **Android** and **iOS**.
 
-* export_unity_pkg
-* export_unity_pkg.bat
+- library_android/
+- library_ios/
+- library/
 
-**Portable Library:**
+## Library Build Scripts
 
-The corss-platform source,
-that can be compiled and executed on Android and iOS.
+The scripts will compile portable libary, and place them to *BUILD/*.
 
-* library_android/
-* library_ios/
-* library0/
-* library1/
-
-**Library Build Scripts:**
-
-The scripts will compile portable libary,
-and copy them to *app_unity/Assets/Plugins*.
-
-* makelib_android
-* makelib_android.bat
-* makelib_ios.bat
-* makelib_ios_res
-* makelib_osx
-* makelib_win32.bat
-
-*NOTE*: macOS and Windows build scripts are provided,
-because developer need the library possibly on Unity editor.
-
-**External Libraries from Thirds:**
-
-* thirds_android/
-* thirds_ios/
+- makelib_android
+- makelib_android.bat
+- makelib_ios
+- makelib_ios_res
