@@ -842,16 +842,12 @@
 				DEVELOPMENT_TEAM = C7Z95JWD4Y;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/App/Classes/Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../GENERATED_HEADERS",
-					"$(SRCROOT)/../thirds_ios/includes",
-				);
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../GENERATED_HEADERS";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Properties/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../thirds_ios/libs";
 				PRODUCT_BUNDLE_IDENTIFIER = me.wzsayiie.app.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -868,16 +864,12 @@
 				DEVELOPMENT_TEAM = C7Z95JWD4Y;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/App/Classes/Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../GENERATED_HEADERS",
-					"$(SRCROOT)/../thirds_ios/includes",
-				);
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../GENERATED_HEADERS";
 				INFOPLIST_FILE = "$(SRCROOT)/App/Properties/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../thirds_ios/libs";
 				PRODUCT_BUNDLE_IDENTIFIER = me.wzsayiie.app.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
