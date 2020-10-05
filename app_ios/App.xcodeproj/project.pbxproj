@@ -38,7 +38,6 @@
 		B467ECE423100B090045E2DC /* NSMutableCollections+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B467ECE323100B090045E2DC /* NSMutableCollections+CQ.m */; };
 		B475C169230100A300ED7BD3 /* NSNotificationCenter+CQ.m in Sources */ = {isa = PBXBuildFile; fileRef = B475C165230100A200ED7BD3 /* NSNotificationCenter+CQ.m */; };
 		B475C16A230100A300ED7BD3 /* CQGCD.m in Sources */ = {isa = PBXBuildFile; fileRef = B475C166230100A200ED7BD3 /* CQGCD.m */; };
-		B4B9D32022278D4E00B35E72 /* liblua.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B9D31F22278D4D00B35E72 /* liblua.a */; };
 		B4C7448E22BCAE5100483834 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4C7448C22BCAE5100483834 /* InfoPlist.strings */; };
 		B4CFD97321C7475000FFF4CF /* IAPDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CFD96021C7475000FFF4CF /* IAPDemoController.m */; };
 		B4CFD97A21C75AB300FFF4CF /* IAPDemoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4CFD97921C75AB300FFF4CF /* IAPDemoController.xib */; };
@@ -53,66 +52,7 @@
 		CE749FB22351C9E200E4FCEE /* CommandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE749FB02351C9E100E4FCEE /* CommandViewController.m */; };
 		CE749FB72351CB9B00E4FCEE /* CommandViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE749FB62351CB9B00E4FCEE /* CommandViewController.xib */; };
 		CE749FB92351CD3800E4FCEE /* BlankViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE749FB82351CD3800E4FCEE /* BlankViewController.xib */; };
-		CE843178239578A2005A6CF8 /* cqcontrol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE843175239578A1005A6CF8 /* cqcontrol.cpp */; };
-		CE843179239578A2005A6CF8 /* cqbutton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE843176239578A2005A6CF8 /* cqbutton.cpp */; };
-		CE988DB8238ED2F70088A66E /* cqlabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE988DB3238ED2F70088A66E /* cqlabel.cpp */; };
-		CE988DB9238ED2F70088A66E /* cqfont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE988DB6238ED2F70088A66E /* cqfont.cpp */; };
-		CE988DBA238ED2F70088A66E /* cqattributedstring.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE988DB7238ED2F70088A66E /* cqattributedstring.cpp */; };
-		CEC44053237D593500361447 /* cqglkitarche.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44030237D593500361447 /* cqglkitarche.cpp */; };
-		CEC44054237D593500361447 /* cqwnd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44034237D593500361447 /* cqwnd.cpp */; };
-		CEC44055237D593500361447 /* cqttf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44037237D593500361447 /* cqttf.cpp */; };
-		CEC44056237D593500361447 /* cqimg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44039237D593500361447 /* cqimg.cpp */; };
-		CEC44057237D593500361447 /* cqshader2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC4403A237D593500361447 /* cqshader2d.cpp */; };
-		CEC44058237D593500361447 /* cqopengl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC4403C237D593500361447 /* cqopengl.cpp */; };
-		CEC44059237D593500361447 /* cqdraw2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC4403E237D593500361447 /* cqdraw2d.cpp */; };
-		CEC4405A237D593500361447 /* CQGLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC44046237D593500361447 /* CQGLViewController.m */; };
-		CEC4405B237D593500361447 /* CQGLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC44047237D593500361447 /* CQGLAppDelegate.m */; };
-		CEC44098237D599500361447 /* GameAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC44061237D599500361447 /* GameAppDelegate.m */; };
-		CEC44099237D599500361447 /* csgamekitarche.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44066237D599500361447 /* csgamekitarche.cpp */; };
-		CEC4409A237D599500361447 /* csgameobject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44068237D599500361447 /* csgameobject.cpp */; };
-		CEC4409B237D599500361447 /* csnode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44069237D599500361447 /* csnode.cpp */; };
-		CEC4409C237D599500361447 /* csluavm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC4406D237D599500361447 /* csluavm.cpp */; };
-		CEC4409D237D599500361447 /* cstexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC4406E237D599500361447 /* cstexture.cpp */; };
-		CEC4409F237D599500361447 /* csrenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44070237D599500361447 /* csrenderer.cpp */; };
-		CEC440A0237D599500361447 /* csresources.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44071237D599500361447 /* csresources.cpp */; };
-		CEC440A1237D599500361447 /* CSGAMEKIT_PORT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44075237D599500361447 /* CSGAMEKIT_PORT.cpp */; };
-		CEC440A2237D599500361447 /* csspriterenderder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44076237D599500361447 /* csspriterenderder.cpp */; };
-		CEC440A3237D599500361447 /* cscomponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44077237D599500361447 /* cscomponent.cpp */; };
-		CEC440A5237D599500361447 /* cscamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC4407A237D599500361447 /* cscamera.cpp */; };
-		CEC440A6237D599500361447 /* csscene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC4407E237D599500361447 /* csscene.cpp */; };
-		CEC440A7237D599500361447 /* csscenemanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44080237D599500361447 /* csscenemanager.cpp */; };
-		CEC440A9237D599500361447 /* csbehaviour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44085237D599500361447 /* csbehaviour.cpp */; };
-		CEC440AA237D599500361447 /* cstransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44087237D599500361447 /* cstransform.cpp */; };
-		CEC440AD237D599500361447 /* cssprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC4408F237D599500361447 /* cssprite.cpp */; };
-		CEC440AE237D599500361447 /* cstexture2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44090237D599500361447 /* cstexture2d.cpp */; };
-		CEC440AF237D599500361447 /* csscript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44093237D599500361447 /* csscript.cpp */; };
-		CEC440B0237D599500361447 /* cslualibgamekit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC44096237D599500361447 /* cslualibgamekit.cpp */; };
-		CEC440D6237D59E400361447 /* AppAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC440B3237D59E400361447 /* AppAppDelegate.m */; };
-		CEC440D7237D59E400361447 /* cqappkitarche.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC440B7237D59E400361447 /* cqappkitarche.cpp */; };
-		CEC440D8237D59E400361447 /* cqgeometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC440BE237D59E400361447 /* cqgeometry.cpp */; };
-		CEC440D9237D59E400361447 /* cqviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC440BF237D59E400361447 /* cqviewcontroller.cpp */; };
-		CEC440DA237D59E400361447 /* cqimage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC440C2237D59E400361447 /* cqimage.cpp */; };
-		CEC440DB237D59E400361447 /* cqresponder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC440C3237D59E400361447 /* cqresponder.cpp */; };
-		CEC440DC237D59E400361447 /* cqview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC440C5237D59E400361447 /* cqview.cpp */; };
-		CEC440DD237D59E400361447 /* cqlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC440C7237D59E400361447 /* cqlayer.cpp */; };
-		CEC440DE237D59E400361447 /* cqwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC440C8237D59E400361447 /* cqwindow.cpp */; };
-		CEC440DF237D59E400361447 /* cqcolor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC440CA237D59E400361447 /* cqcolor.cpp */; };
-		CEC440E0237D59E400361447 /* cqimageview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC440CF237D59E400361447 /* cqimageview.cpp */; };
-		CEC440E1237D59E400361447 /* cqevent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC440D2237D59E400361447 /* cqevent.cpp */; };
-		CEC440E2237D59E400361447 /* cqapplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC440D3237D59E400361447 /* cqapplication.cpp */; };
-		CEC440E3237D59E400361447 /* cqtouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC440D4237D59E400361447 /* cqtouch.cpp */; };
-		CEC440E4237D59E400361447 /* cqtouchesevent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC440D5237D59E400361447 /* cqtouchesevent.cpp */; };
-		CEC440EF237D5B1400361447 /* respackage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC440EB237D5B1400361447 /* respackage.cpp */; };
-		CEC440F0237D5B1400361447 /* entry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC440EC237D5B1400361447 /* entry.cpp */; };
-		CEC440F1237D5B1400361447 /* gamelowroot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC440ED237D5B1400361447 /* gamelowroot.cpp */; };
-		CEC440F3237D5B3800361447 /* xgameres.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CEC440F2237D5B3800361447 /* xgameres.bundle */; };
-		CEC440F9237D5B7200361447 /* appdelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC440F6237D5B7200361447 /* appdelegate.cpp */; };
-		CEC440FA237D5B7200361447 /* rootviewcontroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEC440F8237D5B7200361447 /* rootviewcontroller.cpp */; };
-		CEC440FF237D5B9200361447 /* doc.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC440FC237D5B9200361447 /* doc.png */; };
-		CEC44100237D5B9200361447 /* xls.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC440FD237D5B9200361447 /* xls.png */; };
-		CEC44101237D5B9200361447 /* ppt.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC440FE237D5B9200361447 /* ppt.png */; };
 		CEEB261C2300655C001FD8D6 /* CQNetStatusListener.m in Sources */ = {isa = PBXBuildFile; fileRef = CEEB261B2300655C001FD8D6 /* CQNetStatusListener.m */; };
-		CEF20D1E238539B100004461 /* cqcontext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF20D1C238539B100004461 /* cqcontext.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -200,7 +140,6 @@
 		B475C166230100A200ED7BD3 /* CQGCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQGCD.m; sourceTree = "<group>"; };
 		B475C167230100A200ED7BD3 /* CQGCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQGCD.h; sourceTree = "<group>"; };
 		B475C168230100A300ED7BD3 /* NSNotificationCenter+CQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+CQ.h"; sourceTree = "<group>"; };
-		B4B9D31F22278D4D00B35E72 /* liblua.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblua.a; path = ../thirds_ios/libs/liblua.a; sourceTree = "<group>"; };
 		B4C7448D22BCAE5100483834 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B4C7448F22BCAE5600483834 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		B4CFD96021C7475000FFF4CF /* IAPDemoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPDemoController.m; sourceTree = "<group>"; };
@@ -225,132 +164,8 @@
 		CE749FB02351C9E100E4FCEE /* CommandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandViewController.m; sourceTree = "<group>"; };
 		CE749FB62351CB9B00E4FCEE /* CommandViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommandViewController.xib; sourceTree = "<group>"; };
 		CE749FB82351CD3800E4FCEE /* BlankViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlankViewController.xib; sourceTree = "<group>"; };
-		CE843174239578A1005A6CF8 /* cqbutton.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqbutton.hh; sourceTree = "<group>"; };
-		CE843175239578A1005A6CF8 /* cqcontrol.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqcontrol.cpp; sourceTree = "<group>"; };
-		CE843176239578A2005A6CF8 /* cqbutton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqbutton.cpp; sourceTree = "<group>"; };
-		CE843177239578A2005A6CF8 /* cqcontrol.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqcontrol.hh; sourceTree = "<group>"; };
-		CE988DB2238ED2F70088A66E /* cqfont.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqfont.hh; sourceTree = "<group>"; };
-		CE988DB3238ED2F70088A66E /* cqlabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqlabel.cpp; sourceTree = "<group>"; };
-		CE988DB4238ED2F70088A66E /* cqlabel.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqlabel.hh; sourceTree = "<group>"; };
-		CE988DB5238ED2F70088A66E /* cqattributedstring.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqattributedstring.hh; sourceTree = "<group>"; };
-		CE988DB6238ED2F70088A66E /* cqfont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqfont.cpp; sourceTree = "<group>"; };
-		CE988DB7238ED2F70088A66E /* cqattributedstring.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqattributedstring.cpp; sourceTree = "<group>"; };
-		CEC4402D237D593500361447 /* _CQGLKIT_VERSION.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = _CQGLKIT_VERSION.hh; path = ../library1/glkit/_CQGLKIT_VERSION.hh; sourceTree = "<group>"; };
-		CEC44030237D593500361447 /* cqglkitarche.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqglkitarche.cpp; sourceTree = "<group>"; };
-		CEC44031237D593500361447 /* cqglkitarche.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqglkitarche.h; sourceTree = "<group>"; };
-		CEC44033237D593500361447 /* cqttf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqttf.h; sourceTree = "<group>"; };
-		CEC44034237D593500361447 /* cqwnd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqwnd.cpp; sourceTree = "<group>"; };
-		CEC44035237D593500361447 /* shader2d_tex_vsh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shader2d_tex_vsh.h; sourceTree = "<group>"; };
-		CEC44036237D593500361447 /* shader2d_tex_fsh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shader2d_tex_fsh.h; sourceTree = "<group>"; };
-		CEC44037237D593500361447 /* cqttf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqttf.cpp; sourceTree = "<group>"; };
-		CEC44038237D593500361447 /* cqimg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqimg.h; sourceTree = "<group>"; };
-		CEC44039237D593500361447 /* cqimg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqimg.cpp; sourceTree = "<group>"; };
-		CEC4403A237D593500361447 /* cqshader2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqshader2d.cpp; sourceTree = "<group>"; };
-		CEC4403B237D593500361447 /* cqopengl_p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqopengl_p.h; sourceTree = "<group>"; };
-		CEC4403C237D593500361447 /* cqopengl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqopengl.cpp; sourceTree = "<group>"; };
-		CEC4403D237D593500361447 /* cqshader2d_p.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqshader2d_p.h; sourceTree = "<group>"; };
-		CEC4403E237D593500361447 /* cqdraw2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqdraw2d.cpp; sourceTree = "<group>"; };
-		CEC4403F237D593500361447 /* shader2d_graph_vsh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shader2d_graph_vsh.h; sourceTree = "<group>"; };
-		CEC44040237D593500361447 /* cqwnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqwnd.h; sourceTree = "<group>"; };
-		CEC44041237D593500361447 /* cqdraw2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqdraw2d.h; sourceTree = "<group>"; };
-		CEC44042237D593500361447 /* shader2d_graph_fsh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shader2d_graph_fsh.h; sourceTree = "<group>"; };
-		CEC44043237D593500361447 /* cqglkit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqglkit.h; sourceTree = "<group>"; };
-		CEC44045237D593500361447 /* CQGLAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQGLAppDelegate.h; sourceTree = "<group>"; };
-		CEC44046237D593500361447 /* CQGLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQGLViewController.m; sourceTree = "<group>"; };
-		CEC44047237D593500361447 /* CQGLAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQGLAppDelegate.m; sourceTree = "<group>"; };
-		CEC44048237D593500361447 /* CQGLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQGLViewController.h; sourceTree = "<group>"; };
-		CEC4405F237D599500361447 /* _CSGAMEKIT_VERSION.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _CSGAMEKIT_VERSION.h; path = ../library1/gamekit/_CSGAMEKIT_VERSION.h; sourceTree = "<group>"; };
-		CEC44061237D599500361447 /* GameAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameAppDelegate.m; sourceTree = "<group>"; };
-		CEC44062237D599500361447 /* GameAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAppDelegate.h; sourceTree = "<group>"; };
-		CEC44065237D599500361447 /* csgamekitarche.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = csgamekitarche.h; sourceTree = "<group>"; };
-		CEC44066237D599500361447 /* csgamekitarche.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csgamekitarche.cpp; sourceTree = "<group>"; };
-		CEC44068237D599500361447 /* csgameobject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csgameobject.cpp; sourceTree = "<group>"; };
-		CEC44069237D599500361447 /* csnode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csnode.cpp; sourceTree = "<group>"; };
-		CEC4406A237D599500361447 /* csluavm.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csluavm.hh; sourceTree = "<group>"; };
-		CEC4406B237D599500361447 /* csgamekitbase.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csgamekitbase.hh; sourceTree = "<group>"; };
-		CEC4406C237D599500361447 /* csgameobject.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csgameobject.hh; sourceTree = "<group>"; };
-		CEC4406D237D599500361447 /* csluavm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csluavm.cpp; sourceTree = "<group>"; };
-		CEC4406E237D599500361447 /* cstexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cstexture.cpp; sourceTree = "<group>"; };
-		CEC44070237D599500361447 /* csrenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csrenderer.cpp; sourceTree = "<group>"; };
-		CEC44071237D599500361447 /* csresources.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csresources.cpp; sourceTree = "<group>"; };
-		CEC44073237D599500361447 /* csgamekit.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csgamekit.hh; sourceTree = "<group>"; };
-		CEC44075237D599500361447 /* CSGAMEKIT_PORT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSGAMEKIT_PORT.cpp; sourceTree = "<group>"; };
-		CEC44076237D599500361447 /* csspriterenderder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csspriterenderder.cpp; sourceTree = "<group>"; };
-		CEC44077237D599500361447 /* cscomponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cscomponent.cpp; sourceTree = "<group>"; };
-		CEC44079237D599500361447 /* csnode.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csnode.hh; sourceTree = "<group>"; };
-		CEC4407A237D599500361447 /* cscamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cscamera.cpp; sourceTree = "<group>"; };
-		CEC4407B237D599500361447 /* cssprite.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cssprite.hh; sourceTree = "<group>"; };
-		CEC4407D237D599500361447 /* cscamera.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cscamera.hh; sourceTree = "<group>"; };
-		CEC4407E237D599500361447 /* csscene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csscene.cpp; sourceTree = "<group>"; };
-		CEC4407F237D599500361447 /* csscene.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csscene.hh; sourceTree = "<group>"; };
-		CEC44080237D599500361447 /* csscenemanager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csscenemanager.cpp; sourceTree = "<group>"; };
-		CEC44081237D599500361447 /* csrenderer.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csrenderer.hh; sourceTree = "<group>"; };
-		CEC44083237D599500361447 /* cscomponent.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cscomponent.hh; sourceTree = "<group>"; };
-		CEC44084237D599500361447 /* cstexture.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cstexture.hh; sourceTree = "<group>"; };
-		CEC44085237D599500361447 /* csbehaviour.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csbehaviour.cpp; sourceTree = "<group>"; };
-		CEC44086237D599500361447 /* cstexture2d.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cstexture2d.hh; sourceTree = "<group>"; };
-		CEC44087237D599500361447 /* cstransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cstransform.cpp; sourceTree = "<group>"; };
-		CEC44089237D599500361447 /* csresources.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csresources.hh; sourceTree = "<group>"; };
-		CEC4408A237D599500361447 /* csscenemanager.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csscenemanager.hh; sourceTree = "<group>"; };
-		CEC4408B237D599500361447 /* csscript.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csscript.hh; sourceTree = "<group>"; };
-		CEC4408D237D599500361447 /* cstransform.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cstransform.hh; sourceTree = "<group>"; };
-		CEC4408F237D599500361447 /* cssprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cssprite.cpp; sourceTree = "<group>"; };
-		CEC44090237D599500361447 /* cstexture2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cstexture2d.cpp; sourceTree = "<group>"; };
-		CEC44091237D599500361447 /* csspriterenderder.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csspriterenderder.hh; sourceTree = "<group>"; };
-		CEC44092237D599500361447 /* csbehaviour.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = csbehaviour.hh; sourceTree = "<group>"; };
-		CEC44093237D599500361447 /* csscript.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csscript.cpp; sourceTree = "<group>"; };
-		CEC44096237D599500361447 /* cslualibgamekit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cslualibgamekit.cpp; sourceTree = "<group>"; };
-		CEC44097237D599500361447 /* cslualibgamekit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cslualibgamekit.h; sourceTree = "<group>"; };
-		CEC440B2237D59E400361447 /* AppAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppAppDelegate.h; sourceTree = "<group>"; };
-		CEC440B3237D59E400361447 /* AppAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppAppDelegate.m; sourceTree = "<group>"; };
-		CEC440B4237D59E400361447 /* _CQAPPKIT_VERSION.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _CQAPPKIT_VERSION.h; path = ../library1/appkit/_CQAPPKIT_VERSION.h; sourceTree = "<group>"; };
-		CEC440B7237D59E400361447 /* cqappkitarche.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqappkitarche.cpp; sourceTree = "<group>"; };
-		CEC440B8237D59E400361447 /* cqappkitarche.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqappkitarche.h; sourceTree = "<group>"; };
-		CEC440BA237D59E400361447 /* cqtouchesevent_p.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqtouchesevent_p.hh; sourceTree = "<group>"; };
-		CEC440BB237D59E400361447 /* cqgeometry.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqgeometry.hh; sourceTree = "<group>"; };
-		CEC440BC237D59E400361447 /* cqappkit.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqappkit.hh; sourceTree = "<group>"; };
-		CEC440BD237D59E400361447 /* cqview.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqview.hh; sourceTree = "<group>"; };
-		CEC440BE237D59E400361447 /* cqgeometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqgeometry.cpp; sourceTree = "<group>"; };
-		CEC440BF237D59E400361447 /* cqviewcontroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqviewcontroller.cpp; sourceTree = "<group>"; };
-		CEC440C0237D59E400361447 /* cqlayer.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqlayer.hh; sourceTree = "<group>"; };
-		CEC440C1237D59E400361447 /* cqtouch.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqtouch.hh; sourceTree = "<group>"; };
-		CEC440C2237D59E400361447 /* cqimage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqimage.cpp; sourceTree = "<group>"; };
-		CEC440C3237D59E400361447 /* cqresponder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqresponder.cpp; sourceTree = "<group>"; };
-		CEC440C4237D59E400361447 /* cqviewcontroller.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqviewcontroller.hh; sourceTree = "<group>"; };
-		CEC440C5237D59E400361447 /* cqview.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqview.cpp; sourceTree = "<group>"; };
-		CEC440C6237D59E400361447 /* cqresponder.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqresponder.hh; sourceTree = "<group>"; };
-		CEC440C7237D59E400361447 /* cqlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqlayer.cpp; sourceTree = "<group>"; };
-		CEC440C8237D59E400361447 /* cqwindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqwindow.cpp; sourceTree = "<group>"; };
-		CEC440C9237D59E400361447 /* cqimage.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqimage.hh; sourceTree = "<group>"; };
-		CEC440CA237D59E400361447 /* cqcolor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqcolor.cpp; sourceTree = "<group>"; };
-		CEC440CB237D59E400361447 /* cqwindow.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqwindow.hh; sourceTree = "<group>"; };
-		CEC440CC237D59E400361447 /* cqevent.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqevent.hh; sourceTree = "<group>"; };
-		CEC440CD237D59E400361447 /* cqimageview.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqimageview.hh; sourceTree = "<group>"; };
-		CEC440CE237D59E400361447 /* cqcolor.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqcolor.hh; sourceTree = "<group>"; };
-		CEC440CF237D59E400361447 /* cqimageview.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqimageview.cpp; sourceTree = "<group>"; };
-		CEC440D0237D59E400361447 /* cqapplication.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqapplication.hh; sourceTree = "<group>"; };
-		CEC440D1237D59E400361447 /* cqappkitbase.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqappkitbase.hh; sourceTree = "<group>"; };
-		CEC440D2237D59E400361447 /* cqevent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqevent.cpp; sourceTree = "<group>"; };
-		CEC440D3237D59E400361447 /* cqapplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqapplication.cpp; sourceTree = "<group>"; };
-		CEC440D4237D59E400361447 /* cqtouch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqtouch.cpp; sourceTree = "<group>"; };
-		CEC440D5237D59E400361447 /* cqtouchesevent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqtouchesevent.cpp; sourceTree = "<group>"; };
-		CEC440EA237D5B1400361447 /* gamelowroot.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = gamelowroot.hh; sourceTree = "<group>"; };
-		CEC440EB237D5B1400361447 /* respackage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = respackage.cpp; sourceTree = "<group>"; };
-		CEC440EC237D5B1400361447 /* entry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = entry.cpp; sourceTree = "<group>"; };
-		CEC440ED237D5B1400361447 /* gamelowroot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gamelowroot.cpp; sourceTree = "<group>"; };
-		CEC440EE237D5B1400361447 /* respackage.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = respackage.hh; sourceTree = "<group>"; };
-		CEC440F2237D5B3800361447 /* xgameres.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = xgameres.bundle; path = ../core_xgame/xgameres/xgameres.bundle; sourceTree = "<group>"; };
-		CEC440F5237D5B7200361447 /* rootviewcontroller.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rootviewcontroller.hh; sourceTree = "<group>"; };
-		CEC440F6237D5B7200361447 /* appdelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = appdelegate.cpp; sourceTree = "<group>"; };
-		CEC440F7237D5B7200361447 /* appdelegate.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = appdelegate.hh; sourceTree = "<group>"; };
-		CEC440F8237D5B7200361447 /* rootviewcontroller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rootviewcontroller.cpp; sourceTree = "<group>"; };
-		CEC440FC237D5B9200361447 /* doc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doc.png; sourceTree = "<group>"; };
-		CEC440FD237D5B9200361447 /* xls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xls.png; sourceTree = "<group>"; };
-		CEC440FE237D5B9200361447 /* ppt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ppt.png; sourceTree = "<group>"; };
 		CEEB261A2300655C001FD8D6 /* CQNetStatusListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQNetStatusListener.h; sourceTree = "<group>"; };
 		CEEB261B2300655C001FD8D6 /* CQNetStatusListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQNetStatusListener.m; sourceTree = "<group>"; };
-		CEF20D1C238539B100004461 /* cqcontext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqcontext.cpp; sourceTree = "<group>"; };
-		CEF20D1D238539B100004461 /* cqcontext.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqcontext.hh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -359,7 +174,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4FCC39821F0912700D152DF /* libc++.tbd in Frameworks */,
-				B4B9D32022278D4E00B35E72 /* liblua.a in Frameworks */,
 				B444D8E321DF6DDF00E5FF54 /* libLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -496,9 +310,6 @@
 			isa = PBXGroup;
 			children = (
 				B45C1B5D21A02562007CB374 /* App */,
-				CEC44027237D589D00361447 /* XApp */,
-				CEC44028237D58A900361447 /* XGame */,
-				CEC44029237D58B200361447 /* Library */,
 				B4FCC39621F0912700D152DF /* Frameworks */,
 				B45C1B5C21A02562007CB374 /* Products */,
 				B4EC3C6621DF6D8800E287A4 /* Library.xcodeproj */,
@@ -658,7 +469,6 @@
 			isa = PBXGroup;
 			children = (
 				B4FCC39721F0912700D152DF /* libc++.tbd */,
-				B4B9D31F22278D4D00B35E72 /* liblua.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -715,344 +525,6 @@
 				CE749FB62351CB9B00E4FCEE /* CommandViewController.xib */,
 			);
 			path = CommandViewController;
-			sourceTree = "<group>";
-		};
-		CEC44027237D589D00361447 /* XApp */ = {
-			isa = PBXGroup;
-			children = (
-				CEC440E5237D5AAC00361447 /* XApp */,
-				CEC440E6237D5AB400361447 /* XAppRes */,
-			);
-			name = XApp;
-			sourceTree = "<group>";
-		};
-		CEC44028237D58A900361447 /* XGame */ = {
-			isa = PBXGroup;
-			children = (
-				CEC440E8237D5AD200361447 /* XGame */,
-				CEC440E7237D5AC700361447 /* XGameRes */,
-			);
-			name = XGame;
-			sourceTree = "<group>";
-		};
-		CEC44029237D58B200361447 /* Library */ = {
-			isa = PBXGroup;
-			children = (
-				CEC4402C237D58EA00361447 /* AppKit */,
-				CEC4402B237D58E200361447 /* GameKit */,
-				CEC4402A237D58D300361447 /* GLKit */,
-			);
-			name = Library;
-			sourceTree = "<group>";
-		};
-		CEC4402A237D58D300361447 /* GLKit */ = {
-			isa = PBXGroup;
-			children = (
-				CEC4402D237D593500361447 /* _CQGLKIT_VERSION.hh */,
-				CEC44044237D593500361447 /* IOSGLKit */,
-				CEC4402E237D593500361447 /* libglkit */,
-			);
-			name = GLKit;
-			sourceTree = "<group>";
-		};
-		CEC4402B237D58E200361447 /* GameKit */ = {
-			isa = PBXGroup;
-			children = (
-				CEC4405F237D599500361447 /* _CSGAMEKIT_VERSION.h */,
-				CEC44060237D599500361447 /* IOSGameKit */,
-				CEC44063237D599500361447 /* libgamekit */,
-			);
-			name = GameKit;
-			sourceTree = "<group>";
-		};
-		CEC4402C237D58EA00361447 /* AppKit */ = {
-			isa = PBXGroup;
-			children = (
-				CEC440B4237D59E400361447 /* _CQAPPKIT_VERSION.h */,
-				CEC440B1237D59E400361447 /* IOSAppKit */,
-				CEC440B5237D59E400361447 /* libappkit */,
-			);
-			name = AppKit;
-			sourceTree = "<group>";
-		};
-		CEC4402E237D593500361447 /* libglkit */ = {
-			isa = PBXGroup;
-			children = (
-				CEC4402F237D593500361447 /* archetype */,
-				CEC44032237D593500361447 /* cglkit */,
-			);
-			name = libglkit;
-			path = ../library1/glkit/libglkit;
-			sourceTree = "<group>";
-		};
-		CEC4402F237D593500361447 /* archetype */ = {
-			isa = PBXGroup;
-			children = (
-				CEC44030237D593500361447 /* cqglkitarche.cpp */,
-				CEC44031237D593500361447 /* cqglkitarche.h */,
-			);
-			path = archetype;
-			sourceTree = "<group>";
-		};
-		CEC44032237D593500361447 /* cglkit */ = {
-			isa = PBXGroup;
-			children = (
-				CEC4403E237D593500361447 /* cqdraw2d.cpp */,
-				CEC44041237D593500361447 /* cqdraw2d.h */,
-				CEC44043237D593500361447 /* cqglkit.h */,
-				CEC44039237D593500361447 /* cqimg.cpp */,
-				CEC44038237D593500361447 /* cqimg.h */,
-				CEC4403B237D593500361447 /* cqopengl_p.h */,
-				CEC4403C237D593500361447 /* cqopengl.cpp */,
-				CEC4403D237D593500361447 /* cqshader2d_p.h */,
-				CEC4403A237D593500361447 /* cqshader2d.cpp */,
-				CEC44037237D593500361447 /* cqttf.cpp */,
-				CEC44033237D593500361447 /* cqttf.h */,
-				CEC44034237D593500361447 /* cqwnd.cpp */,
-				CEC44040237D593500361447 /* cqwnd.h */,
-				CEC44042237D593500361447 /* shader2d_graph_fsh.h */,
-				CEC4403F237D593500361447 /* shader2d_graph_vsh.h */,
-				CEC44036237D593500361447 /* shader2d_tex_fsh.h */,
-				CEC44035237D593500361447 /* shader2d_tex_vsh.h */,
-			);
-			path = cglkit;
-			sourceTree = "<group>";
-		};
-		CEC44044237D593500361447 /* IOSGLKit */ = {
-			isa = PBXGroup;
-			children = (
-				CEC44045237D593500361447 /* CQGLAppDelegate.h */,
-				CEC44047237D593500361447 /* CQGLAppDelegate.m */,
-				CEC44048237D593500361447 /* CQGLViewController.h */,
-				CEC44046237D593500361447 /* CQGLViewController.m */,
-			);
-			name = IOSGLKit;
-			path = ../library1/glkit/IOSGLKit;
-			sourceTree = "<group>";
-		};
-		CEC44060237D599500361447 /* IOSGameKit */ = {
-			isa = PBXGroup;
-			children = (
-				CEC44062237D599500361447 /* GameAppDelegate.h */,
-				CEC44061237D599500361447 /* GameAppDelegate.m */,
-			);
-			name = IOSGameKit;
-			path = ../library1/gamekit/IOSGameKit;
-			sourceTree = "<group>";
-		};
-		CEC44063237D599500361447 /* libgamekit */ = {
-			isa = PBXGroup;
-			children = (
-				CEC44064237D599500361447 /* archetype */,
-				CEC44067237D599500361447 /* cppgamekit */,
-				CEC44095237D599500361447 /* luagamekit */,
-			);
-			name = libgamekit;
-			path = ../library1/gamekit/libgamekit;
-			sourceTree = "<group>";
-		};
-		CEC44064237D599500361447 /* archetype */ = {
-			isa = PBXGroup;
-			children = (
-				CEC44066237D599500361447 /* csgamekitarche.cpp */,
-				CEC44065237D599500361447 /* csgamekitarche.h */,
-			);
-			path = archetype;
-			sourceTree = "<group>";
-		};
-		CEC44067237D599500361447 /* cppgamekit */ = {
-			isa = PBXGroup;
-			children = (
-				CEC44085237D599500361447 /* csbehaviour.cpp */,
-				CEC44092237D599500361447 /* csbehaviour.hh */,
-				CEC4407A237D599500361447 /* cscamera.cpp */,
-				CEC4407D237D599500361447 /* cscamera.hh */,
-				CEC44077237D599500361447 /* cscomponent.cpp */,
-				CEC44083237D599500361447 /* cscomponent.hh */,
-				CEC44075237D599500361447 /* CSGAMEKIT_PORT.cpp */,
-				CEC44073237D599500361447 /* csgamekit.hh */,
-				CEC4406B237D599500361447 /* csgamekitbase.hh */,
-				CEC44068237D599500361447 /* csgameobject.cpp */,
-				CEC4406C237D599500361447 /* csgameobject.hh */,
-				CEC4406D237D599500361447 /* csluavm.cpp */,
-				CEC4406A237D599500361447 /* csluavm.hh */,
-				CEC44069237D599500361447 /* csnode.cpp */,
-				CEC44079237D599500361447 /* csnode.hh */,
-				CEC44070237D599500361447 /* csrenderer.cpp */,
-				CEC44081237D599500361447 /* csrenderer.hh */,
-				CEC44071237D599500361447 /* csresources.cpp */,
-				CEC44089237D599500361447 /* csresources.hh */,
-				CEC4407E237D599500361447 /* csscene.cpp */,
-				CEC4407F237D599500361447 /* csscene.hh */,
-				CEC44080237D599500361447 /* csscenemanager.cpp */,
-				CEC4408A237D599500361447 /* csscenemanager.hh */,
-				CEC44093237D599500361447 /* csscript.cpp */,
-				CEC4408B237D599500361447 /* csscript.hh */,
-				CEC4408F237D599500361447 /* cssprite.cpp */,
-				CEC4407B237D599500361447 /* cssprite.hh */,
-				CEC44076237D599500361447 /* csspriterenderder.cpp */,
-				CEC44091237D599500361447 /* csspriterenderder.hh */,
-				CEC4406E237D599500361447 /* cstexture.cpp */,
-				CEC44084237D599500361447 /* cstexture.hh */,
-				CEC44090237D599500361447 /* cstexture2d.cpp */,
-				CEC44086237D599500361447 /* cstexture2d.hh */,
-				CEC44087237D599500361447 /* cstransform.cpp */,
-				CEC4408D237D599500361447 /* cstransform.hh */,
-			);
-			path = cppgamekit;
-			sourceTree = "<group>";
-		};
-		CEC44095237D599500361447 /* luagamekit */ = {
-			isa = PBXGroup;
-			children = (
-				CEC44096237D599500361447 /* cslualibgamekit.cpp */,
-				CEC44097237D599500361447 /* cslualibgamekit.h */,
-			);
-			path = luagamekit;
-			sourceTree = "<group>";
-		};
-		CEC440B1237D59E400361447 /* IOSAppKit */ = {
-			isa = PBXGroup;
-			children = (
-				CEC440B2237D59E400361447 /* AppAppDelegate.h */,
-				CEC440B3237D59E400361447 /* AppAppDelegate.m */,
-			);
-			name = IOSAppKit;
-			path = ../library1/appkit/IOSAppKit;
-			sourceTree = "<group>";
-		};
-		CEC440B5237D59E400361447 /* libappkit */ = {
-			isa = PBXGroup;
-			children = (
-				CEC440B6237D59E400361447 /* archetype */,
-				CEC440B9237D59E400361447 /* cppappkit */,
-			);
-			name = libappkit;
-			path = ../library1/appkit/libappkit;
-			sourceTree = "<group>";
-		};
-		CEC440B6237D59E400361447 /* archetype */ = {
-			isa = PBXGroup;
-			children = (
-				CEC440B7237D59E400361447 /* cqappkitarche.cpp */,
-				CEC440B8237D59E400361447 /* cqappkitarche.h */,
-			);
-			path = archetype;
-			sourceTree = "<group>";
-		};
-		CEC440B9237D59E400361447 /* cppappkit */ = {
-			isa = PBXGroup;
-			children = (
-				CEC440BC237D59E400361447 /* cqappkit.hh */,
-				CEC440D1237D59E400361447 /* cqappkitbase.hh */,
-				CEC440D3237D59E400361447 /* cqapplication.cpp */,
-				CEC440D0237D59E400361447 /* cqapplication.hh */,
-				CE988DB7238ED2F70088A66E /* cqattributedstring.cpp */,
-				CE988DB5238ED2F70088A66E /* cqattributedstring.hh */,
-				CE843176239578A2005A6CF8 /* cqbutton.cpp */,
-				CE843174239578A1005A6CF8 /* cqbutton.hh */,
-				CEC440CA237D59E400361447 /* cqcolor.cpp */,
-				CEC440CE237D59E400361447 /* cqcolor.hh */,
-				CEF20D1C238539B100004461 /* cqcontext.cpp */,
-				CEF20D1D238539B100004461 /* cqcontext.hh */,
-				CE843175239578A1005A6CF8 /* cqcontrol.cpp */,
-				CE843177239578A2005A6CF8 /* cqcontrol.hh */,
-				CEC440D2237D59E400361447 /* cqevent.cpp */,
-				CEC440CC237D59E400361447 /* cqevent.hh */,
-				CE988DB6238ED2F70088A66E /* cqfont.cpp */,
-				CE988DB2238ED2F70088A66E /* cqfont.hh */,
-				CEC440BE237D59E400361447 /* cqgeometry.cpp */,
-				CEC440BB237D59E400361447 /* cqgeometry.hh */,
-				CEC440C2237D59E400361447 /* cqimage.cpp */,
-				CEC440C9237D59E400361447 /* cqimage.hh */,
-				CEC440CF237D59E400361447 /* cqimageview.cpp */,
-				CEC440CD237D59E400361447 /* cqimageview.hh */,
-				CE988DB3238ED2F70088A66E /* cqlabel.cpp */,
-				CE988DB4238ED2F70088A66E /* cqlabel.hh */,
-				CEC440C7237D59E400361447 /* cqlayer.cpp */,
-				CEC440C0237D59E400361447 /* cqlayer.hh */,
-				CEC440C3237D59E400361447 /* cqresponder.cpp */,
-				CEC440C6237D59E400361447 /* cqresponder.hh */,
-				CEC440D4237D59E400361447 /* cqtouch.cpp */,
-				CEC440C1237D59E400361447 /* cqtouch.hh */,
-				CEC440BA237D59E400361447 /* cqtouchesevent_p.hh */,
-				CEC440D5237D59E400361447 /* cqtouchesevent.cpp */,
-				CEC440C5237D59E400361447 /* cqview.cpp */,
-				CEC440BD237D59E400361447 /* cqview.hh */,
-				CEC440BF237D59E400361447 /* cqviewcontroller.cpp */,
-				CEC440C4237D59E400361447 /* cqviewcontroller.hh */,
-				CEC440C8237D59E400361447 /* cqwindow.cpp */,
-				CEC440CB237D59E400361447 /* cqwindow.hh */,
-			);
-			path = cppappkit;
-			sourceTree = "<group>";
-		};
-		CEC440E5237D5AAC00361447 /* XApp */ = {
-			isa = PBXGroup;
-			children = (
-				CEC440F4237D5B7200361447 /* xapp */,
-			);
-			name = XApp;
-			sourceTree = "<group>";
-		};
-		CEC440E6237D5AB400361447 /* XAppRes */ = {
-			isa = PBXGroup;
-			children = (
-				CEC440FB237D5B9200361447 /* xappres */,
-			);
-			name = XAppRes;
-			sourceTree = "<group>";
-		};
-		CEC440E7237D5AC700361447 /* XGameRes */ = {
-			isa = PBXGroup;
-			children = (
-				CEC440F2237D5B3800361447 /* xgameres.bundle */,
-			);
-			name = XGameRes;
-			sourceTree = "<group>";
-		};
-		CEC440E8237D5AD200361447 /* XGame */ = {
-			isa = PBXGroup;
-			children = (
-				CEC440E9237D5B1400361447 /* xgame */,
-			);
-			name = XGame;
-			sourceTree = "<group>";
-		};
-		CEC440E9237D5B1400361447 /* xgame */ = {
-			isa = PBXGroup;
-			children = (
-				CEC440EC237D5B1400361447 /* entry.cpp */,
-				CEC440ED237D5B1400361447 /* gamelowroot.cpp */,
-				CEC440EA237D5B1400361447 /* gamelowroot.hh */,
-				CEC440EB237D5B1400361447 /* respackage.cpp */,
-				CEC440EE237D5B1400361447 /* respackage.hh */,
-			);
-			name = xgame;
-			path = ../core_xgame/xgame/xgame;
-			sourceTree = "<group>";
-		};
-		CEC440F4237D5B7200361447 /* xapp */ = {
-			isa = PBXGroup;
-			children = (
-				CEC440F6237D5B7200361447 /* appdelegate.cpp */,
-				CEC440F7237D5B7200361447 /* appdelegate.hh */,
-				CEC440F8237D5B7200361447 /* rootviewcontroller.cpp */,
-				CEC440F5237D5B7200361447 /* rootviewcontroller.hh */,
-			);
-			name = xapp;
-			path = ../core_xapp/xapp/xapp;
-			sourceTree = "<group>";
-		};
-		CEC440FB237D5B9200361447 /* xappres */ = {
-			isa = PBXGroup;
-			children = (
-				CEC440FC237D5B9200361447 /* doc.png */,
-				CEC440FE237D5B9200361447 /* ppt.png */,
-				CEC440FD237D5B9200361447 /* xls.png */,
-			);
-			name = xappres;
-			path = ../core_xapp/xappres/xappres;
 			sourceTree = "<group>";
 		};
 		CEEB26192300655C001FD8D6 /* CQNetStatusListener */ = {
@@ -1151,17 +623,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEC44101237D5B9200361447 /* ppt.png in Resources */,
-				CEC440FF237D5B9200361447 /* doc.png in Resources */,
 				B44310942322069200FA6720 /* TitlebarViewController.xib in Resources */,
 				B401E5C8226F3470002F65BF /* Resource.bundle in Resources */,
 				B45C1BB221A02B19007CB374 /* Assets.xcassets in Resources */,
-				CEC440F3237D5B3800361447 /* xgameres.bundle in Resources */,
 				B44310992322074200FA6720 /* FloatViewController.xib in Resources */,
 				B4431096232206C800FA6720 /* ToolbarViewConotroller.xib in Resources */,
 				B45C1BB121A02B19007CB374 /* LaunchScreen.storyboard in Resources */,
 				B4549AB722BCA2FE00781D3C /* L.strings in Resources */,
-				CEC44100237D5B9200361447 /* xls.png in Resources */,
 				B416F18921A2CD630045FDF6 /* Scenes.plist in Resources */,
 				B4CFD97A21C75AB300FFF4CF /* IAPDemoController.xib in Resources */,
 				B44310922322065A00FA6720 /* ContentViewController.xib in Resources */,
@@ -1180,89 +648,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEC440DB237D59E400361447 /* cqresponder.cpp in Sources */,
-				CEC440A7237D599500361447 /* csscenemanager.cpp in Sources */,
 				B467ECE1231000100045E2DC /* NSString+CQ.m in Sources */,
-				CEF20D1E238539B100004461 /* cqcontext.cpp in Sources */,
 				B4DCD87E21F17DAE0090BFBB /* UserIdentity.m in Sources */,
 				B44310872321FBED00FA6720 /* ToolBarViewController.m in Sources */,
 				B425210922842AD3004FA04B /* NSBundle+CQ.m in Sources */,
 				B467ECE423100B090045E2DC /* NSMutableCollections+CQ.m in Sources */,
-				CEC440D6237D59E400361447 /* AppAppDelegate.m in Sources */,
 				CE749FB12351C9E200E4FCEE /* BlankViewController.m in Sources */,
-				CEC4409A237D599500361447 /* csgameobject.cpp in Sources */,
-				CEC44099237D599500361447 /* csgamekitarche.cpp in Sources */,
-				CEC44055237D593500361447 /* cqttf.cpp in Sources */,
-				CEC440A9237D599500361447 /* csbehaviour.cpp in Sources */,
 				CEEB261C2300655C001FD8D6 /* CQNetStatusListener.m in Sources */,
-				CEC440FA237D5B7200361447 /* rootviewcontroller.cpp in Sources */,
 				B44310882321FBED00FA6720 /* ContentViewController.m in Sources */,
-				CE843178239578A2005A6CF8 /* cqcontrol.cpp in Sources */,
-				CEC4405B237D593500361447 /* CQGLAppDelegate.m in Sources */,
-				CEC440E2237D59E400361447 /* cqapplication.cpp in Sources */,
-				CEC440E0237D59E400361447 /* cqimageview.cpp in Sources */,
-				CEC440D9237D59E400361447 /* cqviewcontroller.cpp in Sources */,
 				B475C16A230100A300ED7BD3 /* CQGCD.m in Sources */,
-				CEC440E4237D59E400361447 /* cqtouchesevent.cpp in Sources */,
-				CEC440DA237D59E400361447 /* cqimage.cpp in Sources */,
-				CE988DB9238ED2F70088A66E /* cqfont.cpp in Sources */,
-				CEC440DD237D59E400361447 /* cqlayer.cpp in Sources */,
-				CEC44057237D593500361447 /* cqshader2d.cpp in Sources */,
-				CEC440A1237D599500361447 /* CSGAMEKIT_PORT.cpp in Sources */,
-				CEC44053237D593500361447 /* cqglkitarche.cpp in Sources */,
-				CEC440A2237D599500361447 /* csspriterenderder.cpp in Sources */,
-				CEC440A6237D599500361447 /* csscene.cpp in Sources */,
 				B425211422842B91004FA04B /* CQHotfixManager.m in Sources */,
-				CEC44059237D593500361447 /* cqdraw2d.cpp in Sources */,
 				B425212A22842C8E004FA04B /* CQCommandViewController.m in Sources */,
-				CEC440A0237D599500361447 /* csresources.cpp in Sources */,
-				CEC440AD237D599500361447 /* cssprite.cpp in Sources */,
-				CEC440DF237D59E400361447 /* cqcolor.cpp in Sources */,
 				B443108A2321FBED00FA6720 /* AttachViewController.m in Sources */,
 				B45C1BB821A02B19007CB374 /* AppDelegate.m in Sources */,
-				CEC440AF237D599500361447 /* csscript.cpp in Sources */,
 				B475C169230100A300ED7BD3 /* NSNotificationCenter+CQ.m in Sources */,
-				CEC44058237D593500361447 /* cqopengl.cpp in Sources */,
 				B4DCD87F21F17DAE0090BFBB /* UserSetting.m in Sources */,
-				CEC4409F237D599500361447 /* csrenderer.cpp in Sources */,
-				CEC440AA237D599500361447 /* cstransform.cpp in Sources */,
 				B4E7CD0F2224098800122637 /* main.m in Sources */,
 				B4CFD97321C7475000FFF4CF /* IAPDemoController.m in Sources */,
-				CEC440D7237D59E400361447 /* cqappkitarche.cpp in Sources */,
 				B44310892321FBED00FA6720 /* DocViewController.m in Sources */,
-				CEC440E3237D59E400361447 /* cqtouch.cpp in Sources */,
-				CEC4409C237D599500361447 /* csluavm.cpp in Sources */,
 				CE62C93E234F2B9200F94D97 /* UIColor+CQ.m in Sources */,
-				CEC440DC237D59E400361447 /* cqview.cpp in Sources */,
-				CEC440D8237D59E400361447 /* cqgeometry.cpp in Sources */,
-				CEC440A3237D599500361447 /* cscomponent.cpp in Sources */,
-				CEC4409B237D599500361447 /* csnode.cpp in Sources */,
-				CEC440E1237D59E400361447 /* cqevent.cpp in Sources */,
-				CEC440AE237D599500361447 /* cstexture2d.cpp in Sources */,
-				CEC44054237D593500361447 /* cqwnd.cpp in Sources */,
-				CEC440F0237D5B1400361447 /* entry.cpp in Sources */,
-				CEC44098237D599500361447 /* GameAppDelegate.m in Sources */,
 				B425210A22842AD3004FA04B /* UIDevice+CQ.m in Sources */,
-				CEC4405A237D593500361447 /* CQGLViewController.m in Sources */,
-				CEC440DE237D59E400361447 /* cqwindow.cpp in Sources */,
-				CEC440A5237D599500361447 /* cscamera.cpp in Sources */,
-				CEC440B0237D599500361447 /* cslualibgamekit.cpp in Sources */,
 				B425212322842BE4004FA04B /* CQSceneNavigator.m in Sources */,
 				B425210B22842AD3004FA04B /* UIViewController+CQ.m in Sources */,
 				CE749FB22351C9E200E4FCEE /* CommandViewController.m in Sources */,
-				CE988DB8238ED2F70088A66E /* cqlabel.cpp in Sources */,
 				B425212222842BE4004FA04B /* CQCrashListener.m in Sources */,
-				CEC440F1237D5B1400361447 /* gamelowroot.cpp in Sources */,
-				CEC44056237D593500361447 /* cqimg.cpp in Sources */,
 				B443108B2321FBED00FA6720 /* TitleBarViewController.m in Sources */,
-				CE843179239578A2005A6CF8 /* cqbutton.cpp in Sources */,
-				CEC440EF237D5B1400361447 /* respackage.cpp in Sources */,
-				CE988DBA238ED2F70088A66E /* cqattributedstring.cpp in Sources */,
 				CE749FAA2351C7D600E4FCEE /* DailyViewController.m in Sources */,
 				B425210822842AD3004FA04B /* UIView+CQ.m in Sources */,
-				CEC4409D237D599500361447 /* cstexture.cpp in Sources */,
 				B4D3B39A2260C88E007D3E4A /* FloatViewController.m in Sources */,
-				CEC440F9237D5B7200361447 /* appdelegate.cpp in Sources */,
 				B425212422842BE4004FA04B /* UIViewController+CQScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
