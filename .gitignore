@@ -1,7 +1,7 @@
-# macOS Finder cache
+# macOS Finder cache.
 .DS_Store
 
-# Android Studio local files
+# Android Studio local files.
 *_android/**/.cxx/
 *_android/**/.externalNativeBuild/
 *_android/**/.gradle/
@@ -13,34 +13,11 @@
 *_android/**/.project
 *_android/**/*.iml
 
-# Xcode local files
+# Xcode local files.
 *_ios/**/xcuserdata/
 *_ios/**/build/
 *_ios/**/export/
 
-*_osx/**/xcuserdata/
-*_osx/**/build/
-*_osx/**/export/
-
-# Unity local files
-app_unity/Library/*
-app_unity/Temp/*
-
-# Visual Studio local files
-app_unity/*.sln
-app_unity/*.csproj
-app_unity/.vs/*
-app_unity/bin/*
-app_unity/obj/*
-
-EDITOR_CS_OSX/.vs/*
-EDITOR_CS_OSX/bin/*
-EDITOR_CS_OSX/obj/*
-
-# VS Code local files
-.vscode/
-
-# the project's local files
-app_unity/XCODEBUILD/*
+# the project's generated files.
 BUILD/*
 GENERATED_HEADERS/*
