@@ -43,30 +43,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-    //source files.
-    sourceSets {
-        main {
-//            manifest.srcFile '../../library1/appkit/androidres/AndroidManifest.xml'
-//            manifest.srcFile '../../library1/gamekit/androidres/AndroidManifest.xml'
-
-            java.srcDirs += '../../library1/appkit/android/java'
-            java.srcDirs += '../../library1/gamekit/android/java'
-            java.srcDirs += '../../library1/glkit/android/java'
-
-            assets.srcDirs += "../../core_xapp/xappres"
-            assets.srcDirs += "../../core_xgame/xgameres"
-
-            jniLibs.srcDirs += '../../thirds_android/jniLibs'
-        }
-    }
 }
 
 dependencies {
     implementation project(':library')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
-    implementation 'androidx.core:core:1.3.1'
+    implementation 'androidx.core:core:1.3.2'
     implementation 'androidx.drawerlayout:drawerlayout:1.1.1'
     implementation 'androidx.fragment:fragment:1.2.5'
 }
