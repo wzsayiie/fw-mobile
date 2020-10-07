@@ -5,10 +5,10 @@ set(lib_name library)
 
 list(APPEND inc_path ../GENERATED_HEADERS)
 
-list(APPEND src_aims ../library0/BASIS/*.c[xp][xp])
-list(APPEND src_aims ../library0/ctool/*.c[xp][xp])
-list(APPEND src_aims ../library0/foundation/*.c[xp][xp])
-list(APPEND src_aims ../library0/subsystem/*.c[xp][xp])
+list(APPEND src_aims ../library/basis/*.c[xp][xp])
+list(APPEND src_aims ../library/ctool/*.c[xp][xp])
+list(APPEND src_aims ../library/foundation/*.c[xp][xp])
+list(APPEND src_aims ../library/subsystem/*.c[xp][xp])
 ### configutation end
 
 file(GLOB_RECURSE src_files ${src_aims})

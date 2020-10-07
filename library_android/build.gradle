@@ -37,11 +37,11 @@ android {
     //source files.
     sourceSets {
         main {
-            java.srcDirs += '../library0/BASIS/android/java'
-            java.srcDirs += '../library0/foundation/android/java'
-            java.srcDirs += '../library0/subsystem/android/java'
+            java.srcDirs += '../library/basis/basis_android/java'
+            java.srcDirs += '../library/foundation/foundation_android/java'
+            java.srcDirs += '../library/subsystem/subsystem_android/java'
 
-            res.srcDirs += '../library0/subsystem/androidres/res'
+            res.srcDirs += '../library/subsystem/subsystem_android_res/res'
         }
     }
 }

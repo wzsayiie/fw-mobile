@@ -12,7 +12,7 @@ mkdir %destination%
 
 set error=0
 
-set source="library0"
+set source="library"
 call :generate
 if not %error% == 0 (goto end)
 

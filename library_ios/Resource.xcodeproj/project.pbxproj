@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B42A8D3822BCA95D00E42E75 /* L.strings in Resources */ = {isa = PBXBuildFile; fileRef = B42A8D3622BCA95D00E42E75 /* L.strings */; };
-		B443BAC7226D908A000D3021 /* CQSubsystemController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B443BAC5226D908A000D3021 /* CQSubsystemController.xib */; };
+		CE6E74CF252CBC8A00CF1283 /* L.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE6E74CA252CBC8A00CF1283 /* L.strings */; };
+		CE6E74D0252CBC8A00CF1283 /* CQSubsystemController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE6E74CD252CBC8A00CF1283 /* CQSubsystemController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B42A8D3722BCA95D00E42E75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/L.strings; sourceTree = "<group>"; };
-		B42A8D3922BCA96400E42E75 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/L.strings"; sourceTree = "<group>"; };
-		B443BAC5226D908A000D3021 /* CQSubsystemController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CQSubsystemController.xib; sourceTree = "<group>"; };
-		B443BAC6226D908A000D3021 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4EB47B6226D87C1008B5E2F /* Resource.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Resource.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE6E74CB252CBC8A00CF1283 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/L.strings"; sourceTree = "<group>"; };
+		CE6E74CC252CBC8A00CF1283 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/L.strings; sourceTree = "<group>"; };
+		CE6E74CD252CBC8A00CF1283 /* CQSubsystemController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CQSubsystemController.xib; sourceTree = "<group>"; };
+		CE6E74CE252CBC8A00CF1283 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,31 +30,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B42A8D3522BCA95D00E42E75 /* Strings */ = {
-			isa = PBXGroup;
-			children = (
-				B42A8D3622BCA95D00E42E75 /* L.strings */,
-			);
-			path = Strings;
-			sourceTree = "<group>";
-		};
 		B4E7251F226D88F1008CD949 /* Subsystem */ = {
 			isa = PBXGroup;
 			children = (
-				B4E72520226D8901008CD949 /* IOSResources */,
+				CE6E74C8252CBC8A00CF1283 /* subsystem_ios_res */,
 			);
 			name = Subsystem;
-			sourceTree = "<group>";
-		};
-		B4E72520226D8901008CD949 /* IOSResources */ = {
-			isa = PBXGroup;
-			children = (
-				B443BAC5226D908A000D3021 /* CQSubsystemController.xib */,
-				B443BAC6226D908A000D3021 /* Info.plist */,
-				B42A8D3522BCA95D00E42E75 /* Strings */,
-			);
-			name = IOSResources;
-			path = ../library0/subsystem/IOSResources;
 			sourceTree = "<group>";
 		};
 		B4EB47AD226D87C1008B5E2F = {
@@ -71,6 +52,25 @@
 				B4EB47B6226D87C1008B5E2F /* Resource.bundle */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		CE6E74C8252CBC8A00CF1283 /* subsystem_ios_res */ = {
+			isa = PBXGroup;
+			children = (
+				CE6E74CD252CBC8A00CF1283 /* CQSubsystemController.xib */,
+				CE6E74CE252CBC8A00CF1283 /* Info.plist */,
+				CE6E74C9252CBC8A00CF1283 /* Strings */,
+			);
+			name = subsystem_ios_res;
+			path = ../library/subsystem/subsystem_ios_res;
+			sourceTree = "<group>";
+		};
+		CE6E74C9252CBC8A00CF1283 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				CE6E74CA252CBC8A00CF1283 /* L.strings */,
+			);
+			path = Strings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,8 +131,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B443BAC7226D908A000D3021 /* CQSubsystemController.xib in Resources */,
-				B42A8D3822BCA95D00E42E75 /* L.strings in Resources */,
+				CE6E74CF252CBC8A00CF1283 /* L.strings in Resources */,
+				CE6E74D0252CBC8A00CF1283 /* CQSubsystemController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,11 +149,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B42A8D3622BCA95D00E42E75 /* L.strings */ = {
+		CE6E74CA252CBC8A00CF1283 /* L.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B42A8D3722BCA95D00E42E75 /* Base */,
-				B42A8D3922BCA96400E42E75 /* zh-Hans */,
+				CE6E74CB252CBC8A00CF1283 /* zh-Hans */,
+				CE6E74CC252CBC8A00CF1283 /* Base */,
 			);
 			name = L.strings;
 			sourceTree = "<group>";
@@ -283,7 +283,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/../library0/subsystem/IOSResources/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/../library/subsystem/subsystem_ios_res/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = me.wzsayiie.libary.resource;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -299,7 +299,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/../library0/subsystem/IOSResources/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/../library/subsystem/subsystem_ios_res/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = me.wzsayiie.libary.resource;
 				PRODUCT_NAME = "$(TARGET_NAME)";
