@@ -1,4 +1,4 @@
-#include "cqctoolarche.h"
+#include "cqctoolintf.h"
 #include "cqctool.hh"
 
 void cq_main_queue_user_control(bool enabled) {

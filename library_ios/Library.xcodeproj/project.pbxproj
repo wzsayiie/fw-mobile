@@ -7,32 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE59DB2A25330416004AA3C7 /* cqctoolintf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE59DB2925330416004AA3C7 /* cqctoolintf.cpp */; };
+		CE59DB2D2533042F004AA3C7 /* IMPL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE59DB2C2533042F004AA3C7 /* IMPL.cpp */; };
+		CE59DB322533044D004AA3C7 /* cqfoundationintf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE59DB302533044D004AA3C7 /* cqfoundationintf.cpp */; };
+		CE59DB3525330477004AA3C7 /* IMPL.m in Sources */ = {isa = PBXBuildFile; fileRef = CE59DB3425330477004AA3C7 /* IMPL.m */; };
+		CE59DB3A25330498004AA3C7 /* cqsubsystemintf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE59DB3825330498004AA3C7 /* cqsubsystemintf.cpp */; };
+		CE59DB3D253304AC004AA3C7 /* IMPL.m in Sources */ = {isa = PBXBuildFile; fileRef = CE59DB3C253304AC004AA3C7 /* IMPL.m */; };
 		CE6E74DC252CBCFA00CF1283 /* cqcbasis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE6E74D4252CBCFA00CF1283 /* cqcbasis.cpp */; };
 		CE6E74DD252CBCFA00CF1283 /* cqcppbasis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE6E74D5252CBCFA00CF1283 /* cqcppbasis.cpp */; };
 		CE6E74DE252CBCFA00CF1283 /* CQObjcBasis.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6E74DB252CBCFA00CF1283 /* CQObjcBasis.m */; };
-		CE6E74FC252CBD1F00CF1283 /* cqctoolarche.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE6E74E4252CBD1F00CF1283 /* cqctoolarche.cpp */; };
 		CE6E74FD252CBD1F00CF1283 /* cqbase64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE6E74E6252CBD1F00CF1283 /* cqbase64.cpp */; };
 		CE6E74FE252CBD1F00CF1283 /* cqpathstring.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE6E74E9252CBD1F00CF1283 /* cqpathstring.cpp */; };
 		CE6E74FF252CBD1F00CF1283 /* cqbus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE6E74EA252CBD1F00CF1283 /* cqbus.cpp */; };
-		CE6E7500252CBD1F00CF1283 /* CQCTOOL_PORT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE6E74EB252CBD1F00CF1283 /* CQCTOOL_PORT.cpp */; };
 		CE6E7501252CBD1F00CF1283 /* cqdata.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE6E74ED252CBD1F00CF1283 /* cqdata.cpp */; };
 		CE6E7502252CBD1F00CF1283 /* cqsocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE6E74F0252CBD1F00CF1283 /* cqsocket.cpp */; };
 		CE6E7503252CBD1F00CF1283 /* cqvalue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE6E74F4252CBD1F00CF1283 /* cqvalue.cpp */; };
 		CE6E7504252CBD1F00CF1283 /* cqjson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE6E74F6252CBD1F00CF1283 /* cqjson.cpp */; };
 		CE6E7505252CBD1F00CF1283 /* cqdispatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE6E74F7252CBD1F00CF1283 /* cqdispatch.cpp */; };
-		CE6E751E252CBD5800CF1283 /* cqfoundationarche.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE6E7509252CBD5800CF1283 /* cqfoundationarche.cpp */; };
 		CE6E751F252CBD5800CF1283 /* cqfoundation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE6E750D252CBD5800CF1283 /* cqfoundation.cpp */; };
-		CE6E7520252CBD5800CF1283 /* CQFOUNDATION_PORT.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6E750F252CBD5800CF1283 /* CQFOUNDATION_PORT.m */; };
 		CE6E7521252CBD5800CF1283 /* CQThread.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6E7511252CBD5800CF1283 /* CQThread.m */; };
 		CE6E7522252CBD5800CF1283 /* CQFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6E7514252CBD5800CF1283 /* CQFileManager.m */; };
 		CE6E7523252CBD5800CF1283 /* CQHTTPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6E7517252CBD5800CF1283 /* CQHTTPSession.m */; };
 		CE6E7524252CBD5800CF1283 /* CQRunLoop.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6E7519252CBD5800CF1283 /* CQRunLoop.m */; };
 		CE6E7525252CBD5800CF1283 /* CQLog.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6E751B252CBD5800CF1283 /* CQLog.m */; };
 		CE6E7526252CBD5800CF1283 /* CQBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6E751C252CBD5800CF1283 /* CQBundle.m */; };
-		CE6E753E252CBD8000CF1283 /* cqsubsystemarche.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE6E7533252CBD8000CF1283 /* cqsubsystemarche.cpp */; };
 		CE6E753F252CBD8000CF1283 /* cqsubsystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE6E7535252CBD8000CF1283 /* cqsubsystem.cpp */; };
 		CE6E7540252CBD8000CF1283 /* CQSubsystemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6E7538252CBD8000CF1283 /* CQSubsystemManager.m */; };
-		CE6E7541252CBD8000CF1283 /* CQSUBSYSTEM_PORT.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6E7539252CBD8000CF1283 /* CQSUBSYSTEM_PORT.m */; };
 		CE6E7542252CBD8000CF1283 /* CQSubsystemController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE6E753D252CBD8000CF1283 /* CQSubsystemController.m */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +50,15 @@
 
 /* Begin PBXFileReference section */
 		CE219ADF21DA51FD006A27B6 /* libLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE59DB2825330416004AA3C7 /* cqctoolintf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqctoolintf.h; sourceTree = "<group>"; };
+		CE59DB2925330416004AA3C7 /* cqctoolintf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqctoolintf.cpp; sourceTree = "<group>"; };
+		CE59DB2C2533042F004AA3C7 /* IMPL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IMPL.cpp; sourceTree = "<group>"; };
+		CE59DB302533044D004AA3C7 /* cqfoundationintf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqfoundationintf.cpp; sourceTree = "<group>"; };
+		CE59DB312533044D004AA3C7 /* cqfoundationintf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqfoundationintf.h; sourceTree = "<group>"; };
+		CE59DB3425330477004AA3C7 /* IMPL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMPL.m; sourceTree = "<group>"; };
+		CE59DB3825330498004AA3C7 /* cqsubsystemintf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqsubsystemintf.cpp; sourceTree = "<group>"; };
+		CE59DB3925330498004AA3C7 /* cqsubsystemintf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqsubsystemintf.h; sourceTree = "<group>"; };
+		CE59DB3C253304AC004AA3C7 /* IMPL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMPL.m; sourceTree = "<group>"; };
 		CE6E74D4252CBCFA00CF1283 /* cqcbasis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqcbasis.cpp; sourceTree = "<group>"; };
 		CE6E74D5252CBCFA00CF1283 /* cqcppbasis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqcppbasis.cpp; sourceTree = "<group>"; };
 		CE6E74D6252CBCFA00CF1283 /* cqcppbasis.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqcppbasis.hh; sourceTree = "<group>"; };
@@ -57,14 +66,11 @@
 		CE6E74D8252CBCFA00CF1283 /* _CQBASIS_VERSION.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _CQBASIS_VERSION.h; path = ../library/basis/_CQBASIS_VERSION.h; sourceTree = "<group>"; };
 		CE6E74DA252CBCFA00CF1283 /* CQObjcBasis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQObjcBasis.h; sourceTree = "<group>"; };
 		CE6E74DB252CBCFA00CF1283 /* CQObjcBasis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQObjcBasis.m; sourceTree = "<group>"; };
-		CE6E74E3252CBD1F00CF1283 /* cqctoolarche.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqctoolarche.h; sourceTree = "<group>"; };
-		CE6E74E4252CBD1F00CF1283 /* cqctoolarche.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqctoolarche.cpp; sourceTree = "<group>"; };
 		CE6E74E6252CBD1F00CF1283 /* cqbase64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqbase64.cpp; sourceTree = "<group>"; };
 		CE6E74E7252CBD1F00CF1283 /* cqsocket_win32.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqsocket_win32.hpp; sourceTree = "<group>"; };
 		CE6E74E8252CBD1F00CF1283 /* cqsocket_posix.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqsocket_posix.hpp; sourceTree = "<group>"; };
 		CE6E74E9252CBD1F00CF1283 /* cqpathstring.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqpathstring.cpp; sourceTree = "<group>"; };
 		CE6E74EA252CBD1F00CF1283 /* cqbus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqbus.cpp; sourceTree = "<group>"; };
-		CE6E74EB252CBD1F00CF1283 /* CQCTOOL_PORT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CQCTOOL_PORT.cpp; sourceTree = "<group>"; };
 		CE6E74EC252CBD1F00CF1283 /* cqvalue.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqvalue.hh; sourceTree = "<group>"; };
 		CE6E74ED252CBD1F00CF1283 /* cqdata.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqdata.cpp; sourceTree = "<group>"; };
 		CE6E74EE252CBD1F00CF1283 /* cqdata.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqdata.hh; sourceTree = "<group>"; };
@@ -81,11 +87,8 @@
 		CE6E74F9252CBD1F00CF1283 /* cqbus.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqbus.hh; sourceTree = "<group>"; };
 		CE6E74FA252CBD1F00CF1283 /* cqctoolbase.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqctoolbase.hh; sourceTree = "<group>"; };
 		CE6E74FB252CBD1F00CF1283 /* _CQCTOOL_VERSION.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _CQCTOOL_VERSION.h; path = ../library/ctool/_CQCTOOL_VERSION.h; sourceTree = "<group>"; };
-		CE6E7509252CBD5800CF1283 /* cqfoundationarche.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqfoundationarche.cpp; sourceTree = "<group>"; };
-		CE6E750A252CBD5800CF1283 /* cqfoundationarche.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqfoundationarche.h; sourceTree = "<group>"; };
 		CE6E750C252CBD5800CF1283 /* cqfoundation.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqfoundation.hh; sourceTree = "<group>"; };
 		CE6E750D252CBD5800CF1283 /* cqfoundation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqfoundation.cpp; sourceTree = "<group>"; };
-		CE6E750F252CBD5800CF1283 /* CQFOUNDATION_PORT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQFOUNDATION_PORT.m; sourceTree = "<group>"; };
 		CE6E7510252CBD5800CF1283 /* CQRunLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQRunLoop.h; sourceTree = "<group>"; };
 		CE6E7511252CBD5800CF1283 /* CQThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQThread.m; sourceTree = "<group>"; };
 		CE6E7512252CBD5800CF1283 /* CQHTTPSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQHTTPSession.h; sourceTree = "<group>"; };
@@ -101,12 +104,9 @@
 		CE6E751C252CBD5800CF1283 /* CQBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQBundle.m; sourceTree = "<group>"; };
 		CE6E751D252CBD5800CF1283 /* _CQFOUNDATION_VERSION.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _CQFOUNDATION_VERSION.h; path = ../library/foundation/_CQFOUNDATION_VERSION.h; sourceTree = "<group>"; };
 		CE6E7528252CBD8000CF1283 /* _CQSUBSYSTEM_VERSION.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _CQSUBSYSTEM_VERSION.h; path = ../library/subsystem/_CQSUBSYSTEM_VERSION.h; sourceTree = "<group>"; };
-		CE6E7532252CBD8000CF1283 /* cqsubsystemarche.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cqsubsystemarche.h; sourceTree = "<group>"; };
-		CE6E7533252CBD8000CF1283 /* cqsubsystemarche.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqsubsystemarche.cpp; sourceTree = "<group>"; };
 		CE6E7535252CBD8000CF1283 /* cqsubsystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cqsubsystem.cpp; sourceTree = "<group>"; };
 		CE6E7536252CBD8000CF1283 /* cqsubsystem.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cqsubsystem.hh; sourceTree = "<group>"; };
 		CE6E7538252CBD8000CF1283 /* CQSubsystemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQSubsystemManager.m; sourceTree = "<group>"; };
-		CE6E7539252CBD8000CF1283 /* CQSUBSYSTEM_PORT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQSUBSYSTEM_PORT.m; sourceTree = "<group>"; };
 		CE6E753A252CBD8000CF1283 /* CQSubsystemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQSubsystemController.h; sourceTree = "<group>"; };
 		CE6E753B252CBD8000CF1283 /* CQSubsystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQSubsystem.h; sourceTree = "<group>"; };
 		CE6E753C252CBD8000CF1283 /* CQSubsystemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQSubsystemManager.h; sourceTree = "<group>"; };
@@ -182,6 +182,33 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		CE59DB2725330416004AA3C7 /* intf */ = {
+			isa = PBXGroup;
+			children = (
+				CE59DB2925330416004AA3C7 /* cqctoolintf.cpp */,
+				CE59DB2825330416004AA3C7 /* cqctoolintf.h */,
+			);
+			path = intf;
+			sourceTree = "<group>";
+		};
+		CE59DB2F2533044D004AA3C7 /* intf */ = {
+			isa = PBXGroup;
+			children = (
+				CE59DB302533044D004AA3C7 /* cqfoundationintf.cpp */,
+				CE59DB312533044D004AA3C7 /* cqfoundationintf.h */,
+			);
+			path = intf;
+			sourceTree = "<group>";
+		};
+		CE59DB3725330498004AA3C7 /* intf */ = {
+			isa = PBXGroup;
+			children = (
+				CE59DB3825330498004AA3C7 /* cqsubsystemintf.cpp */,
+				CE59DB3925330498004AA3C7 /* cqsubsystemintf.h */,
+			);
+			path = intf;
+			sourceTree = "<group>";
+		};
 		CE6E74D3252CBCFA00CF1283 /* basis */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,20 +234,11 @@
 		CE6E74E1252CBD1F00CF1283 /* ctool */ = {
 			isa = PBXGroup;
 			children = (
-				CE6E74E2252CBD1F00CF1283 /* arche */,
 				CE6E74E5252CBD1F00CF1283 /* cpp */,
+				CE59DB2725330416004AA3C7 /* intf */,
 			);
 			name = ctool;
 			path = ../library/ctool/ctool;
-			sourceTree = "<group>";
-		};
-		CE6E74E2252CBD1F00CF1283 /* arche */ = {
-			isa = PBXGroup;
-			children = (
-				CE6E74E4252CBD1F00CF1283 /* cqctoolarche.cpp */,
-				CE6E74E3252CBD1F00CF1283 /* cqctoolarche.h */,
-			);
-			path = arche;
 			sourceTree = "<group>";
 		};
 		CE6E74E5252CBD1F00CF1283 /* cpp */ = {
@@ -230,7 +248,6 @@
 				CE6E74F3252CBD1F00CF1283 /* cqbase64.hh */,
 				CE6E74EA252CBD1F00CF1283 /* cqbus.cpp */,
 				CE6E74F9252CBD1F00CF1283 /* cqbus.hh */,
-				CE6E74EB252CBD1F00CF1283 /* CQCTOOL_PORT.cpp */,
 				CE6E74F2252CBD1F00CF1283 /* cqctool.hh */,
 				CE6E74FA252CBD1F00CF1283 /* cqctoolbase.hh */,
 				CE6E74ED252CBD1F00CF1283 /* cqdata.cpp */,
@@ -247,6 +264,7 @@
 				CE6E74EF252CBD1F00CF1283 /* cqsocket.hh */,
 				CE6E74F4252CBD1F00CF1283 /* cqvalue.cpp */,
 				CE6E74EC252CBD1F00CF1283 /* cqvalue.hh */,
+				CE59DB2C2533042F004AA3C7 /* IMPL.cpp */,
 			);
 			path = cpp;
 			sourceTree = "<group>";
@@ -254,20 +272,11 @@
 		CE6E7507252CBD5800CF1283 /* foundation */ = {
 			isa = PBXGroup;
 			children = (
-				CE6E7508252CBD5800CF1283 /* arche */,
 				CE6E750B252CBD5800CF1283 /* cpp */,
+				CE59DB2F2533044D004AA3C7 /* intf */,
 			);
 			name = foundation;
 			path = ../library/foundation/foundation;
-			sourceTree = "<group>";
-		};
-		CE6E7508252CBD5800CF1283 /* arche */ = {
-			isa = PBXGroup;
-			children = (
-				CE6E7509252CBD5800CF1283 /* cqfoundationarche.cpp */,
-				CE6E750A252CBD5800CF1283 /* cqfoundationarche.h */,
-			);
-			path = arche;
 			sourceTree = "<group>";
 		};
 		CE6E750B252CBD5800CF1283 /* cpp */ = {
@@ -286,7 +295,6 @@
 				CE6E751C252CBD5800CF1283 /* CQBundle.m */,
 				CE6E751A252CBD5800CF1283 /* CQFileManager.h */,
 				CE6E7514252CBD5800CF1283 /* CQFileManager.m */,
-				CE6E750F252CBD5800CF1283 /* CQFOUNDATION_PORT.m */,
 				CE6E7513252CBD5800CF1283 /* CQFoundation.h */,
 				CE6E7512252CBD5800CF1283 /* CQHTTPSession.h */,
 				CE6E7517252CBD5800CF1283 /* CQHTTPSession.m */,
@@ -296,6 +304,7 @@
 				CE6E7519252CBD5800CF1283 /* CQRunLoop.m */,
 				CE6E7518252CBD5800CF1283 /* CQThread.h */,
 				CE6E7511252CBD5800CF1283 /* CQThread.m */,
+				CE59DB3425330477004AA3C7 /* IMPL.m */,
 			);
 			name = foundation_ios;
 			path = ../library/foundation/foundation_ios;
@@ -304,20 +313,11 @@
 		CE6E7530252CBD8000CF1283 /* subsystem */ = {
 			isa = PBXGroup;
 			children = (
-				CE6E7531252CBD8000CF1283 /* arche */,
 				CE6E7534252CBD8000CF1283 /* cpp */,
+				CE59DB3725330498004AA3C7 /* intf */,
 			);
 			name = subsystem;
 			path = ../library/subsystem/subsystem;
-			sourceTree = "<group>";
-		};
-		CE6E7531252CBD8000CF1283 /* arche */ = {
-			isa = PBXGroup;
-			children = (
-				CE6E7533252CBD8000CF1283 /* cqsubsystemarche.cpp */,
-				CE6E7532252CBD8000CF1283 /* cqsubsystemarche.h */,
-			);
-			path = arche;
 			sourceTree = "<group>";
 		};
 		CE6E7534252CBD8000CF1283 /* cpp */ = {
@@ -332,12 +332,12 @@
 		CE6E7537252CBD8000CF1283 /* subsystem_ios */ = {
 			isa = PBXGroup;
 			children = (
-				CE6E7539252CBD8000CF1283 /* CQSUBSYSTEM_PORT.m */,
 				CE6E753B252CBD8000CF1283 /* CQSubsystem.h */,
 				CE6E753A252CBD8000CF1283 /* CQSubsystemController.h */,
 				CE6E753D252CBD8000CF1283 /* CQSubsystemController.m */,
 				CE6E753C252CBD8000CF1283 /* CQSubsystemManager.h */,
 				CE6E7538252CBD8000CF1283 /* CQSubsystemManager.m */,
+				CE59DB3C253304AC004AA3C7 /* IMPL.m */,
 			);
 			name = subsystem_ios;
 			path = ../library/subsystem/subsystem_ios;
@@ -402,6 +402,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE6E7542252CBD8000CF1283 /* CQSubsystemController.m in Sources */,
+				CE59DB322533044D004AA3C7 /* cqfoundationintf.cpp in Sources */,
 				CE6E7523252CBD5800CF1283 /* CQHTTPSession.m in Sources */,
 				CE6E7524252CBD5800CF1283 /* CQRunLoop.m in Sources */,
 				CE6E74FF252CBD1F00CF1283 /* cqbus.cpp in Sources */,
@@ -409,23 +410,22 @@
 				CE6E7503252CBD1F00CF1283 /* cqvalue.cpp in Sources */,
 				CE6E74FD252CBD1F00CF1283 /* cqbase64.cpp in Sources */,
 				CE6E7501252CBD1F00CF1283 /* cqdata.cpp in Sources */,
-				CE6E7500252CBD1F00CF1283 /* CQCTOOL_PORT.cpp in Sources */,
 				CE6E7504252CBD1F00CF1283 /* cqjson.cpp in Sources */,
+				CE59DB3A25330498004AA3C7 /* cqsubsystemintf.cpp in Sources */,
 				CE6E7525252CBD5800CF1283 /* CQLog.m in Sources */,
-				CE6E751E252CBD5800CF1283 /* cqfoundationarche.cpp in Sources */,
+				CE59DB2D2533042F004AA3C7 /* IMPL.cpp in Sources */,
 				CE6E753F252CBD8000CF1283 /* cqsubsystem.cpp in Sources */,
 				CE6E7526252CBD5800CF1283 /* CQBundle.m in Sources */,
 				CE6E74DE252CBCFA00CF1283 /* CQObjcBasis.m in Sources */,
-				CE6E7541252CBD8000CF1283 /* CQSUBSYSTEM_PORT.m in Sources */,
 				CE6E751F252CBD5800CF1283 /* cqfoundation.cpp in Sources */,
-				CE6E753E252CBD8000CF1283 /* cqsubsystemarche.cpp in Sources */,
-				CE6E74FC252CBD1F00CF1283 /* cqctoolarche.cpp in Sources */,
 				CE6E74FE252CBD1F00CF1283 /* cqpathstring.cpp in Sources */,
 				CE6E7521252CBD5800CF1283 /* CQThread.m in Sources */,
 				CE6E74DD252CBCFA00CF1283 /* cqcppbasis.cpp in Sources */,
 				CE6E7502252CBD1F00CF1283 /* cqsocket.cpp in Sources */,
-				CE6E7520252CBD5800CF1283 /* CQFOUNDATION_PORT.m in Sources */,
+				CE59DB3525330477004AA3C7 /* IMPL.m in Sources */,
+				CE59DB2A25330416004AA3C7 /* cqctoolintf.cpp in Sources */,
 				CE6E74DC252CBCFA00CF1283 /* cqcbasis.cpp in Sources */,
+				CE59DB3D253304AC004AA3C7 /* IMPL.m in Sources */,
 				CE6E7505252CBD1F00CF1283 /* cqdispatch.cpp in Sources */,
 				CE6E7540252CBD8000CF1283 /* CQSubsystemManager.m in Sources */,
 			);

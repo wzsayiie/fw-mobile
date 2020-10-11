@@ -1,5 +1,5 @@
 #import "CQFoundation.h"
-#import "cqfoundationarche.h"
+#import "cqfoundationintf.h"
 
 //log:
 

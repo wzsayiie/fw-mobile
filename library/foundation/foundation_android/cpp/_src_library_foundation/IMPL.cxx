@@ -1,7 +1,7 @@
-#include "cqfoundationarche.h"
+#include "cqfoundationintf.h"
 #include "cqjnihelper.hh"
 
-CQ_JNI_CLASS(PORT, "src/library/foundation/PORT");
+CQ_JNI_CLASS(PORT, "src/library/foundation/IMPL");
 
 //log:
 

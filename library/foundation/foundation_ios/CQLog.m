@@ -1,5 +1,5 @@
 #import "CQLog.h"
-#import "cqfoundationarche.h"
+#import "cqfoundationintf.h"
 
 static void logging(NSString *tag, NSString *file, int line, NSString *format, va_list args) {
     if (format.length == 0) {

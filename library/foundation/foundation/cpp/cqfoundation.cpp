@@ -1,5 +1,5 @@
 #include "cqfoundation.hh"
-#include "cqfoundationarche.h"
+#include "cqfoundationintf.h"
 #include <cstdarg>
 #include <cstdio>
 

@@ -1,5 +1,5 @@
 #include "cqsubsystem.hh"
-#include "cqsubsystemarche.h"
+#include "cqsubsystemintf.h"
 
 cq_member(cqSubsystemManager) {
 };

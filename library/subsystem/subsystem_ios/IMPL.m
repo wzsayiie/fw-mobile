@@ -1,5 +1,5 @@
 #import "CQSubsystem.h"
-#import "cqsubsystemarche.h"
+#import "cqsubsystemintf.h"
 
 void cq_subsystem_start() {
     return [CQSubsystemManager.sharedObject startSubsystem];
