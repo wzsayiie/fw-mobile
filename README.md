@@ -1,3 +1,11 @@
+## OBSOLETED
+
+This respository has been obsoleted, it will not be improved or updated.
+
+on Sept 14, 2021.
+
+---
+
 # Introduction
 
 This is a framework and demonstration for mobile development.
